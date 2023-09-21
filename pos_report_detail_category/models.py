@@ -98,9 +98,22 @@ class ReportSaleDetails(models.AbstractModel):
         else:
             payments = []
 
-        products_category = {
+        products_category = {}
 
-        }
+        lines_cask = []
+
+
+        if orders:
+            for order in orders:
+                for line in order.session_id.statement_line_ids:
+                    lines_cask.append({
+                        'date': line.date,
+                        'name': line.payment_ref,
+                        'amount': line.amount
+                    })
+
+
+
 
         for (product, price_unit, discount), qty in products_sold.items():
             key = product.categ_id.display_name
@@ -132,5 +145,8 @@ class ReportSaleDetails(models.AbstractModel):
                 'discount': discount,
                 'uom': product.uom_id.name
             } for (product, price_unit, discount), qty in products_sold.items()], key=lambda l: l['product_name']) ,
-            'products_category':products_category.items()
+            'products_category':products_category.items() ,
+            'company': self.env.company ,
+            'cashs': lines_cask
+
         }
