@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_list_powerbi,user_list_powerbi,model_list_powerbi,user_report_powerbi,1,0,0,0
+access_admin_list_powerbi,admin_list_powerbi,model_list_powerbi,admin_report_powerbi,1,1,1,1

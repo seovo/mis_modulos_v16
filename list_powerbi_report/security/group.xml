@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="user_report_powerbi" model="res.groups">
+        <field name="name">USUARIO REPORT LIST POWERBI</field>
+    </record>
+
+    <record id="admin_report_powerbi" model="res.groups">
+        <field name="name">ADMIN REPORT LIST POWERBI</field>
+    </record>
+
+</odoo>
