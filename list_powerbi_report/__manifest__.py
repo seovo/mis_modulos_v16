@@ -16,7 +16,7 @@
         "views/template.xml",
     ],
     # 'uninstall_hook': 'uninstall_hook',
-    "external_dependencies": {"python": ["msal"]},
+    #"external_dependencies": {"python": ["msal"]},
     "application": False,
     "installable": True,
     "auto_install": False,

@@ -1,9 +1,23 @@
 from odoo import http
-import msal
+
 #from services.pbiembedservice import PbiEmbedService
 import requests
 import json
 model_ir_config = 'ir.config_parameter'
+
+import subprocess
+import sys
+
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+
+try:
+    import msal
+except:
+    install("msal")
+    import msal
 
 class ControllerAngular(http.Controller):
 
