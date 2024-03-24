@@ -24,6 +24,7 @@ class ListPowerBi(models.Model):
     workspace_id = fields.Char()
     report_id = fields.Char()
 
+
     def powerbi_ui(self):
         import pandas as pd
         import pymssql
