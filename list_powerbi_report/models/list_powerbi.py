@@ -47,7 +47,7 @@ class ListPowerBi(models.Model):
                 "database": "Datawave",
                 "username": "datawaveuser",
                 "password": "JT5j]6u2?XZzdw4fS#CK[pWBH!QxsD$t",
-                "table_name": "res_partner",
+                "table_name": "Products",
         }
 
         data = fetch_data_from_sql_server(**sql_server_config)
