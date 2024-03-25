@@ -7,7 +7,7 @@
     """,
     "author": "Jzolutions",
     "category": "Uncategorized",
-    "version": "1.1",
+    "version": "17.0",
     "depends": ["base"],
     "data": [
         "security/group.xml",
