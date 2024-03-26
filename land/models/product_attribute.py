@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 class ProductAttribute(models.Model):
     _inherit = 'product.attribute'
-    type_land = fields.Selection([('stage','Etapa'),('m2','M2')])
+    type_land = fields.Selection([('stage','Etapa'),('lot','Lote'),('mz','Manzana'),('m2','M2')])
 
 
 class ProductAttributeValue(models.Model):

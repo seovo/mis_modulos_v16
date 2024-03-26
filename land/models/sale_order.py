@@ -3,12 +3,32 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    def _recalcule_price_land(self):
+        for record in self:
+
+            for line in record.order_line:
+                if line.product_id and line.product_id.payment_land_dues:
+
+                    line.change_product_uom_qty_land()
+
 
     def write(self,values):
         res = super().write(values)
         return res
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
+
+    def edit_price_jz(self):
+        view = self.env.ref('land.edit_sale_order_line')
+        return {
+            "name": f"EDIT PRICE :   {self.name}",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "sale.order.line",
+            "target": "new",
+            "res_id": self.id ,
+            "view_id": view.id
+        }
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line( **optional_values)
@@ -34,7 +54,7 @@ class SaleOrderLine(models.Model):
             # array_total = []
             for value_line in product.product_template_attribute_value_ids:
                 value = value_line.product_attribute_value_id
-                if value.type_land:
+                if value.type_land and value.type_land in ['stage','m2']:
                     is_land = True
                     price_totalx = price_totalx * value.value_land
                     # array_total.append(value.value_land)
@@ -42,7 +62,9 @@ class SaleOrderLine(models.Model):
             if is_land:
                 price_total = price_totalx
                 if not returnx:
-                    self.price_unit = ( price_totalx - inicial ) / self.product_uom_qty
+                    price_final = ( price_totalx - inicial ) / self.product_uom_qty
+                    #raise ValueError([self.name,price_final,price_totalx, inicial])
+                    self.price_unit = price_final
 
         if returnx and is_land:
             if qty:
@@ -50,21 +72,48 @@ class SaleOrderLine(models.Model):
             return price_total
 
 
-    @api.onchange('product_uom_qty','product_id','price_unit')
-    def change_product_uom_qty_land(self,check=True):
-        #raise ValueError(self.order_id.order_line)
+    def _calculate_price_land(self):
         for record in self:
             inicial = 0
             for line in record.order_id.order_line:
-                #raise ValueError([line.product_template_id,record.product_template_id.optional_product_ids.ids])
-                if line.product_template_id.id in  record.product_template_id.optional_product_ids.ids:
-                    inicial = line.product_template_id.list_price
-                    #raise ValueError(inicial)
+                # raise ValueError([line.product_template_id,record.product_template_id.optional_product_ids.ids])
+                if line.product_template_id.id in record.product_template_id.optional_product_ids.ids:
+                    inicial = line.price_unit
+                    # raise ValueError(inicial)
 
-            record._price_land(record.product_id,inicial = inicial)
-            if check:
-                for line in record.order_id.order_line:
-                    line.change_product_uom_qty_land(check=False)
+            record._price_land(record.product_id, inicial=inicial)
+
+
+
+    @api.onchange('product_uom_qty',)
+    def change_product_uom_qty_land(self):
+        for record in self:
+            if record.product_id and record.product_id.is_advanced_land:
+                record.product_uom_qty = 1
+            record._calculate_price_land()
+
+    @api.onchange('product_id')
+    def change_product_id_land(self):
+        #raise ValueError(self.order_id.order_line)
+        for record in self:
+
+            if  record.product_id and record.product_id.payment_land_dues:
+                record.product_uom_qty = record.product_id.dues_qty
+
+            if  record.product_id and record.product_id.is_advanced_land:
+                record.product_uom_qty = 1
+
+            record._calculate_price_land()
+
+
+    def write(self,values):
+        res = super().write(values)
+        for record in self:
+            if record.product_id and record.product_id.is_advanced_land:
+                record.order_id._recalcule_price_land()
+        return res
+
+
 
 
 

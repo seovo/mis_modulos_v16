@@ -1,13 +1,26 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-from odoo import fields, models
+from odoo import fields, models , api
 from odoo.tools.translate import html_translate
 from odoo.http import request
 
+class ProductTemplateAttributeLine(models.Model):
+    _inherit = 'product.template.attribute.line'
+    @api.onchange('attribute_id')
+    def  change_attribute_id(self):
+        for record in self:
+            if record.attribute_id.type_land:
+                idsx = []
+                for value in record.attribute_id.value_ids:
+                    idsx.append(value.id)
+                #raise ValueError(idsx)
+                record.value_ids = [(6,0,idsx)]
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
     payment_land_dues = fields.Boolean(string="Pagados x Cuotas")
+    dues_qty = fields.Integer(string="N° Cuotas")
+    is_advanced_land = fields.Boolean(string="Adelanto Terreno")
 
 
 
@@ -25,6 +38,7 @@ class ProductTemplate(models.Model):
                     'price': price
 
                 })
+
 
 
         return combination_info

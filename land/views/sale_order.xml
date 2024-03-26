@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.view_order_form" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace" >
+                   <field name="price_unit"  readonly="1"  force_save="1" />
+                   <button name="edit_price_jz" type="object" icon="fa-pencil-square-o" />
+               </xpath>
+           </field>
+    </record>
+
+    <record id="edit_sale_order_line" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order.line</field>
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                           <field name="price_unit" />
+                       </group>
+                   </sheet>
+               </form>
+           </field>
+    </record>
+
+
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+           <field name="name">sale.order.Form</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.view_sales_order_filter" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='order_line']" position="after" >
+                   <field name="order_line" string="Manzana" filter_domain="[('order_line.product_id.manzana', 'ilike', self)]"/>
+                   <field name="order_line" string="Lote" filter_domain="[('order_line.product_id.lote', 'ilike', self)]"/>
+
+               </xpath>
+           </field>
+    </record>
+
+
+</odoo>

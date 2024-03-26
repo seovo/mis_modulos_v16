@@ -12,6 +12,7 @@
         #"security/ir.model.access.csv",
         "views/product_attribute_view_form.xml",
         "views/product_template_form_view.xml",
+        "views/sale_order.xml",
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
