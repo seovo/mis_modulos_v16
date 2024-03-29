@@ -6,6 +6,7 @@ class ResCompany(models.Model):
     def test_sql_server_conexion(self):
         import pandas as pd
         import pymssql
+        import re
         # import psycopg2
         # import psycopg2.extras
 
@@ -72,6 +73,13 @@ class ResCompany(models.Model):
 
         array_s = ['%s' for _ in range(len(headers))]
         array_s = ",".join(array_s)
+
+        def convertir_camel_case(nombre_variable):
+            # Convierte la primera letra a minúscula
+            nombre_variable = nombre_variable[0].lower() + nombre_variable[1:]
+            nombre_variable = re.sub(r'([A-Z])', r'_\1', nombre_variable).lower()
+
+        headers = [convertir_camel_case(nombre) for nombre in headers]
 
         #for index, row in data.iterrows():
         for row in data.values:
