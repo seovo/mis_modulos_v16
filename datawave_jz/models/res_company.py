@@ -55,8 +55,16 @@ class ResCompany(models.Model):
            "sql_query_weeks": "select dbo.GetConfigurationValueAsInt('20200101' , '20200731' , 20 , 1  , 1)",
            "tenant_id": 1
         }
+        connection_string = {
+               "host": "dbserverdatawave.database.windows.net",
+               "user": "datawaveuser",
+               "password": "JT5j]6u2?XZzdw4fS#CK[pWBH!QxsD$t",
+               "database": "Datawave"
+        }
 
-        data = fetch_data_from_sql_server(config["connection_string"], config["stored_procedure"])
+        stored_procedure = "exec [dbo].[GetTotalNineBoxPerStoreMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1"
+
+        data = fetch_data_from_sql_server(connection_string, stored_procedure)
 
         raise ValueError(data)
         return
