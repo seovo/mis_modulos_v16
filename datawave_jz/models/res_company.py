@@ -64,5 +64,22 @@ class ResCompany(models.Model):
 
         data = fetch_data_from_sql_server(connection_string, stored_procedure)
 
-        raise ValueError(data)
+        insert_queries = ""
+        values_insert = []
+
+
+        headers = data.columns.tolist()
+
+        array_s = ['%s' for _ in range(len(headers))]
+        array_s = ",".join(array_s)
+
+        #for index, row in data.iterrows():
+        for row in data.values:
+            query = f" INSERT INTO tu_tabla ({",".join(headers)}) VALUES ({array_s}); "
+            insert_queries  +=  query
+            values_insert += row
+
+        self.env.cr.execute(insert_queries, values_insert)
+
+        #raise ValueError(data)
         return
