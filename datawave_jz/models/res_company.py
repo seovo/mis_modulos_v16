@@ -21,16 +21,14 @@ class ResCompany(models.Model):
             conn.close()
 
         # Function to fetch data from SQL Server data table
-        def fetch_data_from_sql_server(server, database, username, password, table_name):
-            connection = pymssql.connect(server=server, database=database, user=username, password=password)
-
-            query = f'SELECT * FROM {table_name};'
-            data = pd.read_sql(query, connection)
-            connection.close()
-
+        def fetch_data_from_sql_server(connection_string, stored_procedure):
+            # Connect to SQL Server
+            conn = pymssql.connect(**connection_string)
+            # Execute the stored procedure
+            data = pd.read_sql_query(stored_procedure, conn)
+            # Close the connection
+            conn.close()
             return data
-
-            # Configuration for SQL Server
 
 
         sql_server_config = {
