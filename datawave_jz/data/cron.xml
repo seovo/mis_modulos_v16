@@ -1,0 +1,14 @@
+<odoo>
+    <record id="cron_automatico" model="ir.cron">
+        <field name="name">CRON DATAWAVE</field>
+        <field name="model_id" ref="model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">model.test_sql_server_conexion()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+        <field name="active">False</field>
+        <!--<field name="argument">vex_cron</field> -->
+    </record>
+</odoo>

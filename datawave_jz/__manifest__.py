@@ -11,6 +11,7 @@
     "depends": ["base"],
     "data": [
          "security/ir.model.access.csv",
+         "data/cron.xml",
          "views/total_nine_box.xml",
          "views/total_nine_box_mc.xml",
          "views/total_nine_box_per_store.xml",
