@@ -1,7 +1,7 @@
 from odoo import models, exceptions, fields , _
 
 class ResCompany(models.Model):
-    _name = "res.company"
+    _inherit = "res.company"
 
     def test_sql_server_conexion(self):
         import pandas as pd
