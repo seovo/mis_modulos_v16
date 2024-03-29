@@ -75,7 +75,7 @@ class ResCompany(models.Model):
 
         #for index, row in data.iterrows():
         for row in data.values:
-            query = f" INSERT INTO tu_tabla ({','.join(headers)}) VALUES ({array_s}); "
+            query = f" INSERT INTO total_nine_box_per_store_mc ({','.join(headers)}) VALUES ({array_s}); "
             insert_queries  +=  query
             #raise
             values_insert += row.tolist()
