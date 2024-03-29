@@ -79,6 +79,8 @@ class ResCompany(models.Model):
             nombre_variable = nombre_variable[0].lower() + nombre_variable[1:]
             nombre_variable = re.sub(r'([A-Z])', r'_\1', nombre_variable).lower()
 
+            return nombre_variable
+
         headers = [convertir_camel_case(nombre) for nombre in headers]
 
         #for index, row in data.iterrows():
