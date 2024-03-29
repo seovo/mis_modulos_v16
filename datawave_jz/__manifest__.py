@@ -8,7 +8,7 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["base"],
+    "depends": ["base_setup"],
     "data": [
          "security/ir.model.access.csv",
          "data/cron.xml",
@@ -20,7 +20,7 @@
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
-    #"external_dependencies": {"python": ["msal","pymssql","pandas"]},
+    "external_dependencies": {"python": ["msal","pymssql","pandas"]},
     "application": False,
     "installable": True,
     "auto_install": False,
