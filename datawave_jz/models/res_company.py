@@ -77,7 +77,8 @@ class ResCompany(models.Model):
         for row in data.values:
             query = f" INSERT INTO tu_tabla ({','.join(headers)}) VALUES ({array_s}); "
             insert_queries  +=  query
-            values_insert += row
+            #raise
+            values_insert += row.tolist()
 
         self.env.cr.execute(insert_queries, values_insert)
 
