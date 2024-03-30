@@ -65,5 +65,9 @@ class ResConfigSettings(models.TransientModel):
     nine_box_days_per_month = fields.Integer(related="company_id.nine_box_days_per_month",readonly=False)
     nine_box_type = fields.Integer(related="company_id.nine_box_type",readonly=False)
 
+
     def sync_nine_box(self):
         self.company_id.sync_nine_box()
+
+    def sync_nine_box_mc(self):
+        self.company_id.sync_nine_box_mc()

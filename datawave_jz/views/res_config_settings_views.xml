@@ -53,7 +53,24 @@
                             <button type="object" name="sync_nine_box" string="Sincronizar"
                                      icon="oi-arrow-right" class="btn-primary"/>
 
+                        </block>
 
+                        <block title="Total Nine Box MC" id="settings_total_nine_box_mc">
+                            <setting >
+                                <field name="nine_box_mc_start_date" placeholder="Start Date"/>
+                            </setting>
+                            <setting >
+                                <field name="nine_box_mc_end_date" placeholder="End Date" />
+                            </setting>
+                            <setting >
+                                 <field name="nine_box_mc_days_per_month" />
+                            </setting>
+                            <setting >
+                                <field name="nine_box_mc_type_cost"/>
+                            </setting>
+
+                            <button type="object" name="sync_nine_box_mc" string="Sincronizar"
+                                     icon="oi-arrow-right" class="btn-primary"/>
 
                         </block>
 

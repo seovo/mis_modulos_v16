@@ -67,6 +67,9 @@ class ResCompany(models.Model):
     nine_box_mc_end_date        = fields.Date()
     nine_box_mc_days_per_month  = fields.Integer()
     nine_box_mc_type_cost       = fields.Integer()
+    nine_box_mc_type_price      = fields.Integer()
+
+
 
 
     def fetch_data_from_sql_server(self,connection_string, stored_procedure):
@@ -133,7 +136,16 @@ class ResCompany(models.Model):
 
     def sync_nine_box(self):
         #stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
-        stored_procedure = f"exec [dbo].[GetTotalNineBox] '{str(self.nine_box_start_date)}' , '{self.nine_box_end_date}' ,  {self.nine_box_days_per_month} , {self.nine_box_type}  , 1"
+        stored_procedure = f"exec [dbo].[GetTotalNineBox] '{str(self.nine_box_start_date)}' , '{self.nine_box_end_date}' ,  {self.nine_box_days_per_month} , {self.nine_box_type}  , {self.tenant_id}"
+        data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
+        #raise ValueError([stored_procedure,data])
+        self.insert_querys(data,"total_nine_box")
+        return
+
+
+    def sync_nine_box_mc(self):
+        #stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
+        stored_procedure = f"exec [dbo].[GetTotalNineBoxMc] '{str(self.nine_box_start_date)}' , '{self.nine_box_end_date}' ,  {self.nine_box_days_per_month} , {self.nine_box_type}  , {self.tenant_id}"
         data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
         #raise ValueError([stored_procedure,data])
         self.insert_querys(data,"total_nine_box")
