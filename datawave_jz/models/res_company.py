@@ -84,6 +84,8 @@ class ResCompany(models.Model):
 
         data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
 
+        raise ValueError(data)
+
         self.insert_querys(data,"total_nine_box_per_store_mc")
 
 
