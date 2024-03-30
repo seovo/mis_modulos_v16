@@ -11,11 +11,63 @@ class ResCompany(models.Model):
     sql_server_password = fields.Char()
     sql_server_database = fields.Char()
 
+    #general
+    tenant_id = fields.Integer()
+
+    #range filters
+    #ABC
+    abc_a_start  = fields.Float()
+    abc_a_end    = fields.Float()
+
+    abc_b_start  = fields.Float()
+    abc_b_end    = fields.Float()
+
+    abc_c_start  = fields.Float()
+    abc_c_end    = fields.Float()
+
+    #XYZ
+    xyz_x_start = fields.Float()
+    xyz_x_end   = fields.Float()
+
+    xyz_y_start = fields.Float()
+    xyz_y_end   = fields.Float()
+
+    xyz_z_start = fields.Float()
+    xyz_z_end = fields.Float()
+
+    # ABC MC
+    abc_a_start_mc = fields.Float()
+    abc_a_end_mc   = fields.Float()
+
+    abc_b_start_mc = fields.Float()
+    abc_b_end_mc   = fields.Float()
+
+    abc_c_start_mc = fields.Float()
+    abc_c_end_mc   = fields.Float()
+
+    # XYZ
+    xyz_x_start_mc  = fields.Float()
+    xyz_x_end_mc    = fields.Float()
+
+    xyz_y_start_mc  = fields.Float()
+    xyz_y_end_mc    = fields.Float()
+
+    xyz_z_start_mc  = fields.Float()
+    xyz_z_end_mc    = fields.Float()
+
+
     #total ninebox
     nine_box_start_date     = fields.Date()
     nine_box_end_date       = fields.Date()
     nine_box_days_per_month = fields.Integer()
     nine_box_type           = fields.Integer()
+
+    #total ninebox MC
+    nine_box_mc_start_date      = fields.Date()
+    nine_box_mc_end_date        = fields.Date()
+    nine_box_mc_days_per_month  = fields.Integer()
+    nine_box_mc_type_cost       = fields.Integer()
+
 
     def fetch_data_from_sql_server(self,connection_string, stored_procedure):
         # Connect to SQL Server

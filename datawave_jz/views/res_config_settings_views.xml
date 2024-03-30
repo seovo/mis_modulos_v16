@@ -16,10 +16,21 @@
                                 <field name="sql_server_user" placeholder="User" />
                             </setting>
                             <setting >
-                                        <field name="sql_server_password" placeholder="Password" />
+                                <field name="sql_server_password" placeholder="Password" />
                             </setting>
                             <setting >
                                 <field name="sql_server_database" placeholder="Database"/>
+                            </setting>
+                            <setting >
+                                <field name="tenant_id" placeholder="Database"/>
+                            </setting>
+
+                        </block>
+
+                        <block title="Range Configs" id="sql_server_acsess">
+                            <setting string="ABC" >
+                                <field name="abc_a_start" />
+                                <field name="abc_a_end"  />
                             </setting>
 
                         </block>
