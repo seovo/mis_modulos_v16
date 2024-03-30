@@ -36,12 +36,14 @@ class ResCompany(models.Model):
 
 
     def insert_querys(self,data,table):
-        insert_queries = ""
+        insert_queries = f" DELETE FROM {table} ; "
         values_insert = []
 
         headers = data.columns.tolist()
+        headers += ['CompanyId']
 
         array_s = ['%s' for _ in range(len(headers))]
+        array_s += [self.company_id.id]
         array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):

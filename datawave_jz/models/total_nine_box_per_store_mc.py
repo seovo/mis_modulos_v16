@@ -23,3 +23,4 @@ class TotalNineNoxPerStoreMC(models.Model):
     stock_days = fields.Float()
     gmroi = fields.Float()
     name = fields.Char()
+    company_id = fields.Many2one('res.company')

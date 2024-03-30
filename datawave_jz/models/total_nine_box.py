@@ -27,3 +27,4 @@ class TotalNineBox(models.Model):
     cost_per_unit = fields.Float()
     inventory_average_cost = fields.Float()
     stock_days = fields.Float()
+    company_id = fields.Many2one('res.company')

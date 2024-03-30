@@ -22,3 +22,4 @@ class TotalNineBoxMc(models.Model):
     inventory_average_cost = fields.Float()
     stock_days = fields.Float()
     gmroi = fields.Float()
+    company_id = fields.Many2one('res.company')
