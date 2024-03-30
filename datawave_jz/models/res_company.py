@@ -43,7 +43,7 @@ class ResCompany(models.Model):
         headers += ['CompanyId']
 
         array_s = ['%s' for _ in range(len(headers))]
-        array_s += [self.company_id.id]
+        array_s += [self.id]
         array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
