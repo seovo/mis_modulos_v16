@@ -19,4 +19,4 @@ class ResConfigSettings(models.TransientModel):
     nine_box_type = fields.Integer(related="company_id.nine_box_type",readonly=False)
 
     def sync_nine_box(self):
-        self.sync_nine_box()
+        self.company_id.sync_nine_box()
