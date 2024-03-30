@@ -43,7 +43,6 @@ class ResCompany(models.Model):
         headers += ['CompanyId']
 
         array_s = ['%s' for _ in range(len(headers))]
-        array_s += [self.id]
         array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
@@ -72,7 +71,7 @@ class ResCompany(models.Model):
             query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
             insert_queries  +=  query
             #raise
-            values_insert += row.tolist()
+            values_insert += row.tolist() + [self.id]
 
         self.env.cr.execute(insert_queries, values_insert)
 
