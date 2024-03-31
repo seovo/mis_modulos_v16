@@ -178,9 +178,6 @@ class ResCompany(models.Model):
             self.insert_querys(data, "total_nine_box_per_store_mc")
 
 
-
-
-
     def test_sql_server_conexion(self):
         connection_string = {
             "host": self.sql_server_host,
@@ -284,3 +281,8 @@ class ResCompany(models.Model):
 
         #raise ValueError(data)
         return
+
+
+    def sync_nine_box_range_date(self):
+        data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs;')
+        raise ValueError(data)

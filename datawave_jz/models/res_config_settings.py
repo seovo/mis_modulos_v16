@@ -88,7 +88,7 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def get_values(self):
-        raise ValidationError('HOLA')
+        self.company_id.sync_nine_box_range_date()
         res = super(ResConfigSettings, self).get_values()
 
         return res
