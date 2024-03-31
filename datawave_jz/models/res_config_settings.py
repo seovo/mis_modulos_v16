@@ -86,8 +86,12 @@ class ResConfigSettings(models.TransientModel):
     nine_box_mc_per_store_type_cost = fields.Integer(related="company_id.nine_box_mc_per_store_type_cost",readonly=False)
     nine_box_mc_per_store_type_price = fields.Integer(related="company_id.nine_box_mc_per_store_type_price",readonly=False)
 
+    @api.model
+    def get_values(self):
+        raise ValidationError('HOLA')
+        res = super(ResConfigSettings, self).get_values()
 
-
+        return res
 
     def sync_nine_box(self):
         if self.nine_box_start_date and self.nine_box_end_date and self.nine_box_days_per_month and self.nine_box_type:
