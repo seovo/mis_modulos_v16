@@ -34,7 +34,7 @@
 
 
     <menuitem id="menu_total_nine_box_mc" name="Nine Box MC"
-              parent="datawave_jz.menu_data_wave"
+              parent="datawave_jz.menu_reports"
               action="action_total_nine_box_mc"
               />
 
