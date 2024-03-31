@@ -88,6 +88,7 @@ class ResConfigSettings(models.TransientModel):
 
 
     def sync_nine_box_range_date(self):
+        raise ValueError(self.company_id)
         self.company_id.sync_nine_box_range_date()
 
 
