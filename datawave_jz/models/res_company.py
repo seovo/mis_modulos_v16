@@ -162,8 +162,8 @@ class ResCompany(models.Model):
 
     def sync_nine_box_per_store(self):
         if self.nine_box_per_store_start_date and self.nine_box_per_store_end_date and self.nine_box_per_store_days_per_month and self.nine_box_per_store_type:
-            # stored_procedure": "exec [dbo].[GetTotalNineBoxPerStoreMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
-            stored_procedure = f"exec [dbo].[GetTotalNineBoxPerStoreMc] '{str(self.nine_box_per_store_start_date)}' , '{self.nine_box_per_store_end_date}' ,  {self.nine_box_per_store_days_per_month} , {self.nine_box_per_store_type}  , {self.tenant_id}"
+            # stored_procedure": "exec [dbo].[GetTotalNineBoxPerStore] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1",
+            stored_procedure = f"exec [dbo].[GetTotalNineBoxPerStore] '{str(self.nine_box_per_store_start_date)}' , '{self.nine_box_per_store_end_date}' ,  {self.nine_box_per_store_days_per_month} , {self.nine_box_per_store_type}  , {self.tenant_id}"
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_per_store")

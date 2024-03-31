@@ -1,7 +1,7 @@
 from odoo import models, exceptions, fields , _
 
 
-#stored_procedure": "exec [dbo].[GetTotalNineBoxPerStoreMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
+#stored_procedure": "exec [dbo].[GetTotalNineBoxPerStore] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
 
 class TotalNineNoxPerStore(models.Model):
     _name = "total.nine.box.per.store"
