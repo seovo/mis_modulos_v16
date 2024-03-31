@@ -291,6 +291,7 @@ class ResCompany(models.Model):
 
 
     def sync_nine_box_range_date(self):
+        raise ValueError(self.get_connection_string())
         if not  self.get_connection_string():
             return
         data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs;')
