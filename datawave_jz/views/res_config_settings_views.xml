@@ -30,7 +30,7 @@
 
                         <block title="Range Configs" id="sql_server_acsess">
                             <div>
-                                <button type="object" name="sync_nine_box_mc" string="Obtener Configuracion Actual"
+                                <button type="object" name="sync_nine_box_range_date" string="Obtener Configuracion Actual"
                                      icon="oi-arrow-right" class="btn-primary"/>
 
                             </div>
