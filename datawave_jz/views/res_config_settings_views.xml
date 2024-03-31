@@ -30,9 +30,28 @@
 
                         <block title="Range Configs" id="sql_server_acsess">
                             <setting string="ABC" >
-                                <field name="abc_a_start" />
-                                <field name="abc_a_end"  />
+
+                                <div>A</div>
+                                <div class="row mt16">
+                                    <field name="abc_a_start"  /><field name="abc_a_end"  />
+                                </div>
+
+
+                                <div>B</div>
+                                <div class="row mt16">
+                                    <field name="abc_b_start"  /><field name="abc_b_end"  />
+                                </div>
+
+
+                                <div>C</div>
+                                <div class="row mt16">
+                                    <field name="abc_c_start"  /><field name="abc_c_end"  />
+                                </div>
+
+
                             </setting>
+
+
                         </block>
 
 
