@@ -293,23 +293,28 @@ class ResCompany(models.Model):
             return
         data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs WHERE TenantId = {self.tenant_id};')
         for index, row in data.iterrows():
-            name = ''
+            name_start = ''
+            name_end = ''
             letra = str(row['RangeString']).lower()
             if row['RangeType'] == 'ABC':
-                name = f'abc_{letra}'
+                name_start = f'abc_{letra}_start'
+                name_end = f'abc_{letra}_end'
 
             if row['RangeType'] == 'ABC_MC':
-                name  = f'abc_{letra}_mc'
+                name_start  = f'abc_{letra}_start_mc'
+                name_end = f'abc_{letra}_end_mc'
 
             if row['RangeType'] == 'XYZ':
-                name = f'xyz_{letra}'
+                name_start = f'xyz_{letra}_start'
+                name_end = f'xyz_{letra}_end'
 
             if row['RangeType'] == 'XYZ_MC':
-                name = f'xyz_{letra}_mc'
+                name_start = f'xyz_{letra}_start_mc'
+                name_end = f'xyz_{letra}_end_mc'
 
             self.write({
-                f'{name}_start': row['RangeStart'] ,
-                f'{name}_end': row['RangeEnd'],
+                name_start: row['RangeStart'] ,
+                name_end: row['RangeEnd'],
 
             })
 
