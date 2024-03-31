@@ -292,4 +292,6 @@ class ResCompany(models.Model):
         if not  self.get_connection_string():
             return
         data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs;')
-        raise ValueError(data)
+        for index, row in data.iterrows():
+            raise ValueError(row)
+
