@@ -68,7 +68,7 @@ class ResCompany(models.Model):
     nine_box_mc_days_per_month  = fields.Integer()
     nine_box_mc_type_cost       = fields.Integer()
     nine_box_mc_type_price      = fields.Integer()
-    '''
+
 
     #total nine box per store
     nine_box_per_store_start_date     = fields.Date()
@@ -82,7 +82,7 @@ class ResCompany(models.Model):
     nine_box_mc_per_store_days_per_month   = fields.Integer()
     nine_box_mc_per_store_type_cost        = fields.Integer()
     nine_box_mc_per_store_type_price       = fields.Integer()
-    '''
+
 
 
 
