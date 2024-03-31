@@ -313,9 +313,9 @@ class ResCompany(models.Model):
                 name_start = f'xyz_{letra}_start_mc'
                 name_end = f'xyz_{letra}_end_mc'
 
-            self.write({
-                name_start: row['RangeStart'] ,
-                name_end: row['RangeEnd'],
+            #self.write({
+            #    name_start: row['RangeStart'] ,
+            #    name_end: row['RangeEnd'],
 
-            })
+            #})
 
