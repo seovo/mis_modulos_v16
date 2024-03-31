@@ -31,8 +31,10 @@
 
     <menuitem id="menu_data_wave" name="DataWave" />
 
+    <menuitem id="menu_reports" name="Reports" parent="datawave_jz.menu_data_wave" />
+
     <menuitem id="menu_total_nine_box" name="Nine Box"
-              parent="datawave_jz.menu_data_wave"
+              parent="datawave_jz.menu_reports"
               action="action_total_nine_box"
              />
 
