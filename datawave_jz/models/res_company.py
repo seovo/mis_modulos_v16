@@ -291,7 +291,25 @@ class ResCompany(models.Model):
         #raise ValueError(self.get_connection_string())
         if not  self.get_connection_string():
             return
-        data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs;')
+        data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs AND TenantId = {self.tenant_id};')
         for index, row in data.iterrows():
-            raise ValueError(row)
+            name = ''
+            letra = str(row['RangeString']).lower()
+            if row['RangeType'] == 'ABC':
+                name = f'abc_{letra}'
+
+            if row['RangeType'] == 'ABC_MC':
+                name  = f'abc_{letra}_mc'
+
+            if row['RangeType'] == 'XYZ':
+                name = f'xyz_{letra}'
+
+            if row['RangeType'] == 'XYZ_MC':
+                name = f'xyz_{letra}_mc'
+
+            self.write({
+                f'{name}_start': row['RangeStart'] ,
+                f'{name}_end': row['RangeEnd'],
+
+            })
 
