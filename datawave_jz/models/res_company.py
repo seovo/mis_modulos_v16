@@ -99,6 +99,7 @@ class ResCompany(models.Model):
 
     def get_connection_string(self):
         if not self.sql_server_host or not self.sql_server_user or self.sql_server_password or self.sql_server_database:
+            raise ValueError([self,self.sql_server_host])
             return None
         return {
             "host": self.sql_server_host,
