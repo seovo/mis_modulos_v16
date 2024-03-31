@@ -55,6 +55,8 @@
 
                         </block>
 
+                        <!--
+
                         <block title="Total Nine Box MC" id="settings_total_nine_box_mc">
                             <setting >
                                 <field name="nine_box_mc_start_date" placeholder="Start Date"/>
@@ -73,6 +75,8 @@
                                      icon="oi-arrow-right" class="btn-primary"/>
 
                         </block>
+
+                        -->
 
                     </app>
 
