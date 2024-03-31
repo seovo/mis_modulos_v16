@@ -85,7 +85,7 @@ class ResCompany(models.Model):
 
 
 
-def fetch_data_from_sql_server(self,connection_string, stored_procedure):
+    def fetch_data_from_sql_server(self,connection_string, stored_procedure):
         # Connect to SQL Server
         conn = pymssql.connect(**connection_string)
         # Execute the stored procedure
@@ -172,9 +172,8 @@ def fetch_data_from_sql_server(self,connection_string, stored_procedure):
             "password": self.sql_server_password,
             "database": self.sql_server_database
         }
-        import pandas as pd
-        import pymssql
-        import re
+
+
         # import psycopg2
         # import psycopg2.extras
 
