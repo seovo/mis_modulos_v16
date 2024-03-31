@@ -86,7 +86,11 @@ class ResCompany(models.Model):
 
     def fetch_data_from_sql_server(self,connection_string, stored_procedure):
         # Connect to SQL Server
-        conn = pymssql.connect(**connection_string)
+        try:
+            conn = pymssql.connect(**connection_string)
+        except:
+            raise ValueError(connection_string)
+
         # Execute the stored procedure
         data = pd.read_sql_query(stored_procedure, conn)
         # Close the connection
