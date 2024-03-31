@@ -291,7 +291,7 @@ class ResCompany(models.Model):
         #raise ValueError(self.get_connection_string())
         if not  self.get_connection_string():
             return
-        data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs AND TenantId = {self.tenant_id};')
+        data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs WHERE TenantId = {self.tenant_id};')
         for index, row in data.iterrows():
             name = ''
             letra = str(row['RangeString']).lower()
