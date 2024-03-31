@@ -160,7 +160,7 @@ class ResCompany(models.Model):
         stored_procedure = f"exec [dbo].[GetTotalNineBoxMc] '{str(self.nine_box_mc_start_date)}' , '{self.nine_box_mc_end_date}' ,  {self.nine_box_mc_days_per_month} , {self.nine_box_mc_type_cost} , {self.nine_box_mc_per_store_type_price} , {self.tenant_id}"
         data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
         #raise ValueError([stored_procedure,data])
-        self.insert_querys(data,"total_nine_box")
+        self.insert_querys(data,"total_nine_box_mc")
         return
 
 
