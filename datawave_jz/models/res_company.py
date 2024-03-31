@@ -69,10 +69,23 @@ class ResCompany(models.Model):
     nine_box_mc_type_cost       = fields.Integer()
     nine_box_mc_type_price      = fields.Integer()
 
+    #total nine box per store
+    nine_box_per_store_start_date     = fields.Date()
+    nine_box_per_store_end_date       = fields.Date()
+    nine_box_per_store_days_per_month = fields.Integer()
+    nine_box_per_store_type           = fields.Integer()
+
+    #total nine box per MC
+    nine_box_mc_per_store_start_date       = fields.Date()
+    nine_box_mc_per_store_end_date         = fields.Date()
+    nine_box_mc_per_store_days_per_month   = fields.Integer()
+    nine_box_mc_per_store_type_cost        = fields.Integer()
+    nine_box_mc_per_store_type_price       = fields.Integer()
 
 
 
-    def fetch_data_from_sql_server(self,connection_string, stored_procedure):
+
+def fetch_data_from_sql_server(self,connection_string, stored_procedure):
         # Connect to SQL Server
         conn = pymssql.connect(**connection_string)
         # Execute the stored procedure
