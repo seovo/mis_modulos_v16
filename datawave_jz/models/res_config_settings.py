@@ -72,6 +72,19 @@ class ResConfigSettings(models.TransientModel):
     nine_box_mc_type_cost = fields.Integer(related="company_id.nine_box_mc_type_cost",readonly=False)
     nine_box_mc_type_price = fields.Integer(related="company_id.nine_box_mc_type_price",readonly=False)
 
+    # total nine box per store
+    nine_box_per_store_start_date = fields.Date(related="company_id.nine_box_per_store_start_date",readonly=False)
+    nine_box_per_store_end_date = fields.Date(related="company_id.nine_box_per_store_end_date",readonly=False)
+    nine_box_per_store_days_per_month = fields.Integer(related="company_id.nine_box_per_store_days_per_month",readonly=False)
+    nine_box_per_store_type = fields.Integer(related="company_id.nine_box_per_store_type",readonly=False)
+
+    # total nine box per MC
+    nine_box_mc_per_store_start_date = fields.Date(related="company_id.nine_box_mc_per_store_start_date",readonly=False)
+    nine_box_mc_per_store_end_date = fields.Date(related="company_id.nine_box_mc_per_store_end_date",readonly=False)
+    nine_box_mc_per_store_days_per_month = fields.Integer(related="company_id.nine_box_mc_per_store_days_per_month",readonly=False)
+    nine_box_mc_per_store_type_cost = fields.Integer(related="company_id.nine_box_mc_per_store_type_cost",readonly=False)
+    nine_box_mc_per_store_type_price = fields.Integer(related="company_id.nine_box_mc_per_store_type_price",readonly=False)
+
 
 
 

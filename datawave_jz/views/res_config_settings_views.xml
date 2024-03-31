@@ -55,7 +55,7 @@
 
                         </block>
 
-                        <!--
+
 
                         <block title="Total Nine Box MC" id="settings_total_nine_box_mc">
                             <setting >
@@ -70,13 +70,16 @@
                             <setting >
                                 <field name="nine_box_mc_type_cost"/>
                             </setting>
+                            <setting >
+                                <field name="nine_box_mc_type_price"/>
+                            </setting>
 
                             <button type="object" name="sync_nine_box_mc" string="Sincronizar"
                                      icon="oi-arrow-right" class="btn-primary"/>
 
                         </block>
 
-                        -->
+
 
                     </app>
 
