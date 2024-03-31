@@ -98,6 +98,8 @@ class ResCompany(models.Model):
         return data
 
     def get_connection_string(self):
+        if not self.sql_server_host or not self.sql_server_user or self.sql_server_password or self.sql_server_database:
+            return None
         return {
             "host": self.sql_server_host,
             "user": self.sql_server_user,
@@ -288,5 +290,7 @@ class ResCompany(models.Model):
 
 
     def sync_nine_box_range_date(self):
+        if not  self.get_connection_string():
+            return
         data = self.fetch_data_from_sql_server(self.get_connection_string(), f'SELECT * FROM RangeConfigs;')
         raise ValueError(data)
