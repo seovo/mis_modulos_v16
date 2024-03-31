@@ -91,7 +91,7 @@ class ResConfigSettings(models.TransientModel):
         if not self.company_id:
             raise ValueError(self.company_id)
 
-        self.company_id.sync_nine_box_range_date()
+        #self.company_id.sync_nine_box_range_date()
 
 
     def sync_nine_box(self):
