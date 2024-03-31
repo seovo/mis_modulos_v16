@@ -59,11 +59,20 @@ class ResConfigSettings(models.TransientModel):
     xyz_z_start_mc = fields.Float(related="company_id.xyz_z_start_mc",readonly=False)
     xyz_z_end_mc = fields.Float(related="company_id.xyz_z_end_mc",readonly=False)
 
-    ####################
+    #total ninebox
     nine_box_start_date = fields.Date(related="company_id.nine_box_start_date",readonly=False)
     nine_box_end_date = fields.Date(related="company_id.nine_box_end_date",readonly=False)
     nine_box_days_per_month = fields.Integer(related="company_id.nine_box_days_per_month",readonly=False)
     nine_box_type = fields.Integer(related="company_id.nine_box_type",readonly=False)
+
+    #total ninebox MC
+    nine_box_mc_start_date = fields.Date(related="company_id.nine_box_mc_start_date",readonly=False)
+    nine_box_mc_end_date = fields.Date(related="company_id.nine_box_mc_end_date",readonly=False)
+    nine_box_mc_days_per_month = fields.Integer(related="company_id.nine_box_mc_days_per_month",readonly=False)
+    nine_box_mc_type_cost = fields.Integer(related="company_id.nine_box_mc_type_cost",readonly=False)
+    nine_box_mc_type_price = fields.Integer(related="company_id.nine_box_mc_type_price",readonly=False)
+
+
 
 
     def sync_nine_box(self):
