@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 
@@ -89,7 +90,27 @@ class ResConfigSettings(models.TransientModel):
 
 
     def sync_nine_box(self):
-        self.company_id.sync_nine_box()
+        if self.nine_box_start_date and self.nine_box_end_date and self.nine_box_days_per_month and self.nine_box_type:
+            self.company_id.sync_nine_box()
+        else:
+            raise ValidationError('COMPLETE TODOS LOS PARAMETROS')
+
 
     def sync_nine_box_mc(self):
-        self.company_id.sync_nine_box_mc()
+        if self.nine_box_mc_start_date and self.nine_box_mc_end_date and self.nine_box_mc_days_per_month and self.nine_box_mc_type_cost and self.nine_box_mc_type_price:
+            self.company_id.sync_nine_box_mc()
+        else:
+            raise ValidationError('COMPLETE TODOS LOS PARAMETROS')
+
+    def sync_nine_box_per_store(self):
+        if self.nine_box_per_store_start_date and self.nine_box_per_store_end_date and self.nine_box_per_store_days_per_month and self.nine_box_per_store_type:
+            self.company_id.sync_nine_box_per_store()
+        else:
+            raise ValidationError('COMPLETE TODOS LOS PARAMETROS')
+
+
+    def sync_nine_box_per_store_mc(self):
+        if self.nine_box_mc_per_store_start_date and self.nine_box_mc_per_store_end_date and self.nine_box_mc_per_store_days_per_month and self.nine_box_mc_per_store_type_cost and self.nine_box_mc_per_store_type_price:
+            self.company_id.sync_nine_box_per_store_mc()
+        else:
+            raise ValidationError('COMPLETE TODOS LOS PARAMETROS')

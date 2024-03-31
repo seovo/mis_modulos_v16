@@ -101,7 +101,6 @@ class ResCompany(models.Model):
             "database": self.sql_server_database
         }
 
-
     def insert_querys(self,data,table):
         insert_queries = f" DELETE FROM {table} ; "
         values_insert = []
@@ -143,25 +142,43 @@ class ResCompany(models.Model):
         self.env.cr.execute(insert_queries, values_insert)
 
 
-
-
-
     def sync_nine_box(self):
-        #stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
-        stored_procedure = f"exec [dbo].[GetTotalNineBox] '{str(self.nine_box_start_date)}' , '{self.nine_box_end_date}' ,  {self.nine_box_days_per_month} , {self.nine_box_type}  , {self.tenant_id}"
-        data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
-        #raise ValueError([stored_procedure,data])
-        self.insert_querys(data,"total_nine_box")
-        return
+        if self.nine_box_start_date and self.nine_box_end_date and self.nine_box_days_per_month and self.nine_box_type:
+            # stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
+            stored_procedure = f"exec [dbo].[GetTotalNineBox] '{str(self.nine_box_start_date)}' , '{self.nine_box_end_date}' ,  {self.nine_box_days_per_month} , {self.nine_box_type}  , {self.tenant_id}"
+            data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
+            # raise ValueError([stored_procedure,data])
+            self.insert_querys(data, "total_nine_box")
 
 
     def sync_nine_box_mc(self):
-        #"stored_procedure": "exec [dbo].[GetTotalNineBoxMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
-        stored_procedure = f"exec [dbo].[GetTotalNineBoxMc] '{str(self.nine_box_mc_start_date)}' , '{self.nine_box_mc_end_date}' ,  {self.nine_box_mc_days_per_month} , {self.nine_box_mc_type_cost} , {self.nine_box_mc_per_store_type_price} , {self.tenant_id}"
-        data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
-        #raise ValueError([stored_procedure,data])
-        self.insert_querys(data,"total_nine_box_mc")
-        return
+        if self.nine_box_mc_start_date and self.nine_box_mc_end_date and self.nine_box_mc_days_per_month and self.nine_box_mc_type_cost and self.nine_box_mc_type_price:
+            # "stored_procedure": "exec [dbo].[GetTotalNineBoxMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
+            stored_procedure = f"exec [dbo].[GetTotalNineBoxMc] '{str(self.nine_box_mc_start_date)}' , '{self.nine_box_mc_end_date}' ,  {self.nine_box_mc_days_per_month} , {self.nine_box_mc_type_cost} , {self.nine_box_mc_per_store_type_price} , {self.tenant_id}"
+            data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
+            # raise ValueError([stored_procedure,data])
+            self.insert_querys(data, "total_nine_box_mc")
+
+
+    def sync_nine_box_per_store(self):
+        if self.nine_box_per_store_start_date and self.nine_box_per_store_end_date and self.nine_box_per_store_days_per_month and self.nine_box_per_store_type:
+            # stored_procedure": "exec [dbo].[GetTotalNineBoxPerStoreMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
+            stored_procedure = f"exec [dbo].[GetTotalNineBoxPerStoreMc] '{str(self.nine_box_per_store_start_date)}' , '{self.nine_box_per_store_end_date}' ,  {self.nine_box_per_store_days_per_month} , {self.nine_box_per_store_type}  , {self.tenant_id}"
+            data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
+            # raise ValueError([stored_procedure,data])
+            self.insert_querys(data, "total_nine_box_per_store")
+
+
+    def sync_nine_box_per_store_mc(self):
+        if self.nine_box_mc_per_store_start_date and self.nine_box_mc_per_store_end_date and self.nine_box_mc_per_store_days_per_month and self.nine_box_mc_per_store_type_cost and self.nine_box_mc_per_store_type_price:
+            # stored_procedure": "exec [dbo].[GetTotalNineBoxPerStoreMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
+            stored_procedure = f"exec [dbo].[GetTotalNineBoxPerStoreMc] '{str(self.nine_box_mc_per_store_start_date)}' , '{self.nine_box_mc_per_store_end_date}' ,  {self.nine_box_mc_per_store_days_per_month} , {self.nine_box_mc_per_store_type_cost} , {self.nine_box_mc_per_store_type_price} , {self.tenant_id}"
+            data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
+            # raise ValueError([stored_procedure,data])
+            self.insert_querys(data, "total_nine_box_per_store_mc")
+
+
+
 
 
     def test_sql_server_conexion(self):

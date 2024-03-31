@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
                     <app data-string="Datawave" string="Datawave" name="datawave_jz" >
+
                         <block title="Sql Server Accesss" id="sql_server_acsess">
                             <setting >
                                 <field name="sql_server_host" placeholder="Host"/>
@@ -74,6 +75,48 @@
                             </setting>
 
                             <button type="object" name="sync_nine_box_mc" string="Sincronizar"
+                                     icon="oi-arrow-right" class="btn-primary"/>
+
+                        </block>
+
+                        <block title="Total Nine Box Per Store" id="settings_total_nine_box">
+                            <setting >
+                                <field name="nine_box_per_store_start_date" placeholder="Start Date"/>
+                            </setting>
+                            <setting >
+                                <field name="nine_box_per_store_end_date" placeholder="End Date" />
+                            </setting>
+                            <setting >
+                                 <field name="nine_box_per_store_days_per_month" />
+                            </setting>
+                            <setting >
+                                <field name="nine_box_per_store_type"/>
+                            </setting>
+
+                            <button type="object" name="sync_nine_box_per_store" string="Sincronizar"
+                                     icon="oi-arrow-right" class="btn-primary"/>
+
+                        </block>
+
+
+                        <block title="Total Nine Box Per Store MC" id="settings_total_nine_box_mc">
+                            <setting >
+                                <field name="nine_box_mc_per_store_start_date" placeholder="Start Date"/>
+                            </setting>
+                            <setting >
+                                <field name="nine_box_mc_per_store_end_date" placeholder="End Date" />
+                            </setting>
+                            <setting >
+                                 <field name="nine_box_mc_per_store_days_per_month" />
+                            </setting>
+                            <setting >
+                                <field name="nine_box_mc_per_store_type_cost"/>
+                            </setting>
+                            <setting >
+                                <field name="nine_box_mc_per_store_type_price"/>
+                            </setting>
+
+                            <button type="object" name="sync_nine_box_per_store_mc" string="Sincronizar"
                                      icon="oi-arrow-right" class="btn-primary"/>
 
                         </block>
