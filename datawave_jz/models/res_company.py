@@ -100,6 +100,23 @@ class ResCompany(models.Model):
                     sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_a_end} WHERE "
                             f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
 
+                if 'abc_b_start' in vals:
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_b_start} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_b_end' in vals:
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_b_end} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+
+                if 'abc_c_start' in vals:
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_c_start} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_c_end' in vals:
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_c_end} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
 
                 if sql and sql != '' :
                     self.execute_sql_server(self.get_connection_string(), sql)
