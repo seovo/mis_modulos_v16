@@ -209,6 +209,43 @@ class ResCompany(models.Model):
                 sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_z_end or 0} WHERE "
                         f"RangeType = 'XYZ' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
 
+                # xyz MC
+                if 'xyz_x_start_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_x_start_mc or 0} WHERE "
+                        f"RangeType = 'XYZ_MC' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+
+                if 'xyz_x_end_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_x_end_mc or 0} WHERE "
+                        f"RangeType = 'XYZ_MC' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+
+                if 'xyz_y_start_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_y_start_mc or 0} WHERE "
+                        f"RangeType = 'XYZ_MC' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+
+                if 'xyz_y_end' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_y_end_mc or 0} WHERE "
+                        f"RangeType = 'XYZ_MC' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+
+                if 'xyz_z_start_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_z_start_mc or 0} WHERE "
+                        f"RangeType = 'XYZ_MC' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+
+                if 'xyz_z_end_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_z_end_mc or 0} WHERE "
+                        f"RangeType = 'XYZ_MC' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+
 
 
 
