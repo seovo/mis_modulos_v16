@@ -132,6 +132,45 @@ class ResCompany(models.Model):
                 sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_c_end or 0} WHERE "
                         f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
 
+                #ABC MC
+                if 'abc_a_start_mc' in vals  :
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_a_start_mc or 0} WHERE "
+                        f"RangeType = 'ABC_MC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+
+
+                if 'abc_a_end_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_a_end_mc or 0 } WHERE "
+                        f"RangeType = 'ABC_MC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_b_start_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_b_start_mc or 0} WHERE "
+                        f"RangeType = 'ABC_MC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_b_end_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_b_end_mc or 0} WHERE "
+                        f"RangeType = 'ABC_MC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_c_start_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_c_start_mc or 0} WHERE "
+                        f"RangeType = 'ABC_MC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_c_end_mc' in vals:
+                    update = True
+
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_c_end_mc or 0} WHERE "
+                        f"RangeType = 'ABC_MC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if update :
 
