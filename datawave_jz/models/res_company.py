@@ -104,7 +104,7 @@ class ResCompany(models.Model):
                 if 'nine_box_per_store_start_date' in vals or 'nine_box_per_store_end_date' in vals or 'nine_box_per_store_days_per_month' in vals or 'nine_box_per_store_type' in vals:
                     self.sync_nine_box_per_store()
 
-                if 'nine_box_per_store_mc_start_date' in vals or 'nine_box_per_store_mc_end_date' in vals or 'nine_box_per_store_mc_days_per_month' in vals or 'nine_box_per_store_mc_type_cost' in vals or 'nine_box_per_store_mc_type_price' in vals:
+                if 'nine_box_mc_per_store_start_date' in vals or 'nine_box_mc_per_store_end_date' in vals or 'nine_box_mc_per_store_days_per_month' in vals or 'nine_box_mc_per_store_type_cost' in vals or 'nine_box_mc_per_store_type_price' in vals:
                     self.sync_nine_box_per_store_mc()
 
                 ######################3
