@@ -83,6 +83,12 @@ class ResCompany(models.Model):
     nine_box_mc_per_store_type_cost        = fields.Integer()
     nine_box_mc_per_store_type_price       = fields.Integer()
 
+    def write(self,vals):
+        raise ValueError(vals)
+        res = super().write(vals)
+
+        return res
+
 
     def fetch_data_from_sql_server(self,connection_string, stored_procedure):
         # Connect to SQL Server
