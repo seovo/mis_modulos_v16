@@ -95,8 +95,8 @@ class ResCompany(models.Model):
             for record in self:
                 if not record.tenant_id:
                     continue
-                sql += f" UPDATE RangeConfigs  SET RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id} ; "
-                sql += f" UPDATE RangeConfigs  SET RangeStart = {record.abc_a_start} WHERE id = 1 ; "
+                #sql += f" UPDATE RangeConfigs  SET RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id} ; "
+                sql += f" UPDATE RangeConfigs  SET RangeStart = 80 WHERE id = 1 ; "
                 self.execute_sql_server(record.get_connection_string(),sql)
 
         return res
