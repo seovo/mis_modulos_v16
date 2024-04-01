@@ -162,6 +162,7 @@ class ResCompany(models.Model):
             self.insert_querys(data, "total_nine_box_mc")
 
 
+
     def sync_nine_box_per_store(self):
         if self.nine_box_per_store_start_date and self.nine_box_per_store_end_date and self.nine_box_per_store_days_per_month and self.nine_box_per_store_type:
             # stored_procedure": "exec [dbo].[GetTotalNineBoxPerStore] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1",
