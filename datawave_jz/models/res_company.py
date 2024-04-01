@@ -131,6 +131,7 @@ class ResCompany(models.Model):
 
 
                 if update :
+                    raise ValueError(sql)
                     self.execute_sql_server(self.get_connection_string(), sql)
 
 
@@ -143,12 +144,6 @@ class ResCompany(models.Model):
     def fetch_data_from_sql_server(self,connection_string, stored_procedure):
         # Connect to SQL Server
         conn = pymssql.connect(**connection_string)
-
-        sql = f" UPDATE RangeConfigs  SET RangeStart = 80 WHERE id = 1 ; "
-        cursor = conn.cursor()
-
-        # Ejecutar una consulta SQL
-        cursor.execute(sql)
 
         # Execute the stored procedure
         data = pd.read_sql_query(stored_procedure, conn)
