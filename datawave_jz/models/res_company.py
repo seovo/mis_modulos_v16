@@ -87,6 +87,8 @@ class ResCompany(models.Model):
         #raise ValueError(vals)
         res = super().write(vals)
 
+        raise ValueError([self,vals])
+
 
 
         if len(self) == 1:
