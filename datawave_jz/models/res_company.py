@@ -100,6 +100,8 @@ class ResCompany(models.Model):
                 cursor = conn.cursor()
 
                 sql += f"UPDATE RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id}"
+
+                raise ValueError(sql)
                 cursor.execute(sql)
                 conn.commit()
                 cursor.close()
