@@ -93,11 +93,12 @@ class ResCompany(models.Model):
 
 
             for record in self:
+                if not record.tenant_id:
+                    continue
                 conn = pymssql.connect(record.get_connection_string())
 
                 cursor = conn.cursor()
-                if not record.tenant_id:
-                    continue
+
                 sql += f"UPDATE RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id}"
                 cursor.execute(sql)
                 conn.commit()
