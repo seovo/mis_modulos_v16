@@ -96,7 +96,7 @@ class ResCompany(models.Model):
                 if not record.tenant_id:
                     continue
                 sql += f"UPDATE RangeConfigs  SET RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id}"
-                data = self.fetch_data_from_sql_server(record.get_connection_string(),sql)
+                data = self.execute_sql_server(record.get_connection_string(),sql)
 
         return res
 
@@ -110,6 +110,22 @@ class ResCompany(models.Model):
         # Close the connection
         conn.close()
         return data
+
+
+    def execute_sql_server(self,connection_string, query):
+        # Connect to SQL Server
+        conn = pymssql.connect(**connection_string)
+
+        # Crear un objeto cursor
+        cursor = conn.cursor()
+
+        # Ejecutar una consulta SQL
+        cursor.execute(query)
+
+        # Cerrar la conexión
+        conn.close()
+
+        return
 
     def get_connection_string(self):
 
