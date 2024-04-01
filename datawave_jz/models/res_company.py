@@ -84,9 +84,25 @@ class ResCompany(models.Model):
     nine_box_mc_per_store_type_price       = fields.Integer()
 
     def write(self,vals):
-        raise ValueError(vals)
+        #raise ValueError(vals)
         res = super().write(vals)
 
+        sql = ''
+
+        if 'abc_a_start' in vals:
+
+
+            for record in self:
+                conn = pymssql.connect(record.get_connection_string())
+
+                cursor = conn.cursor()
+                if not record.tenant_id:
+                    continue
+                sql += f"UPDATE RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id}"
+                cursor.execute(sql)
+                conn.commit()
+                cursor.close()
+                conn.close()
         return res
 
 
