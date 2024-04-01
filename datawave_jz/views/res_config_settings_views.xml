@@ -9,6 +9,8 @@
                 <xpath expr="//form" position="inside">
                     <app data-string="Datawave" string="Datawave" name="datawave_jz" >
 
+                        <field name="company_id" invisible="1"/>
+
                         <block title="Sql Server Accesss" id="sql_server_acsess" groups="base.group_no_one">
                             <setting >
                                 <field name="sql_server_host" placeholder="Host"/>
