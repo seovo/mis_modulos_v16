@@ -87,7 +87,7 @@ class ResCompany(models.Model):
         #raise ValueError(vals)
         res = super().write(vals)
 
-        raise ValueError([self,vals])
+
 
 
 
@@ -115,9 +115,10 @@ class ResCompany(models.Model):
                         f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
 
                 if 'abc_b_end' in vals:
-                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_b_end or 0} WHERE "
-                            f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+                    update = True
 
+                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_b_end or 0} WHERE "
+                        f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
 
                 if 'abc_c_start' in vals:
                     update = True
@@ -133,7 +134,7 @@ class ResCompany(models.Model):
 
 
                 if update :
-                    raise ValueError(sql)
+
                     self.execute_sql_server(self.get_connection_string(), sql)
 
 
