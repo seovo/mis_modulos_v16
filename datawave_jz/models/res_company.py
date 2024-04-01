@@ -93,23 +93,14 @@ class ResCompany(models.Model):
 
             conn = pymssql.connect(self.get_connection_string())
 
-            raise ValueError(conn)
-            cursor = conn.cursor()
-
 
             for record in self:
                 if not record.tenant_id:
                     continue
-
-
-
                 sql += f"UPDATE RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id}"
-
-
-                cursor.execute(sql)
-                conn.commit()
-                cursor.close()
+                data = pd.read_sql_query(sql, conn)
                 conn.close()
+
         return res
 
 
