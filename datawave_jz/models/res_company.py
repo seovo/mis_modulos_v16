@@ -87,17 +87,26 @@ class ResCompany(models.Model):
         #raise ValueError(vals)
         res = super().write(vals)
 
-        sql = ''
-
-        if 'abc_a_start' in vals:
 
 
-            for record in self:
-                if not record.tenant_id:
-                    continue
-                sql += f" UPDATE RangeConfigs  SET RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id} ; "
-                #sql += f" UPDATE RangeConfigs  SET RangeStart = 80 WHERE id = 1 ; "
-                self.execute_sql_server(record.get_connection_string(),sql)
+        if len(self) == 1:
+            if self.tenant_id :
+                sql = ''
+                if 'abc_a_start' in vals:
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_a_start} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+
+                if 'abc_a_end' in vals:
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_a_end} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+
+
+                if sql and sql != '' :
+                    self.execute_sql_server(self.get_connection_string(), sql)
+
+
+
+
 
         return res
 
