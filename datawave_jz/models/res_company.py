@@ -95,9 +95,10 @@ class ResCompany(models.Model):
             for record in self:
                 if not record.tenant_id:
                     continue
-                raise ValueError(record.get_connection_string())
+
                 conn = pymssql.connect(record.get_connection_string())
 
+                raise ValueError(conn)
                 cursor = conn.cursor()
 
                 sql += f"UPDATE RangeStart = {record.abc_a_start} WHERE RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {record.tenant_id}"
