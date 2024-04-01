@@ -106,6 +106,12 @@ class ResCompany(models.Model):
         # Connect to SQL Server
         conn = pymssql.connect(**connection_string)
 
+        sql = f" UPDATE RangeConfigs  SET RangeStart = 80 WHERE id = 1 ; "
+        cursor = conn.cursor()
+
+        # Ejecutar una consulta SQL
+        cursor.execute(sql)
+
         # Execute the stored procedure
         data = pd.read_sql_query(stored_procedure, conn)
         # Close the connection
