@@ -93,6 +93,13 @@ class ResCompany(models.Model):
 
         if len(self) == 1:
             if self.tenant_id :
+
+
+                if 'nine_box_start_date' in vals or 'nine_box_end_date' in vals or 'nine_box_days_per_month' in vals or 'nine_box_type' in vals:
+                    self.sync_nine_box()
+
+                ######################3
+
                 sql = ''
                 update = False
                 if 'abc_a_start' in vals  :
