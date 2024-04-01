@@ -9,7 +9,7 @@
                 <xpath expr="//form" position="inside">
                     <app data-string="Datawave" string="Datawave" name="datawave_jz" >
 
-                        <block title="Sql Server Accesss" id="sql_server_acsess">
+                        <block title="Sql Server Accesss" id="sql_server_acsess" groups="datawave_jz.full_settings">
                             <setting >
                                 <field name="sql_server_host" placeholder="Host"/>
                             </setting>

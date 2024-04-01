@@ -11,6 +11,7 @@
     "depends": ["base_setup"],
     "data": [
          "security/ir.model.access.csv",
+         "security/group.xml",
          "data/cron.xml",
          "views/total_nine_box.xml",
          "views/total_nine_box_mc.xml",
