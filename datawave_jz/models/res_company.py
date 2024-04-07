@@ -16,44 +16,68 @@ class ResCompany(models.Model):
 
     #range filters
     #ABC
-    abc_a_start  = fields.Float()
-    abc_a_end    = fields.Float()
+    is_null_abc_a_start = fields.Boolean()
+    abc_a_start         = fields.Float()
+    is_null_abc_a_end   = fields.Boolean()
+    abc_a_end           = fields.Float()
 
-    abc_b_start  = fields.Float()
-    abc_b_end    = fields.Float()
+    is_null_abc_b_start = fields.Boolean()
+    abc_b_start         = fields.Float()
+    is_null_abc_b_end   = fields.Boolean()
+    abc_b_end           = fields.Float()
 
-    abc_c_start  = fields.Float()
-    abc_c_end    = fields.Float()
+    is_null_abc_c_start = fields.Boolean()
+    abc_c_start         = fields.Float()
+    is_null_abc_c_end   = fields.Boolean()
+    abc_c_end           = fields.Float()
 
     #XYZ
-    xyz_x_start = fields.Float()
-    xyz_x_end   = fields.Float()
+    is_null_xyz_x_start = fields.Boolean()
+    xyz_x_start         = fields.Float()
+    is_null_xyz_x_end   = fields.Boolean()
+    xyz_x_end           = fields.Float()
 
-    xyz_y_start = fields.Float()
-    xyz_y_end   = fields.Float()
+    is_null_xyz_y_start = fields.Boolean()
+    xyz_y_start         = fields.Float()
+    is_null_xyz_y_end   = fields.Boolean()
+    xyz_y_end           = fields.Float()
 
-    xyz_z_start = fields.Float()
-    xyz_z_end = fields.Float()
+    is_null_xyz_z_start = fields.Boolean()
+    xyz_z_start         = fields.Float()
+    is_null_xyz_z_end   = fields.Boolean()
+    xyz_z_end           = fields.Float()
 
     # ABC MC
-    abc_a_start_mc = fields.Float()
-    abc_a_end_mc   = fields.Float()
+    is_null_abc_a_start_mc = fields.Boolean()
+    abc_a_start_mc         = fields.Float()
+    is_null_abc_a_end_mc   = fields.Boolean()
+    abc_a_end_mc           = fields.Float()
 
-    abc_b_start_mc = fields.Float()
-    abc_b_end_mc   = fields.Float()
+    is_null_abc_b_start_mc = fields.Boolean()
+    abc_b_start_mc         = fields.Float()
+    is_null_abc_b_end_mc   = fields.Boolean()
+    abc_b_end_mc           = fields.Float()
 
-    abc_c_start_mc = fields.Float()
-    abc_c_end_mc   = fields.Float()
+    is_null_abc_c_start_mc = fields.Boolean()
+    abc_c_start_mc         = fields.Float()
+    is_null_abc_c_end_mc   = fields.Boolean()
+    abc_c_end_mc           = fields.Float()
 
     # XYZ
-    xyz_x_start_mc  = fields.Float()
-    xyz_x_end_mc    = fields.Float()
+    is_null_xyz_x_start_mc = fields.Boolean()
+    xyz_x_start_mc         = fields.Float()
+    is_null_xyz_x_end_mc   = fields.Boolean()
+    xyz_x_end_mc           = fields.Float()
 
-    xyz_y_start_mc  = fields.Float()
-    xyz_y_end_mc    = fields.Float()
+    is_null_xyz_y_start_mc = fields.Boolean()
+    xyz_y_start_mc         = fields.Float()
+    is_null_xyz_y_end_mc   = fields.Boolean()
+    xyz_y_end_mc           = fields.Float()
 
-    xyz_z_start_mc  = fields.Float()
-    xyz_z_end_mc    = fields.Float()
+    is_null_xyz_z_start_mc = fields.Boolean()
+    xyz_z_start_mc         = fields.Float()
+    is_null_xyz_z_end_mc   = fields.Boolean()
+    xyz_z_end_mc           = fields.Float()
 
 
     #total ninebox
