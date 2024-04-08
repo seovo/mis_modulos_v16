@@ -8,13 +8,9 @@
             <field name="arch" type="xml">
                 <form string="Company"     >
                     <notebook>
-                        <page id="ranges" name="ranges" string="Ranges" >
 
-                            <app data-string="Datawave" string="Datawave" name="datawave_jz" >
-
-
-
-                        <block title="Sql Server Accesss" id="sql_server_acsess" groups="base.group_no_one">
+                        <page id="sql_server" name="sql_server" string="SQL SERVER" >
+                            <block title="Sql Server Accesss" id="sql_server_acsess" groups="base.group_no_one">
                             <setting >
                                 <field name="sql_server_host" placeholder="Host"/>
                             </setting>
@@ -32,6 +28,38 @@
                             </setting>
 
                         </block>
+
+                        </page>
+
+                        <page  name="settings_total_nine_box" string="Total Nine Box" >
+                            <block title="Total Nine Box" id="settings_total_nine_box">
+                            <setting >
+                                <field name="nine_box_start_date" placeholder="Start Date"/>
+                            </setting>
+                            <setting >
+                                <field name="nine_box_end_date" placeholder="End Date" />
+                            </setting>
+                            <setting >
+                                 <field name="nine_box_days_per_month" />
+                            </setting>
+                            <setting >
+                                <field name="nine_box_type"/>
+                            </setting>
+
+                            <button type="object" name="sync_nine_box" string="Sincronizar"
+                                     icon="oi-arrow-right" class="btn-primary"/>
+
+                        </block>
+
+                        </page>
+
+                        <page id="ranges" name="ranges" string="Ranges" >
+
+                            <app data-string="Datawave" string="Datawave" name="datawave_jz" >
+
+
+
+
 
                         <block title="Range Configs" id="sql_server_acsess">
                             <setting string="ABC" >
@@ -127,24 +155,7 @@
                         </block>
 
 
-                        <block title="Total Nine Box" id="settings_total_nine_box">
-                            <setting >
-                                <field name="nine_box_start_date" placeholder="Start Date"/>
-                            </setting>
-                            <setting >
-                                <field name="nine_box_end_date" placeholder="End Date" />
-                            </setting>
-                            <setting >
-                                 <field name="nine_box_days_per_month" />
-                            </setting>
-                            <setting >
-                                <field name="nine_box_type"/>
-                            </setting>
 
-                            <button type="object" name="sync_nine_box" string="Sincronizar"
-                                     icon="oi-arrow-right" class="btn-primary"/>
-
-                        </block>
 
 
 
@@ -215,6 +226,10 @@
 
 
                     </app>
+
+                        </page>
+
+                        <page id="nine_box" name="nine_box" string="Nine Box" >
 
                         </page>
                     </notebook>
