@@ -31,7 +31,7 @@
 
 
     <menuitem id="menu_res_company" name="Settings Company"
-              parent="datawave_jz.menu_reports"
-              action="action_total_nine_box_mc"
+              parent="datawave_jz.menu_data_wave"
+              action="action_res_company"
               />
 </odoo>
