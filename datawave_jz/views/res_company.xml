@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="form_res_company" model="ir.ui.view">
+            <field name="name">res.company</field>
+            <field name="model">res.company.form</field>
+            <field name="arch" type="xml">
+                <form string="Company"     >
+                    <sheet>
+                        <group string="ABC">
+                            <field name="is_null_abc_a_start" />
+                            <field name="abc_a_start" />
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+    </record>
+
+    <record id="action_res_company" model="ir.actions.act_window">
+            <field name="name">Setting Company</field>
+            <field name="res_model">res.company</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_company_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('form_res_company')})]"
+            />
+
+    </record>
+
+
+    <menuitem id="menu_res_company" name="Settings Company"
+              parent="datawave_jz.menu_reports"
+              action="action_total_nine_box_mc"
+              />
+</odoo>
