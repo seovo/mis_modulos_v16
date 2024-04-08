@@ -31,37 +31,9 @@
 
                         </page>
 
-                        <page  name="settings_total_nine_box" string="Total Nine Box" >
-                            <block title="Total Nine Box" id="settings_total_nine_box">
-                            <setting >
-                                <field name="nine_box_start_date" placeholder="Start Date"/>
-                            </setting>
-                            <setting >
-                                <field name="nine_box_end_date" placeholder="End Date" />
-                            </setting>
-                            <setting >
-                                 <field name="nine_box_days_per_month" />
-                            </setting>
-                            <setting >
-                                <field name="nine_box_type"/>
-                            </setting>
-
-                            <button type="object" name="sync_nine_box" string="Sincronizar"
-                                     icon="oi-arrow-right" class="btn-primary"/>
-
-                        </block>
-
-                        </page>
 
                         <page id="ranges" name="ranges" string="Ranges" >
-
-                            <app data-string="Datawave" string="Datawave" name="datawave_jz" >
-
-
-
-
-
-                        <block title="Range Configs" id="sql_server_acsess">
+                            <block title="Range Configs" id="sql_server_acsess">
                             <setting string="ABC" >
 
                                 <div>A</div>
@@ -153,13 +125,32 @@
 
 
                         </block>
+                        </page>
 
+                        <page  name="settings_total_nine_box" string="Total Nine Box" >
+                            <block title="Total Nine Box" id="settings_total_nine_box">
+                            <setting >
+                                <field name="nine_box_start_date" placeholder="Start Date"/>
+                            </setting>
+                            <setting >
+                                <field name="nine_box_end_date" placeholder="End Date" />
+                            </setting>
+                            <setting >
+                                 <field name="nine_box_days_per_month" />
+                            </setting>
+                            <setting >
+                                <field name="nine_box_type"/>
+                            </setting>
 
+                            <button type="object" name="sync_nine_box" string="Sincronizar"
+                                     icon="oi-arrow-right" class="btn-primary"/>
 
+                        </block>
 
+                        </page>
 
-
-                        <block title="Total Nine Box MC" id="settings_total_nine_box_mc">
+                        <page  name="settings_total_nine_box_mc" string="Total Nine Box MC" >
+                            <block title="Total Nine Box MC" id="settings_total_nine_box_mc">
                             <setting >
                                 <field name="nine_box_mc_start_date" placeholder="Start Date"/>
                             </setting>
@@ -180,8 +171,10 @@
                                      icon="oi-arrow-right" class="btn-primary"/>
 
                         </block>
+                        </page>
 
-                        <block title="Total Nine Box Per Store" id="settings_total_nine_box">
+                        <page  name="settings_total_nine_box" string="Total Nine Box Per Store" >
+                            <block title="Total Nine Box Per Store" id="settings_total_nine_box">
                             <setting >
                                 <field name="nine_box_per_store_start_date" placeholder="Start Date"/>
                             </setting>
@@ -199,9 +192,10 @@
                                      icon="oi-arrow-right" class="btn-primary"/>
 
                         </block>
+                        </page>
 
-
-                        <block title="Total Nine Box Per Store MC" id="settings_total_nine_box_mc">
+                        <page  name="settings_total_nine_box_mc" string="Total Nine Box Per Store MC" >
+                            <block title="Total Nine Box Per Store MC" id="settings_total_nine_box_mc">
                             <setting >
                                 <field name="nine_box_mc_per_store_start_date" placeholder="Start Date"/>
                             </setting>
@@ -223,15 +217,10 @@
 
                         </block>
 
-
-
-                    </app>
-
                         </page>
 
-                        <page id="nine_box" name="nine_box" string="Nine Box" >
 
-                        </page>
+
                     </notebook>
 
                 </form>
