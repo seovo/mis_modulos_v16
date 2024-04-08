@@ -10,9 +10,12 @@
                     <sheet>
                         <group string="ABC">
                             <div class="d-flex"  name="due_date">
-                                <span>A</span>
+                                <span class="mr-4">A</span>
                                 <field name="is_null_abc_a_start" force_save="1" />
                                 <field name="abc_a_start" force_save="1" placeholder="Start" readonly="is_null_abc_a_start != True"/>
+
+                                <field name="is_null_abc_a_end" force_save="1" />
+                                <field name="abc_a_end" force_save="1" placeholder="Start" readonly="is_null_abc_a_end != True"/>
 
 
                             </div>
