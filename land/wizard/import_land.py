@@ -55,7 +55,12 @@ class ImportCiHrAttendance(models.TransientModel):
                 break
             c += 1
 
-            expediente= str(int(row['EXP']))
+            try:
+                expediente = str(int(row['EXP']))
+            except:
+                break
+
+
 
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             if not order:
