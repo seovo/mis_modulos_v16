@@ -1,7 +1,8 @@
 from odoo import api, fields, models
 import subprocess
 import sys
-from datetime import datetime
+
+from datetime import date, datetime, time
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -234,7 +235,12 @@ class ImportCiHrAttendance(models.TransientModel):
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             if not order:
                 order = self.env['sale.order'].create(data_order)
-            order.date_order = order.date_sign_land
+
+            hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
+            data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
+            order.date_order = data_hora_desejada
+
+
 
 
         #for i in range(hoja.nrows):
