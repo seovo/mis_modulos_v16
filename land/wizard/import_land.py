@@ -234,6 +234,7 @@ class ImportCiHrAttendance(models.TransientModel):
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             if not order:
                 order = self.env['sale.order'].create(data_order)
+            order.date_order = order.date_sign_land
 
 
         #for i in range(hoja.nrows):
