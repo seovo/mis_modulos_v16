@@ -46,15 +46,25 @@ class ImportCiHrAttendance(models.TransientModel):
 
         #raise ValueError(str(df))
 
-        c  = 0
+        c = 0
 
         for index, row in ventas.iterrows():
-            c += 1
+
             if c > 100:
                 break
+            c += 1
+
+
+
+
             #raise ValueError(row)
             user_id = self.env['res.users'].search([('name','=',row['ASESOR'])])
-            expediente= str(row['EXP'])
+            if not user_id:
+                user_id = self.env['res.users'].search([('name','ilike',row['ASESOR'])])
+                if not user_id:
+                    raise ValueError(row['ASESOR'])
+
+            expediente= str(int(row['EXP']))
             mz_lote = str(row['LT'])
             etapa = str(row['ETAPA'])
             SECTOR = str(row['SECTOR'])
@@ -89,7 +99,7 @@ class ImportCiHrAttendance(models.TransientModel):
                                 if tipo_doc == 'nan':
                                     pass
                                 else:
-                                    raise ValueError(tipo_doc)
+                                    raise ValueError(str(tipo_doc))
 
 
 
@@ -114,8 +124,13 @@ class ImportCiHrAttendance(models.TransientModel):
                 GRACIA = 0
             try:
                 MORA = float(row['MORA'])
+                if str(MORA) == 'nan':
+                    MORA = 0
             except:
                 MORA = 0
+
+            #if expediente == '97':
+            #    raise ValueError(str(MORA),type(MORA))
 
             percentage_refund_land = 0
             DEVOLUCION = str(row['% DEVOLUCION'])
@@ -208,9 +223,9 @@ class ImportCiHrAttendance(models.TransientModel):
                         'stage_land': 'signed'
                     })
                 else:
-                    raise ValueError(ESTADO)
+                    raise ValueError(str(ESTADO))
             except:
-                raise ValueError(ESTADO)
+                raise ValueError(str(ESTADO))
 
 
 
