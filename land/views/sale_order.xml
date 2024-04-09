@@ -9,6 +9,32 @@
                    <field name="price_unit"  readonly="1"  force_save="1" />
                    <button name="edit_price_jz" type="object" icon="fa-pencil-square-o" />
                </xpath>
+
+               <xpath expr="//notebook" position="inside" >
+                   <page string="Land" >
+                       <group>
+                           <field name="nro_internal_land" />
+                           <field name="mz_lot" />
+                           <field name="sector" />
+                           <field name="stage_land" />
+                           <field name="m2_land" />
+                           <field name="dues_land" />
+                           <field name="value_due_land" />
+                           <field name="crono_land" />
+                           <field name="days_tolerance_land" />
+                           <field name="value_mora_land" />
+                           <field name="percentage_refund_land" />
+                           <field name="date_sign_land" />
+                           <field name="date_first_due_land" />
+                           <field name="modality_land" />
+                           <field name="obs_modality_land" />
+
+
+
+                       </group>
+                   </page>
+
+               </xpath>
            </field>
     </record>
 

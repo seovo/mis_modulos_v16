@@ -1,7 +1,38 @@
-from odoo import api, fields, models
+from odoo import api, fields, models , _
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+    nro_internal_land =  fields.Char()
+    mz_lot            =  fields.Char()
+    sector  =  fields.Char()
+    stage_land = fields.Selection([
+        ('signed',_('Signed'))
+    ])
+
+    m2_land = fields.Char()
+    dues_land = fields.Char()
+    value_due_land = fields.Float()
+    crono_land = fields.Char()
+    days_tolerance_land  = fields.Integer()
+    value_mora_land = fields.Float()
+    percentage_refund_land = fields.Float()
+
+    date_sign_land = fields.Date()
+    date_first_due_land = fields.Date()
+
+    modality_land = fields.Selection([
+        ('single',_('Single')) ,
+        ('low_customer',_('Low Customer')) ,
+        ('married',_('Married')) ,
+        ('divorcee',_('Divorcee')) ,
+        ('confirmer',_('Confirmer')) ,
+        ('widow',_('Widow')) ,
+        ('transfer',_('Transfer')) ,
+    ])
+
+    obs_modality_land = fields.Text()
+
+
 
     def _recalcule_price_land(self):
         for record in self:

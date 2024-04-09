@@ -13,6 +13,7 @@
         "views/product_attribute_view_form.xml",
         "views/product_template_form_view.xml",
         "views/sale_order.xml",
+        "wizard/import_land.xml"
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
