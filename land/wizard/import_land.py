@@ -261,6 +261,9 @@ class ImportCiHrAttendance(models.TransientModel):
                     'price_unit': price_unit ,
                     'tax_id': [(6,0,[self.env.ref('l10n_pe.1_sale_tax_exo').id])]
                 })
+            else:
+                for line in order.order_line:
+                    line.tax_id = [(6,0,[self.env.ref('l10n_pe.1_sale_tax_exo').id])]
 
 
 
