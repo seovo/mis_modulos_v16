@@ -51,7 +51,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
         for index, row in ventas.iterrows():
 
-            if c > 400:
+            if c > 600:
                 break
             c += 1
 
