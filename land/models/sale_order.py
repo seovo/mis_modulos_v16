@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
     ])
 
     m2_land = fields.Char()
-    dues_land = fields.Char()
+    dues_land = fields.Float()
     value_due_land = fields.Float()
     crono_land = fields.Char()
     days_tolerance_land  = fields.Integer()
@@ -31,6 +31,10 @@ class SaleOrder(models.Model):
     ])
 
     obs_modality_land = fields.Text()
+    price_total_land = fields.Float()
+    price_initial_land = fields.Float()
+    price_credit_land = fields.Float()
+
 
 
 

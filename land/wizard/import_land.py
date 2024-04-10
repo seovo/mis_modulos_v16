@@ -51,7 +51,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
         for index, row in ventas.iterrows():
 
-            if c > 700:
+            if c > 200:
                 break
             c += 1
 
@@ -109,7 +109,7 @@ class ImportCiHrAttendance(models.TransientModel):
                 email = row['EMAIL']
                 whatsap = row['WHATSAPP']
                 M2 = row['M2']
-                T_CUOTAS = row['T CUOTAS']
+                T_CUOTAS = int(row['T CUOTAS'])
                 VALOR_CUOTA = float(row['VALOR CUOTA'])
 
                 FECHA_PRIMERA_CUOTA = row['FECHA PRIMERA CUOTA']
@@ -178,9 +178,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
                     })
 
-                precio_total = row['PRECIO TOTAL']
-                credito = row['CREDITO']
-                INICIAL = row['INICIAL']
+
 
                 FECHA_FIRMA = FECHA_FIRMA.date()
                 try:
@@ -226,6 +224,45 @@ class ImportCiHrAttendance(models.TransientModel):
                 hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
+
+            if not order.order_line:
+                precio_total = float(row['PRECIO TOTAL'])
+                credito = float(row['CREDITO'])
+                INICIAL = float(row['INICIAL'])
+                T_CUOTAS = int(row['T CUOTAS'])
+
+                price_unit = ( credito ) / order.dues_land
+
+                order.update({
+                    'price_total_land'   : precio_total ,
+                    'price_initial_land' : INICIAL ,
+                    'price_credit_land'  : credito ,
+                    'dues_land': T_CUOTAS,
+                })
+
+                product_inicial = self.env['product.product'].search([('name', 'ilike', 'INICIAL')])
+
+                order.order_line += self.env['sale.order.line'].new({
+                    'product_id': product_inicial.id ,
+                    'name': product_inicial.display_name ,
+                    'product_uom_qty': 1,
+                    'price_unit': INICIAL ,
+                    'tax_id': [(6, 0, [self.env.ref('l10n_pe.1_sale_tax_exo').id])]
+                })
+
+                product_total = self.env['product.product'].search([('name','ilike','TERRENO')])
+
+
+
+                order.order_line += self.env['sale.order.line'].new({
+                    'product_id': product_total.id ,
+                    'name': product_total.display_name ,
+                    'product_uom_qty': T_CUOTAS ,
+                    'price_unit': price_unit ,
+                    'tax_id': [(6,0,[self.env.ref('l10n_pe.1_sale_tax_exo').id])]
+                })
+
+
 
 
         #for i in range(hoja.nrows):
