@@ -72,6 +72,9 @@ class ImportCiHrAttendance(models.TransientModel):
 
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             if not order:
+                if c == 552:
+                    raise ValueError(row)
+
                 # raise ValueError(row)
                 user_id = self.env['res.users'].search([('name', '=', row['ASESOR'])])
                 if not user_id:
