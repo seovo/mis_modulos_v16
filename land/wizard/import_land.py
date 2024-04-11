@@ -74,7 +74,7 @@ class ImportCiHrAttendance(models.TransientModel):
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             if c == 231 :
                 raise ValueError(order)
-            if not order:
+            if not order or c in [231] :
 
 
                 # raise ValueError(row)
@@ -235,7 +235,13 @@ class ImportCiHrAttendance(models.TransientModel):
                 except:
                     raise ValueError(str(ESTADO))
 
-                order = self.env['sale.order'].create(data_order)
+                if c in [231] :
+                    order = self.env['sale.order'].write(data_order)
+                else:
+                    order = self.env['sale.order'].create(data_order)
+
+
+
                 hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
