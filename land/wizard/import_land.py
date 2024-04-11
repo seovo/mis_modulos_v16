@@ -235,7 +235,7 @@ class ImportCiHrAttendance(models.TransientModel):
                 except:
                     raise ValueError(str(ESTADO))
 
-                order = self.env['sale.order'].write(data_order)
+                order = self.env['sale.order'].create(data_order)
 
 
 
