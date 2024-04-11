@@ -187,9 +187,11 @@ class ImportCiHrAttendance(models.TransientModel):
                     obs_modality_land += '\n' + str(FECHA_PRIMERA_CUOTA)
                     FECHA_PRIMERA_CUOTA = None
 
+
+
                 # raise ValueError(FECHA_PRIMERA_CUOTA,type(FECHA_PRIMERA_CUOTA))
                 data_order = {
-                    'name': str(expediente),
+                    'name': 'S'+str(expediente).zfill(5),
                     'nro_internal_land': str(expediente),
                     'user_id': user_id.id,
                     'partner_id': partner_id.id,
@@ -224,7 +226,10 @@ class ImportCiHrAttendance(models.TransientModel):
                 hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
+            else:
+                order.name = 'S'+str(expediente).zfill(5)
 
+            '''
             else:
                 precio_total = float(row['PRECIO TOTAL'])
                 credito = float(row['CREDITO'])
@@ -251,13 +256,25 @@ class ImportCiHrAttendance(models.TransientModel):
                     'price_credit_land': credito,
                     'dues_land': T_CUOTAS,
                 })
-
+            '''
 
             if not order.order_line:
                 precio_total = float(row['PRECIO TOTAL'])
                 credito = float(row['CREDITO'])
                 INICIAL = float(row['INICIAL'])
                 T_CUOTAS = int(row['T CUOTAS'])
+
+                if str(precio_total) == 'nan':
+                    precio_total = 0
+
+                if str(credito) == 'nan':
+                    credito = 0
+
+                if str(INICIAL) == 'nan':
+                    INICIAL = 0
+
+                if str(T_CUOTAS) == 'nan':
+                    T_CUOTAS = 0
 
                 price_unit = ( credito ) / order.dues_land
 
