@@ -72,7 +72,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
 
                 # raise ValueError(row)
-                user_id = self.env['res.users'].search([('name', '=', row['ASESOR'])])
+                user_id = self.env['res.users'].search([('name', '=', row['ASESOR']),'|',('active','=',True),('active','=',False)])
                 if not user_id:
                     user_id = self.env['res.users'].search([('name', 'ilike', row['ASESOR'])])
                     if not user_id:
