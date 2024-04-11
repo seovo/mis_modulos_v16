@@ -236,10 +236,14 @@ class ImportCiHrAttendance(models.TransientModel):
                     raise ValueError(str(ESTADO))
 
                 if c in [231] :
+
                     order = self.env['sale.order'].write(data_order)
                 else:
                     order = self.env['sale.order'].create(data_order)
 
+
+                if not order:
+                    raise ValueError(c)
 
 
                 hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
