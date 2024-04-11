@@ -29,7 +29,7 @@ class SaleOrder(models.Model):
         ('confirmer',_('Confirmador')) ,
         ('widow',_('Viudo')) ,
         ('transfer',_('Transferencia')) ,
-    ])
+    ],string="Modalidad")
 
     obs_modality_land = fields.Text(string="Observaciones")
     price_total_land = fields.Float(string="Valor del Terreno")
