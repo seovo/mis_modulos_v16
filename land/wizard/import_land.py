@@ -51,7 +51,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
         for index, row in ventas.iterrows():
 
-            if c > 800:
+            if c > 1000:
                 break
             c += 1
 
@@ -226,8 +226,8 @@ class ImportCiHrAttendance(models.TransientModel):
                 hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
-            else:
-                order.name = 'S'+str(expediente).zfill(5)
+            #else:
+            #    order.name = 'S'+str(expediente).zfill(5)
 
             '''
             else:
