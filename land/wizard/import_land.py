@@ -243,6 +243,8 @@ class ImportCiHrAttendance(models.TransientModel):
 
 
                 hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
+                if not order.date_sign_land:
+                    raise ValueError(str(c,FECHA_FIRMA))
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
             #else:
