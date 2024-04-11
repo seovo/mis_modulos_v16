@@ -54,7 +54,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
             c += 1
 
-            if c > 600 :
+            if c > 700 :
                 break
 
             try:
