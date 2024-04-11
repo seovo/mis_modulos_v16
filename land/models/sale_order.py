@@ -88,7 +88,7 @@ class SaleOrder(models.Model):
                 record._update_text_mz_lote()
 
         return res
-
+    '''
     def create(self,vals):
         res = super().create(vals)
         for record in res:
@@ -97,7 +97,7 @@ class SaleOrder(models.Model):
 
 
         return res
-
+    '''
     def _get_invoiceable_lines(self, final=False):
         """Return the invoiceable lines for order `self`."""
         down_payment_line_ids = []
