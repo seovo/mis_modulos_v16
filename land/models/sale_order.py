@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
     price_credit_land = fields.Float(string="Credito del Terreno")
 
     note = fields.Text()
-    recalcule_and_save_total_land = fields.Boolean(default=False,string="Recalcular Montos")
+    recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos")
 
     def _update_text_mz_lote(self):
         for record in self:
