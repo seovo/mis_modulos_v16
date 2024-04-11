@@ -60,12 +60,8 @@ class ImportCiHrAttendance(models.TransientModel):
             try:
                 expediente = str(int(row['EXP']))
             except:
-                if c == 552 :
-                    expediente = '552'
-                    continue
-                else:
-                    raise ValueError([c, str(row['EXP'])])
-                    break
+                break
+                #raise ValueError([c, str(row['EXP'])])
 
 
 
@@ -73,8 +69,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             if not order:
-                if c == 552:
-                    raise ValueError(row)
+
 
                 # raise ValueError(row)
                 user_id = self.env['res.users'].search([('name', '=', row['ASESOR'])])
