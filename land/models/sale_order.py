@@ -89,8 +89,8 @@ class SaleOrder(models.Model):
 
         return res
 
-    def create(self,values):
-        res = super().create(values)
+    def create(self,vals):
+        res = super().create(vals)
         for record in res:
             if record.recalcule_and_save_total_land:
                 record._update_text_mz_lote()
