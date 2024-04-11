@@ -60,8 +60,8 @@ class ImportCiHrAttendance(models.TransientModel):
             try:
                 expediente = str(int(row['EXP']))
             except:
-                break
-                #raise ValueError([c, str(row['EXP'])])
+                #break
+                raise ValueError([c, str(row['EXP'])])
 
 
 
@@ -74,7 +74,7 @@ class ImportCiHrAttendance(models.TransientModel):
                 # raise ValueError(row)
                 user_id = self.env['res.users'].search([('name', '=', row['ASESOR']),'|',('active','=',True),('active','=',False)])
                 if not user_id:
-                    user_id = self.env['res.users'].search([('name', 'ilike', row['ASESOR'])])
+                    user_id = self.env['res.users'].search([('name', 'ilike', row['ASESOR']),'|',('active','=',True),('active','=',False)])
                     if not user_id:
                         raise ValueError(row['ASESOR'])
                 mz_lote = str(row['LT'])
