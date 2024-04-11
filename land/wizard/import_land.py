@@ -67,6 +67,10 @@ class ImportCiHrAttendance(models.TransientModel):
                 expediente = '231'
 
 
+            if c == 397:
+                expediente = '397'
+
+
 
 
 
