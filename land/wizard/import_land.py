@@ -57,7 +57,7 @@ class ImportCiHrAttendance(models.TransientModel):
             try:
                 expediente = str(int(row['EXP']))
             except:
-                raise ValueError([c,row['EXP']])
+                raise ValueError([c,str(row['EXP'])])
                 break
 
 
