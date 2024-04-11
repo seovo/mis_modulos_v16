@@ -54,6 +54,9 @@ class ImportCiHrAttendance(models.TransientModel):
 
             c += 1
 
+            if c > 600 :
+                break
+
             try:
                 expediente = str(int(row['EXP']))
             except:
