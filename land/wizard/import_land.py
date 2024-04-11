@@ -225,6 +225,34 @@ class ImportCiHrAttendance(models.TransientModel):
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
 
+            else:
+                precio_total = float(row['PRECIO TOTAL'])
+                credito = float(row['CREDITO'])
+                INICIAL = float(row['INICIAL'])
+                T_CUOTAS = int(row['T CUOTAS'])
+
+                if str(precio_total) == 'nan':
+                    precio_total = 0
+
+                if str(credito) == 'nan':
+                    credito = 0
+
+
+                if str(INICIAL) == 'nan':
+                    INICIAL = 0
+
+
+                if str(T_CUOTAS) == 'nan':
+                    T_CUOTAS = 0
+
+                order.update({
+                    'price_total_land': precio_total,
+                    'price_initial_land': INICIAL,
+                    'price_credit_land': credito,
+                    'dues_land': T_CUOTAS,
+                })
+
+
             if not order.order_line:
                 precio_total = float(row['PRECIO TOTAL'])
                 credito = float(row['CREDITO'])
