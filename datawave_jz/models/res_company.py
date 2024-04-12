@@ -117,8 +117,8 @@ class ResCompany(models.Model):
 
         for index, row in data.iterrows():
             #raise ValueError(str(row['Id']))
-            RangeType = row['Id']
-            name_start = row['Id']
+            RangeType = str(row['Id'])
+            name_start = str(row['Id'])
             name_end = ''
             if RangeType == 'ABC_MC':
                 name_start = 'ABC'
