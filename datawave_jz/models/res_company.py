@@ -112,7 +112,8 @@ class ResCompany(models.Model):
 
         query = f"SELECT * FROM RangeConfigs WHERE TenantId = {self.tenant_id} ; "
         data = self.fetch_data_from_sql_server(self.get_connection_string(), query )
-        raise ValueError(str(data))
+        for index, row in data.iterrows():
+            raise ValueError(str(row))
         return
 
     def write(self,vals):
