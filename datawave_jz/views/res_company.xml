@@ -28,12 +28,13 @@
                             </setting>
 
                         </block>
-
                         </page>
 
 
                         <page id="ranges" name="ranges" string="Ranges" >
                             <block title="Range Configs" id="sql_server_acsess">
+                                <button name="set_ranges_nine_box" type="object" class="oe_stat_button" icon="fa-list-ul" string="PreCargar" />
+
                             <setting string="ABC" >
 
                                 <div>A</div>
@@ -84,9 +85,9 @@
                                 <div>B</div>
                                 <div class="row mt16">
                                     <div class="col"><field name="is_null_abc_b_start_mc" /></div>
-                                    <div class="col"><field name="abc_b_start_mc" readonly="is_null_abc_b_start_mc" /></div>
+                                    <div class="col"><field name="abc_b_start_mc" readonly="not is_null_abc_b_start_mc" /></div>
                                     <div class="col"><field name="is_null_abc_b_end_mc" /></div>
-                                    <div class="col"><field name="abc_b_end_mc" readonly="is_null_abc_b_end_mc" /></div>
+                                    <div class="col"><field name="abc_b_end_mc" readonly="not is_null_abc_b_end_mc" /></div>
 
                                 </div>
                                 <hr />
