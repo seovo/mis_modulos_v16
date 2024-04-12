@@ -133,7 +133,7 @@ class ResCompany(models.Model):
 
 
             val_start = row['RangeStart']
-            val_end = row['RangeStart']
+            val_end = row['RangeEnd']
 
             if str(val_start) == 'nan':
                 val_start = None
@@ -158,7 +158,7 @@ class ResCompany(models.Model):
         
             '''
 
-            raise ValueError(sql_update)
+            #raise ValueError(sql_update)
 
         if sql_update != '':
             self.env.cr.execute(sql_update)
