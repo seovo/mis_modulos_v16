@@ -141,7 +141,7 @@ class ResCompany(models.Model):
             sql_update += f'''
              
              UPDATE res_company 
-             SET    is_null_{field_name_start} = { 't' if val_start else 'f' } ,
+             SET    is_null_{field_name_start} = '{ "t" if val_start else "f" }' ,
                     {field_name_start} = {val_start or 0} , 
                      
                     is_null_{field_name_end} = { 't' if val_end else 'f' } ,
@@ -160,13 +160,8 @@ class ResCompany(models.Model):
         res = super().write(vals)
 
 
-
-
-
         if len(self) == 1:
             if self.tenant_id :
-
-
                 if 'nine_box_start_date' in vals or 'nine_box_end_date' in vals or 'nine_box_days_per_month' in vals or 'nine_box_type' in vals:
                     self.sync_nine_box()
 
