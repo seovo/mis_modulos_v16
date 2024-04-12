@@ -116,7 +116,7 @@ class ResCompany(models.Model):
         sql_update = ''
 
         for index, row in data.iterrows():
-            raise ValueError(str(row))
+            raise ValueError(str(row['Id']))
             RangeType = row['ID']
             name_start = row['ID']
             name_end = ''
