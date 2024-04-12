@@ -158,6 +158,8 @@ class ResCompany(models.Model):
         
             '''
 
+            raise ValueError(sql_update)
+
         if sql_update != '':
             self.env.cr.execute(sql_update)
 
