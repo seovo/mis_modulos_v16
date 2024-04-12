@@ -17,7 +17,7 @@
          "views/total_nine_box_mc.xml",
          "views/total_nine_box_per_store.xml",
          "views/total_nine_box_per_store_mc.xml",
-         "views/res_config_settings_views.xml",
+         #"views/res_config_settings_views.xml",
          "views/res_company.xml",
 
     ],
