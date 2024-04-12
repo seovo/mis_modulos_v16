@@ -110,7 +110,7 @@ class ResCompany(models.Model):
 
     def set_ranges_nine_box(self):
 
-        query = f"SELECT * FROM RangeConfigs WHERE id = {self.tenant_id} ; "
+        query = f"SELECT * FROM RangeConfigs WHERE TenantId = {self.tenant_id} ; "
         data = self.fetch_data_from_sql_server(self.get_connection_string(), query )
         raise ValueError(str(data))
         return
