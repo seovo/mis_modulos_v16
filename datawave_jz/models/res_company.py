@@ -135,13 +135,19 @@ class ResCompany(models.Model):
             val_start = row['RangeStart']
             val_end = row['RangeStart']
 
+            if str(val_start) == 'nan':
+                val_start = None
+
+            if str(val_end) == 'nan':
+                val_end = None
+
             field_name_start = f'''{name_start}_{row['RangeString'].lower()}_start_{name_end}'''
             field_name_end = f'''{name_start}_{row['RangeString'].lower()}_end_{name_end}'''
 
             sql_update += f'''
              
              UPDATE res_company 
-             SET    is_null_{field_name_start} = '{ "t" if val_start else "f" }' ,
+             SET    is_null_{field_name_start} = '{ "t" if val_start  else "f" }' ,
                     {field_name_start} = {val_start or 0} , 
                      
                     is_null_{field_name_end} = { 't' if val_end else 'f' } ,
