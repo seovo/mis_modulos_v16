@@ -141,8 +141,8 @@ class ResCompany(models.Model):
             if str(val_end) == 'nan':
                 val_end = None
 
-            field_name_start = f'''{name_start}_{row['RangeString'].lower()}_start_{name_end}'''
-            field_name_end = f'''{name_start}_{row['RangeString'].lower()}_end_{name_end}'''
+            field_name_start = f'''{name_start}_{row['RangeString'].lower()}_start{name_end}'''
+            field_name_end = f'''{name_start}_{row['RangeString'].lower()}_end{name_end}'''
 
             sql_update += f'''
              
