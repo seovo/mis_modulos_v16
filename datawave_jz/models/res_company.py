@@ -112,9 +112,47 @@ class ResCompany(models.Model):
 
         query = f"SELECT * FROM RangeConfigs WHERE TenantId = {self.tenant_id} ; "
         data = self.fetch_data_from_sql_server(self.get_connection_string(), query )
+
+        sql_update = ''
+
         for index, row in data.iterrows():
-            raise ValueError(str(row))
-        return
+            RangeType = row['ID']
+            name_start = row['ID']
+            name_end = ''
+            if RangeType == 'ABC_MC':
+                name_start = 'ABC'
+                name_end = '_mc'
+
+
+            if RangeType == 'XYZ_MC':
+                name_start = 'XYZ'
+                name_end = '_mc'
+
+            name_start = name_start.lower()
+
+
+            val_start = row['RangeStart']
+            val_end = row['RangeStart']
+
+            field_name_start = f'''{name_start}_{row['RangeString'].lower()}_start_{name_end}'''
+            field_name_end = f'''{name_start}_{row['RangeString'].lower()}_end_{name_end}'''
+
+            sql_update += f'''
+             
+             UPDATE res_company 
+             SET    is_null_{field_name_start} = { 't' if val_start else 'f' } ,
+                    {field_name_start} = {val_start or 0} , 
+                     
+                    is_null_{field_name_end} = { 't' if val_end else 'f' } ,
+                    {field_name_end} = {val_end or 0} 
+                    
+             WHERE id = {self.id} ;
+             
+        
+            '''
+
+        if sql_update != '':
+            self.env.cr.execute(sql_update)
 
     def write(self,vals):
         #raise ValueError(vals)
