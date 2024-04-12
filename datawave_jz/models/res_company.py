@@ -63,7 +63,7 @@ class ResCompany(models.Model):
     is_null_abc_c_end_mc   = fields.Boolean()
     abc_c_end_mc           = fields.Float()
 
-    # XYZ
+    # XYZ MC
     is_null_xyz_x_start_mc = fields.Boolean()
     xyz_x_start_mc         = fields.Float()
     is_null_xyz_x_end_mc   = fields.Boolean()
