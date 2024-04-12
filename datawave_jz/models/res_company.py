@@ -150,7 +150,7 @@ class ResCompany(models.Model):
              SET    is_null_{field_name_start} = '{ "t" if val_start  else "f" }' ,
                     {field_name_start} = {val_start or 0} , 
                      
-                    is_null_{field_name_end} = { 't' if val_end else 'f' } ,
+                    is_null_{field_name_end} = '{ "t" if val_end else 'f' }' ,
                     {field_name_end} = {val_end or 0} 
                     
              WHERE id = {self.id} ;
