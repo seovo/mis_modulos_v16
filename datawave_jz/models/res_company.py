@@ -496,6 +496,8 @@ class ResCompany(models.Model):
 
                     self.execute_sql_server(self.get_connection_string(), sql)
 
+                    self.set_ranges_nine_box()
+
 
 
 
