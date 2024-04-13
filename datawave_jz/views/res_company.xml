@@ -9,7 +9,7 @@
                 <form string="Company"     >
                     <notebook>
 
-                        <page id="sql_server" name="sql_server" string="SQL SERVER" >
+                        <page id="sql_server" name="sql_server" string="SQL SERVER" groups="base.group_no_one" >
                             <block title="Sql Server Accesss" id="sql_server_acsess" groups="base.group_no_one">
                             <setting >
                                 <field name="sql_server_host" placeholder="Host"/>
