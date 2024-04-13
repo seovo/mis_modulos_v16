@@ -188,154 +188,306 @@ class ResCompany(models.Model):
                 update = False
                 if 'abc_a_start' in vals  :
                     update = True
+                    abc_a_start = self.abc_a_start or 0
+                    if  not self.is_null_abc_a_start:
+                        abc_a_start = 'NULL'
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_a_start or 0} WHERE "
-                        f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {abc_a_start} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
 
 
                 if 'abc_a_end' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_a_end or 0 } WHERE "
-                        f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+                    abc_a_end = self.abc_a_end or 0
+                    if  not self.is_null_abc_a_end:
+                        abc_a_end = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {abc_a_end} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
 
                 if 'abc_b_start' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_b_start or 0} WHERE "
-                        f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+                    abc_b_start = self.abc_b_start or 0
+
+                    if  not self.is_null_abc_b_start:
+                        abc_b_start = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {abc_b_start} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
 
                 if 'abc_b_end' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_b_end or 0} WHERE "
-                        f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+                    abc_b_end  = self.abc_b_end or 0
+
+                    if  not self.is_null_abc_b_end:
+                        abc_b_end = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {abc_b_end} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'abc_c_start' in vals:
                     update = True
+                    abc_c_start = self.abc_c_start or 0
+                    if  not self.is_null_abc_c_start:
+                        abc_c_start  = 'NULL'
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_c_start or 0} WHERE "
-                        f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {abc_c_start} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'abc_c_end' in vals:
                     update = True
+                    abc_c_end = self.abc_c_end or 0
+                    if  not self.is_null_abc_c_end:
+                        abc_c_end = 'NULL'
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_c_end or 0} WHERE "
-                        f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {abc_c_end} WHERE "
+                            f"RangeType = 'ABC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 #ABC MC
                 if 'abc_a_start_mc' in vals  :
                     update = True
+                    abc_a_start_mc = self.abc_a_start_mc or 0
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_a_start_mc or 0} WHERE "
-                        f"RangeType = 'ABC_MC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+                    if  not self.is_null_abc_a_start_mc:
+                        abc_a_start_mc = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {abc_a_start_mc} WHERE "
+                            f"RangeType = 'ABC_MC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+
+
 
 
                 if 'abc_a_end_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_a_end_mc or 0 } WHERE "
-                        f"RangeType = 'ABC_MC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+                    abc_a_end_mc = self.abc_a_end_mc or 0
+                    if not self.is_null_abc_a_end_mc:
+                        abc_a_end_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {abc_a_end_mc} WHERE "
+                            f"RangeType = 'ABC_MC' AND RangeString = 'A' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'abc_b_start_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_b_start_mc or 0} WHERE "
-                        f"RangeType = 'ABC_MC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+                    abc_b_start_mc = self.abc_b_start_mc or 0
+
+                    if  not self.is_null_abc_b_start_mc:
+                        abc_b_start_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {abc_b_start_mc} WHERE "
+                            f"RangeType = 'ABC_MC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'abc_b_end_mc' in vals:
                     update = True
+                    abc_b_end_mc = self.abc_b_end_mc or 0
+                    if   not self.is_null_abc_b_end_mc:
+                        abc_b_end_mc = 'NULL'
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_b_end_mc or 0} WHERE "
-                        f"RangeType = 'ABC_MC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {abc_b_end_mc} WHERE "
+                            f"RangeType = 'ABC_MC' AND RangeString = 'B' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'abc_c_start_mc' in vals:
                     update = True
+                    abc_c_start_mc = self.abc_c_start_mc or 0
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.abc_c_start_mc or 0} WHERE "
-                        f"RangeType = 'ABC_MC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+                    if  not self.is_null_abc_c_start_mc:
+                        abc_c_start_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {abc_c_start_mc} WHERE "
+                            f"RangeType = 'ABC_MC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'abc_c_end_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.abc_c_end_mc or 0} WHERE "
-                        f"RangeType = 'ABC_MC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+                    abc_c_end_mc = self.abc_c_end_mc
+
+                    if  not self.is_null_abc_c_end_mc:
+                        abc_c_end_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {abc_c_end_mc} WHERE "
+                            f"RangeType = 'ABC_MC' AND RangeString = 'C' AND TenantId = {self.tenant_id} ; ")
+
+
 
 
                 #xyz
                 if 'xyz_x_start' in vals  :
                     update = True
+                    xyz_x_start = self.xyz_x_start or 0
+                    if  not self.is_null_xyz_x_start:
+                        xyz_x_start = 'NULL'
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_x_start or 0} WHERE "
-                        f"RangeType = 'XYZ' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {xyz_x_start} WHERE "
+                            f"RangeType = 'XYZ' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+
 
 
                 if 'xyz_x_end' in vals:
                     update = True
+                    xyz_x_end = self.xyz_x_end or 0
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_x_end or 0 } WHERE "
-                        f"RangeType = 'XYZ' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+                    if  not self.is_null_xyz_x_end:
+                        xyz_x_end = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {xyz_x_end} WHERE "
+                            f"RangeType = 'XYZ' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_y_start' in vals:
                     update = True
+                    xyz_y_start = self.xyz_y_start or 0
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_y_start or 0} WHERE "
-                        f"RangeType = 'XYZ' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+                    if  not self.is_null_xyz_y_start:
+                        xyz_y_start  = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {xyz_y_start} WHERE "
+                            f"RangeType = 'XYZ' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_y_end' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_y_end or 0} WHERE "
-                        f"RangeType = 'XYZ' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+                    xyz_y_end = self.xyz_y_end or 0
+                    if  not self.is_null_xyz_y_end:
+                        xyz_y_end = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {xyz_y_end} WHERE "
+                            f"RangeType = 'XYZ' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_z_start' in vals:
                     update = True
+                    xyz_z_start = self.xyz_z_start or 0
+                    if  not self.is_null_xyz_z_start:
+                        xyz_z_start = 'NULL'
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {xyz_z_start} WHERE "
+                            f"RangeType = 'XYZ' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_z_start or 0} WHERE "
-                        f"RangeType = 'XYZ' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+
 
                 if 'xyz_z_end' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_z_end or 0} WHERE "
-                        f"RangeType = 'XYZ' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+                    xyz_z_end = self.xyz_z_end or 0
+
+                    if not self.is_null_xyz_z_end:
+                        xyz_z_end = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {xyz_z_end} WHERE "
+                            f"RangeType = 'XYZ' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 # xyz MC
                 if 'xyz_x_start_mc' in vals:
                     update = True
+                    xyz_x_start_mc = self.xyz_x_start_mc or 0
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_x_start_mc or 0} WHERE "
-                        f"RangeType = 'XYZ_MC' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+                    if not self.is_null_xyz_x_start_mc:
+                        xyz_x_start_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {xyz_x_start_mc} WHERE "
+                            f"RangeType = 'XYZ_MC' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_x_end_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_x_end_mc or 0} WHERE "
-                        f"RangeType = 'XYZ_MC' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+                    xyz_x_end_mc = self.xyz_x_end_mc or 0
+
+                    if not self.is_null_xyz_x_end_mc:
+                        xyz_x_end_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {xyz_x_end_mc} WHERE "
+                            f"RangeType = 'XYZ_MC' AND RangeString = 'X' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_y_start_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_y_start_mc or 0} WHERE "
-                        f"RangeType = 'XYZ_MC' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+                    xyz_y_start_mc = self.xyz_y_start_mc or 0
+
+                    if not self.is_null_xyz_y_start_mc:
+                        xyz_y_start_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {xyz_y_start_mc} WHERE "
+                            f"RangeType = 'XYZ_MC' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_y_end' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_y_end_mc or 0} WHERE "
-                        f"RangeType = 'XYZ_MC' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+                    xyz_y_end_mc = self.xyz_y_end_mc or 0
+
+                    if not self.is_null_xyz_y_end_mc:
+                        xyz_y_end_mc = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {xyz_y_end_mc} WHERE "
+                            f"RangeType = 'XYZ_MC' AND RangeString = 'Y' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_z_start_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeStart = {self.xyz_z_start_mc or 0} WHERE "
-                        f"RangeType = 'XYZ_MC' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+                    xyz_z_start_mc = self.xyz_z_start_mc or 0
+
+                    if not self.is_null_xyz_z_start_mc:
+                        xyz_z_start_mc = 'NULL'
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeStart = {xyz_z_start_mc} WHERE "
+                            f"RangeType = 'XYZ_MC' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+
+
 
                 if 'xyz_z_end_mc' in vals:
                     update = True
 
-                sql += (f" UPDATE RangeConfigs  SET RangeEnd = {self.xyz_z_end_mc or 0} WHERE "
-                        f"RangeType = 'XYZ_MC' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
+                    xyz_z_end_mc = self.xyz_z_end_mc or 0
+
+                    if not self.is_null_xyz_z_end_mc:
+                        xyz_z_end_mc = 'NULL'
+
+
+                    sql += (f" UPDATE RangeConfigs  SET RangeEnd = {xyz_z_end_mc} WHERE "
+                            f"RangeType = 'XYZ_MC' AND RangeString = 'Z' AND TenantId = {self.tenant_id} ; ")
 
 
 
