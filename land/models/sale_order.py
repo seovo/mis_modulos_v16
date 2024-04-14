@@ -150,6 +150,12 @@ class SaleOrder(models.Model):
         return self.env['sale.order.line'].browse(invoiceable_line_ids + down_payment_line_ids)
 
 
+    def _prepare_invoice(self):
+        res = super()._prepare_invoice()
+        res['journal_id'] = 10
+        return res
+
+
 
 
 

@@ -34,6 +34,27 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        sales = self.env['sale.order'].search([
+            ('price_total_land','!=',False),
+            ('price_total_land','!=',0),
+            ('state','=','sale') ,
+            ('invoice_ids','=',False),
+            #('id','=',119)
+        ],limit=100)
+        #raise ValueError(sales)
+        for sale in sales:
+
+
+            dx = {
+                'advance_payment_method' : 'delivered' ,
+                'sale_order_ids' : [(6,0,[sale.id])] ,
+
+            }
+            wizard = self.env['sale.advance.payment.inv'].create(dx)
+            #raise ValueError(wizard)
+            wizard.create_invoices()
+
+    def import_excell_action_confirm(self):
         for sale in self.env['sale.order'].search([
             ('price_total_land','!=',False),
             ('price_total_land','!=',0),
