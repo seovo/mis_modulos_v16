@@ -32,7 +32,16 @@ class ImportCiHrAttendance(models.TransientModel):
     _name = "import.land"
     file = fields.Binary(string="Archivo")
     file_name = fields.Char()
+
     def import_excell(self):
+        for sale in self.env['sale.order'].search([
+            ('price_total_land','!=',False),
+            ('price_total_land','!=',0),
+            ('state','=','draft')
+        ]):
+            sale.action_confirm()
+
+    def import_excell_sales(self):
 
 
         #wb = xlrd.open_workbook(file_contents=base64.decodebytes(self.file))
