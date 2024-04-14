@@ -34,6 +34,17 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        for sale in self.env['sale.order'].search([
+            ('state','=','sale') ,
+        ]):
+            hora_desejada = time(9, 30)  # Hora:Minuto (9:30)
+
+
+            data_hora_desejada = datetime.combine(sale.date_sign_land, hora_desejada)
+            sale.date_order = data_hora_desejada
+        return
+
+    def import_excell_create_anticipo(self):
         sales = self.env['sale.order'].search([
             ('price_total_land','!=',False),
             ('price_total_land','!=',0),
