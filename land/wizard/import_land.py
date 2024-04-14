@@ -34,6 +34,16 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        archivo_decodificado = base64.decodebytes(self.file)
+        archivo_io = io.BytesIO(archivo_decodificado)
+        pagos = pd.read_excel(archivo_io)
+
+        raise ValueError(str(pagos))
+
+
+
+
+    def import_excell_update_date(self):
         for sale in self.env['sale.order'].search([
             ('state','=','sale') ,
         ]):
