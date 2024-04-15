@@ -53,9 +53,27 @@ class ImportCiHrAttendance(models.TransientModel):
                     ('invoice_date', '!=', False),
 
                 ],order='invoice_date asc')
+                date_init = sale.date_first_due_land
+                is_end_month = False
+                if date_init.day > 25 and date_init.day <= 31:
+                    is_end_month = True
+                for invoice in invoices:
+                    invoice.invoice_date = date_init
+
+                    if is_end_month:
+                        date_init = date_init + relativedelta(months=1)
+
+                        last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1,
+                                             date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(
+                            days=1)
+
+                        if last_date.day != date_init.day:
+                            date_init = last_date
+
+                    else:
+                        date_init = date_init + relativedelta(months=1)
+
                 raise ValueError(invoices)
-
-
 
 
     def import_excell_kj(self):
