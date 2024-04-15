@@ -49,6 +49,8 @@ class ImportCiHrAttendance(models.TransientModel):
 
             if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) > 1:
                 for invoice in sale.invoice_ids:
+                    invoices = self.env['account.move'].search([('id','in',sale.invoice_ids.ids)])
+                    raise ValueError(invoices)
                     if invoice.invoice_date == sale.date_first_due_land:
                         invoice.unlink()
 
@@ -86,53 +88,52 @@ class ImportCiHrAttendance(models.TransientModel):
 
 
             if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) == 1:
-
+                ct = 0
                 for value in row:
-                    try:
-                        price = float(value)
-                    except:
-                        price = str(value)
-                        if price in ['msm','MSM','DEBE','',' ',"''","'"] :
+                    if ct > 0 :
+                        try:
+                            price = float(value)
+                        except:
+                            price = str(value)
+                            if price in ['msm', 'MSM', 'DEBE', '', ' ', "''", "'"]:
+                                break
+                            price = price.replace('S / .', '')
+                            price = price.replace('S/.', '')
+
+                            price = price.replace(',', '.')
+
+                            price = float(price)
+
+                        if str(price) in ['nan', 'NaN']:
                             break
-                        price = price.replace('S / .','')
-                        price = price.replace('S/.', '')
+                        sale.price_unit_import = price
+                        sale.invoice_date_import = date_init
+                        dx = {
+                            'advance_payment_method': 'delivered',
+                            'sale_order_ids': [(6, 0, [sale.id])],
 
-                        price = price.replace(',', '.')
+                        }
+                        wizard = self.env['sale.advance.payment.inv'].create(dx)
+                        # raise ValueError(wizard)
+                        # wizard.create_invoices()
+                        try:
+                            wizard.create_invoices()
+                        except:
+                            raise ValueError(str([nro, value]))
 
-                        price = float(price)
+                        if is_end_month:
+                            date_init = date_init + relativedelta(months=1)
 
+                            last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1,
+                                                 date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(
+                                days=1)
 
-                    if str(price) in ['nan','NaN'] :
-                        break
-                    sale.price_unit_import = price
-                    sale.invoice_date_import = date_init
-                    dx = {
-                        'advance_payment_method': 'delivered',
-                        'sale_order_ids': [(6, 0, [sale.id])],
+                            if last_date.day != date_init.day:
+                                date_init = last_date
 
-                    }
-                    wizard = self.env['sale.advance.payment.inv'].create(dx)
-                    # raise ValueError(wizard)
-                    #wizard.create_invoices()
-                    try:
-                        wizard.create_invoices()
-                    except:
-                        raise ValueError(str([nro,value]))
-
-
-                    if is_end_month:
-                        date_init = date_init + relativedelta(months=1)
-
-                        last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1, date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(days=1)
-
-                        if last_date.day != date_init.day:
-                            date_init = last_date
-
-                    else:
-                        date_init = date_init + relativedelta(months=1)
-
-
-
+                        else:
+                            date_init = date_init + relativedelta(months=1)
+                    ct += 1
                     #aumentar las fechas
 
                 c += 1
