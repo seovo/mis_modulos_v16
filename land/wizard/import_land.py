@@ -68,7 +68,14 @@ class ImportCiHrAttendance(models.TransientModel):
             if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) == 1:
 
                 for value in row:
-                    price = float(value)
+                    try:
+                        price = float(value)
+                    except:
+                        price = str(value)
+                        price = price.replace('S / .','')
+
+                        price = float(price)
+
 
                     if str(price) in ['nan','NaN'] :
                         break
@@ -104,7 +111,7 @@ class ImportCiHrAttendance(models.TransientModel):
                     #aumentar las fechas
 
                 c += 1
-                if c > 100:
+                if c > 50:
                     break
 
         #raise ValueError(str(pagos))
