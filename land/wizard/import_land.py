@@ -73,6 +73,7 @@ class ImportCiHrAttendance(models.TransientModel):
                     except:
                         price = str(value)
                         price = price.replace('S / .','')
+                        price = price.replace('S/.', '')
 
                         price = float(price)
 
