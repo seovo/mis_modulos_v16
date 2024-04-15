@@ -66,6 +66,7 @@
            <field name="inherit_id" ref="sale.view_sales_order_filter" />
            <field name="arch" type="xml">
                <xpath expr="//field[@name='order_line']" position="after" >
+                   <field name="mz_lot" string="Manzana-Lote" />
                    <field name="order_line" string="Manzana" filter_domain="[('order_line.product_id.manzana', 'ilike', self)]"/>
                    <field name="order_line" string="Lote" filter_domain="[('order_line.product_id.lote', 'ilike', self)]"/>
 
