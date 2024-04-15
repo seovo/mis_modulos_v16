@@ -72,7 +72,7 @@ class ImportCiHrAttendance(models.TransientModel):
                         price = float(value)
                     except:
                         price = str(value)
-                        if price == 'DEBE':
+                        if price in ['msm','DEBE'] :
                             break
                         price = price.replace('S / .','')
                         price = price.replace('S/.', '')
