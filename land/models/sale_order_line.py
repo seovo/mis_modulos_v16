@@ -19,6 +19,9 @@ class SaleOrderLine(models.Model):
         res = super()._prepare_invoice_line( **optional_values)
         if self.product_id.payment_land_dues:
             res['quantity'] = 1
+
+        if self.order_id.price_unit_import and self.order_id.price_unit_import != 0:
+            res['price_unit'] = self.order_id.price_unit_import
         return res
 
 

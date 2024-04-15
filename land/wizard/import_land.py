@@ -1,6 +1,7 @@
 from odoo import api, fields, models
 import subprocess
 import sys
+from dateutil.relativedelta import relativedelta
 
 from datetime import date, datetime, time
 
@@ -27,6 +28,7 @@ import pandas as pd
 import base64
 
 import io
+from datetime import datetime, timedelta
 
 class ImportCiHrAttendance(models.TransientModel):
     _name = "import.land"
@@ -38,7 +40,72 @@ class ImportCiHrAttendance(models.TransientModel):
         archivo_io = io.BytesIO(archivo_decodificado)
         pagos = pd.read_excel(archivo_io)
 
-        raise ValueError(str(pagos))
+        c = 0
+        for row in pagos.values:
+            nro = int(row[0])
+            sale = self.env['sale.order'].search([('nro_internal_land','=',str(nro))])
+            if not sale:
+                raise ValueError(nro)
+            sale.journal_import_id = 10
+            sale.invoice_payment_import_id = 1
+
+            date_init = sale.date_first_due_land
+
+            is_end_month = False
+
+            if date_init.day > 25 and date_init.day <= 31:
+                is_end_month = True
+
+
+
+            if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) == 1:
+
+                for value in row:
+                    price = float(value)
+
+                    if str(price) in ['nan','NaN'] :
+                        break
+                    sale.price_unit_import = price
+                    sale.invoice_date_import = date_init
+                    dx = {
+                        'advance_payment_method': 'delivered',
+                        'sale_order_ids': [(6, 0, [sale.id])],
+
+                    }
+                    wizard = self.env['sale.advance.payment.inv'].create(dx)
+                    # raise ValueError(wizard)
+                    #wizard.create_invoices()
+                    try:
+                        wizard.create_invoices()
+                    except:
+                        raise ValueError(str(value))
+
+
+                    if is_end_month:
+                        date_init = date_init + relativedelta(months=1)
+
+                        last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1, date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(days=1)
+
+                        if last_date.day != date_init.day:
+                            date_init = last_date
+
+                    else:
+                        date_init = date_init + relativedelta(months=1)
+
+
+
+                    #aumentar las fechas
+            c += 1
+            if c > 100:
+                break
+
+
+
+
+
+
+
+        #raise ValueError(str(pagos))
 
 
 
