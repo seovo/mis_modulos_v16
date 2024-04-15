@@ -43,6 +43,26 @@ class ImportCiHrAttendance(models.TransientModel):
         c = 0
         for row in pagos.values:
             nro = int(row[0])
+            sale = self.env['sale.order'].search([('nro_internal_land', '=', str(nro))])
+            if not sale:
+                raise ValueError(nro)
+
+            if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) > 1:
+                for invoice in sale.invoice_ids:
+                    if invoice.invoice_date == sale.date_first_due_land:
+                        invoice.unlink()
+
+
+
+
+    def import_excell_kj(self):
+        archivo_decodificado = base64.decodebytes(self.file)
+        archivo_io = io.BytesIO(archivo_decodificado)
+        pagos = pd.read_excel(archivo_io)
+
+        c = 0
+        for row in pagos.values:
+            nro = int(row[0])
             sale = self.env['sale.order'].search([('nro_internal_land','=',str(nro))])
             if not sale:
                 raise ValueError(nro)
