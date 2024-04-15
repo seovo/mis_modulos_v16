@@ -73,7 +73,7 @@ class ImportCiHrAttendance(models.TransientModel):
                     else:
                         date_init = date_init + relativedelta(months=1)
 
-                raise ValueError(invoices)
+
 
 
     def import_excell_kj(self):
