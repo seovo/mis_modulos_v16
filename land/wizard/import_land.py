@@ -114,7 +114,7 @@ class ImportCiHrAttendance(models.TransientModel):
                     #aumentar las fechas
 
                 c += 1
-                if c > 50:
+                if c > 80:
                     break
 
         #raise ValueError(str(pagos))
