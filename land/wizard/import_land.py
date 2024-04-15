@@ -53,6 +53,13 @@ class ImportCiHrAttendance(models.TransientModel):
 
             is_end_month = False
 
+
+            try:
+                d = date_init.day
+            except:
+                continue
+
+
             if date_init.day > 25 and date_init.day <= 31:
                 is_end_month = True
 
