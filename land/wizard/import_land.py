@@ -77,6 +77,8 @@ class ImportCiHrAttendance(models.TransientModel):
                         price = price.replace('S / .','')
                         price = price.replace('S/.', '')
 
+                        price = price.replace(',', '.')
+
                         price = float(price)
 
 
