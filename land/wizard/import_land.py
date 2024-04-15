@@ -95,7 +95,7 @@ class ImportCiHrAttendance(models.TransientModel):
                     try:
                         wizard.create_invoices()
                     except:
-                        raise ValueError(str(value))
+                        raise ValueError(str([nro,value]))
 
 
                     if is_end_month:
