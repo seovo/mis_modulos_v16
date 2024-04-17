@@ -8,10 +8,13 @@
             <field name="arch" type="xml">
                 <tree string="Service"     >
                     <field name="sku"  />
-                    <!--
                     <field name="arima"  />
                     <field name="ets"  />
                     <field name="boosting"  />
+                    <!--
+
+
+
                     <field name="prophet"  />
                     <field name="sma"  />
                     -->
@@ -27,7 +30,7 @@
 
     <menuitem id="menu_forecast" name="Forecast" parent="datawave_jz.menu_data_wave" />
 
-    <menuitem id="menu_forecast_result_datawave" name="Nine Box"
+    <menuitem id="menu_forecast_result_datawave" name="Result"
               parent="datawave_jz.menu_forecast"
               action="action_forecast_result_datawave"
              />
