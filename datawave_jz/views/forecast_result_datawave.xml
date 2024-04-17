@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
     <record id="forecast_result_datawave" model="ir.ui.view">
             <field name="name">forecast.result.datawave.tree</field>
             <field name="model">forecast.result.datawave</field>
