@@ -13,7 +13,6 @@
                     <field name="boosting"  />
                     <field name="prophet"  />
                     <field name="sma"  />
-                    <!-- <field name=""  /> -->
                 </tree>
             </field>
     </record>
