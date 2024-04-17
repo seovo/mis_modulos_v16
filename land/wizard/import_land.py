@@ -74,8 +74,6 @@ class ImportCiHrAttendance(models.TransientModel):
                         date_init = date_init + relativedelta(months=1)
 
 
-
-
     def import_excell_kj(self):
         archivo_decodificado = base64.decodebytes(self.file)
         archivo_io = io.BytesIO(archivo_decodificado)
