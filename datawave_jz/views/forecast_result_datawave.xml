@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="forecast_result_datawave" model="ir.ui.view">
+    <record id="forecast_result_datawavex" model="ir.ui.view">
             <field name="name">forecast.result.datawave.tree</field>
             <field name="model">forecast.result.datawave</field>
             <field name="arch" type="xml">
                 <tree string="Service"     >
                     <field name="sku"  />
+                    <!--
                     <field name="arima"  />
                     <field name="ets"  />
                     <field name="boosting"  />
                     <field name="prophet"  />
                     <field name="sma"  />
+                    -->
                 </tree>
             </field>
     </record>
