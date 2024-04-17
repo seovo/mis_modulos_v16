@@ -11,13 +11,9 @@
                     <field name="arima"  />
                     <field name="ets"  />
                     <field name="boosting"  />
-                    <!--
-
-
 
                     <field name="prophet"  />
                     <field name="sma"  />
-                    -->
                 </tree>
             </field>
     </record>
