@@ -22,6 +22,31 @@ class SaleOrderLine(models.Model):
 
         if self.order_id.price_unit_import and self.order_id.price_unit_import != 0:
             res['price_unit'] = self.order_id.price_unit_import
+
+        sale_line = self.env['sale.order.line'].browse(res['sale_line_ids'][0][1])
+
+        fecha_actual = fields.Datetime.now()
+        mes = fecha_actual.strftime('%B')  # El mes completo en español
+        anio = fecha_actual.year
+
+        mes_ano =  f' , {mes} - {anio}'
+
+        if self.product_id.manzana and self.product_id.lote:
+            res['name'] = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
+        else:
+            if sale_line.order_id.mz_lot:
+                res['name'] = f"CANCELACION  CUOTA {int(sale_line.qty_invoiced + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
+
+        if self.product_id.is_advanced_land:
+
+            if self.product_id.manzana and self.product_id.lote:
+                res[
+                    'name'] = f"CANCELACION  INICIAL  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+            else:
+
+                res['name'] = f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''} "
+
+
         return res
 
 

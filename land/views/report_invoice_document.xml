@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="report_invoice_document"
+        inherit_id="account.report_invoice_document"
+    >
+        <xpath
+            expr="//div[@name='comment']"
+            position="replace"
+        >
+            <div t-if="not is_html_empty(o.narration)" name="comment">
+                        <span t-field="o.narration"/>
+            </div>
+            <span t-field="o.narration_str"/>
+        </xpath>
+    </template>
+</odoo>
