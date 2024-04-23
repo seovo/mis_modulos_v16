@@ -15,5 +15,5 @@ class ForecastResultDatawave(models.Model):
         stored_procedure = f"exec [dbo].[GetDataToFeedWeeklyForecastByProductId] {self.env.company.tenant_id}"
         sales_data = self.env.company.fetch_data_from_sql_server(self.env.company.get_connection_string(), stored_procedure)
 
-        sales_data['FECHA'] = pd.to_datetime(sales_data['YearWeek'], format='%Y%m')
+        sales_data['FECHA'] = pd.to_datetime(sales_data['YearWeek'] + '1', format='%G%V%u')
         raise ValueError(sales_data)
