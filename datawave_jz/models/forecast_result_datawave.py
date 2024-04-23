@@ -61,4 +61,4 @@ class ForecastResultDatawave(models.Model):
 
             #raise ValueError(fecha_next)
 
-        raise ValueError(data)
+        #raise ValueError(data)
