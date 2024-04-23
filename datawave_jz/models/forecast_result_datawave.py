@@ -13,7 +13,18 @@ class ForecastResultDatawave(models.Model):
 
     def sync_datawave(self):
         stored_procedure = f"exec [dbo].[GetDataToFeedWeeklyForecastByProductId] {self.env.company.tenant_id}"
-        sales_data = self.env.company.fetch_data_from_sql_server(self.env.company.get_connection_string(), stored_procedure)
+        data = self.env.company.fetch_data_from_sql_server(self.env.company.get_connection_string(), stored_procedure)
 
-        sales_data['FECHA'] = pd.to_datetime(sales_data['YearWeek'] + '1', format='%G%V%u')
-        raise ValueError(sales_data)
+        data['Date'] = pd.to_datetime(data['YearWeek'] + '1', format='%G%V%u')
+
+        # Definir la ventana para la SMA (por ejemplo, ventana de 3 meses)
+        #ventana = int(config.get('SMA', 'ventana'))
+        ventana = 1
+
+        groups = data.groupby('ProductId')
+
+        # Recorrer los grupos
+        for grupo, datos_grupo in groups:
+            raise ValueError(datos_grupo)
+
+        raise ValueError(data)
