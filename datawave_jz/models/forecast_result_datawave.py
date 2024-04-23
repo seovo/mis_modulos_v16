@@ -40,12 +40,17 @@ class ForecastResultDatawave(models.Model):
             sma.index = sma.index + pd.DateOffset(weeks=1)
 
             for index, row in data.iterrows():
-                raise ValueError([index,row])
+                #raise ValueError([index,row])
+
                 dx = {
-                    'product_id': ''
+                    'product_id': row['ProductId'] ,
+                    'date' : row['Date'] ,
+                    'sma' : row['TotalQuantity']
                 }
 
-            raise ValueError(sma)
+                self.env['forecast.result.datawave'].create(dx)
+
+            #raise ValueError(sma)
 
 
             #raise ValueError(fecha_next)
