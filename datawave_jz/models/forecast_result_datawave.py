@@ -4,13 +4,15 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 class ForecastResultDatawave(models.Model):
-    _name    = "forecast.result.datawave"
-    sku      = fields.Char()
-    arima    = fields.Float()
-    ets      = fields.Float()
-    boosting = fields.Float()
-    prophet  = fields.Float()
-    sma      = fields.Float()
+    _name      = "forecast.result.datawave"
+    product_id = fields.Integer()
+    sku        = fields.Char()
+    date       = fields.Date()
+    arima      = fields.Float()
+    ets        = fields.Float()
+    boosting   = fields.Float()
+    prophet    = fields.Float()
+    sma        = fields.Float()
 
 
     def sync_datawave(self):
