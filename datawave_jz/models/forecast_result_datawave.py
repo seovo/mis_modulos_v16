@@ -1,6 +1,8 @@
 from odoo import models, exceptions, fields , _
 import pandas as pd
 
+from datetime import datetime, timedelta
+
 class ForecastResultDatawave(models.Model):
     _name    = "forecast.result.datawave"
     sku      = fields.Char()
@@ -26,8 +28,9 @@ class ForecastResultDatawave(models.Model):
         # Recorrer los grupos
         for ProductId, DataGroup in groups:
             GroupData = DataGroup[['Date', 'TotalQuantity']]
-            GroupData['Year'] = GroupData['Date'].dt.year
-            GroupData['Week'] = GroupData['Date'].dt.isocalendar().week
-            raise ValueError(GroupData)
+            #GroupData['Year'] = GroupData['Date'].dt.year
+            #GroupData['Week'] = GroupData['Date'].dt.isocalendar().week
+            fecha_next = GroupData['Date'].max() + timedelta(weeks=1)
+            raise ValueError(fecha_next)
 
         raise ValueError(data)
