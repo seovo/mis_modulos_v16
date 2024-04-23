@@ -24,7 +24,8 @@ class ForecastResultDatawave(models.Model):
         groups = data.groupby('ProductId')
 
         # Recorrer los grupos
-        for grupo, datos_grupo in groups:
-            raise ValueError(datos_grupo)
+        for ProductId, DataGroup in groups:
+            GroupData = DataGroup[['Date', 'TotalQuantity']]
+            raise ValueError(GroupData)
 
         raise ValueError(data)
