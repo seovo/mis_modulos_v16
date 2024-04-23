@@ -33,15 +33,21 @@ class ForecastResultDatawave(models.Model):
             GroupData = GroupData.sort_values('Date')
             #GroupData['Year'] = GroupData['Date'].dt.year
             #GroupData['Week'] = GroupData['Date'].dt.isocalendar().week
-            fecha_next = GroupData['Date'].max() + timedelta(weeks=1)
-
+            #fecha_next = GroupData['Date'].max() + timedelta(weeks=1)
             # Calcular la SMA utilizando la función rolling de pandas
             GroupData.set_index('Date', inplace=True)
             sma = GroupData['TotalQuantity'].rolling(window=ventana).mean()
+            sma.index = sma.index + pd.DateOffset(weeks=1)
+
+            for index, row in data.iterrows():
+                raise ValueError([index,row])
+                dx = {
+                    'product_id': ''
+                }
 
             raise ValueError(sma)
-            sma.index = sma.index + pd.DateOffset(months=1)
 
-            raise ValueError(fecha_next)
+
+            #raise ValueError(fecha_next)
 
         raise ValueError(data)
