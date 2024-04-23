@@ -53,7 +53,7 @@ class ForecastResultDatawave(models.Model):
 
             c += 1
 
-            if c > 100:
+            if c > 2:
                 break
 
             #raise ValueError(sma)
