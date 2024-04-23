@@ -28,6 +28,7 @@ class ForecastResultDatawave(models.Model):
         groups = data.groupby('ProductId')
 
         # Recorrer los grupos
+        c = 0
         for ProductId, DataGroup in groups:
             GroupData = DataGroup[['Date', 'TotalQuantity']]
             GroupData = GroupData.sort_values('Date')
@@ -49,6 +50,11 @@ class ForecastResultDatawave(models.Model):
                 }
 
                 self.env['forecast.result.datawave'].create(dx)
+
+            c += 1
+
+            if c > 100:
+                break
 
             #raise ValueError(sma)
 
