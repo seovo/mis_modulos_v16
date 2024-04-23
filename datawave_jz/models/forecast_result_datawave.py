@@ -27,7 +27,7 @@ class ForecastResultDatawave(models.Model):
         for ProductId, DataGroup in groups:
             GroupData = DataGroup[['Date', 'TotalQuantity']]
             GroupData['Year'] = GroupData['Date'].dt.year
-            #GroupData['Week'] = GroupData['Date'].dt.week
+            GroupData['Week'] = GroupData['Date'].dt.week
             raise ValueError(GroupData)
 
         raise ValueError(data)
