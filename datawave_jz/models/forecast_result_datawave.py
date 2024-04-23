@@ -26,8 +26,8 @@ class ForecastResultDatawave(models.Model):
         # Recorrer los grupos
         for ProductId, DataGroup in groups:
             GroupData = DataGroup[['Date', 'TotalQuantity']]
-            GroupData['Date'] = GroupData['Date'].dt.year
-            GroupData['Date'] = GroupData['Date'].dt.month
+            GroupData['Year'] = GroupData['Date'].dt.year
+            GroupData['Month'] = GroupData['Date'].dt.month
             raise ValueError(GroupData)
 
         raise ValueError(data)
