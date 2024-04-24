@@ -35,4 +35,20 @@
                </xpath>
            </field>
     </record>
+
+
+    <record id="view_move_form_odoofact" model="ir.ui.view">
+           <field name="name">account.move.Form</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="l10n_pe_edi_odoofact.view_move_form" />
+           <field name="arch" type="xml">
+               <xpath expr="//button[@name='action_document_send']" position="replace" >
+                   <button class="oe_stat_button text-info" type="object" name="action_document_send"
+                           confirm="Esta Seguro de Enviar? , asegurese revisar el reporte impreso PDF para verificar datos  (puede enviarlo esto al cliente y luego enviarlo a la SUNAT)"
+                           icon="fa-cloud-upload" string="Send to SUNAT"
+                           attrs="{'invisible': ['|', '|', '|', ('l10n_pe_edi_ose_accepted', '=', True), ('state', '!=', 'posted'), ('l10n_pe_edi_is_einvoice', '=', False), ('l10n_pe_edi_request_id', '=', False)]}"/>
+
+               </xpath>
+           </field>
+    </record>
 </odoo>

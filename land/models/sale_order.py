@@ -45,6 +45,9 @@ class SaleOrder(models.Model):
     price_unit_import = fields.Float()
     invoice_payment_import_id = fields.Integer()
     invoice_date_import =  fields.Date()
+    journal_id = fields.Many2one('account.journal',
+                                 string="Diario",
+                                 )
 
     def _update_text_mz_lote(self):
         for record in self:
@@ -159,14 +162,17 @@ class SaleOrder(models.Model):
 
     def _prepare_invoice(self):
         res = super()._prepare_invoice()
-        if self.journal_import_id:
-            res['journal_id'] = 10
+        #if self.journal_import_id:
+        #    res['journal_id'] = 10
 
-        if self.invoice_payment_import_id:
-            res['invoice_payment_term_id'] = self.invoice_payment_import_id
+        if self.journal_id:
+            res['journal_id'] = self.journal_id.id
 
-        if self.invoice_date_import:
-            res['invoice_date'] = self.invoice_date_import
+        #if self.invoice_payment_import_id:
+        #    res['invoice_payment_term_id'] = self.invoice_payment_import_id
+
+        #if self.invoice_date_import:
+        #    res['invoice_date'] = self.invoice_date_import
 
         return res
 

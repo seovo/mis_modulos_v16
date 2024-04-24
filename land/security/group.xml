@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="show_type_sale" model="res.groups">
+			<field name="name">MOSTRAR TIPO FACTURAS A CREAR DESDE VENTAS</field>
+			<field name="category_id" ref="base.module_category_hidden"/>
+		</record>
+	</data>
+</odoo>
