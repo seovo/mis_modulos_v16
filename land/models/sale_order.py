@@ -197,7 +197,7 @@ class SaleOrder(models.Model):
                 if len(record.order_line) == 2:
                     for line in record.order_line:
                         if line.product_id.is_advanced_land:
-                            clone_line = line.copy(default={'order_id': record.id})
+                            clone_line = line.copy(default={'order_id': record.id , 'product_id': line.product_id.id })
                             clone_line.price_unit = record.move_separation_land_id.amount_untaxed
                             line.price_unit = line.price_unit - clone_line.price_unit
 
