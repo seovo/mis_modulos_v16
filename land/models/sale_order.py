@@ -57,6 +57,25 @@ class SaleOrder(models.Model):
         ('completed','Completada')
     ],compute='_get_stage_payment_land',store=True)
 
+    last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
+
+    @api.depends('invoice_ids','invoice_ids.state')
+    def get_last_payment_date_land(self):
+        for record in self:
+            date = None
+            for invoice in record.invoice_ids:
+                if invoice.state == 'posted':
+                    if invoice.invoice_date:
+                        if not date:
+                            date = invoice.invoice_date
+                        else:
+                            if invoice.invoice_date > date:
+                                date = invoice.invoice_date
+
+            record.last_payment_date_land = date
+
+
+
     @api.depends('order_line','order_line.product_id','note')
     def _get_stage_payment_land(self):
         for record in self:

@@ -15,6 +15,7 @@ class AccountMove(models.Model):
     bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias")
     is_separation_land = fields.Boolean(string="Es una Separación Terreno")
 
+
     def create_sale_if_separation(self):
 
         return {

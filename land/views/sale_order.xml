@@ -42,6 +42,7 @@
                            <field name="price_credit_land" />
                            <field name="move_separation_land_id" />
                            <field name="stage_payment_lan" />
+                           <field name="last_payment_date_land" />
 
 
 
@@ -81,6 +82,9 @@
 
 
                <xpath expr="//field[@name='order_line']" position="after" >
+                   <filter name="vencido_x_vencer" string="Vencidos / Proximos a Vencer"
+                           domain="[('last_payment_date_land', '&lt;', ( context_today() - relativedelta(days=20)).strftime('%Y-%m-%d')  )  ]"
+                   />
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
                    <field name="order_line" string="Manzana" filter_domain="[('order_line.product_id.manzana', 'ilike', self)]"/>
@@ -98,6 +102,8 @@
                <xpath expr="//field[@name='name']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
+                   <field name="last_payment_date_land" widget="remaining_days" />
+
                </xpath>
            </field>
     </record>
@@ -111,6 +117,7 @@
                <xpath expr="//field[@name='name']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
+                   <field name="last_payment_date_land" widget="remaining_days" />
                </xpath>
            </field>
     </record>
@@ -153,6 +160,7 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('stage_payment_lan','=','dues')]</field>
+        <field name="context">{'search_default_vencido_x_vencer': 1}</field>
     </record>
 
     <menuitem action="action_sale_dues_incomplete"
