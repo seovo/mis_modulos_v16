@@ -145,7 +145,7 @@
 
 
     <record id="action_sale_initial_incomplete" model="ir.actions.act_window">
-        <field name="name">Inicial Incompleta</field>
+        <field name="name">Expediente Inicial Incompleta</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
@@ -158,7 +158,7 @@
     />
 
     <record id="action_sale_dues_incomplete" model="ir.actions.act_window">
-        <field name="name">Cuotas Incompletas</field>
+        <field name="name">Expediente en Proceso de Pago</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
@@ -172,7 +172,7 @@
     />
 
     <record id="action_sale_dues_complete" model="ir.actions.act_window">
-        <field name="name">Pagos Completados</field>
+        <field name="name">Expendientes Pagos Completados</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
