@@ -1,6 +1,7 @@
 from odoo import api, fields, models , _
 from odoo.tools import float_is_zero, format_amount, format_date, html_keep_url, is_html_empty
 from dateutil.relativedelta import relativedelta
+from datetime import datetime, timedelta
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -84,6 +85,14 @@ class SaleOrder(models.Model):
 
             if date:
                 date_next = date +  relativedelta(months=1)
+
+                if date_next.day <= 24 :
+                    date_next = datetime(year=date_next.year,month=date_next.month,day=15,hour=10)
+                    date_next = date_next.date()
+                if date_next.day > 24:
+                    date_next = datetime(year=date_next.year,month=date_next.month,day=1,hour=10) +  relativedelta(months=1)
+                    date_next = date_next - timedelta( days=1)
+                    date_next = date_next.date()
 
             record.next_payment_date_land = date_next
 
@@ -217,7 +226,6 @@ class SaleOrder(models.Model):
                             clone_line = line.copy(default={'order_id': record.id , 'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id })
                             clone_line.price_unit = record.move_separation_land_id.amount_untaxed
                             line.price_unit = line.price_unit - clone_line.price_unit
-
 
 
     def _get_invoiceable_lines(self, final=False):
