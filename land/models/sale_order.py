@@ -39,15 +39,32 @@ class SaleOrder(models.Model):
     note = fields.Text()
     recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos")
 
+    seller_land = fields.Selection([('villa','Villa del Sur'),('roque','Roque')],required=True,string="Proveedor Terreno")
+
 
     #esto es para importar
     journal_import_id = fields.Integer()
     price_unit_import = fields.Float()
     invoice_payment_import_id = fields.Integer()
     invoice_date_import =  fields.Date()
-    journal_id = fields.Many2one('account.journal',
-                                 string="Diario",
-                                 )
+    journal_id = fields.Many2one('account.journal',string="Diario")
+    move_separation_land_id = fields.Many2one('account.move',string='Factura Separación')
+
+
+    def show_m2_land(self):
+
+        object = self.env['product.attribute'].search([('type_land','=','m2')])
+
+        return {
+            "name": f"METRADO",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "product.attribute",
+            "res_id": object.id,
+            "target": "new",
+
+
+        }
 
     def _update_text_mz_lote(self):
         for record in self:
@@ -97,17 +114,29 @@ class SaleOrder(models.Model):
             if record.recalcule_and_save_total_land:
                 record._update_text_mz_lote()
 
+        self.check_adelanto()
+
         return res
-    '''
+
+    @api.model
     def create(self,vals):
         res = super().create(vals)
-        for record in res:
-            if record.recalcule_and_save_total_land:
-                record._update_text_mz_lote()
-
-
+        res.check_adelanto()
         return res
-    '''
+
+
+    def check_adelanto(self):
+        for record in self:
+            if record.move_separation_land_id:
+                if len(record.order_line) == 2:
+                    for line in record.order_line:
+                        if line.product_id.is_advanced_land:
+                            clone_line = line.copy(default={'order_id': record.id})
+                            clone_line.price_unit = record.move_separation_land_id.amount_untaxed
+                            line.price_unit = line.price_unit - clone_line.price_unit
+
+
+
     def _get_invoiceable_lines(self, final=False):
         """Return the invoiceable lines for order `self`."""
         down_payment_line_ids = []
@@ -176,6 +205,18 @@ class SaleOrder(models.Model):
 
         return res
 
+
+    def action_confirm(self):
+        res = super().action_confirm()
+        if self.move_separation_land_id:
+            for line in self.order_line:
+                for linex in self.move_separation_land_id.invoice_line_ids:
+                    if linex.product_id == line.product_id and line.price_unit == linex.price_unit :
+                        line.invoice_lines = [(4, linex.id)]
+                        self.move_separation_land_id.is_separation_land = False
+
+
+        return res
 
 
 

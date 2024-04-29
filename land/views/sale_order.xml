@@ -5,13 +5,19 @@
            <field name="model">sale.order</field>
            <field name="inherit_id" ref="sale.view_order_form" />
            <field name="arch" type="xml">
+
+               <xpath expr="//header" position="inside" >
+                   <button name="show_m2_land" string="Modificar Metrado" type="object"  />
+
+               </xpath>
+
                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace" >
                    <field name="price_unit"  readonly="1"  force_save="1" />
                    <button name="edit_price_jz" type="object" icon="fa-pencil-square-o" />
                </xpath>
 
                <xpath expr="//notebook" position="inside" >
-                   <page string="Land" >
+                   <page string="Terreno Información" >
                        <group>
                            <field name="nro_internal_land" />
                            <field name="mz_lot" />
@@ -34,6 +40,7 @@
                            <field name="price_total_land" />
                            <field name="price_initial_land" />
                            <field name="price_credit_land" />
+                           <field name="move_separation_land_id" />
 
 
 
@@ -41,6 +48,12 @@
                    </page>
 
                </xpath>
+
+               <xpath expr="//field[@name='partner_shipping_id']" position="after" >
+                   <field name="seller_land" />
+               </xpath>
+
+
 
            </field>
     </record>
@@ -59,13 +72,13 @@
            </field>
     </record>
 
-
-
     <record id="view_sales_order_filter" model="ir.ui.view">
            <field name="name">sale.order.Form</field>
            <field name="model">sale.order</field>
            <field name="inherit_id" ref="sale.view_sales_order_filter" />
            <field name="arch" type="xml">
+
+
                <xpath expr="//field[@name='order_line']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
@@ -100,6 +113,24 @@
                </xpath>
            </field>
     </record>
+
+
+    <!--  -->
+
+
+    <record id="action_move_adelantos" model="ir.actions.act_window">
+        <field name="name">Adelantos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_separation_land','=',True),('move_type', '=', 'out_invoice')]</field>
+        <field name="context">{'default_is_separation_land': True , 'default_move_type': 'out_invoice' }</field>
+    </record>
+
+    <menuitem action="action_move_adelantos"
+              id="menu_move_adelantos"
+              parent="sale.sale_order_menu"
+    />
 
 
 </odoo>

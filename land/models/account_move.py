@@ -13,15 +13,36 @@ class AccountMove(models.Model):
 
     narration_str = fields.Text(compute="get_narration",store=True)
     bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias")
+    is_separation_land = fields.Boolean(string="Es una Separación Terreno")
 
+    def create_sale_if_separation(self):
 
+        return {
+            "name": f"Cotizacion",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "sale.order",
+            "target": "current",
+            "context": {
+                'default_move_separation_land_id': self.id  ,
+                'default_partner_id': self.partner_id.id
+            }
+
+        }
+    @api.model
     def create(self,vals):
-        res = super().create(vals)
-        for line in res.line_ids:
-            if line.product_id.is_advanced_land:
-                if line.product_id.description_sale:
-                    res.narration_text = line.product_id.description_sale
+        res = super(AccountMove, self).create(vals)
+
+
+        for record in res:
+            for line in record.line_ids:
+                if line.product_id.is_advanced_land:
+                    if line.product_id.description_sale:
+                        record.narration_text = line.product_id.description_sale
+
         return res
+
+
 
     def action_post(self):
         res = super().action_post()
