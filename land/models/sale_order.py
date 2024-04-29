@@ -16,8 +16,8 @@ class SaleOrder(models.Model):
     dues_land = fields.Float(string="Cuotas")
     value_due_land = fields.Float(string="Precio Cuotas")
     crono_land = fields.Char(string="Crono")
-    days_tolerance_land  = fields.Integer(string="Gracia")
-    value_mora_land = fields.Float(string="Precio Mora")
+    days_tolerance_land  = fields.Integer(string="Gracia",default=3)
+    value_mora_land = fields.Float(string="Precio Mora",default=10)
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
 
     date_sign_land = fields.Date(string="Fecha Firma del Contrato")
@@ -60,7 +60,7 @@ class SaleOrder(models.Model):
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
-    days_expired_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land")
+    days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación",required=True)
 
@@ -89,10 +89,14 @@ class SaleOrder(models.Model):
 
             diff_days  = 0
 
-            date_now = fields.Datetime.now().date
+            date_now = fields.Datetime.now().date()
 
-            if date_next and  date_now < date_next:
-                diff_days = (date_next - date_now).days
+
+
+
+            if date_next and date_next < date_now:
+                diff_days = (date_now - date_next ).days
+
 
             record.days_expired_land = diff_days
 
@@ -275,6 +279,10 @@ class SaleOrder(models.Model):
 
         if self.journal_id:
             res['journal_id'] = self.journal_id.id
+
+        if self.days_expired_land:
+            res['days_expired_land'] = self.days_expired_land
+            res['value_mora_land'] = self.value_mora_land
 
         #if self.invoice_payment_import_id:
         #    res['invoice_payment_term_id'] = self.invoice_payment_import_id

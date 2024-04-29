@@ -8,6 +8,7 @@
                    <field name="payment_land_dues" />
                    <field name="dues_qty" attrs="{'invisible': [('payment_land_dues','!=',True)]}" />
                    <field name="is_advanced_land" />
+                   <field name="is_mora_land" />
                </xpath>
            </field>
     </record>

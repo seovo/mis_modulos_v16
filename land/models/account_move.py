@@ -14,6 +14,8 @@ class AccountMove(models.Model):
     narration_str = fields.Text(compute="get_narration",store=True)
     bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias")
     is_separation_land = fields.Boolean(string="Es una Separación Terreno")
+    days_expired_land = fields.Integer()
+    value_mora_land = fields.Float(string="Precio Mora", default=10)
 
 
     def create_sale_if_separation(self):
@@ -36,10 +38,34 @@ class AccountMove(models.Model):
 
 
         for record in res:
-            for line in record.line_ids:
+            for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
                     if line.product_id.description_sale:
                         record.narration_text = line.product_id.description_sale
+
+
+            if record.days_expired_land  and record.days_expired_land != 0 :
+                product = self.env['product.product'].search([('is_mora_land','=',True)])
+                if not product:
+                    raise ValueError('NO SE INDICO PRODUCTO MORA')
+
+                record.invoice_line_ids[0].copy(default={
+                    'name': 'Mora' ,
+                    'product_id': product.id ,
+                    'sale_line_ids': None ,
+                    'quantity': record.days_expired_land ,
+                    'price_unit': record.value_mora_land,
+                    'move_id': record.id
+                    #'value_mora_land': self.value_mora_land
+
+
+                })
+
+                record.days_expired_land = None
+                #record.invoice_line_ids += self.env['account.move.line'].new()
+
+
+
 
         return res
 

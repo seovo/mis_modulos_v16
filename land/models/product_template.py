@@ -18,9 +18,12 @@ class ProductTemplateAttributeLine(models.Model):
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
-    payment_land_dues = fields.Boolean(string="Pagados x Cuotas")
-    dues_qty = fields.Integer(string="N° Cuotas")
-    is_advanced_land = fields.Boolean(string="Adelanto Terreno")
+    payment_land_dues   = fields.Boolean(string="Pagados x Cuotas")
+    dues_qty            = fields.Integer(string="N° Cuotas")
+    is_advanced_land    = fields.Boolean(string="Adelanto Terreno")
+    is_mora_land        = fields.Boolean(string="Mora")
+
+
 
 
 
