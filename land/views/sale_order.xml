@@ -42,6 +42,7 @@
                            <field name="stage_payment_lan" />
                            <field name="last_payment_date_land" />
                            <field name="next_payment_date_land" />
+                           <field name="days_expired_land" />
                        </group>
                    </page>
 
@@ -159,7 +160,8 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('stage_payment_lan','=','dues')]</field>
-        <field name="context">{'search_default_vencido_x_vencer': 1}</field>
+        <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
+        <field name="context">{}</field>
     </record>
 
     <menuitem action="action_sale_dues_incomplete"

@@ -60,6 +60,7 @@ class SaleOrder(models.Model):
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
+    days_expired_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land")
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación",required=True)
 
@@ -85,6 +86,15 @@ class SaleOrder(models.Model):
                 date_next = date +  relativedelta(months=1)
 
             record.next_payment_date_land = date_next
+
+            diff_days  = 0
+
+            date_now = fields.Datetime.now().date
+
+            if date_next and  date_now < date_next:
+                diff_days = (date_next - date_now).days
+
+            record.days_expired_land = diff_days
 
 
 
