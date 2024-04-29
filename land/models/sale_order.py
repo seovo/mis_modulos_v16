@@ -7,7 +7,8 @@ class SaleOrder(models.Model):
     mz_lot            =  fields.Char(string="MZ - LOTE")
     sector  =  fields.Char()
     stage_land = fields.Selection([
-        ('signed',_('Firmado'))
+        ('signed',_('Firmado'))  ,
+        ('cancel',_('Resuelto o Cancelado'))
     ])
 
     m2_land = fields.Char(string="AREA (m2)")
@@ -49,6 +50,43 @@ class SaleOrder(models.Model):
     invoice_date_import =  fields.Date()
     journal_id = fields.Many2one('account.journal',string="Diario")
     move_separation_land_id = fields.Many2one('account.move',string='Factura Separación')
+
+    stage_payment_lan = fields.Selection([
+        ('initial','Inicial'),
+        ('dues','Cuotas'),
+        ('completed','Completada')
+    ],compute='_get_stage_payment_land',store=True)
+
+    @api.depends('order_line','order_line.product_id','note')
+    def _get_stage_payment_land(self):
+        for record in self:
+            stage = None
+
+            total_initial = 0
+            total_initial_invoiced = 0
+
+            total_dues = 0
+            total_dues_invoiced = 0
+            for line in record.order_line:
+                if line.product_id.is_advanced_land:
+                    total_initial += line.product_uom_qty
+                    total_initial_invoiced += line.qty_invoiced
+
+                if line.product_id.payment_land_dues:
+                    total_dues += line.product_uom_qty
+                    total_dues_invoiced +=   line.qty_invoiced
+            if total_initial_invoiced < total_initial :
+                stage = 'initial'
+
+            if not stage:
+                if total_dues_invoiced < total_dues:
+                    stage = 'dues'
+                if total_dues_invoiced == total_dues:
+                    stage = 'completed'
+
+            record.stage_payment_lan = stage
+
+
 
 
     def show_m2_land(self):
