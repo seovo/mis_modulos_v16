@@ -25,7 +25,7 @@ class SaleOrderLine(models.Model):
 
         sale_line = self.env['sale.order.line'].browse(res['sale_line_ids'][0][1])
 
-        fecha_actual = fields.Datetime.now()
+        fecha_actual = self.order_id.last_payment_date_land or  fields.Datetime.now()
         mes = fecha_actual.strftime('%B')  # El mes completo en español
         anio = fecha_actual.year
 

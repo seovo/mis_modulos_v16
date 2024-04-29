@@ -1,5 +1,6 @@
 from odoo import api, fields, models , _
 from odoo.tools import float_is_zero, format_amount, format_date, html_keep_url, is_html_empty
+from dateutil.relativedelta import relativedelta
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -58,6 +59,7 @@ class SaleOrder(models.Model):
     ],compute='_get_stage_payment_land',store=True)
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
+    next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
 
     @api.depends('invoice_ids','invoice_ids.state')
     def get_last_payment_date_land(self):
@@ -73,6 +75,13 @@ class SaleOrder(models.Model):
                                 date = invoice.invoice_date
 
             record.last_payment_date_land = date
+
+            date_next = None
+
+            if date:
+                date_next = date +  relativedelta(months=1)
+
+            record.next_payment_date_land = date_next
 
 
 

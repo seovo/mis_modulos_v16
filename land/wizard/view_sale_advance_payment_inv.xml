@@ -45,9 +45,9 @@
                     <field name="deposit_taxes_id" widget="many2many_tags" attrs="{'invisible': [('product_id', '!=', False)]}"/>
                 </group>
                 <footer>
-                    <button name="create_invoices" type="object" id="create_invoice_open" string="Create and View Invoice" context="{'open_invoices': True}" class="btn-primary" data-hotkey="q"/>
-                    <button name="create_invoices" type="object" id="create_invoice" string="Create Invoice" data-hotkey="w"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    <button name="create_invoices" type="object" id="create_invoice_open" string="Crear y Ver Factura" context="{'open_invoices': True}" class="btn-primary" data-hotkey="q"/>
+                    <button name="create_invoices" type="object" id="create_invoice" string="Crear Factura" data-hotkey="w"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel" data-hotkey="z"/>
                 </footer>
             </form>
 

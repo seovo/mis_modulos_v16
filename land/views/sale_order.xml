@@ -43,6 +43,7 @@
                            <field name="move_separation_land_id" />
                            <field name="stage_payment_lan" />
                            <field name="last_payment_date_land" />
+                           <field name="next_payment_date_land" />
 
 
 
@@ -103,6 +104,7 @@
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
                    <field name="last_payment_date_land" widget="remaining_days" />
+                   <field name="next_payment_date_land"  />
 
                </xpath>
            </field>
@@ -118,6 +120,7 @@
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
                    <field name="last_payment_date_land" widget="remaining_days" />
+                   <field name="next_payment_date_land"  />
                </xpath>
            </field>
     </record>
