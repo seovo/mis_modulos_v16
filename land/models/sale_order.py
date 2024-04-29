@@ -60,6 +60,9 @@ class SaleOrder(models.Model):
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
+    type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
+                                              string="Periodo de Facturación",required=True)
+
 
     @api.depends('invoice_ids','invoice_ids.state')
     def get_last_payment_date_land(self):

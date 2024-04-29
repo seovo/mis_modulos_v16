@@ -34,9 +34,7 @@
                            <field name="date_first_due_land" />
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
-
                            <field name="recalcule_and_save_total_land" />
-
                            <field name="price_total_land" />
                            <field name="price_initial_land" />
                            <field name="price_credit_land" />
@@ -44,9 +42,6 @@
                            <field name="stage_payment_lan" />
                            <field name="last_payment_date_land" />
                            <field name="next_payment_date_land" />
-
-
-
                        </group>
                    </page>
 
@@ -54,6 +49,7 @@
 
                <xpath expr="//field[@name='partner_shipping_id']" position="after" >
                    <field name="seller_land" />
+                   <field name="type_periodo_invoiced" />
                </xpath>
 
 
@@ -130,7 +126,7 @@
 
 
     <record id="action_move_adelantos" model="ir.actions.act_window">
-        <field name="name">Adelantos</field>
+        <field name="name">Separaciones</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">tree,form</field>
@@ -158,7 +154,7 @@
     />
 
     <record id="action_sale_dues_incomplete" model="ir.actions.act_window">
-        <field name="name">Expediente en Proceso de Pago</field>
+        <field name="name">Expedientes en Proceso de Pago</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
