@@ -1,5 +1,21 @@
 from odoo import api, fields, models , _
 
+meses_espanol = {
+    1: 'enero',
+    2: 'febrero',
+    3: 'marzo',
+    4: 'abril',
+    5: 'mayo',
+    6: 'junio',
+    7: 'julio',
+    8: 'agosto',
+    9: 'septiembre',
+    10: 'octubre',
+    11: 'noviembre',
+    12: 'diciembre'
+}
+
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
@@ -25,11 +41,17 @@ class SaleOrderLine(models.Model):
 
         sale_line = self.env['sale.order.line'].browse(res['sale_line_ids'][0][1])
 
-        fecha_actual = self.order_id.last_payment_date_land or  fields.Datetime.now()
-        mes = fecha_actual.strftime('%B')  # El mes completo en español
+        fecha_actual = self.order_id.next_payment_date_land or  fields.Datetime.now()
+        #mes = fecha_actual.strftime('%B')  # El mes completo en español
         anio = fecha_actual.year
 
-        mes_ano =  f' , {mes} - {anio}'
+        # Obtener el número del mes
+        mes_actual = fecha_actual.month
+
+        # Obtener el nombre del mes en español
+        mes_actual_espanol = meses_espanol[mes_actual]
+
+        mes_ano =  f' , {mes_actual_espanol} - {anio}'
 
         if self.product_id.manzana and self.product_id.lote:
             res['name'] = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "

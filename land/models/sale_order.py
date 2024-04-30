@@ -106,6 +106,11 @@ class SaleOrder(models.Model):
             if date_next and date_next < date_now:
                 diff_days = (date_now - date_next ).days
 
+            diff_days -= record.days_tolerance_land
+
+            if diff_days < 0:
+                diff_days = 0
+
 
             record.days_expired_land = diff_days
 
