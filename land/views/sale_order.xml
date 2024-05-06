@@ -8,6 +8,8 @@
 
                <xpath expr="//header" position="inside" >
                    <button name="show_m2_land" string="Modificar Metrado" type="object"  />
+                   <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
+                   <button name="show_lot_availables" string="Mostrar Lotes" type="object"  />
 
                </xpath>
 
@@ -23,7 +25,7 @@
                            <field name="mz_lot" />
                            <field name="sector" />
                            <field name="stage_land" />
-                           <field name="m2_land" />
+
                            <field name="dues_land" />
                            <field name="value_due_land" />
                            <field name="crono_land" />
@@ -31,7 +33,8 @@
                            <field name="value_mora_land" />
                            <field name="percentage_refund_land" />
                            <field name="date_sign_land" />
-                           <field name="date_first_due_land" />
+
+                           <field name="start_date_schedule_land" />
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
                            <field name="recalcule_and_save_total_land" />
@@ -45,12 +48,35 @@
                            <field name="days_expired_land" />
                        </group>
                    </page>
+                   <page string="Cronograma">
+                       <field name="schedule_land_ids"
+                              create="false"
+                              delete="false"
+                            >
+                                <tree string="Sales" >
+                                    <field name="number_due" readonly="1"  />
+                                    <field name="date" readonly="1" />
+                                    <field name="balan" readonly="1"  />
+                                    <field name="amount" readonly="1"   />
+                                    <field name="note"  readonly="1"  />
+                                    <field name="is_paid" readonly="1"   />
+                                </tree>
+                       </field>
+
+
+                   </page>
 
                </xpath>
 
                <xpath expr="//field[@name='partner_shipping_id']" position="after" >
-                   <field name="seller_land" />
+                   <field name="seller_land_id"  widget="selection" />
+                   <field name="date_first_due_land" />
                    <field name="type_periodo_invoiced" />
+
+                   <field name="mz_land" />
+                   <field name="lot_land" />
+                   <field name="sector_land" />
+                   <field name="m2_land" />
                </xpath>
 
 
@@ -159,7 +185,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('stage_payment_lan','=','dues')]</field>
+        <field name="domain">[('stage_payment_lan','=','dues'),('state','in',['sale','done'])]</field>
         <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
         <field name="context">{}</field>
     </record>

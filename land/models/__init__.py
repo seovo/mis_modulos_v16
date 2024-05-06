@@ -7,3 +7,5 @@ from . import product_product
 from . import account_move
 from . import account_journal
 from . import sale_order
+from . import seller_land
+from . import schedule_dues_land

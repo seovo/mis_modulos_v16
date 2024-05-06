@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
         ('cancel',_('Resuelto o Cancelado'))
     ])
 
-    m2_land = fields.Char(string="AREA (m2)")
+
     dues_land = fields.Float(string="Cuotas")
     value_due_land = fields.Float(string="Precio Cuotas")
     crono_land = fields.Char(string="Crono")
@@ -22,7 +22,8 @@ class SaleOrder(models.Model):
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
 
     date_sign_land = fields.Date(string="Fecha Firma del Contrato")
-    date_first_due_land = fields.Date(string="Fecha Primera Cuota")
+    date_first_due_land = fields.Date(string="Fecha Primera Cuota",store=True)
+    start_date_schedule_land = fields.Date(compute="get_start_date_schedule_land",store=True)
 
     modality_land = fields.Selection([
         ('single',_('Soltero')) ,
@@ -42,7 +43,7 @@ class SaleOrder(models.Model):
     note = fields.Text()
     recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos")
 
-    seller_land = fields.Selection([('villa','Villa del Sur'),('roque','Roque')],required=True,string="Proveedor Terreno")
+    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno")
 
 
     #esto es para importar
@@ -63,7 +64,127 @@ class SaleOrder(models.Model):
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
-                                              string="Periodo de Facturación",required=True)
+                                              string="Periodo de Facturación",compute='get_start_date_schedule_land',store=True)
+
+    schedule_land_ids = fields.One2many('schedule.dues.land','order_id')
+    mz_land = fields.Char(compute="get_info_land",store=True,string="Manzana Terreno")
+    lot_land = fields.Char(compute="get_info_land",store=True,string="Lote Terreno")
+    sector_land = fields.Char(compute="get_info_land", store=True, string="Etapa Terreno")
+    m2_land = fields.Char(string="AREA (m2)")
+
+    def show_lot_availables(self):
+        return
+
+    @api.depends('order_line')
+    def get_info_land(self):
+        for record in self:
+            mz = None
+            lt = None
+            stage = None
+            m2 = None
+            for line in record.order_line:
+                if line.product_id.manzana and  line.product_id.manzana != '':
+                    mz = line.product_id.manzana
+
+                if line.product_id.lote and  line.product_id.lote  != '':
+                    lt = line.product_id.lote
+
+                if line.product_id.sector_land and  line.product_id.sector_land  != '':
+                    stage = line.product_id.sector_land
+
+                if line.product_id.m2_land and  line.product_id.m2_land  != '':
+                    m2 = line.product_id.m2_land
+
+            if record.mz_lot and not mz and not lt:
+                mz_lot = record.mz_lot.split('-')
+                if len(mz_lot) == 2:
+                    mz = str(mz_lot[0])
+                    lt = str(mz_lot[1])
+
+
+            record.mz_land = mz
+            record.lot_land = lt
+
+            if not stage and record.sector:
+                stage = record.sector
+
+            if stage:
+                record.sector_land = stage
+
+            if m2:
+                record.m2_land = m2
+
+
+    def update_schedule(self):
+        for record in self:
+            if record.start_date_schedule_land:
+                qty_dues = 0
+                total_dues = 0
+                price_unit = 0
+                qty_invoiced = 0
+
+                for line in record.order_line:
+                    if line.product_id.payment_land_dues:
+                        qty_dues = line.product_uom_qty
+                        total_dues = qty_dues * line.price_unit
+                        price_unit = line.price_unit
+                        qty_invoiced = line.qty_invoiced
+
+                if not record.schedule_land_ids :
+
+
+                    if qty_dues > 0:
+                        datex = record.start_date_schedule_land
+                        for i in range(int(qty_dues)):
+                            dx = {
+                                'number_due' : i + 1 ,
+                                'date': datex ,
+                                'balan': total_dues - (i*price_unit) ,
+                                'amount': price_unit ,
+                                'is_paid' : True if (i + 1) <= qty_invoiced else False
+                            }
+
+
+
+                            datex = datex +  relativedelta(months=1)
+
+                            if datex.day > 24:
+                                datex = datetime(year=datex.year, month=datex.month, day=1, hour=10) +  relativedelta(months=1)
+                                datex = datex - timedelta(days=1)
+
+
+
+
+
+                            try:
+                                record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
+                            except:
+                                raise ValueError(dx)
+
+                if record.schedule_land_ids :
+                    i = 0
+                    for linex in record.schedule_land_ids :
+                        linex.update({'is_paid' : True if (i + 1) <= qty_invoiced else False})
+                        i += 1
+
+
+
+
+    @api.depends('date_first_due_land')
+    def get_start_date_schedule_land(self):
+        for record in self:
+            date_start = record.date_first_due_land
+            if date_start and date_start.day <= 24 :
+                date_start = datetime(year=date_start.year,month=date_start.month,day=15,hour=10)
+                date_start = date_start.date()
+                record.type_periodo_invoiced = 'half_month'
+            if date_start and date_start.day > 24:
+                date_start = datetime(year=date_start.year, month=date_start.month, day=1, hour=10) +  relativedelta(months=1)
+                date_start = date_start - timedelta(days=1)
+                date_start = date_start.date()
+                record.type_periodo_invoiced = 'end_month'
+            record.start_date_schedule_land = date_start
+
 
 
     @api.depends('invoice_ids','invoice_ids.state')

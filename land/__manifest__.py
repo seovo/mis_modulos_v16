@@ -16,7 +16,8 @@
         "wizard/import_land.xml",
         "views/account_move.xml",
         "views/report_invoice_document.xml",
-        'wizard/view_sale_advance_payment_inv.xml'
+        'wizard/view_sale_advance_payment_inv.xml',
+        "views/seller_land.xml",
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
