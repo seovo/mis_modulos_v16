@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
 
     date_sign_land = fields.Date(string="Fecha Firma del Contrato")
-    date_first_due_land = fields.Date(string="Fecha Primera Cuota",store=True)
+    date_first_due_land = fields.Date(string="Fecha Primera Cuota",required=True)
     start_date_schedule_land = fields.Date(compute="get_start_date_schedule_land",store=True)
 
     modality_land = fields.Selection([
