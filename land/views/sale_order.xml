@@ -157,7 +157,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('is_separation_land','=',True),('move_type', '=', 'out_invoice')]</field>
+        <field name="domain">[('is_separation_land','=',True),('move_type', '=', 'out_invoice'),('sale_order_count_store','=',0)]</field>
         <field name="context">{'default_is_separation_land': True , 'default_move_type': 'out_invoice' }</field>
     </record>
 

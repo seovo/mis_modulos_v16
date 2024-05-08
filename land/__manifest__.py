@@ -18,6 +18,9 @@
         "views/report_invoice_document.xml",
         'wizard/view_sale_advance_payment_inv.xml',
         "views/seller_land.xml",
+        "views/commission_land.xml",
+        "views/crm_team_view_form.xml",
+        "data/sequence.xml"
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

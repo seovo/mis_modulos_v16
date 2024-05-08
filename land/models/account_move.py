@@ -6,7 +6,10 @@ CURRENCY = {
     "EUR": 3,
     "GBP": 4,
 }
-
+from datetime import datetime, timedelta
+class AccountMoveLine(models.Model):
+    _inherit                 = 'account.move.line'
+    commision_id             = fields.Many2one('commission.land')
 class AccountMove(models.Model):
     _inherit = 'account.move'
     narration_text = fields.Text()
@@ -17,6 +20,35 @@ class AccountMove(models.Model):
     days_expired_land = fields.Integer()
     value_mora_land = fields.Float(string="Precio Mora", default=10)
 
+    invoice_date_due_separation = fields.Date(
+        string='Separacion Vencimiento',
+        compute='_compute_invoice_date_due_separation', store=True, readonly=False,
+        states={'draft': [('readonly', False)]},
+        index=True,
+        copy=False,
+    )
+
+    days_max_due_separation = fields.Integer(
+        string="Dias Maximo Separación",
+        default=15 ,
+        states={'posted': [('readonly', True)], 'cancel': [('readonly', True)]},
+    )
+    mz_land_separation  = fields.Char(string="MZ")
+    lot_land_separation = fields.Char(string="Lote")
+    sale_order_count_store = fields.Integer(related='sale_order_count',store=True)
+
+    @api.depends('days_max_due_separation','invoice_date')
+    def _compute_invoice_date_due_separation(self):
+        for move in self:
+            move.invoice_date_due_separation =  move.invoice_date +  timedelta(days=move.days_max_due_separation) if move.invoice_date and move.days_max_due_separation else None
+
+
+
+    @api.onchange('is_separation_land','partner_id')
+    def change_is_separation_land(self):
+        for record in self:
+            if record.is_separation_land :
+                record.invoice_payment_term_id = self.env.ref('account.account_payment_term_immediate').id
 
     def create_sale_if_separation(self):
 

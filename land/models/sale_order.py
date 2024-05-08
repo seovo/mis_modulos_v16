@@ -434,7 +434,7 @@ class SaleOrder(models.Model):
                 for linex in self.move_separation_land_id.invoice_line_ids:
                     if linex.product_id == line.product_id and line.price_unit == linex.price_unit :
                         line.invoice_lines = [(4, linex.id)]
-                        self.move_separation_land_id.is_separation_land = False
+                        #self.move_separation_land_id.is_separation_land = False
 
 
         return res

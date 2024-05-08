@@ -9,3 +9,5 @@ from . import account_journal
 from . import sale_order
 from . import seller_land
 from . import schedule_dues_land
+from . import commission_land
+from . import crm_team
