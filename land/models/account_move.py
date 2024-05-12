@@ -21,7 +21,7 @@ class AccountMove(models.Model):
     value_mora_land = fields.Float(string="Precio Mora", default=10)
 
     invoice_date_due_separation = fields.Date(
-        string='Separacion Vencimiento',
+        string='Fecha Vencimiento Separacion',
         compute='_compute_invoice_date_due_separation', store=True, readonly=False,
         states={'draft': [('readonly', False)]},
         index=True,
@@ -35,7 +35,23 @@ class AccountMove(models.Model):
     )
     mz_land_separation  = fields.Char(string="MZ")
     lot_land_separation = fields.Char(string="Lote")
+    sector_land_separation = fields.Char(string="Etapa")
     sale_order_count_store = fields.Integer(related='sale_order_count',store=True)
+    days_count_expired_separation = fields.Integer(compute='get_days_count_expired_separation',string="Dias Expirados")
+
+    def get_days_count_expired_separation(self):
+        for record in self:
+            diff = None
+            if record.invoice_date_due_separation:
+                diff = fields.Datetime.now().date() -  record.invoice_date_due_separation
+                diff = diff.days
+            record.days_count_expired_separation = diff
+
+
+
+    def send_notify_separation(self):
+        pass
+
 
     @api.depends('days_max_due_separation','invoice_date')
     def _compute_invoice_date_due_separation(self):

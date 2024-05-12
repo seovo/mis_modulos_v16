@@ -6,6 +6,13 @@
            <field name="inherit_id" ref="account.view_move_form" />
            <field name="arch" type="xml">
 
+               <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after" >
+                   <field name="mz_land_separation" attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)]  }" />
+                   <field name="lot_land_separation"  attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)] }" />
+                   <field name="sector_land_separation"  attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)] }" />
+
+               </xpath>
+
                <xpath expr="//field[@name='partner_bank_id']" position="after" >
 
 
@@ -32,8 +39,7 @@
                        <field name="invoice_date_due_separation" force_save="1" placeholder="Date" />
 
                    </div>
-                   <field name="mz_land_separation" attrs="{'invisible': [('is_separation_land','!=',True)]}" />
-                   <field name="lot_land_separation"  attrs="{'invisible': [('is_separation_land','!=',True)]}" />
+
                </xpath>
 
 
@@ -93,15 +99,53 @@
            </field>
     </record>
 
-    <record id="view_invoice_tree" model="ir.ui.view">
-           <field name="name">account.move.Form</field>
-           <field name="model">account.move</field>
-           <field name="inherit_id" ref="account.view_invoice_tree" />
-           <field name="arch" type="xml">
-               <xpath expr="//field[@name='invoice_date_due']" position="after" >
-                  <field name="invoice_date_due_separation" widget="remaining_days" optional="show"  />
 
-               </xpath>
+    <record id="view_invoice_tree_jz" model="ir.ui.view">
+           <field name="name">account.move.tree</field>
+           <field name="model">account.move</field>
+           <field name="arch" type="xml">
+              <tree string="Invoices" js_class="account_tree"
+                    decoration-info="state == 'draft'"
+                    decoration-muted="state == 'cancel'"
+                    decoration-danger=" days_count_expired_separation > -6 "
+                    expand="context.get('expand', False)" sample="1">
+
+                    <field name="made_sequence_hole" invisible="1"/>
+                    <field name="name" decoration-bf="1" decoration-danger="made_sequence_hole"/>
+                    <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')" groups="base.group_user" string="Vendedor"/>
+                    <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" groups="base.group_user" string="Cliente"/>
+                    <field name="invoice_date" optional="show" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')" string="Bill Date"/>
+                    <field name="invoice_date" optional="show" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" string="Fecha Factura"/>
+                    <field name="date" optional="hide" string="Accounting Date"/>
+                    <field name="invoice_date_due_separation" widget="remaining_days" optional="show"  />
+                    <field name="invoice_date_due" widget="remaining_days" optional="hide" attrs="{'invisible': [['payment_state', 'in', ('paid', 'in_payment', 'reversed')]]}"/>
+                    <field name="invoice_origin" optional="hide" string="Source Document"/>
+                    <field name="payment_reference" optional="hide" invisible="context.get('default_move_type') in ('out_invoice', 'out_refund','out_receipt')"/>
+                    <field name="ref" optional="hide" />
+                    <field name="narration" optional="hide" />
+                    <field name="invoice_user_id" optional="hide" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" string="Salesperson" widget="many2one_avatar_user"/>
+                    <!--<field name="activity_ids" widget="list_activity" optional="show"/> -->
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" optional="hide"/>
+                    <field name="company_id" groups="!base.group_multi_company" invisible="1"/>
+                    <field name="amount_untaxed_signed" string="Tax Excluded" sum="Total" optional="hide"/>
+                    <field name="amount_tax_signed" string="Tax" sum="Total" optional="hide"/>
+                    <field name="amount_total_signed" string="Total" sum="Total" decoration-bf="1" optional="show"/>
+                    <field name="amount_total_in_currency_signed" string="Total in Currency" groups="base.group_multi_currency" optional="hide"/>
+                    <field name="amount_residual_signed" string="Amount Due" sum="Amount Due" optional="hide"/>
+                    <field name="currency_id" groups="base.group_multi_currency" optional="hide"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <field name="to_check" optional="hide" widget="boolean_toggle"/>
+                    <field name="payment_state" widget="badge" decoration-danger="payment_state == 'not_paid'"
+                           decoration-warning="payment_state in ('partial', 'in_payment')"
+                           decoration-success="payment_state in ('paid', 'reversed')" attrs="{'invisible': [('payment_state', 'in', ('invoicing_legacy'))]}"
+                           optional="hide" />
+                    <field name="state" widget="badge" decoration-success="state == 'posted'" decoration-info="state == 'draft'" optional="show"/>
+                    <field name="move_type" invisible="context.get('default_move_type', True)"/>
+                    <field name="l10n_pe_edi_ose_accepted"  optional="show" />
+                    <field name="l10n_pe_edi_sunat_accepted"  optional="show" />
+                    <field name="days_count_expired_separation"  optional="hide" />
+
+                  </tree>
            </field>
     </record>
 

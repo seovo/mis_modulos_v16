@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
     value_mora_land = fields.Float(string="Precio Mora",default=10)
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
 
-    date_sign_land = fields.Date(string="Fecha Firma del Contrato")
+    date_sign_land = fields.Date(string="Fecha Firma del Contrato",required=True)
     date_first_due_land = fields.Date(string="Fecha Primera Cuota",required=True)
     start_date_schedule_land = fields.Date(compute="get_start_date_schedule_land",store=True)
 
@@ -43,7 +43,7 @@ class SaleOrder(models.Model):
     note = fields.Text()
     recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos")
 
-    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno")
+    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True)
 
 
     #esto es para importar
@@ -64,13 +64,33 @@ class SaleOrder(models.Model):
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
-                                              string="Periodo de Facturación",compute='get_start_date_schedule_land',store=True)
+                                              string="Periodo de Facturación",required=True)
+    #compute='get_start_date_schedule_land
 
     schedule_land_ids = fields.One2many('schedule.dues.land','order_id')
     mz_land = fields.Char(compute="get_info_land",store=True,string="Manzana Terreno")
     lot_land = fields.Char(compute="get_info_land",store=True,string="Lote Terreno")
     sector_land = fields.Char(compute="get_info_land", store=True, string="Etapa Terreno")
     m2_land = fields.Char(string="AREA (m2)")
+
+    @api.onchange('date_sign_land','type_periodo_invoiced')
+    @api.depends('date_sign_land', 'type_periodo_invoiced')
+    def change_date_first_due_date(self):
+        for record in self:
+            if record.date_sign_land and record.type_periodo_invoiced:
+                date_next = record.date_sign_land +  relativedelta(months=1)
+                if record.type_periodo_invoiced == 'half_month':
+                    date_next = datetime(year=date_next.year,month=date_next.month,day=15,hour=10)
+                    date_next = date_next.date()
+
+                if record.type_periodo_invoiced == 'end_month':
+                    date_next = datetime(year=date_next.year, month=date_next.month, day=1, hour=10) +  relativedelta(months=1)
+                    date_next = date_next - timedelta(days=1)
+                    date_next = date_next.date()
+
+                record.date_first_due_land = date_next
+
+
 
     def show_lot_availables(self):
         return
@@ -187,7 +207,7 @@ class SaleOrder(models.Model):
 
 
 
-    @api.depends('invoice_ids','invoice_ids.state')
+    @api.depends('invoice_ids','invoice_ids.state','date_first_due_land')
     def get_last_payment_date_land(self):
         for record in self:
             date = None
@@ -199,6 +219,11 @@ class SaleOrder(models.Model):
                         else:
                             if invoice.invoice_date > date:
                                 date = invoice.invoice_date
+
+            #if record.date_first_due_land:
+            #    date = record.date_first_due_land + relativedelta(months=1)
+
+
 
             record.last_payment_date_land = date
 
@@ -289,6 +314,8 @@ class SaleOrder(models.Model):
             mz =   None
             lote = None
             total = record.amount_total
+            dues = 0
+            value_due = 0
 
 
             credit = 0
@@ -301,6 +328,8 @@ class SaleOrder(models.Model):
 
                 if line.product_id.payment_land_dues:
                     credit = line.price_total
+                    dues =  line.product_uom_qty
+                    value_due = line.price_unit
 
             inicial = total - credit
 
@@ -312,7 +341,9 @@ class SaleOrder(models.Model):
                             SET mz_lot = '{mz_lot}'  , 
                             price_total_land = {total}  ,
                             price_initial_land  = {inicial} ,
-                            price_credit_land = {credit}
+                            price_credit_land = {credit} ,
+                            dues_land = {dues} ,
+                            value_due_land = {value_due}
                             WHERE id = {record.id}  
                        '''
                 self.env.cr.execute(sql)
