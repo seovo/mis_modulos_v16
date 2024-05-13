@@ -41,9 +41,11 @@ class ImportCiHrAttendance(models.TransientModel):
                                                     ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
 
             for invoice in order.invoice_ids:
-                if not invoice.invoice_date:
-                    invoice.invoice_date = order.date_sign_land
-                invoice.action_post()
+                if invoice.state == 'draft':
+                    if not invoice.invoice_date:
+                        invoice.invoice_date = order.date_sign_land
+                    invoice.action_post()
+
 
 
     def import_excell_rename_(self):
