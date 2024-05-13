@@ -58,7 +58,7 @@ class ImportCiHrAttendance(models.TransientModel):
             if is_draft:
                 count += 1
 
-            if count >= 10:
+            if count >= 30:
                 break
 
 
