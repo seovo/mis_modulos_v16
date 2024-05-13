@@ -207,7 +207,7 @@ class SaleOrder(models.Model):
 
 
 
-    @api.depends('invoice_ids','invoice_ids.state','date_first_due_land')
+    @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
         for record in self:
             date = None
