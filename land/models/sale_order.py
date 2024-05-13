@@ -233,7 +233,10 @@ class SaleOrder(models.Model):
 
             if date and record.date_first_due_land:
 
-                date_next = date +  relativedelta(months=dues_payment) if dues_payment > 0 else date
+                if dues_payment == 0:
+                    dues_payment = 1
+
+                date_next = date +  relativedelta(months=dues_payment)
 
                 if date_next.day <= 24 :
                     date_next = datetime(year=date_next.year,month=date_next.month,day=15,hour=10)
