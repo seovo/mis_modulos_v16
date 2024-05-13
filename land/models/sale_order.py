@@ -231,12 +231,12 @@ class SaleOrder(models.Model):
                 if line.product_id.payment_land_dues:
                     dues_payment = line.qty_invoiced
 
-            if date and record.date_first_due_land:
+            if  record.date_first_due_land:
 
                 if dues_payment == 0:
                     dues_payment = 1
 
-                date_next = date +  relativedelta(months=dues_payment)
+                date_next = record.date_first_due_land +  relativedelta(months=dues_payment)
 
                 if date_next.day <= 24 :
                     date_next = datetime(year=date_next.year,month=date_next.month,day=15,hour=10)
