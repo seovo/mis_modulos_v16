@@ -36,6 +36,14 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        #pones como villa del sur
+        for order in self.env['sale.order'].search([('sector','!=',False),('seller_land_id','=',False)]):
+            if order.sector == '1° VDS':
+                order.seller_land_id = 1
+
+
+    #cambia las fechas de las facturas
+    def import_excell_invoice_dates(self):
         archivo_decodificado = base64.decodebytes(self.file)
         archivo_io = io.BytesIO(archivo_decodificado)
         pagos = pd.read_excel(archivo_io)
