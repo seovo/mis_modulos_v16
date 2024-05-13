@@ -42,10 +42,12 @@ class ImportCiHrAttendance(models.TransientModel):
             ('seller_land_id','!=',False),('date_first_due_land','!=',False),
             ('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
             ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
-            count += 1
+
+            is_draft = False
             for invoice in order.invoice_ids:
 
                 if invoice.state == 'draft':
+                    is_draft = True
 
                     if not invoice.invoice_date:
                         invoice.invoice_date = order.date_sign_land
@@ -53,8 +55,10 @@ class ImportCiHrAttendance(models.TransientModel):
                         invoice.action_post()
                     except:
                         raise ValueError(order)
-            raise ValueError(count)
-            if count >= 50:
+            if is_draft:
+                count += 1
+
+            if count >= 10:
                 break
 
 
