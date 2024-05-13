@@ -37,7 +37,8 @@ class ImportCiHrAttendance(models.TransientModel):
 
     def import_excell(self):
         #self.import_excell_create_anticipo()
-        self.import_excell_create_invoices()
+        #self.import_excell_create_invoices()
+        self.import_excell_invoice_dates()
         #pass
 
     def import_excell_confirm_invoice(self):
