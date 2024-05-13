@@ -54,10 +54,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
                     if not invoice.invoice_date:
                         invoice.invoice_date = order.date_sign_land
-                    try:
-                        invoice.action_post()
-                    except:
-                        raise ValueError(order)
+                    invoice.action_post()
             if is_draft:
                 count += 1
 
@@ -67,7 +64,7 @@ class ImportCiHrAttendance(models.TransientModel):
             if count >= 30:
                 if count > 5:
                     raise ValueError(count)
-                break
+                #break
 
 
 
