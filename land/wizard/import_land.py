@@ -41,6 +41,12 @@ class ImportCiHrAttendance(models.TransientModel):
             if order.sector == '1° VDS':
                 order.seller_land_id = 1
 
+            if order.sector == '2° ROQUE':
+                order.seller_land_id = 2
+
+
+
+
 
     #cambia las fechas de las facturas
     def import_excell_invoice_dates(self):
