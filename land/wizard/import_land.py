@@ -43,7 +43,7 @@ class ImportCiHrAttendance(models.TransientModel):
             ('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
             ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')])
 
-        raise ValueError(orders)
+
         for order in orders:
 
             is_draft = False
@@ -61,7 +61,7 @@ class ImportCiHrAttendance(models.TransientModel):
             if is_draft:
                 count += 1
 
-            if count > 5:
+            if count > 0:
                 raise ValueError(count)
 
             if count >= 30:
