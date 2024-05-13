@@ -220,17 +220,20 @@ class SaleOrder(models.Model):
                             if invoice.invoice_date > date:
                                 date = invoice.invoice_date
 
-            #if record.date_first_due_land:
             #    date = record.date_first_due_land + relativedelta(months=1)
-
-
 
             record.last_payment_date_land = date
 
             date_next = None
 
-            if date:
-                date_next = date +  relativedelta(months=1)
+            dues_payment = 0
+            for line in record.order_line:
+                if line.product_id.payment_land_due:
+                    dues_payment = line.qty_invoiced
+
+            if date and record.date_first_due_land:
+
+                date_next = date +  relativedelta(months=dues_payment) if dues_payment > 0 else date
 
                 if date_next.day <= 24 :
                     date_next = datetime(year=date_next.year,month=date_next.month,day=15,hour=10)
