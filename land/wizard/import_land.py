@@ -51,27 +51,27 @@ class ImportCiHrAttendance(models.TransientModel):
 
         for order in orders:
 
-            is_draft = False
+            #is_draft = False
 
             for invoice in order.invoice_ids:
 
                 if invoice.state == 'draft':
-                    raise ValueError(invoice)
-                    is_draft = True
+
+                    #is_draft = True
 
                     if not invoice.invoice_date:
                         invoice.invoice_date = order.date_sign_land
                     invoice.action_post()
-            if is_draft:
-                count += 1
+            #if is_draft:
+            #    count += 1
 
-            if count > 0:
-                raise ValueError(count)
+            #if count > 0:
+            #    raise ValueError(count)
 
-            if count >= 30:
-                if count > 5:
-                    raise ValueError(count)
-                #break
+            #if count >= 30:
+            #    if count > 5:
+            #        raise ValueError(count)
+            #    #break
 
 
 
