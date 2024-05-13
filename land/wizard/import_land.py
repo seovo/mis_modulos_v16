@@ -37,14 +37,25 @@ class ImportCiHrAttendance(models.TransientModel):
 
     def import_excell(self):
         #confirmar facturas
+        count = 0
         for order in self.env['sale.order'].search([('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
                                                     ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
 
             for invoice in order.invoice_ids:
+                count += 1
                 if invoice.state == 'draft':
+
                     if not invoice.invoice_date:
                         invoice.invoice_date = order.date_sign_land
-                    invoice.action_post()
+                    try:
+                        invoice.action_post()
+                    except:
+                        raise ValueError(order)
+
+                    if count <= 10:
+                        break
+
+
 
 
 
@@ -101,6 +112,7 @@ class ImportCiHrAttendance(models.TransientModel):
                         date_init = date_init + relativedelta(months=1)
 
 
+    #crear facturas
     def import_excell_kj(self):
         archivo_decodificado = base64.decodebytes(self.file)
         archivo_io = io.BytesIO(archivo_decodificado)
