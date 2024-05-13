@@ -228,7 +228,7 @@ class SaleOrder(models.Model):
 
             dues_payment = 0
             for line in record.order_line:
-                if line.product_id.payment_land_due:
+                if line.product_id.payment_land_dues:
                     dues_payment = line.qty_invoiced
 
             if date and record.date_first_due_land:
