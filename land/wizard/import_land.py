@@ -36,6 +36,9 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        pass
+
+    def import_excell_confirm_invoice(self):
         #confirmar facturas
         count = 0
         orders = self.env['sale.order'].search([
@@ -67,7 +70,6 @@ class ImportCiHrAttendance(models.TransientModel):
                 if count > 5:
                     raise ValueError(count)
                 #break
-
 
 
 
@@ -125,7 +127,7 @@ class ImportCiHrAttendance(models.TransientModel):
 
 
     #crear facturas
-    def import_excell_kj(self):
+    def import_excell_create_invoices(self):
         archivo_decodificado = base64.decodebytes(self.file)
         archivo_io = io.BytesIO(archivo_decodificado)
         pagos = pd.read_excel(archivo_io)
@@ -133,7 +135,7 @@ class ImportCiHrAttendance(models.TransientModel):
         c = 0
         for row in pagos.values:
             nro = int(row[0])
-            sale = self.env['sale.order'].search([('nro_internal_land','=',str(nro))])
+            sale = self.env['sale.order'].search([('nro_internal_land','=',str(nro)),('state','=','sale')])
             if not sale:
                 raise ValueError(nro)
             sale.journal_import_id = 10
