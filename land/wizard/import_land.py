@@ -53,8 +53,8 @@ class ImportCiHrAttendance(models.TransientModel):
                         invoice.action_post()
                     except:
                         raise ValueError(order)
-
-            if count >= 50:
+            raise ValueError(count)
+            if count >= 50:count += 1
                 break
 
 
