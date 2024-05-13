@@ -38,8 +38,10 @@ class ImportCiHrAttendance(models.TransientModel):
     def import_excell(self):
         #confirmar facturas
         count = 0
-        for order in self.env['sale.order'].search([('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
-                                                    ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
+        for order in self.env['sale.order'].search([
+            ('seller_land_id','!=',False),
+            ('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
+            ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
 
             for invoice in order.invoice_ids:
                 count += 1
