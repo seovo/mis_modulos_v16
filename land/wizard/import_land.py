@@ -102,7 +102,7 @@ class ImportCiHrAttendance(models.TransientModel):
             if not sale:
                 raise ValueError(nro)
 
-            if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) > 1:
+            if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) > 1 and sale.date_first_due_land:
                 invoices = self.env['account.move'].search([
                     ('id', 'in', sale.invoice_ids.ids),
                     ('invoice_date', '!=', False),
