@@ -73,6 +73,12 @@ class SaleOrder(models.Model):
     sector_land = fields.Char(compute="get_info_land", store=True, string="Etapa Terreno")
     m2_land = fields.Char(string="AREA (m2)")
 
+
+    @api.onchange('price_total_land','price_initial_land')
+    def onchange_credit(self):
+        for record in self:
+            record.price_credit_land = record.price_total_land - record.price_initial_land
+
     @api.onchange('date_sign_land','type_periodo_invoiced')
     @api.depends('date_sign_land', 'type_periodo_invoiced')
     def change_date_first_due_date(self):
