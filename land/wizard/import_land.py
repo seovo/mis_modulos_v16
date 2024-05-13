@@ -36,8 +36,9 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
-        self.import_excell_create_invoices()
-        pass
+        self.import_excell_create_anticipo()
+        #self.import_excell_create_invoices()
+        #pass
 
     def import_excell_confirm_invoice(self):
         #confirmar facturas
@@ -147,10 +148,6 @@ class ImportCiHrAttendance(models.TransientModel):
             date_init = sale.date_first_due_land
 
             is_end_month = False
-
-
-            if nro == 81:
-                raise ValueError(date_init.day)
 
 
             try:
