@@ -140,14 +140,17 @@ class ImportCiHrAttendance(models.TransientModel):
             if not sale:
                 raise ValueError(nro)
 
-            if nro == 81:
-                raise ValueError('okaa')
+
             sale.journal_import_id = 10
             sale.invoice_payment_import_id = 1
 
             date_init = sale.date_first_due_land
 
             is_end_month = False
+
+
+            if nro == 81:
+                raise ValueError(date_init.day)
 
 
             try:
