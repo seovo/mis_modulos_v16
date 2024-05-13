@@ -59,6 +59,8 @@ class ImportCiHrAttendance(models.TransientModel):
                 count += 1
 
             if count >= 30:
+                if count > 5:
+                    raise ValueError(count)
                 break
 
 
