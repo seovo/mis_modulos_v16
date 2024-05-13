@@ -185,6 +185,7 @@ class ImportCiHrAttendance(models.TransientModel):
                         dx = {
                             'advance_payment_method': 'delivered',
                             'sale_order_ids': [(6, 0, [sale.id])],
+                            'journal_id': 10
 
                         }
                         wizard = self.env['sale.advance.payment.inv'].create(dx)
