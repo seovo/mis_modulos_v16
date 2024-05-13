@@ -36,8 +36,8 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
-        self.import_excell_create_anticipo()
-        #self.import_excell_create_invoices()
+        #self.import_excell_create_anticipo()
+        self.import_excell_create_invoices()
         #pass
 
     def import_excell_confirm_invoice(self):
