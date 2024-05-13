@@ -47,10 +47,11 @@ class ImportCiHrAttendance(models.TransientModel):
         for order in orders:
 
             is_draft = False
-            raise ValueError(order.invoice_ids)
+
             for invoice in order.invoice_ids:
 
                 if invoice.state == 'draft':
+                    raise ValueError(invoice)
                     is_draft = True
 
                     if not invoice.invoice_date:
