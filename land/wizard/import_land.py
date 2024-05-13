@@ -60,7 +60,6 @@ class ImportCiHrAttendance(models.TransientModel):
 
 
 
-
     def import_excell_rename_(self):
         #pones como villa del sur
         for order in self.env['sale.order'].search([('sector','!=',False),('seller_land_id','=',False)]):
