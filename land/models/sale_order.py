@@ -72,6 +72,7 @@ class SaleOrder(models.Model):
     lot_land = fields.Char(compute="get_info_land",store=True,string="Lote Terreno")
     sector_land = fields.Char(compute="get_info_land", store=True, string="Etapa Terreno")
     m2_land = fields.Char(string="AREA (m2)")
+    
 
 
     @api.onchange('price_total_land','price_initial_land')

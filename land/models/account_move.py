@@ -92,7 +92,7 @@ class AccountMove(models.Model):
                         record.narration_text = line.product_id.description_sale
 
 
-            if record.days_expired_land  and record.days_expired_land != 0 :
+            if record.days_expired_land  and record.days_expired_land != 0 and record.journal_id != 10:
                 product = self.env['product.product'].search([('is_mora_land','=',True)])
                 if not product:
                     raise ValueError('NO SE INDICO PRODUCTO MORA')
