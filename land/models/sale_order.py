@@ -221,7 +221,6 @@ class SaleOrder(models.Model):
                                 date = invoice.invoice_date
 
             #    date = record.date_first_due_land + relativedelta(months=1)
-
             record.last_payment_date_land = date
 
             date_next = None
