@@ -274,7 +274,7 @@ class SaleOrder(models.Model):
 
 
 
-    @api.depends('order_line','order_line.product_id','note')
+    @api.depends('order_line','order_line.product_id','order_line.qty_invoiced','note','invoice_ids')
     def _get_stage_payment_land(self):
         for record in self:
             stage = None
