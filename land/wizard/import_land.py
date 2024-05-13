@@ -36,6 +36,17 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        #confirmar facturas
+        for order in self.env['sale.order'].search([('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
+                                                    ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
+
+            for invoice in order.invoice_ids:
+                if not invoice.invoice_date:
+                    invoice.invoice_date = order.date_sign_land
+                invoice.action_post()
+
+
+    def import_excell_rename_(self):
         #pones como villa del sur
         for order in self.env['sale.order'].search([('sector','!=',False),('seller_land_id','=',False)]):
             if order.sector == '1° VDS':
