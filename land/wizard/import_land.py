@@ -58,6 +58,9 @@ class ImportCiHrAttendance(models.TransientModel):
             if is_draft:
                 count += 1
 
+            if count > 5:
+                raise ValueError(count)
+
             if count >= 30:
                 if count > 5:
                     raise ValueError(count)
