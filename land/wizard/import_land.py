@@ -39,7 +39,7 @@ class ImportCiHrAttendance(models.TransientModel):
         #confirmar facturas
         count = 0
         for order in self.env['sale.order'].search([
-            ('seller_land_id','!=',False),
+            ('seller_land_id','!=',False),('date_first_due_land','!=',False),
             ('nro_internal_land', '!=', False) ,('price_total_land','!=',False),
             ('price_total_land','!=',0),('invoice_ids','!=',False),('state','=','sale')]):
 
