@@ -139,6 +139,9 @@ class ImportCiHrAttendance(models.TransientModel):
             sale = self.env['sale.order'].search([('nro_internal_land','=',str(nro)),('state','=','sale')])
             if not sale:
                 raise ValueError(nro)
+
+            if nro == 81:
+                raise ValueError('okaa')
             sale.journal_import_id = 10
             sale.invoice_payment_import_id = 1
 
