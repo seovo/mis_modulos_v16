@@ -85,10 +85,6 @@ class ImportCiHrAttendance(models.TransientModel):
             if order.sector == '2° ROQUE':
                 order.seller_land_id = 2
 
-
-
-
-
     #cambia las fechas de las facturas
     def import_excell_invoice_dates(self):
         archivo_decodificado = base64.decodebytes(self.file)
@@ -102,10 +98,18 @@ class ImportCiHrAttendance(models.TransientModel):
             if not sale:
                 raise ValueError(nro)
 
-            if sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) > 1 and sale.date_first_due_land:
+
+            exist_confirm = False
+            for invc in sale.invoice_ids:
+                if invc.amount_total == sale.price_initial_land:
+                    invc.invoice_date = sale.date_sign_land
+                if invc.state != 'draft':
+                    exist_confirm =  True
+
+            if  not exist_confirm and sale.price_total_land and sale.price_total_land != 0 and len(sale.invoice_ids) > 1 and sale.date_first_due_land:
                 invoices = self.env['account.move'].search([
                     ('id', 'in', sale.invoice_ids.ids),
-                    ('invoice_date', '!=', False),
+                    ('invoice_date', '=', False),
 
                 ],order='invoice_date asc')
                 date_init = sale.date_first_due_land
