@@ -38,7 +38,8 @@ class ImportCiHrAttendance(models.TransientModel):
     def import_excell(self):
         #self.import_excell_create_anticipo()
         #self.import_excell_create_invoices()
-        self.import_excell_invoice_dates()
+        #self.import_excell_invoice_dates()
+        self.import_excell_confirm_invoice()
         #pass
 
     def import_excell_confirm_invoice(self):
@@ -60,9 +61,11 @@ class ImportCiHrAttendance(models.TransientModel):
 
                     #is_draft = True
 
-                    if not invoice.invoice_date:
-                        invoice.invoice_date = order.date_sign_land
-                    invoice.action_post()
+                    #if not invoice.invoice_date:
+                    #    invoice.invoice_date = order.date_sign_land
+                    if invoice.invoice_date:
+                        invoice.action_post()
+
             #if is_draft:
             #    count += 1
 
