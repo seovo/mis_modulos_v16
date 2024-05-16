@@ -117,7 +117,7 @@
 
 
     <record id="action_commission_land" model="ir.actions.act_window">
-        <field name="name">Commission Riman</field>
+        <field name="name">Commission Terrenos</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">commission.land</field>
         <field name="view_mode">tree,form</field>

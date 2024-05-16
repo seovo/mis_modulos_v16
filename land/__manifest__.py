@@ -23,6 +23,8 @@
         "views/crm_team_view_form.xml",
         "data/sequence.xml",
         "data/cron.xml",
+        "views/report_dues_land.xml",
+        'report/report_dues.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

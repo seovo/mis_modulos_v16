@@ -12,3 +12,4 @@ from . import schedule_dues_land
 from . import commission_land
 from . import crm_team
 from . import account_move_line
+from . import report_dues_land

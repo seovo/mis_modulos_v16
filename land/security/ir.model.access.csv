@@ -3,3 +3,4 @@ bank_origin,bank_origin,model_bank_origin,,1,1,1,1
 seller_land,seller_land,model_seller_land,,1,1,1,1
 schedule_dues_land,schedule_dues_land,model_schedule_dues_land,,1,1,1,1
 commission_riman,commission_riman,model_commission_land,land.group_commission,1,1,1,1
+report_dues,report_dues,model_report_dues_land,,1,1,1,1

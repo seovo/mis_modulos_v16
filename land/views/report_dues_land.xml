@@ -1,0 +1,77 @@
+<odoo>
+
+    <record model="ir.ui.view" id="report_dues_land_form" >
+        <field name="name">report.dues.land.form</field>
+        <field name="model">report.dues.land</field>
+        <field name="arch" type="xml">
+            <form string="COMMISSION RIMAC">
+                <header>
+                    <button name="update_data"
+                             string="Actualizar" type="object"
+
+                           />
+
+                </header>
+                <sheet>
+
+
+
+                    <group>
+                        <field name="name" />
+                        <field name="type_periodo_invoiced"  />
+                        <field name="seller_land_id"  widget="many2many_tags"  />
+                       <!-- <field name="company_id"   readonly="1" force_save="1" />  -->
+                    </group>
+
+                    <notebook>
+                        <page string="Sales" name="order_ids">
+                            <field name="order_ids"
+                                   readonly="1"
+                                   force_save="1"
+                            >
+                                <tree string="Sales" >
+                                    <field name="nro_internal_land" />
+                                    <field name="name" />
+                                    <field name="seller_land_id" />
+                                    <field name="amount_total" />
+                                </tree>
+                            </field>
+
+                            <!--
+
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_total_base_sale" readonly="1" force_save="1" />
+                                <field name="percentage_total_base_sale"  readonly="1" force_save="1" />
+                                <field name="comission_amount_total_base_sale"  readonly="1" force_save="1" />
+
+                                <field name="amount_total"  readonly="1" force_save="1" />
+                            </group>
+                            <div class="clearfix"/>
+
+                            -->
+
+
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_dues_land" model="ir.actions.act_window">
+        <field name="name">Reporte Pagos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.dues.land</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_report_dues_land"
+              id="menu_report_dues_land"
+              parent="sale.sale_order_menu"
+              sequence="101"
+    />
+
+</odoo>

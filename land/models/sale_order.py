@@ -12,8 +12,6 @@ class SaleOrder(models.Model):
         ('signed',_('Firmado'))  ,
         ('cancel',_('Resuelto o Cancelado'))
     ])
-
-
     dues_land = fields.Float(string="Cuotas")
     value_due_land = fields.Float(string="Precio Cuotas")
     crono_land = fields.Char(string="Crono")
@@ -102,7 +100,7 @@ class SaleOrder(models.Model):
     def show_lot_availables(self):
         return
 
-    @api.depends('order_line')
+    @api.depends('order_line','mz_lot','sector')
     def get_info_land(self):
         for record in self:
             mz = None

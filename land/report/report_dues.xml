@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_id" model="report.paperformat">
+            <field name="name">Report Format Dues</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="True"/>
+            <field name="header_spacing">6</field>
+            <field name="dpi">90</field>
+    </record>
+
+
+    <template id="report_report_dues">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="row header" />
+                <t t-call="land.report_dues_document"/>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="report_dues_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc"/>
+            <div class="page">
+                <div class="oe_structure"/>
+
+                <center><h1>REPORTE CUOTAS</h1></center>
+
+
+                <hr />
+
+                <div class="table-responsive-sm" style="overflow-x: scroll; overflow-y: hidden;">
+                    <table class="table table-sm o_main_table mt16">
+                    <thead>
+                       <tr>
+                           <th>Contrato</th>
+
+                           <t t-foreach=" list(range(1, doc.dues_max + 1 )) " t-as="cuota">
+
+                                 <th>CUOTA <t t-esc="cuota" /></th>
+
+                           </t>
+
+
+                           <th>Credito</th>
+                           <th>Abono</th>
+                           <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.order_ids" t-as="order">
+                    <tr>
+                        <td>
+                            <span t-esc="order.nro_internal_land"/>
+                        </td>
+                        <t t-foreach="order.schedule_land_ids" t-as="schedule">
+                            <td>
+                               <div class="card" style="width: 18rem;">
+                                   <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                   </div>
+                                </div>
+
+                             </td>
+
+                        </t>
+
+                        <td>
+                            <span t-field="order.amount_total"/>
+                        </td>
+                        <td>
+                            <span t-field="order.amount_total"/>
+                        </td>
+                        <td>
+                            <span t-field="order.amount_total"/>
+                        </td>
+                        <td>
+                            <span t-field="order.amount_total"/>
+                        </td>
+                    </tr>
+                </t>
+                    </tbody>
+                </table>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_dues" model="ir.actions.report">
+        <field name="name">REPORTE DE PAGOS</field>
+        <field name="model">report.dues.land</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">land.report_report_dues</field>
+        <field name="report_file">land.report_report_dues</field>
+        <field name="print_report_name">(object.name or 'Appointment').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_report_dues_land"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="land.paperformat_id" />
+    </record>
+
+</odoo>
