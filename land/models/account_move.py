@@ -17,6 +17,7 @@ class AccountMove(models.Model):
     narration_str = fields.Text(compute="get_narration",store=True)
     bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias")
     is_separation_land = fields.Boolean(string="Es una Separación Terreno")
+    is_initial_land = fields.Boolean(string="Es Inicial Terreno")
     days_expired_land = fields.Integer()
     value_mora_land = fields.Float(string="Precio Mora", default=10)
 

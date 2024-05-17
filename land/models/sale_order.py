@@ -95,8 +95,6 @@ class SaleOrder(models.Model):
 
                 record.date_first_due_land = date_next
 
-
-
     def show_lot_availables(self):
         return
 
@@ -139,7 +137,7 @@ class SaleOrder(models.Model):
             if m2:
                 record.m2_land = m2
 
-
+    @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
     def update_schedule(self):
         for record in self:
             if record.start_date_schedule_land:

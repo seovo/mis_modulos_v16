@@ -64,7 +64,7 @@
                             <span t-esc="order.nro_internal_land"/>
                         </td>
                         <t t-foreach="order.schedule_land_ids" t-as="schedule">
-                            <td>
+                            <td t-if="schedule.is_paid">
                                <div class="card" style="width: 18rem;">
                                    <div class="card-body">
                                       <h5 class="card-title">Card title</h5>

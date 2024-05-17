@@ -8,7 +8,8 @@ class ScheduleDuesLand(models.Model):
     balan          = fields.Float(string="Balance")
     amount         = fields.Float(string="Mensualidad")
     note           = fields.Text(string="Nota")
-    is_paid           = fields.Boolean(string="Pagado?")
+    is_paid        = fields.Boolean(string="Pagado?")
     order_id       = fields.Many2one('sale.order')
+    move_id        = fields.Many2one('account.move')
 
 
