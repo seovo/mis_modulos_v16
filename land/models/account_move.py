@@ -17,7 +17,7 @@ class AccountMove(models.Model):
     narration_str = fields.Text(compute="get_narration",store=True)
     bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias")
     is_separation_land = fields.Boolean(string="Es una Separación Terreno")
-    is_initial_land = fields.Boolean(string="Es Inicial Terreno")
+    is_initial_land = fields.Boolean(string="Es Inicial Terreno",compute='get_is_initial_land')
     days_expired_land = fields.Integer()
     value_mora_land = fields.Float(string="Precio Mora", default=10)
 
@@ -39,6 +39,28 @@ class AccountMove(models.Model):
     sector_land_separation = fields.Char(string="Etapa")
     sale_order_count_store = fields.Integer(related='sale_order_count',store=True)
     days_count_expired_separation = fields.Integer(compute='get_days_count_expired_separation',string="Dias Expirados")
+    amount_due_land = fields.Float(compute='get_is_initial_land')
+    amount_mora_land = fields.Float(compute='get_is_initial_land')
+
+    @api.depends('invoice_line_ids')
+    def get_is_initial_land(self):
+        for record in self:
+            is_initial = False
+            amount_mora = 0
+            amount_due = 0
+
+            for line in record.invoice_line_ids:
+                if line.product_id.is_advanced_land:
+                    is_initial = True
+
+                if line.product_id.is_mora_land:
+                    amount_mora += line.price_total
+                else:
+                    amount_due += line.price_total
+
+            record.is_initial_land = is_initial
+            record.amount_due_land = amount_due
+            record.amount_mora_land = amount_mora
 
     def get_days_count_expired_separation(self):
         for record in self:

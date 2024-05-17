@@ -33,8 +33,10 @@
                                     <field name="nro_internal_land" />
                                     <field name="name" />
                                     <field name="seller_land_id" />
-                                    <field name="amount_total" />
                                     <field name="state" />
+                                    <field name="amount_total" />
+                                    <field name="total_payment_land" />
+                                    <field name="saldo_payment_land" />
                                 </tree>
                             </field>
 

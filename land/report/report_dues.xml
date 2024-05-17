@@ -45,16 +45,23 @@
                        <tr>
                            <th>Contrato</th>
 
-                           <t t-foreach=" list(range(1, doc.dues_max + 1 )) " t-as="cuota">
+
+
+                           <t t-foreach=" list(range(1, doc.dues_payment_max + 1 )) " t-as="cuota">
 
                                  <th>CUOTA <t t-esc="cuota" /></th>
 
+
+
                            </t>
+
+
 
 
                            <th>Credito</th>
                            <th>Abono</th>
                            <th>Saldo</th>
+                           <th>Contrato</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,12 +70,20 @@
                         <td>
                             <span t-esc="order.nro_internal_land"/>
                         </td>
+
+                        <t t-set="count_th" t-value="0" />
+
                         <t t-foreach="order.schedule_land_ids" t-as="schedule">
                             <td t-if="schedule.is_paid">
-                               <div class="card" style="width: 18rem;">
-                                   <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <t t-set="count_th" t-value="count_th + 1" />
+                               <div >
+                                   <div >
+                                      <h5 class="card-title">
+                                          <b><span t-field="schedule.move_id.amount_due_land"/></b>
+                                      </h5>
+                                       <p >Mora:<span t-field="schedule.move_id.amount_mora_land"/></p>
+                                       <p >Fecha Pago: <span t-field="schedule.move_id.invoice_date"/></p>
+                                       <p >Programado: <span t-field="schedule.date"/></p>
                                    </div>
                                 </div>
 
@@ -76,18 +91,30 @@
 
                         </t>
 
+                        <t t-set="diff" t-value="doc.dues_payment_max - count_th" />
+
+                           <t t-foreach=" list(range(1, diff + 1 )) " t-as="cuota">
+
+                                 <th></th>
+
+                           </t>
+
                         <td>
-                            <span t-field="order.amount_total"/>
+                            <span t-esc="order.price_credit_land" />
                         </td>
+
                         <td>
-                            <span t-field="order.amount_total"/>
+                            <span t-esc="order.total_payment_land" />
                         </td>
+
                         <td>
-                            <span t-field="order.amount_total"/>
+                            <span t-esc="order.saldo_payment_land" />
                         </td>
+
                         <td>
-                            <span t-field="order.amount_total"/>
+                            <span t-esc="order.nro_internal_land"/>
                         </td>
+
                     </tr>
                 </t>
                     </tbody>

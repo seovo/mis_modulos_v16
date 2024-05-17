@@ -70,6 +70,9 @@ class SaleOrder(models.Model):
     lot_land = fields.Char(compute="get_info_land",store=True,string="Lote Terreno")
     sector_land = fields.Char(compute="get_info_land", store=True, string="Etapa Terreno")
     m2_land = fields.Char(string="AREA (m2)")
+    total_payment_land = fields.Float(string='Total Pagado Cuotas')
+    saldo_payment_land = fields.Float(string='Saldo Cuotas')
+
     
 
 
@@ -145,6 +148,7 @@ class SaleOrder(models.Model):
                 total_dues = 0
                 price_unit = 0
                 qty_invoiced = 0
+                total_payment = 0
 
                 for line in record.order_line:
                     if line.product_id.payment_land_dues:
@@ -185,12 +189,39 @@ class SaleOrder(models.Model):
                                 raise ValueError(dx)
 
                 if record.schedule_land_ids :
+
+                    invoices = self.env['account.move'].search([
+                        ('id', 'in', record.invoice_ids.ids),
+                        ('is_initial_land', '=', False),
+
+                    ], order='invoice_date asc')
+
+                    invoicesx = []
+                    for inv in invoices:
+                        if inv.is_initial_land:
+                            continue
+                        invoicesx.append(inv)
+
                     i = 0
                     for linex in record.schedule_land_ids :
-                        linex.update({'is_paid' : True if (i + 1) <= qty_invoiced else False})
+                        linex.update({
+                            'is_paid' : True if (i + 1) <= qty_invoiced else False ,
+
+                        })
+                        try:
+                            linex.update({
+                                'move_id': invoicesx[i].id
+                            })
+                            total_payment += invoicesx[i].amount_due_land
+
+                        except:
+                            linex.update({
+                                'move_id': False
+                            })
                         i += 1
 
-
+                    record.total_payment_land = round(total_payment,2)
+                    record.saldo_payment_land = round( record.price_credit_land - total_payment , 2 )
 
 
     @api.depends('date_first_due_land')

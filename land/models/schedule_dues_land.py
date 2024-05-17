@@ -13,3 +13,7 @@ class ScheduleDuesLand(models.Model):
     move_id        = fields.Many2one('account.move')
 
 
+
+
+
+
