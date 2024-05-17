@@ -26,17 +26,17 @@
                     <notebook>
                         <page string="Sales" name="order_ids">
                             <field name="order_ids"
-                                   readonly="1"
-                                   force_save="1"
                             >
                                 <tree string="Sales" >
                                     <field name="nro_internal_land" />
                                     <field name="name" />
                                     <field name="seller_land_id" />
                                     <field name="state" />
+                                    <field name="qty_dues_payment" />
                                     <field name="amount_total" />
                                     <field name="total_payment_land" />
                                     <field name="saldo_payment_land" />
+
                                 </tree>
                             </field>
 

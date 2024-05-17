@@ -60,6 +60,9 @@
                                     <field name="amount" readonly="1"   />
                                     <field name="note"  readonly="1"  />
                                     <field name="is_paid" readonly="1"   />
+                                    <field name="amount_due_land"  />
+                                    <field name="amount_mora_land"  />
+                                    <field name="note"  />
                                 </tree>
                        </field>
 

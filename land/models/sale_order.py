@@ -72,6 +72,15 @@ class SaleOrder(models.Model):
     m2_land = fields.Char(string="AREA (m2)")
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
+    qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
+
+    def get_qty_dues_payment(self):
+        for record in self:
+            qty = 0
+            for line in record.order_line:
+                if line.product_id.payment_land_dues:
+                    qty += line.qty_invoiced
+            record.qty_dues_payment = qty
 
     
 
