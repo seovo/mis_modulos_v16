@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="product"
+        inherit_id="website_sale.product"
+    >
+        <xpath
+            expr="//div[@id='o_product_terms_and_share']"
+            position="before"
+        >
+            <div id="container_stock_warehouses">
+                <t t-if="stock_warehouses" >
+                    <div class="alert alert-primary" role="alert">
+                   Stock Disponible
+                </div>
+                    <ul class="list-group" >
+                    <t t-foreach="stock_warehouses" t-as="stock_wa">
+                      <li class="list-group-item"><t t-esc="stock_wa['warehouse']" /> : <t t-esc="stock_wa['stock']" /></li>
+                    </t>
+                </ul>
+                </t>
+
+            </div>
+
+
+
+        </xpath>
+    </template>
+</odoo>
