@@ -7,14 +7,14 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     nro_internal_land =  fields.Char(string="Expediente")
     mz_lot            =  fields.Char(string="MZ - LOTE")
-    sector  =  fields.Char()
-    stage_land = fields.Selection([
+    sector            =  fields.Char()
+    stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
         ('cancel',_('Resuelto o Cancelado'))
     ])
-    dues_land = fields.Float(string="Cuotas")
-    value_due_land = fields.Float(string="Precio Cuotas")
-    crono_land = fields.Char(string="Crono")
+    dues_land            = fields.Float(string="Cuotas")
+    value_due_land       = fields.Float(string="Precio Cuotas")
+    crono_land           = fields.Char(string="Crono")
     days_tolerance_land  = fields.Integer(string="Gracia",default=3)
     value_mora_land = fields.Float(string="Precio Mora",default=10)
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
@@ -56,7 +56,7 @@ class SaleOrder(models.Model):
         ('initial','Inicial'),
         ('dues','Cuotas'),
         ('completed','Completada')
-    ],compute='_get_stage_payment_land',store=True)
+    ],compute='_get_stage_payment_land',store=True,string='Etapa Terreno')
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
@@ -74,6 +74,18 @@ class SaleOrder(models.Model):
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
 
+    def show_dues_land(self):
+        return {
+            "name": f"PAGOS",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "view_id": self.env.ref('land.view_order_form_due').id ,
+            "res_model": "sale.order",
+            "res_id": self.id,
+            "target": "new",
+
+        }
+
     def get_qty_dues_payment(self):
         for record in self:
             qty = 0
@@ -81,8 +93,6 @@ class SaleOrder(models.Model):
                 if line.product_id.payment_land_dues:
                     qty += line.qty_invoiced
             record.qty_dues_payment = qty
-
-    
 
 
     @api.onchange('price_total_land','price_initial_land')

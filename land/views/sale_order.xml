@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <record id="view_order_form_due" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                           <group>
+                               <field name="amount_total" />
+                               <field name="price_initial_land" string="Inicial" />
+                           </group>
+                           <group>
+                               <field name="price_credit_land" string="Credito" />
+                               <field name="total_payment_land" string="Abonado" />
+                               <field name="saldo_payment_land"  string="Saldo" />
+
+                           </group>
+
+
+                       </group>
+                       <notebook>
+                           <page string="Cronograma" name="cronograma">
+                       <field name="schedule_land_ids"
+                              create="false"
+                              delete="false"
+                            >
+                                <tree string="Sales" readonly="1" >
+                                    <field name="number_due" readonly="1"  />
+                                    <field name="date" readonly="1" />
+                                    <field name="invoice_date" />
+                                    <field name="balan" readonly="1"  />
+                                    <field name="amount" readonly="1"   />
+                                    <field name="note"  readonly="1"  />
+                                    <field name="is_paid" readonly="1"   />
+
+                                    <field name="amount_due_land"  />
+                                    <field name="amount_mora_land"  />
+
+                                </tree>
+                       </field>
+
+
+
+
+                   </page>
+                       </notebook>
+                   </sheet>
+               </form>
+
+           </field>
+    </record>
+
+
     <record id="view_order_form" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order</field>
