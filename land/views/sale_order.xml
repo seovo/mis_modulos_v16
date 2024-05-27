@@ -4,6 +4,7 @@
     <record id="view_order_form_due" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order</field>
+           <field name="priority">1000</field>
 
            <field name="arch" type="xml">
                <form>
@@ -101,6 +102,7 @@
                            <field name="last_payment_date_land" />
                            <field name="next_payment_date_land" />
                            <field name="days_expired_land" />
+                           <field name="commision_land" />
                        </group>
                    </page>
                    <page string="Cronograma">

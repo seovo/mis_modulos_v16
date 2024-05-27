@@ -10,6 +10,12 @@
                    <field name="is_advanced_land" />
                    <field name="is_mora_land" />
                </xpath>
+
+               <xpath expr="//button[@name='open_pricelist_rules']" position="after" >
+                   <button class="oe_stat_button" name="open_lots_report"
+                           icon="fa-list-ul"  type="object" string="Lotes" />
+
+               </xpath>
            </field>
     </record>
 

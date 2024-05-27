@@ -22,9 +22,40 @@ class ProductTemplate(models.Model):
     dues_qty            = fields.Integer(string="N° Cuotas")
     is_advanced_land    = fields.Boolean(string="Adelanto Terreno")
     is_mora_land        = fields.Boolean(string="Mora")
+    report_lot_land_line_ids = fields.One2many('report.lot.land.line','product_tmp_id')
 
+    def open_lots_report(self):
 
+        mzs = None
 
+        for attribute_line in self.attribute_line_ids:
+            if attribute_line.attribute_id.type_land == 'mz':
+                mzs = attribute_line
+
+        if mzs:
+
+            for mz in mzs.product_template_value_ids:
+
+                if mz.max_lot > 0 and not mz.report_lot_land_line_ids:
+
+                    for n in range(mz.max_lot):
+                        self.env['report.lot.land.line'].create({
+                            'name': n + 1,
+                            'mz_value_id': mz.id,
+                            'product_tmp_id': self.id
+                        })
+
+        return {
+            "name": f"LOTES",
+            "type": "ir.actions.act_window",
+            "view_mode": "tree",
+            #"view_id": self.env.ref('land.view_order_form_due').id,
+            "res_model": "report.lot.land.line",
+            "res_id": self.id,
+            "target": "current",
+            "domain": [('product_tmp_id','=',self.id)]
+
+        }
 
 
     def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):

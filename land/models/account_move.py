@@ -9,7 +9,7 @@ CURRENCY = {
 from datetime import datetime, timedelta
 class AccountMoveLine(models.Model):
     _inherit                 = 'account.move.line'
-    commision_id             = fields.Many2one('commission.land')
+
 class AccountMove(models.Model):
     _inherit = 'account.move'
     narration_text = fields.Text()

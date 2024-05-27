@@ -11,7 +11,7 @@ class CommissionRiman(models.Model):
     date_end              = fields.Date(string="Fecha Final",required=True)
     user_id               = fields.Many2one('res.users',string="Vendedor",required=True)
     goal                  = fields.Float(string="Meta",required=True)
-    account_move_line_ids = fields.One2many('account.move.line', 'commision_id')
+    sale_order_ids        = fields.One2many('sale.order', 'commision_id')
     state                 = fields.Selection(
         [('draft','Borrador'),('done','Realizado'),('cancel','Cancel')],
         default='draft'
@@ -63,9 +63,6 @@ class CommissionRiman(models.Model):
         return result
 
 
-
-
-
     @api.onchange('user_id')
     def onchange_user_id(self):
         for record in self:
@@ -85,54 +82,42 @@ class CommissionRiman(models.Model):
         for record in self:
             if record.date_start and record.date_end and record.user_id and record.goal:
                 domain = [
-                    ('sale_line_ids','!=',False),
-                    ('move_id.invoice_user_id','=',record.user_id.id),
-                    ('move_id.invoice_date','>=',record.date_start),
-                    ('move_id.invoice_date', '<=', record.date_end),
-                    ('move_id.state','in',['posted']),
+                    #('sale_line_ids','!=',False),
+                    ('user_id','=',record.user_id.id),
+                    ('date_order','>=',record.date_start),
+                    ('date_order', '<=', record.date_end),
+                    ('state','not in',['draft','cancel']),
                     #('commision_id.state','!=','done')
                 ]
-                sale_lines = self.env['account.move.line'].search(domain)
+                sales = self.env['sale.order'].search(domain)
 
                 ids_sales = []
 
                 total_base = 0
+                comission_amount = 0
                 overrun_sale = 0
 
-                for line in sale_lines:
-                    if line.commision_id and line.commision_id == 'done':
+                for sale in sales:
+                    if sale.commision_id and sale.commision_id.state == 'done':
                         continue
-                    '''
-                    price_unit = line.price_unit
-                    
-                    price_origin = line.price_unit_origin
-                    if not price_origin or price_origin == 0:
-                        price_origin = line.price_unit
-                        sql = f''UPDATE account_move_line   SET price_unit_origin = {price_origin}  WHERE id = {line.id}''
-                        self.env.cr.execute(sql)
-                        #line.price_unit_origin = price_unit
 
-                    diffx = price_unit - price_origin
-                    sql = f''UPDATE account_move_line   SET diff_price = {diffx}  WHERE id = {line.id}''
-                    self.env.cr.execute(sql)
-                    #line.diff_price = diffx
-                    '''
 
-                    ids_sales.append(line.id)
+                    ids_sales.append(sale.id)
 
                     #line.get_price_subtotal_origin()
 
-                    total_base += line.price_subtotal
+                    total_base += sale.amount_total
+                    comission_amount += sale.commision_land
                     #overrun_sale += line.price_subtotal_overrun
-                self.account_move_line_ids = [(6, 0, ids_sales)] if ids_sales else None
+                self.sale_order_ids = [(6, 0, ids_sales)] if ids_sales else None
 
                 #raise ValueError(total_base)
 
                 self.amount_total_base_sale = total_base
-                self.comission_amount_total_base_sale = total_base * ( record.percentage_total_base_sale / 100 )
+                self.comission_amount_total_base_sale = comission_amount
                 #self.overrun_sale = overrun_sale
                 #self.comission_overrun_sale = overrun_sale * ( record.percentage_overrun_sale / 100 )
-                self.amount_total = self.comission_amount_total_base_sale
+                self.amount_total = comission_amount
     def action_cancel(self):
         self.state = 'cancel'
 

@@ -23,3 +23,10 @@ class ProductAttributeValue(models.Model):
     _inherit = 'product.attribute.value'
     type_land = fields.Selection(related='attribute_id.type_land')
     value_land = fields.Float()
+
+class ProductTemplateAttributeValue(models.Model):
+    _inherit = 'product.template.attribute.value'
+    max_lot = fields.Integer(string='Cantidad Lotes')
+    report_lot_land_line_ids = fields.One2many('report.lot.land.line', 'mz_value_id')
+
+

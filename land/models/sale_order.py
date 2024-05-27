@@ -73,6 +73,9 @@ class SaleOrder(models.Model):
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
+    commision_land     = fields.Float(string='Commision Terreno',default=1500)
+    commision_id       = fields.Many2one('commission.land')
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line')
 
     def show_dues_land(self):
         return {
