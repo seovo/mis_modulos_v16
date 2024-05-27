@@ -41,6 +41,28 @@ class AccountMove(models.Model):
     days_count_expired_separation = fields.Integer(compute='get_days_count_expired_separation',string="Dias Expirados")
     amount_due_land = fields.Float(compute='get_is_initial_land')
     amount_mora_land = fields.Float(compute='get_is_initial_land')
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line', compute='get_report_lot_land_line_id', store=True)
+
+    @api.depends('mz_land_separation', 'lot_land_separation')
+    def get_report_lot_land_line_id(self, product_tmp=None):
+        for record in self:
+            if not product_tmp:
+                product_tmp = self.env['product.template'].search(
+                    [('company_id', '=', record.company_id.id), ('payment_land_dues', '=', True)])
+                if not product_tmp:
+                    product_tmp = self.env['product.template'].search(
+                        [('payment_land_dues', '=', True), ('attribute_line_ids', '!=', False)])
+
+            line = None
+            # raise ValueError(product_tmp)
+
+            if record.mz_land_separation and record.lot_land_separation:
+                line = self.env['report.lot.land.line'].search([
+                    ('mz_value_id.name', '=', record.mz_land_separation),
+                    ('name', '=', str(int(record.lot_land_separation))),
+                    ('product_tmp_id', '=', product_tmp.id)
+                ])
+            record.report_lot_land_line_id = line
 
     @api.depends('invoice_line_ids')
     def get_is_initial_land(self):

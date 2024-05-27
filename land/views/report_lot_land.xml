@@ -3,7 +3,14 @@
         <field name="name">report.lot.land.line.tree</field>
         <field name="model">report.lot.land.line</field>
         <field name="arch" type="xml">
-            <tree editable="bottom" >
+            <tree
+                    decoration-danger="state in ['sale']"
+                    decoration-success="state in ['free']"
+                    decoration-warning="state in ['reserved']"
+
+                    editable="bottom" >
+
+                <!-- decoration-info="state in ['draft', 'sent']" decoration-muted="state == 'cancel'" -->
 
                 <field name="mz_value_id" optional="hidden" />
                 <field name="name"   />
@@ -14,6 +21,16 @@
                 <field name="large2"   />
                 <field name="background"   />
                 <field name="price"   />
+
+                <field name="state"
+
+                       decoration-danger="state in ['sale']"
+                       decoration-success="state in ['free']"
+                       decoration-warning="state in ['reserved']"
+
+                       widget="badge" optional="show"/>
+                <field name="order_ids" widget="many2many_tags" optional="show" />
+                <field name="move_ids" widget="many2many_tags" optional="show" />
 
 
 

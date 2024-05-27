@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
     stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
         ('cancel',_('Resuelto o Cancelado'))
-    ])
+    ],string="Estado Terreno")
     dues_land            = fields.Float(string="Cuotas")
     value_due_land       = fields.Float(string="Precio Cuotas")
     crono_land           = fields.Char(string="Crono")
@@ -75,7 +75,33 @@ class SaleOrder(models.Model):
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
     commision_land     = fields.Float(string='Commision Terreno',default=1500)
     commision_id       = fields.Many2one('commission.land')
-    report_lot_land_line_id = fields.Many2one('report.lot.land.line')
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
+
+
+    @api.depends('mz_land','lot_land','state','mz_lot','note')
+    def get_report_lot_land_line_id(self,product_tmp=None):
+
+        for record in self:
+            if not  product_tmp:
+                product_tmp = self.env['product.template'].search(
+                    [('company_id', '=', record.company_id.id), ('payment_land_dues', '=', True)])
+                if not product_tmp:
+                    product_tmp = self.env['product.template'].search(
+                        [('payment_land_dues', '=', True), ('attribute_line_ids', '!=', False)])
+
+            line = None
+
+            #raise ValueError(product_tmp)
+
+            if record.mz_land and record.lot_land:
+                line = self.env['report.lot.land.line'].search([
+                    ('mz_value_id.name','=',record.mz_land),
+                    ('name','=',str(int(record.lot_land))),
+                    ('product_tmp_id','=',product_tmp.id)
+                ])
+            record.report_lot_land_line_id = line
+
+
 
     def show_dues_land(self):
         return {

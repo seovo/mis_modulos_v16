@@ -35,8 +35,27 @@ class ReportLotLandLine(models.Model):
     large2             = fields.Float(string='Largo 2')
     background         = fields.Float(string='Fondo')
     price              = fields.Float(string='Precio')
-    order_ids          = fields.One2many('sale.order','report_lot_land_line_id')
-    product_tmp_id = fields.Many2one('product.template', string='Producto')
+    order_ids          = fields.One2many('sale.order','report_lot_land_line_id',string="Ventas")
+    move_ids           = fields.One2many('account.move','report_lot_land_line_id',string="Separaciones")
+    product_tmp_id     = fields.Many2one('product.template', string='Producto')
+    state              =  fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
+                                           compute='get_state',store=True,string="Estado")
+
+    @api.depends('order_ids','move_ids')
+    def get_state(self):
+        for record in self:
+            state = 'free'
+
+            for move in record.move_ids:
+                if move.state in ['posted']:
+                    state = 'reserved'
+
+            for order in record.order_ids:
+                if order.state in ['done','sale']:
+                    if order.stage_land == 'signed':
+                        state = 'sale'
+            record.state = state
+
 
     _sql_constraints = [
         (

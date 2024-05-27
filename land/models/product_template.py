@@ -26,6 +26,10 @@ class ProductTemplate(models.Model):
 
     def open_lots_report(self):
 
+        orders = self.env['sale.order'].search([])
+        if orders:
+            orders.get_report_lot_land_line_id(self)
+
         mzs = None
 
         for attribute_line in self.attribute_line_ids:
