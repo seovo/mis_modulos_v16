@@ -18,6 +18,8 @@ class ProductTemplate(models.Model):
         pricelist = website.pricelist_id
         if pricelist:
 
+            raise ValueError(pricelist)
+
             domain = [('pricelist_id','=',int(pricelist.id)),('compute_price','=','fixed')]
 
             domainx = domain+[('product_id','=',int(res['product_id']))]
