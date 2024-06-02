@@ -57,7 +57,10 @@ class ProductTemplate(models.Model):
             "res_model": "report.lot.land.line",
             "res_id": self.id,
             "target": "current",
-            "domain": [('product_tmp_id','=',self.id)]
+            "domain": [('product_tmp_id','=',self.id)] ,
+            "context": {
+                'search_default_gr_mz_value_id' : 1
+            }
 
         }
 

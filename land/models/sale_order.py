@@ -19,8 +19,8 @@ class SaleOrder(models.Model):
     value_mora_land = fields.Float(string="Precio Mora",default=10)
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
 
-    date_sign_land = fields.Date(string="Fecha Firma del Contrato",required=True)
-    date_first_due_land = fields.Date(string="Fecha Primera Cuota",required=True)
+    date_sign_land = fields.Date(string="Fecha Firma del Contrato")
+    date_first_due_land = fields.Date(string="Fecha Primera Cuota")
     start_date_schedule_land = fields.Date(compute="get_start_date_schedule_land",store=True)
 
     modality_land = fields.Selection([
@@ -62,7 +62,7 @@ class SaleOrder(models.Model):
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
-                                              string="Periodo de Facturación",required=True)
+                                              string="Periodo de Facturación")
     #compute='get_start_date_schedule_land
 
     schedule_land_ids = fields.One2many('schedule.dues.land','order_id')

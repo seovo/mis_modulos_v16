@@ -1,4 +1,20 @@
 <odoo>
+
+    <record model="ir.ui.view" id="report_report_lot_land_line_search" >
+        <field name="name">report.lot.land.line.search</field>
+        <field name="model">report.lot.land.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Manzana" name="gr_mz_value_id" context="{'group_by': 'mz_value_id'}"/>
+                    <filter string="Estado" name="gr_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
     <record model="ir.ui.view" id="report_report_lot_land_line_tree" >
         <field name="name">report.lot.land.line.tree</field>
         <field name="model">report.lot.land.line</field>
