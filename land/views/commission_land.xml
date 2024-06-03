@@ -61,11 +61,12 @@
                         <group>
                             <field name="user_id"  attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
                             <field name="type_period_comission"  />
-                            <field name="date"  />
+                            <field name="date_commission"  />
                         </group>
                         <group>
                             <field name="date_start" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
                             <field name="date_end" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
+                            <field name="team_id"  />
 
                         </group>
 
@@ -78,15 +79,17 @@
 
                     <notebook>
                         <page string="Sales" name="account_move_line_ids">
-                            <field name="sale_order_ids"
-                                   readonly="1"
-                                   force_save="1"
+                            <field name="line_ids"
+
                             >
-                                <tree string="Sales" >
+                                <tree string="Commisiones"  editable="bottom">
+                                    <field name="sale_id" />
                                     <field name="nro_internal_land" />
-                                    <field name="name" />
-                                    <field name="state" />
                                     <field name="commision_lan" />
+                                    <field name="amount" />
+                                    <field name="desc" />
+                                    <field name="subtotal" />
+
                                 </tree>
                             </field>
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
@@ -96,14 +99,10 @@
                                           nolabel="1" placeholder="Observaciones..."/>
                             </group>
                             <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                                <field name="amount_total_base_sale" readonly="1" force_save="1" />
-                                <field name="percentage_total_base_sale"  readonly="1" force_save="1" />
-                                <field name="comission_amount_total_base_sale"  readonly="1" force_save="1" />
-                                <!--
-                                <field name="overrun_sale"  readonly="1" force_save="1" />
-                                <field name="percentage_overrun_sale"  readonly="1" force_save="1" />
-                                <field name="comission_overrun_sale"  readonly="1" force_save="1" />
-                                -->
+                                <field name="amount_base" readonly="1" force_save="1" />
+                                <field name="amount_discount"  readonly="1" force_save="1" />
+                                <field name="amount_bonus"  readonly="1" force_save="1" />
+
                                 <field name="amount_total"  readonly="1" force_save="1" />
                             </group>
                             <div class="clearfix"/>

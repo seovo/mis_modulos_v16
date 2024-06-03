@@ -278,5 +278,17 @@
               id="menu_sale_dues_complete"
               parent="sale.sale_order_menu" />
 
+    <record id="action_sale_resueltos" model="ir.actions.act_window">
+        <field name="name">Expendientes Resueltos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('stage_land','=','cancel')]</field>
+    </record>
+
+    <menuitem action="action_sale_resueltos"
+              id="menu_sale_dues_resueltos"
+              parent="sale.sale_order_menu" />
+
 
 </odoo>
