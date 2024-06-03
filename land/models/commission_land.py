@@ -140,7 +140,7 @@ class CommissionRiman(models.Model):
 
             bonus = 0
 
-            if record.team_id.number_sale_additional_commision >= len_lines:
+            if record.team_id.number_sale_additional_commision >= len_lines and   record.user_id in record.team_id.members_additional_commision  :
                 bonus = record.team_id.amount_sale_additional_commision
 
             record.amount_bonus = bonus
