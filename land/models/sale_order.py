@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
     sector            =  fields.Char()
     stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
+        ('preaviso',_('Carta Preaviso')),
         ('cancel',_('Resuelto o Cancelado'))
     ],string="Estado Terreno")
     dues_land            = fields.Float(string="Cuotas")
@@ -61,6 +62,8 @@ class SaleOrder(models.Model):
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
+    mounth_expired_land = fields.Integer(string="Meses Vencidos", compute="get_last_payment_date_land",store=True)
+
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación")
     #compute='get_start_date_schedule_land
@@ -292,6 +295,7 @@ class SaleOrder(models.Model):
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
         for record in self:
+            date_now = fields.Datetime.now().date()
             date = None
             for invoice in record.invoice_ids:
                 if invoice.state == 'posted':
@@ -304,6 +308,18 @@ class SaleOrder(models.Model):
 
             #    date = record.date_first_due_land + relativedelta(months=1)
             record.last_payment_date_land = date
+
+            diff_month =  0
+
+            if date:
+                date1 = date_now
+                date2 = date
+                diff_month = (date1.year - date2.year) * 12 + (date1.month - date2.month)
+
+
+
+
+            record.mounth_expired_land = diff_month
 
             date_next = None
 
@@ -331,7 +347,7 @@ class SaleOrder(models.Model):
 
             diff_days  = 0
 
-            date_now = fields.Datetime.now().date()
+
 
 
 

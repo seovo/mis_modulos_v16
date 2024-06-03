@@ -11,6 +11,7 @@
                    <sheet>
                        <group>
                            <group>
+                               <field name="nro_internal_land" />
                                <field name="amount_total" />
                                <field name="price_initial_land" string="Inicial" />
                            </group>
@@ -77,7 +78,7 @@
                <xpath expr="//notebook" position="inside" >
                    <page string="Terreno Información" >
                        <group>
-                           <field name="nro_internal_land" />
+
                            <field name="mz_lot" />
                            <field name="sector" />
                            <field name="stage_land" />
@@ -88,7 +89,7 @@
                            <field name="days_tolerance_land" />
                            <field name="value_mora_land" />
                            <field name="percentage_refund_land" />
-                           <field name="date_sign_land" />
+
 
                            <field name="start_date_schedule_land" />
                            <field name="modality_land" />
@@ -135,6 +136,8 @@
                    <field name="date_sign_land" />
                    <field name="type_periodo_invoiced" />
                    <field name="date_first_due_land" />
+
+                   <field name="nro_internal_land" />
 
 
                    <field name="mz_land" />

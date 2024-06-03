@@ -17,9 +17,16 @@
 
 
                     <group>
-                        <field name="name" />
-                        <field name="type_periodo_invoiced"  />
-                        <field name="seller_land_id"  widget="many2many_tags"  />
+                        <group>
+                            <field name="name" />
+                            <field name="seller_land_id"  widget="many2many_tags"  />
+                        </group>
+                        <group>
+                            <field name="type_periodo_invoiced"  />
+                        </group>
+
+
+
                        <!-- <field name="company_id"   readonly="1" force_save="1" />  -->
                     </group>
 
@@ -27,12 +34,22 @@
                         <page string="Sales" name="order_ids">
                             <field name="order_ids"
                             >
-                                <tree string="Sales" >
+                                <tree string="Ventas"
+                                      decoration-danger="mounth_expired_land >= 3"
+                                       decoration-warning="mounth_expired_land >= 2"
+                                >
                                     <field name="nro_internal_land" />
+                                    <field name="mz_lot" />
+                                    <field name="last_payment_date_land" />
+                                    <field name="mounth_expired_land" />
+                                    <field name="next_payment_date_land" />
+                                    <field name="days_expired_land" />
+
                                     <!--<field name="name" optional="hiden" /> -->
                                     <field name="seller_land_id" />
-                                    <field name="stage_payment_lan" optional="show" />
-                                    <!-- <field name="state" optional="hiden" /> -->
+
+
+                                    <field name="stage_land" widget="badge" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
                                     <button name="show_dues_land" string="Pagos" type="object" />
