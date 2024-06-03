@@ -67,8 +67,10 @@
                            <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
                                <t t-set="cont" t-value="cont + 1 " />
 
-                               <t t-if="cont == 36" />
-                               <div style="page-break-after: always;"/>
+                               <t t-if="cont == 36" >
+                                   <div style="page-break-after: always;"/>
+                               </t>
+
 
 
                                <tr  t-attf-class="
