@@ -72,7 +72,7 @@
                                 #{'alert-warning' if lot.state == 'reserved' else ''}
 
                                ">
-                                  <th scope="col"><t t-esc="lot.name" /></th>
+                                  <th scope="col"><t t-esc="manzana_val.name" /> - <t t-esc="lot.name" /></th>
                                   <th scope="col"><t t-esc="lot.shape" /></th>
                                   <th scope="col"><t t-esc="lot.area" /></th>
                                   <th scope="col"><t t-esc="lot.front" /></th>
