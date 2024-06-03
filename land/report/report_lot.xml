@@ -31,8 +31,96 @@
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc"/>
             <div class="page">
+
+                <t t-set ="state_array" t-value="{
+                                          'sale' : 'VENDIDO' ,
+                                          'free' : 'LIBRE' ,
+                                          'reserved' : 'SEPARADO'
+                                      }" />
                 <div class="oe_structure"/>
                 <center><h1>REPORTE LOTES</h1></center>
+
+                <t t-foreach="doc.product_template_attribute_value_ids" t-as="manzana_val">
+                    <t t-if="manzana_val.attribute_id.type_land == 'mz'">
+                        <table class="table mb-4" t-if="manzana_val.attribute_id.type_land == 'mz'">
+                       <thead>
+
+                           <tr class="bg-primary text-white" >
+                               <th colspan="9"
+                                   class=" text-center text-white"
+                               >MANZANA <t t-esc="manzana_val.name" /></th>
+                           </tr>
+
+                           <tr class="bg-primary text-white">
+                               <th scope="col" class="text-white">N° DE LOTE</th>
+                               <th scope="col" class="text-white">FORMA</th>
+                               <th scope="col" class="text-white">AREA</th>
+                               <th scope="col" class="text-white">FRENTE</th>
+                               <th scope="col" class="text-white">LARGO 1</th>
+                               <th scope="col" class="text-white">LARGO 2</th>
+                               <th scope="col" class="text-white">FONDO</th>
+                               <th scope="col" class="text-white">PRECIO</th>
+                               <th scope="col" class="text-white">ESTADO</th>
+
+                           </tr>
+                           <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
+
+
+                               <tr  t-attf-class="
+                                #{'alert-danger' if lot.state == 'sale' else ''}
+                                #{'alert-success' if lot.state == 'free' else ''}
+                                #{'alert-warning' if lot.state == 'reserved' else ''}
+
+                               ">
+                                  <th scope="col"><t t-esc="lot.name" /></th>
+                                  <th scope="col"><t t-esc="lot.shape" /></th>
+                                  <th scope="col"><t t-esc="lot.area" /></th>
+                                  <th scope="col"><t t-esc="lot.front" /></th>
+                                  <th scope="col"><t t-esc="lot.large1" /></th>
+                                  <th scope="col"><t t-esc="lot.large2" /></th>
+                                  <th scope="col"><t t-esc="lot.background" /></th>
+                                  <th scope="col"><t t-esc="lot.price" /></th>
+                                  <th scope="col">
+                                      <t t-esc="state_array[lot.state]" />
+                                  </th>
+                               </tr>
+
+                           </t>
+
+                           <tr  class=" alert-danger ">
+                               <th colspan="7" rowspan="3" >
+                                   <center>
+                                       MANZANA: <t t-esc="manzana_val.name" />
+                                   </center>
+
+                               </th>
+                               <th scope="col"  >VENDIDO </th>
+                               <th scope="col" class="alert-danger">5</th>
+                           </tr>
+                           <tr class=" alert-warning ">
+                               <th scope="col">SEPARADO</th>
+                               <th class="warning">4</th>
+                           </tr>
+                           <tr class=" alert-success ">
+                               <th scope="col" >LIBRE</th>
+                               <th >3</th>
+                           </tr>
+
+
+
+                       </thead>
+
+</table>
+
+                        <hr />
+                        <br />
+
+                    </t>
+
+
+                </t>
+
+
             </div>
         </t>
     </template>
@@ -41,14 +129,14 @@
 
     <record id="action_report_lot" model="ir.actions.report">
         <field name="name">REPORTE DE LOTES</field>
-        <field name="model">report.dues.land</field>
+        <field name="model">product.template</field>
         <field name="report_type">qweb-html</field>
         <field name="report_name">land.report_report_lots</field>
         <field name="report_file">land.report_report_lots</field>
-        <field name="print_report_name">(object.name or 'Appointment').replace('/','_')</field>
-        <field name="binding_model_id" ref="model_report_dues_land"/>
+        <field name="print_report_name">('Reporte_Lotes').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_product_template"/>
         <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="land.paperformat_id" />
+        <field name="paperformat_id" ref="land.paperformat_lot_id" />
     </record>
 
 

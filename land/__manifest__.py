@@ -27,6 +27,7 @@
         'report/report_dues.xml',
         'views/product_template_attribute_value.xml',
         "views/report_lot_land.xml",
+        'report/report_lot.xml',
 
     ],
     # 'uninstall_hook': 'uninstall_hook',

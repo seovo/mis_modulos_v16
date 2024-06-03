@@ -38,7 +38,7 @@ class ReportLotLandLine(models.Model):
     order_ids          = fields.One2many('sale.order','report_lot_land_line_id',string="Ventas")
     move_ids           = fields.One2many('account.move','report_lot_land_line_id',string="Separaciones")
     product_tmp_id     = fields.Many2one('product.template', string='Producto')
-    state              =  fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
+    state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
 
     @api.depends('order_ids','move_ids')

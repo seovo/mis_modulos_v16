@@ -23,6 +23,7 @@ class ProductTemplate(models.Model):
     is_advanced_land    = fields.Boolean(string="Adelanto Terreno")
     is_mora_land        = fields.Boolean(string="Mora")
     report_lot_land_line_ids = fields.One2many('report.lot.land.line','product_tmp_id')
+    product_template_attribute_value_ids = fields.One2many('product.template.attribute.value','product_tmpl_id')
 
     def open_lots_report(self):
 
