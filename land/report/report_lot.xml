@@ -67,7 +67,7 @@
                            <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
                                <t t-set="cont" t-value="cont + 1 " />
 
-                               <t t-if="cont <= 35" >
+                               <t t-if="cont &lt; 36" >
 
                                    <tr  t-attf-class="
                                 #{'alert-danger' if lot.state == 'sale' else ''}
@@ -96,7 +96,7 @@
 
                            </t>
 
-                           <t t-if="len(manzana_val.report_lot_land_line_ids) <= 35" >
+                           <t t-if="len(manzana_val.report_lot_land_line_ids) &lt; 36" >
                                <tr class=" alert-danger ">
                                <th colspan="7" rowspan="3" >
                                    <center>
