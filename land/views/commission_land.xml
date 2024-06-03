@@ -74,7 +74,7 @@
                                     <field name="nro_internal_land" />
                                     <field name="name" />
                                     <field name="state" />
-                                    <field name="commision_land" />
+                                    <field name="commision_lan" />
                                 </tree>
                             </field>
                             <group name="note_group" col="6" class="mt-2 mt-md-0">

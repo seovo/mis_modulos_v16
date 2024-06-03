@@ -7,6 +7,10 @@
            <field name="arch" type="xml">
                <xpath expr="//field[@name='member_company_ids']" position="after" >
                    <field name="commission_land"  />
+                   <field name="type_period_comission"  />
+                   <field name="number_sale_additional_commision"  />
+                   <field name="amount_sale_additional_commision"  />
+                   <field name="members_additional_commision"  widget="many2many_tags" />
                </xpath>
            </field>
     </record>

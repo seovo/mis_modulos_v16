@@ -103,7 +103,7 @@
                            <field name="last_payment_date_land" />
                            <field name="next_payment_date_land" />
                            <field name="days_expired_land" />
-                           <field name="commision_land" />
+                           <field name="commision_lan" />
                        </group>
                    </page>
                    <page string="Cronograma">

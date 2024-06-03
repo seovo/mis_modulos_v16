@@ -76,9 +76,20 @@ class SaleOrder(models.Model):
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
-    commision_land     = fields.Float(string='Commision Terreno',default=1500)
+    commision_lan     = fields.Float(string='Commision Terreno')
     commision_id       = fields.Many2one('commission.land')
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
+
+
+    @api.onchange('user_id')
+    def  change_team_comission(self):
+        for record in self:
+            teams = self.env['crm.team'].search([])
+            for team in teams:
+                if record.user_id in team.member_ids:
+                    record.commision_lan = team.commission_land
+
+
 
 
     @api.depends('mz_land','lot_land','state','mz_lot','note')
