@@ -63,57 +63,7 @@
                                <th scope="col" class="text-white">ESTADO</th>
 
                            </tr>
-                           <t t-set="cont" t-value="0" />
-                           <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
-                               <t t-set="cont" t-value="cont + 1 " />
 
-                               <t t-if="cont &lt; 36" >
-
-                                   <tr  t-attf-class="
-                                #{'alert-danger' if lot.state == 'sale' else ''}
-                                #{'alert-success' if lot.state == 'free' else ''}
-                                #{'alert-warning' if lot.state == 'reserved' else ''}
-
-                               ">
-                                  <th scope="col"><t t-esc="manzana_val.name" /> - <t t-esc="lot.name" /></th>
-                                  <th scope="col"><t t-esc="lot.shape" /></th>
-                                  <th scope="col"><t t-esc="lot.area" /></th>
-                                  <th scope="col"><t t-esc="lot.front" /></th>
-                                  <th scope="col"><t t-esc="lot.large1" /></th>
-                                  <th scope="col"><t t-esc="lot.large2" /></th>
-                                  <th scope="col"><t t-esc="lot.background" /></th>
-                                  <th scope="col"><t t-esc="lot.price" /></th>
-                                  <th scope="col">
-                                      <t t-esc="state_array[lot.state]" />
-                                  </th>
-                               </tr>
-
-                               </t>
-
-
-                           </t>
-
-                           <t t-if="len(manzana_val.report_lot_land_line_ids) &lt; 36" >
-                               <tr class=" alert-danger ">
-                               <th colspan="7" rowspan="3" >
-                                   <center>
-                                       MANZANA: <t t-esc="manzana_val.name" />
-                                   </center>
-
-                               </th>
-                               <th scope="col"  >VENDIDO </th>
-                               <th scope="col" class="alert-danger">5</th>
-                           </tr>
-                           <tr class=" alert-warning ">
-                               <th scope="col">SEPARADO</th>
-                               <th class="warning">4</th>
-                           </tr>
-                           <tr class=" alert-success ">
-                               <th scope="col" >LIBRE</th>
-                               <th >3</th>
-                           </tr>
-
-                           </t>
 
 
 
@@ -121,9 +71,70 @@
 
                        </thead>
 
+                       <tbody>
+
+                            <t t-set="cont" t-value="0" />
+                           <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
+                               <t t-set="cont" t-value="cont + 1 " />
+
+                               <t t-if="cont &lt; 135" >
+
+                                   <td  t-attf-class="
+                                #{'alert-danger' if lot.state == 'sale' else ''}
+                                #{'alert-success' if lot.state == 'free' else ''}
+                                #{'alert-warning' if lot.state == 'reserved' else ''}
+
+                               ">
+                                  <td scope="col"><t t-esc="manzana_val.name" /> - <t t-esc="lot.name" /></td>
+                                  <td scope="col"><t t-esc="lot.shape" /></td>
+                                  <td scope="col"><t t-esc="lot.area" /></td>
+                                  <td scope="col"><t t-esc="lot.front" /></td>
+                                  <td scope="col"><t t-esc="lot.large1" /></td>
+                                  <td scope="col"><t t-esc="lot.large2" /></td>
+                                  <td scope="col"><t t-esc="lot.background" /></td>
+                                  <td scope="col"><t t-esc="lot.price" /></td>
+                                  <td scope="col">
+                                      <t t-esc="state_array[lot.state]" />
+                                  </td>
+                               </td>
+
+                               </t>
+
+
+                           </t>
+
+                           <t t-if="len(manzana_val.report_lot_land_line_ids) &lt; 135" >
+                               <tr class=" alert-danger ">
+                               <td colspan="7" rowspan="3" >
+                                   <center>
+                                       MANZANA: <t t-esc="manzana_val.name" />
+                                   </center>
+
+                               </td>
+                               <td scope="col"  >VENDIDO </td>
+                               <td scope="col" class="alert-danger">5</td>
+                           </tr>
+                               <td class=" alert-warning ">
+                               <th scope="col">SEPARADO</th>
+                               <th class="warning">4</th>
+                           </td>
+                               <td class=" alert-success ">
+                               <th scope="col" >LIBRE</th>
+                               <th >3</th>
+                           </td>
+
+                           </t>
+
+                       </tbody>
+
                         </table>
 
                         <div style="page-break-after: always;" t-if="manzana_val.attribute_id.type_land == 'mz'" />
+
+
+
+
+
 
                     </t>
 
