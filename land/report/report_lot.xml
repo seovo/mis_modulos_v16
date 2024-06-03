@@ -67,13 +67,9 @@
                            <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
                                <t t-set="cont" t-value="cont + 1 " />
 
-                               <t t-if="cont == 35" >
-                                   <div style="page-break-after: always;"/>
-                               </t>
+                               <t t-if="cont <= 35" >
 
-
-
-                               <tr  t-attf-class="
+                                   <tr  t-attf-class="
                                 #{'alert-danger' if lot.state == 'sale' else ''}
                                 #{'alert-success' if lot.state == 'free' else ''}
                                 #{'alert-warning' if lot.state == 'reserved' else ''}
@@ -91,10 +87,17 @@
                                       <t t-esc="state_array[lot.state]" />
                                   </th>
                                </tr>
+                                   <div style="page-break-after: always;"/>
+                               </t>
+
+
+
+
 
                            </t>
 
-                           <tr class=" alert-danger ">
+                           <t t-if="len(manzana_val.report_lot_land_line_ids) <= 35" >
+                               <tr class=" alert-danger ">
                                <th colspan="7" rowspan="3" >
                                    <center>
                                        MANZANA: <t t-esc="manzana_val.name" />
@@ -112,6 +115,10 @@
                                <th scope="col" >LIBRE</th>
                                <th >3</th>
                            </tr>
+
+                           </t>
+
+
 
 
 
