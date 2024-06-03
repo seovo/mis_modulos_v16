@@ -9,8 +9,9 @@ class CommissionRiman(models.Model):
     name                  = fields.Char()
     date_start            = fields.Date(string="Fecha Inicial",required=True)
     date_end              = fields.Date(string="Fecha Final",required=True)
+    date                  = fields.Date(string="Fecha Comission",required=True)
     user_id               = fields.Many2one('res.users',string="Vendedor",required=True)
-    goal                  = fields.Float(string="Meta",required=True)
+    #goal                  = fields.Float(string="Meta",required=True)
     sale_order_ids        = fields.One2many('sale.order', 'commision_id')
     state                 = fields.Selection(
         [('draft','Borrador'),('done','Realizado'),('cancel','Cancel')],
@@ -26,14 +27,56 @@ class CommissionRiman(models.Model):
     amount_total                        = fields.Float(string="Monto Total")
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
                                  default=lambda self: self.env.company)
+    type_period_comission = fields.Selection([('month', 'Mensual'), ('week', 'Semanal')],
+                                             string="Periodo Commision",required=True)
 
 
     @api.onchange('date_start')
     def change_date_start(self):
         for record in self:
             if record.date_start:
-                fecha_especifica = date(record.date_start.year, record.date_start.month + 1, 1) - timedelta(days=1)
-                record.date_end = fecha_especifica
+                if record.type_period_comission == 'month':
+                    fecha_especifica = date(record.date_start.year, record.date_start.month + 1, 1) - timedelta(days=1)
+                    record.date_end = fecha_especifica
+
+    def get_week_range(self,datex):
+        """
+        Given a date, returns the start (Monday) and end (Sunday) of the week.
+
+        Args:
+        date (datetime.date): The date to find the week range for.
+
+        Returns:
+        tuple: A tuple containing the start date (Monday) and end date (Sunday) of the week.
+        """
+        # Get the weekday of the given date (0=Monday, 6=Sunday)
+        weekday = datex.weekday()
+
+        # Calculate the start and end dates of the week
+        start_date = datex - timedelta(days=weekday)
+        end_date = start_date + timedelta(days=6)
+
+        return (start_date, end_date)
+
+    @api.onchange('type_period_comission','date')
+    def change_type_period_comission(self):
+        for record in self:
+            if record.type_period_comission == 'month' and record.date:
+                date_now = record.date
+                fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
+                record.date_start = fecha_especifica
+
+            if record.type_period_comission == 'week' and record.date:
+                date_now = record.date
+                fecha_especifica = date_now -  timedelta(weeks=1)
+                week_start, week_end = self.get_week_range(fecha_especifica)
+                record.date_start = week_start
+                record.date_end = week_end
+
+
+
+
+
 
 
     @api.model
@@ -41,9 +84,9 @@ class CommissionRiman(models.Model):
         res = super().default_get(fieldsx)
         date_now = fields.Datetime.now() - timedelta(hours=5)
 
-        fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
+        #fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
         res.update({
-            'date_start': fecha_especifica
+            'date': date_now.date()
         })
         #raise ValidationError(date_now.date())
         return res
@@ -70,17 +113,18 @@ class CommissionRiman(models.Model):
             for team in self.env['crm.team'].search([]):
                 for member in team.member_ids:
                     if member == record.user_id:
-                        meta = team.invoiced_target
-                        record.percentage_total_base_sale = team.percentage_total_base_sale
+                        #meta = team.invoiced_target
+                        record.type_period_comission = team.type_period_comission
+                        #record.percentage_total_base_sale = team.percentage_total_base_sale
                         #record.percentage_overrun_sale = team.percentage_overrun_sale
                         break
-            record.goal = meta
+            #record.goal = meta
 
 
-    @api.onchange('date_start','date_end','user_id','goal')
+    @api.onchange('date_start','date_end','user_id')
     def onchange_lines(self):
         for record in self:
-            if record.date_start and record.date_end and record.user_id and record.goal:
+            if record.date_start and record.date_end and record.user_id :
                 domain = [
                     #('sale_line_ids','!=',False),
                     ('user_id','=',record.user_id.id),

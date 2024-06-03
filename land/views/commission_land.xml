@@ -58,10 +58,22 @@
 
 
                     <group>
-                        <field name="date_start" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
-                        <field name="date_end" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
-                        <field name="user_id"  attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
-                        <field name="goal"  attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
+                        <group>
+                            <field name="user_id"  attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
+                            <field name="type_period_comission"  />
+                            <field name="date"  />
+                        </group>
+                        <group>
+                            <field name="date_start" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
+                            <field name="date_end" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
+
+                        </group>
+
+
+
+
+
+
                     </group>
 
                     <notebook>
