@@ -11,6 +11,8 @@
                    <field name="number_sale_additional_commision"  />
                    <field name="amount_sale_additional_commision"  />
                    <field name="members_additional_commision"  widget="many2many_tags" />
+                   <field name="number_sale_discount_commision"  />
+                   <field name="percentage_sale_discount_commision"  />
                </xpath>
            </field>
     </record>

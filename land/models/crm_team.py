@@ -8,4 +8,5 @@ class CrmTeam(models.Model):
     number_sale_additional_commision = fields.Integer(string="# Ventas Commisión Adicional")
     amount_sale_additional_commision = fields.Integer(string="Monto Commisión Adicional")
     members_additional_commision = fields.Many2many('res.users',string="Miembros Comission Adicional")
-    #percentage_overrun_sale             = fields.Float(string="Porcentage Monto Sobrecosto")
+    number_sale_discount_commision = fields.Integer(string="# Ventas Descuento Commisión")
+    percentage_sale_discount_commision = fields.Float(string="% Monto Descuento Commisión",default="50")
