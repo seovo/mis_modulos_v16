@@ -256,7 +256,11 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('stage_payment_lan','=','dues'),('state','in',['sale','done'])]</field>
+        <field name="domain">[
+            ('stage_payment_lan','=','dues'),('state','in',['sale','done']) ,
+            ('stage_land','!=','cancel')
+
+            ]</field>
         <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
         <field name="context">{}</field>
     </record>
