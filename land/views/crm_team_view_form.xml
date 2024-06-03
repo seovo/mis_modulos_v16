@@ -6,7 +6,7 @@
            <field name="inherit_id" ref="sales_team.crm_team_view_form" />
            <field name="arch" type="xml">
                <xpath expr="//field[@name='member_company_ids']" position="after" >
-                   <field name="percentage_total_base_sale"  />
+                   <field name="commission_land"  />
                </xpath>
            </field>
     </record>

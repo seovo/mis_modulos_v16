@@ -3,5 +3,5 @@ from odoo.exceptions import ValidationError
 
 class CrmTeam(models.Model):
     _inherit = 'crm.team'
-    percentage_total_base_sale          = fields.Float(string="Porcentage Monto Base")
+    commission_land   = fields.Float(string="Comission Terreno")
     #percentage_overrun_sale             = fields.Float(string="Porcentage Monto Sobrecosto")
