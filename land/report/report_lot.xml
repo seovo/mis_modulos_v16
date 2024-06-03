@@ -133,7 +133,7 @@
     <record id="action_report_lot" model="ir.actions.report">
         <field name="name">REPORTE DE LOTES</field>
         <field name="model">product.template</field>
-        <field name="report_type">qweb-html</field>
+        <field name="report_type">qweb-pdf</field>
         <field name="report_name">land.report_report_lots</field>
         <field name="report_file">land.report_report_lots</field>
         <field name="print_report_name">('Reporte_Lotes').replace('/','_')</field>
