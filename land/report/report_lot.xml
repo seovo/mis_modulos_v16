@@ -42,7 +42,7 @@
 
                 <t t-foreach="doc.product_template_attribute_value_ids" t-as="manzana_val">
                     <t t-if="manzana_val.attribute_id.type_land == 'mz'">
-                        <table class="table mb-4" t-if="manzana_val.attribute_id.type_land == 'mz'">
+                        <table class="table table-sm" t-if="manzana_val.attribute_id.type_land == 'mz'">
                        <thead>
 
                            <tr class="bg-primary text-white" >
