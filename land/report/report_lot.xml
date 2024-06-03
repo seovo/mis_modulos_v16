@@ -42,7 +42,7 @@
 
                 <t t-foreach="doc.product_template_attribute_value_ids" t-as="manzana_val">
                     <t t-if="manzana_val.attribute_id.type_land == 'mz'">
-                        <table class="table table-sm" t-if="manzana_val.attribute_id.type_land == 'mz'">
+                        <table class="table " t-if="manzana_val.attribute_id.type_land == 'mz'">
                        <thead>
 
                            <tr class="bg-primary text-white" >
@@ -63,7 +63,12 @@
                                <th scope="col" class="text-white">ESTADO</th>
 
                            </tr>
+                           <t t-set="cont" t-value="0" />
                            <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
+                               <t t-set="cont" t-value="cont + 1 " />
+
+                               <t t-if="cont == 36" />
+                               <div style="page-break-after: always;"/>
 
 
                                <tr  t-attf-class="
@@ -87,7 +92,7 @@
 
                            </t>
 
-                           <tr  class=" alert-danger ">
+                           <tr class=" alert-danger ">
                                <th colspan="7" rowspan="3" >
                                    <center>
                                        MANZANA: <t t-esc="manzana_val.name" />
