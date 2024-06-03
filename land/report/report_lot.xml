@@ -42,73 +42,69 @@
 
                 <t t-foreach="doc.product_template_attribute_value_ids" t-as="manzana_val">
                     <t t-if="manzana_val.attribute_id.type_land == 'mz'">
-                        <table class="table " t-if="manzana_val.attribute_id.type_land == 'mz'">
+                        <table class="table ">
                             <thead>
                                 <tr class="bg-primary text-white" >
                                     <th colspan="9" class=" text-center text-white">MANZANA <t t-esc="manzana_val.name" /></th>
                                 </tr>
 
                                 <tr class="bg-primary text-white">
-                               <th scope="col" class="text-white">N° DE LOTE</th>
-                               <th scope="col" class="text-white">FORMA</th>
-                               <th scope="col" class="text-white">AREA</th>
-                               <th scope="col" class="text-white">FRENTE</th>
-                               <th scope="col" class="text-white">LARGO 1</th>
-                               <th scope="col" class="text-white">LARGO 2</th>
-                               <th scope="col" class="text-white">FONDO</th>
-                               <th scope="col" class="text-white">PRECIO</th>
-                               <th scope="col" class="text-white">ESTADO</th>
+                                   <th scope="col" class="text-white">N° DE LOTE</th>
+                                   <th scope="col" class="text-white">FORMA</th>
+                                   <th scope="col" class="text-white">AREA</th>
+                                   <th scope="col" class="text-white">FRENTE</th>
+                                   <th scope="col" class="text-white">LARGO 1</th>
+                                   <th scope="col" class="text-white">LARGO 2</th>
+                                   <th scope="col" class="text-white">FONDO</th>
+                                   <th scope="col" class="text-white">PRECIO</th>
+                                   <th scope="col" class="text-white">ESTADO</th>
 
-                           </tr>
+                                </tr>
                             </thead>
 
                             <tbody>
-                                 <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
-                                   <tr >
 
-                                   <td  t-attf-class="
+                                <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
+
+
+                                   <tr  t-attf-class="
                                 #{'alert-danger' if lot.state == 'sale' else ''}
                                 #{'alert-success' if lot.state == 'free' else ''}
                                 #{'alert-warning' if lot.state == 'reserved' else ''}
 
                                ">
-                                  <td scope="col"><t t-esc="manzana_val.name" /> - <t t-esc="lot.name" /></td>
-                                  <td scope="col"><t t-esc="lot.shape" /></td>
-                                  <td scope="col"><t t-esc="lot.area" /></td>
-                                  <td scope="col"><t t-esc="lot.front" /></td>
-                                  <td scope="col"><t t-esc="lot.large1" /></td>
-                                  <td scope="col"><t t-esc="lot.large2" /></td>
-                                  <td scope="col"><t t-esc="lot.background" /></td>
-                                  <td scope="col"><t t-esc="lot.price" /></td>
-                                  <td scope="col">
-                                      <t t-esc="state_array[lot.state]" />
-                                  </td>
-                               </td>
-
+                                  <td style="background: none;"><t t-esc="manzana_val.name" /> - <t t-esc="lot.name" /></td>
+                                  <td style="background: none;"><t t-esc="lot.shape" /></td>
+                                  <td style="background: none;"><t t-esc="lot.area" /></td>
+                                  <td style="background: none;"><t t-esc="lot.front" /></td>
+                                  <td style="background: none;"><t t-esc="lot.large1" /></td>
+                                  <td style="background: none;"><t t-esc="lot.large2" /></td>
+                                  <td style="background: none;"><t t-esc="lot.background" /></td>
+                                  <td style="background: none;"><t t-esc="lot.price" /></td>
+                                  <td style="background: none;"><t t-esc="state_array[lot.state]" /></td>
                                </tr>
-                                 </t>
 
 
-                               <tr class=" alert-danger ">
-                                  <td colspan="7" rowspan="3" >
+                                </t>
+
+                                <tr class=" alert-danger ">
+                                  <td style="background: none;" colspan="7" rowspan="3" >
                                    <center>
                                        MANZANA: <t t-esc="manzana_val.name" />
                                    </center>
 
                                </td>
-                                  <td scope="col"  >VENDIDO </td>
-                                  <td scope="col" class="alert-danger">5</td>
-                               </tr>
-                                <tr><td class=" alert-warning ">
-                               <th scope="col">SEPARADO</th>
-                               <th class="warning">4</th>
-                           </td></tr>
-                                <tr><td class=" alert-success ">
-                               <th scope="col" >LIBRE</th>
-                               <th >3</th>
-                           </td></tr>
-
-
+                                  <td style="background: none;"  >VENDIDO </td>
+                                  <td style="background: none;" class="alert-danger"><t t-esc="manzana_val.count_lot_sale" /></td>
+                                </tr>
+                                <tr class=" alert-warning ">
+                                    <td style="background: none;" >SEPARADO</td>
+                                    <td style="background: none;" class="alert-warning"><t t-esc="manzana_val.count_lot_separate" /></td>
+                                </tr>
+                                <tr class=" alert-success ">
+                                    <td  style="background: none;" >LIBRE </td>
+                                    <td style="background: none;" class=" alert-success "><t t-esc="manzana_val.count_lot_free" /></td>
+                                </tr>
 
 
                              </tbody>

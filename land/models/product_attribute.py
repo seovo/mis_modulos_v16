@@ -29,4 +29,28 @@ class ProductTemplateAttributeValue(models.Model):
     max_lot = fields.Integer(string='Cantidad Lotes')
     report_lot_land_line_ids = fields.One2many('report.lot.land.line', 'mz_value_id')
 
+    count_lot_sale = fields.Integer(compute='get_count_lot')
+    count_lot_separate = fields.Integer(compute='get_count_lot')
+    count_lot_free = fields.Integer(compute='get_count_lot')
+
+    def get_count_lot(self):
+        for record in self:
+            count_sale = 0
+            count_separate = 0
+            count_free = 0
+            for line in record.report_lot_land_line_ids:
+                if line.state == 'sale':
+                    count_sale += 1
+
+                if line.state == 'separate':
+                    count_separate += 1
+
+                if line.state == 'free':
+                    count_free += 1
+
+
+            record.count_lot_sale = count_sale
+            record.count_lot_separate = count_separate
+            record.count_lot_free = count_free
+
 
