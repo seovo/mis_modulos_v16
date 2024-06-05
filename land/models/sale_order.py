@@ -100,11 +100,10 @@ class SaleOrder(models.Model):
 
             c = 0
             for invoice in invoices:
-                if c == 0 :
-                    c += 1
+                c += 1
+                if c == 1:
                     continue
-                else:
-                    c += 1
+
 
 
 
