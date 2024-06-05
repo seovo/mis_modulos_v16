@@ -81,6 +81,40 @@ class SaleOrder(models.Model):
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
 
 
+    def update_dates_land(self):
+        for invc in self.invoice_ids:
+            if invc.amount_total == self.price_initial_land:
+                invc.invoice_date = self.date_sign_land
+            #if invc.state != 'draft':
+            #    exist_confirm = True
+
+        if self.price_total_land and self.price_total_land != 0 and len(
+                self.invoice_ids) > 1 and self.date_first_due_land:
+            invoices = self.env['account.move'].search([
+                ('id', 'in', self.invoice_ids.ids),
+                ('invoice_date', '=', False),
+
+            ], order='invoice_date asc')
+            date_init = self.date_first_due_land
+            is_end_month = False
+            if date_init.day > 25 and date_init.day <= 31:
+                is_end_month = True
+            for invoice in invoices:
+                invoice.invoice_date = date_init
+
+                if is_end_month:
+                    date_init = date_init + relativedelta(months=1)
+
+                    last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1,
+                                         date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(
+                        days=1)
+
+                    if last_date.day != date_init.day:
+                        date_init = last_date
+
+                else:
+                    date_init = date_init + relativedelta(months=1)
+
     @api.onchange('user_id')
     def  change_team_comission(self):
         for record in self:
