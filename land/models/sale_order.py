@@ -100,27 +100,27 @@ class SaleOrder(models.Model):
 
             c = 0
             for invoice in invoices:
+
+                if c > 0:
+                    if is_end_month:
+                        date_initx = date_init + relativedelta(months=c - 1)
+
+                        last_date = datetime(date_initx.year if date_initx.month != 12 else date_initx.year + 1,
+                                             date_initx.month + 1 if date_initx.month != 12 else 1, 1) - timedelta(
+                            days=1)
+
+                        if last_date.day != date_init.day:
+                            date_initx = last_date
+
+                    else:
+                        date_initx = date_init + relativedelta(months=c - 1)
+
+                    invoice.invoice_date = date_initx
                 c += 1
-                if c == 1:
-                    continue
 
 
 
 
-                if is_end_month:
-                    date_initx = date_init + relativedelta(months=c - 1)
-
-                    last_date = datetime(date_initx.year if date_initx.month != 12 else date_initx.year + 1,
-                                         date_initx.month + 1 if date_initx.month != 12 else 1, 1) - timedelta(
-                        days=1)
-
-                    if last_date.day != date_init.day:
-                        date_initx = last_date
-
-                else:
-                    date_initx = date_init + relativedelta(months=c - 1)
-
-                invoice.invoice_date = date_initx
 
     @api.onchange('user_id')
     def  change_team_comission(self):
