@@ -92,28 +92,36 @@ class SaleOrder(models.Model):
                 self.invoice_ids) > 1 and self.date_first_due_land:
             invoices = self.env['account.move'].search([
                 ('id', 'in', self.invoice_ids.ids),
-                ('invoice_date', '=', False),
-
             ], order='invoice_date asc')
             date_init = self.date_first_due_land
             is_end_month = False
             if date_init.day > 25 and date_init.day <= 31:
                 is_end_month = True
+
+            c = 0
             for invoice in invoices:
-                invoice.invoice_date = date_init
+                if c == 0 :
+                    c += 1
+                    continue
+                else:
+                    c += 1
+
+
 
                 if is_end_month:
-                    date_init = date_init + relativedelta(months=1)
+                    date_initx = date_init + relativedelta(months=c)
 
                     last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1,
                                          date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(
                         days=1)
 
                     if last_date.day != date_init.day:
-                        date_init = last_date
+                        date_initx = last_date
 
                 else:
-                    date_init = date_init + relativedelta(months=1)
+                    date_initx = date_init + relativedelta(months=c)
+
+                invoice.invoice_date = date_initx
 
     @api.onchange('user_id')
     def  change_team_comission(self):
