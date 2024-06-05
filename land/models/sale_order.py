@@ -284,6 +284,7 @@ class SaleOrder(models.Model):
 
                     record.total_payment_land = round(total_payment,2)
                     record.saldo_payment_land = round( record.price_credit_land - total_payment , 2 )
+            record.get_last_payment_date_land()
 
 
     @api.depends('date_first_due_land')
