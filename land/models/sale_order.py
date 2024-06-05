@@ -109,7 +109,7 @@ class SaleOrder(models.Model):
 
 
                 if is_end_month:
-                    date_initx = date_init + relativedelta(months=c)
+                    date_initx = date_init + relativedelta(months=c - 1)
 
                     last_date = datetime(date_initx.year if date_initx.month != 12 else date_initx.year + 1,
                                          date_initx.month + 1 if date_initx.month != 12 else 1, 1) - timedelta(
@@ -119,7 +119,7 @@ class SaleOrder(models.Model):
                         date_initx = last_date
 
                 else:
-                    date_initx = date_init + relativedelta(months=c)
+                    date_initx = date_init + relativedelta(months=c - 1)
 
                 invoice.invoice_date = date_initx
 
