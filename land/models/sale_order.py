@@ -111,8 +111,8 @@ class SaleOrder(models.Model):
                 if is_end_month:
                     date_initx = date_init + relativedelta(months=c)
 
-                    last_date = datetime(date_init.year if date_init.month != 12 else date_init.year + 1,
-                                         date_init.month + 1 if date_init.month != 12 else 1, 1) - timedelta(
+                    last_date = datetime(date_initx.year if date_initx.month != 12 else date_initx.year + 1,
+                                         date_initx.month + 1 if date_initx.month != 12 else 1, 1) - timedelta(
                         days=1)
 
                     if last_date.day != date_init.day:
