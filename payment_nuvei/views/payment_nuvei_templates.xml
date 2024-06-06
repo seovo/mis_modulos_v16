@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="nuvei_provider_button">
+           <form id="payment_nuvei_form" t-att-action="tx_url" method="post">
+                <input type="hidden" name="nuvei_client_app_code" t-att-value="nuvei_client_app_code"/>
+                <input type="hidden" name="nuvei_client_app_key" t-att-value="nuvei_client_app_key"/>
+                <input type="hidden" name="environment" t-att-value="environment"/>
+                <input type="hidden" name="currency" t-att-value="currency"/>
+                <input type="hidden" name="provider_id" t-att-value="provider_id"/>
+                <input type="hidden" name="provider_code" t-att-value="provider_code"/>
+                <!--Security token-->
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+           </form>
+        </template>
+    </data>
+</odoo>

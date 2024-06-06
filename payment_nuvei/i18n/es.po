@@ -1,0 +1,346 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_paymentez
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-08 19:31+0000\n"
+"PO-Revision-Date: 2019-01-08 19:31+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer_paymentez_client_app_code
+msgid "Client APP Code"
+msgstr "Código de la aplicación cliente"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer_paymentez_client_app_key
+msgid "Client APP Key"
+msgstr "Clave de la aplicación cliente"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_payment_acquirer_paymentez_client_app_code
+#: model:ir.model.fields,help:payment_paymentez.field_payment_acquirer_paymentez_client_app_key
+msgid "Client credentials provied by Paymentez"
+msgstr "Credenciales de la aplicación cliente provistas por Paymentez"
+
+#. module: payment_paymentez
+#: model:ir.ui.view,arch_db:payment_paymentez.sale_order_payment_paymentez_form
+msgid "E-Commerce Refund"
+msgstr "Devolución de comercio electrónico"
+
+#. module: payment_paymentez
+#: model:ir.ui.view,arch_db:payment_paymentez.acquirer_form_paymentez
+msgid "How to configure your paymentez account?"
+msgstr "¿Cómo configurar su cuenta en Pamentez?"
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/sale_order.py:40
+#, python-format
+msgid "In order to refund an e-commerce order, transaction must be in done state. Means that this order is already payed."
+msgstr "Para devolver una orden de venta de comercio electrónico, la transacción debe estar en estado realizado. Significa que la orden de venta esta pagada completamente."
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment.py:117
+#, python-format
+msgid "Invalid status detail"
+msgstr "Detalle del estado inválido"
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Método de pago"
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transacción de pago"
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment.py:69
+#, python-format
+msgid "Paymentez: received data with missing reference (%s)"
+msgstr "Paymentez: se han recibido datos sin la referencia (%s)"
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_sale_order
+msgid "Sales Order"
+msgstr "Aviso para pedido de venta"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_sale_order_payment_tx_state
+msgid "Status"
+msgstr "Estado"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_sale_order_payment_tx_state
+msgid "Techanical field to get transaction state in sale order view. Is used to hide refund button."
+msgstr "Campo técnico para tener el estado de la transacción en la vista de la orden de venta. Se usa para mostrar o no, el botón de devoluciones."
+
+#. module: payment_paymentez
+#: model:ir.ui.view,arch_db:payment_paymentez.sale_order_payment_paymentez_form
+msgid "This operation will refund all order in payment acquirer. Are you sure?"
+msgstr "Esta operación devolverá el monto total de la orden a Paymentez. ¿Esta seguro?"
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/sale_order.py:36
+#, python-format
+msgid "This order not seems to be an e-commerce order. E-commerce orders must have one transaction."
+msgstr "Esta orden parece no ser de comercio electrónico. Las órdenes de comercio electrónico deben tener una transacción."
+
+#. module: payment_paymentez
+#. openerp-web
+#: code:addons/payment_paymentez/static/src/js/payment.js:61
+#, python-format
+msgid "type"
+msgstr "tipo"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer_paymentez_server_app_code
+msgid "Server APP Code"
+msgstr "Código de la aplicación servidor"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer_paymentez_server_app_key
+msgid "Server APP Key"
+msgstr "Clave de la aplicación servidor"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_payment_acquirer_paymentez_server_app_code
+#: model:ir.model.fields,help:payment_paymentez.field_payment_acquirer_paymentez_server_app_key
+msgid "Server credentials provied by Paymentez"
+msgstr "Credenciales de la aplicación servidor provistas por Paymentez"
+
+#. module: payment_paymentez
+#. openerp-web
+#: code:addons/payment_paymentez/static/src/js/payment.js:103
+#, python-format
+msgid "An error ocurred when try to get order and user data."
+msgstr "Ha ocurrido un error al tratar de obtener datos de la orden y el usuario desde el servidor."
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_sale_order_tax_percentage
+msgid "Field to get tax percentage of sale order based on lines tax."
+msgstr "Campo para obtener el porciento de los impuestos basado en las líneas."
+
+#. module: payment_paymentez
+#. openerp-web
+#: code:addons/payment_paymentez/static/src/js/payment.js:96
+#, python-format
+msgid "Order taxes must be one per line and apply IVA or IVA zero percent."
+msgstr "Los impuestos en la orden deben ser uno por línea y gravar IVA o IVA cero porciento."
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_sale_order_tax_percentage
+msgid "Tax percentage"
+msgstr "Porciento de impuestos"
+
+#. module: payment_paymentez
+#: model:ir.ui.view,arch_db:payment_paymentez.payment_paymentez_report_shop_saleorder_document
+msgid "<br/>\n"
+"            <strong>Authorization code:</strong>"
+msgstr "<br/>\n"
+"            <strong>Código de autorización:</strong>"
+
+#. module: payment_paymentez
+#: model:ir.ui.view,arch_db:payment_paymentez.payment_paymentez_so_quotation_content
+msgid "<br/><strong>Authorization code: </strong>"
+msgstr "<br/><strong>Código de autorización: </strong>"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_transaction_aquirer_provider
+msgid "Acquirer provider"
+msgstr "Proveedor del método de pago"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_transaction_authorization_code
+msgid "Authorization code"
+msgstr "Código de autorización"
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_payment_transaction_authorization_code
+msgid "Code returned by Paymentez, useful to identify transaction."
+msgstr "Código que devuelve Paymentez, muy útil a la hora de identificar la transacción."
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_payment_transaction_aquirer_provider
+msgid "Technical field to hide fields added by Paymentez from Transaction form when provider is different than Paymentez."
+msgstr "Campo técnico para esconder los campos agregados por Paymentez al formulario de la transacción cuando el proveedor es diferente a Paymentez."
+
+#. module: sale
+#: model:mail.template,body_html:sale.email_template_edi_sale
+msgid "\n"
+"<p>Dear ${object.partner_id.name}\n"
+"% set access_action = object.with_context(force_website=True).get_access_action()\n"
+"% set doc_name = 'quotation' if object.state in ('draft', 'sent') else 'order confirmation'\n"
+"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
+"% set access_name = is_online and object.template_id and doc_name == 'quotation' and 'Accept and pay %s online' % doc_name or 'View %s' % doc_name\n"
+"% set access_url = is_online and access_action['url'] or None\n"
+"\n"
+"% if object.partner_id.parent_id:\n"
+"    (<i>${object.partner_id.parent_id.name}</i>)\n"
+"% endif\n"
+",</p>\n"
+"<p>\n"
+"Here is your ${doc_name} <strong>${object.name}</strong>\n"
+"% if object.origin:\n"
+"(with reference: ${object.origin} )\n"
+"% endif\n"
+"amounting in <strong>${object.amount_total} ${object.pricelist_id.currency_id.name}</strong>\n"
+"from ${object.company_id.name}.\n"
+"</p>\n"
+"\n"
+"    <br/><br/>\n"
+"% if is_online:\n"
+"    <center>\n"
+"        <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">${access_name}</a>\n"
+"        <br/><br/>\n"
+"        <span style=\"color:#888888\">(or view attached PDF)</span>\n"
+"    </center>\n"
+"    <br/>\n"
+"% endif\n"
+"\n"
+"% if object.payment_acquirer_id.name:\n"
+"    <table class=\"table table-condensed mt32 mb32\">\n"
+"        <thead>\n"
+"            <tr>\n"
+"                <th>Payment Information</th>\n"
+"            </tr>\n"
+"       </thead>\n"
+"       <tbody class=\"sale_tbody\">\n"
+"            <tr>\n"
+"                <td>\n"
+"                    <strong>Payment Method:</strong> ${object.payment_acquirer_id.name}<br />\n"
+"                    <strong>Payment Status:</strong>\n"
+"                    % if object.payment_acquirer_id.auto_confirm == 'none':\n"
+"                        ${object.payment_acquirer_id.pending_msg | safe}\n"
+"                    % endif\n"
+"                    % if object.payment_acquirer_id.auto_confirm in ['confirm_so', 'generate_and_pay_invoice']:\n"
+"                        % if object.payment_tx_id.state == 'pending':\n"
+"                            ${object.payment_acquirer_id.pending_msg | safe}\n"
+"                        % endif\n"
+"                        % if object.payment_tx_id.state in ['done', 'authorized']:\n"
+"                            ${object.payment_acquirer_id.done_msg | safe}\n"
+"                        % endif\n"
+"                        % if object.payment_tx_id.state == 'cancel':\n"
+"                            ${object.payment_acquirer_id.cancel_msg | safe}\n"
+"                        % endif\n"
+"                        % if object.payment_tx_id.state == 'error':\n"
+"                            ${object.payment_acquirer_id.error_msg | safe}\n"
+"                        % endif\n"
+"                    % endif\n"
+"                    % if object.payment_tx_id.acquirer_reference:\n"
+"                    <br/><strong>Payment reference:</strong> ${object.payment_tx_id.acquirer_reference}\n"
+"                    % endif\n"
+"                    % if object.payment_tx_id.authorization_code:\n"
+"                    <br/><strong>Authorization code:</strong> ${object.payment_tx_id.authorization_code}<br/>\n"
+"                    % endif\n"
+"                </td>\n"
+"            </tr>\n"
+"        </tbody>\n"
+"    </table>\n"
+"    <br />\n"
+"% endif\n"
+"\n"
+"<p>You can reply to this email if you have any questions.</p>\n"
+"<p>Thank you,</p>\n"
+"\n"
+"<p style=\"color:#eeeeee;\">\n"
+"% if object.user_id and object.user_id.signature:\n"
+"    ${object.user_id.signature | safe}\n"
+"% endif\n"
+"</p>\n"
+""
+msgstr "\n"
+"<p>Estimado(a) ${object.partner_id.name}\n"
+"% set access_action = object.with_context(force_website=True).get_access_action()\n"
+"% set doc_name = 'cotización' if object.state in ('draft', 'sent') else 'confirmación de pedido de venta'\n"
+"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
+"% set access_name = is_online and object.template_id and doc_name == 'quotation' and 'Accept and pay %s online' % doc_name or 'Ver %s' % doc_name\n"
+"% set access_url = is_online and access_action['url'] or None\n"
+"\n"
+"% if object.partner_id.parent_id:\n"
+"    (<i>${object.partner_id.parent_id.name}</i>)\n"
+"% endif\n"
+",</p>\n"
+"<p>\n"
+"Aquí está su ${doc_name} <strong>${object.name}</strong>\n"
+"% if object.origin:\n"
+"(with reference: ${object.origin} )\n"
+"% endif\n"
+"por el importe de <strong>${object.amount_total} ${object.pricelist_id.currency_id.name}</strong>\n"
+"de ${object.company_id.name}.\n"
+"</p>\n"
+"\n"
+"    <br/><br/>\n"
+"% if is_online:\n"
+"    <center>\n"
+"        <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">${access_name}</a>\n"
+"        <br/><br/>\n"
+"        <span style=\"color:#888888\">(o abrir PDF adjunto)</span>\n"
+"    </center>\n"
+"    <br/>\n"
+"% endif\n"
+"\n"
+"% if object.payment_acquirer_id.name:\n"
+"    <table class=\"table table-condensed mt32 mb32\">\n"
+"        <thead>\n"
+"            <tr>\n"
+"                <th>Información de pago</th>\n"
+"            </tr>\n"
+"       </thead>\n"
+"       <tbody class=\"sale_tbody\">\n"
+"            <tr>\n"
+"                <td>\n"
+"                    <strong>Método de Pago:</strong> ${object.payment_acquirer_id.name}<br />\n"
+"                    <strong>Estado del Pago:</strong>\n"
+"                    % if object.payment_acquirer_id.auto_confirm == 'none':\n"
+"                        ${object.payment_acquirer_id.pending_msg | safe}\n"
+"                    % endif\n"
+"                    % if object.payment_acquirer_id.auto_confirm in ['confirm_so', 'generate_and_pay_invoice']:\n"
+"                        % if object.payment_tx_id.state == 'pending':\n"
+"                            ${object.payment_acquirer_id.pending_msg | safe}\n"
+"                        % endif\n"
+"                        % if object.payment_tx_id.state in ['done', 'authorized']:\n"
+"                            ${object.payment_acquirer_id.done_msg | safe}\n"
+"                        % endif\n"
+"                        % if object.payment_tx_id.state == 'cancel':\n"
+"                            ${object.payment_acquirer_id.cancel_msg | safe}\n"
+"                        % endif\n"
+"                        % if object.payment_tx_id.state == 'error':\n"
+"                            ${object.payment_acquirer_id.error_msg | safe}\n"
+"                        % endif\n"
+"                    % endif\n"
+"                    % if object.payment_tx_id.acquirer_reference:\n"
+"                    <br/><strong>Código de la transacción:</strong> ${object.payment_tx_id.acquirer_reference}\n"
+"                    % endif\n"
+"                    % if object.payment_tx_id.authorization_code:\n"
+"                    <br/><strong>Código de autorización:</strong> ${object.payment_tx_id.authorization_code}<br/>\n"
+"                    % endif\n"
+"                </td>\n"
+"            </tr>\n"
+"        </tbody>\n"
+"    </table>\n"
+"    <br />\n"
+"% endif\n"
+"<p>Puede responder a este correo electrónico si tiene alguna pregunta.</p>\n"
+"<p>Gracias,</p>\n"
+"\n"
+"<p style=\"color:#eeeeee;\">\n"
+"% if object.user_id and object.user_id.signature:\n"
+"    ${object.user_id.signature | safe}\n"
+"% endif\n"
+"</p>\n"
+
+#. module: website_payment
+#: code:addons/website_payment/controllers/main.py:82
+#, python-format
+msgid "Your payment was successful! It may take some time to be validated on our end."
+msgstr "Su pago fue exitoso! Puede tomar algún tiempo ser validado por nuestra parte."

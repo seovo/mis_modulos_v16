@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_nuvei.assets_by_nuvei" model="ir.asset">
+        <field name="name">nuvei assets frontend</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">payment_nuvei/static/src/js/payment.js</field>
+    </record>
+</odoo>

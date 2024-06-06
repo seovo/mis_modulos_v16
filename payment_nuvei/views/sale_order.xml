@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_order_payment_nuvei_form">
+            <field name="name">sale.order.payment.paymentez.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button string="E-Commerce Refund" type="object"
+                            name="ecommerce_refund"
+                            invisible="state not in ['sale', 'done'] and website_id != False"
+                            confirm="This operation will refund all order in payment acquirer. Are you sure?"
+                            class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

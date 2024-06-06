@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="provider_form_nuvei" model="ir.ui.view">
+            <field name="name">provider.form.nuvei</field>
+            <field name="model">payment.provider</field>
+            <field name="inherit_id" ref="payment.payment_provider_form"/>
+            <field name="arch" type="xml">
+                <group name="provider_credentials" position='inside'>
+                    <group invisible="code != 'nuvei'">
+                        <group>
+                            <field name="nuvei_client_app_code" required="code == 'nuvei'"/>
+                            <field name="nuvei_client_app_key" required="code == 'nuvei'"/>
+                        </group>
+                        <group>
+                            <field name="nuvei_server_app_code" required="code == 'nuvei'"/>
+                            <field name="nuvei_server_app_key" required="code == 'nuvei'"/>
+                        </group>
+                        <a colspan="2" href="https://www.nuvei.com/es/" target="_blank">How to configure your nuvei account?</a>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
