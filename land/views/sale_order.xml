@@ -108,17 +108,22 @@
                        </group>
                    </page>
                    <page string="Cronograma">
+                       <group>
+                           <field name="journal_id" />
+                       </group>
                        <field name="schedule_land_ids"
                               create="false"
                               delete="false"
                             >
                                 <tree string="Sales" >
                                     <field name="number_due" readonly="1"  />
+                                    <button name="invoice_here_land" string="Pagar" type="object"  />
                                     <field name="date" readonly="1" />
                                     <field name="balan" readonly="1"  />
                                     <field name="amount" readonly="1"   />
                                     <field name="note"  readonly="1"  />
                                     <field name="is_paid" readonly="1"   />
+
                                     <field name="amount_due_land"  />
                                     <field name="amount_mora_land"  />
                                     <field name="note"  />

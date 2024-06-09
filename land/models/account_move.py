@@ -64,7 +64,7 @@ class AccountMove(models.Model):
                 ])
             record.report_lot_land_line_id = line
 
-    @api.depends('invoice_line_ids')
+    @api.depends('invoice_line_ids','invoice_line_ids.product_id','narration')
     def get_is_initial_land(self):
         for record in self:
             is_initial = False
@@ -137,7 +137,7 @@ class AccountMove(models.Model):
                         record.narration_text = line.product_id.description_sale
 
 
-            if record.days_expired_land  and record.days_expired_land != 0 and record.journal_id != 10:
+            if record.days_expired_land  and record.days_expired_land != 0 and record.journal_id.id != 10:
                 product = self.env['product.product'].search([('is_mora_land','=',True)])
                 if not product:
                     raise ValueError('NO SE INDICO PRODUCTO MORA')
