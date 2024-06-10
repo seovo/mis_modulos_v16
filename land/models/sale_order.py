@@ -86,7 +86,9 @@ class SaleOrder(models.Model):
         for invc in self.invoice_ids:
             if invc.amount_total == self.price_initial_land:
                 invc.invoice_date = self.date_sign_land
-            #if invc.state != 'draft':
+
+            if invc.state == 'draft':
+                invc.action_confirm()
             #    exist_confirm = True
 
         if self.price_total_land and self.price_total_land != 0 and len(
