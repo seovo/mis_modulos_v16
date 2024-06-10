@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_schedule_id" model="report.paperformat">
+            <field name="name">Report Format Lot</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">8</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="True"/>
+            <field name="header_spacing">8</field>
+            <field name="dpi">90</field>
+    </record>
+
+
+    <template id="report_report_schedule">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="land.report_schedule_document"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_schedule_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc"/>
+            <div class="page">
+
+
+                <div class="oe_structure"/>
+                <center><h1>CRONOGRAMA</h1></center>
+
+                <div class="row">
+                    <div class="col-6 p-2">
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cliente</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">RUC</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.vat" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Email</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.email" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cel:</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.phone"  class="pr-2"/>
+                                <span t-esc="doc.partner_id.mobile" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Etapa</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.sector_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">MZ</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.mz_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">LT</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.lot_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Periodo Pago</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-set="periodo" t-value=" 'QUINCENAL' if doc.type_periodo_invoiced == 'half_month' else 'FIN DE MES' " />
+                                <t t-esc="periodo" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6 p-2">
+                        <div class="row">
+                            <div class="col-12 bg-light p-2 border border-primary text-center">Resumen</div>
+                        </div>
+                        <div class="row">
+                                <div class="col-4 bg-light p-2 border border-primary text-end">Metraje</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.m2_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Valor Total</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="doc.amount_total" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cuota Inicial</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                <t t-esc="doc.partner_id.phone"  class="pr-2"/>
+                                S/ <span t-esc="doc.price_initial_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Descuento</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                PRE-VENTA
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Credito</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="doc.price_credit_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Total Cuotas</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="int(doc.dues_land)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Valor Cuota</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="doc.value_due_land" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <table class="table ">
+                    <thead>
+
+                        <tr class="bg-primary text-white">
+                            <th scope="col" class="text-white">Fecha Abono</th>
+                            <th scope="col" class="text-white">Cuotas</th>
+                            <th scope="col" class="text-white">Saldos</th>
+                            <th scope="col" class="text-white">Cuota Mensual</th>
+                            <th scope="col" class="text-white">Nota</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <t t-foreach="doc.schedule_land_ids" t-as="cuota">
+                            <tr>
+                                <td style="background: none;" ><t t-esc="cuota.date" /></td>
+                                <td style="background: none;"><t t-esc="cuota.number_due" /></td>
+                                <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.balan,2)" /></td>
+                                <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
+                                <td style="background: none;"><t t-esc="cuota.note" /></td>
+
+
+
+                            </tr>
+                        </t>
+
+
+                    </tbody>
+
+                </table>
+
+
+
+
+            </div>
+        </t>
+    </template>
+
+
+
+    <record id="action_report_schedule" model="ir.actions.report">
+        <field name="name">CRONOGRAMA</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">land.report_report_schedule</field>
+        <field name="report_file">land.report_report_schedule</field>
+        <field name="print_report_name">('CRONOGRAMA').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="land.paperformat_schedule_id" />
+    </record>
+
+</odoo>
