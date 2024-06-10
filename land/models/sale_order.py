@@ -7,7 +7,8 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     nro_internal_land =  fields.Char(string="Expediente")
     mz_lot            =  fields.Char(string="MZ - LOTE")
-    sector            =  fields.Char()
+    sector            =  fields.Char(string="Etapa")
+    sectorr           =  fields.Char("Sector")
     stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
         ('preaviso',_('Carta Preaviso')),

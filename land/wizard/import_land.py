@@ -36,10 +36,11 @@ class ImportCiHrAttendance(models.TransientModel):
     file_name = fields.Char()
 
     def import_excell(self):
+        self.import_excell_sales()
         #self.import_excell_create_anticipo()
         #self.import_excell_create_invoices()
         #self.import_excell_invoice_dates()
-        self.import_excell_confirm_invoice()
+        #self.import_excell_confirm_invoice()
         #pass
 
     def import_excell_confirm_invoice(self):
@@ -294,28 +295,22 @@ class ImportCiHrAttendance(models.TransientModel):
             if c > 700 :
                 break
 
+            #raise ValueError(row)
+
             try:
-                expediente = str(int(row['EXP']))
+                expediente = str(int(row['EXP'])).replace(" ","")
             except:
                 break
                 raise ValueError([c, str(row['EXP'])])
 
-            if c == 231:
-                expediente = '231'
-
-
-            if c == 397:
-                expediente = '397'
-
-
-
-
-
+            #if c == 231:
+            #    expediente = '231'
 
             order = self.env['sale.order'].search([('nro_internal_land','=',str(expediente))])
             #if c == 231 :
             #    raise ValueError(order)
             if not order :
+                #raise ValueError(expediente)
 
 
                 # raise ValueError(row)
@@ -364,6 +359,10 @@ class ImportCiHrAttendance(models.TransientModel):
                 whatsap = row['WHATSAPP']
                 M2 = row['M2']
                 T_CUOTAS = int(row['T CUOTAS'])
+
+                if T_CUOTAS == 0 or not T_CUOTAS:
+                    raise ValueError(expediente)
+
                 VALOR_CUOTA = float(row['VALOR CUOTA'])
 
                 FECHA_PRIMERA_CUOTA = row['FECHA PRIMERA CUOTA']
@@ -451,6 +450,7 @@ class ImportCiHrAttendance(models.TransientModel):
                     'partner_id': partner_id.id,
                     'mz_lot': mz_lote,
                     'sector': etapa,
+                    'sectorr':  str(row['SECTOR']) ,
                     'date_sign_land': FECHA_FIRMA,
                     'date_first_due_land': FECHA_PRIMERA_CUOTA,
                     'crono_land': CRONO,
@@ -488,7 +488,8 @@ class ImportCiHrAttendance(models.TransientModel):
 
                 data_hora_desejada = datetime.combine(order.date_sign_land, hora_desejada)
                 order.date_order = data_hora_desejada
-            #else:
+            else:
+                order.sectorr = str(row['SECTOR'])
             #    order.name = 'S'+str(expediente).zfill(5)
 
             '''
@@ -526,6 +527,9 @@ class ImportCiHrAttendance(models.TransientModel):
                 INICIAL = float(row['INICIAL'])
                 T_CUOTAS = int(row['T CUOTAS'])
 
+                if T_CUOTAS <= 0:
+                    order.dues_land = T_CUOTAS
+
                 if str(precio_total) == 'nan':
                     precio_total = 0
 
@@ -538,7 +542,16 @@ class ImportCiHrAttendance(models.TransientModel):
                 if str(T_CUOTAS) == 'nan':
                     T_CUOTAS = 0
 
-                price_unit = ( credito ) / order.dues_land
+
+                try:
+                    order.dues_land = T_CUOTAS
+                    price_unit = ( credito ) / order.dues_land
+                except:
+
+                    raise ValueError([credito,order.dues_land,expediente,row['T CUOTAS'],int(row['T CUOTAS'])])
+
+
+
 
                 order.update({
                     'price_total_land'   : precio_total ,
@@ -557,13 +570,15 @@ class ImportCiHrAttendance(models.TransientModel):
                     'tax_id': [(6, 0, [self.env.ref('l10n_pe.1_sale_tax_exo').id])]
                 })
 
-                product_total = self.env['product.product'].search([('name','ilike','TERRENO')])
+                #product_total = self.env['product.product'].search([('name','ilike','TERRENO')])
 
 
 
                 order.order_line += self.env['sale.order.line'].new({
-                    'product_id': product_total.id ,
-                    'name': product_total.display_name ,
+                    #'product_id': product_total.id ,
+                    'product_id': 2 ,
+                    #'name': product_total.display_name ,
+                    'name': "TERRENO "+str(mz_lote)+" "+ str(row['SECTOR']),
                     'product_uom_qty': T_CUOTAS ,
                     'price_unit': price_unit ,
                     'tax_id': [(6,0,[self.env.ref('l10n_pe.1_sale_tax_exo').id])]

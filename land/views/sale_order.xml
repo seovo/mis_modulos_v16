@@ -82,6 +82,7 @@
 
                            <field name="mz_lot" />
                            <field name="sector" />
+                           <field name="sectorr" />
                            <field name="stage_land" />
 
                            <field name="dues_land" />
