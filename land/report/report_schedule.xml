@@ -7,12 +7,12 @@
             <field name="page_height">297</field>
             <field name="page_width">210</field>
             <field name="orientation">Portrait</field>
-            <field name="margin_top">8</field>
+            <field name="margin_top">40</field>
             <field name="margin_bottom">10</field>
             <field name="margin_left">10</field>
             <field name="margin_right">10</field>
             <field name="header_line" eval="True"/>
-            <field name="header_spacing">8</field>
+            <field name="header_spacing">35</field>
             <field name="dpi">90</field>
     </record>
 
@@ -172,7 +172,7 @@
                                 <td style="background: none;"><t t-esc="cuota.number_due" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.balan,2)" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
-                                <td style="background: none;"><t t-esc="cuota.note" /></td>
+                                <td style="background: none;"><t t-esc="round(cuota.note,2)" /></td>
 
 
 
