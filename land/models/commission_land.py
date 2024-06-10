@@ -26,8 +26,13 @@ class CommissionRiman(models.Model):
     amount_total                        = fields.Float(string="Monto Total")
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
                                  default=lambda self: self.env.company)
-    type_period_comission = fields.Selection([('month', 'Mensual'), ('week', 'Semanal')],
-                                             string="Periodo Commision",required=True)
+    type_period_comission = fields.Selection([
+        ('month', 'Mensual'),
+        ('half', 'Quincenal'),
+        ('week', 'Semanal'),
+
+    ],
+    string="Periodo Commision",required=True)
 
 
     @api.onchange('date_start')
@@ -78,6 +83,37 @@ class CommissionRiman(models.Model):
                 week_start, week_end = self.get_week_range(fecha_especifica)
                 record.date_start = week_start
                 record.date_end = week_end
+
+            if record.type_period_comission == 'half' and record.date_commission:
+                date_now = record.date_commission
+                if date_now.day > 15 :
+
+
+                    fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
+                    record.date_start = fecha_especifica
+
+                    fecha_especifica2 = date(date_now.year, date_now.month, 15)
+                    record.date_end = fecha_especifica2
+                else:
+
+
+                    fecha_especifica = date(date_now.year, date_now.month, 15)
+                    record.date_start = fecha_especifica
+
+                    month = record.date_start.month
+                    year = record.date_start.year
+                    if month < 12:
+                        month += 1
+                    else:
+                        month = 1
+                        year += 1
+                    fecha_especifica2 = date(year, month, 1) - timedelta(days=1)
+
+
+                    record.date_end = fecha_especifica2
+
+
+
 
 
     @api.model
@@ -157,8 +193,8 @@ class CommissionRiman(models.Model):
                 domain = [
                     #('sale_line_ids','!=',False),
                     ('user_id','=',record.user_id.id),
-                    ('date_order','>=',record.date_start),
-                    ('date_order', '<=', record.date_end),
+                    ('date_sign_land','>=',record.date_start),
+                    ('date_sign_land', '<=', record.date_end),
                     ('state','not in',['draft','cancel']),
                     #('commision_id.state','!=','done')
                 ]
@@ -216,6 +252,8 @@ class CommissionRimanLine(models.Model):
     _description = 'commission.land.line'
     commission_land_id = fields.Many2one('commission.land')
     sale_id            = fields.Many2one('sale.order')
+    date_sign_land = fields.Date(related='sale_id.date_sign_land')
+    date_order = fields.Datetime(related='sale_id.date_order',string="Fecha Pedido")
     amount             = fields.Float(string='Monto')
     desc               = fields.Float(string='Descuento')
     subtotal           = fields.Float(compute='get_subtotal',store=True)
