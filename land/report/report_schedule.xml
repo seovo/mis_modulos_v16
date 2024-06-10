@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Valor Total</div>
                             <div class="col-8 p-2 border border-primary text-end">
-                                S/ <t t-esc="doc.amount_total" />
+                                S/ <t t-esc="round(doc.amount_total,2)" />
                             </div>
                         </div>
 
@@ -116,7 +116,7 @@
                             <div class="col-4 bg-light p-2 border border-primary text-end">Cuota Inicial</div>
                             <div class="col-8 p-2 border border-primary text-end">
                                 <t t-esc="doc.partner_id.phone"  class="pr-2"/>
-                                S/ <span t-esc="doc.price_initial_land" />
+                                S/ <span t-esc="round(doc.price_initial_land,2)" />
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Credito</div>
                             <div class="col-8 p-2 border border-primary text-end">
-                                S/ <t t-esc="doc.price_credit_land" />
+                                S/ <t t-esc="round(doc.price_credit_land,2)" />
                             </div>
                         </div>
 
@@ -144,7 +144,8 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Valor Cuota</div>
                             <div class="col-8 p-2 border border-primary text-end">
-                                S/ <t t-esc="doc.value_due_land" />
+
+                                S/ <t t-esc="round(doc.value_due_land,2)" />
                             </div>
                         </div>
 
@@ -172,7 +173,7 @@
                                 <td style="background: none;"><t t-esc="cuota.number_due" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.balan,2)" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
-                                <td style="background: none;"><t t-esc="round(cuota.note,2)" /></td>
+                                <td style="background: none;"><t t-esc="cuota.note" /></td>
 
 
 
