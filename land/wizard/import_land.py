@@ -263,12 +263,43 @@ class ImportCiHrAttendance(models.TransientModel):
             wizard.create_invoices()
 
     def import_excell_action_confirm(self):
+
+        no_confirm = True
+
         for sale in self.env['sale.order'].search([
             ('price_total_land','!=',False),
             ('price_total_land','!=',0),
             ('state','=','draft')
         ]):
             sale.action_confirm()
+            no_confirm = False
+            if sale.sector == '1° VDS':
+                sale.seller_land_id = 1
+
+            if sale.sector == '2° ROQUE':
+                sale.seller_land_id = 2
+
+        if no_confirm:
+            sales = self.env['sale.order'].search([
+                ('price_total_land', '!=', False),
+                ('price_total_land', '!=', 0),
+                ('state', '=', 'sale'),
+                ('invoice_ids', '=', False),
+                # ('id','=',119)
+            ], limit=100)
+            # raise ValueError(sales)
+            for sale in sales:
+                dx = {
+                    'advance_payment_method': 'delivered',
+                    'sale_order_ids': [(6, 0, [sale.id])],
+                    'journal_id': 10
+
+                }
+                wizard = self.env['sale.advance.payment.inv'].create(dx)
+                # raise ValueError(wizard)
+                wizard.create_invoices()
+
+
 
     def import_excell_sales(self):
 
@@ -286,6 +317,8 @@ class ImportCiHrAttendance(models.TransientModel):
         #raise ValueError(str(df))
 
         c = 0
+
+        confirm = True
 
         for index, row in ventas.iterrows():
 
@@ -310,6 +343,7 @@ class ImportCiHrAttendance(models.TransientModel):
             #if c == 231 :
             #    raise ValueError(order)
             if not order :
+                confirm = True
                 #raise ValueError(expediente)
 
 
@@ -586,6 +620,10 @@ class ImportCiHrAttendance(models.TransientModel):
             #else:
             #    for line in order.order_line:
             #        line.tax_id = [(6,0,[self.env.ref('l10n_pe.1_sale_tax_exo').id])]
+
+
+        if confirm:
+            self.import_excell_action_confirm()
 
 
 

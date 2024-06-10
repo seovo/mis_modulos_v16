@@ -131,9 +131,6 @@ class SaleOrder(models.Model):
                 c += 1
 
 
-
-
-
     @api.onchange('user_id')
     def  change_team_comission(self):
         for record in self:
