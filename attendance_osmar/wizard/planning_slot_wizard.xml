@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_planning_slot_wizard" model="ir.ui.view">
+        <field name="name">Generar Planeacion Masiva</field>
+        <field name="model">planning.slot.wizard</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Data To Server">
+                <group>
+                    <group>
+                         <field name="resource_ids"  widget="many2many_tags"  />
+                         <field name="role_ids"  widget="many2many_tags"  />
+                         <field name="start_date"  widget="daterange" options="{'end_date_field': 'end_date'}"/>
+                         <field name="end_date"  invisible="1"/>
+                         <field name="number" />
+                    </group>
+
+
+                </group>
+                <footer>
+                    <button name="create_slots" string="Generar"
+                            type="object" class="oe_highlight"/>
+
+
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_planning_slot_wizard" model="ir.actions.act_window">
+        <field name="name">Generar Planeacion Masiva</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">planning.slot.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem parent="planning.planning_menu_schedule"
+              name="Generar Planeacion Masiva"
+              action="action_planning_slot_wizard" id="menu_planning_slot_wizard" />
+
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="register_attendance_planning" model="res.groups">
+        <field name="name">REGISTRAR ASISTENCIA POR PLANEACION</field>
+    </record>
+
+</odoo>

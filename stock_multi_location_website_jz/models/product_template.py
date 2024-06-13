@@ -52,18 +52,30 @@ class ProductTemplate(models.Model):
 
             if res_locations:
 
+                stock_total = 0
+
                 html = ''
                 for stock_wa in res_locations:
                     html += f'''<li class="list-group-item">{stock_wa['warehouse']} : {stock_wa['stock']}  </li>'''
+                    stock_total += stock_wa['stock']
 
 
                 html = f'''
-                    <b>
-                        Stock Disponible:
-                    </b>
-                    <ul class="list-group" >
-                    {html}
-                    </ul>
+                
+                <div class="accordion" id="accordionExample">
+                      <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                   Stock Disponible: {stock_total}
+                               </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                 {html}
+                            </div>
+                          </div>
+                      </div>
+                </div>
 
                 '''
 

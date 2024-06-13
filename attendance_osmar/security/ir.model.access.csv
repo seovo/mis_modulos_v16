@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_attendance_check,attendance_check,model_attendance_check,attendance_osmar.register_attendance_planning,1,1,1,1
+attendance_check_stateu,attendance_check_stateu,model_attendance_check_state,,1,0,0,0
+attendance_check_state,attendance_check_state,model_attendance_check_state,attendance_osmar.register_attendance_planning,1,1,1,1
+planning_slot_wizard,planning_slot_wizard,model_planning_slot_wizard,planning.group_planning_manager,1,1,1,1

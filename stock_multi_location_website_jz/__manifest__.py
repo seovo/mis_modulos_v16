@@ -8,7 +8,7 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["website_sale"],
+    "depends": ["website_sale","website_sale_stock"],
     "data": [
         'views/template_product.xml',
         'views/view_warehouse.xml'

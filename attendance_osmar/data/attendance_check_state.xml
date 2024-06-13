@@ -1,0 +1,58 @@
+<odoo>
+
+    <record id="state_1" model="attendance.check.state">
+        <field name="name">Presente</field>
+    </record>
+
+    <record id="state_2" model="attendance.check.state">
+        <field name="name">VACACIONES</field>
+    </record>
+
+    <record id="state_3" model="attendance.check.state">
+        <field name="name">DESCANSO MEDICO</field>
+    </record>
+
+    <record id="state_4" model="attendance.check.state">
+        <field name="name">PERMISO CON GOCE</field>
+    </record>
+
+    <record id="state_5" model="attendance.check.state">
+        <field name="name">PERMISO SIN GOCE</field>
+    </record>
+
+    <record id="state_6" model="attendance.check.state">
+        <field name="name">PATERNIDAD</field>
+    </record>
+
+    <record id="state_7" model="attendance.check.state">
+        <field name="name">MATERNIDAD</field>
+    </record>
+
+    <record id="state_8" model="attendance.check.state">
+        <field name="name">POLICLINICO</field>
+    </record>
+
+    <record id="state_9" model="attendance.check.state">
+        <field name="name">LICENCIA SINDICAL</field>
+    </record>
+
+    <record id="state_10" model="attendance.check.state">
+        <field name="name">FALTA JUSTIFICADA</field>
+    </record>
+
+    <record id="state_11" model="attendance.check.state">
+        <field name="name">FALTA INJUSTIFICADA</field>
+    </record>
+
+    <record id="state_12" model="attendance.check.state">
+        <field name="name">OBSERVACION MEDICA</field>
+    </record>
+    <record id="state_13" model="attendance.check.state">
+        <field name="name">PERSONAL NUEVO</field>
+    </record>
+
+
+
+
+
+</odoo>
