@@ -205,6 +205,7 @@
     </template>
 
 
+
     <record id="action_report_lot_free" model="ir.actions.report">
         <field name="name">REPORTE DE LOTES SEPARADOS</field>
         <field name="model">product.template</field>
