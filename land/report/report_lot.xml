@@ -21,6 +21,7 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <div class="row header" />
+                <t t-set="filter_state" t-value="['sale','free','reserved']" />
                 <t t-call="land.report_lots_document"/>
             </t>
         </t>
@@ -67,10 +68,12 @@
                                 <t t-foreach="manzana_val.report_lot_land_line_ids" t-as="lot">
 
 
-                                   <tr  t-attf-class="
-                                #{'alert-danger' if lot.state == 'sale' else ''}
-                                #{'alert-success' if lot.state == 'free' else ''}
-                                #{'alert-warning' if lot.state == 'reserved' else ''}
+                                   <tr
+                                           t-if="lot.state in filter_state"
+                                           t-attf-class="
+                                         #{'alert-danger' if lot.state == 'sale' else ''}
+                                         #{'alert-success' if lot.state == 'free' else ''}
+                                         #{'alert-warning' if lot.state == 'reserved' else ''}
 
                                ">
                                   <td style="background: none;"><t t-esc="manzana_val.name" /> - <t t-esc="lot.name" /></td>
@@ -87,7 +90,7 @@
 
                                 </t>
 
-                                <tr class=" alert-danger ">
+                                <tr class=" alert-danger " t-if="'sale' in filter_state" >
                                   <td style="background: none;" colspan="7" rowspan="3" >
                                    <center>
                                        MANZANA: <t t-esc="manzana_val.name" />
@@ -97,11 +100,11 @@
                                   <td style="background: none;"  >VENDIDO </td>
                                   <td style="background: none;" class="alert-danger"><t t-esc="manzana_val.count_lot_sale" /></td>
                                 </tr>
-                                <tr class=" alert-warning ">
+                                <tr class=" alert-warning " t-if="'reserved' in filter_state" >
                                     <td style="background: none;" >SEPARADO</td>
                                     <td style="background: none;" class="alert-warning"><t t-esc="manzana_val.count_lot_separate" /></td>
                                 </tr>
-                                <tr class=" alert-success ">
+                                <tr class=" alert-success "  t-if="'free' in filter_state" >
                                     <td  style="background: none;" >LIBRE </td>
                                     <td style="background: none;" class=" alert-success "><t t-esc="manzana_val.count_lot_free" /></td>
                                 </tr>
@@ -141,6 +144,80 @@
         <field name="binding_type">report</field>
         <field name="paperformat_id" ref="land.paperformat_lot_id" />
     </record>
+
+
+    <template id="report_report_lots_sale">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="row header" />
+                <t t-set="filter_state" t-value="['sale']" />
+                <t t-call="land.report_lots_document"/>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="action_report_lot_sale" model="ir.actions.report">
+        <field name="name">REPORTE DE LOTES VENDIDOS</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">land.report_report_lots_sale</field>
+        <field name="report_file">land.report_report_lots_sale</field>
+        <field name="print_report_name">('Reporte_Lotes_vendidos').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_product_template"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="land.paperformat_lot_id" />
+    </record>
+
+
+    <template id="report_report_lots_reserved">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="row header" />
+                <t t-set="filter_state" t-value="['reserved']" />
+                <t t-call="land.report_lots_document"/>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="action_report_lot_separates" model="ir.actions.report">
+        <field name="name">REPORTE DE LOTES SEPARADOS</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">land.report_report_lots_reserved</field>
+        <field name="report_file">land.report_report_lots_reserved</field>
+        <field name="print_report_name">('Reporte_Lotes_separados').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_product_template"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="land.paperformat_lot_id" />
+    </record>
+
+
+    <template id="report_report_lots_free">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="row header" />
+                <t t-set="filter_state" t-value="['free']" />
+                <t t-call="land.report_lots_document"/>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="action_report_lot_free" model="ir.actions.report">
+        <field name="name">REPORTE DE LOTES SEPARADOS</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">land.report_report_lots_free</field>
+        <field name="report_file">land.report_report_lots_free</field>
+        <field name="print_report_name">('Reporte_Lotes_Libres').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_product_template"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="land.paperformat_lot_id" />
+    </record>
+
+
 
 
 
