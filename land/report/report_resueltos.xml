@@ -85,13 +85,13 @@
                         <td><span t-esc="order.mz_lot"/></td>
                         <td><span t-esc="order.partner_id.name"/></td>
                         <td>
-                            <t t-esc="state_array[order.stage_land]" />
+                            <t t-esc="state_array[order.stage_land]" t-if="order.stage_land"/>
                         </td>
                         <td><span t-esc="order.mounth_expired_land"/></td>
                         <td><span t-esc="round(order.value_due_land,2)"/></td>
                         <td><span t-esc="order.mora_acumulada"/></td>
                         <td><span t-esc="order.saldo_payment_land"/></td>
-                        <td><span t-esc="state_ab[order.state_lawyer_land]"/></td>
+                        <td><span t-esc="state_ab[order.state_lawyer_land]"  t-if="order.state_lawyer_land" /></td>
                         <td><span t-esc="order.obs_resolution"/></td>
 
 
