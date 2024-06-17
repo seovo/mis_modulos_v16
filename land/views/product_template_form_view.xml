@@ -4,6 +4,7 @@
            <field name="model">product.template</field>
            <field name="inherit_id" ref="product.product_template_form_view" />
            <field name="arch" type="xml">
+
                <xpath expr="//field[@name='product_variant_id']" position="after" >
                    <field name="payment_land_dues" />
                    <field name="dues_qty" attrs="{'invisible': [('payment_land_dues','!=',True)]}" />
@@ -14,6 +15,10 @@
                <xpath expr="//button[@name='open_pricelist_rules']" position="after" >
                    <button class="oe_stat_button" name="open_lots_report"
                            icon="fa-list-ul"  type="object" string="Lotes" />
+               </xpath>
+
+               <xpath expr="//header" position="inside" >
+                   <button string="Actualizar Lotes" type="object" name="update_lots_jz" />
 
                </xpath>
            </field>

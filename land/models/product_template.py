@@ -25,8 +25,8 @@ class ProductTemplate(models.Model):
     report_lot_land_line_ids = fields.One2many('report.lot.land.line','product_tmp_id')
     product_template_attribute_value_ids = fields.One2many('product.template.attribute.value','product_tmpl_id')
 
-    def open_lots_report(self):
 
+    def update_lots_jz(self):
         orders = self.env['sale.order'].search([])
         if orders:
             orders.get_report_lot_land_line_id(self)
@@ -49,6 +49,12 @@ class ProductTemplate(models.Model):
                             'mz_value_id': mz.id,
                             'product_tmp_id': self.id
                         })
+
+    def open_lots_report(self):
+
+        self.update_lots_jz()
+
+
 
         return {
             "name": f"LOTES",

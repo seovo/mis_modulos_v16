@@ -289,15 +289,40 @@
               id="menu_sale_dues_complete"
               parent="sale.sale_order_menu" />
 
-    <record id="action_sale_resueltos" model="ir.actions.act_window">
-        <field name="name">Expendientes Resueltos</field>
+
+    <record id="view_order_tree_preaviso_cancelx" model="ir.ui.view">
+           <field name="name">sale.order.Form</field>
+           <field name="model">sale.order</field>
+           <field name="arch" type="xml">
+               <tree>
+                   <field name="nro_internal_land" />
+                   <field name="mz_lot" />
+                   <field name="partner_id" />
+                   <field name="stage_land" />
+                   <field name="mounth_expired_land" />
+                   <field name="value_due_land" />
+                   <field name="mora_acumulada" />
+                   <field name="saldo_payment_land" string="Total de Deuda" />
+                   <field name="state_lawyer_land" />
+                   <field name="obs_resolution" />
+               </tree>
+           </field>
+    </record>
+
+    <record id="action_sale_resueltosx" model="ir.actions.act_window">
+        <field name="name">Expendientes Resueltos y Carta Pre Aviso</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('stage_land','=','cancel')]</field>
+
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_preaviso_cancelx')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
     </record>
 
-    <menuitem action="action_sale_resueltos"
+    <menuitem action="action_sale_resueltosx"
               id="menu_sale_dues_resueltos"
               parent="sale.sale_order_menu" />
 

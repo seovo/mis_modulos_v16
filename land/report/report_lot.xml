@@ -207,7 +207,7 @@
 
 
     <record id="action_report_lot_free" model="ir.actions.report">
-        <field name="name">REPORTE DE LOTES SEPARADOS</field>
+        <field name="name">REPORTE DE LOTES LIBRES</field>
         <field name="model">product.template</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">land.report_report_lots_free</field>

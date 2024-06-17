@@ -12,7 +12,8 @@ class SaleOrder(models.Model):
     stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
         ('preaviso',_('Carta Preaviso')),
-        ('cancel',_('Resuelto o Cancelado'))
+        ('cancel',_('Resuelto o Cancelado')),
+        ('regularizado','Regularizado'),
     ],string="Estado Terreno")
     dues_land            = fields.Float(string="Cuotas")
     value_due_land       = fields.Float(string="Precio Cuotas")
@@ -36,6 +37,7 @@ class SaleOrder(models.Model):
     ],string="Modalidad")
 
     obs_modality_land = fields.Text(string="Observaciones")
+    obs_resolution = fields.Text(string="Observacion Resolucion")
     price_total_land = fields.Float(string="Valor del Terreno")
     price_initial_land = fields.Float(string="Inicial del Terreno")
     price_credit_land = fields.Float(string="Credito del Terreno")
@@ -63,12 +65,11 @@ class SaleOrder(models.Model):
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
+    mora_acumulada    = fields.Float(string="Mora Acumulada", compute="get_last_payment_date_land")
     mounth_expired_land = fields.Integer(string="Meses Vencidos", compute="get_last_payment_date_land",store=True)
 
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación")
-    #compute='get_start_date_schedule_land
-
     schedule_land_ids = fields.One2many('schedule.dues.land','order_id')
     mz_land = fields.Char(compute="get_info_land",store=True,string="Manzana Terreno")
     lot_land = fields.Char(compute="get_info_land",store=True,string="Lote Terreno")
@@ -80,6 +81,8 @@ class SaleOrder(models.Model):
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
+    state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
+
 
 
     def update_dates_land(self):
@@ -424,6 +427,7 @@ class SaleOrder(models.Model):
 
 
             record.days_expired_land = diff_days
+            record.mora_acumulada  = diff_days * record.value_mora_land
 
 
 
