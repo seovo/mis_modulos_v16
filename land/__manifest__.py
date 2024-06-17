@@ -29,7 +29,8 @@
         "views/report_lot_land.xml",
         'report/report_lot.xml',
         'report/report_schedule.xml',
-        'report/report_resueltos.xml'
+        'report/report_resueltos.xml',
+        'views/account_journal.xml'
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
