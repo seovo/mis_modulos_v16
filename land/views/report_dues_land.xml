@@ -53,6 +53,7 @@
 
 
                                     <field name="stage_land" widget="badge" />
+                                    <field name="state" optional="hidden" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
                                     <button name="show_dues_land" string="Pagos" type="object" />
