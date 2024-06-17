@@ -24,10 +24,10 @@
         "data/sequence.xml",
         "data/cron.xml",
         "views/report_dues_land.xml",
-        'report/report_dues.xml',
+        #'report/report_dues.xml',
         'views/product_template_attribute_value.xml',
         "views/report_lot_land.xml",
-        #'report/report_lot.xml',
+        'report/report_lot.xml',
         'report/report_schedule.xml',
         'report/report_resueltos.xml'
 
