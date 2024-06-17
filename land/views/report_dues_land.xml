@@ -23,6 +23,7 @@
                         </group>
                         <group>
                             <field name="type_periodo_invoiced"  />
+                            <field name="mounth_expired" />
                         </group>
 
 
@@ -40,24 +41,28 @@
                                 >
                                     <field name="nro_internal_land" />
                                     <field name="mz_lot" />
-                                    <field name="last_payment_date_land" />
-                                    <field name="mounth_expired_land" />
+                                    <field name="partner_id"   optional="hidden" />
+                                    <field name="last_payment_date_land"  optional="hidden" />
+                                    <field name="mounth_expired_land"  optional="show" />
                                     <field name="next_payment_date_land" />
                                     <field name="days_expired_land" />
+                                    <field name="mora_acumulada" optional="hidden" />
 
                                     <!--<field name="name" optional="hiden" /> -->
-                                    <field name="seller_land_id" />
+                                    <field name="seller_land_id" optional="hidden" />
 
 
                                     <field name="stage_land" widget="badge" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
                                     <button name="show_dues_land" string="Pagos" type="object" />
-                                    <field name="amount_total" />
-                                    <field name="price_initial_land" string="Inicial" />
+                                    <field name="amount_total"  optional="hidden" />
+                                    <field name="price_initial_land" string="Inicial"  optional="hidden" />
                                     <field name="price_credit_land" string="Credito" />
                                     <field name="total_payment_land" string="Abonado" />
                                     <field name="saldo_payment_land"  string="Saldo" />
+                                    <field name="state_lawyer_land"  optional="hidden" />
+                                    <field name="obs_resolution"  optional="hidden" />
 
                                 </tree>
                             </field>

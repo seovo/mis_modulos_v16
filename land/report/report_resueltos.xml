@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_re_id" model="report.paperformat">
+            <field name="name">Report Format Resueltos</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="True"/>
+            <field name="header_spacing">6</field>
+            <field name="dpi">90</field>
+    </record>
+
+
+    <template id="report_report_re">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="row header" />
+                <t t-call="land.report_re_document"/>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="report_re_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc"/>
+            <div class="page">
+                <div class="oe_structure"/>
+
+                <center><h1>Reporte Clientes Resolución - PreAviso</h1></center>
+
+
+                <hr />
+
+                <div >
+                    <table class="table">
+                    <thead>
+                       <tr class="bg-primary text-white">
+                           <th class="text-white">#</th>
+                           <th class="text-white">Nro Exp</th>
+                           <th class="text-white" width="5%">Mz-Lt</th>
+                           <th class="text-white">Cliente</th>
+                           <th class="text-white">Estado</th>
+                           <th class="text-white">Meses Deuda</th>
+                           <th class="text-white">Cuota Mensual</th>
+                           <th class="text-white">Mora Acumulada</th>
+                           <th class="text-white">Total Deuda</th>
+                           <th class="text-white">Envio de Reporte Abogado</th>
+                           <th class="text-white">Observacion</th>
+                        </tr>
+                    </thead>
+                    <t t-set="count_th" t-value="0" />
+
+                    <t t-set ="state_array" t-value="{
+                                          'signed' : 'Firmado' ,
+                                          'preaviso' : 'Carta Preaviso' ,
+                                          'cancel' : 'Resuelto' ,
+                                          'regularizado' : 'Regularizado'
+                                      }" />
+
+                    <t t-set ="state_ab" t-value="{
+                                          'draft' : 'Pendiente' ,
+                                          'sent' : 'Enviado' ,
+
+                                      }" />
+
+                    <tbody>
+                        <t t-foreach="doc.order_ids" t-as="order">
+                    <tr   t-attf-class="
+                                         #{'alert-danger' if order.stage_land == 'cancel' else ''}
+                                         #{'alert-success' if order.stage_land == 'regularizado' else ''}
+                                         #{'alert-warning' if order.stage_land == 'preaviso' else ''}
+
+                               " >
+                        <t t-set="count_th" t-value="count_th + 1" />
+                        <td><span t-esc="count_th"/></td>
+                        <td><span t-esc="order.nro_internal_land"/></td>
+                        <td><span t-esc="order.mz_lot"/></td>
+                        <td><span t-esc="order.partner_id.name"/></td>
+                        <td>
+                            <t t-esc="state_array[order.stage_land]" />
+                        </td>
+                        <td><span t-esc="order.mounth_expired_land"/></td>
+                        <td><span t-esc="round(order.value_due_land,2)"/></td>
+                        <td><span t-esc="order.mora_acumulada"/></td>
+                        <td><span t-esc="order.saldo_payment_land"/></td>
+                        <td><span t-esc="state_ab[order.state_lawyer_land]"/></td>
+                        <td><span t-esc="order.obs_resolution"/></td>
+
+
+
+                    </tr>
+                </t>
+                    </tbody>
+                </table>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_re" model="ir.actions.report">
+        <field name="name">REPORTE RESUELTOS Y PRE AVISO</field>
+        <field name="model">report.dues.land</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">land.report_report_re</field>
+        <field name="report_file">land.report_report_re</field>
+        <field name="print_report_name">(object.name or 'Appointment').replace('/','_')</field>
+        <field name="binding_model_id" ref="model_report_dues_land"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="land.paperformat_re_id" />
+    </record>
+
+</odoo>

@@ -96,6 +96,7 @@
                            <field name="start_date_schedule_land" />
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
+                           <field name="obs_resolution" />
                            <field name="recalcule_and_save_total_land" />
                            <field name="price_total_land" />
                            <field name="price_initial_land" />

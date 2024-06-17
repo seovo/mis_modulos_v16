@@ -16,6 +16,9 @@ class CommissionRiman(models.Model):
         required=True
     )
     seller_land_id = fields.Many2many('seller.land', string="Proveedores", required=True)
+    mounth_expired = fields.Integer(string="Meses Vencidos >=")
+
+
     order_ids = fields.Many2many('sale.order',string="Ventas")
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
                                  default=lambda self: self.env.company)
@@ -43,11 +46,14 @@ class CommissionRiman(models.Model):
             record.dues_payment_max  = count_payment_max
             record.dues_max = dues_max
 
-    @api.onchange('type_periodo_invoiced','seller_land_id')
+    @api.onchange('type_periodo_invoiced','seller_land_id','mounth_expired')
     def update_data(self):
         for record in self:
             record.order_ids = False
-            domain = [('nro_internal_land','!=',False),('seller_land_id','in',record.seller_land_id.ids)]
+            domain = [('nro_internal_land','!=',False),
+                      ('seller_land_id','in',record.seller_land_id.ids),
+                      ('mounth_expired_land','>=',record.mounth_expired)
+                      ]
             if record.type_periodo_invoiced != 'half_month_end_month':
                 domain.append(('type_periodo_invoiced','=',record.type_periodo_invoiced))
             sales = self.env['sale.order'].search(domain)

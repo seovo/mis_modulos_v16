@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
     stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
         ('preaviso',_('Carta Preaviso')),
-        ('cancel',_('Resuelto o Cancelado')),
+        ('cancel',_('Resuelto')),
         ('regularizado','Regularizado'),
     ],string="Estado Terreno")
     dues_land            = fields.Float(string="Cuotas")
