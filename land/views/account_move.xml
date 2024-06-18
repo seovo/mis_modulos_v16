@@ -24,7 +24,7 @@
 
                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after" >
                    <button name="edit_desc_jz" type="object"
-                           groups="show_edit_descripcion_move"
+                           groups="land.show_edit_descripcion_move"
                            confirm="Modificar solo si es necesario!!!!!!!"
                            icon="fa-pencil-square-o" state="posted" />
                </xpath>
