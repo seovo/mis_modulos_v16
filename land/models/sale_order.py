@@ -320,6 +320,9 @@ class SaleOrder(models.Model):
 
                         if inv.move_type in ['out_refund']:
                             continue
+
+                        if inv.state == 'cancel':
+                            continue
                         invoicesx.append(inv)
 
                     i = 0
