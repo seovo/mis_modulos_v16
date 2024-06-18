@@ -10,6 +10,18 @@ from datetime import datetime, timedelta
 class AccountMoveLine(models.Model):
     _inherit                 = 'account.move.line'
 
+
+    def edit_desc_jz(self):
+        view = self.env.ref('land.edit_account_move_line')
+        return {
+            "name": f"EDIT DESCRIPCION:   {self.name}",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "account.move.line",
+            "target": "new",
+            "res_id": self.id ,
+            "view_id": view.id
+        }
 class AccountMove(models.Model):
     _inherit = 'account.move'
     narration_text = fields.Text()
