@@ -317,6 +317,9 @@ class SaleOrder(models.Model):
                     for inv in invoices:
                         if inv.is_initial_land:
                             continue
+
+                        if inv.move_type in ['out_refund']:
+                            continue
                         invoicesx.append(inv)
 
                     i = 0
