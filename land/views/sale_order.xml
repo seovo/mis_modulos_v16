@@ -87,13 +87,10 @@
 
                            <field name="dues_land" />
                            <field name="value_due_land" />
-                           <field name="crono_land" />
+
                            <field name="days_tolerance_land" />
                            <field name="value_mora_land" />
                            <field name="percentage_refund_land" />
-
-
-                           <field name="start_date_schedule_land" />
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
                            <field name="obs_resolution" />
@@ -107,6 +104,7 @@
                            <field name="next_payment_date_land" />
                            <field name="days_expired_land" />
                            <field name="commision_lan" />
+                           <field name="crono_land" invisible="1" />
                        </group>
                    </page>
                    <page string="Cronograma">

@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
 
     date_sign_land = fields.Date(string="Fecha Firma del Contrato")
     date_first_due_land = fields.Date(string="Fecha Primera Cuota")
-    start_date_schedule_land = fields.Date(compute="get_start_date_schedule_land",store=True)
+
 
     modality_land = fields.Selection([
         ('single',_('Soltero')) ,
@@ -260,7 +260,7 @@ class SaleOrder(models.Model):
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
     def update_schedule(self):
         for record in self:
-            if record.start_date_schedule_land:
+            if record.date_first_due_land:
                 qty_dues = 0
                 total_dues = 0
                 price_unit = 0
@@ -278,7 +278,7 @@ class SaleOrder(models.Model):
 
 
                     if qty_dues > 0:
-                        datex = record.start_date_schedule_land
+                        datex = record.date_first_due_land
                         for i in range(int(qty_dues)):
                             dx = {
                                 'number_due' : i + 1 ,
@@ -348,20 +348,7 @@ class SaleOrder(models.Model):
             record.get_last_payment_date_land()
 
 
-    @api.depends('date_first_due_land')
-    def get_start_date_schedule_land(self):
-        for record in self:
-            date_start = record.date_first_due_land
-            if date_start and date_start.day <= 24 :
-                date_start = datetime(year=date_start.year,month=date_start.month,day=15,hour=10)
-                date_start = date_start.date()
-                record.type_periodo_invoiced = 'half_month'
-            if date_start and date_start.day > 24:
-                date_start = datetime(year=date_start.year, month=date_start.month, day=1, hour=10) +  relativedelta(months=1)
-                date_start = date_start - timedelta(days=1)
-                date_start = date_start.date()
-                record.type_periodo_invoiced = 'end_month'
-            record.start_date_schedule_land = date_start
+
 
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
@@ -401,10 +388,10 @@ class SaleOrder(models.Model):
 
             if  record.date_first_due_land:
 
-                if dues_payment == 0:
-                    dues_payment = 1
+                date_next = record.date_first_due_land
 
-                date_next = record.date_first_due_land +  relativedelta(months=dues_payment)
+                if dues_payment == 0:
+                    date_next = date_next +  relativedelta(months=dues_payment)
 
                 if date_next.day <= 24 :
                     date_next = datetime(year=date_next.year,month=date_next.month,day=15,hour=10)
