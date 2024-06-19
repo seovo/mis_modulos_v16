@@ -259,6 +259,7 @@ class SaleOrder(models.Model):
 
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
     def update_schedule(self):
+        self.get_last_payment_date_land()
         for record in self:
             if record.date_first_due_land:
                 qty_dues = 0
@@ -601,6 +602,7 @@ class SaleOrder(models.Model):
 
 
     def _prepare_invoice(self):
+        self.get_last_payment_date_land()
         res = super()._prepare_invoice()
         #if self.journal_import_id:
         #    res['journal_id'] = 10
