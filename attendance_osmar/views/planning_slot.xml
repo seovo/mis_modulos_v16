@@ -15,16 +15,23 @@
                                  groups="attendance_osmar.register_attendance_planning">
 
                                <sheet string="Shift">
+
+
+
+
+
                                    <field name="attendance_check_ids">
                                    <tree string="Lines" editable="bottom" >
                                        <field name="hr_employee_id" />
                                        <field name="state" widget="selection"  />
                                        <field name="hr_attendance_id" readonly="1" force_save="1" />
                                        <field name="date"  optional="hidden" />
-
                                    </tree>
 
                                </field>
+                                   <button string="Registrar" type="object"
+
+                                           name="complete_attendance" class="btn btn-primary m-1"  />
 
                                </sheet>
 
@@ -160,8 +167,8 @@
                    <group>
                        <field name="name" />
                        <field name="register_attendance" />
-                       <field name="start_hour" />
-                       <field name="end_end" />
+                       <field name="start_hour" widget="float_time" />
+                       <field name="end_end" widget="float_time" />
                    </group>
                </form>
            </field>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="attendance_check_tree" model="ir.ui.view">
+           <field name="name">attendance.check.tree</field>
+           <field name="model">attendance.check</field>
+
+           <field name="arch" type="xml">
+               <tree string="Lines" editable="bottom" >
+                   <field name="date"  />
+                   <field name="hr_employee_id" />
+                   <field name="state" widget="selection"  />
+                   <field name="hr_attendance_id" readonly="1" force_save="1" />
+
+               </tree>
+           </field>
+    </record>
+
+
+    <record id="action_attendance_check" model="ir.actions.act_window">
+            <field name="name">Asistencia</field>
+            <field name="res_model">attendance.check</field>
+            <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_attendance_check_2" name="Asistencia"
+              parent="planning.planning_menu_root"
+              action="action_attendance_check"
+             />
+
+</odoo>

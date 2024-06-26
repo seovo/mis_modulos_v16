@@ -14,7 +14,9 @@
         "security/ir.model.access.csv",
         'views/planning_slot.xml',
         'data/attendance_check_state.xml',
-        'wizard/planning_slot_wizard.xml'
+        'wizard/planning_slot_wizard.xml',
+        'views/hr_employee.xml',
+        'views/attendance_check.xml'
 
     ],
     "application": False,

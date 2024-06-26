@@ -1,7 +1,10 @@
 <odoo>
 
     <record id="state_1" model="attendance.check.state">
-        <field name="name">Presente</field>
+        <field name="name">PRESENTE</field>
+        <field name="register_attendance">True</field>
+        <field name="start_hour">8</field>
+        <field name="end_end">17</field>
     </record>
 
     <record id="state_2" model="attendance.check.state">
