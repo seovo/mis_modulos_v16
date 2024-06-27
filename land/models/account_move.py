@@ -8,7 +8,6 @@ CURRENCY = {
 }
 from datetime import datetime, timedelta
 
-
 class AccountMove(models.Model):
     _inherit = 'account.move'
     narration_text = fields.Text()
