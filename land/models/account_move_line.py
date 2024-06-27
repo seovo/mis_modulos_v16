@@ -17,8 +17,10 @@ class AccountMoveLine(models.Model):
 
     def next_due_land(self):
         for record in self:
-            if not record.move_id.state == 'draft':
+
+            if record.move_id.state == 'draft':
                 new_line = record.copy()
+
 
                 if record.sale_line_ids:
                     record.sale_line_ids[0].order_id.update_schedule()
