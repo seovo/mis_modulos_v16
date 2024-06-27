@@ -3,8 +3,22 @@ from datetime import datetime, timedelta
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
 
+    def edit_desc_jz(self):
+        view = self.env.ref('land.edit_account_move_line')
+        return {
+            "name": f"EDIT DESCRIPCION:   {self.name}",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "account.move.line",
+            "target": "new",
+            "res_id": self.id ,
+            "view_id": view.id
+        }
+
     def next_due_land(self):
         for record in self:
+            if not record.state != 'draft':
+                continue
             new_line = record.copy()
 
             if record.sale_line_ids:

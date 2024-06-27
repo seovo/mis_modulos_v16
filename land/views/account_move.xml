@@ -22,9 +22,10 @@
            <field name="arch" type="xml">
 
                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="after" >
+                   <field name="parent_state" invisible="1" />
                    <button name="next_due_land" type="object"
                            confirm="Esta agregara una nueva cuota en una nueva linea de esta misma factura"
-                           icon="fa-clone" state="draft" />
+                           icon="fa-clone"   />
 
 
 
@@ -34,10 +35,11 @@
 
 
                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after" >
+                   <field name="parent_state" invisible="1" />
                    <button name="edit_desc_jz" type="object"
                            groups="land.show_edit_descripcion_move"
                            confirm="Modificar solo si es necesario!!!!!!!"
-                           icon="fa-pencil-square-o" state="posted" />
+                           icon="fa-pencil-square-o"   />
                </xpath>
 
 
