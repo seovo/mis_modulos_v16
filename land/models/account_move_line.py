@@ -17,7 +17,7 @@ class AccountMoveLine(models.Model):
 
     def next_due_land(self):
         for record in self:
-            if not record.state != 'draft':
+            if not record.parent_state != 'draft':
                 continue
             new_line = record.copy()
 
