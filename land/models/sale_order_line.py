@@ -31,6 +31,37 @@ class SaleOrderLine(models.Model):
             "view_id": view.id
         }
 
+
+    def get_descript_next_due(self,sale_line):
+        fecha_actual = self.order_id.next_payment_date_land or fields.Datetime.now()
+        # mes = fecha_actual.strftime('%B')  # El mes completo en español
+        anio = fecha_actual.year
+
+        # Obtener el número del mes
+        mes_actual = fecha_actual.month
+
+        # Obtener el nombre del mes en español
+        mes_actual_espanol = meses_espanol[mes_actual]
+
+        mes_ano = f' , {mes_actual_espanol} - {anio}'
+
+        if self.product_id.manzana and self.product_id.lote:
+            name = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
+            return name
+        else:
+            if sale_line.order_id.mz_lot:
+                name = f"CANCELACION  CUOTA {int(sale_line.qty_invoiced + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
+                return name
+
+        if self.product_id.is_advanced_land:
+
+            if self.product_id.manzana and self.product_id.lote:
+                return f"CANCELACION  INICIAL  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+            else:
+
+                return f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''} "
+
+
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line( **optional_values)
         if self.product_id.payment_land_dues:
@@ -41,32 +72,9 @@ class SaleOrderLine(models.Model):
 
         sale_line = self.env['sale.order.line'].browse(res['sale_line_ids'][0][1])
 
-        fecha_actual = self.order_id.next_payment_date_land or  fields.Datetime.now()
-        #mes = fecha_actual.strftime('%B')  # El mes completo en español
-        anio = fecha_actual.year
-
-        # Obtener el número del mes
-        mes_actual = fecha_actual.month
-
-        # Obtener el nombre del mes en español
-        mes_actual_espanol = meses_espanol[mes_actual]
-
-        mes_ano =  f' , {mes_actual_espanol} - {anio}'
-
-        if self.product_id.manzana and self.product_id.lote:
-            res['name'] = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
-        else:
-            if sale_line.order_id.mz_lot:
-                res['name'] = f"CANCELACION  CUOTA {int(sale_line.qty_invoiced + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
-
-        if self.product_id.is_advanced_land:
-
-            if self.product_id.manzana and self.product_id.lote:
-                res[
-                    'name'] = f"CANCELACION  INICIAL  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
-            else:
-
-                res['name'] = f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''} "
+        name = self.get_descript_next_due(sale_line)
+        if name:
+            res['name'] = name
 
 
         return res

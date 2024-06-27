@@ -297,10 +297,6 @@ class SaleOrder(models.Model):
                                 datex = datetime(year=datex.year, month=datex.month, day=1, hour=10) +  relativedelta(months=1)
                                 datex = datex - timedelta(days=1)
 
-
-
-
-
                             try:
                                 record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
                             except:
@@ -324,7 +320,15 @@ class SaleOrder(models.Model):
 
                         if inv.state == 'cancel':
                             continue
-                        invoicesx.append(inv)
+
+                        for i in range(int(inv.qty_due_land)) :
+                            invoicesx.append(inv)
+
+
+
+
+
+
 
                     i = 0
                     for linex in record.schedule_land_ids :

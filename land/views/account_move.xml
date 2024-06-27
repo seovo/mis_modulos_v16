@@ -21,6 +21,17 @@
            <field name="inherit_id" ref="account.view_move_form" />
            <field name="arch" type="xml">
 
+               <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="after" >
+                   <button name="next_due_land" type="object"
+                           confirm="Esta agregara una nueva cuota en una nueva linea de esta misma factura"
+                           icon="fa-clone" state="draft" />
+
+
+
+               </xpath>
+
+
+
 
                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after" >
                    <button name="edit_desc_jz" type="object"

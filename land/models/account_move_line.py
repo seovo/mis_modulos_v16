@@ -3,6 +3,17 @@ from datetime import datetime, timedelta
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
 
+    def next_due_land(self):
+        for record in self:
+            new_line = record.copy()
+
+            if record.sale_line_ids:
+                record.sale_line_ids[0].order_id.update_schedule()
+
+                new_line.name = record.sale_line_ids.get_descript_next_due(record.sale_line_ids)
+                new_line.sale_line_ids = [(6, 0, record.sale_line_ids.ids)]
+
+
     @api.onchange('product_id')
     def change_product_autocomplete_description_jz(self):
         for record in self:

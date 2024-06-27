@@ -52,6 +52,7 @@ class AccountMove(models.Model):
     sale_order_count_store = fields.Integer(related='sale_order_count',store=True)
     days_count_expired_separation = fields.Integer(compute='get_days_count_expired_separation',string="Dias Expirados")
     amount_due_land = fields.Float(compute='get_is_initial_land')
+    qty_due_land = fields.Float(compute='get_is_initial_land')
     amount_mora_land = fields.Float(compute='get_is_initial_land')
     report_lot_land_line_id = fields.Many2one('report.lot.land.line', compute='get_report_lot_land_line_id', store=True)
 
@@ -84,6 +85,7 @@ class AccountMove(models.Model):
             is_initial = False
             amount_mora = 0
             amount_due = 0
+            qty_due = 0
 
             for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
@@ -92,8 +94,9 @@ class AccountMove(models.Model):
                 if line.product_id.is_mora_land:
                     amount_mora += line.price_total
                 else:
+                    qty_due = line.quantity
                     amount_due += line.price_total
-
+            record.qty_due_land = qty_due
             record.is_initial_land = is_initial
             record.amount_due_land = amount_due
             record.amount_mora_land = amount_mora
