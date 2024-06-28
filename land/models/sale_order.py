@@ -216,7 +216,23 @@ class SaleOrder(models.Model):
                 record.date_first_due_land = date_next
 
     def show_lot_availables(self):
-        return
+        product = self.env['product.template'].search([('payment_land_dues','=',True)])
+        product.update_lots_jz()
+
+        return {
+            "name": f"LOTES",
+            "type": "ir.actions.act_window",
+            "view_mode": "kanban,tree",
+            # "view_id": self.env.ref('land.view_order_form_due').id,
+            "res_model": "report.lot.land.line",
+            "res_id": product.id,
+            "target": "current",
+            "domain": [('product_tmp_id', '=', product.id)],
+            "context": {
+                'search_default_gr_mz_value_id': 1
+            }
+
+        }
 
     @api.depends('order_line','mz_lot','sector')
     def get_info_land(self):
