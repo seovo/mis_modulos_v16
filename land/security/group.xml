@@ -14,5 +14,10 @@
 		<record id="group_commission" model="res.groups">
 			<field name="name">Commision Ventas Terrenos</field>
 		</record>
+
+		<record id="group_reordenate_date_sale" model="res.groups">
+			<field name="name">Reorganizar Fecha de Facturas desde Ventas</field>
+		</record>
+
 	</data>
 </odoo>

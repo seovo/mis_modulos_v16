@@ -67,7 +67,7 @@
                    <button name="show_m2_land" string="Modificar Metrado" type="object"  />
                    <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
                    <button name="show_lot_availables" string="Mostrar Lotes" type="object"  />
-                   <button name="update_dates_land" string="Reorganizar Fechas" type="object"  />
+                   <button name="update_dates_land" string="Reorganizar Fechas" type="object" groups="land.group_reordenate_date_sale"  />
 
                </xpath>
 

@@ -27,7 +27,7 @@ class ReportLotLandLine(models.Model):
     _description = 'report.lot.land.line'
     #report_lot_land_id = fields.Many2one('report.lot.land')
     mz_value_id        = fields.Many2one('product.template.attribute.value', string="Manzana")
-    name               = fields.Char()
+    name               = fields.Char(string="Lote")
     shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
     area               = fields.Float()
     front              = fields.Float(string='Frente')
