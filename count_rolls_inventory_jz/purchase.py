@@ -5,7 +5,6 @@ class ProductTemplateAttributeValue(models.Model):
     _inherit = 'product.template.attribute.value'
 
 
-
 class StockPicking(models.Model):
     _inherit       = 'stock.picking'
 
