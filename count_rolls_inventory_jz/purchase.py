@@ -1,9 +1,22 @@
 from odoo import api, fields, models
+from odoo.exceptions import UserError
+
+class ProductTemplateAttributeValue(models.Model):
+    _inherit = 'product.template.attribute.value'
+
+
 
 class StockPicking(models.Model):
     _inherit       = 'stock.picking'
 
     def button_validate(self):
+        for record in self:
+            for line in record.move_line_ids:
+                if not line.weight_roll:
+                    raise UserError('NO INDICARON PESO DEL ROLLO')
+
+
+
         res = super().button_validate()
         for record in self:
             if record.state == 'done':
