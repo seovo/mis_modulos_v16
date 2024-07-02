@@ -9,36 +9,65 @@ class StockPicking(models.Model):
     _inherit       = 'stock.picking'
 
     def button_validate(self):
+
         for record in self:
+            #raise ValueError(record.picking_type_id.code)
             for line in record.move_line_ids:
                 if not line.weight_roll:
                     raise UserError('NO INDICARON PESO DEL ROLLO')
 
-
-
         res = super().button_validate()
+
+
+        for record in self:
+
+            if record.picking_type_id.code == 'internal':
+                for linex in record.move_ids_without_package:
+                    #raise ValueError(linex.move_line_ids)
+                    if len(linex.move_line_ids) == 1:
+                        linex.move_line_ids.qty_rolls = linex.qty_rolls
+
+
+
+
+            for line in record.move_line_ids:
+                if not line.qty_rolls:
+                    raise UserError('NO INDICARON EL NUMERO DE ROLLOS')
+
+
         for record in self:
             if record.state == 'done':
                 for line in record.move_ids_without_package:
                     if line.state == 'done' and line.product_id:
 
+                        quant_dest = self.env['stock.quant'].search([
+                            ('location_id', '=', line.location_dest_id.id),
+                            ('product_id', '=', line.product_id.id),
+                        ])
+
+                        quant_origin = self.env['stock.quant'].search([
+                            ('location_id', '=', line.location_id.id),
+                            ('product_id', '=', line.product_id.id),
+                        ])
 
 
-                        if self.location_id.usage in ['supplier']:
-                            quant = self.env['stock.quant'].search([
-                                ('location_id', '=', line.location_dest_id.id),
-                                ('product_id', '=', line.product_id.id),
-                            ])
-                            qty_rolls = quant.qty_rolls or 0
-                            quant.qty_rolls = qty_rolls + line.qty_rolls
 
-                        if self.location_id.usage == 'internal':
-                            quant = self.env['stock.quant'].search([
-                                ('location_id', '=', line.location_id.id),
-                                ('product_id', '=', line.product_id.id),
-                            ])
-                            qty_rolls = quant.qty_rolls or 0
-                            quant.qty_rolls = qty_rolls - line.qty_rolls
+                        if  record.picking_type_id.code in ['internal','incoming']:
+
+                            qty_rolls = quant_dest.qty_rolls or 0
+                            quant_dest.qty_rolls = qty_rolls + line.qty_rolls
+
+                            #raise ValueError([record.picking_type_id.code,quant_dest.qty_rolls,line.qty_rolls,qty_rolls])
+
+                        #raise ValueError('ok')
+
+                        if  record.picking_type_id.code in ['internal','outgoing'] :
+
+                            qty_rolls_origin = quant_origin.qty_rolls or 0
+                            quant_origin.qty_rolls = qty_rolls_origin - line.qty_rolls
+
+
+
 
 
 
