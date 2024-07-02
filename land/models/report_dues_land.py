@@ -24,6 +24,12 @@ class CommissionRiman(models.Model):
                                  default=lambda self: self.env.company)
     dues_max = fields.Integer(compute='get_dues_max')
     dues_payment_max = fields.Integer(compute='get_dues_max')
+    stage_land = fields.Selection([
+        ('signed', ('Firmado')),
+        ('preaviso', ('Carta Preaviso')),
+        ('cancel', ('Resuelto')),
+        ('regularizado', 'Regularizado'),
+    ], string="Estado Terreno")
 
     @api.depends('order_ids')
     def get_dues_max(self):
@@ -56,6 +62,9 @@ class CommissionRiman(models.Model):
                       ]
             if record.type_periodo_invoiced != 'half_month_end_month':
                 domain.append(('type_periodo_invoiced','=',record.type_periodo_invoiced))
+
+            if record.stage_land:
+                domain.append(('stage_land','=',record.stage_land))
             sales = self.env['sale.order'].search(domain)
             for sale in sales:
                 if not sale.schedule_land_ids:

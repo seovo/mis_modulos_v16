@@ -24,6 +24,7 @@
                         <group>
                             <field name="type_periodo_invoiced"  />
                             <field name="mounth_expired" />
+                            <field name="stage_land" />
                         </group>
 
 

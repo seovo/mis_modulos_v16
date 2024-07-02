@@ -7,10 +7,6 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-
-
-
-
     nro_internal_land =  fields.Char(string="Expediente")
     mz_lot            =  fields.Char(string="MZ - LOTE")
     sector            =  fields.Char(string="Etapa")
