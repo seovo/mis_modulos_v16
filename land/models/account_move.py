@@ -34,7 +34,7 @@ class AccountMove(models.Model):
     )
     mz_land_separation  = fields.Char(string="MZ")
     lot_land_separation = fields.Char(string="Lote")
-    sector_land_separation = fields.Char(string="Etapa")
+    sector_land_separation_id = fields.Many2one('product.attribute.value',domain=[('attribute_id.type_land','=','stage')],string="Etapa")
     sale_order_count_store = fields.Integer(related='sale_order_count',store=True)
     days_count_expired_separation = fields.Integer(compute='get_days_count_expired_separation',string="Dias Expirados")
     amount_due_land = fields.Float(compute='get_is_initial_land')

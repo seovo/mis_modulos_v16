@@ -1,4 +1,5 @@
 from odoo import api, fields, models , _
+from odoo.exceptions import ValidationError
 
 meses_espanol = {
     1: 'enero',
@@ -154,6 +155,21 @@ class SaleOrderLine(models.Model):
     def create(self,values):
         res = super().create(values)
         for record in res:
+
+            if record.product_id:
+                mz_lot = f'{record.product_id.manzana}-{record.product_id.lote}'
+
+                exist = self.env['sale.order'].search(
+                    [('company_id', '=', record.company_id.id), ('mz_lot', '=', mz_lot), ('id', '!=', record.order_id.id),
+                     ('state', 'in', ['done', 'sale']),('stage_land','!=','cancel')])
+
+                if exist:
+                    raise ValidationError(f'NO PUEDE HABER MANZANA Y LOTE REPETIDOS ')
+
+
+
+
+
 
             for line in record.order_id.order_line:
                 line.change_product_uom_qty_land()

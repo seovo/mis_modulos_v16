@@ -82,7 +82,7 @@
 
                            <field name="mz_lot" />
                            <field name="sector" />
-                           <field name="sectorr" />
+
                            <field name="stage_land" />
 
                            <field name="dues_land" />
@@ -105,6 +105,7 @@
                            <field name="days_expired_land" />
                            <field name="commision_lan" />
                            <field name="crono_land" invisible="1" />
+                           <field name="sectorr" />
                        </group>
                    </page>
                    <page string="Cronograma">
@@ -151,11 +152,18 @@
                    <field name="nro_internal_land" />
 
 
+
+               </xpath>
+
+               <xpath expr="//field[@name='payment_term_id']" position="after" >
                    <field name="mz_land" />
                    <field name="lot_land" />
                    <field name="sector_land" />
                    <field name="m2_land" />
+
                </xpath>
+
+
 
 
 

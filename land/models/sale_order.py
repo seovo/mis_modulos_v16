@@ -2,9 +2,15 @@ from odoo import api, fields, models , _
 from odoo.tools import float_is_zero, format_amount, format_date, html_keep_url, is_html_empty
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
+from odoo.exceptions import ValidationError
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+
+
+
+
+
     nro_internal_land =  fields.Char(string="Expediente")
     mz_lot            =  fields.Char(string="MZ - LOTE")
     sector            =  fields.Char(string="Etapa")
@@ -34,6 +40,8 @@ class SaleOrder(models.Model):
         ('confirmer',_('Confirmador')) ,
         ('widow',_('Viudo')) ,
         ('transfer',_('Transferencia')) ,
+        ('legal','Persona Juridica'),
+        ('attorney','Representante Apoderado')
     ],string="Modalidad")
 
     obs_modality_land = fields.Text(string="Observaciones")
@@ -273,6 +281,8 @@ class SaleOrder(models.Model):
             if m2:
                 record.m2_land = m2
 
+
+
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
     def update_schedule(self):
         self.get_last_payment_date_land()
@@ -368,9 +378,6 @@ class SaleOrder(models.Model):
                     record.saldo_payment_land = round( record.price_credit_land - total_payment , 2 )
             record.get_last_payment_date_land()
 
-
-
-
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
         for record in self:
@@ -444,7 +451,6 @@ class SaleOrder(models.Model):
             record.mora_acumulada  = diff_days * record.value_mora_land
 
 
-
     @api.depends('order_line','order_line.product_id','order_line.qty_invoiced',
                  'note','invoice_ids','invoice_ids.state','invoice_ids.invoice_date')
     def _get_stage_payment_land(self):
@@ -474,8 +480,6 @@ class SaleOrder(models.Model):
                     stage = 'completed'
 
             record.stage_payment_lan = stage
-
-
 
 
     def show_m2_land(self):
@@ -541,20 +545,42 @@ class SaleOrder(models.Model):
                     line.change_product_uom_qty_land()
 
 
+
+    def verifi_mz_lot(self,mz=None,lt=None):
+
+
+        for record in self:
+            #raise ValueError(record.mz_lot)
+            if not record.mz_lot:
+                continue
+
+            exist = self.env['sale.order'].search(
+                [('company_id', '=', record.company_id.id), ('mz_lot', '=', record.mz_lot),('id','!=',record.id),
+                 ('state','in',['done','sale']),('stage_land','!=','cancel')])
+
+
+            if exist:
+                raise ValidationError(f'NO PUEDE HABER MANZANA Y LOTE REPETIDOS ')
+
+
+
     def write(self,values):
         res = super().write(values)
         for record in self:
             if record.recalcule_and_save_total_land:
                 record._update_text_mz_lote()
-
+        #self.get_info_land()
         self.check_adelanto()
+
 
         return res
 
     @api.model
     def create(self,vals):
         res = super().create(vals)
+        #res.get_info_land()
         res.check_adelanto()
+
         return res
 
 
@@ -644,6 +670,7 @@ class SaleOrder(models.Model):
 
 
     def action_confirm(self):
+        self.verifi_mz_lot()
         res = super().action_confirm()
         if self.move_separation_land_id:
             for line in self.order_line:

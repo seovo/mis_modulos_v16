@@ -79,6 +79,7 @@
 
                 <field name="mz_value_id" optional="hidden" />
                 <field name="name"   />
+                <field name="sector_land_separation_id"   />
                 <field name="shape"   />
                 <field name="area"   />
                 <field name="front"   />

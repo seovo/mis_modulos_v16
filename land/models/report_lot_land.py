@@ -40,6 +40,7 @@ class ReportLotLandLine(models.Model):
     product_tmp_id     = fields.Many2one('product.template', string='Producto')
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
+    sector_land_separation_id = fields.Many2one('product.attribute.value',domain=[('attribute_id.type_land','=','stage')],string="Etapa")
 
     @api.depends('order_ids','move_ids')
     def get_state(self):
