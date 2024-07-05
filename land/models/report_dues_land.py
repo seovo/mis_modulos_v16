@@ -31,6 +31,28 @@ class CommissionRiman(models.Model):
         ('regularizado', 'Regularizado'),
     ], string="Estado Terreno")
 
+
+
+
+    def action_preview_lines(self):
+        self.update_data()
+        self.order_ids.update_credit_saldo()
+
+        return {
+            "name": f"Ventas",
+            "type": "ir.actions.act_window",
+            "view_mode": "tree",
+            "view_id": self.env.ref('land.view_order_tree_report').id,
+            "res_model": "sale.order",
+            #"res_id": product.id,
+            "target": "current",
+            "domain": [('id', 'in', self.order_ids.ids)],
+            #"context": {
+            #    'search_default_gr_mz_value_id': 1
+            #}
+
+        }
+
     @api.depends('order_ids')
     def get_dues_max(self):
         for record in self:

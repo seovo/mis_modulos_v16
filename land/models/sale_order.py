@@ -177,6 +177,7 @@ class SaleOrder(models.Model):
 
 
     def show_dues_land(self):
+        self.update_schedule()
         return {
             "name": f"PAGOS",
             "type": "ir.actions.act_window",
@@ -189,6 +190,7 @@ class SaleOrder(models.Model):
         }
 
     def get_qty_dues_payment(self):
+
         for record in self:
             qty = 0
             for line in record.order_line:
@@ -278,6 +280,25 @@ class SaleOrder(models.Model):
                 record.m2_land = m2
 
 
+    def update_credit_saldo(self):
+        for record in self:
+            total_payment = 0
+
+
+
+
+            for line in record.order_line:
+                if line.product_id.payment_land_dues:
+                    for line_invoice in line.invoice_lines:
+                        total_payment +=  line_invoice.price_total
+
+
+            record.total_payment_land = round(total_payment, 2)
+            record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
+
+
+
+
 
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
     def update_schedule(self):
@@ -288,7 +309,7 @@ class SaleOrder(models.Model):
                 total_dues = 0
                 price_unit = 0
                 qty_invoiced = 0
-                total_payment = 0
+
 
                 for line in record.order_line:
                     if line.product_id.payment_land_dues:
@@ -347,11 +368,6 @@ class SaleOrder(models.Model):
                             invoicesx.append(inv)
 
 
-
-
-
-
-
                     i = 0
                     for linex in record.schedule_land_ids :
                         linex.update({
@@ -362,7 +378,7 @@ class SaleOrder(models.Model):
                             linex.update({
                                 'move_id': invoicesx[i].id
                             })
-                            total_payment += invoicesx[i].amount_due_land
+                            #total_payment += invoicesx[i].amount_due_land
 
                         except:
                             linex.update({
@@ -370,9 +386,9 @@ class SaleOrder(models.Model):
                             })
                         i += 1
 
-                    record.total_payment_land = round(total_payment,2)
-                    record.saldo_payment_land = round( record.price_credit_land - total_payment , 2 )
+
             record.get_last_payment_date_land()
+            record.update_credit_saldo()
 
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
@@ -438,6 +454,11 @@ class SaleOrder(models.Model):
                 diff_days = (date_now - date_next ).days
 
             diff_days -= record.days_tolerance_land
+
+
+            if record.stage_payment_lan == 'initial':
+                if record.last_payment_date_land:
+                    diff_days = (date_now - record.last_payment_date_land ).days
 
             if diff_days < 0:
                 diff_days = 0
@@ -589,6 +610,7 @@ class SaleOrder(models.Model):
                             clone_line = line.copy(default={'order_id': record.id , 'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id })
                             clone_line.price_unit = record.move_separation_land_id.amount_untaxed
                             line.price_unit = line.price_unit - clone_line.price_unit
+
 
 
     def _get_invoiceable_lines(self, final=False):

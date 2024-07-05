@@ -15,6 +15,17 @@
                 <sheet>
 
 
+                    <div class="oe_button_box" name="button_box">
+
+                        <button name="action_preview_lines" type="object"
+                                class="oe_stat_button" icon="fa-globe icon">
+                           <div class="o_field_widget o_stat_info">
+                               <span class="o_stat_text">Ampliar</span>
+                           </div>
+                        </button>
+                     </div>
+
+
 
                     <group>
                         <group>

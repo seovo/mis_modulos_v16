@@ -20,7 +20,10 @@ meses_espanol = {
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    add_separation_land = fields.Float(string="Agregar Separación")
+
     def edit_price_jz(self):
+        self.add_separation_land = 0
         view = self.env.ref('land.edit_sale_order_line')
         return {
             "name": f"EDIT PRICE :   {self.name}",
@@ -143,9 +146,43 @@ class SaleOrderLine(models.Model):
             record._calculate_price_land()
 
 
+    def check_adelanto(self):
+        for record in self:
+            if record.move_separation_land_id:
+                if len(record.order_line) == 2:
+                    for line in record.order_line:
+                        if line.product_id.is_advanced_land:
+                            clone_line = line.copy(default={'order_id': record.id , 'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id })
+                            clone_line.price_unit = record.move_separation_land_id.amount_untaxed
+                            line.price_unit = line.price_unit - clone_line.price_unit
+
+
     def write(self,values):
         res = super().write(values)
         for record in self:
+
+            if record.add_separation_land and record.add_separation_land > 0 and record.product_id.is_advanced_land:
+                if len(record.order_id.order_line) == 2:
+                    clone_line = record.copy(default={
+                        'name': 'Separación',
+                        'order_id': record.order_id.id ,
+                        'price_unit': record.add_separation_land
+                        #"'product_id': record.move_separation_land_id.invoice_line_ids[
+                        #                                0].product_id.id
+                        }
+                    )
+
+                    clone_line.price_unit = record.add_separation_land
+                    record.add_separation_land = 0
+
+                    record.price_unit = record.price_unit - clone_line.price_unit
+
+                    #line.price_unit = line.price_unit - clone_line.price_unit
+
+
+
+
+
             if record.product_id and record.product_id.is_advanced_land:
                 record.order_id._recalcule_price_land()
         return res
