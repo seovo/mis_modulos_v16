@@ -77,7 +77,7 @@
 
                 <!-- decoration-info="state in ['draft', 'sent']" decoration-muted="state == 'cancel'" -->
 
-                <field name="mz_value_id" optional="hidden" />
+                <field name="mz_value_id"  />
                 <field name="name"   />
                 <field name="sector_land_separation_id"   />
                 <field name="shape"   />

@@ -222,7 +222,7 @@ class SaleOrder(models.Model):
                 record.date_first_due_land = date_next
 
     def show_lot_availables(self):
-        product = self.env['product.template'].search([('payment_land_dues','=',True)])
+        product = self.env['product.template'].search([('payment_land_dues','=',True),('sale_ok','=',True)])
         product.update_lots_jz()
 
         return {
@@ -607,9 +607,13 @@ class SaleOrder(models.Model):
                 if len(record.order_line) == 2:
                     for line in record.order_line:
                         if line.product_id.is_advanced_land:
-                            clone_line = line.copy(default={'order_id': record.id , 'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id })
+                            clone_line = line.copy(default={
+                                'order_id': record.id ,
+                                'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id ,
+                                'tax_id': [(6,0,line.tax_id.ids)]
+                            })
                             clone_line.price_unit = record.move_separation_land_id.amount_untaxed
-                            line.price_unit = line.price_unit - clone_line.price_unit
+                            line.price_unit = line.price_unit -  record.move_separation_land_id.amount_untaxed
 
 
 
