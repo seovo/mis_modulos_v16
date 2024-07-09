@@ -49,6 +49,15 @@ class SaleOrderLine(models.Model):
 
         mes_ano = f' , {mes_actual_espanol} - {anio}'
 
+
+        if self.product_id.is_anticipo_land:
+
+            if self.product_id.manzana and self.product_id.lote:
+                return f"ANTICIPO  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+            else:
+
+                return f"ANTICIPO ,  {sale_line.order_id.mz_lot or ''} "
+
         if self.product_id.is_separation_land:
 
             if self.product_id.manzana and self.product_id.lote:

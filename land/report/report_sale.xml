@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath
+            expr="//div[@id='informations']"
+            position="after"
+        >
+
+
+
+            <div class="row">
+                    <div class="col-6 p-2">
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cliente</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">RUC</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.vat" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Email</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.email" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cel:</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.partner_id.phone"  class="pr-2"/>
+                                <span t-esc="doc.partner_id.mobile" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Etapa</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.sector_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">MZ</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.mz_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">LT</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.lot_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Periodo Pago</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-set="periodo" t-value=" 'QUINCENAL' if doc.type_periodo_invoiced == 'half_month' else 'FIN DE MES' " />
+                                <t t-esc="periodo" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6 p-2">
+                        <div class="row">
+                            <div class="col-12 bg-light p-2 border border-primary text-center">Resumen</div>
+                        </div>
+                        <div class="row">
+                                <div class="col-4 bg-light p-2 border border-primary text-end">Metraje</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="doc.m2_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Valor Total</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="round(doc.amount_total,2)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cuota Inicial</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                <t t-esc="doc.partner_id.phone"  class="pr-2"/>
+                                S/ <span t-esc="round(doc.price_initial_land,2)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Descuento</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                PRE-VENTA
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Credito</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="round(doc.price_credit_land,2)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Total Cuotas</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                <t t-esc="int(doc.dues_land)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Valor Cuota</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+
+                                S/ <t t-esc="round(doc.value_due_land,2)" />
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

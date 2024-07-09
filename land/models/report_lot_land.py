@@ -56,6 +56,16 @@ class ReportLotLandLine(models.Model):
                 if order.state in ['done','sale']:
                     if order.stage_land == 'signed':
                         state = 'sale'
+                    if not order.stage_land :
+                        if order.invoice_ids:
+                            all_initial = True
+                            for invoice in order.invoice_ids:
+                                if not invoice.is_initial_land:
+                                    all_initial = False
+                            if all_initial:
+                                state = 'reserved'
+
+
             record.state = state
 
 

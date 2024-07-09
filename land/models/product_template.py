@@ -22,6 +22,7 @@ class ProductTemplate(models.Model):
     dues_qty            = fields.Integer(string="N° Cuotas")
     is_advanced_land    = fields.Boolean(string="Adelanto Terreno")
     is_separation_land  = fields.Boolean(string="Es una Separación de Terreno")
+    is_anticipo_land = fields.Boolean(string="Es un Anticipo de Terreno")
     is_mora_land        = fields.Boolean(string="Mora")
     report_lot_land_line_ids = fields.One2many('report.lot.land.line','product_tmp_id')
     product_template_attribute_value_ids = fields.One2many('product.template.attribute.value','product_tmpl_id')

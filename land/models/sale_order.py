@@ -670,11 +670,6 @@ class SaleOrder(models.Model):
                 if exist_move:
                     raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot} ')
 
-
-
-
-
-
     def write(self,values):
         res = super().write(values)
         for record in self:

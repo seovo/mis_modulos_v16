@@ -30,7 +30,8 @@
         'report/report_lot.xml',
         'report/report_schedule.xml',
         'report/report_resueltos.xml',
-        'views/account_journal.xml'
+        'views/account_journal.xml',
+        "report/report_sale.xml",
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
