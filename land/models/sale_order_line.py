@@ -49,13 +49,16 @@ class SaleOrderLine(models.Model):
 
         mes_ano = f' , {mes_actual_espanol} - {anio}'
 
-        if self.product_id.manzana and self.product_id.lote:
-            name = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
-            return name
-        else:
-            if sale_line.order_id.mz_lot:
-                name = f"CANCELACION  CUOTA {int(sale_line.qty_invoiced + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
-                return name
+        if self.product_id.is_separation_land:
+
+            if self.product_id.manzana and self.product_id.lote:
+                return f"SEPARACION  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+            else:
+
+                return f"SEPARACION ,  {sale_line.order_id.mz_lot or ''} "
+
+
+
 
         if self.product_id.is_advanced_land:
 
@@ -64,6 +67,16 @@ class SaleOrderLine(models.Model):
             else:
 
                 return f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''} "
+
+
+        if self.product_id.manzana and self.product_id.lote:
+            name = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
+            return name
+        else:
+            if sale_line.order_id.mz_lot:
+                name = f"CANCELACION  CUOTA {int(sale_line.qty_invoiced + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
+                return name
+
 
 
     def _prepare_invoice_line(self, **optional_values):
@@ -77,6 +90,7 @@ class SaleOrderLine(models.Model):
         sale_line = self.env['sale.order.line'].browse(res['sale_line_ids'][0][1])
 
         name = self.get_descript_next_due(sale_line)
+
         if name:
             res['name'] = name
 
@@ -166,14 +180,24 @@ class SaleOrderLine(models.Model):
             if record.add_separation_land and record.add_separation_land > 0 and record.product_id.is_advanced_land:
 
                 if len(record.order_id.order_line) == 2:
-                    clone_line = record.copy(default={
+
+                    dx = {
                         'name': 'Separación',
                         'order_id': record.order_id.id ,
                         'price_unit': record.add_separation_land
                         #"'product_id': record.move_separation_land_id.invoice_line_ids[
                         #                                0].product_id.id
                         }
-                    )
+
+                    product_separation =  self.env['product.product'].search([('is_separation_land','=',True)])
+
+                    if product_separation:
+                        dx.update({
+                            'product_id': product_separation.id
+                        })
+
+
+                    clone_line = record.copy(default=dx)
 
                     clone_line.price_unit = record.add_separation_land
                     record.add_separation_land = 0

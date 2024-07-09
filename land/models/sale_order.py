@@ -86,6 +86,7 @@ class SaleOrder(models.Model):
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
+    sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
 
 
 
@@ -736,6 +737,12 @@ class SaleOrder(models.Model):
 
 
     def _get_invoiceable_lines(self, final=False):
+
+        if self.sale_line_payment_id:
+            return self.sale_line_payment_id
+
+
+
         """Return the invoiceable lines for order `self`."""
         down_payment_line_ids = []
         invoiceable_line_ids = []
@@ -743,6 +750,9 @@ class SaleOrder(models.Model):
         precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
 
         quantity_lines_invoice = 0
+
+        have_separation = False
+
         for line in self.order_line:
             if line.display_type == 'line_section':
                 continue
@@ -753,7 +763,13 @@ class SaleOrder(models.Model):
                 if line.is_downpayment:
                     continue
 
+            if line.product_id.is_separation_land:
+                have_separation = True
+
             quantity_lines_invoice += 1
+
+
+
 
 
 
@@ -771,6 +787,9 @@ class SaleOrder(models.Model):
             if quantity_lines_invoice > 1 and line.product_id.payment_land_dues:
                 continue
 
+            if have_separation and not line.product_id.is_separation_land:
+                continue
+
             if line.qty_to_invoice > 0 or (line.qty_to_invoice < 0 and final) or line.display_type == 'line_note':
                 if line.is_downpayment:
                     # Keep down payment lines separately, to put them together
@@ -782,9 +801,11 @@ class SaleOrder(models.Model):
                     pending_section = None
                 invoiceable_line_ids.append(line.id)
 
+        res = self.env['sale.order.line'].browse(invoiceable_line_ids + down_payment_line_ids)
 
 
-        return self.env['sale.order.line'].browse(invoiceable_line_ids + down_payment_line_ids)
+
+        return res
 
 
     def _prepare_invoice(self):
@@ -799,6 +820,33 @@ class SaleOrder(models.Model):
         if self.days_expired_land:
             res['days_expired_land'] = self.days_expired_land
             res['value_mora_land'] = self.value_mora_land
+
+        if self.mz_land:
+            mz = self.env['product.attribute.value'].search(
+                [('attribute_id.type_land', '=', 'mz'), ('name', '=', self.mz_land)])
+
+            if mz:
+                res['mz_land_separation_id'] = mz.id
+
+
+        if self.lot_land:
+            lt = self.env['product.attribute.value'].search(
+                [('attribute_id.type_land', '=', 'lot'), ('name', '=', self.lot_land)])
+            if lt:
+                res['lot_land_separation_id'] = lt.id
+
+
+        if self.sector_land:
+            st = self.env['product.attribute.value'].search(
+                [('attribute_id.type_land', '=', 'stage'), ('name', '=', self.sector_land)])
+            if st:
+                res['sector_land_separation_id'] = st.id
+
+
+
+
+
+
 
         #if self.invoice_payment_import_id:
         #    res['invoice_payment_term_id'] = self.invoice_payment_import_id

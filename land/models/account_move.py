@@ -145,15 +145,21 @@ class AccountMove(models.Model):
 
 
         for record in res:
-
-
-
             self.env['sale.order'].verifi_mz_lot(mz=record.mz_land_separation_id.name, lt=record.lot_land_separation_id.name,object= record)
 
             for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
                     if line.product_id.description_sale:
                         record.narration_text = line.product_id.description_sale
+                if line.product_id.is_separation_land:
+                    record.is_separation_land = True
+                    record.stage_separation_land = 'initial'
+
+                    #colocar la manza y lote
+
+
+
+
 
 
             if record.days_expired_land  and record.days_expired_land != 0 and record.journal_id.id != 10:
