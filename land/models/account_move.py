@@ -32,8 +32,8 @@ class AccountMove(models.Model):
         default=15 ,
         states={'posted': [('readonly', True)], 'cancel': [('readonly', True)]},
     )
-    mz_land_separation  = fields.Char(string="MZ")
-    lot_land_separation = fields.Char(string="Lote")
+    mz_land_separation_id  = fields.Many2one('product.attribute.value',domain=[('attribute_id.type_land','=','mz')],string="MZ")
+    lot_land_separation_id = fields.Many2one('product.attribute.value',domain=[('attribute_id.type_land','=','lot')],string="Lote")
     sector_land_separation_id = fields.Many2one('product.attribute.value',domain=[('attribute_id.type_land','=','stage')],string="Etapa")
     sale_order_count_store = fields.Integer(related='sale_order_count',store=True)
     days_count_expired_separation = fields.Integer(compute='get_days_count_expired_separation',string="Dias Expirados")
@@ -44,7 +44,7 @@ class AccountMove(models.Model):
 
 
 
-    @api.depends('mz_land_separation', 'lot_land_separation')
+    @api.depends('mz_land_separation_id', 'lot_land_separation_id')
     def get_report_lot_land_line_id(self, product_tmp=None):
         for record in self:
             if not product_tmp:
@@ -57,10 +57,10 @@ class AccountMove(models.Model):
             line = None
             # raise ValueError(product_tmp)
 
-            if record.mz_land_separation and record.lot_land_separation:
+            if record.mz_land_separation_id and record.lot_land_separation_id:
                 line = self.env['report.lot.land.line'].search([
-                    ('mz_value_id.name', '=', record.mz_land_separation),
-                    ('name', '=', str(int(record.lot_land_separation))),
+                    ('mz_value_id.name', '=', record.mz_land_separation_id.name),
+                    ('name', '=', str(int(record.lot_land_separation_id.name))),
                     ('product_tmp_id', '=', product_tmp.id)
                 ])
             record.report_lot_land_line_id = line
@@ -174,7 +174,7 @@ class AccountMove(models.Model):
 
     @api.depends('narration_text','bank_origin_ids','bank_origin_ids.bank_id',
                  'bank_origin_ids.operation_number','bank_origin_ids.date')
-    def get_narration(self):
+    def get_narration_dx(self):
         for record in self:
             text = record.narration_text or ''
 
