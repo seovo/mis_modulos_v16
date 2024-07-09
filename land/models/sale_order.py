@@ -570,11 +570,14 @@ class SaleOrder(models.Model):
 
 
         for record in self2:
+            objectx = object if object else record
             #raise ValueError([mz,lt])
             #raise ValueError(record.mz_lot)
             if not mz and not lt:
-                if not record.mz_lot:
-                    continue
+                if objectx._name == 'sale.order':
+                    if not record.mz_lot:
+                        continue
+
 
 
             if mz and lt :
@@ -587,7 +590,7 @@ class SaleOrder(models.Model):
                 mz = mz_lot_split[0]
                 lt = mz_lot_split[1]
 
-            objectx = object if object else record
+
 
 
             domain_order = [
