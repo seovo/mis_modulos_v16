@@ -283,7 +283,11 @@
         <field name="res_model">account.move</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('is_separation_land','=',True),('move_type', '=', 'out_invoice'),('sale_order_count_store','=',0)]</field>
-        <field name="context">{'default_is_separation_land': True , 'default_move_type': 'out_invoice' }</field>
+        <field name="context">{
+            'default_is_separation_land': True ,
+            'default_move_type': 'out_invoice' ,
+            'default_stage_separation_land': 'active' ,
+            }</field>
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_invoice_tree_jz')}),
                 (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_move_form')})]"

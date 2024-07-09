@@ -162,6 +162,7 @@ class SaleOrderLine(models.Model):
         for record in self:
 
             if record.add_separation_land and record.add_separation_land > 0 and record.product_id.is_advanced_land:
+
                 if len(record.order_id.order_line) == 2:
                     clone_line = record.copy(default={
                         'name': 'Separación',

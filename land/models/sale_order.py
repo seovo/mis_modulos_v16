@@ -563,21 +563,74 @@ class SaleOrder(models.Model):
 
 
 
-    def verifi_mz_lot(self,mz=None,lt=None):
+    def verifi_mz_lot(self,mz=None,lt=None,object=None):
 
 
-        for record in self:
+        self2 = object or self
+
+
+        for record in self2:
+            #raise ValueError([mz,lt])
             #raise ValueError(record.mz_lot)
-            if not record.mz_lot:
-                continue
+            if not mz and not lt:
+                if not record.mz_lot:
+                    continue
 
-            exist = self.env['sale.order'].search(
-                [('company_id', '=', record.company_id.id), ('mz_lot', '=', record.mz_lot),('id','!=',record.id),
-                 ('state','in',['done','sale']),('stage_land','!=','cancel')])
+
+            if mz and lt :
+                mz_lot = f'{mz}-{lt}'
+            else:
+                mz_lot = record.mz_lot
+
+                mz_lot_split = mz_lot.split('-')
+
+                mz = mz_lot_split[0]
+                lt = mz_lot_split[1]
+
+            objectx = object if object else record
+
+
+            domain_order = [
+                ('company_id', '=', record.company_id.id),
+                ('mz_lot', '=', mz_lot),
+                ('state','in',['done','sale']),
+                ('stage_land','!=','cancel')
+            ]
+
+            if objectx._name == 'sale.order':
+                domain_order.append(('id','!=',objectx.id))
+
+
+            exist = self.env['sale.order'].search(domain_order)
 
 
             if exist:
-                raise ValidationError(f'NO PUEDE HABER MANZANA Y LOTE REPETIDOS ')
+                raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
+
+
+
+            domain_move = [
+                ('company_id', '=', record.company_id.id),
+                ('mz_land_separation_id.name', '=', mz),
+                ('lot_land_separation_id.name', '=', lt),
+                ('state', 'in', ['posted']),
+                #('stage_land', '!=', 'cancel')
+            ]
+
+            if objectx._name == 'account.move':
+                domain_move.append(('id','!=',objectx.id))
+
+            if objectx._name == 'sale.order':
+                if objectx.move_separation_land_id:
+                    domain_move.append(('id', '!=', objectx.move_separation_land_id.id))
+
+
+            exist_move = self.env['account.move'].search(domain_move)
+
+
+
+            if exist_move:
+                raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot}')
 
 
 
@@ -587,7 +640,7 @@ class SaleOrder(models.Model):
             if record.recalcule_and_save_total_land:
                 record._update_text_mz_lote()
         #self.get_info_land()
-        self.check_adelanto()
+        #self.check_adelanto()
 
 
         return res
@@ -596,24 +649,46 @@ class SaleOrder(models.Model):
     def create(self,vals):
         res = super().create(vals)
         #res.get_info_land()
-        res.check_adelanto()
+        #res.check_adelanto()
 
         return res
 
 
     def check_adelanto(self):
         for record in self:
+
+            line_set = None
+            amount_set = None
+
             if record.move_separation_land_id:
                 if len(record.order_line) == 2:
                     for line in record.order_line:
                         if line.product_id.is_advanced_land:
+
+                            product_id = record.move_separation_land_id.invoice_line_ids[0].product_id
+
                             clone_line = line.copy(default={
                                 'order_id': record.id ,
-                                'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id ,
-                                'tax_id': [(6,0,line.tax_id.ids)]
+                                'product_id': product_id.id ,
+                                'tax_id': [(6,0, product_id.taxes_id.ids)]
                             })
-                            clone_line.price_unit = record.move_separation_land_id.amount_untaxed
-                            line.price_unit = line.price_unit -  record.move_separation_land_id.amount_untaxed
+                            clone_line.price_unit = record.move_separation_land_id.amount_total
+
+                            price_unit_new = line.price_unit -  record.move_separation_land_id.amount_total
+                            line.price_unit =  price_unit_new * 1
+
+                            line_set = line
+                            amount_set = price_unit_new * 1
+
+                            #raise ValueError(line.price_unit)
+
+
+            if line_set:
+                line_set.price_unit = amount_set
+
+                #raise ValueError(line_set.price_unit)
+            #raise ValueError(line_set)
+
 
 
 
@@ -693,6 +768,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         self.verifi_mz_lot()
+        self.check_adelanto()
         res = super().action_confirm()
         if self.move_separation_land_id:
             for line in self.order_line:

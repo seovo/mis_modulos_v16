@@ -47,7 +47,7 @@
                    <field name="mz_land_separation_id" attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)]  }" />
                    <field name="lot_land_separation_id"  attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)] }" />
                    <field name="sector_land_separation_id"  attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)] }" />
-
+                   <field name="stage_separation_land" attrs="{'invisible': [('is_separation_land','!=',True)] , 'required':  [('is_separation_land','=',True)] }" />
                </xpath>
 
                <xpath expr="//field[@name='partner_bank_id']" position="after" >

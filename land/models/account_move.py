@@ -41,6 +41,11 @@ class AccountMove(models.Model):
     qty_due_land = fields.Float(compute='get_is_initial_land')
     amount_mora_land = fields.Float(compute='get_is_initial_land')
     report_lot_land_line_id = fields.Many2one('report.lot.land.line', compute='get_report_lot_land_line_id', store=True)
+    stage_separation_land = fields.Selection([
+        ('active','Activo'),
+        ('down','Caido'),
+        ('initial','Inicial')
+    ],string='Estado Separación')
 
 
 
@@ -63,6 +68,9 @@ class AccountMove(models.Model):
                     ('name', '=', str(int(record.lot_land_separation_id.name))),
                     ('product_tmp_id', '=', product_tmp.id)
                 ])
+
+
+
             record.report_lot_land_line_id = line
 
     @api.depends('invoice_line_ids','invoice_line_ids.product_id','narration')
@@ -116,6 +124,8 @@ class AccountMove(models.Model):
 
     def create_sale_if_separation(self):
 
+        note = f' SEPARADO PARA {self.mz_land_separation_id.name}-{ self.lot_land_separation_id.name} , {self.sector_land_separation_id.name} '
+
         return {
             "name": f"Cotizacion",
             "type": "ir.actions.act_window",
@@ -124,7 +134,8 @@ class AccountMove(models.Model):
             "target": "current",
             "context": {
                 'default_move_separation_land_id': self.id  ,
-                'default_partner_id': self.partner_id.id
+                'default_partner_id': self.partner_id.id ,
+                'default_note': note
             }
 
         }
@@ -134,6 +145,11 @@ class AccountMove(models.Model):
 
 
         for record in res:
+
+
+
+            self.env['sale.order'].verifi_mz_lot(mz=record.mz_land_separation_id.name, lt=record.lot_land_separation_id.name,object= record)
+
             for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
                     if line.product_id.description_sale:
@@ -161,6 +177,10 @@ class AccountMove(models.Model):
                 #record.invoice_line_ids += self.env['account.move.line'].new()
 
 
+        #verificar mz y lote
+
+
+
 
 
         return res
@@ -169,7 +189,7 @@ class AccountMove(models.Model):
 
     def action_post(self):
         res = super().action_post()
-        self.get_narration()
+        self.get_narration_dx()
         return res
 
     @api.depends('narration_text','bank_origin_ids','bank_origin_ids.bank_id',
