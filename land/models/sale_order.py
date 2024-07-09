@@ -583,12 +583,14 @@ class SaleOrder(models.Model):
             if mz and lt :
                 mz_lot = f'{mz}-{lt}'
             else:
-                mz_lot = record.mz_lot
+                if objectx._name == 'sale.order':
+                    mz_lot = record.mz_lot
 
-                mz_lot_split = mz_lot.split('-')
+                    mz_lot_split = mz_lot.split('-')
 
-                mz = mz_lot_split[0]
-                lt = mz_lot_split[1]
+                    mz = mz_lot_split[0]
+                    lt = mz_lot_split[1]
+
 
 
 
