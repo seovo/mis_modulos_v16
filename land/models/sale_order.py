@@ -568,6 +568,8 @@ class SaleOrder(models.Model):
 
         self2 = object or self
 
+        mz_lot = None
+
 
         for record in self2:
             objectx = object if object else record
@@ -593,49 +595,46 @@ class SaleOrder(models.Model):
 
 
 
+            if mz_lot:
+                domain_order = [
+                    ('company_id', '=', record.company_id.id),
+                    ('mz_lot', '=', mz_lot),
+                    ('state', 'in', ['done', 'sale']),
+                    ('stage_land', '!=', 'cancel')
+                ]
+
+                if objectx._name == 'sale.order':
+                    domain_order.append(('id', '!=', objectx.id))
+
+                exist = self.env['sale.order'].search(domain_order)
+
+                if exist:
+                    raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
 
 
-            domain_order = [
-                ('company_id', '=', record.company_id.id),
-                ('mz_lot', '=', mz_lot),
-                ('state','in',['done','sale']),
-                ('stage_land','!=','cancel')
-            ]
+            if mz and lt:
+                domain_move = [
+                    ('company_id', '=', record.company_id.id),
+                    ('mz_land_separation_id.name', '=', mz),
+                    ('lot_land_separation_id.name', '=', lt),
+                    ('state', 'in', ['posted']),
+                    # ('stage_land', '!=', 'cancel')
+                ]
 
-            if objectx._name == 'sale.order':
-                domain_order.append(('id','!=',objectx.id))
+                if objectx._name == 'account.move':
+                    domain_move.append(('id', '!=', objectx.id))
 
+                if objectx._name == 'sale.order':
+                    if objectx.move_separation_land_id:
+                        domain_move.append(('id', '!=', objectx.move_separation_land_id.id))
 
-            exist = self.env['sale.order'].search(domain_order)
+                exist_move = self.env['account.move'].search(domain_move)
 
-
-            if exist:
-                raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
-
-
-
-            domain_move = [
-                ('company_id', '=', record.company_id.id),
-                ('mz_land_separation_id.name', '=', mz),
-                ('lot_land_separation_id.name', '=', lt),
-                ('state', 'in', ['posted']),
-                #('stage_land', '!=', 'cancel')
-            ]
-
-            if objectx._name == 'account.move':
-                domain_move.append(('id','!=',objectx.id))
-
-            if objectx._name == 'sale.order':
-                if objectx.move_separation_land_id:
-                    domain_move.append(('id', '!=', objectx.move_separation_land_id.id))
-
-
-            exist_move = self.env['account.move'].search(domain_move)
+                if exist_move:
+                    raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot}')
 
 
 
-            if exist_move:
-                raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot}')
 
 
 
