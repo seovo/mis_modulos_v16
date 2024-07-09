@@ -322,27 +322,33 @@
             />
     </record>
 
+
+
+
     <menuitem name="Separaciones"
               id="menu_move_adelantos"
               parent="sale.sale_order_menu"
     />
 
-    <menuitem action="action_move_adelantos1"
-              id="menu_move_adelantos1"
-              parent="menu_move_adelantos"
-    />
-
     <menuitem action="action_move_adelantos2"
               id="menu_move_adelantos2"
               parent="menu_move_adelantos"
-    />
+              sequence="0" />
 
+    <menuitem action="action_move_adelantos1"
+              id="menu_move_adelantos1"
+              parent="menu_move_adelantos"
+              sequence="1"
+    />
 
 
     <menuitem action="action_sale_initial_incompletex"
               id="menu_sale_initial_incomplete"
               parent="menu_move_adelantos"
+              sequence="2"
     />
+
+
 
     <record id="action_sale_dues_incomplete" model="ir.actions.act_window">
         <field name="name">Expedientes en Proceso de Pago</field>

@@ -30,6 +30,7 @@ class ReportLotLandLine(models.Model):
     name               = fields.Char(string="Lote")
     shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
     area               = fields.Float()
+    area_id            = fields.Many2one('product.attribute.value', domain=[('attribute_id.type_land', '=', 'm2')], string="Area")
     front              = fields.Float(string='Frente')
     large1             = fields.Float(string='Largo 1')
     large2             = fields.Float(string='Largo 2')

@@ -15,6 +15,37 @@
            </field>
     </record>
 
+
+
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+           <field name="name">account.move.search</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_account_invoice_filter" />
+           <field name="arch" type="xml">
+
+
+               <xpath expr="//field[@name='date']" position="after" >
+
+
+
+                   <filter name="is_active" string="Separaciones Activas"
+                           domain="[('stage_separation_land', '=', 'active')]"
+                   />
+                   <filter name="is_active" string="Separaciones Caidas"
+                           domain="[('stage_separation_land', '=', 'down')]"
+                   />
+                   <filter name="is_active" string="Separaciones con Inicial"
+                           domain="[('stage_separation_land', '=', 'initial')]"
+                   />
+
+                   <group expand="0" string="Group By">
+                        <filter string="Estado Separacion" name="group_by_stage_separation" context="{'group_by': 'stage_separation_land'}" />
+                    </group>
+               </xpath>
+           </field>
+    </record>
+
+
     <record id="view_move_form" model="ir.ui.view">
            <field name="name">account.move.Form</field>
            <field name="model">account.move</field>
@@ -177,10 +208,18 @@
                            decoration-warning="payment_state in ('partial', 'in_payment')"
                            decoration-success="payment_state in ('paid', 'reversed')" attrs="{'invisible': [('payment_state', 'in', ('invoicing_legacy'))]}"
                            optional="hide" />
+                    <field name="stage_separation_land"
+                            widget="badge"
+                           decoration-success="stage_separation_land == 'active'"
+                           decoration-info="stage_separation_land == 'initial'"
+                           decoration-danger="stage_separation_land == 'down'"
+                    />
                     <field name="state" widget="badge" decoration-success="state == 'posted'" decoration-info="state == 'draft'" optional="show"/>
+
+
                     <field name="move_type" invisible="context.get('default_move_type', True)"/>
-                    <field name="l10n_pe_edi_ose_accepted"  optional="show" />
-                    <field name="l10n_pe_edi_sunat_accepted"  optional="show" />
+                    <field name="l10n_pe_edi_ose_accepted"  optional="hide" />
+                    <field name="l10n_pe_edi_sunat_accepted"  optional="hide" />
                     <field name="days_count_expired_separation"  optional="hide" />
 
                   </tree>

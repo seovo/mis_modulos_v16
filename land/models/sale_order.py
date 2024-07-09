@@ -573,6 +573,11 @@ class SaleOrder(models.Model):
 
         for record in self2:
             objectx = object if object else record
+
+            if objectx._name == 'account.move':
+                if not objectx.is_separation_land:
+                    continue
+
             #raise ValueError([mz,lt])
             #raise ValueError(record.mz_lot)
             if not mz and not lt:
@@ -608,8 +613,35 @@ class SaleOrder(models.Model):
 
                 exist = self.env['sale.order'].search(domain_order)
 
+                #raise ValueError([mz, lt, object, mz_lot, exist])
+
                 if exist:
                     raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
+                else:
+                    lt = int(lt)
+                    if lt <= 9:
+                        lt = str(lt).zfill(2)
+                        mz_lot = f'{mz}-{lt}'
+
+                    domain_order = [
+                        ('company_id', '=', record.company_id.id),
+                        ('mz_lot', '=', mz_lot),
+                        ('state', 'in', ['done', 'sale']),
+                        ('stage_land', '!=', 'cancel')
+                    ]
+
+                    if objectx._name == 'sale.order':
+                        domain_order.append(('id', '!=', objectx.id))
+
+                    exist = self.env['sale.order'].search(domain_order)
+
+                    # raise ValueError([mz, lt, object, mz_lot, exist])
+
+                    if exist:
+                        raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
+
+
+
 
 
             if mz and lt:
@@ -624,6 +656,10 @@ class SaleOrder(models.Model):
                 if objectx._name == 'account.move':
                     domain_move.append(('id', '!=', objectx.id))
 
+                if objectx._name == 'sale.order.line':
+                    if objectx.order_id.move_separation_land_id:
+                        domain_move.append(('id', '!=', objectx.order_id.move_separation_land_id.id))
+
                 if objectx._name == 'sale.order':
                     if objectx.move_separation_land_id:
                         domain_move.append(('id', '!=', objectx.move_separation_land_id.id))
@@ -631,7 +667,7 @@ class SaleOrder(models.Model):
                 exist_move = self.env['account.move'].search(domain_move)
 
                 if exist_move:
-                    raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot}')
+                    raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot} ')
 
 
 
@@ -684,7 +720,10 @@ class SaleOrder(models.Model):
                             line_set = line
                             amount_set = price_unit_new * 1
 
+                            record.move_separation_land_id.stage_separation_land = 'initial'
+
                             #raise ValueError(line.price_unit)
+
 
 
             if line_set:

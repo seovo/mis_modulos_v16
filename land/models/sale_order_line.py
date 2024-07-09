@@ -152,7 +152,9 @@ class SaleOrderLine(models.Model):
                 if len(record.order_line) == 2:
                     for line in record.order_line:
                         if line.product_id.is_advanced_land:
-                            clone_line = line.copy(default={'order_id': record.id , 'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id })
+                            clone_line = line.copy(default={
+                                'order_id': record.id ,
+                                'product_id': record.move_separation_land_id.invoice_line_ids[0].product_id.id })
                             clone_line.price_unit = record.move_separation_land_id.amount_untaxed
                             line.price_unit = line.price_unit - clone_line.price_unit
 
@@ -202,9 +204,9 @@ class SaleOrderLine(models.Model):
                      ('state', 'in', ['done', 'sale']),('stage_land','!=','cancel')])
 
                 if exist:
-                    raise ValidationError(f'NO PUEDE HABER MANZANA Y LOTE REPETIDOS ')
+                    raise ValidationError(f'{mz_lot} ya se encuentra separado o vendido')
 
-
+                self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
 
 
 
