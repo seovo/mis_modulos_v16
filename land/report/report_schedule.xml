@@ -175,8 +175,9 @@
                             <th scope="col" class="text-white">Cuotas</th>
                             <th scope="col" class="text-white">Saldos</th>
                             <th scope="col" class="text-white">Cuota Mensual</th>
-                            <th scope="col" class="text-white">Pagado?</th>
                             <th scope="col" class="text-white">Nota</th>
+                            <th scope="col" class="text-white">Pagado?</th>
+
                         </tr>
                     </thead>
 
@@ -191,7 +192,7 @@
                                 <td style="background: none;"><t t-esc="cuota.note" /></td>
                                 <td style="background: none;">
                                     <span t-if="cuota.is_paid">SI</span>
-                                    <span t-if="cuota.is_paid">NO</span>
+                                    <span t-if="not cuota.is_paid">NO</span>
                                 </td>
 
 
