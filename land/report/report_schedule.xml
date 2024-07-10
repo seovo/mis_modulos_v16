@@ -135,6 +135,20 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Monto Cancelado</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="round(doc.total_payment_land,2)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Saldo</div>
+                            <div class="col-8 p-2 border border-primary text-end">
+                                S/ <t t-esc="round(doc.saldo_payment_land,2)" />
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Total Cuotas</div>
                             <div class="col-8 p-2 border border-primary text-start">
                                 <t t-esc="int(doc.dues_land)" />
@@ -161,6 +175,7 @@
                             <th scope="col" class="text-white">Cuotas</th>
                             <th scope="col" class="text-white">Saldos</th>
                             <th scope="col" class="text-white">Cuota Mensual</th>
+                            <th scope="col" class="text-white">Pagado?</th>
                             <th scope="col" class="text-white">Nota</th>
                         </tr>
                     </thead>
@@ -174,6 +189,10 @@
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.balan,2)" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
                                 <td style="background: none;"><t t-esc="cuota.note" /></td>
+                                <td style="background: none;">
+                                    <span t-if="cuota.is_paid">SI</span>
+                                    <span t-if="cuota.is_paid">NO</span>
+                                </td>
 
 
 

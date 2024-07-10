@@ -109,11 +109,13 @@
                        </group>
                    </page>
                    <page string="Cronograma">
-                       <!--
+
                        <group>
-                           <field name="journal_id" />
+                           <field name="price_credit_land" readonly="1" force_save="1" />
+                           <field name="total_payment_land" readonly="1" force_save="1" />
+                           <field name="saldo_payment_land" readonly="1" force_save="1" />
                        </group>
-                       -->
+
                        <field name="schedule_land_ids"
                               create="false"
                               delete="false"
