@@ -313,8 +313,6 @@
                 (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_move_form')})]"
             />
     </record>
-
-
     <record id="action_sale_initial_incompletex" model="ir.actions.act_window">
         <field name="name">Separaciónes - Inicial con Cotización</field>
         <field name="type">ir.actions.act_window</field>
