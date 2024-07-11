@@ -17,6 +17,7 @@ class CommissionRiman(models.Model):
     )
     seller_land_id = fields.Many2many('seller.land', string="Proveedores", required=True)
     mounth_expired = fields.Integer(string="Meses Vencidos >=")
+    days_expired = fields.Integer(string="Dias Vencidos >=")
 
 
     order_ids = fields.Many2many('sale.order',string="Ventas")
@@ -37,6 +38,7 @@ class CommissionRiman(models.Model):
     def action_preview_lines(self):
         self.update_data()
         self.order_ids.update_credit_saldo()
+        self.order_ids._get_stage_payment_land()
 
         return {
             "name": f"Ventas",
@@ -76,11 +78,13 @@ class CommissionRiman(models.Model):
 
     @api.onchange('type_periodo_invoiced','seller_land_id','mounth_expired')
     def update_data(self):
+
         for record in self:
             record.order_ids = False
             domain = [('nro_internal_land','!=',False),
                       ('seller_land_id','in',record.seller_land_id.ids),
-                      ('mounth_expired_land','>=',record.mounth_expired)
+                      ('mounth_expired_land','>=',record.mounth_expired),
+                      #('days_expired_land','>=',record.days_expired)
                       ]
             if record.type_periodo_invoiced != 'half_month_end_month':
                 domain.append(('type_periodo_invoiced','=',record.type_periodo_invoiced))
@@ -88,7 +92,18 @@ class CommissionRiman(models.Model):
             if record.stage_land:
                 domain.append(('stage_land','=',record.stage_land))
             sales = self.env['sale.order'].search(domain)
+
+            sale_ids = []
+
+
             for sale in sales:
-                if not sale.schedule_land_ids:
-                    sale.update_schedule()
-            record.order_ids = [(6,0,sales.ids)]
+                if record.days_expired and record.days_expired > 0 :
+                    if not sale.days_expired_land >= record.days_expired :
+                        continue
+
+                sale_ids.append(sale.id)
+
+                #if not sale.schedule_land_ids:
+                sale.update_schedule()
+                sale._get_stage_payment_land()
+            record.order_ids = [(6,0,sale_ids)] if sale_ids else None

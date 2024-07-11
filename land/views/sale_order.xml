@@ -111,9 +111,18 @@
                    <page string="Cronograma">
 
                        <group>
-                           <field name="price_credit_land" readonly="1" force_save="1" />
-                           <field name="total_payment_land" readonly="1" force_save="1" />
-                           <field name="saldo_payment_land" readonly="1" force_save="1" />
+                           <group>
+                               <field name="price_credit_land" readonly="1" force_save="1" />
+                               <field name="total_payment_land" readonly="1" force_save="1" />
+                               <field name="saldo_payment_land" readonly="1" force_save="1" />
+                           </group>
+                           <group>
+                               <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
+                               <button name="publish_invoice"
+                                       confirm="Haga esto solo si esta seguro que desea confirmar las facturas en estado borrador y estan correcto los datos como monto y fecha"
+                                       string="Publicar Facturas Portal Sunat" type="object"  />
+                           </group>
+
                        </group>
 
                        <field name="schedule_land_ids"
@@ -138,9 +147,6 @@
                                 </tree>
                        </field>
 
-
-
-
                    </page>
 
                </xpath>
@@ -150,11 +156,7 @@
                    <field name="date_sign_land" />
                    <field name="type_periodo_invoiced" />
                    <field name="date_first_due_land" />
-
                    <field name="nro_internal_land" />
-
-
-
                </xpath>
 
                <xpath expr="//field[@name='payment_term_id']" position="after" >
@@ -162,6 +164,7 @@
                    <field name="lot_land" />
                    <field name="sector_land" />
                    <field name="m2_land" />
+                   <field name="user_id" />
 
                </xpath>
 
@@ -433,8 +436,9 @@
                                     <field name="mz_lot" />
                                     <field name="partner_id"   optional="hidden" />
                                     <field name="last_payment_date_land"  optional="hidden" />
-                                    <field name="mounth_expired_land"  optional="show" />
+
                                     <field name="next_payment_date_land" />
+                                    <field name="mounth_expired_land"  optional="show" />
                                     <field name="days_expired_land" />
                                     <field name="mora_acumulada" optional="hidden" />
 
@@ -443,6 +447,7 @@
 
 
                                     <field name="stage_land" widget="badge" />
+                                    <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'" />
                                     <field name="state" optional="hidden" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />

@@ -61,9 +61,11 @@ class SaleOrder(models.Model):
     move_separation_land_id = fields.Many2one('account.move',string='Factura Separación')
 
     stage_payment_lan = fields.Selection([
-        ('initial','Inicial'),
-        ('dues','Cuotas'),
-        ('completed','Completada')
+        ('separation','Separado'),
+        ('initial','Inicial Completada'),
+        ('dues','Cuotas Pendientes'),
+        ('payment', 'Pagando Cuotas'),
+        ('completed','Cuotas Completada')
     ],compute='_get_stage_payment_land',store=True,string='Etapa Terreno')
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
@@ -298,12 +300,23 @@ class SaleOrder(models.Model):
             record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
 
 
+    def publish_invoice(self):
+        for record in self:
+            for line in record.schedule_land_ids:
+                if line.move_id:
+                    if line.move_id.state == 'draft' and line.move_id.journal_id.id == 10:
+                        line.move_id.action_post()
 
 
+
+    def recreate_schedule(self):
+        for record in self:
+            record.schedule_land_ids.unlink()
+        self.update_schedule()
 
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
     def update_schedule(self):
-        self.get_last_payment_date_land()
+
         for record in self:
             if record.date_first_due_land:
                 qty_dues = 0
@@ -388,8 +401,11 @@ class SaleOrder(models.Model):
                         i += 1
 
 
-            record.get_last_payment_date_land()
+
             record.update_credit_saldo()
+
+        self.get_last_payment_date_land()
+        self._get_stage_payment_land()
 
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
@@ -408,17 +424,7 @@ class SaleOrder(models.Model):
             #    date = record.date_first_due_land + relativedelta(months=1)
             record.last_payment_date_land = date
 
-            diff_month =  0
 
-            if date:
-                date1 = date_now
-                date2 = date
-                diff_month = (date1.year - date2.year) * 12 + (date1.month - date2.month)
-
-
-
-
-            record.mounth_expired_land = diff_month
 
             date_next = None
 
@@ -444,34 +450,47 @@ class SaleOrder(models.Model):
 
             record.next_payment_date_land = date_next
 
-            diff_days  = 0
+            diff_month = 0
+            diff_days = 0
+
+            if date_next:
+
+                if date_now > date_next:
+                    diff_days = (date_now - date_next).days
+
+                #raise ValueError([diff_days,date_now,date_next,date_now - date_next])
+                diff_month = diff_days / 30
+
+            record.mounth_expired_land = diff_month
 
 
-
-
-
-
-            if date_next and date_next < date_now:
-                diff_days = (date_now - date_next ).days
 
             diff_days -= record.days_tolerance_land
-
-
-            if record.stage_payment_lan == 'initial':
-                if record.last_payment_date_land:
-                    diff_days = (date_now - record.last_payment_date_land ).days
 
             if diff_days < 0:
                 diff_days = 0
 
 
+
             record.days_expired_land = diff_days
+
+
+
+            #if record.stage_payment_lan in ['initial']:
+            #    if record.last_payment_date_land:
+            #        diff_days = (date_now - record.last_payment_date_land ).days
+
+
+
+
+
             record.mora_acumulada  = diff_days * record.value_mora_land
 
 
     @api.depends('order_line','order_line.product_id','order_line.qty_invoiced',
                  'note','invoice_ids','invoice_ids.state','invoice_ids.invoice_date')
     def _get_stage_payment_land(self):
+        #raise ValueError('okkk')
         for record in self:
             stage = None
 
@@ -481,19 +500,28 @@ class SaleOrder(models.Model):
             total_dues = 0
             total_dues_invoiced = 0
             for line in record.order_line:
+
                 if line.product_id.is_advanced_land:
                     total_initial += line.product_uom_qty
                     total_initial_invoiced += line.qty_invoiced
 
                 if line.product_id.payment_land_dues:
                     total_dues += line.product_uom_qty
-                    total_dues_invoiced +=   line.qty_invoiced
+                    total_dues_invoiced +=  line.qty_invoiced
+
+
             if total_initial_invoiced < total_initial :
                 stage = 'initial'
 
             if not stage:
                 if total_dues_invoiced < total_dues:
                     stage = 'dues'
+
+                if total_dues_invoiced > 0:
+                    stage = 'payment'
+
+                #raise ValueError(stage)
+
                 if total_dues_invoiced == total_dues:
                     stage = 'completed'
 
