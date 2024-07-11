@@ -264,6 +264,7 @@
                                     <!--<field name="name" optional="hiden" /> -->
                                     <field name="seller_land_id" optional="hidden" />
                                     <field name="stage_land" widget="badge" />
+                                    <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'"/>
                                     <field name="state" optional="hidden" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
@@ -315,11 +316,11 @@
 
 
     <record id="action_sale_initial_incompletex" model="ir.actions.act_window">
-        <field name="name">Separaciónes con Cotización</field>
+        <field name="name">Separaciónes - Inicial con Cotización</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('stage_payment_lan','=','initial')]</field>
+        <field name="domain">[('stage_payment_lan','in',['initial','separation'])]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_separacion')}),
@@ -361,7 +362,7 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[
-            ('stage_payment_lan','=','dues'),('state','in',['sale','done']) ,
+            ('stage_payment_lan','in',['payment','dues']),('state','in',['sale','done']) ,
             ('stage_land','!=','cancel')
 
             ]</field>

@@ -47,6 +47,32 @@ class AccountMove(models.Model):
         ('initial','Inicial')
     ],string='Estado Separación')
 
+    proveedores_land = fields.Char(compute="get_proveedores_land",store=True,string="Proveedor")
+    vat = fields.Char(related='partner_id.vat',string="RUC/DNI")
+    identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
+
+
+    @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
+    def get_proveedores_land(self):
+        for record in self:
+            proveedor = []
+            for line in record.invoice_line_ids:
+                if line.sale_line_ids:
+                    for sale_line in line.sale_line_ids:
+                        order = sale_line.order_id
+                        if order.seller_land_id:
+                            if order.seller_land_id.name not in proveedor:
+                                proveedor.append(order.seller_land_id.name)
+
+            record.proveedores_land = ",".join(proveedor) if proveedor else None
+
+
+
+
+
+
+
+
 
 
     @api.depends('mz_land_separation_id', 'lot_land_separation_id')

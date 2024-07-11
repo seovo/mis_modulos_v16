@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_invoice_tree" model="ir.ui.view">
+           <field name="name">account.move.search</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_invoice_tree" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='invoice_date_due']" position="replace" >
+                   <field name="invoice_date_due" widget="remaining_days" optional="hide" attrs="{'invisible': [['payment_state', 'in', ('paid', 'in_payment', 'reversed')]]}"/>
+
+               </xpath>
+
+               <xpath expr="//field[@name='activity_ids']" position="replace" >
+                   <field name="activity_ids" widget="list_activity" optional="hide" />
+                   <field name="proveedores_land" />
+
+               </xpath>
+
+               <xpath expr="//field[@name='invoice_partner_display_name']" position="after" >
+                   <field name="identification_type" />
+                   <field name="vat" />
+               </xpath>
+
+               <xpath expr="//field[@name='amount_total_in_currency_signed']" position="replace" >
+                   <field name="amount_total_in_currency_signed" string="Total in Currency"
+                      groups="base.group_multi_currency" optional="hide"/>
+
+               </xpath>
+
+               <xpath expr="//field[@name='payment_state']" position="replace" >
+                   <field name="payment_state" widget="badge" decoration-danger="payment_state == 'not_paid'"
+                          decoration-warning="payment_state in ('partial', 'in_payment')"
+                          decoration-success="payment_state in ('paid', 'reversed')"
+                          attrs="{'invisible': [('payment_state', 'in', ('invoicing_legacy'))]}"
+                          optional="hide"/>
+
+               </xpath>
+
+
+
+
+
+
+           </field>
+    </record>
+
     <record id="edit_account_move_line" model="ir.ui.view">
            <field name="name">Account.Move.Line.Form</field>
            <field name="model">account.move.line</field>
