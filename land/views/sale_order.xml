@@ -81,9 +81,9 @@
                        <group>
 
                            <field name="mz_lot" />
-                           <field name="sector" />
 
-                           <field name="stage_land" />
+
+
 
                            <field name="dues_land" />
                            <field name="value_due_land" />
@@ -103,9 +103,10 @@
                            <field name="last_payment_date_land" />
                            <field name="next_payment_date_land" />
                            <field name="days_expired_land" />
-                           <field name="commision_lan" />
+
                            <field name="crono_land" invisible="1" />
                            <field name="sectorr" />
+                           <field name="sector" />
                        </group>
                    </page>
                    <page string="Cronograma">
@@ -157,6 +158,8 @@
                    <field name="type_periodo_invoiced" />
                    <field name="date_first_due_land" />
                    <field name="nro_internal_land" />
+                   <field name="stage_land" />
+
                </xpath>
 
                <xpath expr="//field[@name='payment_term_id']" position="after" >
@@ -165,6 +168,8 @@
                    <field name="sector_land" />
                    <field name="m2_land" />
                    <field name="user_id" />
+                   <field name="commision_lan" />
+
 
                </xpath>
 
@@ -218,6 +223,10 @@
                <xpath expr="//field[@name='name']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
+                   <field name="stage_payment_lan" widget="badge"
+                                           decoration-success="stage_payment_lan == 'payment'"
+                                           decoration-warning="stage_payment_lan == 'initial'"
+                                    />
                    <field name="last_payment_date_land" widget="remaining_days" />
                    <field name="next_payment_date_land"  />
 

@@ -15,6 +15,9 @@ class CommissionRiman(models.Model):
      string="Periodo de Facturación",
         required=True
     )
+
+
+
     seller_land_id = fields.Many2many('seller.land', string="Proveedores", required=True)
     mounth_expired = fields.Integer(string="Meses Vencidos >=")
     days_expired = fields.Integer(string="Dias Vencidos >=")
@@ -31,6 +34,14 @@ class CommissionRiman(models.Model):
         ('cancel', ('Resuelto')),
         ('regularizado', 'Regularizado'),
     ], string="Estado Terreno")
+
+    stage_payment_lan = fields.Selection([
+        ('separation', 'Separado'),
+        ('initial', 'Inicial Incompletada'),
+        ('dues', 'Cuotas Pendientes'),
+        ('payment', 'Pagando Cuotas'),
+        ('completed', 'Cuotas Completada')
+    ], string='Etapa Pago  Terreno')
 
 
 
@@ -76,7 +87,7 @@ class CommissionRiman(models.Model):
             record.dues_payment_max  = count_payment_max
             record.dues_max = dues_max
 
-    @api.onchange('type_periodo_invoiced','seller_land_id','mounth_expired')
+    @api.onchange('type_periodo_invoiced','seller_land_id','mounth_expired','days_expired','stage_payment_lan')
     def update_data(self):
 
         for record in self:
@@ -88,6 +99,8 @@ class CommissionRiman(models.Model):
                       ]
             if record.type_periodo_invoiced != 'half_month_end_month':
                 domain.append(('type_periodo_invoiced','=',record.type_periodo_invoiced))
+
+
 
             if record.stage_land:
                 domain.append(('stage_land','=',record.stage_land))
@@ -101,9 +114,17 @@ class CommissionRiman(models.Model):
                     if not sale.days_expired_land >= record.days_expired :
                         continue
 
-                sale_ids.append(sale.id)
-
-                #if not sale.schedule_land_ids:
+                        # if not sale.schedule_land_ids:
                 sale.update_schedule()
                 sale._get_stage_payment_land()
+
+                if record.stage_payment_lan:
+                    if record.stage_payment_lan != sale.stage_payment_lan:
+                        continue
+
+                sale_ids.append(sale.id)
+
+
+
+
             record.order_ids = [(6,0,sale_ids)] if sale_ids else None

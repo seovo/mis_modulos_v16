@@ -75,6 +75,8 @@ class CommissionRiman(models.Model):
             if record.type_period_comission == 'month' and record.date_commission:
                 date_now = record.date_commission
                 fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
+                fecha_especifica = fecha_especifica - timedelta(days=1)
+                fecha_especifica = date(fecha_especifica.year, fecha_especifica.month, 1)
                 record.date_start = fecha_especifica
 
             if record.type_period_comission == 'week' and record.date_commission:
@@ -96,8 +98,10 @@ class CommissionRiman(models.Model):
                     record.date_end = fecha_especifica2
                 else:
 
+                    fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
+                    fecha_especifica = fecha_especifica - timedelta(days=1)
+                    fecha_especifica = date(fecha_especifica.year, fecha_especifica.month, 1)
 
-                    fecha_especifica = date(date_now.year, date_now.month, 15)
                     record.date_start = fecha_especifica
 
                     month = record.date_start.month

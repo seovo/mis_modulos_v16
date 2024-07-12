@@ -37,6 +37,7 @@
                             <field name="mounth_expired" />
                             <field name="days_expired" />
                             <field name="stage_land" />
+                            <field name="stage_payment_lan" />
                         </group>
 
 

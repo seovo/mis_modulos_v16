@@ -66,7 +66,7 @@ class SaleOrder(models.Model):
         ('dues','Cuotas Pendientes'),
         ('payment', 'Pagando Cuotas'),
         ('completed','Cuotas Completada')
-    ],compute='_get_stage_payment_land',store=True,string='Etapa Terreno')
+    ],compute='_get_stage_payment_land',store=True,string='Etapa Pago  Terreno')
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
@@ -89,6 +89,14 @@ class SaleOrder(models.Model):
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
     sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
+
+
+    @api.onchange('nro_internal_land')
+    def change_nro_internal_land(self):
+        for record in self:
+            if record.nro_internal_land and not  record.stage_land:
+                record.stage_land = 'signed'
+
 
 
 
