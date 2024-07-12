@@ -18,9 +18,9 @@ class SaleOrder(models.Model):
         ('regularizado','Regularizado'),
     ],string="Estado Terreno")
     dues_land            = fields.Float(string="Cuotas")
-    value_due_land       = fields.Float(string="Precio Cuotas")
+    value_due_land       = fields.Float(string="Precio Cuota")
     crono_land           = fields.Char(string="Crono")
-    days_tolerance_land  = fields.Integer(string="Gracia",default=3)
+    days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3)
     value_mora_land = fields.Float(string="Precio Mora",default=10)
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
 
@@ -71,8 +71,13 @@ class SaleOrder(models.Model):
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
+
     mora_acumulada    = fields.Float(string="Mora Acumulada", compute="get_last_payment_date_land")
     mounth_expired_land = fields.Integer(string="Meses Vencidos", compute="get_last_payment_date_land",store=True)
+    amount_payment_month_land = fields.Float(string="Total Mensualidad", compute="get_last_payment_date_land", store=True)
+    amount_total_payment_month_land = fields.Float(string="Total a Pagar", compute="get_last_payment_date_land",
+                                               store=True)
+
 
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación")
@@ -468,9 +473,14 @@ class SaleOrder(models.Model):
                     diff_days = (date_now - date_next).days
 
                 #raise ValueError([diff_days,date_now,date_next,date_now - date_next])
-                diff_month = diff_days / 30
+            if record.last_payment_date_land:
+                diff_month = ((date_now - record.last_payment_date_land).days) / 30
 
-            record.mounth_expired_land = diff_month
+
+            record.mounth_expired_land = int(diff_month) if diff_month != 0 else 0
+            record.amount_payment_month_land =  record.mounth_expired_land * record.value_due_land
+
+
 
 
 
@@ -483,17 +493,9 @@ class SaleOrder(models.Model):
 
             record.days_expired_land = diff_days
 
-
-
-            #if record.stage_payment_lan in ['initial']:
-            #    if record.last_payment_date_land:
-            #        diff_days = (date_now - record.last_payment_date_land ).days
-
-
-
-
-
             record.mora_acumulada  = diff_days * record.value_mora_land
+
+            record.amount_total_payment_month_land = record.amount_payment_month_land + record.mora_acumulada
 
 
     @api.depends('order_line','order_line.product_id','order_line.qty_invoiced',

@@ -11,6 +11,7 @@
                    <sheet>
                        <group>
                            <group>
+                               <field name="company_id"  invisible="1"/>
                                <field name="nro_internal_land"  readonly="1"/>
                                <field name="amount_total" readonly="1" />
                                <field name="price_initial_land" string="Inicial"  readonly="1" />
@@ -49,6 +50,38 @@
 
 
                    </page>
+
+                           <page string="Mora" >
+                       <group>
+                           <group>
+                               <field name="partner_id" readonly="1"  />
+                               <field name="mz_lot"  readonly="1" />
+                               <field name="value_due_land" readonly="1"  />
+                               <field name="last_payment_date_land"  readonly="1" />
+                               <field name="next_payment_date_land"  readonly="1" />
+                               <field name="days_tolerance_land" readonly="1" />
+                               <field name="dues_land" readonly="1" />
+                               <field name="qty_dues_payment" readonly="1" />
+
+                           </group>
+
+
+                           <group string="Total a Pagar" >
+                               <field name="days_expired_land"  readonly="1" />
+                               <field name="value_mora_land"  readonly="1" />
+                               <field name="mora_acumulada" readonly="1"  />
+                               <field name="mounth_expired_land"  readonly="1" />
+                               <field name="amount_payment_month_land"  readonly="1" />
+                               <field name="amount_total_payment_month_land" readonly="1"  />
+
+                           </group>
+
+
+
+
+                       </group>
+                   </page>
+
                        </notebook>
                    </sheet>
                </form>
@@ -82,9 +115,6 @@
 
                            <field name="mz_lot" />
 
-
-
-
                            <field name="dues_land" />
                            <field name="value_due_land" />
 
@@ -100,9 +130,7 @@
                            <field name="price_credit_land" />
                            <field name="move_separation_land_id" />
                            <field name="stage_payment_lan" />
-                           <field name="last_payment_date_land" />
-                           <field name="next_payment_date_land" />
-                           <field name="days_expired_land" />
+
 
                            <field name="crono_land" invisible="1" />
                            <field name="sectorr" />
@@ -148,6 +176,36 @@
                                 </tree>
                        </field>
 
+                   </page>
+                   <page string="Mora" >
+                       <group>
+                           <group>
+                               <field name="partner_id" />
+                               <field name="mz_lot"  readonly="1" />
+                               <field name="value_due_land" readonly="1"  />
+                               <field name="last_payment_date_land"  readonly="1" />
+                               <field name="next_payment_date_land"  readonly="1" />
+                               <field name="days_tolerance_land" readonly="1" />
+                               <field name="dues_land" readonly="1" />
+                               <field name="qty_dues_payment" readonly="1" />
+
+                           </group>
+
+
+                           <group string="Total a Pagar" >
+                               <field name="days_expired_land"  readonly="1" />
+                               <field name="value_mora_land"  readonly="1" />
+                               <field name="mora_acumulada" readonly="1"  />
+                               <field name="mounth_expired_land"  readonly="1" />
+                               <field name="amount_payment_month_land"  readonly="1" />
+                               <field name="amount_total_payment_month_land" readonly="1"  />
+
+                           </group>
+
+
+
+
+                       </group>
                    </page>
 
                </xpath>
