@@ -52,6 +52,14 @@ class AccountMove(models.Model):
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
 
 
+    @api.onchange('payment_reference')
+    def change_reference(self):
+        for record in self:
+            if  record.l10n_pe_edi_request_id.document_date  :
+                if record.l10n_pe_edi_request_id.document_date != record.invoice_date:
+                    record.invoice_date =  record.l10n_pe_edi_request_id.document_date
+
+
     @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
     def get_proveedores_land(self):
         for record in self:
