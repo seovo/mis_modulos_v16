@@ -55,13 +55,13 @@ class AccountMove(models.Model):
 
     def write(self,vals):
         res = super().write(vals)
-        if 'payment_reference' in vals:
-            self.change_reference()
+        #if 'payment_reference' in vals:
+        #    self.change_reference()
 
         return res
 
-
-    @api.onchange('payment_reference')
+    #este use para actulizAR UNA FECHA
+    #@api.onchange('payment_reference')
     def change_reference(self):
         for record in self:
             if  record.l10n_pe_edi_request_id.document_date  :
