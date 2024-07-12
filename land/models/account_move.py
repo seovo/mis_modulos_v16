@@ -52,14 +52,14 @@ class AccountMove(models.Model):
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
 
 
-    '''
+
     def write(self,vals):
         res = super().write(vals)
-        #if 'payment_reference' in vals:
-        #    self.change_reference()
+        if 'payment_reference' in vals:
+            self.change_reference()
 
         return res
-    '''
+
     #este use para actulizAR UNA FECHA
     #@api.onchange('payment_reference')
     def change_reference(self):
