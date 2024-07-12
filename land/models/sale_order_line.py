@@ -21,6 +21,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     add_separation_land = fields.Float(string="Agregar Separación")
+    amount_initial_desc = fields.Float()
 
     def edit_price_jz(self):
         self.add_separation_land = 0
@@ -211,7 +212,11 @@ class SaleOrderLine(models.Model):
                     clone_line.price_unit = record.add_separation_land
                     record.add_separation_land = 0
 
-                    record.price_unit = record.price_unit - clone_line.price_unit
+                    amount_initial_desc =  record.price_unit - clone_line.price_unit
+
+                    record.price_unit = amount_initial_desc
+                    record.amount_initial_desc = amount_initial_desc
+
 
                     #line.price_unit = line.price_unit - clone_line.price_unit
 

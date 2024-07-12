@@ -18,6 +18,15 @@ class SaleAdvancePaymentInv(models.TransientModel):
         for sale in self.sale_order_ids:
             sale.journal_id = None
             sale.sale_line_payment_id = None
+            for line in sale.order_line:
+                if line.amount_initial_desc > 0:
+                    if line.price_unit != line.amount_initial_desc :
+                        line.write({
+                            'price_unit': line.amount_initial_desc
+                        })
+                        #line.price_unit =
+
+
         return res
 
 

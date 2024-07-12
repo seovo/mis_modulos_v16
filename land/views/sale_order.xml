@@ -264,7 +264,10 @@
                                     <!--<field name="name" optional="hiden" /> -->
                                     <field name="seller_land_id" optional="hidden" />
                                     <field name="stage_land" widget="badge" />
-                                    <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'"/>
+                                    <field name="stage_payment_lan" widget="badge"
+                                           decoration-success="stage_payment_lan == 'payment'"
+                                           decoration-warning="stage_payment_lan == 'initial'"
+                                    />
                                     <field name="state" optional="hidden" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
@@ -313,12 +316,26 @@
                 (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_move_form')})]"
             />
     </record>
-    <record id="action_sale_initial_incompletex" model="ir.actions.act_window">
-        <field name="name">Separaciónes - Inicial con Cotización</field>
+    <record id="action_sale_separation" model="ir.actions.act_window">
+        <field name="name">Separacion con Cotización</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('stage_payment_lan','in',['initial','separation'])]</field>
+        <field name="domain">[('stage_payment_lan','in',['separation'])]</field>
+
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_separacion')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
+    </record>
+
+
+    <record id="action_sale_initial_incomplete" model="ir.actions.act_window">
+        <field name="name">Inicial Pendiente con Cotización</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('stage_payment_lan','in',['initial'])]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_separacion')}),
@@ -345,11 +362,17 @@
               sequence="1"
     />
 
-
-    <menuitem action="action_sale_initial_incompletex"
-              id="menu_sale_initial_incomplete"
+    <menuitem action="action_sale_separation"
+              id="menu_sale_separation"
               parent="menu_move_adelantos"
               sequence="2"
+    />
+
+
+    <menuitem action="action_sale_initial_incomplete"
+              id="menu_sale_initial_incomplete"
+              parent="menu_move_adelantos"
+              sequence="3"
     />
 
 

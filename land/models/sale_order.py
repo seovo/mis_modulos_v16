@@ -62,7 +62,7 @@ class SaleOrder(models.Model):
 
     stage_payment_lan = fields.Selection([
         ('separation','Separado'),
-        ('initial','Inicial Completada'),
+        ('initial','Inicial Incompletada'),
         ('dues','Cuotas Pendientes'),
         ('payment', 'Pagando Cuotas'),
         ('completed','Cuotas Completada')
@@ -314,7 +314,8 @@ class SaleOrder(models.Model):
             record.schedule_land_ids.unlink()
         self.update_schedule()
 
-    @api.depends('order_line', 'invoice_ids', 'invoice_ids.state')
+    @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land')
+    @api.onchange('date_first_due_land')
     def update_schedule(self):
 
         for record in self:
@@ -496,6 +497,8 @@ class SaleOrder(models.Model):
 
             total_initial = 0
             total_initial_invoiced = 0
+            total_separation_invoiced = 0
+            total_anticipo_invoiced = 0
 
             total_dues = 0
             total_dues_invoiced = 0
@@ -509,11 +512,33 @@ class SaleOrder(models.Model):
                     total_dues += line.product_uom_qty
                     total_dues_invoiced +=  line.qty_invoiced
 
+                if line.product_id.is_separation_land:
+                    total_separation_invoiced +=  line.qty_invoiced
+
+                if line.product_id.is_anticipo_land:
+                    total_anticipo_invoiced += line.qty_invoiced
+
+
 
             if total_initial_invoiced < total_initial :
-                stage = 'initial'
 
-            if not stage:
+                if total_separation_invoiced > 0 :
+                    stage = 'separation'
+
+                if total_separation_invoiced and total_anticipo_invoiced > 0 :
+                    stage = 'initial'
+
+                if total_initial_invoiced > 0 :
+                    stage = 'initial'
+
+
+
+
+
+
+
+
+            if not stage and total_initial_invoiced > 0:
                 if total_dues_invoiced < total_dues:
                     stage = 'dues'
 
