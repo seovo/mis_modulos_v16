@@ -56,7 +56,7 @@ class AccountMove(models.Model):
     def write(self,vals):
         res = super().write(vals)
         if 'payment_reference' in vals:
-            res.change_reference()
+            self.change_reference()
 
         return res
 
