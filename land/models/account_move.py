@@ -52,6 +52,15 @@ class AccountMove(models.Model):
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
 
 
+
+    def write(self,vals):
+        res = super().write(vals)
+        if 'payment_reference' in vals:
+            res.change_reference()
+
+        return res
+
+
     @api.onchange('payment_reference')
     def change_reference(self):
         for record in self:
