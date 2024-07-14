@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="provider_form_recurrente" model="ir.ui.view">
+            <field name="name">provider.form.recurrente</field>
+            <field name="model">payment.provider</field>
+            <field name="inherit_id" ref="payment.payment_provider_form"/>
+            <field name="arch" type="xml">
+                <group name="provider_credentials" position='inside'>
+                    <group invisible="code != 'recurrente'">
+                        <group>
+                            <field name="recurrente_public_key" required="code == 'recurrente'" />
+                            <field name="recurrente_secret_key" required="code == 'recurrente'" />
+                        </group>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>

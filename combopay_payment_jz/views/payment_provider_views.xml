@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="provider_form_combopay" model="ir.ui.view">
+            <field name="name">provider.form.combopay</field>
+            <field name="model">payment.provider</field>
+            <field name="inherit_id" ref="payment.payment_provider_form"/>
+            <field name="arch" type="xml">
+                <group name="provider_credentials" position='inside'>
+                    <group invisible="code != 'combopay'">
+                        <group>
+                            <field name="combopay_client_key" required="code == 'combopay'"/>
+                            <field name="combopay_app_key" required="code == 'combopay'"/>
+                        </group>
+
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
