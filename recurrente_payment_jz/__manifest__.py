@@ -22,7 +22,7 @@
         'views/payment_provider_views.xml',
         #'views/payment_nuvei_templates.xml',
         # 'views/sale_order.xml',
-        #'views/payment_transaction_view.xml',
+        'views/payment_transaction_view.xml',
         'data/payment_provider_data.xml',
         #'data/mail_data.xml',
     ],

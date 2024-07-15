@@ -20,6 +20,11 @@ import json
 class PaymentTransaction(models.Model):
     _inherit = 'payment.transaction'
 
+    checkout_code_recurrente = fields.Char(
+        string='Checkout Recurrente Id',
+        help='Checkout Recurrente Idi, useful to identify transaction.'
+    )
+
 
     def _get_specific_processing_values(self, processing_values):
         """ Override of payment to return Stripe-specific processing values.
@@ -78,8 +83,8 @@ class PaymentTransaction(models.Model):
 
         data = {
             "items": items ,
-            "success_url": odoo_base_url ,
-            "cancel_url": odoo_base_url,
+            "success_url": odoo_base_url+'/payment/recurrente/response/' ,
+            "cancel_url": odoo_base_url+'/payment/recurrente/response/',
             #"user_id": "us_123456",
             #"metadata": {}
         }
@@ -101,6 +106,7 @@ class PaymentTransaction(models.Model):
         response_data = response.json()
 
         if response_data.get('id') and response_data.get('checkout_url') :
+            self.checkout_code_recurrente = response_data.get('id')
             return {
                 'api_url': response_data.get('checkout_url'),
                 'data': data,
@@ -138,15 +144,15 @@ class PaymentTransaction(models.Model):
         if provider_code != 'recurrente' or len(tx) == 1:
             return tx
 
-        reference = notification_data.get('reference')
-        tx = self.search([('reference', '=', reference), ('provider_code', '=', 'recurrente')])
+        reference = notification_data.get('checkout_id')
+        tx = self.search([('checkout_code_recurrente', '=', reference), ('provider_code', '=', 'recurrente')])
         if not tx:
             raise ValidationError(
                 "Recurrente: " + _("No transaction found matching reference %s.", reference)
             )
         return tx
 
-    '''
+
     def _process_notification_data(self, notification_data):
         """ Override of payment to process the transaction based on Paypal data.
 
@@ -157,39 +163,52 @@ class PaymentTransaction(models.Model):
         :raise: ValidationError if inconsistent data were received
         """
         super()._process_notification_data(notification_data)
-        if self.provider_code != 'paypal':
+        if self.provider_code != 'recurrente':
             return
 
         if not notification_data:
             self._set_canceled(_("The customer left the payment page."))
             return
 
-        # Update the provider reference.
-        txn_id = notification_data.get('txn_id')
-        txn_type = notification_data.get('txn_type')
-        if not all((txn_id, txn_type)):
-            raise ValidationError(
-                "PayPal: " + _(
-                    "Missing value for txn_id (%(txn_id)s) or txn_type (%(txn_type)s).",
-                    txn_id=txn_id, txn_type=txn_type
-                )
-            )
-        self.provider_reference = txn_id
-        self.paypal_type = txn_type
+        #raise ValueError([self,notification_data])
+
+        checkout_id = notification_data.get('checkout_id')
+
+        api_url = f'https://app.recurrente.com/api/checkouts/{checkout_id}'
+
+        provider = self.provider_id
+        #sale_order = self.sale_order_ids
+        # currency = self.env.company.currency_id.name
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-PUBLIC-KEY': provider.recurrente_public_key,
+            'X-SECRET-KEY': provider.recurrente_secret_key,
+            # 'Authorization': f'Bearer {api_key}',
+        }
+
+
+        response = requests.request("GET", api_url, headers=headers)
+
+        response_data = response.json()
+
+        #raise ValueError(response_data)
+
 
         # Force PayPal as the payment method if it exists.
-        self.payment_method_id = self.env['payment.method'].search(
-            [('code', '=', 'paypal')], limit=1
-        ) or self.payment_method_id
+        #self.payment_method_id = self.env['payment.method'].search(
+        #    [('code', '=', 'paypal')], limit=1
+        #) or self.payment_method_id
 
         # Update the payment state.
-        payment_status = notification_data.get('payment_status')
+        payment_status = response_data.get('status')
 
-        if payment_status in PAYMENT_STATUS_MAPPING['pending']:
-            self._set_pending(state_message=notification_data.get('pending_reason'))
-        elif payment_status in PAYMENT_STATUS_MAPPING['done']:
+        if payment_status in 'payment_in_progress':
+            self._set_pending(state_message=str(response_data))
+        elif payment_status in 'paid':
             self._set_done()
-        elif payment_status in PAYMENT_STATUS_MAPPING['cancel']:
+        elif payment_status in 'unpaid':
             self._set_canceled()
         else:
             _logger.info(
@@ -197,6 +216,5 @@ class PaymentTransaction(models.Model):
                 payment_status, self.reference
             )
             self._set_error(
-                "PayPal: " + _("Received data with invalid payment status: %s", payment_status)
+                "Recurrente: " + _("Received data with invalid payment status: %s", payment_status)
             )
-    '''
