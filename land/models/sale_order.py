@@ -474,8 +474,9 @@ class SaleOrder(models.Model):
 
                 #raise ValueError([diff_days,date_now,date_next,date_now - date_next])
 
-            if record.last_payment_date_land and record.qty_dues_payment > 0:
-                diff_month = ((date_now - record.last_payment_date_land).days) / 30
+            if date_next and record.qty_dues_payment > 0:
+                diff_month = ((date_now - date_next).days) / 30
+                diff_month += 1
 
             if date_next and record.qty_dues_payment == 0:
                 diff_month = ((date_now - date_next).days) / 30
