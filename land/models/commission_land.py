@@ -100,7 +100,10 @@ class CommissionRiman(models.Model):
 
                     fecha_especifica = date(date_now.year, date_now.month, 1)  # Año, mes, día
                     fecha_especifica = fecha_especifica - timedelta(days=1)
-                    fecha_especifica = date(fecha_especifica.year, fecha_especifica.month, 1)
+                    fecha_especifica = date(fecha_especifica.year, fecha_especifica.month, 15)
+
+
+
 
                     record.date_start = fecha_especifica
 
