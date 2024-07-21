@@ -338,6 +338,8 @@ class SaleOrder(models.Model):
                 price_unit = 0
                 qty_invoiced = 0
 
+                invoice_lines = []
+
 
                 for line in record.order_line:
                     if line.product_id.payment_land_dues:
@@ -345,6 +347,12 @@ class SaleOrder(models.Model):
                         total_dues = qty_dues * line.price_unit
                         price_unit = line.price_unit
                         qty_invoiced = line.qty_invoiced
+
+                        for line_inv in line.invoice_lines:
+                            invoice_lines.append(line_inv)
+
+                if invoice_lines:
+                    invoice_lines.reverse()
 
                 if not record.schedule_land_ids :
 
@@ -375,25 +383,26 @@ class SaleOrder(models.Model):
 
                 if record.schedule_land_ids :
 
-                    invoices = self.env['account.move'].search([
-                        ('id', 'in', record.invoice_ids.ids),
-                        ('is_initial_land', '=', False),
-
-                    ], order='invoice_date asc')
+                    #invoices = self.env['account.move'].search([
+                    #    ('id', 'in', record.invoice_ids.ids),
+                    #    ('is_initial_land', '=', False),
+                    #], order='invoice_date asc')
 
                     invoicesx = []
-                    for inv in invoices:
-                        if inv.is_initial_land:
+                    for linv in invoice_lines:
+                        #if inv.is_initial_land:
+                        #    continue
+
+                        if linv.move_id.move_type in ['out_refund']:
                             continue
 
-                        if inv.move_type in ['out_refund']:
+                        if linv.move_id.state == 'cancel':
                             continue
 
-                        if inv.state == 'cancel':
-                            continue
+                        invoicesx.append(linv)
 
-                        for i in range(int(inv.qty_due_land)) :
-                            invoicesx.append(inv)
+                        #for i in range(int(inv.qty_due_land)) :
+                        #    invoicesx.append(inv)
 
 
                     i = 0
@@ -404,13 +413,13 @@ class SaleOrder(models.Model):
                         })
                         try:
                             linex.update({
-                                'move_id': invoicesx[i].id
+                                'line_move_id': invoicesx[i].id
                             })
                             #total_payment += invoicesx[i].amount_due_land
 
                         except:
                             linex.update({
-                                'move_id': False
+                                'line_move_id': False
                             })
                         i += 1
 

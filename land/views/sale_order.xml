@@ -113,28 +113,26 @@
                    <page string="Terreno Información" >
                        <group>
 
-                           <field name="mz_lot" />
-
-                           <field name="dues_land" />
-                           <field name="value_due_land" />
-
                            <field name="days_tolerance_land" />
                            <field name="value_mora_land" />
                            <field name="percentage_refund_land" />
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
                            <field name="obs_resolution" />
-                           <field name="recalcule_and_save_total_land" />
-                           <field name="price_total_land" />
-                           <field name="price_initial_land" />
-                           <field name="price_credit_land" />
-                           <field name="move_separation_land_id" />
+                           <field name="recalcule_and_save_total_land"  readonly="1" force_save="1" />
+                           <field name="price_total_land"  readonly="1" force_save="1" />
+                           <field name="price_initial_land"  readonly="1" force_save="1" />
+                           <field name="price_credit_land"  readonly="1" force_save="1" />
+                           <field name="move_separation_land_id"  readonly="1" force_save="1" />
                            <field name="stage_payment_lan" />
 
 
                            <field name="crono_land" invisible="1" />
                            <field name="sectorr" />
                            <field name="sector" />
+                           <field name="mz_lot"  readonly="1" force_save="1" />
+                           <field name="dues_land" readonly="1" force_save="1" />
+                           <field name="value_due_land" readonly="1" force_save="1" />
                        </group>
                    </page>
                    <page string="Cronograma">
@@ -148,6 +146,7 @@
                            <group>
                                <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
                                <button name="publish_invoice"
+                                       groups="land.group_reordenate_date_sale"
                                        confirm="Haga esto solo si esta seguro que desea confirmar las facturas en estado borrador y estan correcto los datos como monto y fecha"
                                        string="Publicar Facturas Portal Sunat" type="object"  />
                            </group>
