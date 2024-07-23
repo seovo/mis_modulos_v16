@@ -17,11 +17,12 @@
         'website_sale',
     ],
     'data': [
+        'data/payment_templates.xml',
         # 'views/js_files_link.xml',
         'views/payment_provider_views.xml',
         #'views/payment_nuvei_templates.xml',
         # 'views/sale_order.xml',
-        #'views/payment_transaction_view.xml',
+        'views/payment_transaction_view.xml',
         'data/payment_provider_data.xml',
         #'data/mail_data.xml',
     ],

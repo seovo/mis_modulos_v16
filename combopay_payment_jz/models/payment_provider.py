@@ -13,6 +13,7 @@ _logger = logging.getLogger(__name__)
 class PaymentProvider(models.Model):
     _inherit = 'payment.provider'
 
+
     code = fields.Selection(
         selection_add=[('combopay', "ComboPay")], ondelete={'combopay': 'set default'}
     )
@@ -29,6 +30,21 @@ class PaymentProvider(models.Model):
         required_if_provider='combopay',
         help="Client credentials provied by Combopay"
     )
+
+    combopay_client_key_test = fields.Char(
+        'Test Client APP ID',
+        groups='base.group_user',
+        required_if_provider='combopay',
+        help="Client credentials provied by combopay"
+    )
+    combopay_app_key_test = fields.Char(
+        'Test APP Key',
+        groups='base.group_user',
+        required_if_provider='combopay',
+        help="Client credentials provied by Combopay"
+    )
+
+
     #'''
 
     '''

@@ -10,8 +10,11 @@
                 <group name="provider_credentials" position='inside'>
                     <group invisible="code != 'combopay'">
                         <group>
-                            <field name="combopay_client_key" required="code == 'combopay'"/>
-                            <field name="combopay_app_key" required="code == 'combopay'"/>
+                            <field name="combopay_client_key" required="code == 'combopay' and state == 'enabled' "/>
+                            <field name="combopay_app_key" required="code == 'combopay'  and state == 'enabled' "/>
+
+                            <field name="combopay_client_key_test" required="code == 'combopay' and state == 'test' "/>
+                            <field name="combopay_app_key_test" required="code == 'combopay' and state == 'test' "/>
                         </group>
 
                     </group>
