@@ -13,5 +13,8 @@ class SaleOrder(models.Model):
             "res_model": "product.wizard.variant",
             #"res_id": self.id,
             "target": "new",
+            "context": {
+                'default_sale_id': self.id
+            }
 
         }
