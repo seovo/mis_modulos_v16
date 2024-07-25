@@ -14,6 +14,7 @@
         'views/stock_quant.xml',
         'views/purchase.xml',
         'views/sale_order.xml',
+        'views/wizard.xml',
         #'views/view_warehouse.xml'
 
     ],

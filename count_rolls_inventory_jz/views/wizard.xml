@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_product_wizard_variant" model="ir.ui.view">
+        <field name="name">product.wizard.variant.form</field>
+        <field name="model">product.wizard.variant</field>
+        <field name="priority">4</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Data To Server">
+                <group >
+                    <field name="product"   />
+                    <field name="line_ids" >
+                                <tree string="Sales" editable="bottom">
+                                    <field name="attribute_line_id"  />
+                                    <field name="attribute_line_id"  />
+                                </tree>
+                    </field>
+                    <notebook>
+                        <page string="Variantes" name="variante">
+
+                        </page>
+                    </notebook>
+
+                </group>
+
+                <footer>
+                    <button name="add_product" string="Agregar"
+                            type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

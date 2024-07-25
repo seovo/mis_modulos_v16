@@ -7,6 +7,9 @@ class ProductWizardVariant(models.TransientModel):
     product       = fields.Many2one('product.template')
     line_ids      = fields.One2many('product.wizard.variant.line','parent_id')
 
+    def add_product(self):
+        return
+
 
 class ProductWizardVariantLine(models.TransientModel):
     _name = "product.wizard.variant.line"
