@@ -4,7 +4,7 @@ import datetime
 class ProductWizardVariant(models.TransientModel):
     _name = "product.wizard.variant"
     _description  = "product.wizard.variant"
-    product       = fields.Many2many('product.template')
+    product       = fields.Many2one('product.template')
     line_ids      = fields.One2many('product.wizard.variant.line','parent_id')
 
 
