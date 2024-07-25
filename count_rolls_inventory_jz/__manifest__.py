@@ -10,9 +10,10 @@
     "version": "17.0",
     "depends": ["purchase_stock"],
     "data": [
-        'stock_quant.xml',
-        'purchase.xml',
-        #'views/template_product.xml',
+        "security/ir.model.access.csv",
+        'views/stock_quant.xml',
+        'views/purchase.xml',
+        'views/sale_order.xml',
         #'views/view_warehouse.xml'
 
     ],
