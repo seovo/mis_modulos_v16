@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
             "type": "ir.actions.act_window",
             "view_mode": "form",
             #"view_id": self.env.ref('land.view_order_form_due').id,
-            "res_model": "product.wizard.variantr",
+            "res_model": "product.wizard.variante",
             #"res_id": self.id,
             "target": "new",
 
