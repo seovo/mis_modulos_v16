@@ -10,6 +10,7 @@ class ProductWizardVariant(models.TransientModel):
 
     @api.onchange('product')
     def change_product(self):
+        self.line_ids = False
         if self.product:
             if self.product.attribute_line_ids:
                 for line in self.product.attribute_line_ids:
@@ -26,6 +27,7 @@ class ProductWizardVariantLine(models.TransientModel):
     _description = "product.wizard.variant.line"
     parent_id = fields.Many2one("product.wizard.variant")
     attribute_line_id = fields.Many2one('product.template.attribute.line',string="Atributo")
+    product_template_attribute_value_id = fields.Many2one('product.template.attribute.value',string="Valor")
 
 
 
