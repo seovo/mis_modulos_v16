@@ -9,7 +9,7 @@ class ProductWizardVariant(models.TransientModel):
     sale_id       = fields.Many2one('sale.order')
 
     @api.onchange('sale_id')
-    def change_sale(self):
+    def change_salex(self):
         pt = self.env['product.template'].search([('attribute_line_ids','!=',False)],limit=1)
         if not pt:
             self.product = pt.id
