@@ -69,7 +69,7 @@ class ProductWizardVariantLine(models.TransientModel):
                 for line in record.parent_id.line_ids:
                     if line.attribute_line_id.attribute_id.type_rolls == 'model':
                         line.product_template_attribute_value_filter = record.product_template_attribute_value_id.id or None
-                        raise ValueError([line.product_template_attribute_value_filter,record.product_template_attribute_value_id])
+                        #raise ValueError([line.product_template_attribute_value_filter,record.product_template_attribute_value_id])
 
 
 
