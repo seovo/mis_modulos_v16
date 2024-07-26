@@ -25,11 +25,13 @@ class ProductWizardVariant(models.TransientModel):
     sale_id       = fields.Many2one('sale.order',required=True)
 
     def add_product(self):
-        product = self.env['product.product'].search([
+        products = self.env['product.product'].search([
             ('product_tmpl_id','=',self.product.id),
-            ('product_template_attribute_value_ids.id','in', [self.categ_id.id,self.model_id.id,self.color_id.id])
+            ('product_template_attribute_value_ids.ids','in', [self.categ_id.id,self.model_id.id,self.color_id.id])
         ])
-        raise ValueError(product)
+        #for product in products:
+        #    if product.product_template_attribute_value_ids
+        raise ValueError(products)
 
     @api.onchange('sale_id')
     def change_salex(self):
