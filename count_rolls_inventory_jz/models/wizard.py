@@ -65,9 +65,9 @@ class ProductWizardVariantLine(models.TransientModel):
     def ch_product_template_attribute_value_id(self):
         for record in self:
 
-            if record.attribute_id.type_rolls == 'cat':
+            if record.attribute_line_id.attribute_id.type_rolls == 'cat':
                 for line in record.parent_id.line_ids:
-                    if line.attribute_id.type_rolls == 'model':
+                    if line.attribute_line_id.attribute_id.type_rolls == 'model':
                         line.product_template_attribute_value_filter = record.product_template_attribute_value_id.id or None
 
 
