@@ -14,10 +14,12 @@
 
                     <field name="line_ids" >
                         <tree string="Sales" editable="bottom" create="false" >
-                            <field name="attribute_line_id" invisible="1" optional="hidden" />
+                            <field name="attribute_line_id"  optional="hidden" />
+                            <field name="product_template_attribute_value_filter"  optional="hidden" />
                             <field name="product_template_attribute_value_id"
                                    domain="[
-                                   ('attribute_line_id','=',attribute_line_id)
+                                       ('attribute_line_id','=',attribute_line_id),
+                                       ('product_template_attribute_value_id','=',product_template_attribute_value_filter)
 
                                    ]" />
                         </tree>

@@ -39,6 +39,10 @@ class ProductWizardVariantLine(models.TransientModel):
                                                           #domain=[('attribute_line_id','=',attribute_line_id)],
                                                           string="Valor"
                                                           )
+    product_template_attribute_value_filter = fields.Many2one('product.template.attribute.value',
+                                                          # domain=[('attribute_line_id','=',attribute_line_id)],
+                                                          string="Valor"
+                                                          )
 
 
 
