@@ -21,21 +21,21 @@ class ProductWizardVariant(models.TransientModel):
         self.line_ids = False
         if self.product:
             if self.product.attribute_line_ids:
-                line_attribute = False
+
                 for line in self.product.attribute_line_ids:
 
-                    if line.attribute_id.type_rolls == 'cat':
-                        line_attribute = line
+                    #if line.attribute_id.type_rolls == 'cat':
+                    #    line_attribute = line
 
                     dx = {
                         'attribute_line_id': line.id
                     }
 
-                    if line_attribute and    line.attribute_id.type_rolls == 'model':
-                        raise ValueError(line_attribute)
-                        dx.update({
-                            'product_template_attribute_value_filter': line_attribute.id
-                        })
+                    #if line_attribute and    line.attribute_id.type_rolls == 'model':
+                    #    raise ValueError(line_attribute)
+                    #    dx.update({
+                    #        'product_template_attribute_value_filter': line_attribute.id
+                    #    })
 
 
                     self.line_ids += self.env['product.wizard.variant.line'].new(dx)
@@ -60,6 +60,21 @@ class ProductWizardVariantLine(models.TransientModel):
                                                           # domain=[('attribute_line_id','=',attribute_line_id)],
                                                           string="Valor"
                                                           )
+
+    @api.onchange('product_template_attribute_value_id')
+    def ch_product_template_attribute_value_id(self):
+        for record in self:
+
+            if record.attribute_id.type_rolls == 'cat':
+                for line in record.parent_id.line_ids:
+                    if line.attribute_id.type_rolls == 'model':
+                        line.product_template_attribute_value_filter = record.product_template_attribute_value_id.id or None
+
+
+
+
+
+
 
 
 
