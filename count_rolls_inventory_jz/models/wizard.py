@@ -11,10 +11,9 @@ class ProductWizardVariant(models.TransientModel):
     @api.onchange('sale_id')
     def change_salex(self):
         pt = self.env['product.template'].search([('attribute_line_ids','!=',False)],limit=1)
-        if not pt:
+        if pt:
             self.product = pt.id
-        else:
-            raise ValueError('OKA')
+
 
 
     @api.onchange('product')
