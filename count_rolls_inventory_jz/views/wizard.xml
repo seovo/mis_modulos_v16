@@ -12,7 +12,8 @@
                     <field name="sale_id" invisible="1" />
                     <field name="product"   />
                     <field name="categ_id"   />
-                    <field name="model_id"   />
+                    <field name="model_id" domain="[('attribute_id.type_rolls', '=', 'model'),
+                                       ('product_template_attribute_value_id','=',categ_id)]"  />
                     <field name="color_id"   />
 
 

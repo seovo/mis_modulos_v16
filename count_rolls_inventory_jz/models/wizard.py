@@ -11,8 +11,6 @@ class ProductWizardVariant(models.TransientModel):
                                     required=True
                                     )
     model_id = fields.Many2one('product.template.attribute.value',
-                               domain=[('attribute_id.type_rolls', '=', 'model'),
-                                       ('product_template_attribute_value_id','=',categ_id)],
                                string="Modelo",
                                required=True
                                )
