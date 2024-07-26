@@ -24,6 +24,13 @@ class ProductWizardVariant(models.TransientModel):
     #line_ids      = fields.One2many('product.wizard.variant.line','parent_id')
     sale_id       = fields.Many2one('sale.order',required=True)
 
+    def add_product(self):
+        product = self.env['product.product'].search([
+            ('product_tmpl_id','=',self.product.id),
+            ('product_template_attribute_value_ids','=', [(6,0,[self.categ_id.id,self.model_id.id,self.color_id.id])])
+        ])
+        raise ValueError(product)
+
     @api.onchange('sale_id')
     def change_salex(self):
         pt = self.env['product.template'].search([('attribute_line_ids','!=',False)],limit=1)
@@ -59,8 +66,7 @@ class ProductWizardVariant(models.TransientModel):
 
                     #type_rolls
     '''
-    def add_product(self):
-        return
+
 
 '''
 class ProductWizardVariantLine(models.TransientModel):
