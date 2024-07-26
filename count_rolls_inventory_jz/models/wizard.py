@@ -27,7 +27,7 @@ class ProductWizardVariant(models.TransientModel):
     def add_product(self):
         product = self.env['product.product'].search([
             ('product_tmpl_id','=',self.product.id),
-            ('product_template_attribute_value_ids','=', [(6,0,[self.categ_id.id,self.model_id.id,self.color_id.id])])
+            ('product_template_attribute_value_ids.id','in', [self.categ_id.id,self.model_id.id,self.color_id.id])
         ])
         raise ValueError(product)
 
