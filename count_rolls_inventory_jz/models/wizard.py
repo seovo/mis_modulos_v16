@@ -35,7 +35,10 @@ class ProductWizardVariantLine(models.TransientModel):
     _description = "product.wizard.variant.line"
     parent_id = fields.Many2one("product.wizard.variant")
     attribute_line_id = fields.Many2one('product.template.attribute.line',string="Atributo")
-    product_template_attribute_value_id = fields.Many2one('product.template.attribute.value',string="Valor")
+    product_template_attribute_value_id = fields.Many2one('product.template.attribute.value',
+                                                          domain=[('attribute_line_id','=',attribute_line_id)],
+                                                          string="Valor"
+                                                          )
 
 
 
