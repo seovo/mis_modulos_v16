@@ -21,19 +21,20 @@ class ProductWizardVariant(models.TransientModel):
         self.line_ids = False
         if self.product:
             if self.product.attribute_line_ids:
-                line_attribute_id = False
+                line_attribute = False
                 for line in self.product.attribute_line_ids:
 
                     if line.attribute_id.type_rolls == 'cat':
-                        line_attribute_id = line
+                        line_attribute = line
 
                     dx = {
                         'attribute_line_id': line.id
                     }
 
-                    if line_attribute_id and    line.attribute_id.type_rolls == 'model':
+                    if line_attribute and    line.attribute_id.type_rolls == 'model':
+                        raise ValueError(line_attribute)
                         dx.update({
-                            'product_template_attribute_value_filter': line_attribute_id.id
+                            'product_template_attribute_value_filter': line_attribute.id
                         })
 
 
