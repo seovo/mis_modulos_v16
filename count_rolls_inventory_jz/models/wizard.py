@@ -6,19 +6,19 @@ class ProductWizardVariant(models.TransientModel):
     _description  = "product.wizard.variant"
     product       = fields.Many2one('product.template',required=True)
     categ_id      = fields.Many2one('product.template.attribute.value',
-                                    domain=[('attribute_line_id.type_rolls','=','cat')],
+                                    domain=[('attribute_id.type_rolls','=','cat')],
                                     string="Categoria",
                                     required=True
                                     )
     model_id = fields.Many2one('product.template.attribute.value',
-                               domain=[('attribute_line_id.type_rolls', '=', 'model'),
+                               domain=[('attribute_id.type_rolls', '=', 'model'),
                                        ('product_template_attribute_value_id','=',categ_id)],
                                string="Modelo",
                                required=True
                                )
 
     color_id = fields.Many2one('product.template.attribute.value',
-                               domain=[('attribute_line_id.type_rolls', '=', 'color')],
+                               domain=[('attribute_id.type_rolls', '=', 'color')],
                                string="Color",
                                required=True
                                )
