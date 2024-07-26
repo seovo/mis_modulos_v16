@@ -13,6 +13,8 @@ class ProductWizardVariant(models.TransientModel):
         pt = self.env['product.template'].search([('attribute_line_ids','!=',False)],limit=1)
         if not pt:
             self.product = pt.id
+        else:
+            raise ValueError('OKA')
 
 
     @api.onchange('product')
