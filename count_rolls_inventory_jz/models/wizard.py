@@ -33,6 +33,12 @@ class ProductWizardVariant(models.TransientModel):
             ('product_template_attribute_value_ids.id', 'in', [self.model_id.id])
         ])
 
+        if not product:
+            product = self.env['product.product'].create({
+                'product_tmpl_id': self.product.id ,
+                'product_template_attribute_value_ids': [(6,0,[self.categ_id.id,self.color_id.id,self.model_id.id])]
+            })
+
         self.sale_id.order_line += self.env['sale.order.line'].new({
             'product_id': product.id
         })
