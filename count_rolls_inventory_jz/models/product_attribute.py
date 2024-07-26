@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 class ProductAttribute(models.Model):
     _inherit = 'product.attribute'
-    type_rolls = fields.Selection([('cat','Categoria'),('model','Modelo')])
+    type_rolls = fields.Selection([('cat','Categoria'),('model','Modelo'),('color','Color')])
 
     def write(self,vals):
         res = super().write(vals)

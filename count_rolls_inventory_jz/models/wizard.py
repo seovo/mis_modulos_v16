@@ -4,9 +4,27 @@ import datetime
 class ProductWizardVariant(models.TransientModel):
     _name = "product.wizard.variant"
     _description  = "product.wizard.variant"
-    product       = fields.Many2one('product.template')
-    line_ids      = fields.One2many('product.wizard.variant.line','parent_id')
-    sale_id       = fields.Many2one('sale.order')
+    product       = fields.Many2one('product.template',required=True)
+    categ_id      = fields.Many2one('product.template.attribute.value',
+                                    domain=[('attribute_line_id.type_rolls','=','cat')],
+                                    string="Categoria",
+                                    required=True
+                                    )
+    model_id = fields.Many2one('product.template.attribute.value',
+                               domain=[('attribute_line_id.type_rolls', '=', 'model'),
+                                       ('product_template_attribute_value_id','=',categ_id)],
+                               string="Modelo",
+                               required=True
+                               )
+
+    color_id = fields.Many2one('product.template.attribute.value',
+                               domain=[('attribute_line_id.type_rolls', '=', 'color')],
+                               string="Color",
+                               required=True
+                               )
+
+    #line_ids      = fields.One2many('product.wizard.variant.line','parent_id')
+    sale_id       = fields.Many2one('sale.order',required=True)
 
     @api.onchange('sale_id')
     def change_salex(self):
@@ -15,7 +33,7 @@ class ProductWizardVariant(models.TransientModel):
             self.product = pt.id
 
 
-
+    '''
     @api.onchange('product')
     def change_product(self):
         self.line_ids = False
@@ -42,11 +60,11 @@ class ProductWizardVariant(models.TransientModel):
 
 
                     #type_rolls
-
+    '''
     def add_product(self):
         return
 
-
+'''
 class ProductWizardVariantLine(models.TransientModel):
     _name = "product.wizard.variant.line"
     _description = "product.wizard.variant.line"
@@ -54,11 +72,11 @@ class ProductWizardVariantLine(models.TransientModel):
     attribute_line_id = fields.Many2one('product.template.attribute.line',string="Atributo")
     product_template_attribute_value_id = fields.Many2one('product.template.attribute.value',
                                                           #domain=[('attribute_line_id','=',attribute_line_id)],
-                                                          string="Filtro"
+                                                          string="Valor"
                                                           )
     product_template_attribute_value_filter = fields.Many2one('product.template.attribute.value',
                                                           # domain=[('attribute_line_id','=',attribute_line_id)],
-                                                          string="Valor"
+                                                          string="Filtro"
                                                           )
 
     @api.onchange('product_template_attribute_value_id')
@@ -73,7 +91,7 @@ class ProductWizardVariantLine(models.TransientModel):
 
 
 
-
+'''
 
 
 
