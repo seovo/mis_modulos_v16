@@ -21,10 +21,18 @@ class ProductWizardVariant(models.TransientModel):
         self.line_ids = False
         if self.product:
             if self.product.attribute_line_ids:
+                line_attribute_id = False
                 for line in self.product.attribute_line_ids:
+
                     self.line_ids += self.env['product.wizard.variant.line'].new({
                         'attribute_line_id': line.id
                     })
+
+                    if line.attribute_id.type_rolls == 'cat':
+                        line_attribute_id = line
+                    if line_attribute_id and    line.attribute_id.type_rolls == 'model':
+                        line.product_template_attribute_value_filter = line_attribute_id.id
+                    #type_rolls
 
     def add_product(self):
         return

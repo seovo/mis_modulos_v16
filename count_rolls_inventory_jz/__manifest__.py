@@ -15,7 +15,8 @@
         'views/purchase.xml',
         'views/sale_order.xml',
         'views/wizard.xml',
-        'views/product_template_attribute_value.xml'
+        'views/product_template_attribute_value.xml',
+        'views/product_attribute_view_form.xml'
 
     ],
     "application": False,

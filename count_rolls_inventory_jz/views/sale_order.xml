@@ -8,7 +8,8 @@
 
 
                <xpath expr="//field[@name='order_line']" position="before" >
-                   <button name="open_product_wizard_variant" string="Agregar Producto" type="object"  />
+                   <button name="open_product_wizard_variant" string="Agregar Producto"
+                           type="object" class="m-4  btn-primary" />
                </xpath>
 
 
