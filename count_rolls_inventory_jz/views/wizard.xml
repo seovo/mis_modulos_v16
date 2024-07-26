@@ -9,11 +9,11 @@
         <field name="arch" type="xml">
             <form string="Transfer Data To Server">
                 <group >
-                    <field name="sale_id"   />
+                    <field name="sale_id" invisible="1" />
                     <field name="product"   />
 
                     <notebook>
-                        <page string="Variantes" name="variante">
+                        <page string="Atributos" name="variante">
                             <field name="line_ids" >
                                 <tree string="Sales" editable="bottom">
                                     <field name="attribute_line_id"  />
