@@ -47,7 +47,7 @@ class ProductWizardVariant(models.TransientModel):
             })
 
         if self.purchase_id:
-            self.purchase_id.order_line += self.env['sale.order.line'].new({
+            self.purchase_id.order_line += self.env['purchase.order.line'].new({
                 'product_id': product.id
             })
 
