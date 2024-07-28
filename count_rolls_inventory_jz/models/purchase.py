@@ -77,9 +77,9 @@ class StockPicking(models.Model):
 
         return res
 
-class PurchaseOrderLine(models.Model):
-    _inherit       = 'purchase.order.line'
-    qty_rolls = fields.Float(string="Rollos")
+class PurchaseOrder(models.Model):
+    _inherit       = 'purchase.order'
+
 
     def open_product_wizard_variant(self):
         return {
@@ -95,6 +95,12 @@ class PurchaseOrderLine(models.Model):
             }
 
         }
+
+class PurchaseOrderLine(models.Model):
+    _inherit       = 'purchase.order.line'
+    qty_rolls = fields.Float(string="Rollos")
+
+
 
     def _prepare_stock_move_vals(self, picking, price_unit, product_uom_qty, product_uom):
         res = super()._prepare_stock_move_vals(picking, price_unit, product_uom_qty, product_uom)
