@@ -22,7 +22,8 @@ class ProductWizardVariant(models.TransientModel):
                                )
 
     #line_ids      = fields.One2many('product.wizard.variant.line','parent_id')
-    sale_id       = fields.Many2one('sale.order',required=True)
+    sale_id       = fields.Many2one('sale.order')
+    purchase_id = fields.Many2one('purchase.order')
 
     def add_product(self):
         product = self.env['product.product'].search([
@@ -35,14 +36,22 @@ class ProductWizardVariant(models.TransientModel):
 
         if not product:
 
-            product = self.env['product.product'].create({
+            product = self.env['product.product'].sudo().create({
                 'product_tmpl_id': self.product.id ,
                 'product_template_attribute_value_ids': [(6,0,[self.categ_id.id,self.color_id.id,self.model_id.id])]
             })
 
-        self.sale_id.order_line += self.env['sale.order.line'].new({
-            'product_id': product.id
-        })
+        if self.sale_id:
+            self.sale_id.order_line += self.env['sale.order.line'].new({
+                'product_id': product.id
+            })
+
+        if self.purchase_id:
+            self.purchase_id.order_line += self.env['sale.order.line'].new({
+                'product_id': product.id
+            })
+
+
         #for product in products:
         #    if product.product_template_attribute_value_ids
         #raise ValueError(products)

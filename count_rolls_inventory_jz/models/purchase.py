@@ -81,6 +81,21 @@ class PurchaseOrderLine(models.Model):
     _inherit       = 'purchase.order.line'
     qty_rolls = fields.Float(string="Rollos")
 
+    def open_product_wizard_variant(self):
+        return {
+            "name": f"AGREGAR PRODUCTO",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            #"view_id": self.env.ref('land.view_order_form_due').id,
+            "res_model": "product.wizard.variant",
+            #"res_id": self.id,
+            "target": "new",
+            "context": {
+                'default_purchase_id': self.id
+            }
+
+        }
+
     def _prepare_stock_move_vals(self, picking, price_unit, product_uom_qty, product_uom):
         res = super()._prepare_stock_move_vals(picking, price_unit, product_uom_qty, product_uom)
         res.update({
