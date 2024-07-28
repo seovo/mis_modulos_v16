@@ -34,7 +34,7 @@ class ProductWizardVariant(models.TransientModel):
         ])
 
         if not product:
-            raise ValueError('X IMPLEMENTAR')
+
             product = self.env['product.product'].create({
                 'product_tmpl_id': self.product.id ,
                 'product_template_attribute_value_ids': [(6,0,[self.categ_id.id,self.color_id.id,self.model_id.id])]
