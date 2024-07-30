@@ -598,8 +598,15 @@ class ResCompany(models.Model):
         headers = data.columns.tolist()
         headers += ['tenanid']
 
-        array_s = ['%s' for _ in range(len(headers))]
-        array_s = ",".join(array_s)
+        array_s = []
+
+        for hd in headers:
+            if hd in  ['SKU','ABC','XYZ','BOX',]:
+                array_s.append('%s')
+            if hd in ['CANTIDAD','MONTO','ACCUMULATEDPERCENTAGE','AVG_STOCK','PRICE','STOCK_VALUE','VAL_DAY','tenanid']:
+                array_s.append('%d')
+        #array_s = ['%s' for _ in range(len(headers))]
+        #array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
             #if nombre_variable == 'Id':
@@ -640,21 +647,28 @@ class ResCompany(models.Model):
 
         headers = [convertir_camel_case(nombre) for nombre in headers]
 
-        insert_queries += f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
+        #insert_queries += f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
 
         #for index, row in data.iterrows():
 
         for row in data.values:
-            values_insert += row.tolist() + [self.tenant_id]
+            values_insert = ''
+            for rw in row:
+                if type(rw)  == str :
+                    values_insert += f" , '{rw}'  "
+
+
+            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
+            #values_insert += row.tolist() + [self.tenant_id]
             #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
             #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
-            #insert_queries  +=  query
+            insert_queries  +=  query
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
         #raise ValueError([insert_queries,values_insert])
 
-        self.execute_sql_server(self.get_connection_string(), insert_queries , values_insert)
+        self.execute_sql_server(self.get_connection_string(), insert_queries )
 
 
     def sync_nine_box(self):
