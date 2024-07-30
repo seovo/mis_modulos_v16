@@ -642,11 +642,11 @@ class ResCompany(models.Model):
             #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
             insert_queries  +=  query
             #raise
-            #values_insert += row.tolist() + [self.tenant_id]
+            values_insert += row.tolist() + [self.tenant_id]
 
         #raise ValueError([insert_queries,values_insert])
 
-        self.execute_sql_server(self.get_connection_string(), insert_queries)
+        self.execute_sql_server(self.get_connection_string(), insert_queries , values_insert)
 
 
     def sync_nine_box(self):
