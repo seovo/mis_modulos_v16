@@ -596,7 +596,7 @@ class ResCompany(models.Model):
         values_insert = []
 
         headers = data.columns.tolist()
-        headers += ['tenanId']
+        #headers += ['tenanId']
 
         array_s = []
 
