@@ -591,7 +591,7 @@ class ResCompany(models.Model):
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box")
-            sql = f''' TRUNCATE TABLE 9BOX  ;  '''
+            sql = f''' truncate table 9BOX  ;  '''
             self.execute_sql_server(self.get_connection_string(), sql)
 
 
