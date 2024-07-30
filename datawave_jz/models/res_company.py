@@ -598,7 +598,7 @@ class ResCompany(models.Model):
         headers = data.columns.tolist()
         headers += ['tenanid']
 
-        array_s = ['?' for _ in range(len(headers))]
+        array_s = ['%s' for _ in range(len(headers))]
         array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
