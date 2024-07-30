@@ -598,7 +598,7 @@ class ResCompany(models.Model):
         headers = data.columns.tolist()
         headers += ['tenanid']
 
-        array_s = ['%s' for _ in range(len(headers))]
+        array_s = ['?' for _ in range(len(headers))]
         array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
@@ -612,6 +612,12 @@ class ResCompany(models.Model):
                 return 'CANTIDAD'
             if nombre_variable == 'AccumulatedSaleCostPercentage':
                 return 'ACCUMULATEDPERCENTAGE'
+
+            #TotalSaleCost
+            if nombre_variable == 'TotalSaleCost':
+                return 'MONTO'
+
+
             #if nombre_variable == 'VariabilityPercentage':
             #    return 'gmroi'
             if nombre_variable == 'NineBox':
