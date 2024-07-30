@@ -653,9 +653,20 @@ class ResCompany(models.Model):
 
         for row in data.values:
             values_insert = ''
+            ctt = 0
             for rw in row:
                 if type(rw)  == str :
-                    values_insert += f" , '{rw}'  "
+                    values_insertx = f"  '{rw}'  "
+                else:
+                    values_insertx = rw
+
+                if ctt > 0:
+                    values_insert = f" , {values_insertx} "
+                else:
+                    values_insert = f" {values_insertx} "
+
+                ctt += 1
+
 
 
             query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
@@ -666,7 +677,7 @@ class ResCompany(models.Model):
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
-        raise ValueError([insert_queries])
+        #raise ValueError([insert_queries])
 
         self.execute_sql_server(self.get_connection_string(), insert_queries )
 
