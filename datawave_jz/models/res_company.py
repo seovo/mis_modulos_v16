@@ -639,6 +639,7 @@ class ResCompany(models.Model):
             self.insert_querys(data, "total_nine_box")
             #sql = f''' truncate table BOX  ;  '''
             #self.execute_sql_server(self.get_connection_string(), sql)
+            self.insert_querys_sql_server(data, 'BOX')
 
 
     def sync_nine_box_mc(self):
@@ -648,7 +649,7 @@ class ResCompany(models.Model):
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_mc")
-            self.insert_querys_sql_server(data,'BOX')
+
 
 
     def sync_nine_box_per_store(self):
