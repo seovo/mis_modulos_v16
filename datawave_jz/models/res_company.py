@@ -525,7 +525,7 @@ class ResCompany(models.Model):
 
         # Ejecutar una consulta SQL
         if values:
-            raise ValueError([query,values])
+            #raise ValueError([query,values])
             cursor.executemany(query,values)
         else:
             cursor.execute(query)
@@ -634,16 +634,17 @@ class ResCompany(models.Model):
 
         headers = [convertir_camel_case(nombre) for nombre in headers]
 
-
+        insert_queries += f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
 
         #for index, row in data.iterrows():
+
         for row in data.values:
             values_insert += row.tolist() + [self.tenant_id]
-            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
+            #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
             #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
-            insert_queries  +=  query
+            #insert_queries  +=  query
             #raise
-            values_insert += row.tolist() + [self.tenant_id]
+            #values_insert += row.tolist() + [self.tenant_id]
 
         #raise ValueError([insert_queries,values_insert])
 
