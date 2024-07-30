@@ -602,12 +602,24 @@ class ResCompany(models.Model):
                 return 'SKU'
             if nombre_variable == 'Name':
                 return 'NAME'
-            #if nombre_variable == 'ABC':
-            #    return 'abc'
-            #if nombre_variable == 'XYZ':
-            #    return 'xyz'
-            #if nombre_variable == 'GMROI':
+            if nombre_variable == 'TotalQuantitySold':
+                return 'CANTIDAD'
+            if nombre_variable == 'AccumulatedSaleCostPercentage':
+                return 'ACCUMULATEDPERCENTAGE'
+            #if nombre_variable == 'VariabilityPercentage':
             #    return 'gmroi'
+            if nombre_variable == 'NineBox':
+                return 'BOX'
+            if nombre_variable == 'AverageQuantity':
+                return 'AVG_STOCK'
+            if nombre_variable == 'CostPerUnit':
+                return 'PRICE'
+            if nombre_variable == 'InventoryAverageCost':
+                return 'STOCK_VALUE'
+            if nombre_variable == 'StockDays':
+                return 'VAL_DAY'
+
+
             # Convierte la primera letra a minúscula
             #nombre_variable = nombre_variable[0].lower() + nombre_variable[1:]
             #nombre_variable = re.sub(r'([A-Z])', r'_\1', nombre_variable).lower()
@@ -620,14 +632,16 @@ class ResCompany(models.Model):
 
         #for index, row in data.iterrows():
         for row in data.values:
-            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
+            values_insert += row.tolist() + [self.tenant_id]
+            #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
+            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
             insert_queries  +=  query
             #raise
-            values_insert += row.tolist() + [self.tenant_id]
+            #values_insert += row.tolist() + [self.tenant_id]
 
-        raise ValueError([insert_queries,values_insert])
+        #raise ValueError([insert_queries,values_insert])
 
-        self.env.cr.execute(insert_queries, values_insert)
+        self.execute_sql_server(self.get_connection_string(), insert_queries)
 
 
     def sync_nine_box(self):
@@ -639,6 +653,7 @@ class ResCompany(models.Model):
             self.insert_querys(data, "total_nine_box")
             #sql = f''' truncate table BOX  ;  '''
             #self.execute_sql_server(self.get_connection_string(), sql)
+            del  data['VariabilityPercentage']
             self.insert_querys_sql_server(data, 'BOX')
 
 
