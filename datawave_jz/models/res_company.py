@@ -584,6 +584,50 @@ class ResCompany(models.Model):
         self.env.cr.execute(insert_queries, values_insert)
 
 
+    def insert_querys_sql_server(self,data,table):
+        del data['Id']
+        insert_queries = f" truncate table {table} ; "
+        values_insert = []
+
+        headers = data.columns.tolist()
+        headers += ['tenanid']
+
+        array_s = ['%s' for _ in range(len(headers))]
+        array_s = ",".join(array_s)
+
+        def convertir_camel_case(nombre_variable):
+            #if nombre_variable == 'Id':
+            #    return 'id_sql'
+            if nombre_variable == 'sku':
+                return 'SKU'
+            if nombre_variable == 'Name':
+                return 'NAME'
+            #if nombre_variable == 'ABC':
+            #    return 'abc'
+            #if nombre_variable == 'XYZ':
+            #    return 'xyz'
+            #if nombre_variable == 'GMROI':
+            #    return 'gmroi'
+            # Convierte la primera letra a minúscula
+            #nombre_variable = nombre_variable[0].lower() + nombre_variable[1:]
+            #nombre_variable = re.sub(r'([A-Z])', r'_\1', nombre_variable).lower()
+
+            return nombre_variable
+
+        headers = [convertir_camel_case(nombre) for nombre in headers]
+
+        raise ValueError(data)
+
+        #for index, row in data.iterrows():
+        for row in data.values:
+            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
+            insert_queries  +=  query
+            #raise
+            values_insert += row.tolist() + [self.tenant_id]
+
+        self.env.cr.execute(insert_queries, values_insert)
+
+
     def sync_nine_box(self):
         if self.nine_box_start_date and self.nine_box_end_date and self.nine_box_days_per_month and self.nine_box_type:
             # stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
@@ -591,8 +635,8 @@ class ResCompany(models.Model):
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box")
-            sql = f''' truncate table BOX  ;  '''
-            self.execute_sql_server(self.get_connection_string(), sql)
+            #sql = f''' truncate table BOX  ;  '''
+            #self.execute_sql_server(self.get_connection_string(), sql)
 
 
     def sync_nine_box_mc(self):
