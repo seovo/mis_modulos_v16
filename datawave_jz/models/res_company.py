@@ -516,7 +516,7 @@ class ResCompany(models.Model):
         return data
 
 
-    def execute_sql_server(self,connection_string, query):
+    def execute_sql_server(self,connection_string, query , values=None):
         # Connect to SQL Server
         conn = pymssql.connect(**connection_string)
 
@@ -524,7 +524,12 @@ class ResCompany(models.Model):
         cursor = conn.cursor()
 
         # Ejecutar una consulta SQL
-        cursor.execute(query)
+        if values:
+            cursor.executemany(query,values)
+        else:
+            cursor.execute(query)
+
+
 
         conn.commit()
         cursor.close()
@@ -592,7 +597,7 @@ class ResCompany(models.Model):
         headers = data.columns.tolist()
         headers += ['tenanid']
 
-        array_s = ['%s' for _ in range(len(headers))]
+        array_s = ['?' for _ in range(len(headers))]
         array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
@@ -633,13 +638,13 @@ class ResCompany(models.Model):
         #for index, row in data.iterrows():
         for row in data.values:
             values_insert += row.tolist() + [self.tenant_id]
-            #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
-            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
+            query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({array_s}); "
+            #query = f" INSERT INTO {table} ({','.join(headers)}) VALUES ({values_insert}); "
             insert_queries  +=  query
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
-        raise ValueError([insert_queries,values_insert])
+        #raise ValueError([insert_queries,values_insert])
 
         self.execute_sql_server(self.get_connection_string(), insert_queries)
 
