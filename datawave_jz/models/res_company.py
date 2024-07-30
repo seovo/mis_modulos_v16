@@ -677,7 +677,7 @@ class ResCompany(models.Model):
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
-        #raise ValueError([insert_queries])
+        raise ValueError([insert_queries])
 
         self.execute_sql_server(self.get_connection_string(), insert_queries )
 
