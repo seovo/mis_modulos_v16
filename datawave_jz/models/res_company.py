@@ -616,7 +616,7 @@ class ResCompany(models.Model):
 
         headers = [convertir_camel_case(nombre) for nombre in headers]
 
-        raise ValueError(data)
+
 
         #for index, row in data.iterrows():
         for row in data.values:
@@ -624,6 +624,8 @@ class ResCompany(models.Model):
             insert_queries  +=  query
             #raise
             values_insert += row.tolist() + [self.tenant_id]
+
+        raise ValueError([insert_queries,values_insert])
 
         self.env.cr.execute(insert_queries, values_insert)
 
