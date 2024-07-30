@@ -525,6 +525,7 @@ class ResCompany(models.Model):
 
         # Ejecutar una consulta SQL
         if values:
+            raise ValueError([query,values])
             cursor.executemany(query,values)
         else:
             cursor.execute(query)
