@@ -349,7 +349,12 @@ class SaleOrder(models.Model):
                         qty_invoiced = line.qty_invoiced
 
                         for line_inv in line.invoice_lines:
-                            invoice_lines.append(line_inv)
+                            x = range(line_inv.quantity)
+
+                            for n in x:
+                                invoice_lines.append(line_inv)
+
+
 
                 if invoice_lines:
                     invoice_lines.reverse()

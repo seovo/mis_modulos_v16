@@ -51,7 +51,7 @@ class AccountMove(models.Model):
     vat = fields.Char(related='partner_id.vat',string="RUC/DNI")
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
     l10n_pe_vat_code    = fields.Char(related='partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code',string="Codigo Doc")
-    banks_str           = fields.Text(compute="get_banks_str")
+    banks_str           = fields.Text(compute="get_banks_str",string='Banco-Operación')
     def get_banks_str(self):
         for record in self:
             texts = ''
