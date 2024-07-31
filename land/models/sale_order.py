@@ -497,7 +497,7 @@ class SaleOrder(models.Model):
 
 
 
-            record.mounth_expired_land = int(diff_month) if diff_month != 0 else 0
+            record.mounth_expired_land = int(diff_month) if diff_month > 0 else 0
             record.amount_payment_month_land =  record.mounth_expired_land * record.value_due_land
 
 
