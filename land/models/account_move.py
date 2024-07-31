@@ -50,6 +50,21 @@ class AccountMove(models.Model):
     proveedores_land = fields.Char(compute="get_proveedores_land",store=True,string="Proveedor")
     vat = fields.Char(related='partner_id.vat',string="RUC/DNI")
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
+    l10n_pe_vat_code    = fields.Char(related='partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code',string="Codigo Doc")
+    banks_str           = fields.Text(compute="get_banks_str")
+    def get_banks_str(self):
+        for record in self:
+            texts = ''
+            c = 0
+            for bank in record.bank_origin_ids:
+                if c == 0 :
+                    texts += f''' {bank.bank_id.name} - {bank.operation_number} - {bank.date} '''
+                else:
+                    texts += f'''\n {bank.bank_id.name} - {bank.operation_number} - {bank.date} '''
+                c += 1
+
+
+            record.banks_str = texts
 
 
     '''
