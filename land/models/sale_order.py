@@ -349,7 +349,7 @@ class SaleOrder(models.Model):
                         qty_invoiced = line.qty_invoiced
 
                         for line_inv in line.invoice_lines:
-                            x = range(line_inv.quantity)
+                            x = range(int(line_inv.quantity))
 
                             for n in x:
                                 invoice_lines.append(line_inv)
