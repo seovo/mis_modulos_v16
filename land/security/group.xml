@@ -19,5 +19,9 @@
 			<field name="name">Reorganizar Fecha o publicar de Facturas desde Ventas</field>
 		</record>
 
+		<record id="group_payment_cronograma" model="res.groups">
+			<field name="name">Pagar Cuotas desde cronograma</field>
+		</record>
+
 	</data>
 </odoo>

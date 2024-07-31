@@ -15,7 +15,7 @@ class ScheduleDuesLand(models.Model):
     move_id        = fields.Many2one('account.move',related='line_move_id.move_id',string="Factura")
     invoice_date   = fields.Date(related='move_id.invoice_date',string="Fecha Pagada")
     currency_id    = fields.Many2one('res.currency',related='move_id.currency_id')
-    amount_due_land = fields.Monetary(related='line_move_id.price_total',string="Monto Pagado")
+    amount_due_land = fields.Float(related='line_move_id.price_unit',string="Monto Pagado")
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
 
     def invoice_here_land(self):
