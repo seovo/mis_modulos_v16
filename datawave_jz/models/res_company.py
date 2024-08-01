@@ -641,10 +641,11 @@ class ResCompany(models.Model):
                 return 'STOCK_VALUE'
             if nombre_variable == 'StockDays':
                 return 'VAL_DAY'
-
-
             if nombre_variable == 'ContributionMargin':
-                    return 'CONTRIBUTION_MARGIN'
+               return 'CONTRIBUTION_MARGIN'
+
+            if nombre_variable == 'AccumulatedContributionMarginPercentage':
+                return  'accumulated_contribution_margin_percentage'
 
 
 
