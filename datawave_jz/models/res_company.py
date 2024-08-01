@@ -625,6 +625,10 @@ class ResCompany(models.Model):
                 return 'MONTO'
 
 
+            if nombre_variable == 'TotalSaleAmount':
+                return 'MONTO'
+
+
             if nombre_variable == 'VariabilityPercentage':
                 return 'VARIABILITY'
             if nombre_variable == 'NineBox':
