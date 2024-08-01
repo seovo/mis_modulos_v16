@@ -625,8 +625,8 @@ class ResCompany(models.Model):
                 return 'MONTO'
 
 
-            #if nombre_variable == 'VariabilityPercentage':
-            #    return 'gmroi'
+            if nombre_variable == 'VariabilityPercentage':
+                return 'VARIABILITY'
             if nombre_variable == 'NineBox':
                 return 'BOX'
             if nombre_variable == 'AverageQuantity':
@@ -677,7 +677,7 @@ class ResCompany(models.Model):
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
-        raise ValueError([insert_queries])
+        #raise ValueError([insert_queries])
 
         self.execute_sql_server(self.get_connection_string(), insert_queries )
 
