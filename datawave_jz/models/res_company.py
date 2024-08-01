@@ -644,6 +644,7 @@ class ResCompany(models.Model):
             if nombre_variable == 'ContributionMargin':
                return 'CONTRIBUTION_MARGIN'
 
+
             if nombre_variable == 'AccumulatedContributionMarginPercentage':
                 return  'accumulated_contribution_margin_percentage'
 
