@@ -691,7 +691,7 @@ class ResCompany(models.Model):
             self.insert_querys(data, "total_nine_box")
             #sql = f''' truncate table BOX  ;  '''
             #self.execute_sql_server(self.get_connection_string(), sql)
-            del  data['VariabilityPercentage']
+            #del  data['VariabilityPercentage']
             self.insert_querys_sql_server(data, 'BOX')
 
 
