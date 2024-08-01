@@ -642,6 +642,7 @@ class ResCompany(models.Model):
             if nombre_variable == 'StockDays':
                 return 'VAL_DAY'
 
+
             if nombre_variable == 'ContributionMargin':
                     return 'CONTRIBUTION_MARGIN'
 
