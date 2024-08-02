@@ -670,6 +670,7 @@ class ResCompany(models.Model):
         #array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
+            return nombre_variable
             #if nombre_variable == 'Id':
             #    return 'id_sql'
             if nombre_variable == 'sku':
@@ -779,6 +780,7 @@ class ResCompany(models.Model):
             data3 = data3.fillna('')
 
             data3 = data3.rename(columns={
+                    'Id': 'ID',
                     'sku': 'SKU',
                     'total_quantity_sold': 'CANTIDAD',
                     'total_sale_cost': 'MONTO',
