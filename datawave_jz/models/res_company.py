@@ -5,7 +5,7 @@ import pymssql
 import re
 
 sql_join = '''
-                           SELECT  P.Sku , P.Description as NOMBRE_DEL_PRODUCTO,
+                           SELECT  P.Sku as sku , P.Description as NOMBRE_DEL_PRODUCTO,
                             (    SELECT C.Name
                                  FROM ProductCategories PC
                                  JOIN Categories C ON C.Id = PC.CategoryId
@@ -769,10 +769,10 @@ class ResCompany(models.Model):
 
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
 
-            raise ValueError([data,data2])
+            #raise ValueError([data,data2])
 
-            data3 =  pd.merge(data, data2, on='Sku', how='inner')
-            raise ValueError(data3)
+            data3 =  pd.merge(data, data2, on='sku', how='inner')
+            #raise ValueError(data3)
 
             self.insert_querys_sql_server(data, 'BOX')
 
