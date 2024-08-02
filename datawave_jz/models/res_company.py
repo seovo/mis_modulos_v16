@@ -652,7 +652,7 @@ class ResCompany(models.Model):
 
 
     def insert_querys_sql_server(self,data,table):
-        del data['Id']
+        #del data['Id']
         insert_queries = f" truncate table {table} ; "
         values_insert = []
 
@@ -741,7 +741,7 @@ class ResCompany(models.Model):
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
-        raise ValueError([insert_queries])
+        #raise ValueError([insert_queries])
 
         self.execute_sql_server(self.get_connection_string(), insert_queries )
 
