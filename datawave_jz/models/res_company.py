@@ -799,6 +799,7 @@ class ResCompany(models.Model):
 
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_mc")
+            raise ValueError(data3)
             self.insert_querys_sql_server(data3, 'BOX_CM')
 
 
