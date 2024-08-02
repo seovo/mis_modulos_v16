@@ -756,6 +756,7 @@ class ResCompany(models.Model):
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
             data3 =  pd.merge(data, data2, on='sku', how='inner')
             data3 = data3.fillna('')
+            raise ValueError(data3.columns)
             self.insert_querys_sql_server(data3, 'BOX')
 
 
