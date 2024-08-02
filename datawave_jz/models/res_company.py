@@ -760,7 +760,7 @@ class ResCompany(models.Model):
             # stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
             stored_procedure = f"exec [dbo].[GetTotalNineBox] '{str(self.nine_box_start_date)}' , '{self.nine_box_end_date}' ,  {self.nine_box_days_per_month} , {self.nine_box_type}  , {self.tenant_id}"
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
-            # raise ValueError([stored_procedure,data])
+            raise ValueError([data])
             self.insert_querys(data, "total_nine_box")
             #sql = f''' truncate table BOX  ;  '''
             #self.execute_sql_server(self.get_connection_string(), sql)
