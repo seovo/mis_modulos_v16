@@ -770,11 +770,11 @@ class ResCompany(models.Model):
             data3 = data3.fillna('')
 
             data4 = data3.rename(columns={
-                    'TotalQuantitySold': 'CANTIDAD',
+                    #'TotalQuantitySold': 'CANTIDAD',
                     'Id': 'ID',
                     'sku': 'SKU',
-                    'total_quantity_sold': 'CANTIDAD',
-                    'total_sale_cost': 'MONTO',
+                    'TotalQuantitySold': 'CANTIDAD',
+                    'TotalSaleCost': 'MONTO',
                     'total_sale_amount': 'total_sale_amount',
                     'contribution_margin': 'CONTRIBUTION_MARGIN',
                     'accumulated_sale_cost_percentage': 'ACCUMULATEDPERCENTAGE',
