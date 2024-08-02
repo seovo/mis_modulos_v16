@@ -752,7 +752,7 @@ class ResCompany(models.Model):
         sql = (f"TRUNCATE TABLE setting ; "
                f"INSERT INTO setting  ( nine_box_start_date ) VALUES ( {self.nine_box_start_date or 'NULL' } ) " )
 
-        self.execute_sql_server(self.get_connection_string(), sql)
+        #self.execute_sql_server(self.get_connection_string(), sql)
 
 
     def sync_nine_box(self):
