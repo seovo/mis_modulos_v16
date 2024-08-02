@@ -553,6 +553,8 @@ class ResCompany(models.Model):
 
 
 
+
+
                 if update :
 
                     self.execute_sql_server(self.get_connection_string(), sql)
@@ -746,6 +748,13 @@ class ResCompany(models.Model):
         self.execute_sql_server(self.get_connection_string(), insert_queries )
 
 
+    def set_setting_sql_server(self):
+        sql = (f"TRUNCATE TABLE setting ; "
+               f"INSERT INTO setting  ( nine_box_start_date ) VALUES ( {self.nine_box_start_date or 'NULL' } ) " )
+
+        self.execute_sql_server(self.get_connection_string(), sql)
+
+
     def sync_nine_box(self):
         if self.nine_box_start_date and self.nine_box_end_date and self.nine_box_days_per_month and self.nine_box_type:
             # stored_procedure = "exec [dbo].[GetTotalNineBox] '2020-01-01' , '2020-07-31' ,  20 , 1  , 1"
@@ -777,6 +786,10 @@ class ResCompany(models.Model):
             del data4['Id']
             #raise ValueError(data3.columns)
             self.insert_querys_sql_server(data4, 'BOX')
+            self.set_setting_sql_server()
+
+
+
 
 
     def sync_nine_box_mc(self):
