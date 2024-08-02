@@ -756,8 +756,26 @@ class ResCompany(models.Model):
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
             data3 =  pd.merge(data, data2, on='sku', how='inner')
             data3 = data3.fillna('')
-            raise ValueError(data3.columns)
-            self.insert_querys_sql_server(data3, 'BOX')
+
+            data4 = data3.rename(columns={
+                'Id': 'ID',
+                'sku': 'SKU',
+                'TotalQuantitySold': 'CANTIDAD',
+
+                'TotalSaleCost': 'MONTO',
+
+                'AccumulatedSaleCostPercentage': 'ACCUMULATEDPERCENTAGE',
+                'abc': 'ABC',
+                'VariabilityPercentage': 'VARIABILITY',
+                'xyz': 'XYZ',
+                'NineBox': 'BOX',
+                'AverageQuantity': 'AVG_STOCK',
+                'CostPerUnit': 'PRICE',
+                'InventoryAverageCost': 'STOCK_VALUE',
+                'stock_days': 'VAL_DAY',
+            })
+            #raise ValueError(data3.columns)
+            self.insert_querys_sql_server(data4, 'BOX')
 
 
     def sync_nine_box_mc(self):
