@@ -754,7 +754,7 @@ class ResCompany(models.Model):
                f"INSERT INTO setting  ( nine_box_start_date ) VALUES ( { nine_box_start_date } ) " )
 
 
-        #self.execute_sql_server(self.get_connection_string(), sql)
+        self.execute_sql_server(self.get_connection_string(), sql)
 
 
     def sync_nine_box(self):
