@@ -750,8 +750,12 @@ class ResCompany(models.Model):
 
     def set_setting_sql_server(self):
         nine_box_start_date = f"  '{self.nine_box_start_date}' " if self.nine_box_start_date else 'NULL'
+        nine_box_end_date = f"  '{self.nine_box_end_date}' " if self.nine_box_end_date else 'NULL'
+        nine_box_mc_start_date = f"  '{self.nine_box_mc_start_date}' " if self.nine_box_mc_start_date else 'NULL'
+        nine_box_mc_end_date = f"  '{self.nine_box_mc_end_date}' " if self.nine_box_mc_end_date else 'NULL'
         sql = (f"TRUNCATE TABLE setting ; "
-               f"INSERT INTO setting  ( nine_box_start_date ) VALUES ( { nine_box_start_date } ) " )
+               f"INSERT INTO setting  ( nine_box_start_date , nine_box_end_date , nine_box_mc_start_date , nine_box_mc_end_date) "
+               f"VALUES ( { nine_box_start_date } , {nine_box_end_date} , {nine_box_mc_start_date} , {nine_box_mc_end_date}) " )
 
 
         self.execute_sql_server(self.get_connection_string(), sql)
