@@ -775,18 +775,18 @@ class ResCompany(models.Model):
                     'sku': 'SKU',
                     'TotalQuantitySold': 'CANTIDAD',
                     'TotalSaleCost': 'MONTO',
-                    'total_sale_amount': 'total_sale_amount',
-                    'contribution_margin': 'CONTRIBUTION_MARGIN',
-                    'accumulated_sale_cost_percentage': 'ACCUMULATEDPERCENTAGE',
-                    'abc': 'ABC',
-                    'accumulated_contribution_margin_percentage': 'accumulated_contribution_margin_percentage',
-                    'xyz': 'XYZ',
-                    'nine_box': 'BOX',
-                    'average_quantity': 'AVG_STOCK',
-                    'cost_per_unit': 'PRICE',
-                    'inventory_average_cost': 'STOCK_VALUE',
-                    'stock_days': 'VAL_DAY',
-                    'gmroi': 'GMROI'
+                    'TotalSaleAmount': 'total_sale_amount',
+                    'ContributionMargin': 'CONTRIBUTION_MARGIN',
+                    'AccumulatedSaleCostPercentage': 'ACCUMULATEDPERCENTAGE',
+                    #'abc': 'ABC',
+                    'AccumulatedContributionMarginPercentage': 'accumulated_contribution_margin_percentage',
+                    #'xyz': 'XYZ',
+                    'NineBox': 'BOX',
+                    'AverageQuantity': 'AVG_STOCK',
+                    'CostPerUnit': 'PRICE',
+                    'InventoryAverageCost': 'STOCK_VALUE',
+                    'StockDays': 'VAL_DAY',
+                    #'gmroi': 'GMROI'
             })
 
 
