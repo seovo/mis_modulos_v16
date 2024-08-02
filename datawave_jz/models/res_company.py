@@ -712,6 +712,73 @@ class ResCompany(models.Model):
             # "stored_procedure": "exec [dbo].[GetTotalNineBoxMc] '2020-01-01' , '2020-07-31' ,  20 , 1  , 2 , 1",
             stored_procedure = f"exec [dbo].[GetTotalNineBoxMc] '{str(self.nine_box_mc_start_date)}' , '{self.nine_box_mc_end_date}' ,  {self.nine_box_mc_days_per_month} , {self.nine_box_mc_type_cost} , {self.nine_box_mc_per_store_type_price} , {self.tenant_id}"
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
+
+            sql_join = '''
+               SELECT P.Id as ID, P.Sku as SKU , P.Description as NOMBRE_DEL_PRODUCTO,
+                (    SELECT C.Name
+                     FROM ProductCategories PC
+                     JOIN Categories C ON C.Id = PC.CategoryId
+                     WHERE P.Id = PC.ProductId
+                     ORDER BY C.Name
+                     OFFSET 0 ROWS
+                     FETCH NEXT 1 ROWS ONLY
+
+                ) AS CATEGORIA_1 ,
+
+                (    SELECT C.Name
+                     FROM ProductCategories PC
+                     JOIN Categories C ON C.Id = PC.CategoryId
+                     WHERE P.Id = PC.ProductId
+                     ORDER BY C.Name
+                     OFFSET 1 ROWS
+                     FETCH NEXT 1 ROWS ONLY
+
+                ) AS CATEGORIA_2 ,
+
+                (    SELECT C.Name
+                     FROM ProductCategories PC
+                     JOIN Categories C ON C.Id = PC.CategoryId
+                     WHERE P.Id = PC.ProductId
+                     ORDER BY C.Name
+                     OFFSET 2 ROWS
+                     FETCH NEXT 1 ROWS ONLY
+
+                ) AS CATEGORIA_3 ,
+
+                (    SELECT C.Name
+                     FROM ProductCategories PC
+                     JOIN Categories C ON C.Id = PC.CategoryId
+                     WHERE P.Id = PC.ProductId
+                     ORDER BY C.Name
+                     OFFSET 3 ROWS
+                     FETCH NEXT 1 ROWS ONLY
+
+                ) AS CATEGORIA_4 ,
+
+                (    SELECT C.Name
+                     FROM ProductCategories PC
+                     JOIN Categories C ON C.Id = PC.CategoryId
+                     WHERE P.Id = PC.ProductId
+                     ORDER BY C.Name
+                     OFFSET 4 ROWS
+                     FETCH NEXT 1 ROWS ONLY
+
+                ) AS CATEGORIA_5
+
+
+
+
+
+
+               FROM Products P ;
+
+            '''
+
+            data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
+
+            raise ValueError(data2)
+
+
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_mc")
             self.insert_querys_sql_server(data, 'BOX_CM')
