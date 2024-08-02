@@ -704,6 +704,71 @@ class ResCompany(models.Model):
             #sql = f''' truncate table BOX  ;  '''
             #self.execute_sql_server(self.get_connection_string(), sql)
             #del  data['VariabilityPercentage']
+
+            sql_join = '''
+                           SELECT P.Id as ID, P.Sku as SKU , P.Description as NOMBRE_DEL_PRODUCTO,
+                            (    SELECT C.Name
+                                 FROM ProductCategories PC
+                                 JOIN Categories C ON C.Id = PC.CategoryId
+                                 WHERE P.Id = PC.ProductId
+                                 ORDER BY C.Name
+                                 OFFSET 0 ROWS
+                                 FETCH NEXT 1 ROWS ONLY
+
+                            ) AS CATEGORIA_1 ,
+
+                            (    SELECT C.Name
+                                 FROM ProductCategories PC
+                                 JOIN Categories C ON C.Id = PC.CategoryId
+                                 WHERE P.Id = PC.ProductId
+                                 ORDER BY C.Name
+                                 OFFSET 1 ROWS
+                                 FETCH NEXT 1 ROWS ONLY
+
+                            ) AS CATEGORIA_2 ,
+
+                            (    SELECT C.Name
+                                 FROM ProductCategories PC
+                                 JOIN Categories C ON C.Id = PC.CategoryId
+                                 WHERE P.Id = PC.ProductId
+                                 ORDER BY C.Name
+                                 OFFSET 2 ROWS
+                                 FETCH NEXT 1 ROWS ONLY
+
+                            ) AS CATEGORIA_3 ,
+
+                            (    SELECT C.Name
+                                 FROM ProductCategories PC
+                                 JOIN Categories C ON C.Id = PC.CategoryId
+                                 WHERE P.Id = PC.ProductId
+                                 ORDER BY C.Name
+                                 OFFSET 3 ROWS
+                                 FETCH NEXT 1 ROWS ONLY
+
+                            ) AS CATEGORIA_4 ,
+
+                            (    SELECT C.Name
+                                 FROM ProductCategories PC
+                                 JOIN Categories C ON C.Id = PC.CategoryId
+                                 WHERE P.Id = PC.ProductId
+                                 ORDER BY C.Name
+                                 OFFSET 4 ROWS
+                                 FETCH NEXT 1 ROWS ONLY
+
+                            ) AS CATEGORIA_5
+
+
+
+
+
+
+                           FROM Products P ;
+
+                        '''
+
+            data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
+            raise ValueError(data2)
+
             self.insert_querys_sql_server(data, 'BOX')
 
 
@@ -775,7 +840,6 @@ class ResCompany(models.Model):
             '''
 
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
-
             raise ValueError(data2)
 
 
