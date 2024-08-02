@@ -772,7 +772,7 @@ class ResCompany(models.Model):
                 'AverageQuantity': 'AVG_STOCK',
                 'CostPerUnit': 'PRICE',
                 'InventoryAverageCost': 'STOCK_VALUE',
-                'stock_days': 'VAL_DAY',
+                'StockDays': 'VAL_DAY',
             })
             #raise ValueError(data3.columns)
             self.insert_querys_sql_server(data4, 'BOX')
