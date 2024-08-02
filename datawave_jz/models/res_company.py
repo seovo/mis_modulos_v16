@@ -657,17 +657,7 @@ class ResCompany(models.Model):
         values_insert = []
 
         headers = data.columns.tolist()
-        #headers += ['tenanId']
 
-        array_s = []
-
-        for hd in headers:
-            if hd in  ['SKU','ABC','XYZ','BOX',]:
-                array_s.append('%s')
-            if hd in ['CANTIDAD','MONTO','ACCUMULATEDPERCENTAGE','AVG_STOCK','PRICE','STOCK_VALUE','VAL_DAY','tenanid']:
-                array_s.append('%d')
-        #array_s = ['%s' for _ in range(len(headers))]
-        #array_s = ",".join(array_s)
 
         def convertir_camel_case(nombre_variable):
             return nombre_variable
@@ -751,7 +741,7 @@ class ResCompany(models.Model):
             #raise
             #values_insert += row.tolist() + [self.tenant_id]
 
-        #raise ValueError([insert_queries])
+        raise ValueError([insert_queries])
 
         self.execute_sql_server(self.get_connection_string(), insert_queries )
 
@@ -801,7 +791,7 @@ class ResCompany(models.Model):
 
             # raise ValueError([stored_procedure,data])
             #self.insert_querys(data, "total_nine_box_mc")
-            #raise ValueError(data4.columns)
+            raise ValueError(data4.columns)
             self.insert_querys_sql_server(data4, 'BOX_CM')
 
 
