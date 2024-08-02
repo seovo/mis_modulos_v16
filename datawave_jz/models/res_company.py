@@ -682,12 +682,12 @@ class ResCompany(models.Model):
                 return 'ACCUMULATEDPERCENTAGE'
 
             #TotalSaleCost
-            if nombre_variable == 'TotalSaleCost':
-                return 'MONTO'
+            #if nombre_variable == 'TotalSaleCost':
+            #    return 'MONTO'
 
 
-            if nombre_variable == 'TotalSaleAmount':
-                return 'MONTO'
+            #if nombre_variable == 'TotalSaleAmount':
+            #    return 'MONTO'
 
 
             if nombre_variable == 'VariabilityPercentage':
