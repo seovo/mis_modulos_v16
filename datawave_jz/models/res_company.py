@@ -799,7 +799,7 @@ class ResCompany(models.Model):
             del data4['Id']
             #raise ValueError(data3.columns)
             self.insert_querys_sql_server(data4, 'BOX')
-            self.set_setting_sql_server()
+        self.set_setting_sql_server()
 
 
 
@@ -842,7 +842,7 @@ class ResCompany(models.Model):
             self.insert_querys(data, "total_nine_box_mc")
             #raise ValueError(data4.columns)
             self.insert_querys_sql_server(data4, 'BOX_CM')
-
+        self.set_setting_sql_server()
 
 
     def sync_nine_box_per_store(self):
@@ -852,7 +852,7 @@ class ResCompany(models.Model):
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_per_store")
-
+        self.set_setting_sql_server()
 
     def sync_nine_box_per_store_mc(self):
         if self.nine_box_mc_per_store_start_date and self.nine_box_mc_per_store_end_date and self.nine_box_mc_per_store_days_per_month and self.nine_box_mc_per_store_type_cost and self.nine_box_mc_per_store_type_price:
@@ -861,7 +861,7 @@ class ResCompany(models.Model):
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_per_store_mc")
-
+        self.set_setting_sql_server()
 
     def test_sql_server_conexion(self):
         connection_string = {
