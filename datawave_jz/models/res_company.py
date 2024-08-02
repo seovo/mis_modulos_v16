@@ -779,22 +779,22 @@ class ResCompany(models.Model):
             data3 = data3.fillna('')
 
             data3 = data3.rename(columns={
-    'sku': 'SKU',
-    'total_quantity_sold': 'CANTIDAD',
-    'total_sale_cost': 'MONTO',
-    'total_sale_amount': 'total_sale_amount',
-    'contribution_margin': 'CONTRIBUTION_MARGIN',
-    'accumulated_sale_cost_percentage': 'ACCUMULATEDPERCENTAGE',
-    'abc': 'ABC',
-    'accumulated_contribution_margin_percentage': 'accumulated_contribution_margin_percentage',
-    'xyz': 'XYZ',
-    'nine_box': 'BOX',
-    'average_quantity': 'AVG_STOCK',
-    'cost_per_unit': 'PRICE',
-    'inventory_average_cost': 'STOCK_VALUE',
-    'stock_days': 'VAL_DAY',
-    'gmroi': 'GMROI'
-})
+                    'sku': 'SKU',
+                    'total_quantity_sold': 'CANTIDAD',
+                    'total_sale_cost': 'MONTO',
+                    'total_sale_amount': 'total_sale_amount',
+                    'contribution_margin': 'CONTRIBUTION_MARGIN',
+                    'accumulated_sale_cost_percentage': 'ACCUMULATEDPERCENTAGE',
+                    'abc': 'ABC',
+                    'accumulated_contribution_margin_percentage': 'accumulated_contribution_margin_percentage',
+                    'xyz': 'XYZ',
+                    'nine_box': 'BOX',
+                    'average_quantity': 'AVG_STOCK',
+                    'cost_per_unit': 'PRICE',
+                    'inventory_average_cost': 'STOCK_VALUE',
+                    'stock_days': 'VAL_DAY',
+                    'gmroi': 'GMROI'
+            })
 
 
             # raise ValueError([stored_procedure,data])
