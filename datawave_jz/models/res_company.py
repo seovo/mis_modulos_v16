@@ -770,6 +770,7 @@ class ResCompany(models.Model):
             data3 = data3.fillna('')
 
             data4 = data3.rename(columns={
+                    'TotalQuantitySold': 'CANTIDAD',
                     'Id': 'ID',
                     'sku': 'SKU',
                     'total_quantity_sold': 'CANTIDAD',
