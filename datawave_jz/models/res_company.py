@@ -758,7 +758,7 @@ class ResCompany(models.Model):
             data3 = data3.fillna('')
 
             data4 = data3.rename(columns={
-                'Id': 'ID',
+                #'Id': 'ID',
                 'sku': 'SKU',
                 'TotalQuantitySold': 'CANTIDAD',
 
@@ -774,6 +774,7 @@ class ResCompany(models.Model):
                 'InventoryAverageCost': 'STOCK_VALUE',
                 'StockDays': 'VAL_DAY',
             })
+            del data4['Id']
             #raise ValueError(data3.columns)
             self.insert_querys_sql_server(data4, 'BOX')
 
@@ -788,9 +789,10 @@ class ResCompany(models.Model):
             data3 = pd.merge(data, data2, on='sku', how='inner')
             data3 = data3.fillna('')
 
+
             data4 = data3.rename(columns={
                     #'TotalQuantitySold': 'CANTIDAD',
-                    'Id': 'ID',
+                    #'Id': 'ID',
                     'sku': 'SKU',
                     'TotalQuantitySold': 'CANTIDAD',
                     'TotalSaleCost': 'MONTO',
@@ -807,6 +809,7 @@ class ResCompany(models.Model):
                     'StockDays': 'VAL_DAY',
                     #'gmroi': 'GMROI'
             })
+            del data4['Id']
 
 
             # raise ValueError([stored_procedure,data])
