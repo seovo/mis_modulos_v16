@@ -769,6 +769,8 @@ class ResCompany(models.Model):
 
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
 
+            raise ValueError(data2)
+
             data3 =  pd.merge(data, data2, on='Sku', how='inner')
             raise ValueError(data3)
 
