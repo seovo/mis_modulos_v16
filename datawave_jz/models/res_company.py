@@ -771,8 +771,10 @@ class ResCompany(models.Model):
 
             #raise ValueError([data,data2])
 
+
+
             data3 =  pd.merge(data, data2, on='sku', how='inner')
-            #raise ValueError(data3)
+            raise ValueError(data3)
 
             self.insert_querys_sql_server(data3, 'BOX')
 
