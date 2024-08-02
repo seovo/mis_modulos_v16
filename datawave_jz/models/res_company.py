@@ -779,7 +779,7 @@ class ResCompany(models.Model):
             data3 = pd.merge(data, data2, on='sku', how='inner')
             data3 = data3.fillna('')
 
-            data3 = data3.rename(columns={
+            data4 = data3.rename(columns={
                     'Id': 'ID',
                     'sku': 'SKU',
                     'total_quantity_sold': 'CANTIDAD',
@@ -801,8 +801,8 @@ class ResCompany(models.Model):
 
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_mc")
-            #raise ValueError(data3.columns)
-            self.insert_querys_sql_server(data3, 'BOX_CM')
+            raise ValueError(data3.columns)
+            self.insert_querys_sql_server(data4, 'BOX_CM')
 
 
 
