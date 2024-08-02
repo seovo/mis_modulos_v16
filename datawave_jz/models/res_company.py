@@ -762,21 +762,9 @@ class ResCompany(models.Model):
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
             #raise ValueError([data])
             self.insert_querys(data, "total_nine_box")
-            #sql = f''' truncate table BOX  ;  '''
-            #self.execute_sql_server(self.get_connection_string(), sql)
-            #del  data['VariabilityPercentage']
-
-
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
-
-            #raise ValueError([data,data2])
-
-
-
             data3 =  pd.merge(data, data2, on='sku', how='inner')
             data3 = data3.fillna('')
-            #raise ValueError(data3)
-
             self.insert_querys_sql_server(data3, 'BOX')
 
 
@@ -786,74 +774,32 @@ class ResCompany(models.Model):
             stored_procedure = f"exec [dbo].[GetTotalNineBoxMc] '{str(self.nine_box_mc_start_date)}' , '{self.nine_box_mc_end_date}' ,  {self.nine_box_mc_days_per_month} , {self.nine_box_mc_type_cost} , {self.nine_box_mc_per_store_type_price} , {self.tenant_id}"
             data = self.fetch_data_from_sql_server(self.get_connection_string(), stored_procedure)
 
-            sql_join = '''
-               SELECT P.Id as ID, P.Sku as SKU , P.Description as NOMBRE_DEL_PRODUCTO,
-                (    SELECT C.Name
-                     FROM ProductCategories PC
-                     JOIN Categories C ON C.Id = PC.CategoryId
-                     WHERE P.Id = PC.ProductId
-                     ORDER BY C.Name
-                     OFFSET 0 ROWS
-                     FETCH NEXT 1 ROWS ONLY
-
-                ) AS CATEGORIA_1 ,
-
-                (    SELECT C.Name
-                     FROM ProductCategories PC
-                     JOIN Categories C ON C.Id = PC.CategoryId
-                     WHERE P.Id = PC.ProductId
-                     ORDER BY C.Name
-                     OFFSET 1 ROWS
-                     FETCH NEXT 1 ROWS ONLY
-
-                ) AS CATEGORIA_2 ,
-
-                (    SELECT C.Name
-                     FROM ProductCategories PC
-                     JOIN Categories C ON C.Id = PC.CategoryId
-                     WHERE P.Id = PC.ProductId
-                     ORDER BY C.Name
-                     OFFSET 2 ROWS
-                     FETCH NEXT 1 ROWS ONLY
-
-                ) AS CATEGORIA_3 ,
-
-                (    SELECT C.Name
-                     FROM ProductCategories PC
-                     JOIN Categories C ON C.Id = PC.CategoryId
-                     WHERE P.Id = PC.ProductId
-                     ORDER BY C.Name
-                     OFFSET 3 ROWS
-                     FETCH NEXT 1 ROWS ONLY
-
-                ) AS CATEGORIA_4 ,
-
-                (    SELECT C.Name
-                     FROM ProductCategories PC
-                     JOIN Categories C ON C.Id = PC.CategoryId
-                     WHERE P.Id = PC.ProductId
-                     ORDER BY C.Name
-                     OFFSET 4 ROWS
-                     FETCH NEXT 1 ROWS ONLY
-
-                ) AS CATEGORIA_5
-
-
-
-
-
-
-               FROM Products P ;
-
-            '''
-
             data2 = self.fetch_data_from_sql_server(self.get_connection_string(), sql_join)
-            raise ValueError(data2)
+            data3 = pd.merge(data, data2, on='sku', how='inner')
+            data3 = data3.fillna('')
+
+            data3 = data3.rename(columns={
+    'sku': 'SKU',
+    'total_quantity_sold': 'CANTIDAD',
+    'total_sale_cost': 'MONTO',
+    'total_sale_amount': 'total_sale_amount',
+    'contribution_margin': 'CONTRIBUTION_MARGIN',
+    'accumulated_sale_cost_percentage': 'ACCUMULATEDPERCENTAGE',
+    'abc': 'ABC',
+    'accumulated_contribution_margin_percentage': 'accumulated_contribution_margin_percentage',
+    'xyz': 'XYZ',
+    'nine_box': 'BOX',
+    'average_quantity': 'AVG_STOCK',
+    'cost_per_unit': 'PRICE',
+    'inventory_average_cost': 'STOCK_VALUE',
+    'stock_days': 'VAL_DAY',
+    'gmroi': 'GMROI'
+})
 
 
             # raise ValueError([stored_procedure,data])
             self.insert_querys(data, "total_nine_box_mc")
-            self.insert_querys_sql_server(data, 'BOX_CM')
+            self.insert_querys_sql_server(data3, 'BOX_CM')
 
 
 
