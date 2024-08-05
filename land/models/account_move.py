@@ -76,7 +76,7 @@ class AccountMove(models.Model):
         return res
     '''
     #este use para actulizAR UNA FECHA
-    #@api.onchange('payment_reference')
+    @api.onchange('payment_reference')
     def change_reference(self):
         for record in self:
             if  record.l10n_pe_edi_request_id.document_date  :
