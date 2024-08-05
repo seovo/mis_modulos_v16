@@ -75,7 +75,7 @@ class AccountMove(models.Model):
 
         return res
 
-    #este use para actulizAR UNA FECHA
+    #este use para actulizar la fecha si por alguna razon es diferente a la que se publico en nubefact
     #@api.onchange('payment_reference')
     def change_reference(self):
         for record in self:
