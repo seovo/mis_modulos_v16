@@ -347,12 +347,13 @@ class SaleOrder(models.Model):
                         qty_dues = line.product_uom_qty
                         total_dues = qty_dues * line.price_unit
                         price_unit = line.price_unit
-                        qty_invoiced = line.qty_invoiced
+                        qty_invoiced = 0
 
                         for line_inv in line.invoice_lines:
                             if line_inv.move_id.debit_origin_id:
                                 pass
                             else:
+                                qty_invoiced += 1
                                 x = range(int(line_inv.quantity))
 
                                 for n in x:
