@@ -249,6 +249,7 @@
                        <group>
                            <field name="price_unit" />
                            <field name="add_separation_land" />
+                           <field name="product_id" />
                        </group>
                    </sheet>
                </form>

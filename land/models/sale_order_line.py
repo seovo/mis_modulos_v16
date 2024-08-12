@@ -23,6 +23,8 @@ class SaleOrderLine(models.Model):
     add_separation_land = fields.Float(string="Agregar Separación")
     amount_initial_desc = fields.Float()
 
+
+
     def edit_price_jz(self):
         self.add_separation_land = 0
         view = self.env.ref('land.edit_sale_order_line')
