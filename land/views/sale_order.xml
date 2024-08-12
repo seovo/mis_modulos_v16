@@ -32,13 +32,14 @@
                               delete="false"
                             >
                                 <tree string="Sales" readonly="1" >
+                                    <field name="is_paid" readonly="1"   />
                                     <field name="number_due" readonly="1"  />
                                     <field name="date" readonly="1" />
                                     <field name="invoice_date" />
-                                    <field name="balan" readonly="1"  />
+                                    <field name="balan" readonly="1" optional="hide" />
                                     <field name="amount" readonly="1"   />
-                                    <field name="note"  readonly="1"  />
-                                    <field name="is_paid" readonly="1"   />
+                                    <field name="note"  readonly="1" optional="hide" />
+
 
                                     <field name="amount_due_land"  />
                                     <field name="amount_mora_land"  />

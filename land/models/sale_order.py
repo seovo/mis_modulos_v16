@@ -211,7 +211,11 @@ class SaleOrder(models.Model):
             qty = 0
             for line in record.order_line:
                 if line.product_id.payment_land_dues:
-                    qty += line.qty_invoiced
+                    cantidad_facturada = 0
+                    for line_inv in line.invoice_lines:
+                        if not line_inv.move_id.debit_origin_id:
+                            cantidad_facturada += line_inv.quantity
+                    #qty += line.qty_invoiced
             record.qty_dues_payment = qty
 
 
@@ -353,7 +357,7 @@ class SaleOrder(models.Model):
                             if line_inv.move_id.debit_origin_id:
                                 pass
                             else:
-                                qty_invoiced += 1
+                                qty_invoiced += line_inv.quantity
                                 x = range(int(line_inv.quantity))
 
                                 for n in x:
