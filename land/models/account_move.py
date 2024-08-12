@@ -53,8 +53,8 @@ class AccountMove(models.Model):
     l10n_pe_vat_code    = fields.Char(related='partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code',string="Codigo Doc")
     banks_str           = fields.Text(compute="get_banks_str",string='Banco-Operación')
     bank_name           = fields.Text(compute="get_banks_str",string='Banco')
-    bank_operation = fields.Text(compute="get_banks_str", string='Banco')
-    bank_date = fields.Date(compute="get_banks_str", string='Banco')
+    bank_operation = fields.Text(compute="get_banks_str", string='Operación')
+    bank_date = fields.Date(compute="get_banks_str", string='Fecha Operación')
     def get_banks_str(self):
         for record in self:
             record.bank_name = False
