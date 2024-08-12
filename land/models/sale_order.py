@@ -350,7 +350,7 @@ class SaleOrder(models.Model):
                         qty_invoiced = line.qty_invoiced
 
                         for line_inv in line.invoice_lines:
-                            if line.move_id.debit_origin_id:
+                            if line_inv.move_id.debit_origin_id:
                                 pass
                             else:
                                 x = range(int(line_inv.quantity))
