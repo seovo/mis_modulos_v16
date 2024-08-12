@@ -52,11 +52,20 @@ class AccountMove(models.Model):
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
     l10n_pe_vat_code    = fields.Char(related='partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code',string="Codigo Doc")
     banks_str           = fields.Text(compute="get_banks_str",string='Banco-Operación')
+    bank_name           = fields.Text(compute="get_banks_str",string='Banco')
+    bank_operation = fields.Text(compute="get_banks_str", string='Banco')
+    bank_date = fields.Date(compute="get_banks_str", string='Banco')
     def get_banks_str(self):
         for record in self:
+            record.bank_name = False
+            record.bank_operation = False
+            record.bank_date = False
             texts = ''
             c = 0
             for bank in record.bank_origin_ids:
+                record.bank_name = bank.bank_id.name
+                record.bank_operation = bank.operation_number
+                record.bank_date = bank.date
                 if c == 0 :
                     texts += f''' {bank.bank_id.name} - {bank.operation_number} - {bank.date} '''
                 else:
