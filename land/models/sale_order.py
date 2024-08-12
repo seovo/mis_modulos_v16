@@ -452,7 +452,7 @@ class SaleOrder(models.Model):
             date = None
             for invoice in record.invoice_ids:
                 if invoice.state == 'posted':
-                    if invoice.invoice_date:
+                    if invoice.invoice_date and not invoice.debit_origin_id:
                         if not date:
                             date = invoice.invoice_date
                         else:
