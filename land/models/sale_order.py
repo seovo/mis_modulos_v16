@@ -103,8 +103,6 @@ class SaleOrder(models.Model):
                 record.stage_land = 'signed'
 
 
-
-
     def update_dates_land(self):
         for invc in self.invoice_ids:
             if invc.amount_total == self.price_initial_land:
@@ -163,9 +161,6 @@ class SaleOrder(models.Model):
             for team in teams:
                 if record.user_id in team.member_ids:
                     record.commision_lan = team.commission_land
-
-
-
 
     @api.depends('mz_land','lot_land','state','mz_lot','note')
     def get_report_lot_land_line_id(self,product_tmp=None):
@@ -765,9 +760,18 @@ class SaleOrder(models.Model):
 
     def write(self,values):
         res = super().write(values)
+
+        if 'product_id' in values and len(self) == 1:
+            if self.invoice_lines:
+                for line in self.invoice_lines:
+                    line.product_id = self.product_id.id
+
+
         for record in self:
             if record.recalcule_and_save_total_land:
                 record._update_text_mz_lote()
+
+
         #self.get_info_land()
         #self.check_adelanto()
 

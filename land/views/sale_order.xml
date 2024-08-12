@@ -250,7 +250,7 @@
                            <field name="company_id"  invisible="1" />
                            <field name="price_unit" />
                            <field name="add_separation_land" />
-                           <field name="product_id" />
+                           <field name="product_id" groups="land.group_edit_mz_lot" />
                        </group>
                    </sheet>
                </form>
