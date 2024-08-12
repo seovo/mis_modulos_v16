@@ -23,6 +23,7 @@
 			<field name="name">Pagar Cuotas desde cronograma</field>
 		</record>
 
+
 		<record id="group_edit_mz_lot" model="res.groups">
 			<field name="name">Editar Producto MZ-LT</field>
 		</record>
