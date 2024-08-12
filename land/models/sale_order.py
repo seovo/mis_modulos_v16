@@ -327,6 +327,7 @@ class SaleOrder(models.Model):
             record.schedule_land_ids.unlink()
         self.update_schedule()
 
+
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land')
     @api.onchange('date_first_due_land')
     def update_schedule(self):
