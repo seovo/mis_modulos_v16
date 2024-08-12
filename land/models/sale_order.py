@@ -208,15 +208,15 @@ class SaleOrder(models.Model):
     def get_qty_dues_payment(self):
 
         for record in self:
-            qty = 0
+            cantidad_facturada = 0
             for line in record.order_line:
                 if line.product_id.payment_land_dues:
-                    cantidad_facturada = 0
+
                     for line_inv in line.invoice_lines:
                         if not line_inv.move_id.debit_origin_id:
                             cantidad_facturada += line_inv.quantity
                     #qty += line.qty_invoiced
-            record.qty_dues_payment = qty
+            record.qty_dues_payment = cantidad_facturada
 
 
     @api.onchange('price_total_land','price_initial_land')
