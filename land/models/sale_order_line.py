@@ -222,15 +222,21 @@ class SaleOrderLine(models.Model):
 
                     #line.price_unit = line.price_unit - clone_line.price_unit
 
-
-
-
-
             if record.product_id and record.product_id.is_advanced_land:
                 record.order_id._recalcule_price_land()
+
+            record.verify_product_id()
+
+
         return res
 
 
+    def verify_product_id(self):
+        for record in self:
+            if record.invoice_lines:
+                for line in record.invoice_lines:
+                    if line.product_id != record.product_id:
+                        line.product_id = record.product_id.id
 
     def create(self,values):
         res = super().create(values)

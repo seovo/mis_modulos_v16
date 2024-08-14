@@ -93,6 +93,9 @@ class AccountMove(models.Model):
                     record.invoice_date =  record.l10n_pe_edi_request_id.document_date
 
 
+
+
+
     @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
     def get_proveedores_land(self):
         for record in self:
