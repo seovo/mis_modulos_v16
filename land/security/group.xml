@@ -28,5 +28,9 @@
 			<field name="name">Editar Producto MZ-LT</field>
 		</record>
 
+		<record id="group_edit_attr_mz_lot" model="res.groups">
+			<field name="name">Editar Atributos MZ-LT</field>
+		</record>
+
 	</data>
 </odoo>

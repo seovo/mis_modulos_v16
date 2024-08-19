@@ -250,7 +250,25 @@
                            <field name="company_id"  invisible="1" />
                            <field name="price_unit" />
                            <field name="add_separation_land" />
+                           <field name="product_template_id"
+                                  groups="land.group_edit_attr_mz_lot" />
                            <field name="product_id" groups="land.group_edit_mz_lot" />
+
+                           <field name="land_area_id"
+                                  domain="[('attribute_id.type_land', '=', 'm2'),('product_tmpl_id','=',product_template_id)]"
+                                  groups="land.group_edit_attr_mz_lot" />
+                           <field name="land_mz_id"
+                                  domain="[('attribute_id.type_land', '=', 'mz'),('product_tmpl_id','=',product_template_id)]"
+                                  groups="land.group_edit_attr_mz_lot" />
+                           <field name="land_lote_id"
+                                  domain="[('attribute_id.type_land', '=', 'lot'),('product_tmpl_id','=',product_template_id)]"
+                                  groups="land.group_edit_attr_mz_lot" />
+                           <field name="land_stage_id" groups="land.group_edit_attr_mz_lot"
+                                  domain="[('attribute_id.type_land', '=', 'stage'),('product_tmpl_id','=',product_template_id)]"
+                           />
+
+
+
                        </group>
                    </sheet>
                </form>

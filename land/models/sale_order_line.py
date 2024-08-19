@@ -23,6 +23,12 @@ class SaleOrderLine(models.Model):
     add_separation_land = fields.Float(string="Agregar Separación")
     amount_initial_desc = fields.Float()
 
+    land_area_id  = fields.Many2one('product.template.attribute.value', string="Area")
+    land_mz_id    = fields.Many2one('product.template.attribute.value', string="Manzana")
+    land_lote_id  = fields.Many2one('product.template.attribute.value', string="Lote")
+    land_stage_id = fields.Many2one('product.template.attribute.value', string="Etapa")
+
+
 
 
     def edit_price_jz(self):
@@ -186,6 +192,43 @@ class SaleOrderLine(models.Model):
 
 
     def write(self,values):
+        #raise ValidationError(str(values))
+        if 'land_area_id' in values or 'land_mz_id' in values or 'land_lote_id' in values or 'land_stage_id' in values:
+
+            product_tmp   = values['product_template_id'] if  'product_template_id' in values else self.product_template_id.id
+            land_area_id  = values['land_area_id']        if  'land_area_id'        in values else self.land_area_id.id
+            land_mz_id    = values['land_mz_id']          if 'land_mz_id'           in values else self.land_mz_id.id
+            land_lote_id  = values['land_lote_id']        if 'land_lote_id'         in values else self.land_lote_id.id
+            land_stage_id = values['land_stage_id']       if 'land_stage_id'        in values else self.land_stage_id.id
+
+
+
+            if product_tmp and land_area_id and land_mz_id and land_stage_id:
+                product = self.env['product.product'].search([
+                    ('product_tmpl_id', '=', product_tmp),
+                    ('product_template_attribute_value_ids.id', 'in', [land_area_id]),
+                    ('product_template_attribute_value_ids.id', 'in', [land_mz_id]),
+                    ('product_template_attribute_value_ids.id', 'in', [land_lote_id]),
+                    ('product_template_attribute_value_ids.id', 'in', [land_stage_id]),
+
+                ])
+
+                if not product:
+                    product = self.env['product.product'].sudo().create({
+                        'product_tmpl_id': product_tmp,
+                        'product_template_attribute_value_ids': [
+                            (6, 0, [land_area_id, land_mz_id, land_lote_id , land_stage_id ])]
+                    })
+
+                values['product_id'] = product.id
+
+                #raise ValidationError(str(product))
+
+
+
+
+            pass
+
         res = super().write(values)
         for record in self:
 
