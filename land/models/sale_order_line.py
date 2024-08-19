@@ -270,6 +270,8 @@ class SaleOrderLine(models.Model):
 
             record.verify_product_id()
 
+            record.order_id.get_info_land()
+
 
         return res
 

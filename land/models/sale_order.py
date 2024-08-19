@@ -255,7 +255,7 @@ class SaleOrder(models.Model):
 
         }
 
-    @api.depends('order_line','mz_lot','sector')
+    @api.depends('order_line','mz_lot','sector','order_line.price_unit')
     def get_info_land(self):
         for record in self:
             mz = None
@@ -436,6 +436,7 @@ class SaleOrder(models.Model):
 
 
             record.update_credit_saldo()
+            record.get_info_land()
 
         self.get_last_payment_date_land()
         self._get_stage_payment_land()
