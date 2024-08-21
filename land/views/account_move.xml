@@ -87,6 +87,8 @@
                            domain="[('stage_separation_land', '=', 'initial')]"
                    />
 
+                   <filter name="is_mora" string="Tiene Mora" domain="[('invoice_line_ids.product_id.is_mora_land', '=', True)]"/>
+
                    <group expand="0" string="Group By">
                         <filter string="Estado Separacion" name="group_by_stage_separation" context="{'group_by': 'stage_separation_land'}" />
                     </group>
