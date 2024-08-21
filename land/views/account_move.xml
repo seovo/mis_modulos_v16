@@ -87,7 +87,11 @@
                            domain="[('stage_separation_land', '=', 'initial')]"
                    />
 
-                   <filter name="is_mora" string="Tiene Mora" domain="[('invoice_line_ids.product_id.is_mora_land', '=', True)]"/>
+                   <filter name="is_mora" string="Tiene Mora de Terreno" domain="[('invoice_line_ids.product_id.is_mora_land', '=', True)]"/>
+                   <filter name="is_advanced" string="Tiene Inicial/Adelanto de Terreno" domain="[('invoice_line_ids.product_id.is_advanced_land', '=', True)]"/>
+                   <filter name="is_separation" string="Es Separación de Terreno" domain="['|',('invoice_line_ids.product_id.is_separation_land', '=', True),('is_separation_land','=',True)]"/>
+                   <filter name="is_payment_land_dues" string="Es Pago de Cuota de Terreno" domain="[('invoice_line_ids.product_id.payment_land_dues', '=', True)]"/>
+                   <filter name="is_anticipo" string="Tiene Anticipo de Terreno" domain="[('invoice_line_ids.product_id.is_anticipo_land', '=', True)]"/>
 
                    <group expand="0" string="Group By">
                         <filter string="Estado Separacion" name="group_by_stage_separation" context="{'group_by': 'stage_separation_land'}" />
