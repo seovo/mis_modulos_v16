@@ -88,11 +88,11 @@ class SaleOrderLine(models.Model):
 
 
         if self.product_id.manzana and self.product_id.lote:
-            name = f"CANCELACION  CUOTA  {int(sale_line.qty_invoiced + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
+            name = f"CANCELACION  CUOTA  {int(sale_line.order_id.qty_dues_payment + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
             return name
         else:
             if sale_line.order_id.mz_lot:
-                name = f"CANCELACION  CUOTA {int(sale_line.qty_invoiced + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
+                name = f"CANCELACION  CUOTA {int(sale_line.order_id.qty_dues_payment + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
                 return name
 
 
