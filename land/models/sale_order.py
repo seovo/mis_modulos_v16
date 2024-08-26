@@ -26,6 +26,7 @@ class SaleOrder(models.Model):
 
     date_sign_land = fields.Date(string="Fecha Firma del Contrato")
     date_first_due_land = fields.Date(string="Fecha Primera Cuota")
+    repeat_mz_lot  = fields.Boolean(string='Repetir MZ - LT')
 
 
     modality_land = fields.Selection([
