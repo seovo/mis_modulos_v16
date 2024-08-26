@@ -707,7 +707,7 @@ class SaleOrder(models.Model):
                         continue
 
                 if objectx._name == 'sale.order.line':
-                    if objectx.repeat_mz_lot:
+                    if objectx.order_id.repeat_mz_lot:
                         continue
 
                 exist = self.env['sale.order'].search(domain_order)
