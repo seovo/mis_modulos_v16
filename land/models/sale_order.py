@@ -700,9 +700,15 @@ class SaleOrder(models.Model):
                 ]
 
                 if objectx._name == 'sale.order':
+
+                    domain_order.append(('id', '!=', objectx.id))
+
                     if objectx.repeat_mz_lot:
                         continue
-                    domain_order.append(('id', '!=', objectx.id))
+
+                if objectx._name == 'sale.order.line':
+                    if objectx.repeat_mz_lot:
+                        continue
 
                 exist = self.env['sale.order'].search(domain_order)
 
