@@ -219,7 +219,7 @@
                    <field name="date_first_due_land" />
                    <field name="nro_internal_land" />
                    <field name="stage_land" />
-                   <field name="repeat_mz_lot" />
+
 
                </xpath>
 
@@ -228,6 +228,7 @@
                    <field name="lot_land" />
                    <field name="sector_land" />
                    <field name="m2_land" />
+                   <field name="repeat_mz_lot" />
                    <field name="user_id" />
                    <field name="commision_lan" />
 
