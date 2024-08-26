@@ -700,11 +700,15 @@ class SaleOrder(models.Model):
                 ]
 
                 if objectx._name == 'sale.order':
+                    if objectx.repeat_mz_lot:
+                        continue
                     domain_order.append(('id', '!=', objectx.id))
 
                 exist = self.env['sale.order'].search(domain_order)
 
                 #raise ValueError([mz, lt, object, mz_lot, exist])
+
+
 
                 if exist:
                     raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
