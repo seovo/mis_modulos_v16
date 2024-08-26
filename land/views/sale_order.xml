@@ -304,6 +304,7 @@
                <xpath expr="//field[@name='name']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
+                   <field name="repeat_mz_lot" />
                    <field name="stage_payment_lan" widget="badge"
                                            decoration-success="stage_payment_lan == 'payment'"
                                            decoration-warning="stage_payment_lan == 'initial'"
