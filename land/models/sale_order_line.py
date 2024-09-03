@@ -283,7 +283,7 @@ class SaleOrderLine(models.Model):
                         price_unit = line.price_unit
                         line.product_id = record.product_id.id
                         line.price_unit = price_unit
-                    #line.price_unit = record.price_unit
+                    line.price_unit = record.price_unit
 
     def create(self,values):
         res = super().create(values)
