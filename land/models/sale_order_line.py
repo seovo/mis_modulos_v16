@@ -278,12 +278,12 @@ class SaleOrderLine(models.Model):
         for record in self:
             if record.invoice_lines:
                 for line in record.invoice_lines:
-                    price_unit = line.price_unit
-                    if line.product_id != record.product_id:
 
+                    if line.product_id != record.product_id:
+                        price_unit = line.price_unit
                         line.product_id = record.product_id.id
                         line.price_unit = price_unit
-                    line.price_unit = price_unit
+                    line.price_unit = record.price_unit
 
     def create(self,values):
         res = super().create(values)
