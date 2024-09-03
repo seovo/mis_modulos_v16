@@ -222,12 +222,10 @@ class SaleOrderLine(models.Model):
 
                 values['product_id'] = product.id
 
+
                 #raise ValidationError(str(product))
 
 
-
-
-            pass
 
         res = super().write(values)
         for record in self:
@@ -280,8 +278,12 @@ class SaleOrderLine(models.Model):
         for record in self:
             if record.invoice_lines:
                 for line in record.invoice_lines:
+                    price_unit = line.price_unit
                     if line.product_id != record.product_id:
+
                         line.product_id = record.product_id.id
+                        line.price_unit = price_unit
+                    line.price_unit = price_unit
 
     def create(self,values):
         res = super().create(values)
