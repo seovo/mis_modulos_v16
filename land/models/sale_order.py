@@ -321,7 +321,6 @@ class SaleOrder(models.Model):
                         line.move_id.action_post()
 
 
-
     def recreate_schedule(self):
         for record in self:
             record.schedule_land_ids.unlink()
@@ -776,7 +775,9 @@ class SaleOrder(models.Model):
         if 'product_id' in values and len(self) == 1:
             if self.invoice_lines:
                 for line in self.invoice_lines:
+                    price_unit = line.price_unit
                     line.product_id = self.product_id.id
+                    line.price_unit = price_unit
 
 
         for record in self:
