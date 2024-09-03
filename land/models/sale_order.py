@@ -285,6 +285,7 @@ class SaleOrder(models.Model):
 
             record.mz_land = mz
             record.lot_land = lt
+            record.mz_lot = f'''{mz}-{lt}'''
 
             if not stage and record.sector:
                 stage = record.sector
