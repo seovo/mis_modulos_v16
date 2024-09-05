@@ -291,8 +291,8 @@ class SaleOrder(models.Model):
                     lt = str(mz_lot[1])
 
 
-            record.mz_land = mz
-            record.lot_land = lt
+            record.mz_land = mz if mz != 'None' else None
+            record.lot_land = lt if lt != 'None' else None
             record.mz_lot = f'''{mz}-{lt}'''
 
             if not stage and record.sector:
