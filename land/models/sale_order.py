@@ -179,11 +179,15 @@ class SaleOrder(models.Model):
             #raise ValueError(product_tmp)
 
             if record.mz_land and record.lot_land:
-                line = self.env['report.lot.land.line'].search([
-                    ('mz_value_id.name','=',record.mz_land),
-                    ('name','=',str(int(record.lot_land))),
-                    ('product_tmp_id','=',product_tmp.id)
-                ])
+                try:
+                    line = self.env['report.lot.land.line'].search([
+                        ('mz_value_id.name', '=', record.mz_land),
+                        ('name', '=', str(int(record.lot_land))),
+                        ('product_tmp_id', '=', product_tmp.id)
+                    ])
+                except:
+                    raise ValueError(record.lot_land)
+
             record.report_lot_land_line_id = line
 
 
