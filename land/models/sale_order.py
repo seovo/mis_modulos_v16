@@ -186,7 +186,11 @@ class SaleOrder(models.Model):
                         ('product_tmp_id', '=', product_tmp.id)
                     ])
                 except:
-                    raise ValueError(record.lot_land)
+                    if record.lot_land == None:
+                        pass
+                    else:
+                        raise ValueError(record.lot_land)
+
 
             record.report_lot_land_line_id = line
 
