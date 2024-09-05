@@ -186,7 +186,7 @@ class SaleOrder(models.Model):
                         ('product_tmp_id', '=', product_tmp.id)
                     ])
                 except:
-                    if record.lot_land == None:
+                    if record.lot_land == None or str(record.lot_land) == 'None':
                         pass
                     else:
                         raise ValueError(record.lot_land)
