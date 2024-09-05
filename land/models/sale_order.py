@@ -178,7 +178,7 @@ class SaleOrder(models.Model):
 
             #raise ValueError(product_tmp)
 
-            if record.mz_land and record.lot_land:
+            if record.mz_land and record.lot_land and record.lot_land != None:
                 try:
                     line = self.env['report.lot.land.line'].search([
                         ('mz_value_id.name', '=', record.mz_land),
