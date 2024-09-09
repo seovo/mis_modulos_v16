@@ -506,8 +506,10 @@ class SaleOrder(models.Model):
                 #raise ValueError([diff_days,date_now,date_next,date_now - date_next])
 
             if date_next and record.qty_dues_payment > 0:
-                diff_month = ((date_now - date_next).days) / 30
+                #diff_month = ((date_now - date_next).days) / 30
+                #hay que cambiar este calculo
                 #diff_month += 1
+                diff_month = self.env['schedule.dues.land'].search_count([('is_paid','=',True),('order_id','=',record.id),('date','<=',date_now)])
 
             if date_next and record.qty_dues_payment == 0:
                 diff_month = ((date_now - date_next).days) / 30
