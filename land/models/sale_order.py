@@ -481,7 +481,7 @@ class SaleOrder(models.Model):
                 date_next = record.date_first_due_land
 
                 if dues_payment > 0:
-                    dues_payment += 1
+                    #dues_payment += 1
                     date_next = date_next +  relativedelta(months=dues_payment)
 
 
