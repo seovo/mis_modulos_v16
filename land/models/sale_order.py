@@ -507,7 +507,7 @@ class SaleOrder(models.Model):
 
             if date_next and record.qty_dues_payment > 0:
                 diff_month = ((date_now - date_next).days) / 30
-                diff_month += 1
+                #diff_month += 1
 
             if date_next and record.qty_dues_payment == 0:
                 diff_month = ((date_now - date_next).days) / 30
