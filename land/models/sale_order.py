@@ -882,10 +882,6 @@ class SaleOrder(models.Model):
             quantity_lines_invoice += 1
 
 
-
-
-
-
         for line in self.order_line:
 
 
@@ -897,8 +893,8 @@ class SaleOrder(models.Model):
             if line.display_type != 'line_note' and float_is_zero(line.qty_to_invoice, precision_digits=precision):
                 continue
 
-            if quantity_lines_invoice > 1 and line.product_id.payment_land_dues:
-                continue
+            #if quantity_lines_invoice > 1 and line.product_id.payment_land_dues:
+            #    continue
 
             if have_separation and not line.product_id.is_separation_land:
                 continue

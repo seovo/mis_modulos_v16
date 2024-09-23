@@ -99,7 +99,7 @@ class SaleOrderLine(models.Model):
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line( **optional_values)
-        if self.product_id.payment_land_dues:
+        if self.product_id.payment_land_dues or  self.product_id.is_advanced_land:
             res['quantity'] = 1
 
         if self.order_id.price_unit_import and self.order_id.price_unit_import != 0:
