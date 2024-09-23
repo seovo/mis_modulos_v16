@@ -70,10 +70,10 @@ class SaleOrderLine(models.Model):
         if self.product_id.is_separation_land:
 
             if self.product_id.manzana and self.product_id.lote:
-                return f"SEPARACION  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+                return f"SEPARACION  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote}  {self.product_id.description_sale}"
             else:
 
-                return f"SEPARACION ,  {sale_line.order_id.mz_lot or ''} "
+                return f"SEPARACION ,  {sale_line.order_id.mz_lot or ''}  {self.product_id.description_sale}"
 
 
 
