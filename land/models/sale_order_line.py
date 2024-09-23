@@ -150,7 +150,7 @@ class SaleOrderLine(models.Model):
             for line in record.order_id.order_line:
                 # raise ValueError([line.product_template_id,record.product_template_id.optional_product_ids.ids])
                 if line.product_template_id.is_advanced_land:
-                    inicial += line.price_unit
+                    inicial += line.price_total
                     # raise ValueError(inicial)
 
             record._price_land(record.product_id, inicial=inicial)
