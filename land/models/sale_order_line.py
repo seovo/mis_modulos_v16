@@ -81,10 +81,10 @@ class SaleOrderLine(models.Model):
         if self.product_id.is_advanced_land:
 
             if self.product_id.manzana and self.product_id.lote:
-                return f"CANCELACION  INICIAL  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+                return f"CANCELACION  INICIAL  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {self.product_id.description_sale}"
             else:
 
-                return f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''} "
+                return f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''}  {self.product_id.description_sale}"
 
 
         if self.product_id.manzana and self.product_id.lote:
