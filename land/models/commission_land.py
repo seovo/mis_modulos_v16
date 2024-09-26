@@ -267,6 +267,8 @@ class CommissionRimanLine(models.Model):
 
     nro_internal_land = fields.Char(related='sale_id.nro_internal_land')
     commision_lan = fields.Float(related='sale_id.commision_lan')
+    seller_land_id = fields.Many2one('seller.land', string="Proveedor Terreno", required=True,
+                                     related='sale_id.seller_land_id')
 
 
     @api.depends('desc','amount')
