@@ -254,6 +254,7 @@ class CommissionRiman(models.Model):
             self.onchange_user_id()
             self.onchange_lines()
 
+
 class CommissionRimanLine(models.Model):
     _name        = 'commission.land.line'
     _description = 'commission.land.line'
