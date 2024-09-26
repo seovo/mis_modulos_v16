@@ -261,6 +261,7 @@ class CommissionRimanLine(models.Model):
     sale_id            = fields.Many2one('sale.order')
     date_sign_land = fields.Date(related='sale_id.date_sign_land')
     date_order = fields.Datetime(related='sale_id.date_order',string="Fecha Pedido")
+    date_order_store = fields.Datetime(related='sale_id.date_order', string="Fecha Pedido")
     amount             = fields.Float(string='Monto')
     desc               = fields.Float(string='Descuento')
     subtotal           = fields.Float(compute='get_subtotal',store=True)
