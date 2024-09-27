@@ -255,7 +255,6 @@ class CommissionRiman(models.Model):
             self.onchange_lines()
 
 
-
 class CommissionRimanLine(models.Model):
     _name        = 'commission.land.line'
     _description = 'commission.land.line'
@@ -273,6 +272,8 @@ class CommissionRimanLine(models.Model):
     seller_lan_id = fields.Many2one('seller.land', string="Proveedor Terreno", required=True,
                                      related='sale_id.seller_land_id',store=True)
     user_id   = fields.Many2one('res.users',related='sale_id.user_id',string="Vendedor",store=True)
+    mz_land = fields.Char(compute="get_info_land", store=True, string="Manzana",related='sale_id.mz_land')
+    lot_land = fields.Char(compute="get_info_land", store=True, string="Lote",related='sale_id.lot_land')
 
 
     @api.depends('desc','amount')

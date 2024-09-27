@@ -188,10 +188,12 @@
         <field name="arch" type="xml">
             <tree create="false">
 
-                <field name="sale_id" />
+                <field name="nro_internal_land" />
+                <field name="sale_id" optional="show" />
+                <field name="mz_land" />
+                <field name="lot_land" />
                 <field name="user_id" />
                 <field name="seller_lan_id" />
-                <field name="nro_internal_land" />
                 <field name="date_order" />
                 <field name="date_sign_land" string="Fecha Contrato" />
                 <field name="commision_lan" />
