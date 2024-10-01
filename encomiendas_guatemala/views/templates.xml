@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="payment_confirmation_status" inherit_id="website_sale.payment_confirmation_status">
+    <template id="address" inherit_id="website_sale.address">
         <xpath expr="//form" position="replace">
             <form t-if="account_on_checkout != 'mandatory' or not is_public_user" action="/shop/address" method="post" class="checkout_autoformat">
                 <div class="row">
@@ -90,6 +90,7 @@
                                             </select>
                     </div>
                     <div class="w-100"/>
+
 
                     <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2">
                         <label class="col-form-label" for="formFile">Archivo Adjunto</label>
