@@ -144,7 +144,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
                     if address_mode == 'billing':
                         update_values['partner_invoice_id'] = partner_id
-                        if kw.get('use_same'):
+                        if kw.get('use_same') and 5 == 6:
                             update_values['partner_shipping_id'] = partner_id
                         elif (
                                 order._is_public_order()
