@@ -12,6 +12,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
         order = request.website.sale_get_order()
+
+        if not order:
+            self.cart_update(2)
         #raise ValueError(order)
         if order and order.carrier_id:
             # Express checkout is based on the amout of the sale order. If there is already a
