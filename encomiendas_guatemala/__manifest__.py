@@ -7,7 +7,9 @@
     "category": "Uncategorized",
     "version": "17.0",
     "depends": ["website_sale"],
-    "data": [],
+    "data": [
+        'views/templates.xml'
+    ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal","pymssql","pandas"]},
     "application": False,

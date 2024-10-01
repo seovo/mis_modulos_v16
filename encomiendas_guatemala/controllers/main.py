@@ -38,8 +38,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
             elif revive == 'squash' or (revive == 'merge' and not request.session.get(
                     'sale_order_id')):  # restore old cart or merge with unexistant
                 request.session['sale_order_id'] = abandoned_order.id
-                return request.redirect('/shop/checkout')
-                #return request.redirect('/shop/cart')
+
+                return request.redirect('/shop/cart')
             elif revive == 'merge':
                 abandoned_order.order_line.write({'order_id': request.session['sale_order_id']})
                 abandoned_order.action_cancel()
