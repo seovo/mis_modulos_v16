@@ -110,7 +110,7 @@
                                                             id="shipping_use_same"
                                                             class="form-check-input mr8"
                                                             name="use_same"
-                                                            value="1"
+                                                            value="0"
                                                             t-att-checked="use_same"/>Ship to the same address
                                                         <span
                                                             t-if="is_public_user"
