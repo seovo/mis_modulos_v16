@@ -54,4 +54,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             values.update(self._get_express_shop_payment_values(order))
 
         values.update(self._cart_values(**post))
+
+        return request.redirect('/shop/checkout')
+
         return request.render("website_sale.cart", values)
