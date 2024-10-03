@@ -8,7 +8,8 @@
     "version": "17.0",
     "depends": ["website_sale"],
     "data": [
-        'views/templates.xml'
+        'views/templates.xml',
+        'views/sale_order.xml',
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal","pymssql","pandas"]},
