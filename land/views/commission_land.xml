@@ -94,13 +94,13 @@
                     <group>
                         <group>
                             <field name="user_id"  attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
-                            <field name="type_period_comission"  />
-                            <field name="date_commission"  />
+                            <field name="type_period_comission" attrs="{'readonly': [('state', 'not in', ['draft'])]}"  />
+                            <field name="date_commission" attrs="{'readonly': [('state', 'not in', ['draft'])]}"  />
                         </group>
                         <group>
                             <field name="date_start" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
                             <field name="date_end" attrs="{'readonly': [('state', 'not in', ['draft'])]}" />
-                            <field name="team_id"  />
+                            <field name="team_id" attrs="{'readonly': [('state', 'not in', ['draft'])]}"  />
 
                         </group>
 
@@ -113,11 +113,13 @@
 
                     <notebook>
                         <page string="Sales" name="account_move_line_ids">
-                            <field name="line_ids"
+                            <field name="line_ids" attrs="{'readonly': [('state', 'not in', ['draft'])]}"
 
                             >
                                 <tree string="Commisiones"  editable="bottom">
-                                    <field name="sale_id" />
+                                    <field name="sale_id" optional="show" />
+                                    <field name="mz_land" />
+                                    <field name="lot_land" />
                                     <field name="nro_internal_land" />
                                     <field name="date_order" />
                                     <field name="date_sign_land" string="Fecha Contrato" />
