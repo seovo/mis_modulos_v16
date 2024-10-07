@@ -195,7 +195,6 @@ class SaleOrder(models.Model):
             record.report_lot_land_line_id = line
 
 
-
     def show_dues_land(self):
         self.update_schedule()
         return {

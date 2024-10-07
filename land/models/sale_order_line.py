@@ -102,8 +102,8 @@ class SaleOrderLine(models.Model):
         if self.product_id.payment_land_dues or  self.product_id.is_advanced_land:
             res['quantity'] = 1
 
-        if self.order_id.price_unit_import and self.order_id.price_unit_import != 0:
-            res['price_unit'] = self.order_id.price_unit_import
+        #if self.order_id.price_unit_import and self.order_id.price_unit_import != 0:
+        #    res['price_unit'] = self.order_id.price_unit_import
 
         sale_line = self.env['sale.order.line'].browse(res['sale_line_ids'][0][1])
 
