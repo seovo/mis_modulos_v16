@@ -118,6 +118,7 @@ class CommissionRiman(models.Model):
                 sale.update_schedule()
                 sale._get_stage_payment_land()
                 sale.get_last_payment_date_land()
+                sale.get_info_land()
 
                 if record.stage_payment_lan:
                     if record.stage_payment_lan != sale.stage_payment_lan:
