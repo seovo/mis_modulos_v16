@@ -115,6 +115,7 @@ class CommissionRiman(models.Model):
                         continue
 
                         # if not sale.schedule_land_ids:
+
                 sale.update_schedule()
                 sale._get_stage_payment_land()
                 sale.get_last_payment_date_land()
