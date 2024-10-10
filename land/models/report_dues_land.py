@@ -113,7 +113,6 @@ class CommissionRiman(models.Model):
                 if record.days_expired and record.days_expired > 0 :
                     if not sale.days_expired_land >= record.days_expired :
                         continue
-
                         # if not sale.schedule_land_ids:
 
                 sale.update_schedule()
