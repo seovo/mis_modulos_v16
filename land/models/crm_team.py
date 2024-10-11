@@ -36,6 +36,8 @@ class CrmTeam(models.Model):
 
         date = fields.Datetime.now().date()
 
+        raise ValueError(self.member_ids)
+
         for user in self.member_ids:
             new_com = self.env['commission.land'].new({
                 'name': 'NEW' ,
