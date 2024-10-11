@@ -96,12 +96,11 @@ class SaleOrder(models.Model):
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
     sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
 
-
     comision_payment = fields.Float(string="Comision Pagada",compute='get_comision_payment')
     comision_payment_real = fields.Float(string="Comision Pagada (Con Descuentos)", compute='get_comision_payment')
 
 
-    def comision_payment(self):
+    def get_comision_payment(self):
         for record in self:
             payment = 0
             payment_real = 0
