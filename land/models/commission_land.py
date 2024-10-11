@@ -132,17 +132,31 @@ class CommissionRiman(models.Model):
         #raise ValidationError(date_now.date())
         return res
 
-    @api.model
-    def create(self, vals):
-        # raise ValueError(vals['type'])
+    def set_sequence(self):
         seq_date = None
         codex = 'commission_land'
 
-        if 'company_id' in vals:
-            vals['name'] = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code(
-                codex, sequence_date=seq_date) or 'New'
-        else:
-            vals['name'] = self.env['ir.sequence'].next_by_code(codex, sequence_date=seq_date) or 'New'
+        name = self.env['ir.sequence'].with_context(force_company=self.company_id.id).next_by_code(
+            codex, sequence_date=seq_date) or 'New'
+
+        self.name = name
+
+
+    @api.model
+    def create(self, vals):
+
+        if 'name' not in vals:
+            # raise ValueError(vals['type'])
+            seq_date = None
+            codex = 'commission_land'
+
+            if 'company_id' in vals:
+                vals['name'] = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code(
+                    codex, sequence_date=seq_date) or 'New'
+            else:
+                vals['name'] = self.env['ir.sequence'].next_by_code(codex, sequence_date=seq_date) or 'New'
+
+
         result = super(CommissionRiman, self).create(vals)
         return result
 
@@ -185,6 +199,8 @@ class CommissionRiman(models.Model):
 
             record.amount_bonus = bonus
             record.amount_total = total_base -  amount_discount + bonus
+
+
 
 
     @api.onchange('date_start','date_end','user_id')

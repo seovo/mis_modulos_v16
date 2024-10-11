@@ -27,7 +27,7 @@
                    <button type="object" class="btn btn-success" name="show_comisiones_land">Comisiones</button>
                    <button type="object" class="btn btn-danger"
                            confirm="Estas Seguro ? esto generara nuevas comisiones"
-                           name="show_comisiones_land">Generar Comisiones</button>
+                           name="get_show_comisiones_land">Generar Comisiones</button>
                </xpath>
 
 
