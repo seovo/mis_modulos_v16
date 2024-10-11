@@ -259,6 +259,7 @@ class CommissionRimanLine(models.Model):
     _name        = 'commission.land.line'
     _description = 'commission.land.line'
     commission_land_id = fields.Many2one('commission.land',string="Comisión")
+    date_commission = fields.Date(string="Fecha Comission", related='commission_land_id.date_commission')
     sale_id            = fields.Many2one('sale.order')
     date_sign_land = fields.Date(related='sale_id.date_sign_land')
     date_order = fields.Datetime(related='sale_id.date_order',string="Fecha Pedido")

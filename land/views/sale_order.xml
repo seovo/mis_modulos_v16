@@ -213,15 +213,17 @@
                    <page string="Comissión" >
                        <group>
                            <field name="commision_lan" />
+                           <field name="comision_payment" />
+                           <field name="comision_payment_real" />
                        </group>
 
                        <field name="commision_line_ids"
                               create="false"
                               delete="false"
                             >
-                                <tree string="Comisiones"   >
+                                <tree string="Comisiones"  readonly="1"  >
                                     <field name="commission_land_id"  />
-                                    <field name="date_order"  />
+                                    <field name="date_commissionr"  />
                                     <field name="amount"  />
                                     <field name="desc"  />
                                     <field name="subtotal"  />
