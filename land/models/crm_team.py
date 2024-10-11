@@ -41,6 +41,11 @@ class CrmTeam(models.Model):
 
 
         for user in self.member_ids:
+
+            exist_com = self.env['commission.land'].search([('date_commission','=',date)])
+            if exist_com:
+                continue
+
             new_com = self.env['commission.land'].create({
                 'name': 'NEW' ,
                 'date_commission': date ,
