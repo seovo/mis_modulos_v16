@@ -47,13 +47,13 @@ class CrmTeam(models.Model):
                 'type_period_comission': self.type_period_comission
             })
 
-            new_com.onchange_user_id()
-            new_com.onchange_lines()
+            #new_com.onchange_user_id()
+            #new_com.onchange_lines()
 
-            if not new_com.line_ids:
-                new_com.unlink()
-                continue
-            new_com.set_sequence()
+            #if not new_com.line_ids:
+            #    new_com.unlink()
+            #    continue
+            #new_com.set_sequence()
 
 
 
