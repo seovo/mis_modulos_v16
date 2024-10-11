@@ -36,7 +36,7 @@ class CrmTeam(models.Model):
 
         date = fields.Datetime.now().date()
 
-        for user in self.crm_team_member_ids:
+        for user in self.member_ids:
             new_com = self.env['commission.land'].new({
                 'name': 'NEW' ,
                 'date_commission': date ,
@@ -48,12 +48,12 @@ class CrmTeam(models.Model):
             })
 
             new_com.onchange_user_id()
-            #new_com.onchange_lines()
+            new_com.onchange_lines()
 
-            #if not new_com.line_ids:
-            #    new_com.unlink()
-            #    continue
-            #new_com.set_sequence()
+            if not new_com.line_ids:
+                new_com.unlink()
+                continue
+            new_com.set_sequence()
 
 
 
