@@ -58,6 +58,4 @@ class CrmTeam(models.Model):
             #    continue
             #new_com.set_sequence()
 
-
-
         return  self.show_comisiones_land()
