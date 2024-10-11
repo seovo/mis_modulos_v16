@@ -219,6 +219,7 @@ class CommissionRiman(models.Model):
 
                     if not sale.commision_lan or sale.commision_lan == 0 :
                         sale.change_team_comission()
+                    sale.get_comision_payment()
 
                     diff = sale.commision_lan - sale.comision_payment
 

@@ -117,7 +117,8 @@
 
                             >
                                 <tree string="Commisiones"  editable="bottom">
-                                    <field name="sale_id" optional="show" />
+                                    <field name="sale_id" optional="show"
+                                           domain="[('diff_payment_comision','>',0)]" />
                                     <field name="mz_land" />
                                     <field name="lot_land" />
                                     <field name="nro_internal_land" />

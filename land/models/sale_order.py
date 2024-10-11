@@ -98,17 +98,22 @@ class SaleOrder(models.Model):
 
     comision_payment = fields.Float(string="Comision Pagada",compute='get_comision_payment')
     comision_payment_real = fields.Float(string="Comision Pagada (Con Descuentos)", compute='get_comision_payment')
+    diff_payment_comision =  fields.Float(string="Comision Pagada (Con Descuentos)", compute='get_comision_payment',store=True)
 
 
+    @api.depends('commision_line_ids','commision_line_ids.state')
     def get_comision_payment(self):
         for record in self:
             payment = 0
             payment_real = 0
             for line in record.commision_line_ids:
-                payment += line.amount
-                payment_real += line.subtotal
+                if line.commission_land_id.state == 'done' :
+                    payment += line.amount
+                    payment_real += line.subtotal
+
             record.comision_payment = payment
             record.comision_payment_real = payment_real
+            record.diff_payment_comision = payment - payment_real
 
 
     @api.onchange('nro_internal_land')
