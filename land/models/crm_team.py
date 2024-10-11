@@ -38,6 +38,7 @@ class CrmTeam(models.Model):
 
         #raise ValueError(self.member_ids)
 
+
         for user in self.member_ids:
             new_com = self.env['commission.land'].create({
                 'name': 'NEW' ,
