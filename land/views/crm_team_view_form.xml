@@ -22,9 +22,12 @@
            <field name="model">crm.team</field>
            <field name="inherit_id" ref="sales_team.crm_team_view_kanban_dashboard" />
            <field name="arch" type="xml">
+
                <xpath expr="//button[@name='action_primary_channel_button']" position="after" >
                    <button type="object" class="btn btn-success" name="show_comisiones_land">Comisiones</button>
-                   <button type="object" class="btn btn-danger" name="show_comisiones_land">Generar Comisiones</button>
+                   <button type="object" class="btn btn-danger"
+                           confirm="Estas Seguro ? esto generara nuevas comisiones"
+                           name="show_comisiones_land">Generar Comisiones</button>
                </xpath>
 
 
