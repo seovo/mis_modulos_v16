@@ -35,6 +35,13 @@ class CommissionRiman(models.Model):
     string="Periodo Commision",required=True)
 
 
+    def unlink(self):
+        for record in self:
+            if record.state != 'draft':
+                raise ValueError('Solo se pueden borrar comisiones en borrador')
+        res = super().unlink()
+        return res
+
     @api.onchange('date_start')
     def change_date_start(self):
         for record in self:

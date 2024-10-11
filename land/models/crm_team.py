@@ -57,6 +57,8 @@ class CrmTeam(models.Model):
             #raise ValueError(new_com)
 
             new_com.onchange_user_id()
+            new_com.change_type_period_comission()
+            new_com.change_date_start()
             new_com.onchange_lines()
 
             continue
@@ -65,5 +67,6 @@ class CrmTeam(models.Model):
                 new_com.unlink()
                 continue
             new_com.set_sequence()
+            new_com.calculate_totals()
 
         return  self.show_comisiones_land()
