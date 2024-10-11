@@ -42,6 +42,7 @@
 
 
                 <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Equipo" name="group_team_id" context="{'group_by': 'team_id'}"/>
                     <filter string="Usuario" name="group_user_id" context="{'group_by': 'user_id'}"/>
                 </group>

@@ -27,6 +27,7 @@ class CrmTeam(models.Model):
             "target": "current",
             "domain": [('team_id','=',self.id)] ,
             "context": {
+                'search_default_group_state': 1 ,
                 'search_default_group_user_id': 1
             }
 
