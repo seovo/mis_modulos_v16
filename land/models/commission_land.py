@@ -38,7 +38,7 @@ class CommissionRiman(models.Model):
     def unlink(self):
         for record in self:
             if record.state != 'draft':
-                raise ValueError('Solo se pueden borrar comisiones en borrador')
+                raise ValidationError('Solo se pueden borrar comisiones en borrador')
         res = super().unlink()
         return res
 

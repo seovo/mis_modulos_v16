@@ -61,7 +61,6 @@ class CrmTeam(models.Model):
             new_com.change_date_start()
             new_com.onchange_lines()
 
-            continue
 
             if not new_com.line_ids:
                 new_com.unlink()
