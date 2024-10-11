@@ -13,6 +13,7 @@ class CrmTeam(models.Model):
     members_additional_commision = fields.Many2many('res.users',string="Miembros Comission Adicional")
     number_sale_discount_commision = fields.Integer(string="# Ventas Descuento Commisión")
     percentage_sale_discount_commision = fields.Float(string="% Monto Descuento Commisión",default="50")
+    comission_ids = fields.One2many('commission.land','team_id')
 
 
     def show_comisiones_land(self):
