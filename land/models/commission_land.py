@@ -120,9 +120,6 @@ class CommissionRiman(models.Model):
                     record.date_end = fecha_especifica2
 
 
-
-
-
     @api.model
     def default_get(self,fieldsx):
         res = super().default_get(fieldsx)
@@ -223,13 +220,18 @@ class CommissionRiman(models.Model):
                     if not sale.commision_lan or sale.commision_lan == 0 :
                         sale.change_team_comission()
 
+                    diff = sale.commision_lan - sale.comision_payment
 
-                    #ids_sales.append(sale.id)
-                    record.line_ids += self.env['commission.land.line'].new({
-                        'sale_id': sale.id ,
-                        'amount': sale.commision_lan ,
-                        'desc' : record.team_id.percentage_sale_discount_commision if  len_sales <= record.team_id.number_sale_discount_commision else 0
-                    })
+                    if diff > 0 :
+                        # ids_sales.append(sale.id)
+                        record.line_ids += self.env['commission.land.line'].new({
+                            'sale_id': sale.id,
+                            'amount': diff,
+                            'desc': record.team_id.percentage_sale_discount_commision if len_sales <= record.team_id.number_sale_discount_commision else 0
+                        })
+
+
+
                 record.calculate_totals()
 
 
