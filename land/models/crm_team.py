@@ -47,6 +47,7 @@ class CrmTeam(models.Model):
                 'type_period_comission': self.type_period_comission
             })
 
+
             raise ValueError(new_com)
 
             new_com.onchange_user_id()
