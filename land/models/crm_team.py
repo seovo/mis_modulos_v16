@@ -36,17 +36,18 @@ class CrmTeam(models.Model):
 
         date = fields.Datetime.now().date()
 
-        raise ValueError(self.member_ids)
+        #raise ValueError(self.member_ids)
 
         for user in self.member_ids:
-            new_com = self.env['commission.land'].new({
+            new_com = self.env['commission.land'].create({
                 'name': 'NEW' ,
                 'date_commission': date ,
                 'date_start': date ,
                 'date_end': date ,
                 'user_id':  user.id ,
                 'team_id': self.id ,
-                'type_period_comission': self.type_period_comission
+                'type_period_comission': self.type_period_comission ,
+                #'state': draft
             })
 
 
@@ -55,9 +56,9 @@ class CrmTeam(models.Model):
             new_com.onchange_user_id()
             new_com.onchange_lines()
 
-            #if not new_com.line_ids:
-            #    new_com.unlink()
-            #    continue
-            #new_com.set_sequence()
+            if not new_com.line_ids:
+                new_com.unlink()
+                continue
+            new_com.set_sequence()
 
         return  self.show_comisiones_land()
