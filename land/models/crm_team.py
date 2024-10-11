@@ -52,10 +52,14 @@ class CrmTeam(models.Model):
             })
 
 
+
+
             #raise ValueError(new_com)
 
             new_com.onchange_user_id()
             new_com.onchange_lines()
+
+            continue
 
             if not new_com.line_ids:
                 new_com.unlink()
