@@ -223,7 +223,7 @@
                             >
                                 <tree string="Comisiones"  readonly="1"  >
                                     <field name="commission_land_id"  />
-                                    <field name="date_commissionr"  />
+                                    <field name="date_commission"  />
                                     <field name="amount"  />
                                     <field name="desc"  />
                                     <field name="subtotal"  />
