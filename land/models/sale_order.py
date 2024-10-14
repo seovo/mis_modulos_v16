@@ -217,10 +217,12 @@ class SaleOrder(models.Model):
         for record in self:
             if not  product_tmp:
                 product_tmp = self.env['product.template'].search(
-                    [('company_id', '=', record.company_id.id), ('payment_land_dues', '=', True)])
+                    [('company_id', '=', record.company_id.id), ('payment_land_dues', '=', True),
+                     ('is_independence','=',False)])
                 if not product_tmp:
                     product_tmp = self.env['product.template'].search(
-                        [('payment_land_dues', '=', True), ('attribute_line_ids', '!=', False)])
+                        [('payment_land_dues', '=', True), ('attribute_line_ids', '!=', False),
+                         ('is_independence','=',False)])
 
             line = None
 
