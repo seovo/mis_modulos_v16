@@ -80,13 +80,13 @@ class AccountMove(models.Model):
     def write(self,vals):
         res = super().write(vals)
         if 'payment_reference' in vals:
-            self.change_reference()
+            self.validate_date_nubefact()
 
         return res
 
     #este use para actulizar la fecha si por alguna razon es diferente a la que se publico en nubefact
     #@api.onchange('payment_reference')
-    def change_reference(self):
+    def validate_date_nubefact(self):
         for record in self:
             if  record.l10n_pe_edi_request_id.document_date  :
                 if record.l10n_pe_edi_request_id.document_date != record.invoice_date:

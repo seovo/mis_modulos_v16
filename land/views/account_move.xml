@@ -281,4 +281,12 @@
            </field>
     </record>
 
+    <record id="update_date_nubefact" model="ir.actions.server">
+			<field name="name">Actualizar Fechas Nubefact</field>
+			<field name="model_id" ref="land.model_account_move"/>
+			<field name="binding_model_id" ref="land.model_account_move"/>
+			<field name="state">code</field>
+			<field name="code">action = records.validate_date_nubefact()</field>
+    </record>
+
 </odoo>
