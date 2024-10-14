@@ -376,7 +376,7 @@ class SaleOrder(models.Model):
                         qty_invoiced = 0
 
                         for line_inv in line.invoice_lines:
-                            if line_inv.move_id.debit_origin_id:
+                            if line_inv.move_id.debit_origin_id or line_inv.product_id.is_independence:
                                 pass
                             else:
                                 qty_invoiced += line_inv.quantity
