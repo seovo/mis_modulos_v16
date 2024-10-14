@@ -43,9 +43,38 @@ class SaleOrder(models.Model):
 
     obs_modality_land = fields.Text(string="Observaciones")
     obs_resolution = fields.Text(string="Observacion Resolucion")
-    price_total_land = fields.Float(string="Valor del Terreno")
-    price_initial_land = fields.Float(string="Inicial del Terreno")
-    price_credit_land = fields.Float(string="Credito del Terreno")
+
+
+    price_total_land = fields.Float(string="Valor del Terreno",compute="get_amount_prices_land",store=True)
+    price_initial_land = fields.Float(string="Inicial del Terreno",compute="get_amount_prices_land",store=True)
+    price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True)
+    price_is_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True)
+
+    @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty')
+    @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty')
+    def get_amount_prices_land(self):
+        for record in self:
+
+            price_inicial = 0
+            price_credit = 0
+            price_iden = 0
+            for line in record.order_line:
+                if line.product_id.is_advanced_land :
+                    price_inicial += line.price_total
+                if line.product_id.payment_land_dues and not line.product_id.is_independence:
+                    price_credit += line.price_total
+
+                if line.product_id.is_independence:
+                    price_iden += line.price_total
+
+            record.price_initial_land = price_inicial
+            record.price_credit_land =  price_credit
+            record.price_total_land = price_inicial + price_credit
+            record.price_is_independence_land = price_iden
+
+
+
+
 
     note = fields.Text()
     recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos")
@@ -241,10 +270,7 @@ class SaleOrder(models.Model):
             record.qty_dues_payment = cantidad_facturada
 
 
-    @api.onchange('price_total_land','price_initial_land')
-    def onchange_credit(self):
-        for record in self:
-            record.price_credit_land = record.price_total_land - record.price_initial_land
+
 
     @api.onchange('date_sign_land','type_periodo_invoiced')
     @api.depends('date_sign_land', 'type_periodo_invoiced')
@@ -666,9 +692,6 @@ class SaleOrder(models.Model):
 
                 sql = f'''  UPDATE sale_order 
                             SET mz_lot = '{mz_lot}'  , 
-                            price_total_land = {total}  ,
-                            price_initial_land  = {inicial} ,
-                            price_credit_land = {credit} ,
                             dues_land = {dues} ,
                             value_due_land = {value_due}
                             WHERE id = {record.id}  
