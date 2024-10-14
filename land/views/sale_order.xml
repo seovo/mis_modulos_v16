@@ -101,11 +101,11 @@
                    <field name="price_initial_land"  readonly="1" force_save="1" />
                    <field name="price_credit_land"  readonly="1" force_save="1" />
 
-                   <hr/>
+                   <hr/><br />
 
                     <field name="price_total_land"  readonly="1" force_save="1" />
 
-                   <hr/>
+                   <hr/><br />
 
                </xpath>
 
