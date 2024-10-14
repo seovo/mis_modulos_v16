@@ -48,7 +48,7 @@ class SaleOrder(models.Model):
     price_total_land = fields.Float(string="Valor del Terreno",compute="get_amount_prices_land",store=True)
     price_initial_land = fields.Float(string="Inicial del Terreno",compute="get_amount_prices_land",store=True)
     price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True)
-    price_is_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True)
+    price_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True)
 
     @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty')
     @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty')
@@ -70,7 +70,7 @@ class SaleOrder(models.Model):
             record.price_initial_land = price_inicial
             record.price_credit_land =  price_credit
             record.price_total_land = price_inicial + price_credit
-            record.price_is_independence_land = price_iden
+            record.price_independence_land = price_iden
 
 
 

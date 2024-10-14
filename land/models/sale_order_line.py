@@ -1,3 +1,5 @@
+from email.policy import default
+
 from odoo import api, fields, models , _
 from odoo.exceptions import ValidationError
 
@@ -27,6 +29,8 @@ class SaleOrderLine(models.Model):
     land_mz_id    = fields.Many2one('product.template.attribute.value', string="Manzana")
     land_lote_id  = fields.Many2one('product.template.attribute.value', string="Lote")
     land_stage_id = fields.Many2one('product.template.attribute.value', string="Etapa")
+
+    is_create_of_origin_idenpencia = fields.Boolean(default=True)
 
 
 
@@ -306,5 +310,18 @@ class SaleOrderLine(models.Model):
 
             for line in record.order_id.order_line:
                 line.change_product_uom_qty_land()
+
+            #buscar las demas ordenes
+
+            if record.is_create_of_origin_idenpencia:
+                orders = record.order_id.partner_id.sale_order_ids
+
+                for orderr in orders:
+                    if orderr != record.order_id:
+                        if not orderr.price_independence_land or orderr.price_independence_land == 0:
+                            record.copy(default={
+                                'order_id': orderr.id ,
+                                'is_create_of_origin_idenpencia' : False
+                            })
 
         return res

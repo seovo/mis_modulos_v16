@@ -103,7 +103,7 @@
 
                    <hr/><br />
                     <field name="price_total_land"  readonly="1" force_save="1" />
-                    <field name="price_is_independence_land"  readonly="1" force_save="1" />
+                    <field name="price_independence_land"  readonly="1" force_save="1" />
 
                    <hr/><br />
 
