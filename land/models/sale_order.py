@@ -237,6 +237,11 @@ class SaleOrder(models.Model):
                     if record.lot_land == None or str(record.lot_land) == 'None':
                         pass
                     else:
+                        line = self.env['report.lot.land.line'].search([
+                            ('mz_value_id.name', '=', record.mz_land),
+                            ('name', '=', str(int(record.lot_land))),
+                            ('product_tmp_id', '=', product_tmp.id)
+                        ])
                         raise ValueError(record.lot_land)
 
 
@@ -493,6 +498,7 @@ class SaleOrder(models.Model):
 
         self.get_last_payment_date_land()
         self._get_stage_payment_land()
+        self.get_amount_prices_land()
 
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
