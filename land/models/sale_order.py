@@ -369,8 +369,6 @@ class SaleOrder(models.Model):
                         if line_invoice.move.state != 'cancel':
                             total_payment += line_invoice.price_total
 
-
-
             record.total_payment_land = round(total_payment, 2)
             record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
 
