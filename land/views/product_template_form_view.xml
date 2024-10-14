@@ -12,6 +12,7 @@
                    <field name="is_separation_land" />
                    <field name="is_anticipo_land" />
                    <field name="is_mora_land" />
+                   <field name="is_independence" />
                </xpath>
 
                <xpath expr="//button[@name='open_pricelist_rules']" position="after" >

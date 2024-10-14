@@ -369,7 +369,7 @@ class SaleOrder(models.Model):
 
 
                 for line in record.order_line:
-                    if line.product_id.payment_land_dues:
+                    if line.product_id.payment_land_dues and not line.product_id.is_independence:
                         qty_dues = line.product_uom_qty
                         total_dues = qty_dues * line.price_unit
                         price_unit = line.price_unit

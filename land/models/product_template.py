@@ -24,6 +24,7 @@ class ProductTemplate(models.Model):
     is_separation_land  = fields.Boolean(string="Es una Separación de Terreno")
     is_anticipo_land = fields.Boolean(string="Es un Anticipo de Terreno")
     is_mora_land        = fields.Boolean(string="Mora")
+    is_independence = fields.Boolean(string="Es un Producto Independización")
     report_lot_land_line_ids = fields.One2many('report.lot.land.line','product_tmp_id')
     product_template_attribute_value_ids = fields.One2many('product.template.attribute.value','product_tmpl_id')
 
