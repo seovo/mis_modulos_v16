@@ -97,6 +97,18 @@
            <field name="inherit_id" ref="sale.view_order_form" />
            <field name="arch" type="xml">
 
+               <xpath expr="//field[@name='tax_totals']" position="before" >
+                   <field name="price_initial_land"  readonly="1" force_save="1" />
+                   <field name="price_credit_land"  readonly="1" force_save="1" />
+
+                   <hr/>
+
+                    <field name="price_total_land"  readonly="1" force_save="1" />
+
+                   <hr/>
+
+               </xpath>
+
                <xpath expr="//header" position="inside" >
                    <button name="show_m2_land" string="Modificar Metrado" type="object"  />
                    <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
@@ -121,9 +133,8 @@
                            <field name="obs_modality_land" />
                            <field name="obs_resolution" />
                            <field name="recalcule_and_save_total_land"  readonly="1" force_save="1" />
-                           <field name="price_total_land"  readonly="1" force_save="1" />
-                           <field name="price_initial_land"  readonly="1" force_save="1" />
-                           <field name="price_credit_land"  readonly="1" force_save="1" />
+
+
                            <field name="move_separation_land_id"  readonly="1" force_save="1" />
                            <field name="stage_payment_lan" />
 
