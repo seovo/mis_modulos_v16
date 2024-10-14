@@ -366,7 +366,7 @@ class SaleOrder(models.Model):
             for line in record.order_line:
                 if line.product_id.payment_land_dues:
                     for line_invoice in line.invoice_lines:
-                        if line_invoice.move.state != 'cancel':
+                        if line_invoice.move_id.state != 'cancel':
                             total_payment += line_invoice.price_total
 
             record.total_payment_land = round(total_payment, 2)
