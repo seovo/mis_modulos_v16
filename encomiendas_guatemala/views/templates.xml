@@ -3,6 +3,15 @@
 
 
     <template id="address" inherit_id="website_sale.address">
+
+        <xpath expr="(//div[hasclass('oe_website_sale')])" position="inside">
+            <div id="sale_order_communication" class="row">
+                <h2>Historial</h2>
+                <t t-call="portal.message_thread"/>
+            </div>
+
+        </xpath>
+
         <xpath expr="//form" position="replace">
             <form t-if="account_on_checkout != 'mandatory' or not is_public_user" action="/shop/address" method="post" class="checkout_autoformat">
                 <div class="row">

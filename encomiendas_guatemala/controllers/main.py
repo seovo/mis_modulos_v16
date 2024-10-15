@@ -234,7 +234,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         return request.redirect('/shop/checkout')
 
-        add_qty = int(post.get('add_qty', 1))
+        add_qty = int(post.get('add_qty', 7))
         try:
             min_price = float(min_price)
         except ValueError:

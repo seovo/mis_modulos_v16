@@ -8,6 +8,7 @@
     "version": "17.0",
     "depends": ["website_sale"],
     "data": [
+        "security/ir.model.access.csv",
         'views/templates.xml',
         'views/sale_order.xml',
     ],
