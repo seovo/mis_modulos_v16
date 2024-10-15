@@ -77,7 +77,7 @@ class SaleOrderEncomiendaList(models.Model):
 
     sale_order_line_id = fields.Many2one('sale.order.line')
     qty = fields.Float(string="Cantidad")
-    product_id = fields.Float(string="Producto",required=True)
+    product_id = fields.Many2one('product.product',string="Producto",required=True)
     price_unit = fields.Float(string="Precio")
     precio_cost = fields.Float(string="Costo")
     peso_real   = fields.Float(string="Peso Real (lb)")
