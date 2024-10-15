@@ -98,7 +98,7 @@ class SaleOrderEncomiendaList(models.Model):
     def get_weight_vol(self):
         for record in self:
 
-            mult =  ( record.largo * record.ancho * record.alto ) / 500
+            mult =  ( record.largo * record.ancho * record.alto ) / 5000
 
             record.weight_vol = round(mult * 2.2046,0)
 
