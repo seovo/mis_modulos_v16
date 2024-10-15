@@ -5,6 +5,15 @@
            <field name="model">sale.order</field>
            <field name="inherit_id" ref="sale.view_order_form" />
            <field name="arch" type="xml">
+
+
+
+
+               <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace" >
+                   <field name="price_unit"  readonly="1"  force_save="1" />
+                   <button name="edit_price_jz" type="object" icon="fa-pencil-square-o" />
+               </xpath>
+
                <xpath expr="//field[@name='payment_term_id']" position="after" >
                    <field name="state_encomienda" />
                    <field name="clase_encomienda" />
@@ -23,11 +32,12 @@
                                 </control>
 
                                <field name="sequence" widget="handle"/>
-                               <field name="name" widget="section_and_note_text"  />
+
                                <field name="display_type"  column_invisible="True" />
 
                                <field name="qty" />
-                               <field name="type_mercaderia" optional="hide"  />
+                               <field name="type_mercaderia"  />
+                               <field name="name" widget="section_and_note_text"  />
                                <field name="name" />
                                <field name="code_hds" />
 
@@ -42,4 +52,37 @@
 
            </field>
     </record>
+
+
+    <record id="edit_sale_order_line" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order.line</field>
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+
+                           <field name="encomienda_list"  widget="section_and_note_one2many" >
+                           <tree  editable="bottom"  >
+                               <field name="qty" />
+                               <field name="product_id"  />
+                               <field name="price_unit" />
+                               <field name="precio_cost" />
+                               <field name="peso_real" />
+                               <field name="largo" />
+                               <field name="ancho" />
+                               <field name="alto" />
+                               <field name="weight_vol" />
+                               <field name="weight_cobrar" />
+                               <field name="amount_total" />
+                           </tree>
+                       </field>
+
+                           <field name="price_unit"  />
+                       </group>
+                   </sheet>
+               </form>
+           </field>
+    </record>
+
 </odoo>
