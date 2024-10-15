@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     clase_encomienda  = fields.Selection([
         ('doc','Documento'),
         ('mer','Mercaderia'),
-    ],string="Clase de Encomienda",required=True)
+    ],string="Clase de Encomienda",required=True,default='doc')
 
     type_doc_encomienda  = fields.Selection([
         ('doc','Legales'),
