@@ -13,14 +13,14 @@ class SaleOrder(models.Model):
     clase_encomienda  = fields.Selection([
         ('doc','Documento'),
         ('mer','Mercaderia'),
-    ],string="Clase de Encomienda",required=True,default='doc')
+    ],string="Clase de Encomienda")
 
     type_doc_encomienda  = fields.Selection([
         ('doc','Legales'),
         ('pass','Pasaporte'),
         ('lic','Licencia'),
         ('other','Otro')
-    ],string="Clase de Documentos",required=True)
+    ],string="Clase de Documentos")
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
 
     #PACKING LIST
