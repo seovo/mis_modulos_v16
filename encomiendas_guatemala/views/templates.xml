@@ -98,10 +98,7 @@
                     <div class="w-100"/>
 
 
-                    <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2">
-                        <label class="col-form-label" for="formFile">Archivo Adjunto</label>
-                        <input class="form-control" type="file" id="formFile" />
-                    </div>
+
 
                     <div class="w-100"/>
                     <t t-if="mode == ('new', 'billing') and not only_services and 5 == 6">
