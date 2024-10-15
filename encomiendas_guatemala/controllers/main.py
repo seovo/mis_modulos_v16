@@ -230,11 +230,11 @@ class WebsiteSale(payment_portal.PaymentPortal):
         order = request.website.sale_get_order()
 
         if not order:
-            self.cart_update(2)
+            self.cart_update(7)
 
         return request.redirect('/shop/checkout')
 
-        add_qty = int(post.get('add_qty', 7))
+        add_qty = int(post.get('add_qty', 1))
         try:
             min_price = float(min_price)
         except ValueError:
