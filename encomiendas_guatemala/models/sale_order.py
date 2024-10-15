@@ -57,6 +57,26 @@ class SaleOrderLine(models.Model):
     _inherit       = 'sale.order.line'
     encomienda_list = fields.One2many('sale.order.line.encomienda.list','sale_order_line_id')
 
+    @api.onchange('encomienda_list','encomienda_list.amount_total')
+    def change_items_encomienda(self):
+        for record in self:
+            if record.product_id:
+
+                total_peso_cobro = 0
+                total_price = 0
+
+                for line in record.encomienda_list:
+                    total_peso_cobro  += line.weight_cobrar
+                    total_price +=  line.amount_total
+
+                if total_peso_cobro > 0 :
+                    total_peso_cobro = total_peso_cobro - 1
+                    total_peso_cobro = total_peso_cobro * 75
+
+
+                record.price_unit = record.price_unit.list_price + total_peso_cobro + total_price
+
+
     def edit_price_jz(self):
 
         view = self.env.ref('encomiendas_guatemala.edit_sale_order_line')
@@ -65,7 +85,7 @@ class SaleOrderLine(models.Model):
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "sale.order.line",
-            "target": "new",
+            "target": "current",
             "res_id": self.id ,
             "view_id": view.id
         }
@@ -109,6 +129,8 @@ class SaleOrderEncomiendaList(models.Model):
         for record in self:
             record.price_unit = record.product_id.list_price
             record.precio_cost = record.product_id.standard_price
+
+
 
 
 
