@@ -17,7 +17,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         order = request.website.sale_get_order()
 
         if not order:
-            self.cart_update(7)
+            self.cart_update(2)
         #raise ValueError(order)
         if order and order.carrier_id:
             # Express checkout is based on the amout of the sale order. If there is already a
@@ -228,8 +228,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def shop(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
 
         order = request.website.sale_get_order()
+
         if not order:
-            self.cart_update(7)
+            self.cart_update(2)
 
         return request.redirect('/shop/checkout')
 
