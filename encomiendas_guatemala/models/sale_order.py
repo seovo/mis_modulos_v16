@@ -35,7 +35,7 @@ class SaleOrderPackingList(models.Model):
         ],
         default=False)
     sequence = fields.Integer(string="Sequence", default=10)
-    qty = fields.Floar(string="Cantidad")
+    qty = fields.Float(string="Cantidad")
     type_mercaderia = fields.Selection([
         ('food_refrigeration','Comida que requiere refrigeración'),
         ('sweet', 'Dulces típicos'),
