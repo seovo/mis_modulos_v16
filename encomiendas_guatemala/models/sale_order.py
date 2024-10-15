@@ -74,7 +74,7 @@ class SaleOrderLine(models.Model):
                     total_peso_cobro = total_peso_cobro * 75
 
 
-                record.price_unit = record.price_unit.list_price + total_peso_cobro + total_price
+                record.price_unit = record.product_id.list_price + total_peso_cobro + total_price
 
 
     def edit_price_jz(self):
