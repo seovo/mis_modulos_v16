@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
     type_doc_encomienda  = fields.Selection([
         ('doc','Documento'),
         ('mer','Mercaderia'),
-    ],default='1',string="Clase de Documentos",required=True)
+    ],string="Clase de Documentos",required=True)
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
 
     #PACKING LIST
