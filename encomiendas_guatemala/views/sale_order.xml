@@ -37,7 +37,6 @@
 
                                <field name="qty" />
                                <field name="type_mercaderia"  />
-                               <field name="name" widget="section_and_note_text"  />
                                <field name="name" />
                                <field name="code_hds" />
 
