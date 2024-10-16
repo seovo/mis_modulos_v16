@@ -10,14 +10,14 @@ from datetime import datetime, timedelta
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
-    narration_text = fields.Text()
+    narration_text = fields.Text(copy=False)
 
-    narration_str = fields.Text(compute="get_narration",store=True)
-    bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias")
-    is_separation_land = fields.Boolean(string="Es una Separación Terreno")
-    is_initial_land = fields.Boolean(string="Es Inicial Terreno",compute='get_is_initial_land')
-    days_expired_land = fields.Integer()
-    value_mora_land = fields.Float(string="Precio Mora", default=10)
+    narration_str = fields.Text(compute="get_narration",store=True,copy=False)
+    bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias",copy=False)
+    is_separation_land = fields.Boolean(string="Es una Separación Terreno",copy=False)
+    is_initial_land = fields.Boolean(string="Es Inicial Terreno",compute='get_is_initial_land',copy=False)
+    days_expired_land = fields.Integer(copy=False)
+    value_mora_land = fields.Float(string="Precio Mora", default=10,copy=False)
 
     invoice_date_due_separation = fields.Date(
         string='Fecha Vencimiento Separacion',

@@ -7,26 +7,26 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    nro_internal_land =  fields.Char(string="Expediente")
-    mz_lot            =  fields.Char(string="MZ - LOTE")
-    sector            =  fields.Char(string="Etapa")
-    sectorr           =  fields.Char("Sector")
+    nro_internal_land =  fields.Char(string="Expediente",copy=False)
+    mz_lot            =  fields.Char(string="MZ - LOTE",copy=False)
+    sector            =  fields.Char(string="Etapa",copy=False)
+    sectorr           =  fields.Char("Sector",copy=False)
     stage_land           = fields.Selection([
         ('signed',_('Firmado'))  ,
         ('preaviso',_('Carta Preaviso')),
         ('cancel',_('Resuelto')),
         ('regularizado','Regularizado'),
-    ],string="Estado Terreno")
-    dues_land            = fields.Float(string="Cuotas")
-    value_due_land       = fields.Float(string="Precio Cuota")
-    crono_land           = fields.Char(string="Crono")
-    days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3)
-    value_mora_land = fields.Float(string="Precio Mora",default=10)
-    percentage_refund_land = fields.Float(string="Porcentaje Devolucion")
+    ],string="Estado Terreno",copy=False)
+    dues_land            = fields.Float(string="Cuotas",copy=False)
+    value_due_land       = fields.Float(string="Precio Cuota",copy=False)
+    crono_land           = fields.Char(string="Crono",copy=False)
+    days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
+    value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
+    percentage_refund_land = fields.Float(string="Porcentaje Devolucion",copy=False)
 
-    date_sign_land = fields.Date(string="Fecha Firma del Contrato")
-    date_first_due_land = fields.Date(string="Fecha Primera Cuota")
-    repeat_mz_lot  = fields.Boolean(string='Repetir MZ - LT')
+    date_sign_land = fields.Date(string="Fecha Firma del Contrato",copy=False)
+    date_first_due_land = fields.Date(string="Fecha Primera Cuota",copy=False)
+    repeat_mz_lot  = fields.Boolean(string='Repetir MZ - LT',copy=False)
 
 
     modality_land = fields.Selection([
@@ -39,16 +39,16 @@ class SaleOrder(models.Model):
         ('transfer',_('Transferencia')) ,
         ('legal','Persona Juridica'),
         ('attorney','Representante Apoderado')
-    ],string="Modalidad")
+    ],string="Modalidad",copy=False)
 
-    obs_modality_land = fields.Text(string="Observaciones")
-    obs_resolution = fields.Text(string="Observacion Resolucion")
+    obs_modality_land = fields.Text(string="Observaciones",copy=False)
+    obs_resolution = fields.Text(string="Observacion Resolucion",copy=False)
 
 
-    price_total_land = fields.Float(string="Valor del Terreno",compute="get_amount_prices_land",store=True)
-    price_initial_land = fields.Float(string="Inicial del Terreno",compute="get_amount_prices_land",store=True)
-    price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True)
-    price_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True)
+    price_total_land = fields.Float(string="Valor del Terreno",compute="get_amount_prices_land",store=True,copy=False)
+    price_initial_land = fields.Float(string="Inicial del Terreno",compute="get_amount_prices_land",store=True,copy=False)
+    price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True,copy=False)
+    price_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True,copy=False)
 
     @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty')
     @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty')
@@ -77,17 +77,17 @@ class SaleOrder(models.Model):
 
 
     note = fields.Text()
-    recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos")
+    recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos",copy=False)
 
-    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True)
+    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True,copy=False)
 
 
     #esto es para importar
-    journal_import_id = fields.Integer()
-    price_unit_import = fields.Float()
-    invoice_payment_import_id = fields.Integer()
-    invoice_date_import =  fields.Date()
-    journal_id = fields.Many2one('account.journal',string="Diario")
+    journal_import_id = fields.Integer(copy=False)
+    price_unit_import = fields.Float(copy=False)
+    invoice_payment_import_id = fields.Integer(copy=False)
+    invoice_date_import =  fields.Date(copy=False)
+    journal_id = fields.Many2one('account.journal',string="Diario",copy=False)
     move_separation_land_id = fields.Many2one('account.move',string='Factura Separación')
 
     stage_payment_lan = fields.Selection([
@@ -801,7 +801,7 @@ class SaleOrder(models.Model):
                     # raise ValueError([mz, lt, object, mz_lot, exist])
 
                     if exist:
-                        raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot}')
+                        raise ValidationError(f'YA EXISTE UNA COTIZACION - VENTA PARA {mz_lot}')
 
 
 
