@@ -51,7 +51,7 @@ class PaymentProvider(models.Model):
         api_url = 'https://app.recurrente.com/api/subscriptions'
         response = requests.request("GET", api_url, headers=headers,
                                     data=payload)
-        raise ValueError(response)
+        raise ValueError(response.json())
 
         return
 
