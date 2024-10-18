@@ -13,6 +13,7 @@
                             <field name="recurrente_public_key" required="code == 'recurrente'" />
                             <field name="recurrente_secret_key" required="code == 'recurrente'" />
                             <button name="sync_suscripciones_recurrente" type="object"
+                                    invisible="code != 'recurrente'"
                                     string="Sincronizar Suscripciones"
                             />
                         </group>

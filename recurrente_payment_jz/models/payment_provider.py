@@ -3,6 +3,7 @@
 import logging
 
 from odoo import _, fields, models , api
+import requests
 
 #from odoo.addons.payment_paypal import const
 
@@ -39,6 +40,19 @@ class PaymentProvider(models.Model):
         return res
 
     def sync_suscripciones_recurrente(self):
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-PUBLIC-KEY': self.recurrente_public_key,
+            'X-SECRET-KEY': self.recurrente_secret_key,
+            # 'Authorization': f'Bearer {api_key}',
+        }
+        payload = {}
+        api_url = 'https://app.recurrente.com/api/subscriptions'
+        response = requests.request("GET", api_url, headers=headers,
+                                    data=payload)
+        raise ValueError(response)
+
         return
 
 
