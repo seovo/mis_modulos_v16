@@ -30,6 +30,14 @@ class PaymentProvider(models.Model):
         help="Secret Key credentials provied by recurrente"
     )
 
+    '''
+    def _get_default_payment_method_codes(self):
+        """ Override of `payment` to return the default payment method codes. """
+        default_codes = super()._get_default_payment_method_codes()
+        if self.code != 'recurrente':
+            return default_codes
+        return const.DEFAULT_PAYMENT_METHOD_CODES
+    '''
     @api.model
     def _get_payment_method_information(self):
         """ Override method to add MyFatoorah payment method information."""

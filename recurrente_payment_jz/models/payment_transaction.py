@@ -74,8 +74,8 @@ class PaymentTransaction(models.Model):
             if line.product_id and line.price_total != 0:
                 items.append({
                     'name': line.name ,
-                    'currency': "GTQ" ,
-                    "amount_in_cents": int(line.price_unit)  ,
+                    'currency': self.currency_id.name ,
+                    "amount_in_cents": int(line.price_unit * 100)  ,
                     "quantity": int(line.product_uom_qty)
 
                 })
@@ -131,7 +131,7 @@ class PaymentTransaction(models.Model):
 
 
     def _get_tx_from_notification_data(self, provider_code, notification_data):
-        _logger.exception('Habersh2')
+
         """ Override of payment to find the transaction based on Paypal data.
 
         :param str provider_code: The code of the provider that handled the transaction
@@ -205,9 +205,22 @@ class PaymentTransaction(models.Model):
         payment_status = response_data.get('status')
 
         if payment_status in 'payment_in_progress':
-            self._set_pending(state_message=str(response_data))
+            msg = ''
+            try:
+                msg = f"Codigo recurrente : {response_data['id']}"
+            except:
+                pass
+            self._set_pending(state_message=msg)
         elif payment_status in 'paid':
             self._set_done()
+
+            orders = self.sale_order_ids
+
+            if self.state == 'done':
+                if len(orders) == 1:
+                    if orders.state == 'draft':
+                        orders.action_confirm()
+
         elif payment_status in 'unpaid':
             self._set_canceled()
         else:
