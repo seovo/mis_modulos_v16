@@ -13,7 +13,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         new_values = dict()
         partner_fields = request.env['res.partner']._fields
 
-        raise ValueError(partner_fields)
+
 
         for k, v in values.items():
             # Convert the values for many2one fields to integer since they are used as IDs
@@ -25,6 +25,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 new_values[k] = False
             else:
                 new_values[k] = v
+
+        raise ValueError(new_values)
 
         return new_values
 
