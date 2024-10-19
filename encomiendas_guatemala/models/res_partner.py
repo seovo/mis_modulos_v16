@@ -6,5 +6,6 @@ class ResPartner(models.Model):
     use_whatsapp = fields.Boolean(string='Tiene Wasap')
 
     def write(self,values):
+        raise ValueError(values)
         res = super().write(values)
         return res
