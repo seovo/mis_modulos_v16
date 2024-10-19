@@ -145,6 +145,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
     @http.route(['/shop/address'], type='http', methods=['GET', 'POST'], auth="public", website=True, sitemap=False)
     def address(self, **kw):
+
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
         order = request.website.sale_get_order()
 
@@ -278,7 +279,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'account_on_checkout': request.website.account_on_checkout,
             'is_public_user': is_public_user,
             'is_public_order': order._is_public_order(),
-            'use_same': '0'
+            'use_same': '0' ,
+            'use_whatsapp': order.partner_id.use_whatsapp or ('use_whatsapp' in kw and str2bool(kw.get('use_whatsapp') or '0')),
             #'use_same': is_public_user or ('use_same' in kw and str2bool(kw.get('use_same') or '0')),
         }
         render_values.update(self._get_country_related_render_values(kw, render_values))
