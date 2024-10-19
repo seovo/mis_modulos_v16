@@ -66,6 +66,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         new_values = dict()
         partner_fields = request.env['res.partner']._fields
 
+        exist_whatsap = False
 
         for k, v in values.items():
             # Convert the values for many2one fields to integer since they are used as IDs
@@ -76,12 +77,17 @@ class WebsiteSale(payment_portal.PaymentPortal):
             elif v == '':
                 new_values[k] = False
             elif v == 'on':
+                if k == 'use_whatsapp':
+                    exist_whatsap = True
                 new_values[k] = bool(v)
             else:
 
                 new_values[k] = v
 
-        raise ValueError([values,new_values])
+        if not exist_whatsap:
+            new_values['use_whatsapp'] = False
+
+        #raise ValueError([values,new_values])
 
         return new_values
 
