@@ -16,9 +16,6 @@
 
                     <div t-attf-class="#{error.get('phone') and 'o_has_error'} col-lg-6 mb-2" id="div_phone">
                         <label class="col-form-label" for="phone">Teléfono/Celular</label>
-                        <input type="tel" name="phone" t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}" t-att-value="'phone' in checkout and checkout['phone']" />
-                    </div>
-                    <div t-attf-class="#{error.get('phone') and 'o_has_error'} col-lg-6 mb-2" >
                         <label>
                             <input
                                     type="checkbox"
@@ -26,14 +23,14 @@
                                     class="form-check-input mr8"
                                     name="use_same"
                                     value="0"
-                                    t-att-checked="use_same"/>Ship to the same address
-                            <span class="form-check-label ship_to_other text-muted">
+                                    t-att-checked="use_same"/>
+                            <span class="form-check-label text-muted">
                                <i class="fa fa-whatsapp" aria-hidden="true"></i> Tiene Whatsapp
                             </span>
                         </label>
-
-
+                        <input type="tel" name="phone" t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}" t-att-value="'phone' in checkout and checkout['phone']" />
                     </div>
+
                     <div t-attf-class="#{error.get('email') and 'o_has_error'} col-lg-6 mb-2" id="div_email">
                         <label t-attf-class="col-form-label #{mode[1] == 'shipping' and 'label-optional' or ''}" for="email">Correo electrónico</label>
                         <input type="email" name="email" t-attf-class="form-control #{error.get('email') and 'is-invalid' or ''}" t-att-value="'email' in checkout and checkout['email']" />
