@@ -23,7 +23,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
 
     def _get_mandatory_fields_shipping(self, country_id=False):
-        req = ["name", "street", "city", "country_id", "phone","vat"]
+        req = ["name", "street", "city", "country_id", "phone"]
         if country_id:
             country = request.env['res.country'].browse(country_id)
             if country.state_required:
