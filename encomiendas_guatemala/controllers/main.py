@@ -8,6 +8,26 @@ from odoo.addons.http_routing.models.ir_http import slug
 
 
 class WebsiteSale(payment_portal.PaymentPortal):
+
+    def values_preprocess(self, values):
+        new_values = dict()
+        partner_fields = request.env['res.partner']._fields
+
+        raise ValueError(partner_fields)
+
+        for k, v in values.items():
+            # Convert the values for many2one fields to integer since they are used as IDs
+            if k in partner_fields and partner_fields[k].type == 'many2one':
+                new_values[k] = bool(v) and int(v)
+            # Store empty fields as `False` instead of empty strings `''` for consistency with other applications like
+            # Contacts.
+            elif v == '':
+                new_values[k] = False
+            else:
+                new_values[k] = v
+
+        return new_values
+
     @http.route(['/shop/cart'], type='http', auth="public", website=True, sitemap=False)
     def cart(self, access_token=None, revive='', **post):
         """
