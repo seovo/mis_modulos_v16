@@ -273,6 +273,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 if not errors:
                     return request.redirect(kw.get('callback') or '/shop/confirm_order')
 
+        send_whatsap = kw.get('use_whatsapp')
+        raise ValueError(send_whatsap)
+
         is_public_user = request.website.is_public_user()
         render_values = {
             'website_sale_order': order,
