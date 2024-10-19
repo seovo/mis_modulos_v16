@@ -205,7 +205,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 mode = ('new', kw.get('mode') or 'shipping')
             else:  # no mode - refresh without post?
                 return request.redirect('/shop/checkout')
-
+        use_whatsapp = order.partner_id.use_whatsapp
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
             pre_values = self.values_preprocess(kw)
@@ -273,12 +273,15 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 if not errors:
                     return request.redirect(kw.get('callback') or '/shop/confirm_order')
 
-        use_whatsapp = ('use_whatsapp' in kw and str2bool(kw.get('use_whatsapp') or '0')) or order.partner_id.use_whatsapp
-        send_whatsap = kw.get('use_whatsapp')
-        if not send_whatsap:
-            use_whatsapp = False
+            use_whatsapp = ('use_whatsapp' in kw and str2bool(
+                kw.get('use_whatsapp') or '0')) or order.partner_id.use_whatsapp
+            send_whatsap = kw.get('use_whatsapp')
+            if not send_whatsap:
+                use_whatsapp = False
 
-        raise ValueError([use_whatsapp,send_whatsap,kw])
+
+
+        #raise ValueError([use_whatsapp,send_whatsap,kw])
 
         is_public_user = request.website.is_public_user()
         render_values = {
