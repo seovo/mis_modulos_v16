@@ -10,7 +10,7 @@ from odoo.addons.http_routing.models.ir_http import slug
 class WebsiteSale(payment_portal.PaymentPortal):
 
     def values_preprocess(self, values):
-        raise ValueError(values)
+        #raise ValueError(values)
         new_values = dict()
         partner_fields = request.env['res.partner']._fields
 
@@ -27,7 +27,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             else:
                 new_values[k] = v
 
-        raise ValueError(new_values)
+        #raise ValueError(new_values)
 
         return new_values
 
