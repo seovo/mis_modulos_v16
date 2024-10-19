@@ -24,7 +24,10 @@ class WebsiteSale(payment_portal.PaymentPortal):
             # Contacts.
             elif v == '':
                 new_values[k] = False
+            elif v == 'on':
+                new_values[k] = bool(v)
             else:
+
                 new_values[k] = v
         raise ValueError([values,new_values])
 
