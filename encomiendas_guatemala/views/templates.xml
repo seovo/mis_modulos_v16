@@ -23,7 +23,7 @@
                                     class="form-check-input mr8"
                                     name="use_whatsapp"
                                     value="0"
-                                    t-att-checked="use_same"/>
+                                    t-att-checked="use_whatsapp"/>
                             <span class="form-check-label text-muted">
                                <i class="fa fa-whatsapp" aria-hidden="true"></i> Tiene Whatsapp
                             </span>
