@@ -11,6 +11,7 @@
         "security/ir.model.access.csv",
         'views/templates.xml',
         'views/sale_order.xml',
+        'views/res_partner.xml',
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal","pymssql","pandas"]},
