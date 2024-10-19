@@ -5,7 +5,6 @@
     <template id="address" inherit_id="website_sale.address">
 
 
-
         <xpath expr="//form" position="replace">
             <form t-if="account_on_checkout != 'mandatory' or not is_public_user" action="/shop/address" method="post" class="checkout_autoformat">
                 <div class="row">
