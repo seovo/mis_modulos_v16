@@ -390,7 +390,6 @@ class SaleOrder(models.Model):
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land')
     @api.onchange('date_first_due_land')
     def update_schedule(self):
-
         for record in self:
             if record.date_first_due_land:
                 qty_dues = 0
@@ -406,19 +405,21 @@ class SaleOrder(models.Model):
                         qty_dues = line.product_uom_qty
                         total_dues = qty_dues * line.price_unit
                         price_unit = line.price_unit
-                        qty_invoiced = 0
+
 
                         for line_inv in line.invoice_lines:
+
+                            if line_inv.move_id.payment_state == 'reversed':
+                                continue
+
                             if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
-                                pass
+                                continue
                             else:
                                 qty_invoiced += line_inv.quantity
                                 x = range(int(line_inv.quantity))
 
                                 for n in x:
                                     invoice_lines.append(line_inv)
-
-
 
 
                 if invoice_lines:
