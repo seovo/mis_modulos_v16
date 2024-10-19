@@ -27,7 +27,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             else:
                 new_values[k] = v
 
-        #raise ValueError(new_values)
+        raise ValueError([values,new_values])
 
         return new_values
 
