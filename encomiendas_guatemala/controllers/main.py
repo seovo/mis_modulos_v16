@@ -56,6 +56,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
             elif address_mode == 'shipping':
                 new_values['type'] = 'delivery'
                 new_values['parent_id'] = commercial_partner.id
+
+        raise ValueError(new_values)
         return new_values, errors, error_msg
 
     def values_preprocess(self, values):
