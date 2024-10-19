@@ -19,8 +19,24 @@
                         <input type="email" name="email" t-attf-class="form-control #{error.get('email') and 'is-invalid' or ''}" t-att-value="'email' in checkout and checkout['email']" />
                     </div>
                     <div t-attf-class="#{error.get('phone') and 'o_has_error'} col-lg-6 mb-2" id="div_phone">
-                        <label class="col-form-label" for="phone">Teléfono</label>
+                        <label class="col-form-label" for="phone">Teléfono/Celular</label>
                         <input type="tel" name="phone" t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}" t-att-value="'phone' in checkout and checkout['phone']" />
+                    </div>
+                    <div t-attf-class="#{error.get('phone') and 'o_has_error'} col-lg-6 mb-2" >
+                        <label>
+                            <input
+                                    type="checkbox"
+                                    id="shipping_use_same"
+                                    class="form-check-input mr8"
+                                    name="use_same"
+                                    value="0"
+                                    t-att-checked="use_same"/>Ship to the same address
+                            <span class="form-check-label ship_to_other text-muted">
+                               <i class="fa fa-whatsapp" aria-hidden="true"></i> Tiene Whatsapp
+                            </span>
+                        </label>
+
+
                     </div>
                     <t t-if="website._display_partner_b2b_fields()">
                         <div class="w-100"/>
