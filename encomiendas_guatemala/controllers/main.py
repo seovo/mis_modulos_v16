@@ -15,7 +15,6 @@ class WebsiteSale(payment_portal.PaymentPortal):
         partner_fields = request.env['res.partner']._fields
 
 
-
         for k, v in values.items():
             # Convert the values for many2one fields to integer since they are used as IDs
             if k in partner_fields and partner_fields[k].type == 'many2one':
