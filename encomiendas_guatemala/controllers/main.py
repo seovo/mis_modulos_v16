@@ -6,9 +6,109 @@ from odoo.tools import lazy, str2bool
 from odoo.addons.website.models.ir_http import sitemap_qs2dom
 from odoo.addons.http_routing.models.ir_http import slug
 import logging
+from odoo.exceptions import AccessError, MissingError, ValidationError
 _logger = logging.getLogger(__name__)
 
 class WebsiteSale(payment_portal.PaymentPortal):
+
+    def _get_mandatory_fields_billing(self, country_id=False):
+        req = ["name", "email", "street", "city", "country_id","use_whatsapp"]
+        if country_id:
+            country = request.env['res.country'].browse(country_id)
+            if country.state_required:
+                req += ['state_id']
+            if country.zip_required:
+                req += ['zip']
+        return req
+
+    def _get_mandatory_fields_shipping(self, country_id=False):
+        req = ["name", "street", "city", "country_id", "phone","use_whatsapp"]
+        if country_id:
+            country = request.env['res.country'].browse(country_id)
+            if country.state_required:
+                req += ['state_id']
+            if country.zip_required:
+                req += ['zip']
+        return req
+
+    def checkout_form_validate(self, mode, all_form_values, data):
+        # mode: tuple ('new|edit', 'billing|shipping')
+        # all_form_values: all values before preprocess
+        # data: values after preprocess
+        error = dict()
+        error_message = []
+
+        if data.get('partner_id'):
+            partner_su = request.env['res.partner'].sudo().browse(int(data['partner_id'])).exists()
+            if partner_su:
+                name_change = 'name' in data and partner_su.name and data['name'] != partner_su.name
+                email_change = 'email' in data and partner_su.email and data['email'] != partner_su.email
+
+                # Prevent changing the partner name if invoices have been issued.
+                if name_change and not partner_su._can_edit_name():
+                    error['name'] = 'error'
+                    error_message.append(_(
+                        "Changing your name is not allowed once invoices have been issued for your"
+                        " account. Please contact us directly for this operation."
+                    ))
+
+                # Prevent change the partner name or email if it is an internal user.
+                if (name_change or email_change) and not all(partner_su.user_ids.mapped('share')):
+                    error.update({
+                        'name': 'error' if name_change else None,
+                        'email': 'error' if email_change else None,
+                    })
+                    error_message.append(_(
+                        "If you are ordering for an external person, please place your order via the"
+                        " backend. If you wish to change your name or email address, please do so in"
+                        " the account settings or contact your administrator."
+                    ))
+
+        # Required fields from form
+        required_fields = [f for f in (all_form_values.get('field_required') or '').split(',') if f]
+
+        # Required fields from mandatory field function
+        country_id = int(data.get('country_id', False))
+
+        _update_mode, address_mode = mode
+        if address_mode == 'shipping':
+            required_fields += self._get_mandatory_fields_shipping(country_id)
+        else: # 'billing'
+            required_fields += self._get_mandatory_fields_billing(country_id)
+            if all_form_values.get('use_same'):
+                # If the billing address is also used as shipping one, the phone is required as well
+                # because it's required for shipping addresses
+                required_fields.append('phone')
+
+        # error message for empty required fields
+        for field_name in required_fields:
+            val = data.get(field_name)
+            if isinstance(val, str):
+                val = val.strip()
+            if not val:
+                error[field_name] = 'missing'
+
+        # email validation
+        if data.get('email') and not tools.single_email_re.match(data.get('email')):
+            error["email"] = 'error'
+            error_message.append(_('Invalid Email! Please enter a valid email address.'))
+
+        # vat validation
+        Partner = request.env['res.partner']
+        if data.get("vat") and hasattr(Partner, "check_vat"):
+            if country_id:
+                data["vat"] = Partner.fix_eu_vat_number(country_id, data.get("vat"))
+            partner_dummy = Partner.new(self._get_vat_validation_fields(data))
+            try:
+                partner_dummy.sudo().check_vat()
+            except ValidationError as exception:
+                error["vat"] = 'error'
+                error_message.append(exception.args[0])
+
+        if [err for err in error.values() if err == 'missing']:
+            error_message.append(_('Some required fields are empty.'))
+
+        return error, error_message
 
 
     def values_postprocess(self, order, mode, values, errors, error_msg):
