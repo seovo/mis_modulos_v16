@@ -21,6 +21,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 req += ['zip']
         return req
 
+
     def _get_mandatory_fields_shipping(self, country_id=False):
         req = ["name", "street", "city", "country_id", "phone","use_whatsapp"]
         if country_id:
