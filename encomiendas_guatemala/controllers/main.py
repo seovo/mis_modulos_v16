@@ -14,8 +14,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def values_postprocess(self, order, mode, values, errors, error_msg):
         new_values = {}
         authorized_fields = request.env['ir.model']._get('res.partner')._get_form_writable_fields()
-        raise ValueError(authorized_fields)
+        #raise ValueError(authorized_fields)
         for k, v in values.items():
+            raise ValueError(k)
             # don't drop empty value, it could be a field to reset
             if k in authorized_fields and v is not None:
                 new_values[k] = v
