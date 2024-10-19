@@ -5,9 +5,53 @@ from werkzeug.exceptions import Forbidden, NotFound
 from odoo.tools import lazy, str2bool
 from odoo.addons.website.models.ir_http import sitemap_qs2dom
 from odoo.addons.http_routing.models.ir_http import slug
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class WebsiteSale(payment_portal.PaymentPortal):
+
+
+    def values_postprocess(self, order, mode, values, errors, error_msg):
+        new_values = {}
+        authorized_fields = request.env['ir.model']._get('res.partner')._get_form_writable_fields()
+        for k, v in values.items():
+            # don't drop empty value, it could be a field to reset
+            if k in authorized_fields and v is not None:
+                new_values[k] = v
+            else:  # DEBUG ONLY
+                if k not in ('field_required', 'partner_id', 'callback', 'submitted'): # classic case
+                    _logger.debug("website_sale postprocess: %s value has been dropped (empty or not writable)" % k)
+
+        if request.website.specific_user_account:
+            new_values['website_id'] = request.website.id
+
+        update_mode, address_mode = mode
+        if update_mode == 'new':
+            commercial_partner = order.partner_id.commercial_partner_id
+            lang = request.lang.code if request.lang.code in request.website.mapped('language_ids.code') else None
+            if lang:
+                new_values['lang'] = lang
+            new_values['company_id'] = request.website.company_id.id
+            new_values['team_id'] = request.website.salesteam_id and request.website.salesteam_id.id
+            new_values['user_id'] = request.website.salesperson_id.id
+
+            if address_mode == 'billing':
+                is_public_order = order._is_public_order()
+                if is_public_order:
+                    # New billing address of public customer will be their contact address.
+                    new_values['type'] = 'contact'
+                elif values.get('use_same'):
+                    new_values['type'] = 'other'
+                else:
+                    new_values['type'] = 'invoice'
+
+                # for public user avoid linking to default archived 'Public user' partner
+                if commercial_partner.active:
+                    new_values['parent_id'] = commercial_partner.id
+            elif address_mode == 'shipping':
+                new_values['type'] = 'delivery'
+                new_values['parent_id'] = commercial_partner.id
+        return new_values, errors, error_msg
 
     def values_preprocess(self, values):
         #raise ValueError(values)
