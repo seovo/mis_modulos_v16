@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 class WebsiteSale(payment_portal.PaymentPortal):
 
+
     def values_postprocess(self, order, mode, values, errors, error_msg):
         new_values = {}
         authorized_fields = request.env['ir.model']._get('res.partner')._get_form_writable_fields()
