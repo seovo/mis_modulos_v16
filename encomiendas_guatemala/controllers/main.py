@@ -278,7 +278,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if not send_whatsap:
             use_whatsapp = False
 
-        raise ValueError(send_whatsap)
+        raise ValueError([use_whatsapp,send_whatsap,kw])
 
         is_public_user = request.website.is_public_user()
         render_values = {
