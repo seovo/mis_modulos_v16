@@ -14,7 +14,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def values_postprocess(self, order, mode, values, errors, error_msg):
         new_values = {}
         authorized_fields = request.env['ir.model']._get('res.partner')._get_form_writable_fields()
-        raise ValueError(values)
+        #raise ValueError(values)
         #raise ValueError(authorized_fields)
         for k, v in values.items():
             if k in ['use_whatsapp']:
