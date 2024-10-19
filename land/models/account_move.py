@@ -47,7 +47,8 @@ class AccountMove(models.Model):
         ('initial','Inicial')
     ],string='Estado Separación')
 
-    proveedores_land = fields.Char(compute="get_proveedores_land",store=True,string="Proveedor")
+    proveedores_land = fields.Char(compute="get_proveedores_land",store=True,string="Proveedor",copy=False)
+    mz_lot = fields.Char(string="MZ-LT", compute="get_proveedores_land",store=True,copy=False)
     vat = fields.Char(related='partner_id.vat',string="RUC/DNI")
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
     l10n_pe_vat_code    = fields.Char(related='partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code',string="Codigo Doc")
@@ -100,15 +101,18 @@ class AccountMove(models.Model):
     def get_proveedores_land(self):
         for record in self:
             proveedor = []
+            mz_lot = None
             for line in record.invoice_line_ids:
                 if line.sale_line_ids:
                     for sale_line in line.sale_line_ids:
                         order = sale_line.order_id
+                        mz_lot = order.mz_lot
                         if order.seller_land_id:
                             if order.seller_land_id.name not in proveedor:
                                 proveedor.append(order.seller_land_id.name)
 
             record.proveedores_land = ",".join(proveedor) if proveedor else None
+            record.mz_lot = mz_lot
 
 
 

@@ -14,17 +14,18 @@
 
                <xpath expr="//field[@name='activity_ids']" position="replace" >
                    <field name="activity_ids" widget="list_activity" optional="hide" />
-                   <field name="proveedores_land" />
+                   <field name="mz_lot" optional="show" />
+                   <field name="proveedores_land"  optional="show" />
 
                </xpath>
 
                <xpath expr="//field[@name='invoice_partner_display_name']" position="after" >
-                   <field name="identification_type" />
-                   <field name="l10n_pe_vat_code" />
-                   <field name="vat" />
-                   <field name="bank_name" />
-                   <field name="bank_operation" />
-                   <field name="bank_date" />
+                   <field name="identification_type"  optional="show" />
+                   <field name="l10n_pe_vat_code"  optional="show" />
+                   <field name="vat"  optional="show" />
+                   <field name="bank_name"  optional="show" />
+                   <field name="bank_operation" optional="show"  />
+                   <field name="bank_date"  optional="show" />
                </xpath>
 
                <xpath expr="//field[@name='amount_total_in_currency_signed']" position="replace" >
