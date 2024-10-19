@@ -6,6 +6,7 @@ from odoo.tools import lazy, str2bool
 from odoo.addons.website.models.ir_http import sitemap_qs2dom
 from odoo.addons.http_routing.models.ir_http import slug
 
+
 class WebsiteSale(payment_portal.PaymentPortal):
     @http.route(['/shop/cart'], type='http', auth="public", website=True, sitemap=False)
     def cart(self, access_token=None, revive='', **post):
