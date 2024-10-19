@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 class WebsiteSale(payment_portal.PaymentPortal):
 
     def _get_mandatory_fields_billing(self, country_id=False):
-        req = ["name", "email", "street", "city", "country_id","use_whatsapp"]
+        req = ["name", "email", "street", "city", "country_id","vat"]
         if country_id:
             country = request.env['res.country'].browse(country_id)
             if country.state_required:
@@ -23,7 +23,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
 
     def _get_mandatory_fields_shipping(self, country_id=False):
-        req = ["name", "street", "city", "country_id", "phone","use_whatsapp"]
+        req = ["name", "street", "city", "country_id", "phone","vat"]
         if country_id:
             country = request.env['res.country'].browse(country_id)
             if country.state_required:
