@@ -19,9 +19,9 @@
                         <label>
                             <input
                                     type="checkbox"
-                                    id="shipping_use_same"
+                                    id="use_whatsapp"
                                     class="form-check-input mr8"
-                                    name="use_same"
+                                    name="use_whatsapp"
                                     value="0"
                                     t-att-checked="use_same"/>
                             <span class="form-check-label text-muted">
@@ -35,6 +35,12 @@
                         <label t-attf-class="col-form-label #{mode[1] == 'shipping' and 'label-optional' or ''}" for="email">Correo electrónico</label>
                         <input type="email" name="email" t-attf-class="form-control #{error.get('email') and 'is-invalid' or ''}" t-att-value="'email' in checkout and checkout['email']" />
                     </div>
+
+                    <div t-attf-class="#{error.get('street') and 'o_has_error'} div_street col-lg-12 mb-2">
+                        <label class="col-form-label" for="street">Dirección : </label>
+                        <input type="text" name="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="'street' in checkout and checkout['street']" />
+                    </div>
+
                     <t t-if="website._display_partner_b2b_fields()">
                         <div class="w-100"/>
                         <t t-set='vat_warning' t-value="'vat' in checkout and checkout['vat'] and not can_edit_vat" />
@@ -59,10 +65,7 @@
                             </div>
                         </t>
                     </t>
-                    <div t-attf-class="#{error.get('street') and 'o_has_error'} div_street col-lg-12 mb-2">
-                        <label class="col-form-label" for="street">Número y calle</label>
-                        <input type="text" name="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="'street' in checkout and checkout['street']" />
-                    </div>
+
                     <div t-attf-class="mb-2 #{error.get('street2') and 'o_has_error' or ''} col-lg-12 div_street2">
                         <label class="col-form-label label-optional" for="street2">Departamento, suite, etc.</label>
                         <input type="text" name="street2" t-attf-class="form-control #{error.get('street2') and 'is-invalid' or ''}" t-att-value="'street2' in checkout and checkout['street2']" />
