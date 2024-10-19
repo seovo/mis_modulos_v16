@@ -417,7 +417,7 @@ class SaleOrder(models.Model):
                             if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
                                 continue
                             if 1 == 1 :
-                                raise ValueError([line,line_inv.quantity])
+                                raise ValueError([line_inv.move_id,line_inv,line_inv.quantity])
                                 qty_invoiced += line_inv.quantity
                                 x = range(int(line_inv.quantity))
 
