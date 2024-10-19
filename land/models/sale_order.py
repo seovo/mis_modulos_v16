@@ -409,12 +409,15 @@ class SaleOrder(models.Model):
 
                         for line_inv in line.invoice_lines:
 
+
+
                             if line_inv.move_id.payment_state == 'reversed':
                                 continue
 
                             if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
                                 continue
-                            else:
+                            if 1 == 1 :
+                                raise ValueError([line,line_inv.quantity])
                                 qty_invoiced += line_inv.quantity
                                 x = range(int(line_inv.quantity))
 
