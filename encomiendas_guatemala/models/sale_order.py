@@ -96,7 +96,7 @@ class SaleOrderLine(models.Model):
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "sale.order.line",
-            "target": "current",
+            "target": "new",
             "res_id": self.id ,
             "view_id": view.id
         }
