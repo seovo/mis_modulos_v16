@@ -72,6 +72,7 @@ class SaleOrderLine(models.Model):
     is_encomienda   = fields.Boolean(related='product_id.is_encomienda')
     price_fixed     = fields.Float(compute='change_items_encomienda',string='Precio Fijo')
     price_total_encomienda =  fields.Float(compute='change_items_encomienda',string='Precio Total Encomienda')
+    cost_price_cobro = fields.Float(compute='change_items_encomienda', string='Costo Precio Cobro')
 
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
