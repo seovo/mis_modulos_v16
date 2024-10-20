@@ -68,8 +68,8 @@
                               <tree  editable="bottom"  >
                                <field name="qty" />
                                <field name="product_id"  />
-                               <field name="price_unit" />
-                               <field name="precio_cost" />
+                               <field name="price_unit" optional="hide" />
+                               <field name="precio_cost" optional="hide"  />
                                <field name="peso_real" />
                                <field name="largo" />
                                <field name="ancho" />
