@@ -84,9 +84,7 @@
 
 
                        <group>
-
-
-
+                           <field name="price_fixed"  />
                            <field name="price_unit"  />
                        </group>
                    </sheet>
