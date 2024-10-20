@@ -18,6 +18,7 @@
                    <field name="state_encomienda" />
                    <field name="clase_encomienda" />
                    <field name="type_doc_encomienda" />
+                   <field name="carrier_id" string="Caja Rural" />
                </xpath>
 
 
