@@ -27,8 +27,10 @@ class SaleOrder(models.Model):
         res = super().action_confirm()
         if self.carrier_id:
             for line in self.order_line:
+                carrier = self.carrier_id
                 if line.product_id == self.carrier_id.product_id:
                     line.unlink()
+                self.carrier_id = carrier.id
 
         return res
 
