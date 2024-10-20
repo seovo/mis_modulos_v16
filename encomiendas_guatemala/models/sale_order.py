@@ -48,7 +48,7 @@ class SaleOrderPackingList(models.Model):
         ],
         default=False)
     sequence = fields.Integer(string="Sequence", default=10)
-    qty = fields.Float(string="Cantidad")
+    qty = fields.Float(string="Cantidad",default=1)
     type_mercaderia = fields.Selection([
         ('food_refrigeration','Comida que requiere refrigeración'),
         ('sweet', 'Dulces típicos'),
@@ -59,14 +59,15 @@ class SaleOrderPackingList(models.Model):
         ('creams', 'Cremas'),
         ('clothes', 'Ropa'),
         ('other', 'Otros Especificar :'),
-    ],required=True)
+    ],required=True,string="Mercaderia")
     name = fields.Text(string="Descripción")
     code_hds = fields.Char(string="Codigo HDS")
 
 
 class SaleOrderLine(models.Model):
-    _inherit       = 'sale.order.line'
+    _inherit        = 'sale.order.line'
     encomienda_list = fields.One2many('sale.order.line.encomienda.list','sale_order_line_id')
+    is_encomienda   = fields.Boolean(related='product_id.is_encomienda')
 
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
@@ -82,13 +83,16 @@ class SaleOrderLine(models.Model):
 
                 if total_peso_cobro > 0 :
                     total_peso_cobro = total_peso_cobro - 1
-                    total_peso_cobro = total_peso_cobro * 75
+                    total_peso_cobro = total_peso_cobro * record.price_extra_libre
 
 
                 record.price_unit = record.product_id.list_price + total_peso_cobro + total_price
 
 
     def edit_price_jz(self):
+
+        if not self.is_encomienda:
+            return
 
         view = self.env.ref('encomiendas_guatemala.edit_sale_order_line')
         return {
