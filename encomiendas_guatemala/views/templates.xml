@@ -242,7 +242,7 @@
                         class="d-flex gap-3 align-items-center mt-4 mb-3 fs-6 small text-uppercase
                                fw-bolder"
                     >
-                        <span>Tus métodos de pago</span>
+                        <span>Elige una Caja Rural</span>
                         <hr class="flex-grow-1 m-0"/>
                     </h4>
                     <!-- === Body === -->
