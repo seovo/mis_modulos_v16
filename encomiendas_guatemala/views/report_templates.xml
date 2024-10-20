@@ -6,6 +6,7 @@
                 <strong>Caja Rural:</strong>
                 <p  class="m-0"><t t-esc="doc.carrier_id.name" /></p>
             </div>
+
             <div class="col-auto col-3 mw-100 mb-2" >
                 <strong>Peso Cobro:</strong>
                 <p  class="m-0"><t t-esc="doc.total_peso_cobro" /></p>
