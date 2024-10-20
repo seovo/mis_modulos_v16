@@ -21,7 +21,6 @@
                    <field name="carrier_id" string="Caja Rural" />
                </xpath>
 
-
                <xpath expr="//notebook" position="inside" >
                    <page string="Lista de Empaque" name="packing_list">
                        <field name="packing_list_ids"
