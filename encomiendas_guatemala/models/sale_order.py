@@ -70,6 +70,7 @@ class SaleOrderLine(models.Model):
     _inherit        = 'sale.order.line'
     encomienda_list = fields.One2many('sale.order.line.encomienda.list','sale_order_line_id')
     is_encomienda   = fields.Boolean(related='product_id.is_encomienda')
+    price_fixed     = fields.Float(compute='change_items_encomienda',string='Precio Fijo')
 
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
@@ -88,7 +89,8 @@ class SaleOrderLine(models.Model):
                     total_peso_cobro = total_peso_cobro * record.product_id.price_extra_libre
 
 
-                record.price_unit = record.product_id.list_price + total_peso_cobro + total_price
+                record.price_fixed = record.product_id.list_price
+                record.price_unit = record.price_fixed + total_peso_cobro + total_price
 
 
     def edit_price_jz(self):
