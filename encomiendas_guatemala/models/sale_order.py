@@ -122,7 +122,7 @@ class SaleOrderLine(models.Model):
         if not self.is_encomienda:
             return
 
-        if self.price_fixed == 0 :
+        if self.price_fixed == 0  or not self.price_fixed:
             self.change_price_fixed()
 
         view = self.env.ref('encomiendas_guatemala.edit_sale_order_line')
