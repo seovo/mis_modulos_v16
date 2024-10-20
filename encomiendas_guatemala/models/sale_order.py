@@ -85,7 +85,7 @@ class SaleOrderLine(models.Model):
 
                 if total_peso_cobro > 0 :
                     total_peso_cobro = total_peso_cobro - 1
-                    total_peso_cobro = total_peso_cobro * record.price_extra_libre
+                    total_peso_cobro = total_peso_cobro * record.product_id.price_extra_libre
 
 
                 record.price_unit = record.product_id.list_price + total_peso_cobro + total_price
