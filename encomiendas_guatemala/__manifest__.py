@@ -12,6 +12,7 @@
         'views/templates.xml',
         'views/sale_order.xml',
         'views/res_partner.xml',
+        'views/product.xml',
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal","pymssql","pandas"]},
