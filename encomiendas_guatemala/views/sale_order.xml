@@ -68,7 +68,7 @@
                        <field name="encomienda_list"  >
                               <tree  editable="bottom"  >
                                <field name="qty" />
-                               <field name="product_id"  />
+                               <field name="product_id" domain="[('is_tarif_encomienda','=',True)]" />
                                <field name="price_unit" optional="hide" />
                                <field name="precio_cost" optional="hide"  />
                                <field name="peso_real" />
