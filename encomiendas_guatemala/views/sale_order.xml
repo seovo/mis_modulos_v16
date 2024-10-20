@@ -58,6 +58,7 @@
     </record>
 
 
+
     <record id="edit_sale_order_line" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order.line</field>
