@@ -23,6 +23,15 @@ class SaleOrder(models.Model):
     ],string="Clase de Documentos")
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
 
+    def action_confirm(self):
+        res = super().action_confirm()
+        if self.carrier_id:
+            for line in self.order_line:
+                if line.product_id == self.carrier_id.product_id:
+                    line.unlink()
+
+        return res
+
     #PACKING LIST
 
 class SaleOrderPackingList(models.Model):
