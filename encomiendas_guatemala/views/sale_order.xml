@@ -95,6 +95,7 @@
                             </group>
                             <group class="oe_subtotal_footer" colspan="2" name="sale_total">
                                 <field name="price_fixed"  />
+                                <field name="cost_price_cobro"  />
                                 <field name="price_total_encomienda"  />
                                 <hr /><br />
                                 <field name="price_unit"  />
