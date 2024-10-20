@@ -78,11 +78,18 @@ class SaleOrderLine(models.Model):
     _inherit        = 'sale.order.line'
     encomienda_list = fields.One2many('sale.order.line.encomienda.list','sale_order_line_id')
     is_encomienda   = fields.Boolean(related='product_id.is_encomienda')
-    price_fixed     = fields.Float(compute='change_items_encomienda',string='Precio Fijo')
+    price_fixed     = fields.Float(string='Precio Fijo')
     price_total_encomienda =  fields.Float(compute='change_items_encomienda',string='Precio Total Encomienda')
     cost_price_cobro = fields.Float(compute='change_items_encomienda', string='(Precio Cobro - 1 ) * Precio Extra Libra')
-    price_extra_libre = fields.Float(related='product_id.price_extra_libre',string='Precio Extra Libra')
+    price_extra_libre = fields.Float(string='Precio Extra Libra')
     total_peso_cobro = fields.Float(compute='change_items_encomienda',string='Peso Cobro')
+
+    @api.onchange('product_id')
+    def change_price_fixed(self):
+        for line in self:
+            line.price_fixed = line.product_id.list_price
+            line.price_extra_libre  = line.product_id.price_extra_libre
+
 
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
@@ -99,12 +106,12 @@ class SaleOrderLine(models.Model):
 
                 if total_peso_cobro > 0 :
                     cost_peso_cobro = total_peso_cobro - 1
-                    cost_peso_cobro = cost_peso_cobro * record.product_id.price_extra_libre
+                    cost_peso_cobro = cost_peso_cobro * record.price_extra_libre
 
                 record.total_peso_cobro = total_peso_cobro
                 record.cost_price_cobro = cost_peso_cobro
                 record.price_total_encomienda = total_price
-                record.price_fixed = record.product_id.list_price
+
                 record.price_unit = record.price_fixed + cost_peso_cobro + total_price
 
 
