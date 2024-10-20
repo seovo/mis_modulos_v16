@@ -6,7 +6,7 @@
            <field name="inherit_id" ref="sale.view_order_form" />
            <field name="arch" type="xml">
 
-               <xpath expr="//field[@page='order_lines']" position="attributes">
+               <xpath expr="//page[@name='order_lines']" position="attributes">
                     <attribute name="string">Envio</attribute>
                 </xpath>
 
