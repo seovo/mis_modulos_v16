@@ -23,8 +23,10 @@
 
 
                <xpath expr="//notebook" position="inside" >
-                   <page string="PACKING LIST" name="packing_list">
-                       <field name="packing_list_ids"  widget="section_and_note_one2many" >
+                   <page string="Lista de Empaque" name="packing_list">
+                       <field name="packing_list_ids"
+                              invisible="clase_encomienda != 'mer'"
+                              widget="section_and_note_one2many" >
                            <tree  editable="bottom"  >
                                <control>
                                     <create name="add_product_control" string="Agregar Producto"/>
@@ -39,7 +41,7 @@
                                <field name="qty" />
                                <field name="type_mercaderia"  />
                                <field name="name" />
-                               <field name="code_hds" />
+                               <field name="code_hds" optional="hide" />
 
                            </tree>
                        </field>
