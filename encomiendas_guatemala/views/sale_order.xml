@@ -22,7 +22,9 @@
                </xpath>
 
                <xpath expr="//notebook" position="inside" >
-                   <page string="Lista de Empaque" name="packing_list">
+                   <page string="Lista de Empaque"
+                         invisible="clase_encomienda != 'mer'"
+                         name="packing_list">
                        <field name="packing_list_ids"
                               invisible="clase_encomienda != 'mer'"
                               widget="section_and_note_one2many" >
