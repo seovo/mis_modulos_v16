@@ -73,6 +73,7 @@ class SaleOrderLine(models.Model):
     price_fixed     = fields.Float(compute='change_items_encomienda',string='Precio Fijo')
     price_total_encomienda =  fields.Float(compute='change_items_encomienda',string='Precio Total Encomienda')
     cost_price_cobro = fields.Float(compute='change_items_encomienda', string='Costo Precio Cobro')
+    price_extra_libre = fields.Float(related='product_id.price_extra_libre',string='Precio Extra Libra')
 
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
@@ -91,10 +92,10 @@ class SaleOrderLine(models.Model):
                     total_peso_cobro = total_peso_cobro * record.product_id.price_extra_libre
 
                 record.cost_price_cobro = total_peso_cobro
-
                 record.price_total_encomienda = total_price
                 record.price_fixed = record.product_id.list_price
                 record.price_unit = record.price_fixed + total_peso_cobro + total_price
+
 
 
     def edit_price_jz(self):

@@ -77,20 +77,15 @@
                                <field name="ancho" />
                                <field name="alto" />
                                <field name="weight_vol" />
-                               <field name="weight_cobrar" />
-                               <field name="amount_total" />
+                               <field name="weight_cobrar" sum="Total" />
+                               <field name="amount_total" sum="Total" />
                            </tree>
                            </field>
 
 
-                       <group>
-                           <field name="price_fixed"  />
-                           <field name="price_unit"  />
-                       </group>
-
-
                        <group name="note_group" col="6" class="mt-2 mt-md-0">
                             <group colspan="4">
+                                <field name="price_extra_libre"  />
 
                             </group>
                             <group class="oe_subtotal_footer" colspan="2" name="sale_total">
