@@ -24,6 +24,14 @@ class SaleOrder(models.Model):
         ('other','Otro')
     ],string="Clase de Documentos")
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
+    total_peso_cobro = fields.Float(compute='get_total_peso_cobro', string='Peso Cobro')
+    def get_total_peso_cobro(self):
+        for record in self:
+            total_peso_cobro = 0
+            for line in record.order_line:
+                total_peso_cobro += line.total_peso_cobro
+            record.total_peso_cobro = total_peso_cobro
+
 
     def action_confirm(self):
         res = super().action_confirm()
