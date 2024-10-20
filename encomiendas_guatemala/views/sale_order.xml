@@ -87,6 +87,21 @@
                            <field name="price_fixed"  />
                            <field name="price_unit"  />
                        </group>
+
+
+                       <group name="note_group" col="6" class="mt-2 mt-md-0">
+                            <group colspan="4">
+
+                            </group>
+                            <group class="oe_subtotal_footer" colspan="2" name="sale_total">
+                                <field name="price_fixed"  />
+                                <field name="price_total_encomienda" string="Precio Total" />
+                                <hr /><br />
+                                <field name="price_unit"  />
+                            </group>
+                            <div class="clearfix"/>
+                        </group>
+
                    </sheet>
                </form>
            </field>
