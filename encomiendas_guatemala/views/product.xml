@@ -8,6 +8,7 @@
                <field name="categ_id" position="after">
                     <field name="is_encomienda"   />
                     <field name="price_extra_libre"  invisible="not is_encomienda"  />
+                    <field name="is_tarif_encomienda" />
                </field>
            </field>
     </record>

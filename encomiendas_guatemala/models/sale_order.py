@@ -1,3 +1,5 @@
+from email.policy import default
+
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
@@ -111,7 +113,7 @@ class SaleOrderEncomiendaList(models.Model):
     _description = "sale.order.encomienda.list"
 
     sale_order_line_id = fields.Many2one('sale.order.line')
-    qty = fields.Float(string="Cantidad")
+    qty = fields.Float(string="Cantidad",default=1)
     product_id = fields.Many2one('product.product',string="Producto",required=True)
     price_unit = fields.Float(string="Precio")
     precio_cost = fields.Float(string="Costo")
