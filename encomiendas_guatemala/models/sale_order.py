@@ -90,6 +90,8 @@ class SaleOrderLine(models.Model):
                     total_peso_cobro = total_peso_cobro - 1
                     total_peso_cobro = total_peso_cobro * record.product_id.price_extra_libre
 
+                record.cost_price_cobro = total_peso_cobro
+
                 record.price_total_encomienda = total_price
                 record.price_fixed = record.product_id.list_price
                 record.price_unit = record.price_fixed + total_peso_cobro + total_price
