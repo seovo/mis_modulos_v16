@@ -9,6 +9,14 @@
                    <field name="use_whatsapp" />
                </xpath>
 
+
+               <xpath expr="//field[@name='category_id']" position="after" >
+                   <field name="file_vat" widget="file" filename="name_file_vat" />
+                   <field name="name_file_vat" invisible="1"  />
+
+               </xpath>
+
+
            </field>
     </record>
 </odoo>
