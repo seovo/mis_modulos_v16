@@ -131,14 +131,14 @@ class WebsiteSale(payment_portal.PaymentPortal):
         #raise ValueError(values)
         #raise ValueError(authorized_fields)
 
-        raise ValueError(values['file_vat'])
+        #raise ValueError(values['file_vat'])
 
         for k, v in values.items():
-            if k in ['use_whatsapp','file_vat','name_file']:
-                if k == 'file_vat':
-                    file = values[k].get('file_vat').read()
-                    encoded_data = base64.b64encode(file)
-                    raise ValueError(encoded_data)
+            if k in ['use_whatsapp','file_vat','name_file_vat']:
+                #if k == 'file_vat':
+                #    file = values[k].get('file_vat').read()
+                #    encoded_data = base64.b64encode(file)
+                #    raise ValueError(encoded_data)
                 new_values[k] = v
 
             #raise ValueError([k,authorized_fields])
@@ -217,13 +217,14 @@ class WebsiteSale(payment_portal.PaymentPortal):
         file_name = values.get('file_vat')
         if file_name:
             file = values.get('file_vat').read()
+            new_values['name_file_vat'] = file.filename
             encoded_data = base64.b64encode(file)
             #raise ValueError([type(file),type(encoded_data)])
             #encoded_data =  encoded_data.decode('ascii')
 
             #raise ValueError(encoded_data)
-            new_values['file_name'] = str(file_name)
-            new_values['file'] = encoded_data
+
+            new_values['file_vat'] = encoded_data
             #new_values['file'] = str(encoded_data)
             #new_values['file'] = str(file)
 
