@@ -13,7 +13,8 @@ import base64
 class WebsiteSale(payment_portal.PaymentPortal):
 
     def _get_mandatory_fields_billing(self, country_id=False):
-        req = ["name", "email", "street", "city", "country_id","vat","street2","file_vat"]
+        req = ["name", "email", "street", "city", "country_id","vat","street2"]
+        #,"file_vat"
         if country_id:
             #country = request.env['res.country'].browse(country_id)
 
@@ -120,7 +121,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 error_message.append(exception.args[0])
 
         if [err for err in error.values() if err == 'missing']:
-            error_message.append(_('Some required fields are empty.'))
+            error_message.append(_('Algunos campos estan vacios.'))
 
         return error, error_message
 
