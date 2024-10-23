@@ -217,7 +217,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         file_name = values.get('file_vat')
         if file_name:
             file = values.get('file_vat').read()
-            raise ValueError[file_name,file]
+            raise ValueError([file_name,file])
             new_values['name_file_vat'] = file.filename
             encoded_data = base64.b64encode(file)
             #raise ValueError([type(file),type(encoded_data)])
