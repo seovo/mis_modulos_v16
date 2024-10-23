@@ -1,5 +1,5 @@
-from email.policy import default
 
+import math
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
@@ -168,7 +168,7 @@ class SaleOrderEncomiendaList(models.Model):
 
             mult =  ( record.largo * record.ancho * record.alto ) / 5000
 
-            record.weight_vol = round(mult * 2.2046,0)
+            record.weight_vol = math.ceil(mult * 2.2046)
 
             record.weight_cobrar = max(record.weight_vol,record.peso_real)
 
