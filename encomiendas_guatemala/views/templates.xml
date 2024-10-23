@@ -208,18 +208,25 @@
 
                     <div t-attf-class="#{error.get('phone') and 'o_has_error'} col-lg-6 mb-2" id="div_phone">
                         <label class="col-form-label" for="phone">Teléfono/Celular</label>
+
+                        <input type="tel" name="phone"
+                               t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}"
+                               t-att-value="'phone' in checkout and checkout['phone']"
+                        />
+
                         <label>
+                            <span class="form-check-label text-muted">
+                               <i class="fa fa-whatsapp" aria-hidden="true"></i> ¿Utiliza Whatapp?
+                            </span>
                             <input
                                     type="checkbox"
                                     id="use_whatsapp"
                                     class="form-check-input mr8"
                                     name="use_whatsapp"
                                     t-att-checked="use_whatsapp"/>
-                            <span class="form-check-label text-muted">
-                               <i class="fa fa-whatsapp" aria-hidden="true"></i> Tiene Whatsapp
-                            </span>
+
                         </label>
-                        <input type="tel" name="phone" t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}" t-att-value="'phone' in checkout and checkout['phone']" />
+
                     </div>
 
                     <div t-attf-class="#{error.get('email') and 'o_has_error'} col-lg-6 mb-2" id="div_email">
