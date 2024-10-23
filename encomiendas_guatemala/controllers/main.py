@@ -131,7 +131,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         #raise ValueError(values)
         #raise ValueError(authorized_fields)
         for k, v in values.items():
-            if k in ['use_whatsapp','file_vat','name_file_vat']:
+            if k in ['use_whatsapp','file_vat','name_file']:
                 new_values[k] = v
 
             #raise ValueError([k,authorized_fields])
@@ -172,7 +172,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 new_values['type'] = 'delivery'
                 new_values['parent_id'] = commercial_partner.id
 
-        #raise ValueError(new_values)
+        raise ValueError(new_values)
         return new_values, errors, error_msg
 
     def values_preprocess(self, values):
