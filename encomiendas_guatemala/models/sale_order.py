@@ -178,6 +178,9 @@ class SaleOrderEncomiendaList(models.Model):
         for record in self:
             record.price_unit = record.product_id.list_price
             record.precio_cost = record.product_id.standard_price
+
+            raise ValueError('okkk')
+
             record.peso_real = record.product_id.weight
             record.largo = record.product_id.largo_enc
             record.ancho = record.product_id.ancho_enc
