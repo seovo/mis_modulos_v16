@@ -10,36 +10,35 @@
                     <field name="price_extra_libre"  invisible="not is_encomienda"  />
                     <field name="is_tarif_encomienda" />
                </field>
-           </field>
-    </record>
 
+               <group name="inventory" position="replace" >
+                   <group name="inventory">
+                       <group name="group_lots_and_weight" string="Logistics" invisible="type not in ['product', 'consu']">
+                           <label for="weight" invisible="product_variant_count &gt; 1 and not is_product_variant"/>
+                           <div class="o_row" name="weight" invisible="product_variant_count &gt; 1 and not is_product_variant">
+                               <field name="weight" class="oe_inline"/>
+                               <field name="weight_uom_name"/>
+                           </div>
+                           <label for="volume" invisible="product_variant_count &gt; 1 and not is_product_variant"/>
+                           <div class="o_row" name="volume" invisible="product_variant_count &gt; 1 and not is_product_variant">
+                                   <field name="volume" string="Volume" class="oe_inline"/>
+                                        <field name="volume_uom_name"/>
+                           </div>
 
-    <record id="product_variant_easy_edit_view" model="ir.ui.view">
-           <field name="name">product.product.form</field>
-           <field name="model">product.product</field>
-           <field name="inherit_id" ref="product.product_variant_easy_edit_view" />
-           <field name="arch" type="xml">
-               <group name="weight" string="Logistics" invisible="type not in ['product', 'consu']">
-                   <label for="volume"/>
-                   <div class="o_row">
-                                    <field name="volume" class="oe_inline"/>
-                                    <span><field name="volume_uom_name"/></span>
-                   </div>
-                   <label for="weight"/>
-                   <div class="o_row">
-                                    <field name="weight" class="oe_inline"/>
-                                    <span><field name="weight_uom_name"/></span>
-                   </div>
-
-                   <label for="largo"/>
-                   <div class="o_row">
+                           <label for="largo"/>
+                           <div class="o_row">
                        <field name="largo_enc" class="oe_inline"/>
                        <span>cm</span>
                    </div>
 
+                       </group>
+                   </group>
+
                </group>
            </field>
     </record>
+
+
 
 
 
