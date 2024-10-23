@@ -31,6 +31,18 @@
                                 <span>cm</span>
                            </div>
 
+                           <label for="alto_enc"/>
+                           <div class="o_row">
+                                <field name="alto_enc" class="oe_inline"/>
+                                <span>cm</span>
+                           </div>
+
+                           <label for="ancho_enc"/>
+                           <div class="o_row">
+                                <field name="ancho_enc" class="oe_inline"/>
+                                <span>cm</span>
+                           </div>
+
                        </group>
                    </group>
 
