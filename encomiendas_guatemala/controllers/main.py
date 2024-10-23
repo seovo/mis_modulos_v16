@@ -210,7 +210,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         file_name = values.get('file_vat')
         if file_name:
             file = base64.b64encode(values.get('file_vat').read())
-            new_values['file'] = file
+            new_values['file'] = str(file)
             new_values['file_name'] = file_name
 
         #raise ValueError([values,new_values])
