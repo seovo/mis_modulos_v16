@@ -94,6 +94,7 @@ class SaleOrderLine(models.Model):
             line.price_extra_libre  = line.product_id.price_extra_libre
 
 
+
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
         for record in self:
@@ -177,6 +178,10 @@ class SaleOrderEncomiendaList(models.Model):
         for record in self:
             record.price_unit = record.product_id.list_price
             record.precio_cost = record.product_id.standard_price
+            record.peso_real = record.product_id.weight
+            record.largo = record.product_id.largo_enc
+            record.ancho = record.product_id.ancho_enc
+            record.alto = record.product_id.alto_enc
 
 
 
