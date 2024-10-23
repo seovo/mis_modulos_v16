@@ -178,7 +178,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def values_preprocess(self, values):
 
         foto = values.get('file_vat')
-        foto = base64.b64encode(values.get('file').read())
+        foto = base64.b64encode(values.get('file_vat').read())
         raise ValueError(foto)
 
 
