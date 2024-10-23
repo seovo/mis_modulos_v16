@@ -222,10 +222,11 @@ class WebsiteSale(payment_portal.PaymentPortal):
             #encoded_data =  encoded_data.decode('ascii')
 
             #raise ValueError(encoded_data)
+            new_values['file_name'] = str(file_name)
             new_values['file'] = encoded_data
             #new_values['file'] = str(encoded_data)
             #new_values['file'] = str(file)
-            new_values['file_name'] = file_name
+
 
         #raise ValueError([values,new_values])
 
