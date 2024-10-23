@@ -133,7 +133,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         for k, v in values.items():
             if k in ['use_whatsapp','file_vat','name_file']:
                 if k == 'file_vat':
-                    file = values[k].get('file_vat').read()
+                    file = values[k].read()
                     encoded_data = base64.b64encode(file)
                     raise ValueError(encoded_data)
                 new_values[k] = v
