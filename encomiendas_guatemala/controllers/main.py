@@ -175,7 +175,11 @@ class WebsiteSale(payment_portal.PaymentPortal):
         return new_values, errors, error_msg
 
     def values_preprocess(self, values):
-        raise ValueError(values)
+
+        foto = values.get('file_vat')
+        raise ValueError(foto)
+
+
         new_values = dict()
         partner_fields = request.env['res.partner']._fields
 
