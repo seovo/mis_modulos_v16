@@ -198,7 +198,9 @@
 
     <template id="address" inherit_id="website_sale.address">
         <xpath expr="//form" position="replace">
-            <form t-if="account_on_checkout != 'mandatory' or not is_public_user" action="/shop/address" method="post" class="checkout_autoformat">
+            <form t-if="account_on_checkout != 'mandatory' or not is_public_user" action="/shop/address"
+                  enctype="multipart/form-data"
+                  method="post" class="checkout_autoformat">
                 <div class="row">
                     <div t-attf-class="#{error.get('name') and 'o_has_error'} div_name col-lg-12 mb-2">
                         <label class="col-form-label" for="name">Nombre completo</label>
