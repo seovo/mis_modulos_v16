@@ -18,9 +18,10 @@
                                 <t t-set="address_mode" t-value="mode[1]"/>
                                 <t t-if="is_public_order">
                                     <h3 class="mb-3">
-                                        <span t-if="account_on_checkout != 'mandatory'">Fill in your address</span>
-                                        <small class="text-muted" t-if="account_on_checkout == 'optional'"> or </small>
+                                        <span t-if="account_on_checkout != 'mandatory'">Datos persona que envía:</span>
                                         <!--
+                                        <small class="text-muted" t-if="account_on_checkout == 'optional'"> or </small>
+
                                         <a t-if="account_on_checkout != 'disabled'" role="button"
                                            href='/web/login?redirect=/shop/checkout'  style="margin-top: -11px"> Sign in</a>
                                         -->
