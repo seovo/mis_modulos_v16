@@ -130,10 +130,13 @@ class WebsiteSale(payment_portal.PaymentPortal):
         authorized_fields = request.env['ir.model']._get('res.partner')._get_form_writable_fields()
         #raise ValueError(values)
         #raise ValueError(authorized_fields)
+
+        raise ValueError(values['file_vat'])
+
         for k, v in values.items():
             if k in ['use_whatsapp','file_vat','name_file']:
                 if k == 'file_vat':
-                    file = values[k].read()
+                    file = values[k].get('file_vat').read()
                     encoded_data = base64.b64encode(file)
                     raise ValueError(encoded_data)
                 new_values[k] = v
