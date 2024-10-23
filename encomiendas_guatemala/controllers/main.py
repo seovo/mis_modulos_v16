@@ -16,7 +16,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if country_id:
             #country = request.env['res.country'].browse(country_id)
 
-            states = self.env['res.country.state'].sudo().search([('country_id','=',country_id)])
+            states = request.env['res.country.state'].sudo().search([('country_id','=',country_id)])
             if states:
                 req += ['state_id']
             #if country.state_required:
