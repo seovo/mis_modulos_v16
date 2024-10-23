@@ -28,10 +28,10 @@
                                     </h3>
                                 </t>
                                 <t t-elif="address_mode == 'billing'">
-                                    <h3 class="mb-3">Billing address</h3>
+                                    <h3 class="mb-3">Datos persona que envía</h3>
                                 </t>
                                 <t t-else="">
-                                    <h3 class="mb-3">Shipping address</h3>
+                                    <h3 class="mb-3">Datos persona que recíbe</h3>
                                 </t>
                                 <t t-if="partner_id == website_sale_order.partner_shipping_id.id == website_sale_order.partner_invoice_id.id">
                                     <div class="alert alert-warning" role="alert" t-if="not only_services">
