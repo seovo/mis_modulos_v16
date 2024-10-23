@@ -14,6 +14,34 @@
     </record>
 
 
+    <record id="product_variant_easy_edit_view" model="ir.ui.view">
+           <field name="name">product.product.form</field>
+           <field name="model">product.product</field>
+           <field name="inherit_id" ref="product.product_variant_easy_edit_view" />
+           <field name="arch" type="xml">
+               <group name="weight" string="Logistics" invisible="type not in ['product', 'consu']">
+                   <label for="volume"/>
+                   <div class="o_row">
+                                    <field name="volume" class="oe_inline"/>
+                                    <span><field name="volume_uom_name"/></span>
+                   </div>
+                   <label for="weight"/>
+                   <div class="o_row">
+                                    <field name="weight" class="oe_inline"/>
+                                    <span><field name="weight_uom_name"/></span>
+                   </div>
+
+                   <label for="largo"/>
+                   <div class="o_row">
+                       <field name="largo_enc" class="oe_inline"/>
+                       <span>cm</span>
+                   </div>
+
+               </group>
+           </field>
+    </record>
+
+
 
 
 </odoo>
