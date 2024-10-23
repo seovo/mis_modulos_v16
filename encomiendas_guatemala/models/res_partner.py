@@ -8,6 +8,6 @@ class ResPartner(models.Model):
     name_file_vat     = fields.Char()
 
     def write(self,values):
-        #raise ValueError(values)
+        raise ValueError(values)
         res = super().write(values)
         return res
