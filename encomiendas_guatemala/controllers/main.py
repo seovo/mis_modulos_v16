@@ -177,9 +177,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
     def values_preprocess(self, values):
 
-        foto = values.get('file_vat')
-        foto = base64.b64encode(values.get('file_vat').read())
-        raise ValueError(foto)
+
+        #raise ValueError(foto)
 
 
         new_values = dict()
@@ -199,12 +198,20 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 if k == 'use_whatsapp':
                     exist_whatsap = True
                 new_values[k] = bool(v)
+            elif v == 'on':
+                pass
             else:
 
                 new_values[k] = v
 
         if not exist_whatsap:
             new_values['use_whatsapp'] = False
+
+        file_name = values.get('file_vat')
+        if file_name:
+            file = base64.b64encode(values.get('file_vat').read())
+            new_values['file'] = file
+            new_values['file_name'] = file_name
 
         #raise ValueError([values,new_values])
 
