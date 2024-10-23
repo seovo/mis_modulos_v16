@@ -13,7 +13,7 @@ import base64
 class WebsiteSale(payment_portal.PaymentPortal):
 
     def _get_mandatory_fields_billing(self, country_id=False):
-        req = ["name", "email", "street", "city", "country_id","vat","street2"]
+        req = ["name", "email", "street", "city", "country_id","vat","street2","file_vat"]
         if country_id:
             #country = request.env['res.country'].browse(country_id)
 
