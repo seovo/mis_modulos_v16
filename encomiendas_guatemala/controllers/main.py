@@ -8,6 +8,7 @@ from odoo.addons.http_routing.models.ir_http import slug
 import logging
 from odoo.exceptions import AccessError, MissingError, ValidationError
 _logger = logging.getLogger(__name__)
+import base64
 
 class WebsiteSale(payment_portal.PaymentPortal):
 
@@ -177,6 +178,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def values_preprocess(self, values):
 
         foto = values.get('file_vat')
+        foto = base64.b64encode(values.get('file').read())
         raise ValueError(foto)
 
 
