@@ -308,6 +308,10 @@
                                                     <input type="text" name="vat" t-attf-class="form-control #{error.get('vat') and 'is-invalid' or ''}" t-att-value="'vat' in checkout and checkout['vat']" t-att-readonly="'1' if vat_warning else None"/>
                                                     <small t-if="vat_warning" class="form-text text-muted d-block d-lg-none">Changing VAT number is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.</small>
                             </div>
+                            <div t-attf-class="#{error.get('vat') and 'o_has_error'} div_vat col-lg-6 mb-2">
+                                <label class="col-form-label fw-normal label-optional" for="file_vat">Adjunto</label>
+                                <input class="form-control" type="file_vat" id="file_vat" />
+                            </div>
                             <div t-if="vat_warning" class="col-12 d-none d-lg-block mb-1">
                                                     <small class="form-text text-muted">Changing company name or VAT number is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.</small>
                             </div>
