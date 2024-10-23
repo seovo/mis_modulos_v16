@@ -15,7 +15,10 @@ class WebsiteSale(payment_portal.PaymentPortal):
         req = ["name", "email", "street", "city", "country_id","vat","street2"]
         if country_id:
             #country = request.env['res.country'].browse(country_id)
-            req += ['state_id']
+
+            states = self.env['res.country.state'].sudo().search([('country_id','=',country_id)])
+            if states:
+                req += ['state_id']
             #if country.state_required:
             #    req += ['state_id']
             #if country.zip_required:
