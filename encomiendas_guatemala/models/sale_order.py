@@ -79,9 +79,11 @@ class SaleOrderLine(models.Model):
     _inherit        = 'sale.order.line'
     encomienda_list = fields.One2many('sale.order.line.encomienda.list','sale_order_line_id')
     is_encomienda   = fields.Boolean(related='product_id.is_encomienda')
-    price_fixed     = fields.Float(string='Precio Fijo')
-    price_total_encomienda =  fields.Float(compute='change_items_encomienda',string='Precio Total Encomienda')
-    cost_price_cobro = fields.Float(compute='change_items_encomienda', string='(Precio Cobro - 1 ) * Precio Extra Libra')
+    price_fixed     = fields.Float(string='Valor Primera Lbs')
+    price_total_encomienda =  fields.Float(compute='change_items_encomienda',string='Cargos Extras')
+    cost_price_cobro = fields.Float(compute='change_items_encomienda',
+                                    string='Valor Flete' ,
+                                    help='(Precio Cobro - 1 ) * Precio Extra Libra')
     price_extra_libre = fields.Float(string='Precio Extra Libra')
     total_peso_cobro = fields.Float(compute='change_items_encomienda',string='Peso Cobro')
 

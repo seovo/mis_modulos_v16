@@ -95,7 +95,7 @@
                                 <field name="cost_price_cobro"  />
                                 <field name="price_total_encomienda"  />
                                 <hr /><br />
-                                <field name="price_unit"  />
+                                <field name="price_unit" string="Total Precio a Cobrar" />
                             </group>
                             <div class="clearfix"/>
                         </group>
