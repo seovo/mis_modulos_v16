@@ -310,7 +310,7 @@
                             </div>
                             <div t-attf-class="#{error.get('vat') and 'o_has_error'} div_vat col-lg-6 mb-2">
                                 <label class="col-form-label fw-normal label-optional" for="file_vat">Adjunto</label>
-                                <input class="form-control" type="file_vat" id="file_vat" />
+                                <input class="form-control" type="file"  name="file_vat" id="file_vat" />
                             </div>
                             <div t-if="vat_warning" class="col-12 d-none d-lg-block mb-1">
                                                     <small class="form-text text-muted">Changing company name or VAT number is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.</small>
