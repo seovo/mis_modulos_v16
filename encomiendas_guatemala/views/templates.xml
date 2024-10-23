@@ -20,7 +20,10 @@
                                     <h3 class="mb-3">
                                         <span t-if="account_on_checkout != 'mandatory'">Fill in your address</span>
                                         <small class="text-muted" t-if="account_on_checkout == 'optional'"> or </small>
-                                        <a t-if="account_on_checkout != 'disabled'" role="button" href='/web/login?redirect=/shop/checkout'  style="margin-top: -11px"> Sign in</a>
+                                        <!--
+                                        <a t-if="account_on_checkout != 'disabled'" role="button"
+                                           href='/web/login?redirect=/shop/checkout'  style="margin-top: -11px"> Sign in</a>
+                                        -->
                                     </h3>
                                 </t>
                                 <t t-elif="address_mode == 'billing'">
