@@ -131,7 +131,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
         #raise ValueError(values)
         #raise ValueError(authorized_fields)
         for k, v in values.items():
-            if k in ['use_whatsapp']:
+            if k in ['use_whatsapp','file_vat','name_file']:
+                if k == 'file_vat':
+                    raise ValueError([v,values])
                 new_values[k] = v
 
             #raise ValueError([k,authorized_fields])
