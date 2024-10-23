@@ -213,6 +213,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
             encoded_data = base64.b64encode(file)
 
             encoded_data =  encoded_data.decode('ascii')
+
+            raise ValueError(encoded_data)
+
             new_values['file'] = encoded_data
             new_values['file_name'] = file_name
 
