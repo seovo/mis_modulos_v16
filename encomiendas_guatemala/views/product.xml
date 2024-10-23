@@ -25,11 +25,11 @@
                                         <field name="volume_uom_name"/>
                            </div>
 
-                           <label for="largo"/>
+                           <label for="largo_enc"/>
                            <div class="o_row">
-                       <field name="largo_enc" class="oe_inline"/>
-                       <span>cm</span>
-                   </div>
+                                <field name="largo_enc" class="oe_inline"/>
+                                <span>cm</span>
+                           </div>
 
                        </group>
                    </group>
