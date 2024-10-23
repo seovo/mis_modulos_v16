@@ -30,6 +30,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def _get_mandatory_fields_shipping(self, country_id=False):
         req = ["name", "street", "city", "country_id", "phone","street2"]
         if country_id:
+
             '''
             country = request.env['res.country'].browse(country_id)
             if country.state_required:
@@ -37,7 +38,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
             if country.zip_required:
                 req += ['zip']
             '''
-            req += ['state_id']
+            states = request.env['res.country.state'].sudo().search([('country_id', '=', country_id)])
+            if states:
+                req += ['state_id']
             req += ['zip']
         return req
 
