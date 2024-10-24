@@ -703,14 +703,19 @@
     <template id="website_sale.address_on_payment" name="Address on payment">
         <div class="card">
             <div class="card-body" id="shipping_and_billing">
-                <a class="float-end no-decoration" href="/shop/checkout"><i class="fa fa-pencil me-1"/>Editar</a>
+
+                <a class="float-end no-decoration"
+                   t-attf-href="shop/address?mode=billing&amp;partner_id={order.partner_invoice_id.id}"
+                   href="/shop/checkout"><i class="fa fa-pencil me-1"/>Editar Remitente:</a>
                 <t t-set="same_shipping" t-value="bool(order.partner_shipping_id==order.partner_invoice_id or only_services)" />
                 <div>
                     <b>Remitente<t t-if="same_shipping and not only_services"> &amp; Destinatario</t>: </b>
                     <span t-esc="order.partner_invoice_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
                 </div>
                 <div t-if="not same_shipping and not only_services" >
-                    <a class="float-end no-decoration" href="/shop/checkout"><i class="fa fa-pencil me-1"/>Editar</a>
+                    <a class="float-end no-decoration"
+                       t-attf-href="shop/address?mode=billing&amp;partner_id={order.partner_shipping_id.id}"
+                    ><i class="fa fa-pencil me-1"/>Editar Destinatario:</a>
                     <b>Destinatario: </b>
                     <span t-esc="order.partner_shipping_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
                 </div>
