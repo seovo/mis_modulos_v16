@@ -93,8 +93,6 @@ class SaleOrderLine(models.Model):
             line.price_fixed = line.product_id.list_price
             line.price_extra_libre  = line.product_id.price_extra_libre
 
-
-
     @api.onchange('encomienda_list','encomienda_list.amount_total')
     def change_items_encomienda(self):
         for record in self:
@@ -118,8 +116,6 @@ class SaleOrderLine(models.Model):
 
                 record.price_unit = record.price_fixed + cost_peso_cobro + total_price
 
-
-
     def edit_price_jz(self):
 
         if not self.is_encomienda:
@@ -138,6 +134,12 @@ class SaleOrderLine(models.Model):
             "res_id": self.id ,
             "view_id": view.id
         }
+
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+        if self.product_id.is_encomienda:
+            return
+        res = super()._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
+        return res
 
 
 class SaleOrderEncomiendaList(models.Model):
