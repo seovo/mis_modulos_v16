@@ -136,8 +136,10 @@ class SaleOrderLine(models.Model):
         }
 
     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
-        if self.product_id.is_encomienda:
-            return
+        for line in self:
+            if  line.product_id.is_encomienda:
+                return
+
         res = super()._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
         return res
 
