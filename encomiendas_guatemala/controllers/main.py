@@ -366,7 +366,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             if errors:
                 errors['error_message'] = error_msg
                 values = kw
-                raise ValueError(kw)
+                #raise ValueError(kw)
             else:
                 update_mode, address_mode = mode
                 partner_id = self._checkout_form_save(mode, post, kw)
@@ -456,6 +456,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             #'use_same': is_public_user or ('use_same' in kw and str2bool(kw.get('use_same') or '0')),
         }
         render_values.update(self._get_country_related_render_values(kw, render_values))
+        raise ValueError(render_values)
         return request.render("website_sale.address", render_values)
 
     def sitemap_shop(env, rule, qs):
