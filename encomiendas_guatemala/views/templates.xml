@@ -317,7 +317,7 @@
                                        t-att-value="'file_vat' in checkout and checkout['file_vat']"
                                        name="file_vat" id="file_vat" />
                                 <small t-if="link_adjunto" class="form-text text-muted">
-                                    <a t-att-href="link_adjunto"
+                                    <a t-att-href="link_adjunto" target="_blank"
                                        class="link-dark"><t t-esc="name_link_adjunto" />
                                     </a>
                                 </small>
