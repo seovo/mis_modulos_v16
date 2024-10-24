@@ -709,9 +709,16 @@
                    href="/shop/checkout"><i class="fa fa-pencil me-1"/>Editar Remitente:</a>
                 <t t-set="same_shipping" t-value="bool(order.partner_shipping_id==order.partner_invoice_id or only_services)" />
                 <div>
-                    <b>Remitente<t t-if="same_shipping and not only_services"> &amp; Destinatario</t>: </b>
+                    <b>Remitente:</b>
                     <span t-esc="order.partner_invoice_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
                 </div>
+
+                <t t-if="same_shipping and not only_services">
+                    <a class="float-end no-decoration"
+                       t-attf-href="/shop/address?mode=shipping"
+                    ><i class="fa fa-pencil me-1"/>Agregar Destinatario:</a>
+                </t>
+
                 <div t-if="not same_shipping and not only_services" >
                     <a class="float-end no-decoration"
                        t-attf-href="/shop/address?mode=shipping&amp;partner_id=#{order.partner_shipping_id.id}"
