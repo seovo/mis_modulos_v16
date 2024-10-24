@@ -318,7 +318,7 @@
                                        name="file_vat" id="file_vat" />
                                 <small t-if="link_adjunto" class="form-text text-muted">
                                     <a t-att-href="link_adjunto"
-                                       class="link-primary">Primary link
+                                       class="link-dark">Primary link
                                     </a>
                                 </small>
                             </div>
