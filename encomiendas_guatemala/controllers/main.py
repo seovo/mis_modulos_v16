@@ -296,6 +296,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
     @http.route(['/shop/address'], type='http', methods=['GET', 'POST'], auth="public", website=True, sitemap=False)
     def address(self, **kw):
+        link_adjunto = None
 
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
         order = request.website.sale_get_order()
@@ -313,11 +314,13 @@ class WebsiteSale(payment_portal.PaymentPortal):
             can_edit_vat = True
         else:  # IF ORDER LINKED TO A PARTNER
             if partner_id > 0:
+                link_adjunto = f'''/web/content?model=res.partner&id={partner_id}&field=file_vat'''
                 if partner_id == order.partner_id.id:
                     # If we modify the main customer of the SO ->
                     # 'billing' bc billing requirements are higher than shipping ones
                     can_edit_vat = order.partner_id.can_edit_vat()
                     mode = ('edit', 'billing')
+
                 else:
                     address_mode = kw.get('mode')
                     if not address_mode:
@@ -443,6 +446,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'is_public_order': order._is_public_order(),
             'use_same': '0' ,
             'use_whatsapp':   use_whatsapp ,
+            'link_adjunto': link_adjunto
             #'use_same': is_public_user or ('use_same' in kw and str2bool(kw.get('use_same') or '0')),
         }
         render_values.update(self._get_country_related_render_values(kw, render_values))
