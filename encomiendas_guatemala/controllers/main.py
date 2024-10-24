@@ -366,6 +366,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             if errors:
                 errors['error_message'] = error_msg
                 values = kw
+                raise ValueError(kw)
             else:
                 update_mode, address_mode = mode
                 partner_id = self._checkout_form_save(mode, post, kw)
