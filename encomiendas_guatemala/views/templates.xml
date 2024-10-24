@@ -714,7 +714,7 @@
                 </div>
                 <div t-if="not same_shipping and not only_services" >
                     <a class="float-end no-decoration"
-                       t-attf-href="/shop/address?mode=billing&amp;partner_id=#{order.partner_shipping_id.id}"
+                       t-attf-href="/shop/address?mode=shipping&amp;partner_id=#{order.partner_shipping_id.id}"
                     ><i class="fa fa-pencil me-1"/>Editar Destinatario:</a>
                     <b>Destinatario: </b>
                     <span t-esc="order.partner_shipping_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
