@@ -11,3 +11,12 @@ class ResPartner(models.Model):
         #raise ValueError(values)
         res = super().write(values)
         return res
+
+class StockPicking(models.Model):
+    _inherit       = 'stock.picking'
+
+    @api.model
+    def create(self,values):
+        raise ValueError('okaa')
+        res = super().create(values)
+        return res
