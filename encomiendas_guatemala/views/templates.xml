@@ -709,7 +709,7 @@
                 <div>
                     <a class="float-end no-decoration"
                        t-attf-href="/shop/address?mode=billing&amp;partner_id=#{order.partner_invoice_id.id}"><i class="fa fa-pencil me-1"/>Editar Remitente:</a>
-                    <b>Remitente.: </b>
+                    <b>Remitente: </b>
                     <span t-esc="order.partner_invoice_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
                 </div>
 
