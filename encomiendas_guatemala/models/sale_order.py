@@ -74,7 +74,6 @@ class SaleOrderPackingList(models.Model):
     name = fields.Text(string="Descripción")
     code_hds = fields.Char(string="Codigo HDS")
 
-
 class SaleOrderLine(models.Model):
     _inherit        = 'sale.order.line'
     encomienda_list = fields.One2many('sale.order.line.encomienda.list','sale_order_line_id')
@@ -173,9 +172,11 @@ class SaleOrderEncomiendaList(models.Model):
 
             mult =  ( record.largo * record.ancho * record.alto ) / 5000
 
-            record.weight_vol = math.ceil(mult * 2.2046)
+            record.weight_vol = mult * 2.2046
 
-            record.weight_cobrar = max(record.weight_vol,record.peso_real)
+            max_vol = max(record.weight_vol,record.peso_real)
+
+            record.weight_cobrar = math.ceil(max_vol)
 
     @api.onchange('product_id')
     def change_product(self):
