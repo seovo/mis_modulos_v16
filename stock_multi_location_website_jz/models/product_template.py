@@ -4,18 +4,14 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
     _name    = 'product.template'
 
-    def _get_combination_info(
-            self, combination=False, product_id=False, add_qty=1.0,
-            parent_combination=False, only_template=False,
-    ):
-        res = super()._get_combination_info(
-            combination, product_id, add_qty ,
-            parent_combination, only_template,
-        )
+    def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):
+        res = super(ProductTemplate, self)._get_combination_info(
+            combination=combination, product_id=product_id, add_qty=add_qty, pricelist=pricelist,
+            parent_combination=parent_combination, only_template=only_template)
 
         if combination:
             domain = [("location_id.usage", "in", ["internal", "transit"]),
-                      ("location_id.warehouse_id.show_stock_website_jz", "=", True),
+                      #("location_id.warehouse_id.show_stock_website_jz", "=", True),
                       ('product_id', '=', res['product_id'])]
 
             quants = self.env["stock.quant"].sudo().search(domain)
@@ -27,21 +23,25 @@ class ProductTemplate(models.Model):
             if quants:
                 for quant in quants:
 
-                    if quant.location_id.warehouse_id.id in stock_locations:
-                        stock_locations.update({
-                            quant.location_id.warehouse_id.id: {
-                                'warehouse': quant.location_id.warehouse_id.display_name,
-                                'stock': quant.quantity + stock_locations[quant.location_id.warehouse_id.id]['stock']
-                            }
-                        })
-                    else:
-                        stock_locations.update({
-                            quant.location_id.warehouse_id.id: {
+                    if quant.warehouse_jz_id.show_stock_website_jz:
+                        if quant.warehouse_jz_id.id in stock_locations:
 
-                                'warehouse': quant.location_id.warehouse_id.display_name,
-                                'stock': quant.quantity
-                            }
-                        })
+                            stock_locations.update({
+                                quant.warehouse_jz_id.id: {
+                                    'warehouse': quant.warehouse_jz_id.display_name,
+                                    'stock': quant.quantity + stock_locations[quant.warehouse_jz_id.id][
+                                        'stock']
+                                }
+                            })
+                        else:
+                            stock_locations.update({
+                                quant.warehouse_jz_id.id: {
+                                    'warehouse': quant.warehouse_jz_id.display_name,
+                                    'stock': quant.quantity
+                                }
+                            })
+
+
 
             res_locations = []
 
@@ -74,4 +74,7 @@ class ProductTemplate(models.Model):
                 'html_warehouses' : html
             })
 
+
         return res
+
+

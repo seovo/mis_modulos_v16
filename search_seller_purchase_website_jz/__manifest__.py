@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Stock Multi Almacen Website",
+    "name": "Buscar Proveedor Compras Website",
     "summary": "Stock Multi Almacen Website",
     "description": """
-        Stock Multi Almacen Website
+        Buscar Proveedor Compras Website
     """,
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "13.0",
     "depends": [
-        "website_sale_stock"
+        "website_sale_stock",
+        "purchase_stock"
     ],
     "data": [
-        'views/template_product.xml',
-        'views/view_warehouse.xml',
-        'views/templates.xml',
+        #'views/template_product.xml',
+        #'views/view_warehouse.xml',
+        #'views/templates.xml',
 
     ],
     "application": False,

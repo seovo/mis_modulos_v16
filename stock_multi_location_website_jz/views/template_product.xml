@@ -5,8 +5,8 @@
         inherit_id="website_sale.product"
     >
         <xpath
-            expr="//div[@id='o_product_terms_and_share']"
-            position="before"
+            expr="//div[@id='product_option_block']"
+            position="after"
         >
             <div id="container_stock_warehouses">
                 <t t-if="stock_warehouses" >
