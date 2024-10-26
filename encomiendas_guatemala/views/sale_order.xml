@@ -5,6 +5,15 @@
            <field name="model">sale.order</field>
            <field name="inherit_id" ref="sale.view_order_form" />
            <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='partner_id']" position="replace">
+                   <field name="partner_id" widget="res_partner_many2one"
+                               string="Envia"
+                               context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                               placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
+
+               </xpath>
+
                <!--
 
                <xpath expr="//group[@name='partner_details']" position="replace">
