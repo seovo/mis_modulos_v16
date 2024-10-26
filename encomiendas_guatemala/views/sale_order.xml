@@ -23,7 +23,6 @@
                    </group>
                </group>
 
-
                <xpath expr="//page[@name='order_lines']" position="attributes">
                     <attribute name="string">Envio</attribute>
                 </xpath>
