@@ -26,6 +26,13 @@ class SaleOrder(models.Model):
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
     total_peso_cobro = fields.Float(compute='get_total_peso_cobro', string='Peso Cobro')
 
+    def _compute_has_active_pricelist(self):
+        res = super()._compute_has_active_pricelist()
+
+        for order in self:
+            order.has_active_pricelist = False
+        return res
+
     def get_total_peso_cobro(self):
         for record in self:
             total_peso_cobro = 0
@@ -191,12 +198,7 @@ class SaleOrderEncomiendaList(models.Model):
             record.ancho = record.product_id.ancho_enc
             record.alto = record.product_id.alto_enc
 
-    def _compute_has_active_pricelist(self):
-        res = super()._compute_has_active_pricelist()
 
-        for order in self:
-            order.has_active_pricelist = False
-        return res
 
 
 
