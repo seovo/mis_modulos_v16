@@ -191,6 +191,13 @@ class SaleOrderEncomiendaList(models.Model):
             record.ancho = record.product_id.ancho_enc
             record.alto = record.product_id.alto_enc
 
+    def _compute_has_active_pricelist(self):
+        res = super()._compute_has_active_pricelist()
+
+        for order in self:
+            order.has_active_pricelist = False
+        return res
+
 
 
 
