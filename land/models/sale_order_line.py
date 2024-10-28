@@ -138,7 +138,7 @@ class SaleOrderLine(models.Model):
             if is_land:
                 price_total = price_totalx
                 if not returnx:
-                    price_final = ( price_totalx - inicial ) / self.product_uom_qty
+                    price_final = ( price_totalx - inicial ) / self.product_uom_qty if  self.product_uom_qty and  self.product_uom_qty != 0 else 0
                     #raise ValueError([self.name,price_final,price_totalx, inicial])
                     self.price_unit = price_final
 
