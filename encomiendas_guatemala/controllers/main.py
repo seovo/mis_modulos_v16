@@ -364,8 +364,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 file_vat = kw.get('file_vat', None)
                 if not file_vat.filename:
 
-                    errors['error_message'] = 'Adjunto Requerido'
-                    error_msg = 'Adjunto Requerido'
+                    errors['error_message'] = [{'file_vat': 'missing'}]
+                    error_msg = ['Adjunto Requerido']
                 #raise ValueError(file_vat.filename)
                 #if file_vat and mode in ['new','billing']:
                 #    raise ValueError(file_vat.filename)
