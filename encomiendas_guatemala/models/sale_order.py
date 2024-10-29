@@ -179,9 +179,11 @@ class SaleOrderEncomiendaList(models.Model):
 
             mult =  ( record.largo * record.ancho * record.alto ) / 5000
 
-            record.weight_vol = mult * 2.2046
+            weight_vol =  mult * 2.2046
 
-            max_vol = max(record.weight_vol,record.peso_real)
+            record.weight_vol =  math.ceil(max_vol)
+
+            max_vol = max(weight_vol,record.peso_real)
 
             record.weight_cobrar = math.ceil(max_vol)
 
