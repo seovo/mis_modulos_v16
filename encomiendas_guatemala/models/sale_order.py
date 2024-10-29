@@ -181,7 +181,7 @@ class SaleOrderEncomiendaList(models.Model):
 
             weight_vol =  mult * 2.2046
 
-            record.weight_vol =  math.ceil(max_vol)
+            record.weight_vol =  math.ceil(weight_vol)
 
             max_vol = max(weight_vol,record.peso_real)
 
