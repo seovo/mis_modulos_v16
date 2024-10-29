@@ -770,7 +770,6 @@
                         </div>
                         <div t-else=""
                              class="o_wsale_accordion accordion sticky-lg-top offset-xl-1 col-12 col-lg-5 col-xl-4 order-lg-2 rounded"
-                             style="display:none"
                              id="o_wsale_total_accordion">
                             <div class="o_total_card">
                                 <div class="accordion-item p-lg-4 border-0">
