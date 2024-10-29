@@ -364,6 +364,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
             #raise ValueError(pre_values)
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
 
+            if not errors and partner_id == -1 :
+                raise ValueError(kw)
+
             if errors:
                 errors['error_message'] = error_msg
                 values = kw
