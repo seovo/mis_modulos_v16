@@ -243,6 +243,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if not order:
             productvv = request.env['product.product'].sudo().search([('is_encomienda', '=', True)], limit=1)
             self.cart_update(productvv.id)
+        else:
+            return request.redirect('/shop/payment')
+
         #raise ValueError(order)
         if order and order.carrier_id:
             # Express checkout is based on the amout of the sale order. If there is already a
@@ -352,8 +355,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 mode = ('new', kw.get('mode') or 'shipping')
             else:  # no mode - refresh without post?
                 #editar aqui
-                #return request.redirect('/shop/checkout')
-                return request.redirect('/shop/payment')
+                return request.redirect('/shop/checkout')
+                #return request.redirect('/shop/payment')
         use_whatsapp = order.partner_id.use_whatsapp
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
