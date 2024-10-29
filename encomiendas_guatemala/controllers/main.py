@@ -351,7 +351,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
             elif partner_id == -1:
                 mode = ('new', kw.get('mode') or 'shipping')
             else:  # no mode - refresh without post?
-                return request.redirect('/shop/checkout')
+                #editar aqui
+                #return request.redirect('/shop/checkout')
+                return request.redirect('/shop/payment')
         use_whatsapp = order.partner_id.use_whatsapp
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
