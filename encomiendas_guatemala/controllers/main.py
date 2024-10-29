@@ -184,11 +184,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         return new_values, errors, error_msg
 
     def values_preprocess(self, values):
-
-
         #raise ValueError(foto)
-
-
         new_values = dict()
         partner_fields = request.env['res.partner']._fields
 
@@ -366,6 +362,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
             if not errors and partner_id == -1 :
                 file_vat = kw.get('file_vat', None)
+                if file_vat and mode in ['new','billing']:
+                    raise ValueError(file_vat.filename)
+
                 raise ValueError(str(file_vat))
 
             if errors:
