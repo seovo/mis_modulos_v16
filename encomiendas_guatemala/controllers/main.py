@@ -363,6 +363,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             if not errors and partner_id == -1 :
                 file_vat = kw.get('file_vat', None)
                 if not file_vat.filename:
+
                     errors['error_message'] = 'Adjunto Requerido'
                     error_msg = 'Adjunto Requerido'
                 #raise ValueError(file_vat.filename)
@@ -371,6 +372,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 #raise ValueError(str(file_vat))
 
             if errors:
+                raise ValidationError([errors,error_msg])
                 errors['error_message'] = error_msg
                 values = kw
                 #raise ValueError(kw)
