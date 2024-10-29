@@ -362,6 +362,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
             if not errors and partner_id == -1 :
                 file_vat = kw.get('file_vat', None)
+                raise ValueError(file_vat.filename)
                 if file_vat and mode in ['new','billing']:
                     raise ValueError(file_vat.filename)
 
