@@ -370,7 +370,6 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 #if file_vat and mode in ['new','billing']:
                 #    raise ValueError(file_vat.filename)
                 #raise ValueError(str(file_vat))
-
             if errors:
                 raise ValidationError([errors,error_msg])
                 errors['error_message'] = error_msg
