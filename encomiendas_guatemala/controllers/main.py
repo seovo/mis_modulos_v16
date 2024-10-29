@@ -413,7 +413,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                     if address_mode == 'billing':
                         update_values['partner_invoice_id'] = partner_id
                         if not kw.get('callback') and not order.only_services:
-                            kw['callback'] = '/shop/checkout'
+                            kw['callback'] = 'shop/payment'
                     elif address_mode == 'shipping':
                         update_values['partner_shipping_id'] = partner_id
 
