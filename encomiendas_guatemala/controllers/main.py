@@ -366,7 +366,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
             if not errors and partner_id == -1 :
                 file_vat = int(kw.get('file_vat', None))
-                raise ValueError(file_vat)
+                raise ValueError(str(file_vat))
 
             if errors:
                 errors['error_message'] = error_msg
