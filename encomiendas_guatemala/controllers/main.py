@@ -366,6 +366,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
 
             if not errors and partner_id == -1 :
+
                 file_vat = kw.get('file_vat', None)
                 #raise ValueError(mode)
                 if mode == ('new', 'billing'):
