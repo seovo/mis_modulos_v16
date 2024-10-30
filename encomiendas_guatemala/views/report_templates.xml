@@ -7,8 +7,9 @@
            <t t-set="forced_vat" t-value="doc.fiscal_position_id.foreign_vat"/> <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
 
             <t t-set="address">
+                <strong>Envia:</strong>
                <div t-field="doc.partner_id"
-                t-options='{"widget": "contact", "fields": ["address", "name" ,"phone"], "no_marker": True}' />
+                t-options='{"widget": "contact", "fields": ["address", "name" ,"phone"], "no_marker": True , "phone_icons": True }' />
                <p t-if="doc.partner_id.vat">
                  <t t-if="doc.company_id.account_fiscal_country_id.vat_label" t-out="doc.company_id.account_fiscal_country_id.vat_label"/>
                  <t t-else="">DPI / Passaporte</t>: <span t-field="doc.partner_id.vat"/>
@@ -38,7 +39,7 @@
                 -->
 
                 <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
-                    <strong>Shipping Address:</strong>
+                    <strong>Envia:</strong>
                     <div t-field="doc.partner_shipping_id"
                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
                     <p t-if="doc.partner_shipping_id.vat">
