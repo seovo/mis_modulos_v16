@@ -8,14 +8,14 @@
 
                <xpath expr="//button[@id='action_confirm']" position="replace">
                    <button name="action_confirm" id="action_confirm" data-hotkey="q"
-                           string="Confirm" class="btn-primary" type="object" context="{'validate_analytic': True , 'force_action_confirm_n':True}"
+                           string="Confirmar" class="btn-primary" type="object" context="{'validate_analytic': True , 'force_action_confirm_n':True}"
                            invisible="state != 'sent'"/>
 
                </xpath>
 
                <xpath expr="//button[@name='action_confirm'][2]" position="replace">
                    <button name="action_confirm" data-hotkey="q"
-                           string="Confirm" type="object" context="{'validate_analytic': True, 'force_action_confirm_n':True}"
+                           string="Confirmar" type="object" context="{'validate_analytic': True, 'force_action_confirm_n':True}"
                            invisible="state != 'draft'" />
 
                </xpath>
@@ -60,6 +60,7 @@
                    <field name="clase_encomienda" />
                    <field name="type_doc_encomienda" />
                    <field name="carrier_id" string="Caja Rural" />
+                   <field name="client_order_ref" string="#Recibo" />
                </xpath>
 
                <xpath expr="//notebook" position="inside" >
