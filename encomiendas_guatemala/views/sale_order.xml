@@ -60,7 +60,7 @@
                    <field name="clase_encomienda" />
                    <field name="type_doc_encomienda" />
                    <field name="carrier_id" string="Caja Rural" />
-                   <field name="client_order_ref" string="#Recibo" />
+                   <field name="client_order_ref" string="# Recibo" />
                </xpath>
 
                <xpath expr="//notebook" position="inside" >
