@@ -52,6 +52,7 @@ class SaleOrder(models.Model):
                 if self.partner_shipping_id:
                     if self.partner_shipping_id:
                         self.partner_shipping_id.parent_id = False
+            self._send_order_confirmation_mail()
             return
 
         res = super().action_confirm()
