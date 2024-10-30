@@ -43,6 +43,9 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
 
+        if self.env.context.get('force_action_confirm_n'):
+            return super().action_confirm()
+
         if self.carrier_id:
             for line in self.order_line:
                 carrier = self.carrier_id
@@ -53,13 +56,7 @@ class SaleOrder(models.Model):
                     if self.partner_shipping_id:
                         self.partner_shipping_id.parent_id = False
             self._send_order_confirmation_mail()
-            return
-
-        res = super().action_confirm()
-
-
-
-        return res
+            self.state = 'sent'
 
     #PACKING LIST
 
