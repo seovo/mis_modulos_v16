@@ -42,13 +42,21 @@ class SaleOrder(models.Model):
 
 
     def action_confirm(self):
-        res = super().action_confirm()
+
         if self.carrier_id:
             for line in self.order_line:
                 carrier = self.carrier_id
                 if line.product_id == self.carrier_id.product_id:
                     line.unlink()
                 self.carrier_id = carrier.id
+                if self.partner_shipping_id:
+                    if self.partner_shipping_id:
+                        self.partner_shipping_id.parent_id = False
+            return
+
+        res = super().action_confirm()
+
+
 
         return res
 
