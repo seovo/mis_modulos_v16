@@ -1,5 +1,5 @@
 {
-    'name': 'ComboPay Payment Provider',
+    'name': 'Mercado Pago Link Payment Provider',
     'version': '1.0',
     'category': 'Accounting/Payment Providers',
     "summary": "Pagos en línea con Mercado Pago",
@@ -19,7 +19,7 @@
     'data': [
         'data/payment_templates.xml',
         'data/payment_provider_data.xml',
-        # 'views/js_files_link.xml',
+        'views/product.xml',
         #'views/payment_provider_views.xml',
         #'views/payment_nuvei_templates.xml',
         # 'views/sale_order.xml',
