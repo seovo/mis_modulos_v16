@@ -19,110 +19,29 @@ import json
 
 class PaymentTransaction(models.Model):
     _inherit = 'payment.transaction'
-    checkout_code_combopay = fields.Char(
-        string='Checkout Combopay Id',
-        help='Checkout Combopay Id, useful to identify transaction.'
-    )
+    #checkout_code_combopay = fields.Char(
+    #    string='Checkout Combopay Id',
+    #    help='Checkout Combopay Id, useful to identify transaction.'
+    #)
 
-    def send_payment_combopay(self):
-        provider = self.provider_id
-
-        if provider.state == 'enabled':
-            api_url = 'https://api.combopay.co/api/invoice-company-customer'
-            api_key = provider.combopay_app_key
-        else:
-            api_url = 'https://api-sandbox.combopay.co/api/invoice-company-customer'
-            api_key = provider.combopay_app_key_test
-
-        sale_order = self.sale_order_ids
-
-
-
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            #'X-PUBLIC-KEY': provider.recurrente_public_key,
-            #'X-SECRET-KEY': provider.recurrente_secret_key,
-            'Authorization': f'Bearer {api_key}',
-        }
-
-        description = ''
-        for line in sale_order.order_line:
-            if line.product_id and line.price_total != 0:
-                description += '\n'+line.name
-
-        odoo_base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-
-        data = {
-            'value': self.amount ,
-            'description': description ,
-            'url_data_return': odoo_base_url+'/payment/recurrente/response/',
-            'name': self.partner_id.name ,
-            'email': self.partner_email ,
-            'document': self.partner_id.vat
-        }
-        payload = json.dumps(data)
-
-        response = requests.request("POST", api_url, headers=headers,
-                                    data=payload)
-
-        response_data = response.json()
-
-        if response_data.get('id') and response_data.get('payment_link') :
-            self.checkout_code_combopay = response_data.get('id')
-            return {
-                'api_url': response_data.get('payment_link'),
-                'reference': self.reference,
-            }
-
-
-        else:
-            validation_errors = str(response_data)
-            raise ValidationError(f"RESPONSE DATA RECUURENTE : {validation_errors}")
-
-        return {
-            'api_url': api_url,
-            'headers': headers
-            #'data': data,
-        }
 
     def _get_specific_rendering_values(self, processing_values):
 
         _logger.exception('Recurrente : _get_specific_rendering_values')
         """ Function to fetch the values of the payment gateway"""
         res = super()._get_specific_rendering_values(processing_values)
-        if self.provider_code != 'combopay':
-            return res
-        return self.send_payment_combopay()
-
-
-    #######################
-
-
-    def _get_specific_processing_values(self, processing_values):
-        """ Override of payment to return Stripe-specific processing values.
-
-        Note: self.ensure_one() from `_get_processing_values`
-
-        :param dict processing_values: The generic processing values of the transaction
-        :return: The dict of provider-specific processing values
-        :rtype: dict
-        """
-        res = super()._get_specific_processing_values(processing_values)
-        if self.provider_code != 'recurrente' or self.operation == 'online_token':
+        if self.provider_code != 'mercadopagolink':
             return res
 
-        #intent = self._stripe_create_intent()
-        #base_url = self.provider_id.get_base_url()
+        raise ValueError(self.sale_order_ids.order_line)
+
         return {
-            #'client_secret': intent['client_secret'],
-            #'return_url': url_join(
-            #    base_url,
-            #    f'{StripeController._return_url}?{url_encode({"reference": self.reference})}',
-            #),
-            'return_url': 'xdd'
+            'api_url': 'api_url',
+            #'headers': headers
+            #'data': data,
         }
 
+    #######################################v
 
     def send_payment_recurrente(self):
         #base_api_url = self.env['payment.provider'].search([('code', '=', 'myfatoorah')])._myfatoorah_get_api_url()
