@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_variant_easy_edit_view" model="ir.ui.view">
+            <field name="name">product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+            <field name="arch" type="xml">
+                <group name="codes" position='inside'>
+                    <field name="link_mercado_pago"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
