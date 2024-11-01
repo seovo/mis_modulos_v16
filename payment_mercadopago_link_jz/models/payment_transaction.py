@@ -33,10 +33,21 @@ class PaymentTransaction(models.Model):
         if self.provider_code != 'mercadopagolink':
             return res
 
-        raise ValueError(self.sale_order_ids.order_line)
+
+        link = None
+
+        for line in self.sale_order_ids.order_line:
+            if line.product_id.sale_ok and line.product_id.link_mercado_pago:
+                link = line.product_id.link_mercado_pago
+
+        if not  link:
+            raise ValueError('No se Encontro Link de Pago')
+
+
+
 
         return {
-            'api_url': 'api_url',
+            'api_url': link,
             #'headers': headers
             #'data': data,
         }
