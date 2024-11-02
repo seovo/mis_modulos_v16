@@ -30,7 +30,7 @@
 
                <xpath expr="//field[@name='partner_invoice_id']" position="replace">
                    <field name="partner_invoice_id" groups="account.group_delivery_invoice_address"
-                               context="{'default_type':'invoice', 'show_address': False, 'show_vat': False}"
+                               context="{'default_type':'invoice', 'show_address': 1 , 'show_vat': False}"
                                readonly="state == 'cancel' or locked" invisible="1" />
 
                </xpath>
