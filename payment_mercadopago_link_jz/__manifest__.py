@@ -20,6 +20,7 @@
         'data/payment_templates.xml',
         'data/payment_provider_data.xml',
         'views/product.xml',
+        'views/templates.xml'
         #'views/payment_provider_views.xml',
         #'views/payment_nuvei_templates.xml',
         # 'views/sale_order.xml',
