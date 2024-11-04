@@ -7,6 +7,7 @@
     "category": "Uncategorized",
     "version": "17.0",
     "depends": ["website_sale","delivery"],
+
     "data": [
         "security/ir.model.access.csv",
         'views/templates.xml',
