@@ -52,6 +52,8 @@ class SaleOrder(models.Model):
                 if line.product_id == self.carrier_id.product_id:
                     line.unlink()
                 self.carrier_id = carrier.id
+                if carrier.user_id:
+                    self.user_id = carrier.user_id.id
                 if self.partner_shipping_id:
                     if self.partner_shipping_id:
                         self.partner_shipping_id.parent_id = False
