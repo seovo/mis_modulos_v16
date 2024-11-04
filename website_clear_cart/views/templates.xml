@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CLEAR SHOPPING CART -->
+    <template id="clean_website_shopping_carts" inherit_id="website_sale.cart" name="Clear Cart">
+        <xpath expr="//t[@t-call='website_sale.cart_lines']" position="after">
+            <a role="button" t-if="not optional_products and website_sale_order and website_sale_order.website_order_line" class="js_clear_shopping_cart btn btn-secondary mb32" style="color: white;">
+                <span class="fa fa-trash-o" />
+                <span class="hidden-xs">Clear Shopping Cart</span>
+            </a>
+        </xpath>
+    </template>
+</odoo>
