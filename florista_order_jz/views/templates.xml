@@ -207,9 +207,7 @@
                                     <hr class="w-100"/>
                                 </div>
 
-
                                 <a href="/shop/checkout"
-                                   style="display:none !important"
                                    class="text-center">
                                     <i class="fa fa-angle-left me-2 fw-light"/>
                                     Return to shipping
