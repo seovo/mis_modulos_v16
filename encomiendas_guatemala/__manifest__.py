@@ -6,14 +6,15 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["website_sale"],
+    "depends": ["website_sale","delivery"],
     "data": [
         "security/ir.model.access.csv",
         'views/templates.xml',
         'views/sale_order.xml',
         'views/res_partner.xml',
         'views/product.xml',
-        'views/report_templates.xml'
+        'views/report_templates.xml',
+        'views/delivery_carrier.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal","pymssql","pandas"]},
