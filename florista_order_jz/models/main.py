@@ -108,8 +108,10 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
 
         if order:
-            raise ValueError(order.order_line)
-            return request.redirect('/shop/cart')
+            if order.order_line:
+                return request.redirect('/shop/cart')
+
+
 
         add_qty = int(post.get('add_qty', 1))
         try:
