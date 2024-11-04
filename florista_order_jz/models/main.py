@@ -106,6 +106,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         order = request.website.sale_get_order()
 
+
         if order:
             return request.redirect('/shop/cart')
 
