@@ -29,11 +29,13 @@ class PaymentTransaction(models.Model):
 
 
         order = self.sale_order_ids
-        if not order.customer_order_delivery_date:
-            raise ValueError('Se requiere fecha de envio')
+
 
         """ Function to fetch the values of the payment gateway"""
         res = super()._get_specific_rendering_values(processing_values)
+
+        if not order.customer_order_delivery_date:
+            raise ValueError('Se requiere fecha de envio')
 
         return res
 
