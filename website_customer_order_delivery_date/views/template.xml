@@ -6,7 +6,7 @@
                 <div class="row mt-4">
                     <div class="form-group col-lg-12">
                         <div class='col-sm-6'>
-                            <label class="control-label" for="delivery_date"> <b>Delivery Date</b></label>
+                            <label class="control-label" for="delivery_date"> <b>Fecha de 1er Envio</b></label>
                             <span class='input-group inline date datetimepicker'>
                                 <input type='date' class="form-control" id='delivery_date'/>
                                 <span class="input-group-addon" id='delivery_date_icon'>
@@ -20,8 +20,8 @@
                         <div class="form-group col-lg-12">
                             <div class='col-sm-6'>
                                 <div class="form-group mb-4">
-                                    <label class="control-label" for="delivery_comment"><b>Delivery Comment</b></label><br/>
-                                    <textarea class="form-control" id="delivery_comment" placeholder="Write a comment..."></textarea>
+                                    <label class="control-label" for="delivery_comment"><b>Comentario</b></label><br/>
+                                    <textarea class="form-control" id="delivery_comment" placeholder="Escribe un comentario..."></textarea>
                                 </div>
                             </div>
                         </div>
