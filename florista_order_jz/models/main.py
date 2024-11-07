@@ -369,6 +369,15 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'country': country,
             'country_states': country.get_website_sale_states(mode=mode[1]),
             'countries': country.get_website_sale_countries(mode=mode[1]),
+            'citys': [
+                'Providencia',
+                'Las Condes',
+                'La Reina',
+                'Vitacura',
+                'Lo Barnechea',
+                'Santiago Centro',
+                'Ñuñoa'
+            ]
         }
         return res
 
