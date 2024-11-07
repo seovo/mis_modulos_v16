@@ -313,12 +313,15 @@
                                         <div class="w-100"/>
                                         <t t-set='zip_city'
                                            t-value='country and [x for x in country.get_address_fields() if x in ["zip", "city"]] or ["city", "zip"]' />
+                                          <!--
                                            <t t-if="'zip' in zip_city and zip_city.index('zip') &lt; zip_city.index('city')">
                                             <div t-attf-class="#{error.get('zip') and 'o_has_error'} div_zip col-md-4 mb-2" style="display:none !important " >
                                                 <label class="col-form-label label-optional" for="zip">Zip Code</label>
                                                 <input type="text" name="zip" t-attf-class="form-control #{error.get('zip') and 'is-invalid' or ''}" t-att-value="'zip' in checkout and checkout['zip']" />
                                             </div>
-                                          </t>
+                                           </t>
+
+                                           -->
 
 
                                            <div
@@ -326,6 +329,7 @@
                                               <label class="col-form-label" for="city">City</label>
                                               <input type="text" name="city" t-attf-class="form-control #{error.get('city') and 'is-invalid' or ''}" t-att-value="'city' in checkout and checkout['city']" />
                                            </div>
+                                        <!--
 
                                            <t t-if="'zip' in zip_city and zip_city.index('zip') &gt; zip_city.index('city')">
                                              <div  style="display:none !important"  t-attf-class="#{error.get('zip') and 'o_has_error'} div_zip col-md-4 mb-2">
@@ -333,6 +337,7 @@
                                                 <input type="text" name="zip" t-attf-class="form-control #{error.get('zip') and 'is-invalid' or ''}" t-att-value="'zip' in checkout and checkout['zip']" />
                                             </div>
                                            </t>
+                                        -->
                                         <div class="w-100"/>
                                         <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2">
                                             <label class="col-form-label" for="country_id">Country</label>
