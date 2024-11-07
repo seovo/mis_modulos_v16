@@ -345,3 +345,29 @@ class WebsiteSale(payment_portal.PaymentPortal):
             #if country.zip_required:
             #    req += ['zip']
         return req
+
+    def _get_country_related_render_values(self, kw, render_values):
+        """ Provide the fields related to the country to render the website sale form """
+        values = render_values['checkout']
+        mode = render_values['mode']
+        order = render_values['website_sale_order']
+
+        def_country_id = order.partner_id.country_id
+        if order._is_public_order():
+            if request.geoip.country_code:
+                def_country_id = request.env['res.country'].search([('code', '=', request.geoip.country_code)], limit=1)
+            else:
+                def_country_id = request.website.user_id.sudo().country_id
+
+        country = 'country_id' in values and values['country_id'] != '' and request.env['res.country'].browse(int(values['country_id']))
+        country = country and country.exists() or def_country_id
+
+        ###########
+        country = request.env.ref('base.cl')
+
+        res = {
+            'country': country,
+            'country_states': country.get_website_sale_states(mode=mode[1]),
+            'countries': country.get_website_sale_countries(mode=mode[1]),
+        }
+        return res
