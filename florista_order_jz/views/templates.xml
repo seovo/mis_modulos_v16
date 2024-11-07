@@ -495,7 +495,7 @@
               t-att-data-landing-route="landing_route"
               t-att-data-access-token="access_token"
         >
-            <div id="o_payment_form_options" class="d-flex flex-column gap-3" style="display: none !important">
+            <div id="o_payment_form_options" class="d-flex flex-column gap-3" >
                 <!-- === Payment tokens === -->
                 <div t-if="tokens_sudo">
                     <!-- === Header === -->
