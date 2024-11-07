@@ -320,6 +320,7 @@
                                             </div>
                                           </t>
 
+
                                            <div  style="display:none "  t-attf-class="#{error.get('city') and 'o_has_error' or ''} div_city col-md-8 mb-2">
                                             <label class="col-form-label" for="city">City</label>
                                             <input type="text" name="city" t-attf-class="form-control #{error.get('city') and 'is-invalid' or ''}" t-att-value="'city' in checkout and checkout['city']" />
