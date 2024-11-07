@@ -361,7 +361,7 @@
                                               <select name="city" t-attf-class="form-select #{error.get('city') and 'is-invalid' or ''}" data-init="1">
                                                 <option value="">Ciudad...</option>
                                                 <t t-foreach="citys" t-as="ct">
-                                                    <option t-att-value="ct" t-att-selected="ct == ('city' in checkout and country and checkout['city'] != '' and int(checkout['city']))">
+                                                    <option t-att-value="ct" t-att-selected="ct == ('city' in checkout and country and checkout['city'] != '' and checkout['city'])">
                                                         <t t-esc="ct" />
                                                     </option>
                                                 </t>
