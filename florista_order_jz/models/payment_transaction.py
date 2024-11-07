@@ -37,6 +37,9 @@ class PaymentTransaction(models.Model):
         if not order.customer_order_delivery_date:
             raise ValueError('Se requiere fecha de envio')
 
+        date_order = order.date_order.date()
+        raise ValueError(date_order)
+
         return res
 
         if self.provider_code != 'mercadopagolink':
