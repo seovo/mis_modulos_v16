@@ -44,7 +44,7 @@ class PaymentTransaction(models.Model):
         if order.customer_order_delivery_date <= date_order:
             raise ValueError('La fecha de envio debe ser mayor a la fecha actual')
 
-        raise ValueError([order.customer_order_delivery_date,date_order])
+
 
         return res
 
