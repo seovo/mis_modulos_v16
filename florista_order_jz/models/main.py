@@ -83,7 +83,6 @@ class TableCompute(object):
 
 class WebsiteSale(payment_portal.PaymentPortal):
 
-
     def sitemap_shop(env, rule, qs):
         if not qs or qs.lower() in '/shop':
             yield {'loc': '/shop'}
@@ -325,3 +324,24 @@ class WebsiteSale(payment_portal.PaymentPortal):
             values['main_object'] = category
         values.update(self._get_additional_shop_values(values))
         return request.render("website_sale.products", values)
+
+
+    def _get_mandatory_fields_billing(self, country_id=False):
+        req = ["name", "email", "street", "city", "country_id"]
+        if country_id:
+            country = request.env['res.country'].browse(country_id)
+            if country.state_required:
+                req += ['state_id']
+            #if country.zip_required:
+            #    req += ['zip']
+        return req
+
+    def _get_mandatory_fields_shipping(self, country_id=False):
+        req = ["name", "street", "city", "country_id", "phone"]
+        if country_id:
+            country = request.env['res.country'].browse(country_id)
+            if country.state_required:
+                req += ['state_id']
+            #if country.zip_required:
+            #    req += ['zip']
+        return req
