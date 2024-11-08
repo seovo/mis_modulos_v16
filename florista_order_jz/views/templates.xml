@@ -512,6 +512,16 @@
                             <t t-call="website_sale.shop_product_images"/>
                         </div>
                         -->
+
+                        <style>
+                            @media (min-width: 768px) {
+                                 #product_details {
+                                    margin-left: 20%;
+                                 }
+                            }
+
+                        </style>
+
                         <div t-attf-class="col-lg-#{image_cols[1]} mt-md-4" id="product_details">
                             <t t-set="base_url" t-value="product.get_base_url()"/>
                             <h1 itemprop="name" t-field="product.name">Product Name</h1>
