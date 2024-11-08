@@ -707,6 +707,8 @@
                                         t-att-autocomplete="off"/>
                                     <label class="radio_input_value o_variant_pills_input_value"
                                            t-att-for="ptav.id">
+                                        <img t-attf-src="/web/image/product.template.attribute.value/#{ptav.id}/image" alt="..." class="img-thumbnail" style="width: 8rem;" />
+                                        <br />
                                         <span t-field="ptav.name"/>
                                         <t t-call="website_sale.badge_extra_price"/>
                                     </label>
