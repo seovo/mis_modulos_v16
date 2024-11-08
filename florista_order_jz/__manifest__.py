@@ -17,7 +17,7 @@
     ],
     'data': [
 
-        'views/templates.xml'
+        'views/templates.xml',
         'views/product_attribute.xml',
         #'views/payment_nuvei_templates.xml',
         # 'views/sale_order.xml',
