@@ -15,6 +15,7 @@
                <xpath expr="//field[@name='activity_ids']" position="replace" >
                    <field name="activity_ids" widget="list_activity" optional="hide" />
                    <field name="mz_lot" optional="show" />
+                   <field name="description_land" optional="show" />
                    <field name="proveedores_land"  optional="show" />
 
                </xpath>
