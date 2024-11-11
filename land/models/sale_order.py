@@ -271,6 +271,11 @@ class SaleOrder(models.Model):
                 if line.product_id.payment_land_dues:
 
                     for line_inv in line.invoice_lines:
+                        if line_inv.move_id.l10n_pe_edi_reversal_type_id:
+                            continue
+
+                        if line_inv.move_id.payment_state ==  'reversed':
+                            continue
                         if not line_inv.move_id.debit_origin_id:
                             cantidad_facturada += line_inv.quantity
                     #qty += line.qty_invoiced
