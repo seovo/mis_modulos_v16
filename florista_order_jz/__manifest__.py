@@ -12,7 +12,7 @@
     'currency': 'USD',
     'depends': [
         'payment_mercadopago_link_jz',
-        'website_customer_order_delivery_date',
+        #'website_customer_order_delivery_date',
 
     ],
     'data': [
