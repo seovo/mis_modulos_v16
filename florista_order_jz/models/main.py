@@ -553,6 +553,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'state_id': request.env.ref('base.state_cl_13').id
         })
 
+        date_now_1 = fields.datetime.now().date() + timedelta(days=1)
+
         is_public_user = request.website.is_public_user()
         render_values = {
             'website_sale_order': order,
@@ -567,6 +569,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'is_public_user': is_public_user,
             'is_public_order': order._is_public_order(),
             'use_same': is_public_user or ('use_same' in kw and str2bool(kw.get('use_same') or '0')),
+            'date_min': date_now_1
         }
         render_values.update(self._get_country_related_render_values(kw, render_values))
         return request.render("website_sale.address", render_values)
