@@ -482,6 +482,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
             else:  # no mode - refresh without post?
                 return request.redirect('/shop/checkout')
 
+        date_now_1 = fields.datetime.now().date() + timedelta(days=1)
+
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
             pre_values = self.values_preprocess(kw)
@@ -491,7 +493,12 @@ class WebsiteSale(payment_portal.PaymentPortal):
             date_shipment_florista = kw.get('date_shipment_florista', None)
 
             if date_shipment_florista:
-                raise ValueError([date_shipment_florista,type(date_shipment_florista)])
+                date_shipment_florista = datetime.strptime(date_shipment_florista, "%Y-%m-%d")
+                if date_shipment_florista < date_now_1:
+                    errors['error_message'] = [{'date_shipment_florista': 'missing'}]
+                    error_msg = [f'Fecha Envio debe ser mayor o igual que {str(date_now_1)}']
+
+                #raise ValueError([date_shipment_florista,type(date_shipment_florista)])
 
             if errors:
                 errors['error_message'] = error_msg
@@ -558,7 +565,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'state_id': request.env.ref('base.state_cl_13').id
         })
 
-        date_now_1 = fields.datetime.now().date() + timedelta(days=1)
+
 
         is_public_user = request.website.is_public_user()
         render_values = {
