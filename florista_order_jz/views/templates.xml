@@ -311,6 +311,14 @@
                                             <input type="text" name="street2" t-attf-class="form-control #{error.get('street2') and 'is-invalid' or ''}" t-att-value="'street2' in checkout and checkout['street2']" />
                                         </div>
                                         <div class="w-100"/>
+
+                                        <div t-attf-class="mb-2 #{error.get('date_shipment_florista') and 'o_has_error' or ''} col-lg-12 div_street2">
+                                            <label class="col-form-label label-optional" for="date_shipment_florista">Fecha de Envio</label>
+                                            <input type="date" name="date_shipment_florista" t-attf-class="form-control #{error.get('date_shipment_florista') and 'is-invalid' or ''}"
+                                                   t-attf-min="#{date_min}"
+                                                   t-att-value="'date_shipment_florista' in checkout and checkout['date_shipment_florista']" />
+                                        </div>
+
                                         <t t-set='zip_city'
                                            t-value='country and [x for x in country.get_address_fields() if x in ["zip", "city"]] or ["city", "zip"]' />
                                           <!--
@@ -333,6 +341,22 @@
                                            </t>
                                         -->
                                         <div class="w-100"/>
+
+                                        <div t-attf-class="#{error.get('city') and 'o_has_error' or ''} div_city col-md-8 mb-2" >
+                                              <label class="col-form-label" for="city">Comuna</label>
+
+                                              <select name="city" t-attf-class="form-select #{error.get('city') and 'is-invalid' or ''}" data-init="1">
+                                                <option value="">Comuna...</option>
+                                                <t t-foreach="citys" t-as="ct">
+                                                    <option t-att-value="ct" t-att-selected="ct == ('city' in checkout and country and checkout['city'] != '' and checkout['city'])">
+                                                        <t t-esc="ct" />
+                                                    </option>
+                                                </t>
+                                              </select>
+
+                                        </div>
+
+
                                         <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2">
                                             <label class="col-form-label" for="country_id">Country</label>
                                             <select id="country_id" name="country_id" t-attf-class="form-select #{error.get('country_id') and 'is-invalid' or ''}" t-att-mode="mode[1]">
@@ -355,25 +379,8 @@
                                                 </t>
                                             </select>
                                         </div>
-                                        <div t-attf-class="#{error.get('city') and 'o_has_error' or ''} div_city col-md-8 mb-2" >
 
 
-                                              <select name="city" t-attf-class="form-select #{error.get('city') and 'is-invalid' or ''}" data-init="1">
-                                                <option value="">Ciudad...</option>
-                                                <t t-foreach="citys" t-as="ct">
-                                                    <option t-att-value="ct" t-att-selected="ct == ('city' in checkout and country and checkout['city'] != '' and checkout['city'])">
-                                                        <t t-esc="ct" />
-                                                    </option>
-                                                </t>
-                                              </select>
-
-                                        </div>
-                                        <div t-attf-class="mb-2 #{error.get('date_shipment_florista') and 'o_has_error' or ''} col-lg-12 div_street2">
-                                            <label class="col-form-label label-optional" for="date_shipment_florista">Fecha de Envio</label>
-                                            <input type="date" name="date_shipment_florista" t-attf-class="form-control #{error.get('date_shipment_florista') and 'is-invalid' or ''}"
-                                                   t-attf-min="#{date_min}"
-                                                   t-att-value="'date_shipment_florista' in checkout and checkout['date_shipment_florista']" />
-                                        </div>
                                         <div class="w-100"/>
                                         <t t-if="mode == ('new', 'billing') and not only_services">
                                             <div class="col-lg-12">
