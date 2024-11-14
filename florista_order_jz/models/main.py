@@ -494,7 +494,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
             if date_shipment_florista:
                 date_shipment_florista = datetime.strptime(date_shipment_florista, "%Y-%m-%d")
-                if date_shipment_florista < date_now_1:
+                if date_shipment_florista.date() < date_now_1:
                     errors['error_message'] = [{'date_shipment_florista': 'missing'}]
                     error_msg = [f'Fecha Envio debe ser mayor o igual que {str(date_now_1)}']
 
