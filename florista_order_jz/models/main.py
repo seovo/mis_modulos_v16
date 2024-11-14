@@ -488,6 +488,11 @@ class WebsiteSale(payment_portal.PaymentPortal):
             errors, error_msg = self.checkout_form_validate(mode, kw, pre_values)
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
 
+            date_shipment_florista = kw.get('date_shipment_florista', None)
+
+            if date_shipment_florista:
+                raise ValueError([date_shipment_florista,type(date_shipment_florista)])
+
             if errors:
                 errors['error_message'] = error_msg
                 values = kw
