@@ -495,7 +495,7 @@
                          t-att-data-view-track="view_track and '1' or '0'"
                          t-att-data-product-tracking-info="'product_tracking_info' in combination_info and json.dumps(combination_info['product_tracking_info'])"
                 >
-                    <div class="row align-items-center">
+                    <div class="row align-items-center" style="display:none">
                         <div class="col-lg-6 d-flex align-items-center">
                             <div class="d-flex justify-content-between w-100">
                                 <t t-if="is_view_active('website_sale.search')" t-call="website_sale.search">
