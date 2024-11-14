@@ -12,7 +12,7 @@ import base64
 from odoo.addons.website.controllers.main import QueryURL
 from datetime import datetime
 from odoo.osv import expression
-
+from datetime import datetime, timedelta
 
 class TableCompute(object):
 
