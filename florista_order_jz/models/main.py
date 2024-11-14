@@ -590,3 +590,33 @@ class WebsiteSale(payment_portal.PaymentPortal):
         }
         render_values.update(self._get_country_related_render_values(kw, render_values))
         return request.render("website_sale.address", render_values)
+
+    @http.route(['/shop/checkout'], type='http', auth="public", website=True, sitemap=False)
+    def checkout(self, **post):
+        order_sudo = request.website.sale_get_order()
+
+
+
+        redirection = self.checkout_redirection(order_sudo)
+        if redirection:
+            return redirection
+
+        if order_sudo._is_public_order():
+            return request.redirect('/shop/address')
+
+        redirection = self.checkout_check_address(order_sudo)
+        if redirection:
+            return redirection
+
+        if post.get('express'):
+            return request.redirect('/shop/confirm_order')
+
+        values = self.checkout_values(order_sudo, **post)
+
+        # Avoid useless rendering if called in ajax
+        if post.get('xhr'):
+            return 'ok'
+
+        return request.redirect(f'/shop/address?mode=billing&partner_id={order_sudo.partner_id}')
+
+        return request.render("website_sale.checkout", values)
