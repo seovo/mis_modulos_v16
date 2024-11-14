@@ -565,6 +565,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'state_id': request.env.ref('base.state_cl_13').id
         })
 
+        order.date_shipment_florista = order.partner_id.date_shipment_florista
+
 
 
         is_public_user = request.website.is_public_user()
