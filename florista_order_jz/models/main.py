@@ -617,6 +617,6 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if post.get('xhr'):
             return 'ok'
 
-        return request.redirect(f'/shop/address?mode=billing&partner_id={order_sudo.partner_id}')
+        return request.redirect(f'/shop/address?mode=billing&partner_id={order_sudo.partner_id.id}')
 
         return request.render("website_sale.checkout", values)
