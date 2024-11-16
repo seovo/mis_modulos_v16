@@ -13,6 +13,7 @@ from odoo.addons.website.controllers.main import QueryURL
 from datetime import datetime
 from odoo.osv import expression
 from datetime import datetime, timedelta
+from odoo.addons.sale.controllers import portal as sale_portal
 
 class TableCompute(object):
 
@@ -621,43 +622,43 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         return request.render("website_sale.checkout", values)
 
-    @http.route('/shop/payment', type='http', auth='public', website=True, sitemap=False)
-    def shop_payment(self, **post):
-        """ Payment step. This page proposes several payment means based on available
-        payment.provider. State at this point :
+    def _get_shop_payment_values(self, order, **kwargs):
+        checkout_page_values = {
+            'website_sale_order': order,
+            'errors': self._get_shop_payment_errors(order),
+            'partner': order.partner_invoice_id,
+            'order': order,
+            'submit_button_label': _("Pay now"),
+            'payment_action_id': request.env.ref('payment.action_payment_provider').id,
+            'action_activate_stripe_id': request.env.ref(
+                'website_payment.action_activate_stripe'
+            ).id,
+        }
+        payment_form_values = {
+            **sale_portal.CustomerPortal._get_payment_values(
+                self, order, website_id=request.website.id
+            ),
+            'display_submit_button': False,  # The submit button is re-added outside the form.
+            'transaction_route': f'/shop/payment/transaction/{order.id}',
+            'landing_route': '/shop/payment/validate',
+            'sale_order_id': order.id,  # Allow Stripe to check if tokenization is required.
+        }
+        values = {**checkout_page_values, **payment_form_values}
+        if request.website.enabled_delivery:
+            has_storable_products = any(
+                line.product_id.type in ['consu', 'product'] for line in order.order_line
+            )
+            if has_storable_products:
+                if order.carrier_id and not order.delivery_rating_success:
+                    order._remove_delivery_line()
+                    order._check_carrier_quotation()
+                values['deliveries'] = order._get_delivery_methods().sudo()
 
-         - a draft sales order with lines; otherwise, clean context / session and
-           back to the shop
-         - no transaction in context / session, or only a draft one, if the customer
-           did go to a payment.provider website but closed the tab without
-           paying / canceling
-        """
-        order = request.website.sale_get_order()
+            values['delivery_has_storable'] = has_storable_products
+            values['delivery_action_id'] = request.env.ref(
+                'delivery.action_delivery_carrier_form'
+            ).id
 
-        if order and (request.httprequest.method == 'POST' or not order.carrier_id):
-            # Update order's carrier_id (will be the one of the partner if not defined)
-            # If a carrier_id is (re)defined, redirect to "/shop/payment" (GET method to avoid infinite loop)
-            carrier_id = post.get('carrier_id')
-            keep_carrier = post.get('keep_carrier', False)
-            if keep_carrier:
-                keep_carrier = bool(int(keep_carrier))
-            if carrier_id:
-                carrier_id = int(carrier_id)
-            order._check_carrier_quotation(force_carrier_id=carrier_id, keep_carrier=keep_carrier)
-            if carrier_id:
-                return request.redirect("/shop/payment")
+        raise ValueError(values)
 
-        redirection = self.checkout_redirection(order) or self.checkout_check_address(order)
-        if redirection:
-            return redirection
-
-        render_values = self._get_shop_payment_values(order, **post)
-        render_values['only_services'] = order and order.only_services or False
-
-        raise ValueError(render_values)
-
-        if render_values['errors']:
-            render_values.pop('payment_methods_sudo', '')
-            render_values.pop('tokens_sudo', '')
-
-        return request.render("website_sale.payment", render_values)
+        return values
