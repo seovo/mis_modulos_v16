@@ -634,6 +634,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 'website_payment.action_activate_stripe'
             ).id,
         }
+
+        raise ValueError(checkout_page_values)
+
         payment_form_values = {
             **sale_portal.CustomerPortal._get_payment_values(
                 self, order, website_id=request.website.id
@@ -659,6 +662,6 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 'delivery.action_delivery_carrier_form'
             ).id
 
-        raise ValueError(values)
+
 
         return values
