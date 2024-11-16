@@ -18,6 +18,7 @@ class PaymentProvider(models.Model):
         selection_add=[('mercadopagolink', "Mercado Pago Link")], ondelete={'mercadopagolink': 'set default'}
     )
 
+
     @api.model
     def _get_compatible_providers(self, *args, is_validation=False, **kwargs):
         """ Override of payment to unlist Ogone providers for validation operations. """
@@ -26,7 +27,7 @@ class PaymentProvider(models.Model):
         if is_validation:
             providers = providers.filtered(lambda p: p.code != 'mercadopagolink')
 
-        raise ValueError(providers)
+        #raise ValueError(providers)
 
         return providers
 
