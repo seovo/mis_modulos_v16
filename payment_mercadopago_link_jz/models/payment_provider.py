@@ -26,6 +26,8 @@ class PaymentProvider(models.Model):
         if is_validation:
             providers = providers.filtered(lambda p: p.code != 'mercadopagolink')
 
+        raise ValueError(providers)
+
         return providers
 
     '''
