@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import _, fields, models
+from odoo import _, fields, models , api
 
 from odoo.addons.payment_paypal import const
 
@@ -17,6 +17,17 @@ class PaymentProvider(models.Model):
     code = fields.Selection(
         selection_add=[('mercadopagolink', "Mercado Pago Link")], ondelete={'mercadopagolink': 'set default'}
     )
+
+    @api.model
+    def _get_compatible_providers(self, *args, is_validation=False, **kwargs):
+        """ Override of payment to unlist Ogone providers for validation operations. """
+        providers = super()._get_compatible_providers(*args, is_validation=is_validation, **kwargs)
+
+        if is_validation:
+            providers = providers.filtered(lambda p: p.code != 'mercadopagolink')
+
+        return providers
+
     '''
     combopay_client_key = fields.Char(
         'Client APP ID',
