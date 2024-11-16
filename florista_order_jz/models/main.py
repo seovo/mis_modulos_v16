@@ -654,7 +654,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         render_values = self._get_shop_payment_values(order, **post)
         render_values['only_services'] = order and order.only_services or False
 
-        raise ValueError(render_values['errors'])
+        raise ValueError(render_values)
 
         if render_values['errors']:
             render_values.pop('payment_methods_sudo', '')
