@@ -635,12 +635,16 @@ class WebsiteSale(payment_portal.PaymentPortal):
             ).id,
         }
 
-        raise ValueError(checkout_page_values)
+        #raise ValueError(checkout_page_values)
+
+        payments_method = sale_portal.CustomerPortal._get_payment_values(
+                self, order, website_id=request.website.id
+            )
+
+        raise ValueError(payments_method)
 
         payment_form_values = {
-            **sale_portal.CustomerPortal._get_payment_values(
-                self, order, website_id=request.website.id
-            ),
+            **payments_method,
             'display_submit_button': False,  # The submit button is re-added outside the form.
             'transaction_route': f'/shop/payment/transaction/{order.id}',
             'landing_route': '/shop/payment/validate',
