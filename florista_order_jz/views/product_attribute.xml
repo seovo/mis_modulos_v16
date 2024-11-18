@@ -6,6 +6,12 @@
            <field name="model">product.attribute</field>
            <field name="inherit_id" ref="product.product_attribute_view_form" />
            <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='create_variant']" position="after" >
+
+                   <field name="is_period_florista"  />
+               </xpath>
+
                <xpath expr="//field[@name='image']" position="after" >
                    <field name="image" class="oe_avatar text-start float-none"
 
@@ -16,8 +22,8 @@
 
                <xpath expr="//field[@name='value_ids']/tree" position="inside" >
                    <field name="is_period_florista" invisible="1"  />
-                   <field name="number_period_florista"   invisible="not is_period_florista" />
-                   <field name="interval_period_florista"   invisible="not is_period_florista" />
+                   <field name="number_period_florista"   column_invisible="not is_period_florista" />
+                   <field name="interval_period_florista"   column_invisible="not is_period_florista" />
                </xpath>
 
            </field>
