@@ -5,6 +5,3 @@ class ResPartner(models.Model):
     date_shipment_florista = fields.Date(string='Fecha Envio Flores')
 
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
-    date_shipment_florista = fields.Date(string='Fecha Envio Flores')
