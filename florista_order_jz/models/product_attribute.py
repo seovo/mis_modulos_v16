@@ -6,7 +6,7 @@ class ProductProduct(models.Model):
 
 
 class ProductProductFlorista(models.Model):
-    _inherit = 'product.product.florista'
+    _name = 'product.product.florista'
     sequence = fields.Integer()
     product_id = fields.Many2one('product.product')
     product_terminado_id = fields.Many2one('product.product',string="Producto Terminado")
