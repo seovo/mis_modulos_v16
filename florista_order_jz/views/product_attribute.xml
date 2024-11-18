@@ -12,6 +12,13 @@
                    />
                    <!--  column_invisible="parent.display_type != 'color'" -->
                </xpath>
+
+               <xpath expr="//field[@name='value_ids']/tree" position="inside" >
+                   <field name="is_period_florista" invisible="1"  />
+                   <field name="number_period_florista"   invisible="not is_period_florista" />
+                   <field name="interval_period_florista"   invisible="not is_period_florista" />
+               </xpath>
+
            </field>
     </record>
 
