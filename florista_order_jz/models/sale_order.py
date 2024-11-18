@@ -7,7 +7,7 @@ class SaleOrder(models.Model):
     interval_period_florista = fields.Integer(string="Dias Intervalo", compute="get_data_florista",store=True)
 
 
-    @api.depends('order_line,order_line.product_id')
+    #@api.depends('order_line,order_line.product_id')
     def get_data_florista(self):
         for record in self:
             record.number_period_florista = None
