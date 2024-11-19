@@ -5,6 +5,7 @@ class SaleOrder(models.Model):
     date_shipment_florista = fields.Date(string='Fecha Envio Flores')
     number_period_florista = fields.Integer(string="Nro Periodo", compute="get_data_florista",store=True)
     interval_period_florista = fields.Integer(string="Dias Intervalo", compute="get_data_florista",store=True)
+    product_terminado_florista = fields.Many2one('product.product', compute="get_data_florista")
 
 
     @api.depends('order_line','order_line.product_id')
@@ -19,6 +20,7 @@ class SaleOrder(models.Model):
                         if value.attribute_id.is_period_florista:
                             record.number_period_florista = value.product_attribute_value_id.number_period_florista
                             record.interval_period_florista = value.product_attribute_value_id.interval_period_florista
+                            record.product_terminado_florista = line.product_id.id
 
     def action_confirm(self):
         if self.date_shipment_florista:
