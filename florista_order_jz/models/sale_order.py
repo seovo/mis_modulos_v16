@@ -22,7 +22,8 @@ class SaleOrder(models.Model):
                             record.interval_period_florista = value.product_attribute_value_id.interval_period_florista
                             record.product_terminado_florista = line.product_id.id
 
-    def add_envio(self):
+
+    def add_envio_florista(self):
         if self.date_shipment_florista:
             suscripcion = None
             for line in self.order_line:
