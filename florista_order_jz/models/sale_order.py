@@ -20,6 +20,30 @@ class SaleOrder(models.Model):
                             record.number_period_florista = value.product_attribute_value_id.number_period_florista
                             record.interval_period_florista = value.product_attribute_value_id.interval_period_florista
 
+    def action_confirm(self):
+        if self.date_shipment_florista:
+            suscripcion = None
+            for line in self.order_line:
+                if line.price_unit != 0:
+                    suscripcion = line.product_id
+
+            if suscripcion:
+                for value in suscripcion.product_template_attribute_value_ids:
+                    if value.product_attribute_value_id.product_florista_ids:
+                        for product in value.product_attribute_value_id.product_florista_ids:
+                            self.order_line += self.env['sale.order.line'].new({
+                                'product_id': product.id ,
+                                'name': product.display_name ,
+                                'product_uom_qty': 1 ,
+                                'price_unit': 0 ,
+                                'tax_id': None
+                            })
+
+
+
+        res = super().action_confirm()
+        return res
+
 
 
 
