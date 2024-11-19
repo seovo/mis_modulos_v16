@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
                             record.interval_period_florista = value.product_attribute_value_id.interval_period_florista
                             record.product_terminado_florista = line.product_id.id
 
-    def action_confirm(self):
+    def add_envio(self):
         if self.date_shipment_florista:
             suscripcion = None
             for line in self.order_line:
@@ -45,13 +45,6 @@ class SaleOrder(models.Model):
                                 'price_unit': 0 ,
                                 'tax_id': None
                             })
-
-
-
-
-        res = super().action_confirm()
-        return res
-
 
 
 
