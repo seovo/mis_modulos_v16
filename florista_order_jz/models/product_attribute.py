@@ -1,14 +1,11 @@
 from odoo import _, api, fields, models
 
-class ProductProduct(models.Model):
-    _inherit = 'product.product'
-    product_florista_ids = fields.One2many('product.product.florista','product_id')
 
 
 class ProductProductFlorista(models.Model):
     _name = 'product.product.florista'
     sequence = fields.Integer()
-    product_id = fields.Many2one('product.product')
+    product_attribute_value_id = fields.Many2one('product.attribute.value')
     product_terminado_id = fields.Many2one('product.product',string="Producto Terminado")
 
 
@@ -23,3 +20,16 @@ class ProductAttributeValue(models.Model):
     is_period_florista = fields.Boolean(related='attribute_id.is_period_florista')
     number_period_florista = fields.Integer(string="Nro Periodo")
     interval_period_florista = fields.Integer(string="Dias Intervalo")
+    product_florista_ids = fields.One2many('product.product.florista', 'product_attribute_value_id')
+
+    def edit_products(self):
+        view = self.env.ref('florista_order_jz.edit_product_atrv')
+        return {
+            "name": f"EDIT PRODUCTS :   {self.name}",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "product.attribute.value",
+            "target": "new",
+            "res_id": self.id,
+            "view_id": view.id
+        }
