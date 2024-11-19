@@ -6,6 +6,7 @@ class SaleOrder(models.Model):
     number_period_florista = fields.Integer(string="Nro Periodo", compute="get_data_florista",store=True)
     interval_period_florista = fields.Integer(string="Dias Intervalo", compute="get_data_florista",store=True)
     product_terminado_florista = fields.Many2one('product.product', compute="get_data_florista")
+    next_order_number_list = fields.Float(string="Siguiente # de Producto Terminado")
 
 
     @api.depends('order_line','order_line.product_id')
@@ -23,7 +24,7 @@ class SaleOrder(models.Model):
                             record.product_terminado_florista = line.product_id.id
 
 
-    def add_envio_florista(self):
+    def add_envio_florista(self,c=0):
         if self.date_shipment_florista:
             suscripcion = None
             for line in self.order_line:
@@ -34,9 +35,13 @@ class SaleOrder(models.Model):
                 for value in suscripcion.product_template_attribute_value_ids:
                     if value.product_attribute_value_id.product_florista_ids:
 
-                        c = 0
+
                         for product_f in value.product_attribute_value_id.product_florista_ids:
+
                             c += 1
+
+
+
                             if c > self.number_period_florista  :
                                 break
                             self.order_line += self.env['sale.order.line'].new({

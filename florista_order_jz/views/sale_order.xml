@@ -13,6 +13,7 @@
                             <field name="number_period_florista" />
                             <field name="interval_period_florista" />
                             <field name="product_terminado_florista" />
+                            <field name="next_order_number_list" />
                         </group>
                     </group>
                 </page>
