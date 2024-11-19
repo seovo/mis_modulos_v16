@@ -30,10 +30,10 @@ class SaleOrder(models.Model):
             if suscripcion:
                 for value in suscripcion.product_template_attribute_value_ids:
                     if value.product_attribute_value_id.product_florista_ids:
-                        for product in value.product_attribute_value_id.product_florista_ids:
+                        for product_f in value.product_attribute_value_id.product_florista_ids:
                             self.order_line += self.env['sale.order.line'].new({
-                                'product_id': product.id ,
-                                'name': product.display_name ,
+                                'product_id': product_f.product_terminado_id.id ,
+                                'name': product_f.product_terminado_id.display_name ,
                                 'product_uom_qty': 1 ,
                                 'price_unit': 0 ,
                                 'tax_id': None
