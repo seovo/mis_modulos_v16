@@ -47,11 +47,13 @@ class SaleOrder(models.Model):
                         if c > len_p:
                             c = 0
 
+                        florista_ids = value.product_attribute_value_id.product_florista_ids
 
-                        for product_f in value.product_attribute_value_id.product_florista_ids:
+
+                        for product_f in  florista_ids + florista_ids + florista_ids:
 
                             if ct >= c :
-                                raise ValueError([ct,c])
+                                #raise ValueError([ct,c])
                                 #c += 1
 
                                 # raise ValueError([c,self.number_period_florista])
