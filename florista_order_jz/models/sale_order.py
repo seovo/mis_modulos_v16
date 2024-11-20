@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
 
 
     def add_envio_florista(self,c=0):
-        if self.date_shipment_florista:
+        if self.product_terminado_florista:
             suscripcion = None
             for line in self.order_line:
                 if line.price_unit != 0:
