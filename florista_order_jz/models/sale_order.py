@@ -39,32 +39,39 @@ class SaleOrder(models.Model):
                     if value.product_attribute_value_id.product_florista_ids:
 
 
+                        ct = 0
+                        ctt = 0
+
+                        len_p = len(value.product_attribute_value_id.product_florista_ids)
+
+                        if c > len_p:
+                            c = 0
+
 
 
                         for product_f in value.product_attribute_value_id.product_florista_ids:
 
-                            c += 1
+                            if ct >= c :
+                                #c += 1
+                                ctt += 1
+                                # raise ValueError([c,self.number_period_florista])
 
-                            if  c > len(value.product_attribute_value_id.product_florista_ids)  :
-                                c = 1
+                                # if c > len(value.product_attribute_value_id.product_florista_ids)  :
+                                if ctt > self.number_period_florista:
+                                    break
+                                self.order_line += self.env['sale.order.line'].new({
+                                    'product_id': product_f.product_terminado_id.id,
+                                    'name': product_f.product_terminado_id.display_name,
+                                    'product_uom_qty': 1,
+                                    'price_unit': 0,
+                                    'tax_id': None
+                                })
 
-                            raise ValueError([c,self.number_period_florista])
+                            ct += 1
 
 
 
 
-
-
-                            #if c > len(value.product_attribute_value_id.product_florista_ids)  :
-                            if c > self.number_period_florista  :
-                                break
-                            self.order_line += self.env['sale.order.line'].new({
-                                'product_id': product_f.product_terminado_id.id ,
-                                'name': product_f.product_terminado_id.display_name ,
-                                'product_uom_qty': 1 ,
-                                'price_unit': 0 ,
-                                'tax_id': None
-                            })
 
 
 
