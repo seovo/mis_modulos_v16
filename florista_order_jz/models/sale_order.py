@@ -58,6 +58,7 @@ class SaleOrder(models.Model):
 
                                 # if c > len(value.product_attribute_value_id.product_florista_ids)  :
                                 if ctt > self.number_period_florista:
+                                    raise ValueError([ctt,self.number_period_florista])
                                     break
                                 self.order_line += self.env['sale.order.line'].new({
                                     'product_id': product_f.product_terminado_id.id,
