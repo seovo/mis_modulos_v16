@@ -6,7 +6,7 @@ class SaleOrder(models.Model):
     number_period_florista = fields.Integer(string="Nro Periodo", compute="get_data_florista",store=True)
     interval_period_florista = fields.Integer(string="Dias Intervalo", compute="get_data_florista",store=True)
     product_terminado_florista = fields.Many2one('product.product', compute="get_data_florista")
-    next_order_number_list = fields.Float(string="Siguiente # de Producto Terminado")
+    next_order_number_list = fields.Integer(string="Siguiente # de Producto Terminado")
 
 
     @api.depends('order_line','order_line.product_id')
@@ -14,6 +14,7 @@ class SaleOrder(models.Model):
         for record in self:
             record.number_period_florista = None
             record.interval_period_florista = None
+            record.product_terminado_florista = None
 
             for line in record.order_line:
                 if line.product_id:
