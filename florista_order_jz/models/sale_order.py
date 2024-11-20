@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
 
 
     def add_envio_florista(self,c=0):
-        raise ValueError(self.product_terminado_florista)
+        #raise ValueError(self.product_terminado_florista)
         if self.product_terminado_florista:
             suscripcion = None
             for line in self.order_line:
@@ -42,9 +42,11 @@ class SaleOrder(models.Model):
 
                             c += 1
 
+                            #raise ValueError([c,self.number_period_florista])
 
 
-                            if c > self.number_period_florista  :
+
+                            if c > len(value.product_attribute_value_id.product_florista_ids)  :
                                 break
                             self.order_line += self.env['sale.order.line'].new({
                                 'product_id': product_f.product_terminado_id.id ,
