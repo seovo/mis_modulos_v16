@@ -48,7 +48,6 @@ class SaleOrder(models.Model):
                             c = 0
 
 
-
                         for product_f in value.product_attribute_value_id.product_florista_ids:
 
                             if ct >= c :
