@@ -52,13 +52,14 @@ class SaleOrder(models.Model):
                         for product_f in value.product_attribute_value_id.product_florista_ids:
 
                             if ct >= c :
+                                raise ValueError([ct,c])
                                 #c += 1
 
                                 # raise ValueError([c,self.number_period_florista])
 
                                 # if c > len(value.product_attribute_value_id.product_florista_ids)  :
                                 if ctt > self.number_period_florista:
-                                    raise ValueError([ctt,self.number_period_florista])
+                                    #raise ValueError([ctt,self.number_period_florista])
                                     break
                                 self.order_line += self.env['sale.order.line'].new({
                                     'product_id': product_f.product_terminado_id.id,
@@ -68,6 +69,8 @@ class SaleOrder(models.Model):
                                     'tax_id': None
                                 })
                                 ctt += 1
+
+
 
                             ct += 1
 
