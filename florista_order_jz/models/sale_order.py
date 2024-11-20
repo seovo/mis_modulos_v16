@@ -48,7 +48,9 @@ class SaleOrder(models.Model):
                             if  c > len(value.product_attribute_value_id.product_florista_ids)  :
                                 c = 1
 
-                            #raise ValueError([c,self.number_period_florista])
+                            raise ValueError([c,self.number_period_florista])
+
+
 
 
 
