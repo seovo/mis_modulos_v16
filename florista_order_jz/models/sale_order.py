@@ -53,7 +53,7 @@ class SaleOrder(models.Model):
 
                             if ct >= c :
                                 #c += 1
-                                ctt += 1
+
                                 # raise ValueError([c,self.number_period_florista])
 
                                 # if c > len(value.product_attribute_value_id.product_florista_ids)  :
@@ -66,6 +66,7 @@ class SaleOrder(models.Model):
                                     'price_unit': 0,
                                     'tax_id': None
                                 })
+                                ctt += 1
 
                             ct += 1
 
