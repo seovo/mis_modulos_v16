@@ -53,12 +53,7 @@ class SaleOrder(models.Model):
                         for product_f in  florista_ids + florista_ids + florista_ids:
 
                             if ct >= c :
-                                #raise ValueError([ct,c])
-                                #c += 1
 
-                                # raise ValueError([c,self.number_period_florista])
-
-                                # if c > len(value.product_attribute_value_id.product_florista_ids)  :
                                 if ctt >= self.number_period_florista:
                                     #raise ValueError([ctt,self.number_period_florista])
                                     break
@@ -71,13 +66,19 @@ class SaleOrder(models.Model):
                                 })
                                 ctt += 1
 
-
-
                             ct += 1
 
+                            self.next_order_number_list = ct
+
+    def action_confirm(self):
+        res = super().action_confirm()
+        picking = self.picking_ids[0]
+        picking_news = []
+
+        if picking and self.number_period_florista > 1:
+            for i in range(self.number_period_florista - 1):
+                new = picking.copy()
 
 
 
-
-
-
+        return res
