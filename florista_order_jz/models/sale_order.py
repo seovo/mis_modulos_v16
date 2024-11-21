@@ -1,4 +1,6 @@
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
+from datetime import datetime, timedelta
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -72,6 +74,13 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         res = super().action_confirm()
+
+        if not self.product_terminado_florista:
+            return
+
+        if not self.date_shipment_florista:
+            raise ValidationError('Indique 1ra Fecha Envio')
+
         picking = self.picking_ids[0]
         picking_news = []
 
@@ -84,20 +93,21 @@ class SaleOrder(models.Model):
 
         c = 0
 
+        date_envio = self.date_shipment_florista
+
         for line in self.order_line:
 
-            if line.product_id.product_template_attribute_value_ids:
-                for value in line.product_id.product_template_attribute_value_ids:
-                    if value.attribute_id.is_period_florista:
-                        pickii = total_pickings[c]
-                        for move in pickii.move_ids_without_package:
-                            if move.product_id != line.product_id:
-                                move.unlink()
+            if line.product_id and self.product_terminado_florista != line.product_id:
 
+                if c > 0 :
+                    date_envio = date_envio + timedelta(days=self.interval_period_florista)
 
-                        c += 1
-
-
+                pickii = total_pickings[c]
+                pickii.scheduled_date = date_envio
+                for move in pickii.move_ids_without_package:
+                    if move.product_id != line.product_id:
+                        move.unlink()
+                c += 1
 
 
         return res
