@@ -78,7 +78,26 @@ class SaleOrder(models.Model):
         if picking and self.number_period_florista > 1:
             for i in range(self.number_period_florista - 1):
                 new = picking.copy()
+                picking_news.append(new)
 
+        total_pickings = picking + picking_news
+
+        c = 0
+
+        for line in self.order_line:
+            is_envio = False
+            if line.product_id.product_template_attribute_value_ids:
+                for value in line.product_id.product_template_attribute_value_ids:
+                    if value.attribute_id.is_period_florista:
+                        pickii = total_pickings[c]
+                        for move in pickii.move_ids_without_package:
+                            if move.product_id != line.product_id:
+                                line.unlink()
+
+                        c += 1
+
+            if not is_envio:
+                line.unlink()
 
 
         return res
