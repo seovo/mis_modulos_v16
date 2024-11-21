@@ -85,19 +85,18 @@ class SaleOrder(models.Model):
         c = 0
 
         for line in self.order_line:
-            is_envio = False
+
             if line.product_id.product_template_attribute_value_ids:
                 for value in line.product_id.product_template_attribute_value_ids:
                     if value.attribute_id.is_period_florista:
                         pickii = total_pickings[c]
                         for move in pickii.move_ids_without_package:
                             if move.product_id != line.product_id:
-                                line.unlink()
+                                move.unlink()
 
                         c += 1
 
-            if not is_envio:
-                line.unlink()
+
 
 
         return res
