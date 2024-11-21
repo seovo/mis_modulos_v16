@@ -94,6 +94,7 @@ class SaleOrder(models.Model):
                             if move.product_id != line.product_id:
                                 move.unlink()
 
+
                         c += 1
 
 
