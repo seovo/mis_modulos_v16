@@ -80,7 +80,7 @@ class SaleOrder(models.Model):
                 new = picking.copy()
                 picking_news.append(new)
 
-        total_pickings = picking + picking_news
+        total_pickings = [picking] + picking_news
 
         c = 0
 
