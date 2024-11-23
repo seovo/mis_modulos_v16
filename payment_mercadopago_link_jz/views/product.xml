@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
             <field name="arch" type="xml">
                 <group name="codes" position='inside'>
-                    <field name="link_mercado_pago"/>
+                    <field name="preapproval_plan_id"/>
                 </group>
             </field>
         </record>

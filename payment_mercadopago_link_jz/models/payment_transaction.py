@@ -34,20 +34,19 @@ class PaymentTransaction(models.Model):
             return res
 
 
-        link = None
+        preapproval_plan_id = None
 
         for line in self.sale_order_ids.order_line:
             if line.product_id.sale_ok and line.product_id.link_mercado_pago:
-                link = line.product_id.link_mercado_pago
+                preapproval_plan_id = line.product_id.preapproval_plan_id
 
-        if not  link:
-            raise ValueError('No se Encontro Link de Pago')
-
-
+        if not  preapproval_plan_id:
+            raise ValueError('No se Encontro Id Plan Mercado Pago')
 
 
         return {
-            'api_url': link,
+            'api_url': 'https://www.mercadopago.cl/subscriptions/checkout',
+            'preapproval_plan_id': preapproval_plan_id
             #'headers': headers
             #'data': data,
         }
