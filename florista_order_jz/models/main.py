@@ -10,7 +10,7 @@ from odoo.exceptions import AccessError, MissingError, ValidationError
 _logger = logging.getLogger(__name__)
 import base64
 from odoo.addons.website.controllers.main import QueryURL
-from datetime import datetime
+
 from odoo.osv import expression
 from datetime import datetime, timedelta
 from odoo.addons.sale.controllers import portal as sale_portal

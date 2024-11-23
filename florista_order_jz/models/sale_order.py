@@ -104,6 +104,7 @@ class SaleOrder(models.Model):
 
                 pickii = total_pickings[c]
                 pickii.scheduled_date = date_envio
+                pickii.scheduled_date = pickii.scheduled_date + timedelta(hours=5)
                 for move in pickii.move_ids_without_package:
                     if move.product_id != line.product_id:
                         move.unlink()
