@@ -37,7 +37,7 @@ class PaymentTransaction(models.Model):
         preapproval_plan_id = None
 
         for line in self.sale_order_ids.order_line:
-            if line.product_id.sale_ok and line.product_id.link_mercado_pago:
+            if line.product_id.sale_ok and line.product_id.preapproval_plan_id:
                 preapproval_plan_id = line.product_id.preapproval_plan_id
 
         if not  preapproval_plan_id:
