@@ -33,7 +33,6 @@ class PaymentTransaction(models.Model):
         if self.provider_code != 'mercadopagolink':
             return res
 
-
         preapproval_plan_id = None
 
         for line in self.sale_order_ids.order_line:
