@@ -297,7 +297,7 @@
                                                 <option value="">Entregar hasta...</option>
                                                 <t t-foreach="hours_florista" t-as="hour">
                                                     <option t-att-value="hour.id"
-                                                            t-att-selected="hour.id == ('until_hour_florista' in checkout and country and checkout['until_hour_florista'] != '' and checkout['until_hour_florista'])">
+                                                            t-att-selected="hour.id == ('until_hour_florista' in checkout  and checkout['until_hour_florista'] != '' and checkout['until_hour_florista'])">
                                                         <t t-esc="hour.name" />
                                                     </option>
                                                 </t>

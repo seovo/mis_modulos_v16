@@ -575,7 +575,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         hours_florista = request.env['until.hour.florista'].sudo().search([])
 
-        raise ValueError(values)
+        #raise ValueError(values)
 
 
 
