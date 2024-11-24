@@ -544,6 +544,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                         update_values['partner_invoice_id'] = partner_id
                         if not kw.get('callback') and not order.only_services:
                             order.date_shipment_florista = order.partner_id.date_shipment_florista
+                            order.until_hour_florista = order.partner_id.until_hour_florista
                             #kw['callback'] = '/shop/checkout'
                             kw['callback'] = 'shop/payment'
 
@@ -572,6 +573,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         })
 
         order.date_shipment_florista = order.partner_id.date_shipment_florista
+        order.until_hour_florista = order.partner_id.until_hour_florista
 
         hours_florista = request.env['until.hour.florista'].sudo().search([])
 
