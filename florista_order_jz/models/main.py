@@ -485,7 +485,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         date_now_1 = fields.datetime.now().date() + timedelta(days=1)
 
-        raise ValueError(values)
+        #raise ValueError(values)
 
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
@@ -574,6 +574,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
         order.date_shipment_florista = order.partner_id.date_shipment_florista
 
         hours_florista = request.env['until.hour.florista'].sudo().search([])
+
+        raise ValueError(values)
 
 
 
