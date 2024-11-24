@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
 
 class UntilHourFlorista(models.Model):
-    _inherit = 'until.hour.florista'
+    _name = 'until.hour.florista'
     name = fields.Char(required=True)
     value = fields.Float()
 
