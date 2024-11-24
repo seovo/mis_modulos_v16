@@ -114,7 +114,7 @@ class SaleOrder(models.Model):
 
                 pickii = total_pickings[c]
                 pickii.scheduled_date = date_envio
-                pickii.scheduled_date = pickii.scheduled_date + timedelta(hours=5) + timedelta(hours=self.until_hour_florista)
+                pickii.scheduled_date = pickii.scheduled_date + timedelta(hours=5) + timedelta(hours=self.until_hour_florista.value)
                 for move in pickii.move_ids_without_package:
                     if move.product_id != line.product_id:
                         move.unlink()
