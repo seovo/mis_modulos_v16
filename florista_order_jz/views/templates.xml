@@ -288,12 +288,23 @@
                                                    t-att-value="'date_shipment_florista' in checkout and checkout['date_shipment_florista']" />
                                         </div>
 
-                                        <div t-attf-class="mb-2 #{error.get('date_shipment_florista') and 'o_has_error' or ''} col-lg-6 mb-2 ">
-                                            <label class="col-form-label label-optional" for="date_shipment_florista">Entregar hasta:</label>
-                                            <input type="date" name="date_shipment_florista" t-attf-class="form-control #{error.get('date_shipment_florista') and 'is-invalid' or ''}"
-                                                   t-attf-min="#{date_min}"
-                                                   t-att-value="'date_shipment_florista' in checkout and checkout['date_shipment_florista']" />
+
+
+                                        <div t-attf-class="#{error.get('until_hour_florista') and 'o_has_error' or ''} div_city col-lg-6 mb-2" >
+                                              <label class="col-form-label" for="until_hour_florista">Entregar hasta:</label>
+
+                                              <select name="until_hour_florista" t-attf-class="form-select #{error.get('until_hour_florista') and 'is-invalid' or ''}" data-init="1">
+                                                <option value="">Entregar hasta...</option>
+                                                <t t-foreach="hours_florista" t-as="hour">
+                                                    <option t-att-value="hour.id"
+                                                            t-att-selected="hour.id == ('until_hour_florista' in checkout and country and checkout['until_hour_florista'] != '' and checkout['until_hour_florista'])">
+                                                        <t t-esc="hour.name" />
+                                                    </option>
+                                                </t>
+                                              </select>
+
                                         </div>
+
 
                                         <t t-if="website._display_partner_b2b_fields()">
                                             <div class="w-100"/>
