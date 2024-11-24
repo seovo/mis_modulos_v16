@@ -89,7 +89,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         new_values = {}
         authorized_fields = request.env['ir.model']._get('res.partner')._get_form_writable_fields()
         for k, v in values.items():
-            if k in ['date_shipment_florista']:
+            if k in ['date_shipment_florista','until_hour_florista']:
                 new_values[k] = v
             # don't drop empty value, it could be a field to reset
             if k in authorized_fields and v is not None:
