@@ -23,4 +23,16 @@
     </record>
 
 
+    <record id="action_until_hour_florista" model="ir.actions.act_window">
+            <field name="name">Horas Florista</field>
+            <field name="res_model">until.hour.florista</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_until_hour_florista" name="Horas Florista"
+              parent="sale.menu_sale_config"
+              action="action_until_hour_florista"
+             />
+
+
 </odoo>
