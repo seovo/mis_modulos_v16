@@ -88,6 +88,9 @@ class SaleOrder(models.Model):
         if not self.date_shipment_florista:
             raise ValidationError('Indique 1ra Fecha Envio')
 
+        if not self.until_hour_florista:
+            raise ValidationError('Indique un valor para el campo "Entregar Hasta"')
+
         picking = self.picking_ids[0]
         picking_news = []
 
@@ -111,7 +114,7 @@ class SaleOrder(models.Model):
 
                 pickii = total_pickings[c]
                 pickii.scheduled_date = date_envio
-                pickii.scheduled_date = pickii.scheduled_date + timedelta(hours=5)
+                pickii.scheduled_date = pickii.scheduled_date + timedelta(hours=5) + timedelta(hours=self.until_hour_florista)
                 for move in pickii.move_ids_without_package:
                     if move.product_id != line.product_id:
                         move.unlink()
