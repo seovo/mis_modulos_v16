@@ -545,6 +545,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                         if not kw.get('callback') and not order.only_services:
                             order.date_shipment_florista = order.partner_id.date_shipment_florista
                             order.until_hour_florista = order.partner_id.until_hour_florista
+                            order.partner_id.email_mercadopago = order.partner_id.email
                             #kw['callback'] = '/shop/checkout'
                             kw['callback'] = 'shop/payment'
 
@@ -574,6 +575,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         order.date_shipment_florista = order.partner_id.date_shipment_florista
         order.until_hour_florista = order.partner_id.until_hour_florista
+        order.partner_id.email_mercadopago =  order.partner_id.email
 
         hours_florista = request.env['until.hour.florista'].sudo().search([])
 
