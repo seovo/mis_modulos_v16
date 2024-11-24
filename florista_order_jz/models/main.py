@@ -485,6 +485,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
         date_now_1 = fields.datetime.now().date() + timedelta(days=1)
 
+        raise ValueError(values)
+
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
             pre_values = self.values_preprocess(kw)
