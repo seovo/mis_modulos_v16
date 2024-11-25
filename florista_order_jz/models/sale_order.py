@@ -73,8 +73,9 @@ class SaleOrder(models.Model):
                                     'price_unit': 0,
                                     'tax_id': None
                                 })
-                                ctt += 1
                                 self.next_order_number_list = ctt
+                                ctt += 1
+
 
                             ct += 1
 
