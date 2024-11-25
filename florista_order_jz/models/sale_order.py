@@ -77,7 +77,7 @@ class SaleOrder(models.Model):
 
                             ct += 1
 
-                            self.next_order_number_list = ct
+                            self.next_order_number_list = ct + 1
 
     def action_confirm(self):
         res = super().action_confirm()
