@@ -58,7 +58,7 @@ class SaleOrder(models.Model):
 
                         florista_ids = value.product_attribute_value_id.product_florista_ids
 
-                        array_florista= []
+                        array_florista = []
 
                         for fl in florista_ids:
                             array_florista.append(fl.id)
@@ -78,7 +78,7 @@ class SaleOrder(models.Model):
                                     'price_unit': 0,
                                     'tax_id': None
                                 })
-                                self.next_order_number_list = florista_ids.index(product_f.product_terminado_id.id) + 1
+                                self.next_order_number_list = array_florista.index(product_f.product_terminado_id.id) + 1
                                 ctt += 1
 
                             ct += 1
