@@ -553,6 +553,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
                         update_values['partner_shipping_id'] = partner_id
 
                 order.write(update_values)
+                order.date_shipment_florista = order.partner_id.date_shipment_florista
+                order.until_hour_florista = order.partner_id.until_hour_florista
+                order.partner_id.email_mercadopago = order.partner_id.email
 
                 if order.fiscal_position_id != fpos_before:
                     # Recompute taxes on fpos change
