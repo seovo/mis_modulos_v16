@@ -770,14 +770,7 @@
 
     <template id="website_sale.variants">
 
-        <style>
-                            @media (min-width: 768px) {
-                                 .reduce_3_rem {
-                                    width: 8rem;
-                                 }
-                            }
 
-                        </style>
 
         <t t-set="attribute_exclusions" t-value="product._get_attribute_exclusions(parent_combination)"/>
         <ul t-attf-class="list-unstyled js_add_cart_variants mb-0 #{ul_class}" t-att-data-attribute_exclusions="json.dumps(attribute_exclusions)">
@@ -845,6 +838,16 @@
 
 
                     <t t-elif="ptal.attribute_id.display_type == 'pills'">
+
+                        <style>
+                            @media (min-width: 768px) {
+                                 .reduce_3_rem {
+                                    width: 8rem;
+                                 }
+                            }
+
+                        </style>
+
                         <ul t-att-data-attribute_id="ptal.attribute_id.id"
                             t-attf-class="btn-group-toggle list-inline list-unstyled o_wsale_product_attribute #{'d-none' if single_and_custom else ''}"
                             data-bs-toggle="buttons">
