@@ -22,6 +22,13 @@ class ProductAttributeValue(models.Model):
     interval_period_florista = fields.Integer(string="Dias Intervalo")
     product_florista_ids = fields.One2many('product.product.florista', 'product_attribute_value_id')
 
+    image = fields.Image(
+        string="Imagen",
+        help="You can upload an image that will be used as the color of the attribute value.",
+        max_width=210,
+        max_height=210,
+    )
+
     def edit_products(self):
         view = self.env.ref('florista_order_jz.edit_product_atrv')
         return {
