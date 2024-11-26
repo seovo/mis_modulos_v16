@@ -25,8 +25,8 @@ class ProductAttributeValue(models.Model):
     image = fields.Image(
         string="Imagen",
         help="You can upload an image that will be used as the color of the attribute value.",
-        max_width=210,
-        max_height=210,
+        max_width=2250,
+        max_height=2250,
     )
 
     def edit_products(self):
