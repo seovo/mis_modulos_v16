@@ -384,7 +384,7 @@
 
                                         <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2"
                                              style="display: none !important;" >
-                                            <label class="col-form-label" for="country_id">Country</label>
+                                            <label class="col-form-label" for="country_id" style="display: none !important;"  >Country</label>
                                             <select id="country_id" name="country_id"
                                                     style="display: none;"
                                                     t-attf-class="form-select #{error.get('country_id') and 'is-invalid' or ''}" t-att-mode="mode[1]">
