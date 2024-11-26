@@ -84,6 +84,15 @@ class TableCompute(object):
 
 class WebsiteSale(payment_portal.PaymentPortal):
 
+    @http.route(['/shop/<model("product.template"):product>'], type='http', auth="public", website=True, sitemap=True)
+    def product(self, product, category='', search='', **kwargs):
+        order = request.website.sale_get_order()
+
+        if order:
+            if order.order_line:
+                return request.redirect('/shop/cart')
+        return request.render("website_sale.product", self._prepare_product_values(product, category, search, **kwargs))
+
 
     def values_postprocess(self, order, mode, values, errors, error_msg):
         new_values = {}
