@@ -242,8 +242,10 @@
                                 <t t-if="is_public_order">
                                     <h3 class="mb-3">
                                         <span t-if="account_on_checkout != 'mandatory'">Fill in your address</span>
+                                        <!--
                                         <small class="text-muted" t-if="account_on_checkout == 'optional'"> or </small>
                                         <a t-if="account_on_checkout != 'disabled'" role="button" href='/web/login?redirect=/shop/checkout'  style="margin-top: -11px"> Sign in</a>
+                                        -->
                                     </h3>
                                 </t>
                                 <t t-elif="address_mode == 'billing'">
@@ -291,10 +293,10 @@
 
 
                                         <div t-attf-class="#{error.get('until_hour_florista') and 'o_has_error' or ''} div_city col-lg-6 mb-2" >
-                                              <label class="col-form-label" for="until_hour_florista">Entregar hasta:</label>
+                                              <label class="col-form-label" for="until_hour_florista">Entregar antes de las:</label>
 
                                               <select name="until_hour_florista" t-attf-class="form-select #{error.get('until_hour_florista') and 'is-invalid' or ''}" data-init="1">
-                                                <option value="">Entregar hasta...</option>
+                                                <option value="">Entregar antes de las...</option>
                                                 <t t-foreach="hours_florista" t-as="hour">
                                                     <option t-att-value="hour.id"
                                                             t-att-selected="hour == ('until_hour_florista' in checkout  and checkout['until_hour_florista'] != '' and checkout['until_hour_florista'])">
@@ -331,7 +333,7 @@
                                             </t>
                                         </t>
                                         <div t-attf-class="#{error.get('street') and 'o_has_error'} div_street col-lg-12 mb-2">
-                                            <label class="col-form-label" for="street">Street and Number</label>
+                                            <label class="col-form-label" for="street">Dirección (calle y número)</label>
                                             <input type="text" name="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="'street' in checkout and checkout['street']" />
                                         </div>
                                         <div t-attf-class="mb-2 #{error.get('street2') and 'o_has_error' or ''} col-lg-12 div_street2">
@@ -380,7 +382,7 @@
                                         </div>
 
 
-                                        <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2">
+                                        <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2" style="display: none;" >
                                             <label class="col-form-label" for="country_id">Country</label>
                                             <select id="country_id" name="country_id"
                                                     style="display: none;"
@@ -394,7 +396,10 @@
                                             </select>
                                             <div>Chile</div>
                                         </div>
-                                        <div t-attf-class="#{error.get('state_id') and 'o_has_error'} div_state col-lg-6 mb-2" t-att-style="(not country or not country.state_ids) and 'display: none'">
+                                        <div t-attf-class="#{error.get('state_id') and 'o_has_error'} div_state col-lg-6 mb-2"
+                                             style="display: none;"
+                                            >
+                                            <!--  t-att-style="(not country or not country.state_ids) and 'display: none'" -->
                                             <label class="col-form-label" for="state_id">State / Province</label>
                                             <select name="state_id"  style="display: none;"
                                                     t-attf-class="form-select #{error.get('state_id') and 'is-invalid' or ''}" data-init="1">
