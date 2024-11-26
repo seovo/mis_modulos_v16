@@ -382,7 +382,8 @@
                                         </div>
 
 
-                                        <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2" style="display: none;" >
+                                        <div t-attf-class="#{error.get('country_id') and 'o_has_error'} div_country col-lg-6 mb-2"
+                                             style="display: none !important;" >
                                             <label class="col-form-label" for="country_id">Country</label>
                                             <select id="country_id" name="country_id"
                                                     style="display: none;"
