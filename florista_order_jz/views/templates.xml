@@ -5,6 +5,7 @@
     <template id="website_sale.total">
         <div id="cart_total" t-if="website_sale_order and website_sale_order.website_order_line" t-att-class="_cart_total_classes">
             <table class="table mb-0">
+
                 <tr id="order_total_untaxed"  style="display: none !important" >
                     <td id="cart_total_subtotal"
                         class="border-0 pb-2 ps-0 pt-0 text-start text-muted"
