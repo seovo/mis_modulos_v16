@@ -714,7 +714,9 @@
                                     </div>
                                 </t>
                             </div>
-                            <div id="o_product_terms_and_share" class="d-flex justify-content-between flex-column flex-md-row align-items-md-end mb-3">
+                            <div id="o_product_terms_and_share"
+                                 style="display: none"
+                                 class="d-flex justify-content-between flex-column flex-md-row align-items-md-end mb-3">
                             </div>
                         </div>
                     </div>
@@ -791,6 +793,15 @@
                         </ul>
                     </t>
 
+                    <style>
+                            @media (min-width: 768px) {
+                                 .reduce_3_rem {
+                                    width: 3rem;
+                                 }
+                            }
+
+                        </style>
+
                     <t t-elif="ptal.attribute_id.display_type == 'pills'">
                         <ul t-att-data-attribute_id="ptal.attribute_id.id"
                             t-attf-class="btn-group-toggle list-inline list-unstyled o_wsale_product_attribute #{'d-none' if single_and_custom else ''}"
@@ -811,7 +822,8 @@
                                         t-att-autocomplete="off"/>
                                     <label class="radio_input_value o_variant_pills_input_value"
                                            t-att-for="ptav.id">
-                                        <img t-attf-src="/web/image/product.template.attribute.value/#{ptav.id}/image" alt="..." class="img-thumbnail" style="width: 8rem;" />
+                                        <img t-attf-src="/web/image/product.template.attribute.value/#{ptav.id}/image"
+                                             alt="..." class="img-thumbnail reduce_3_rem" style="width: 8rem;" />
                                         <br />
                                         <span t-field="ptav.name"/>
                                         <t t-call="website_sale.badge_extra_price"/>
