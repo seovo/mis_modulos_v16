@@ -395,7 +395,7 @@
                                                     </option>
                                                 </t>
                                             </select>
-                                            <div>Chile</div>
+                                            <div  style="display: none;" >Chile</div>
                                         </div>
                                         <div t-attf-class="#{error.get('state_id') and 'o_has_error'} div_state col-lg-6 mb-2"
                                              style="display: none;"
