@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 class UntilHourFlorista(models.Model):
     _name = 'until.hour.florista'
+    _order = 'sequence'
     name = fields.Char(required=True)
     value = fields.Float()
     sequence = fields.Integer()
