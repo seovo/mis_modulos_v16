@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
     def add_envio_florista(self,c=0):
 
         #raise ValueError(self.product_terminado_florista)
-        if self.product_terminado_florista:
+        if self.product_terminado_florista and self.id_vex:
             suscripcion = None
             for line in self.order_line:
                 if line.price_unit != 0:
