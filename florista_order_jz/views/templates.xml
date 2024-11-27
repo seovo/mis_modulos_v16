@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="website_sale.accept_terms_and_conditions"
-              inherit_id="navigation_buttons"
+              inherit_id="website_sale.navigation_buttons"
               name="Accept Terms &amp; Conditions"
               active="False">
         <xpath expr="//div[@name='o_website_sale_free_cart']" position="before">
