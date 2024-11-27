@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Called in `website_sale.payment`. -->
+    <template id="website_sale.address_on_payment" name="Address on payment">
+        <div class="card">
+            <div class="card-body" id="shipping_and_billing">
+                <a class="float-end no-decoration" href="/shop/checkout"><i class="fa fa-pencil me-1"/>Edit</a>
+                <t t-set="same_shipping" t-value="bool(order.partner_shipping_id==order.partner_invoice_id or only_services)" />
+                <div>
+                    <b> Dirección de envío<t t-if="same_shipping and not only_services"> &amp; Shipping</t>: </b>
+                    <span t-esc="order.partner_invoice_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
+                </div>
+                <div t-if="not same_shipping and not only_services" groups="account.group_delivery_invoice_address">
+                    <b>Shipping: </b>
+                    <span t-esc="order.partner_shipping_id" t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')" class="address-inline"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
     <template id="website_sale.navigation_buttons" name="Navigation buttons">
         <!-- Layout customization parameters:
             - _cta_classes: CSS classes to append on the primary navigation button; default `None`.
@@ -434,7 +452,7 @@
                                             <input type="text" name="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="'street' in checkout and checkout['street']" />
                                         </div>
                                         <div t-attf-class="mb-2 #{error.get('street2') and 'o_has_error' or ''} col-lg-12 div_street2">
-                                            <label class="col-form-label label-optional" for="street2">Apartment, suite, etc.</label>
+                                            <label class="col-form-label label-optional" for="street2">Departamento, casa, etc. (opcional)</label>
                                             <input type="text" name="street2" t-attf-class="form-control #{error.get('street2') and 'is-invalid' or ''}" t-att-value="'street2' in checkout and checkout['street2']" />
                                         </div>
                                         <div class="w-100"/>
