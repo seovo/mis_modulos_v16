@@ -44,12 +44,13 @@
                     </a>
                 </t>
             </t>
+            <!--
             <div t-if="not hide_payment_button" t-attf-class="position-relative #{_form_send_navigation and 'd-flex d-lg-none' or 'd-flex'} w-100 justify-content-center align-items-center my-2 opacity-75">
                 <hr class="w-100"/>
                 <span class="px-3">or</span>
                 <hr class="w-100"/>
             </div>
-            <!--
+
             <a t-att-href="step_specific_values['back_button_href']" class="text-center">
                 <i class="fa fa-angle-left me-2 fw-light"/>
                 <t t-out="step_specific_values['back_button']"/>
@@ -337,7 +338,7 @@
                                 <t t-set="address_mode" t-value="mode[1]"/>
                                 <t t-if="is_public_order">
                                     <h3 class="mb-3">
-                                        <span t-if="account_on_checkout != 'mandatory'">Fill in your address</span>
+                                        <span t-if="account_on_checkout != 'mandatory'">Ingresa tus datos de envío</span>
                                         <!--
                                         <small class="text-muted" t-if="account_on_checkout == 'optional'"> or </small>
                                         <a t-if="account_on_checkout != 'disabled'" role="button" href='/web/login?redirect=/shop/checkout'  style="margin-top: -11px"> Sign in</a>
