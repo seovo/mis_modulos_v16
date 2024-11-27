@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="website_sale.accept_terms_and_conditions"
+              inherit_id="navigation_buttons"
+              name="Accept Terms &amp; Conditions"
+              active="False">
+        <xpath expr="//div[@name='o_website_sale_free_cart']" position="before">
+            <div name="website_sale_terms_and_conditions_checkbox" class="form-check mb-2">
+                <input type="checkbox" id="website_sale_tc_checkbox" class="form-check-input"  checked ="1" />
+                <label for="website_sale_tc_checkbox" class="form-check-label">
+                    I agree to the <a target="_BLANK" href="/terms">terms &amp; conditions</a>
+                </label>
+            </div>
+        </xpath>
+    </template>
+
     <!-- Called in `website_sale.payment`. -->
     <template id="website_sale.address_on_payment" name="Address on payment">
         <div class="card">
