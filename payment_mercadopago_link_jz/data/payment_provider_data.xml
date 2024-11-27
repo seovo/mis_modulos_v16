@@ -2,7 +2,7 @@
 <odoo noupdate="1">
 
     <record id="payment_method_mercadopago" model="payment.method">
-            <field name="name">Mercado Pago Link</field>
+            <field name="name">Mercado Pago</field>
             <field name="code">mercadopagolink</field>
             <field name="sequence">80</field>
             <field name="active">True</field>
@@ -19,7 +19,7 @@
 
 
     <record id="payment_provider_mercadopago" model="payment.provider">
-            <field name="name">Mercado Pago Link</field>
+            <field name="name">Mercado Pago</field>
             <field name="image_128" type="base64" file="payment_mercadopago_link_jz/static/description/icon.png"/>
             <field name="module_id" ref="base.module_payment_mercadopago_link_jz"/>
             <field name="payment_method_ids" eval="[(6, 0, [ref('payment_mercadopago_link_jz.payment_method_mercadopago'),])]"/>
