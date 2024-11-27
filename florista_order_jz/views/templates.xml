@@ -384,7 +384,7 @@
                                             <label class="col-form-label label-optional" for="date_shipment_florista">Fecha de primera entrega</label>
                                             <input type="date" name="date_shipment_florista" t-attf-class="form-control #{error.get('date_shipment_florista') and 'is-invalid' or ''}"
                                                    t-attf-min="#{date_min}"
-                                                   t-att-value="'date_shipment_florista' in checkout and checkout['date_shipment_florista']" />
+                                                   t-att-value="'date_shipment_florista' in checkout and checkout['date_shipment_florista'] or date_min" />
                                         </div>
 
 
