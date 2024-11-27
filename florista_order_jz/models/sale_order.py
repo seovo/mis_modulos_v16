@@ -6,6 +6,7 @@ class UntilHourFlorista(models.Model):
     _name = 'until.hour.florista'
     name = fields.Char(required=True)
     value = fields.Float()
+    sequence = fields.Integer()
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'

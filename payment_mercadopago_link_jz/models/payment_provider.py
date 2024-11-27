@@ -15,7 +15,7 @@ class PaymentProvider(models.Model):
 
 
     code = fields.Selection(
-        selection_add=[('mercadopagolink', "Mercado Pago")], ondelete={'mercadopagolink': 'set default'}
+        selection_add=[('mercadopagolink', "Mercado Pago Link")], ondelete={'mercadopagolink': 'set default'}
     )
 
 

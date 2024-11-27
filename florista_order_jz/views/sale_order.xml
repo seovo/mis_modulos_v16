@@ -42,6 +42,21 @@
             <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="until_hour_florista_tree" model="ir.ui.view">
+        <field name="name">until.hour.florista.tree</field>
+        <field name="model">until.hour.florista</field>
+
+        <field name="arch" type="xml">
+
+
+            <tree string="Sales Team" sample="1" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="value"/>
+            </tree>
+       </field>
+    </record>
+
     <menuitem id="menu_until_hour_florista" name="Horas Florista"
               parent="sale.menu_sale_config"
               action="action_until_hour_florista"
