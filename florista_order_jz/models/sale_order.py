@@ -137,11 +137,11 @@ class SaleOrder(models.Model):
                         #raise ValueError([self.product_attribute_value_florista_id.id,self.product_attribute_value_florista_id.name,self.product_attribute_value_florista_id.products_fixed])
 
                         if self.product_attribute_value_florista_id.products_fixed:
-                            for pfixed in self.product_terminado_florista.products_fixed:
+                            for pfixed in self.product_attribute_value_florista_id.products_fixed:
                                 line.product_uom_qty += 1
                                 move.copy(default={'product_id': pfixed.id})
                         if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
-                            for pfirst in self.product_terminado_florista.product_first_order:
+                            for pfirst in self.product_attribute_value_florista_id.product_first_order:
                                 line.product_uom_qty += 1
                                 move.copy(default={'product_id': pfirst.id})
 
