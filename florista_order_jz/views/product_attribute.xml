@@ -34,6 +34,7 @@
            <field name="name">Pedidos.Form</field>
            <field name="model">product.attribute.value</field>
            <field name="arch" type="xml">
+
                <form>
                    <sheet>
                        <field name="product_florista_ids"  >
