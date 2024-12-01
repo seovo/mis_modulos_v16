@@ -36,7 +36,7 @@ class SaleOrder(models.Model):
                             record.number_period_florista = value.product_attribute_value_id.number_period_florista
                             record.interval_period_florista = value.product_attribute_value_id.interval_period_florista
                             record.product_terminado_florista = line.product_id.id
-                        if valuevalue.product_attribute_value_id.product_florista_ids:
+                        if value.product_attribute_value_id.product_florista_ids:
                             record.product_attribute_value_florista_id = value.product_attribute_value_id.id
 
 
