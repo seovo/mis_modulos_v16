@@ -141,19 +141,22 @@ class SaleOrder(models.Model):
 
         c = 0
 
-        for line in self.order_line and 5 == 7:
-            if line.product_id and self.product_terminado_florista != line.product_id:
-                pickii = total_pickings[c]
-                for move in pickii.move_ids_without_package:
-                    if self.product_attribute_value_florista_id.products_fixed:
-                        for pfixed in self.product_attribute_value_florista_id.products_fixed:
-                            line.product_uom_qty += 1
-                            move.copy(default={'product_id': pfixed.id})
-                    if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
-                        for pfirst in self.product_attribute_value_florista_id.product_first_order:
-                            line.product_uom_qty += 1
-                            move.copy(default={'product_id': pfirst.id})
-                c += 1
+        if 5 == 7 :
+            for line in self.order_line:
+                if line.product_id and self.product_terminado_florista != line.product_id:
+                    pickii = total_pickings[c]
+                    for move in pickii.move_ids_without_package:
+                        if self.product_attribute_value_florista_id.products_fixed:
+                            for pfixed in self.product_attribute_value_florista_id.products_fixed:
+                                line.product_uom_qty += 1
+                                move.copy(default={'product_id': pfixed.id})
+                        if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
+                            for pfirst in self.product_attribute_value_florista_id.product_first_order:
+                                line.product_uom_qty += 1
+                                move.copy(default={'product_id': pfirst.id})
+                    c += 1
+
+
 
 
         return res
