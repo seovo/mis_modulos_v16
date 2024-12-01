@@ -15,7 +15,7 @@ class PaymentMercadoPago(http.Controller):
 
     @http.route('/payment/status/mercadopagolink', type='http', auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
-    def recurrente_payment_response_id(self, **data):
-        date_start = fields.Datetime() -  timedelta(days=1)
+    def mercadopagolink_payment_response(self, **data):
+        date_start = fields.Datetime().now() -  timedelta(days=1)
         request.env['vex.synchro'].sudo().start_sync_sale_mercadopago(self,date_start=date_start)
         return request.redirect('/payment/status')
