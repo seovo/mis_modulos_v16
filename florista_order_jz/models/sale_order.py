@@ -146,18 +146,20 @@ class SaleOrder(models.Model):
                 if line.product_id and self.product_terminado_florista != line.product_id:
                     pickii = total_pickings[c]
 
-                    raise ValueError(pickii.move_ids_without_package)
+                    movex = pickii.move_ids_without_package[0]
 
-                    for move in pickii.move_ids_without_package:
+                    if self.product_attribute_value_florista_id.products_fixed:
+                        for pfixed in self.product_attribute_value_florista_id.products_fixed:
+                            line.product_uom_qty += 1
+                            movex.copy(default={'product_id': pfixed.id})
+                    if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
+                        for pfirst in self.product_attribute_value_florista_id.product_first_order:
+                            line.product_uom_qty += 1
+                            movex.copy(default={'product_id': pfirst.id})
 
-                        if self.product_attribute_value_florista_id.products_fixed:
-                            for pfixed in self.product_attribute_value_florista_id.products_fixed:
-                                line.product_uom_qty += 1
-                                move.copy(default={'product_id': pfixed.id})
-                        if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
-                            for pfirst in self.product_attribute_value_florista_id.product_first_order:
-                                line.product_uom_qty += 1
-                                move.copy(default={'product_id': pfirst.id})
+
+
+
                     c += 1
 
 
