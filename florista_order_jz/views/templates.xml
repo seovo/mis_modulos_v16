@@ -378,7 +378,7 @@
                                     </h3>
                                 </t>
                                 <t t-elif="address_mode == 'billing'">
-                                    <h3 class="mb-3">Billing address</h3>
+                                    <h3 class="mb-3">Datos de Envio</h3>
                                 </t>
                                 <t t-else="">
                                     <h3 class="mb-3">Shipping address</h3>
