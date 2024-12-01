@@ -141,11 +141,15 @@ class SaleOrder(models.Model):
 
         c = 0
 
-        if 5 == 7 :
+        if 5 == 5 :
             for line in self.order_line:
                 if line.product_id and self.product_terminado_florista != line.product_id:
                     pickii = total_pickings[c]
+
+                    raise ValueError(pickii.move_ids_without_package)
+
                     for move in pickii.move_ids_without_package:
+
                         if self.product_attribute_value_florista_id.products_fixed:
                             for pfixed in self.product_attribute_value_florista_id.products_fixed:
                                 line.product_uom_qty += 1
