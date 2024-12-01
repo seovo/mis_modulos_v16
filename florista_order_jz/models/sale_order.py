@@ -132,18 +132,18 @@ class SaleOrder(models.Model):
                 for move in pickii.move_ids_without_package:
                     if move.product_id != line.product_id:
                         move.unlink()
-                    else:
 
-                        #raise ValueError([self.product_attribute_value_florista_id.id,self.product_attribute_value_florista_id.name,self.product_attribute_value_florista_id.products_fixed])
 
-                        if self.product_attribute_value_florista_id.products_fixed:
-                            for pfixed in self.product_attribute_value_florista_id.products_fixed:
-                                line.product_uom_qty += 1
-                                move.copy(default={'product_id': pfixed.id})
-                        if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
-                            for pfirst in self.product_attribute_value_florista_id.product_first_order:
-                                line.product_uom_qty += 1
-                                move.copy(default={'product_id': pfirst.id})
+                for move in pickii.move_ids_without_package:
+                    if self.product_attribute_value_florista_id.products_fixed:
+                        for pfixed in self.product_attribute_value_florista_id.products_fixed:
+                            line.product_uom_qty += 1
+                            move.copy(default={'product_id': pfixed.id})
+                    if self.product_attribute_value_florista_id.product_first_order and self.shipping_vex == 1:
+                        for pfirst in self.product_attribute_value_florista_id.product_first_order:
+                            line.product_uom_qty += 1
+                            move.copy(default={'product_id': pfirst.id})
+
 
                 c += 1
 
