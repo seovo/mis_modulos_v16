@@ -111,6 +111,7 @@ class SaleOrder(models.Model):
 
         c = 0
 
+
         date_envio = self.date_shipment_florista
 
         for line in self.order_line:
