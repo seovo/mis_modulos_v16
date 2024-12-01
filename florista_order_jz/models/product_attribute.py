@@ -26,7 +26,7 @@ class ProductAttributeValue(models.Model):
     product_florista_ids = fields.One2many('product.product.florista', 'product_attribute_value_id',
                                            string="Productos Terminados")
     products_fixed      = fields.Many2many('product.product', 'products_fixed_ids' ,string="Productos Fijos",help="En cada Entrega")
-    product_first_order =  fields.Many2many('product.product', 'product_first_order_ids' , string="Productos Fijos",help="En cada Entrega")
+    product_first_order =  fields.Many2many('product.product', 'product_first_order_ids' , string="Productos Primera Orden",help="En cada Entrega")
 
     image = fields.Image(
         string="Imagen",

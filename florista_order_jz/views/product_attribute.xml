@@ -42,6 +42,10 @@
                                <field name="product_terminado_id" />
                            </tree>
                        </field>
+                       <group>
+                           <field name="products_fixed"  widget="many2many_tags"  />
+                           <field name="product_first_order"  widget="many2many_tags"  />
+                       </group>
 
                    </sheet>
                </form>
