@@ -11,6 +11,7 @@ class ProductProductFlorista(models.Model):
 
 
 
+
 class ProductAttribute(models.Model):
     _inherit = 'product.attribute'
     is_period_florista = fields.Boolean(string='Es Periodo Flores')
@@ -21,7 +22,11 @@ class ProductAttributeValue(models.Model):
     is_period_florista = fields.Boolean(related='attribute_id.is_period_florista')
     number_period_florista = fields.Integer(string="Nro Periodo")
     interval_period_florista = fields.Integer(string="Dias Intervalo")
-    product_florista_ids = fields.One2many('product.product.florista', 'product_attribute_value_id')
+
+    product_florista_ids = fields.One2many('product.product.florista', 'product_attribute_value_id',
+                                           string="Productos Terminados")
+    products_fixed      = fields.Many2many('product.product', 'products_fixed_ids' ,string="Productos Fijos",help="En cada Entrega")
+    product_first_order =  fields.Many2many('product.product', 'product_first_order_ids' , string="Productos Fijos",help="En cada Entrega")
 
     image = fields.Image(
         string="Imagen",
