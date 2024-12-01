@@ -4,6 +4,7 @@ from odoo import _, api, fields, models
 
 class ProductProductFlorista(models.Model):
     _name = 'product.product.florista'
+    _order = 'sequence'
     sequence = fields.Integer()
     product_attribute_value_id = fields.Many2one('product.attribute.value')
     product_terminado_id = fields.Many2one('product.product',string="Producto Terminado")
