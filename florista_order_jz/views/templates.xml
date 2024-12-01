@@ -969,7 +969,9 @@
                     </t>
 
                     <t t-elif="ptal.attribute_id.display_type == 'color'">
-                        <ul t-att-data-attribute_id="ptal.attribute_id.id" t-attf-class="list-inline o_wsale_product_attribute #{'d-none' if single_and_custom else ''}">
+                        <ul t-att-data-attribute_id="ptal.attribute_id.id"
+                            style="text-align: center;"
+                            t-attf-class="list-inline o_wsale_product_attribute #{'d-none' if single_and_custom else ''}">
                             <li t-foreach="ptal.product_template_value_ids._only_active()" t-as="ptav" class="list-inline-item me-1">
                                 <t t-set="img_style"
                                    t-value="'background:url(/web/image/product.template.attribute.value/%s/image); background-size:cover;' % ptav.id if ptav.image else ''"
