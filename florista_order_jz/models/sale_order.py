@@ -141,7 +141,7 @@ class SaleOrder(models.Model):
 
         c = 0
 
-        for line in self.order_line:
+        for line in self.order_line and 5 == 7:
             if line.product_id and self.product_terminado_florista != line.product_id:
                 pickii = total_pickings[c]
                 for move in pickii.move_ids_without_package:
