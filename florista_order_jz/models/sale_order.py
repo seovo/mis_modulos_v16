@@ -134,7 +134,7 @@ class SaleOrder(models.Model):
                         move.unlink()
                     else:
 
-                        raise ValueError([self.product_attribute_value_florista_id.id,self.product_attribute_value_florista_id.name,self.product_attribute_value_florista_id.products_fixed])
+                        #raise ValueError([self.product_attribute_value_florista_id.id,self.product_attribute_value_florista_id.name,self.product_attribute_value_florista_id.products_fixed])
 
                         if self.product_attribute_value_florista_id.products_fixed:
                             for pfixed in self.product_terminado_florista.products_fixed:
