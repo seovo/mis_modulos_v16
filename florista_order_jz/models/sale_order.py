@@ -126,6 +126,16 @@ class SaleOrder(models.Model):
                 for move in pickii.move_ids_without_package:
                     if move.product_id != line.product_id:
                         move.unlink()
+                    else:
+                        if self.product_terminado_florista.products_fixed:
+                            for pfixed in self.product_terminado_florista.products_fixed:
+                                line.product_uom_qty += 1
+                                move.copy(default={'product_id': pfixed.id})
+                        if self.product_terminado_florista.product_first_order:
+                            for pfirst in self.product_terminado_florista.product_first_order:
+                                line.product_uom_qty += 1
+                                move.copy(default={'product_id': pfirst.id})
+
                 c += 1
 
 
