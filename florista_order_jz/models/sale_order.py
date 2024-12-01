@@ -18,6 +18,7 @@ class SaleOrder(models.Model):
     interval_period_florista = fields.Integer(string="Dias Intervalo", compute="get_data_florista",store=True)
     product_terminado_florista = fields.Many2one('product.product', compute="get_data_florista")
     next_order_number_list = fields.Integer(string="Siguiente # de Producto Terminado")
+    product_attribute_value_florista_id = fields.Many2one('product.attribute.value', compute="get_data_florista")
 
 
     @api.depends('order_line','order_line.product_id')
@@ -26,6 +27,7 @@ class SaleOrder(models.Model):
             record.number_period_florista = None
             record.interval_period_florista = None
             record.product_terminado_florista = None
+            record.product_attribute_value_florista_id = None
 
             for line in record.order_line:
                 if line.product_id:
@@ -34,6 +36,7 @@ class SaleOrder(models.Model):
                             record.number_period_florista = value.product_attribute_value_id.number_period_florista
                             record.interval_period_florista = value.product_attribute_value_id.interval_period_florista
                             record.product_terminado_florista = line.product_id.id
+                            record.product_attribute_value_florista_id = value.product_attribute_value_id.id
 
 
     def add_envio_florista(self,c=0):
@@ -128,11 +131,11 @@ class SaleOrder(models.Model):
                     if move.product_id != line.product_id:
                         move.unlink()
                     else:
-                        if self.product_terminado_florista.products_fixed:
+                        if self.product_attribute_value_florista_id.products_fixed:
                             for pfixed in self.product_terminado_florista.products_fixed:
                                 line.product_uom_qty += 1
                                 move.copy(default={'product_id': pfixed.id})
-                        if self.product_terminado_florista.product_first_order:
+                        if self.product_attribute_value_florista_id.product_first_order:
                             for pfirst in self.product_terminado_florista.product_first_order:
                                 line.product_uom_qty += 1
                                 move.copy(default={'product_id': pfirst.id})
