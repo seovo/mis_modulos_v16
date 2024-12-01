@@ -131,6 +131,7 @@ class SaleOrder(models.Model):
                     if move.product_id != line.product_id:
                         move.unlink()
                     else:
+
                         if self.product_attribute_value_florista_id.products_fixed:
                             for pfixed in self.product_terminado_florista.products_fixed:
                                 line.product_uom_qty += 1
