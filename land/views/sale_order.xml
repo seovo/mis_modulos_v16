@@ -221,7 +221,7 @@
                        </group>
                    </page>
 
-                   <page string="Comissión" >
+                   <page string="Comissión" groups="land.group_commission" >
                        <group>
                            <field name="commision_lan" />
                            <field name="comision_payment" />
