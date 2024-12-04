@@ -35,6 +35,8 @@
 
         </menuitem>
 
+        <!--
+
         <menuitem id="sale.menu_sale_invoicing"
             name="To Invoice"
             groups="sales_team.group_sale_salesman"
@@ -191,6 +193,7 @@
                 />
 
         </menuitem>
+        -->
     </menuitem>
 
 </odoo>
