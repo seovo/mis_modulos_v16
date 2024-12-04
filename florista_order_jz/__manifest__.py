@@ -22,7 +22,7 @@
         'views/product_attribute.xml',
         #'views/payment_nuvei_templates.xml',
         'views/sale_order.xml',
-        #'views/payment_transaction_view.xml',
+        'views/sale_menus.xml',
 
         #'data/mail_data.xml',
     ],
