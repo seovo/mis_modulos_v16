@@ -5,12 +5,12 @@
         name="Sales"
         web_icon="sale_management,static/description/icon.png"
         active="True"
-        sequence="30" />
+        sequence="30" >
 
         <menuitem id="sale.sale_order_menu"
             name="Orders"
             parent="sale.sale_menu_root"
-            sequence="10" />
+            sequence="10" >
 
             <menuitem id="sale.menu_sale_quotations"
                 action="sale.action_quotations_with_onboarding"
@@ -38,9 +38,9 @@
                 parent="sale.sale_order_menu"
                 sequence="40"/>
 
-        <!--</menuitem> -->
+        </menuitem>
 
-        <!--
+
 
         <menuitem id="sale.menu_sale_invoicing"
             name="To Invoice"
@@ -198,8 +198,8 @@
                 />
 
         </menuitem>
-        -->
 
-    <!--</menuitem> -->
+
+    </menuitem>
 
 </odoo>
