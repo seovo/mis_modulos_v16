@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <menuitem id="sale.sale_menu_root"
+    <menuitem id="sale_menu_root"
         name="Sales"
         web_icon="sale_management,static/description/icon.png"
         active="False"
@@ -9,14 +9,14 @@
 
         <menuitem id="sale.sale_order_menu"
             name="Orders"
-            parent="sale.sale_menu_root"
+            parent="sale_menu_root"
             sequence="10" />
 
 
             <menuitem id="sale.menu_sale_quotations"
                 action="sale.action_quotations_with_onboarding"
                 groups="sales_team.group_sale_salesman"
-                parent="sale.sale_order_menu"
+                parent="sale_order_menu"
                 sequence="10"/>
 
         <!--
