@@ -176,4 +176,4 @@ class StockPicking(models.Model):
     @api.depends('scheduled_date')
     def get_sche_date(self):
         for record in self:
-            record.sche_date = (record.scheduled_date - timedelta(hours=5)).date()
+            record.sched_date = (record.scheduled_date - timedelta(hours=5)).date()
