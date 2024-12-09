@@ -96,7 +96,7 @@ class SaleOrder(models.Model):
         res = super().action_confirm()
 
         if not self.product_terminado_florista:
-            return
+            return res
 
         if not self.date_shipment_florista:
             raise ValidationError('Indique 1ra Fecha Envio')
@@ -166,3 +166,12 @@ class SaleOrder(models.Model):
 
 
         return res
+
+
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+    sche_date = fields.Date(compute='get_sche_date')
+
+    def get_sche_date(self):
+        for record in self:
+            record.sche_date = record.scheduled_date.date()
