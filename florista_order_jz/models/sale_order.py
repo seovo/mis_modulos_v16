@@ -2,6 +2,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
 
+
 class UntilHourFlorista(models.Model):
     _name = 'until.hour.florista'
     _order = 'sequence'
@@ -174,4 +175,4 @@ class StockPicking(models.Model):
 
     def get_sche_date(self):
         for record in self:
-            record.sche_date = record.scheduled_date.date()
+            record.sche_date = (record.scheduled_date - timedelta(hours=5)).date()
