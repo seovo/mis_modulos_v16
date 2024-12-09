@@ -171,8 +171,9 @@ class SaleOrder(models.Model):
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
-    sche_date = fields.Date(compute='get_sche_date')
+    sched_date = fields.Date(compute='get_sche_date',store=True)
 
+    @api.depends('scheduled_date')
     def get_sche_date(self):
         for record in self:
             record.sche_date = (record.scheduled_date - timedelta(hours=5)).date()
