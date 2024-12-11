@@ -130,13 +130,10 @@ class SaleOrder(models.Model):
                 pickii = total_pickings[c]
                 pickii.scheduled_date = date_envio
                 pickii.scheduled_date = pickii.scheduled_date + timedelta(hours=5) + timedelta(hours=self.until_hour_florista.value)
+                pickii.until_hour_florista = self.until_hour_florista.id if self.until_hour_florista else None
                 for move in pickii.move_ids_without_package:
                     if move.product_id != line.product_id:
                         move.unlink()
-
-
-
-
 
                 c += 1
 
@@ -169,11 +166,3 @@ class SaleOrder(models.Model):
         return res
 
 
-class StockPicking(models.Model):
-    _inherit = 'stock.picking'
-    sched_date = fields.Date(compute='get_sche_date',store=True)
-
-    @api.depends('scheduled_date')
-    def get_sche_date(self):
-        for record in self:
-            record.sched_date = (record.scheduled_date - timedelta(hours=5)).date()
