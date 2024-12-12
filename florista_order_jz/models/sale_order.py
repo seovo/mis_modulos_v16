@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
     date_shipment_florista = fields.Date(string='Primera fecha de entrega')
     until_hour_florista = fields.Many2one('until.hour.florista',string="Entregar Hasta")
 
-    number_period_florista = fields.Integer(string="Número de cobro", compute="get_data_florista",store=True)
+    number_period_florista = fields.Integer(string="Número de Entrega", compute="get_data_florista",store=True)
     interval_period_florista = fields.Integer(string="Dias Intervalo", compute="get_data_florista",store=True)
     product_terminado_florista = fields.Many2one('product.product', compute="get_data_florista",string='Producto Suscripción')
     next_order_number_list = fields.Integer(string="Siguiente # de Producto Terminado")

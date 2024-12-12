@@ -22,8 +22,12 @@
                 <page string="Datos Envio Flores" >
                     <group>
                         <group>
+                            <field name="id_vex" string="Id Mercado Pago" />
+                            <field name="shipping_vex" string="Nro Cobro" />
                             <field name="date_shipment_florista" />
                             <field name="until_hour_florista" />
+
+
                             <field name="number_period_florista" />
                             <field name="interval_period_florista" />
                             <field name="product_terminado_florista" />
