@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_team_view_form" model="ir.ui.view">
+           <field name="name">crm.team.form</field>
+           <field name="model">crm.team</field>
+           <field name="inherit_id" ref="sales_team.crm_team_view_form" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='member_company_ids']" position="after" >
+                   <field name="commission_land"  />
+                   <field name="type_period_comission"  />
+                   <field name="number_sale_additional_commision"  />
+                   <field name="amount_sale_additional_commision"  />
+                   <field name="members_additional_commision"  widget="many2many_tags" />
+                   <field name="number_sale_discount_commision"  />
+                   <field name="percentage_sale_discount_commision"  />
+               </xpath>
+           </field>
+    </record>
+
+    <record id="crm_team_view_kanban_dashboard" model="ir.ui.view">
+           <field name="name">crm.team.form</field>
+           <field name="model">crm.team</field>
+           <field name="inherit_id" ref="sales_team.crm_team_view_kanban_dashboard" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//button[@name='action_primary_channel_button']" position="after" >
+                   <button type="object" class="btn btn-success" name="get_show_comisiones_land">Comisiones</button>
+                   <button type="object" class="btn btn-danger"
+                           confirm="Estas Seguro ? esto generara nuevas comisiones"
+                           name="get_show_comisiones_land">Generar Comisiones</button>
+               </xpath>
+
+
+
+           </field>
+    </record>
+
+
+</odoo>

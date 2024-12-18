@@ -1,0 +1,106 @@
+<odoo>
+
+    <record model="ir.ui.view" id="report_report_lot_land_line_search" >
+        <field name="name">report.lot.land.line.search</field>
+        <field name="model">report.lot.land.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="show_free" string="Libres" domain="[('state', '=', 'free')]" />
+                <filter name="show_sale" string="Vendidos" domain="[('state', '=', 'sale')]" />
+                <filter name="show_separated" string="Separados" domain="[('state', '=', 'reserved')]" />
+                <field name="mz_value_id" />
+                <field name="name" />
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Manzana" name="gr_mz_value_id" context="{'group_by': 'mz_value_id'}"/>
+                    <filter string="Estado" name="gr_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="report_report_lot_land_line_kanban" >
+        <field name="name">report.lot.land.line.kanban</field>
+        <field name="model">report.lot.land.line</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="mz_value_id"/>
+
+                <progressbar field="state" colors="{&quot;free&quot;: &quot;success&quot;, &quot;separated&quot;: &quot;warning&quot;, &quot;sale&quot;: &quot;danger&quot;}"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb16">
+                                <div class="o_kanban_record_headings mt4">
+                                    <strong class="o_kanban_record_title">
+                                        <span t-out="record.mz_value_id.value"/> - <span t-out="record.name.value"/>
+                                    </strong>
+                                </div>
+                                <strong>
+                                    <!--<field name="amount_total" widget="monetary"/>  -->
+                                </strong>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <!--
+                                <div class="oe_kanban_bottom_left text-muted">
+                                    <span>
+                                        <t t-out="record.name.value"/> <t t-out="record.date_order.value"/>
+                                    </span>
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                </div>
+                                -->
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="state" widget="label_selection"
+                                           options="{'classes': {'reserved': 'default', 'sale': 'danger', 'free': 'success'}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="report_report_lot_land_line_tree" >
+        <field name="name">report.lot.land.line.tree</field>
+        <field name="model">report.lot.land.line</field>
+        <field name="arch" type="xml">
+            <tree
+                    decoration-danger="state in ['sale']"
+                    decoration-success="state in ['free']"
+                    decoration-warning="state in ['reserved']"
+
+                    editable="bottom" >
+
+                <!-- decoration-info="state in ['draft', 'sent']" decoration-muted="state == 'cancel'" -->
+
+                <field name="mz_value_id"  />
+                <field name="name"   />
+                <field name="sector_land_separation_id"   />
+                <field name="shape"   />
+                <field name="area_id"   />
+                <field name="front"   />
+                <field name="large1"   />
+                <field name="large2"   />
+                <field name="background"   />
+                <field name="price"   />
+
+                <field name="state"
+
+                       decoration-danger="state in ['sale']"
+                       decoration-success="state in ['free']"
+                       decoration-warning="state in ['reserved']"
+
+                       widget="badge" optional="show"/>
+                <field name="order_ids" widget="many2many_tags" optional="show" />
+                <field name="move_ids" widget="many2many_tags" optional="show" />
+
+
+
+            </tree>
+        </field>
+    </record>
+</odoo>

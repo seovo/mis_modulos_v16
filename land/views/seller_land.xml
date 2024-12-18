@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_seller_land" model="ir.actions.act_window">
+        <field name="name">Proveedor Terreno</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">seller.land</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_seller_land"
+              id="menu_seller_land"
+              parent="sale.menu_sale_config" />
+</odoo>

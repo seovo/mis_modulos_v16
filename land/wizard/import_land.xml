@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_meli_import" model="ir.ui.view">
+        <field name="name">import.land.form</field>
+        <field name="model">import.land</field>
+        <field name="priority">4</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Data To Server">
+                <group >
+                    <field name="file_name"  invisible="1" />
+                    <field name="file"  widget="file" filename="file_name" />
+                </group>
+
+                <footer>
+                    <button name="import_excell" string="Importar Excell"
+                            type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_import_land" model="ir.actions.act_window">
+        <field name="name">Importar Land</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.land</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem parent="sale.menu_sale_config" name="Importor Land"
+              action="action_import_land"
+              id="menu_import_land"
+    />
+
+
+</odoo>
