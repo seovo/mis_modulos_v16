@@ -2,6 +2,7 @@ from odoo import api, fields, models , _
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+    '''
 
     @api.model
     def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
@@ -15,4 +16,6 @@ class ResPartner(models.Model):
             return models.lazy_name_get(self.browse(product_ids).with_user(name_get_uid))
 
         return res
+        
+    '''
 
