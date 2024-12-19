@@ -936,6 +936,19 @@
                                  }
                             }
 
+
+                            @media (max-width: 768px) {
+                                 .span_reduce  {
+
+                                    position: absolute !important;
+                                    left: -7.5px !important;
+                                    color: black !important;
+                                    top: 55px !important;
+                                    font-weight: bold !important;
+                                    font-size: 12px !important;
+                                 }
+                            }
+
                         </style>
 
                         <ul t-att-data-attribute_id="ptal.attribute_id.id"
@@ -955,13 +968,15 @@
                                         t-att-data-attribute_name="ptav.attribute_id.name"
                                         t-att-data-is_custom="ptav.is_custom"
                                         t-att-data-is_single_and_custom="single_and_custom"
-                                        t-att-autocomplete="off"/>
+                                        t-att-autocomplete="off"
+                                        style="position: relative !important;"
+                                    />
                                     <label class="radio_input_value o_variant_pills_input_value"
                                            t-att-for="ptav.id">
                                         <img t-attf-src="/web/image/product.template.attribute.value/#{ptav.id}/image"
                                              alt="..." class="img-thumbnail reduce_3_rem" style="width: 3rem;" />
                                         <br />
-                                        <span t-field="ptav.name"/>
+                                        <span t-field="ptav.name span_reduce"/>
                                         <t t-call="website_sale.badge_extra_price"/>
                                     </label>
                                 </li>
