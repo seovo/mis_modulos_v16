@@ -50,10 +50,12 @@ class SaleOrder(models.Model):
 
             val1 = ','.join(column_names)
             val2 = corchetes_n
-            val3 = sql.SQL(', ').join(
-                    sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(col), sql.Identifier(col)) for col in column_names
+            val3 = ','.join(
+                    "{} = EXCLUDED.{}".format(col, col) for col in column_names
                     if col != 'id'
                 )
+
+            raise ValueError(val3)
 
 
             SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
