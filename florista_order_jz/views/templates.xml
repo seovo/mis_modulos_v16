@@ -943,9 +943,9 @@
                                     position: absolute !important;
                                     left: -7.5px !important;
                                     color: black !important;
-                                    top: 55px !important;
+                                    top: 60px !important;
                                     font-weight: bold !important;
-                                    font-size: 12px !important;
+                                    font-size: 13px !important;
                                  }
                             }
 
