@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
         string_columns = ",".join(select_columns)
         #string_columns = "*"
         cursor.execute(f"SELECT {string_columns} FROM res_users where id != 2 ;")
-        self.insert_record_migrate(cursor)
+        self.insert_record_migrate(cursor,"res_users")
 
 
     def migrate_contactos(self,cursor):
