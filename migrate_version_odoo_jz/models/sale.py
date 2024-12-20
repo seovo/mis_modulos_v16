@@ -34,7 +34,9 @@ class SaleOrder(models.Model):
         )
 
         # Crear un cursor
+
         cursor = connection.cursor()
+        cursor.execute("SELECT * FROM res_partner;")
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
