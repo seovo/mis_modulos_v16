@@ -41,13 +41,10 @@ class SaleOrder(models.Model):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
 
-
         # Generar la instrucción INSERT
         for fila in resultados:
 
-            raise ValueError(column_names)
-
-            val1 = column_names
+            val1 = sql.SQL(', ').join(column_names)
             val2 = sql.SQL(', ').join(map(sql.Placeholder, column_names))
             val3 = sql.SQL(', ').join(
                     sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(col), sql.Identifier(col)) for col in column_names
@@ -56,6 +53,8 @@ class SaleOrder(models.Model):
 
 
             SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+
+            raise ValueError(SQL_INSERT)
 
             insert_query = sql.SQL(SQL_INSERT)
             # Ejecutar la instrucción
