@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
                     if col != 'id'
                 )
 
-            raise ValueError(val3)
+            #raise ValueError(val3)
 
 
             SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
