@@ -41,6 +41,7 @@ class SaleOrder(models.Model):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
 
+
         # Generar la instrucción INSERT
         for fila in resultados:
 
