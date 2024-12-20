@@ -91,7 +91,7 @@ class SaleOrder(models.Model):
             'signup_type',
             'signup_expiration',
             'signup_token',
-            'team_id',
+            #'team_id', #luego actualizamo eto
             'ocn_token',
             'partner_gid',
             'additional_info',
