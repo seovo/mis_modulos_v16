@@ -55,8 +55,8 @@ class SaleOrder(models.Model):
             'industry_id',
             'color',
             'commercial_partner_id',
-            'create_uid',
-            'write_uid',
+            #'create_uid', #luego actualizamo eto
+            #'write_uid', #luego actualizamo eto
             #'display_name',
             'ref',
             'lang',
@@ -85,7 +85,38 @@ class SaleOrder(models.Model):
             'partner_share',
             'write_date',
             #'message_main_attachment_id',
-            'message_bounce', 'email_normalized', 'contact_address_complete', 'signup_type', 'signup_expiration', 'signup_token', 'team_id', 'ocn_token', 'partner_gid', 'additional_info', 'phone_sanitized', 'supplier_rank', 'customer_rank', 'invoice_warn', 'invoice_warn_msg', 'debit_limit', 'last_time_entries_checked', 'sale_warn', 'sale_warn_msg', 'city_id', 'street_name', 'street_number', 'street_number2', 'l10n_latam_identification_type_id', 'l10n_pe_district', 'online_partner_information', 'followup_reminder_type', 'purchase_warn', 'purchase_warn_msg', 'picking_warn', 'picking_warn_msg']
+            'message_bounce',
+            'email_normalized',
+            'contact_address_complete',
+            'signup_type',
+            'signup_expiration',
+            'signup_token',
+            'team_id',
+            'ocn_token',
+            'partner_gid',
+            'additional_info',
+            'phone_sanitized',
+            'supplier_rank',
+            'customer_rank',
+            'invoice_warn',
+            'invoice_warn_msg',
+            'debit_limit',
+            'last_time_entries_checked',
+            'sale_warn',
+            'sale_warn_msg',
+            'city_id',
+            'street_name',
+            'street_number',
+            'street_number2',
+            'l10n_latam_identification_type_id',
+            'l10n_pe_district',
+            'online_partner_information',
+            'followup_reminder_type',
+            'purchase_warn',
+            'purchase_warn_msg',
+            'picking_warn',
+            'picking_warn_msg'
+        ]
 
         string_columns = ",".join(select_columns)
         cursor.execute(f"SELECT {string_columns} FROM res_partner;")
