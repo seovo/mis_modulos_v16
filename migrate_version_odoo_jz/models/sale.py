@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
 
     def show_lot_availables(self):
         cursor = self.conect_postgres()
-        self.migrate_users(self, cursor)
+        self.migrate_users(cursor)
 
     def conect_postgres(self):
 
