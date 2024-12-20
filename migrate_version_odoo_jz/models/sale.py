@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from odoo.exceptions import ValidationError
 
 import psycopg2
-        from psycopg2 import sql
+from psycopg2 import sql
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
