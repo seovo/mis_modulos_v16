@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
         cursor.execute("SELECT * FROM res_partner;")
         db_version = cursor.fetchall()
 
-        raise ValueError(db_version)
+        raise ValueError([cursor.description,db_version])
 
         try:
             # Establecer conexión
