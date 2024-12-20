@@ -56,34 +56,7 @@ class SaleOrder(models.Model):
 
             insert_query = sql.SQL(SQL_INSERT)
             # Ejecutar la instrucción
-            raise ValueError(SQL_INSERT)
+            #raise ValueError(SQL_INSERT)
             cursor.execute(insert_query, fila)
 
-
-        try:
-            # Establecer conexión
-            connection = psycopg2.connect(
-                host=host,
-                port=port,
-                dbname=dbname,
-                user=user,
-                password=password
-            )
-
-            # Crear un cursor
-            cursor = connection.cursor()
-
-            # Realizar una consulta (ejemplo)
-            cursor.execute("SELECT version();")
-            db_version = cursor.fetchone()
-            print(f"Versión de la base de datos: {db_version}")
-
-        except Exception as e:
-            print(f"Ocurrió un error: {e}")
-
-        finally:
-            if connection:
-                cursor.close()
-                connection.close()
-                print("Conexión cerrada.")
 
