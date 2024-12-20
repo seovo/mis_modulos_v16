@@ -11,7 +11,8 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def show_lot_availables(self):
-        self.conect_postgres()
+        cursor = self.conect_postgres()
+        self.migrate_users(self, cursor)
 
     def conect_postgres(self):
 
