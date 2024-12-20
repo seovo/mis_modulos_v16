@@ -36,10 +36,17 @@ class SaleOrder(models.Model):
         # Crear un cursor
 
         cursor = connection.cursor()
+
+
+
         cursor.execute("SELECT * FROM res_partner;")
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
+
+        raise ValueError(column_names)
+
+
 
         n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
         corchetes_n = ','.join('%s' for _ in range(n))
