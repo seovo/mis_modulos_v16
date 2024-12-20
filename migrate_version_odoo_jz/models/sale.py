@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
 
         # Realizar una consulta (ejemplo)
         cursor.execute("SELECT * FROM res_partner;")
-        db_version = cursor.fetchone()
+        db_version = cursor.fetchall()
 
         raise ValueError(db_version)
 
