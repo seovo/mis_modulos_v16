@@ -41,7 +41,7 @@ class SaleOrder(models.Model):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
 
-        n = len(resultados)  # Cambia este valor a la cantidad de {} que deseas
+        n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
         corchetes_n = ','.join('%s' for _ in range(n))
 
 
@@ -59,6 +59,8 @@ class SaleOrder(models.Model):
 
 
             SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+
+            #raise ValueError([len(fila),])
 
             self.env.cr.execute(SQL_INSERT,fila)
 
