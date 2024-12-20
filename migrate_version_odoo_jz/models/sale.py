@@ -36,8 +36,9 @@ class SaleOrder(models.Model):
         # Realizar una consulta (ejemplo)
         cursor.execute("SELECT * FROM res_partner;")
         db_version = cursor.fetchall()
+        column_names = [desc[0] for desc in cursor.description]
 
-        raise ValueError([cursor.description,db_version])
+        raise ValueError([column_names,db_version])
 
         try:
             # Establecer conexión
