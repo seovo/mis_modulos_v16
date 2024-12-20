@@ -60,11 +60,11 @@ class SaleOrder(models.Model):
 
             SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
-            raise ValueError(SQL_INSERT)
+            #raise ValueError(SQL_INSERT)
 
-            insert_query = sql.SQL(SQL_INSERT)
+            #insert_query = sql.SQL(SQL_INSERT)
             # Ejecutar la instrucción
             #raise ValueError(SQL_INSERT)
-            cursor.execute(insert_query, fila)
+            cursor.execute(SQL_INSERT, fila)
 
 
