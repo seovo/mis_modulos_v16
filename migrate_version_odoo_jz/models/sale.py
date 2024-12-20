@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
 
         # Configuración de conexión
         host = 'localhost'  # Cambia esto por la dirección de tu servidor
-        port = 432  # Puerto
+        port = 5432  # Puerto
         dbname = 'villasur'  # Nombre de la base de datos
         user = 'odoo'  # Tu usuario
         password = 'RVFERo%gE65ZJcpf4Xz%'  # Tu contraseña
