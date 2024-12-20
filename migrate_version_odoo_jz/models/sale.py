@@ -137,6 +137,7 @@ class SaleOrder(models.Model):
 
     def insert_record_migrate(self,cursor):
         resultados = cursor.fetchall()  # Obtener todos los resultados
+        raise ValueError(resultados)
         column_names = [desc[0] for desc in cursor.description]
 
         # raise ValueError(column_names)
