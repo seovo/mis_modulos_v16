@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
                           #'create_uid', #actualizar luego
                           #'write_uid', #actualizar luego
                           'signature', 'share', 'write_date', 'totp_secret', 'notification_type', 'odoobot_state', 'odoobot_failed',
-                          'sale_team_id' #actualizar luego
+                          #'sale_team_id' #actualizar luego
                           ]
         string_columns = ",".join(select_columns)
         #string_columns = "*"
