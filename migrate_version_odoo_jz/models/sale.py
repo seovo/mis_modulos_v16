@@ -4,6 +4,9 @@ from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
 from odoo.exceptions import ValidationError
 
+import psycopg2
+        from psycopg2 import sql
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -11,8 +14,8 @@ class SaleOrder(models.Model):
         self.conect_postgres()
 
     def conect_postgres(self):
-        import psycopg2
-        from psycopg2 import sql
+
+
 
         # Configuración de conexión
         host = '89.116.73.100'  # Cambia esto por la dirección de tu servidor
@@ -33,12 +36,27 @@ class SaleOrder(models.Model):
         # Crear un cursor
         cursor = connection.cursor()
 
-        # Realizar una consulta (ejemplo)
-        cursor.execute("SELECT * FROM res_partner;")
-        db_version = cursor.fetchall()
+        resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
 
-        raise ValueError([column_names,db_version])
+        # Generar la instrucción INSERT
+        for fila in resultados:
+
+            val1 = sql.SQL(', ').join(map(sql.Identifier, column_names))
+            val2 = sql.SQL(', ').join(map(sql.Placeholder, column_names))
+            val3 = sql.SQL(', ').join(
+                    sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(col), sql.Identifier(col)) for col in column_names
+                    if col != 'id'
+                )
+
+
+            SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+
+            insert_query = sql.SQL(SQL_INSERT)
+            # Ejecutar la instrucción
+            raise ValueError(SQL_INSERT)
+            cursor.execute(insert_query, fila)
+
 
         try:
             # Establecer conexión
