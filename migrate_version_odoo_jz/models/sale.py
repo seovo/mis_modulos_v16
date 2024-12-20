@@ -44,7 +44,7 @@ class SaleOrder(models.Model):
         # Generar la instrucción INSERT
         for fila in resultados:
 
-            val1 = sql.SQL(', ').join(column_names)
+            val1 = ','.join(column_names)
             val2 = sql.SQL(', ').join(map(sql.Placeholder, column_names))
             val3 = sql.SQL(', ').join(
                     sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(col), sql.Identifier(col)) for col in column_names
