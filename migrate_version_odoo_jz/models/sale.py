@@ -41,11 +41,15 @@ class SaleOrder(models.Model):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
 
+        n = len(resultados)  # Cambia este valor a la cantidad de {} que deseas
+        corchetes_n = ','.join('{}' for _ in range(n))
+
+
         # Generar la instrucción INSERT
         for fila in resultados:
 
             val1 = ','.join(column_names)
-            val2 = sql.SQL(', ').join(map(sql.Placeholder, column_names))
+            val2 = corchetes_n
             val3 = sql.SQL(', ').join(
                     sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(col), sql.Identifier(col)) for col in column_names
                     if col != 'id'
