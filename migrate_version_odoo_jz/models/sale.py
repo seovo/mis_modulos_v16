@@ -37,9 +37,19 @@ class SaleOrder(models.Model):
 
         cursor = connection.cursor()
 
+        return cursor
 
 
+    def migrate_users(self,cursor):
+        #string_columns = ",".join(select_columns)
+        string_columns = "*"
+        cursor.execute(f"SELECT {string_columns} FROM res_users where id != 2 ;")
+        resultados = cursor.fetchall()  # Obtener todos los resultados
+        column_names = [desc[0] for desc in cursor.description]
+        raise ValueError(column_names)
 
+
+    def migrate_contactos(self,cursor):
 
 
         select_columns = [
@@ -124,8 +134,6 @@ class SaleOrder(models.Model):
         column_names = [desc[0] for desc in cursor.description]
 
         #raise ValueError(column_names)
-
-
 
         n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
         corchetes_n = ','.join('%s' for _ in range(n))
