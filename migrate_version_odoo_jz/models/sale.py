@@ -131,13 +131,13 @@ class SaleOrder(models.Model):
         string_columns = ",".join(select_columns)
         cursor.execute(f"SELECT {string_columns} FROM res_partner;")
 
-        self.insert_record_migrate(cursor)
+        self.insert_record_migrate(cursor,"res_partner")
 
 
 
-    def insert_record_migrate(self,cursor):
+    def insert_record_migrate(self,cursor,table):
         resultados = cursor.fetchall()  # Obtener todos los resultados
-        raise ValueError(resultados)
+        #raise ValueError(resultados)
         column_names = [desc[0] for desc in cursor.description]
 
         # raise ValueError(column_names)
@@ -156,7 +156,7 @@ class SaleOrder(models.Model):
 
             # raise ValueError(val3)
 
-            SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+            SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
             # raise ValueError([len(fila),])
 
