@@ -42,12 +42,11 @@ class SaleOrder(models.Model):
 
 
     def migrate_users(self,cursor):
-        #string_columns = ",".join(select_columns)
-        string_columns = "*"
+        select_columns = ['id', 'company_id', 'partner_id', 'active', 'create_date', 'login', 'password', 'action_id', 'create_uid', 'write_uid', 'signature', 'share', 'write_date', 'totp_secret', 'notification_type', 'odoobot_state', 'odoobot_failed', 'sale_team_id']
+        string_columns = ",".join(select_columns)
+        #string_columns = "*"
         cursor.execute(f"SELECT {string_columns} FROM res_users where id != 2 ;")
-        resultados = cursor.fetchall()  # Obtener todos los resultados
-        column_names = [desc[0] for desc in cursor.description]
-        raise ValueError(column_names)
+        self.insert_record_migrate(cursor)
 
 
     def migrate_contactos(self,cursor):
@@ -131,39 +130,43 @@ class SaleOrder(models.Model):
 
         string_columns = ",".join(select_columns)
         cursor.execute(f"SELECT {string_columns} FROM res_partner;")
+
+        self.insert_record_migrate(cursor)
+
+
+
+    def insert_record_migrate(self,cursor):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         column_names = [desc[0] for desc in cursor.description]
 
-        #raise ValueError(column_names)
+        # raise ValueError(column_names)
 
         n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
         corchetes_n = ','.join('%s' for _ in range(n))
 
-
         # Generar la instrucción INSERT
         for fila in resultados:
-
             val1 = ','.join(column_names)
             val2 = corchetes_n
             val3 = ','.join(
-                    "{} = EXCLUDED.{}".format(col, col) for col in column_names
-                    if col != 'id'
-                )
+                "{} = EXCLUDED.{}".format(col, col) for col in column_names
+                if col != 'id'
+            )
 
-            #raise ValueError(val3)
-
+            # raise ValueError(val3)
 
             SQL_INSERT = f"INSERT INTO res_partner ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
-            #raise ValueError([len(fila),])
+            # raise ValueError([len(fila),])
 
-            self.env.cr.execute(SQL_INSERT,fila)
+            self.env.cr.execute(SQL_INSERT, fila)
 
-            #raise ValueError(SQL_INSERT)
+            # raise ValueError(SQL_INSERT)
 
-            #insert_query = sql.SQL(SQL_INSERT)
+            # insert_query = sql.SQL(SQL_INSERT)
             # Ejecutar la instrucción
-            #raise ValueError(SQL_INSERT)
-            #cursor.execute(SQL_INSERT, fila)
+            # raise ValueError(SQL_INSERT)
+            # cursor.execute(SQL_INSERT, fila)
+
 
 
