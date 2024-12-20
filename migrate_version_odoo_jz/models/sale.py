@@ -49,7 +49,7 @@ class SaleOrder(models.Model):
             'name',
             'title',
             'parent_id',
-            'user_id',
+            #'user_id', #luego actualizamo eto
             'state_id',
             'country_id',
             'industry_id',
