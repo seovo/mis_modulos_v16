@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+{
+    "name": "Tarifas Sensotek",
+    "summary": """Tarifas Sensotek""",
+    "description": """Tarifas Sensotek""",
+    "author": "JZOLUTIONS",
+
+    "category": "Uncategorized",
+    "version": "0.1",
+    "depends": [
+        "sale_purchase",
+
+    ],
+    # always loaded
+    "data": [
+        #'views/sale_order_line.xml',
+    ],
+    # 'images': ['static/description/odoo-woo.gif'],
+}
