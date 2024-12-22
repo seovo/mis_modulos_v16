@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <field name="country_group_ids" position="after">
                 <field name="is_escale_sonsotec" />
-                <field name="amount_escale_sonsote" />
-                <field name="use_discount_category_sonsotec" />
+                <field name="amount_escale_sonsote"  attrs="{'invisible': [('is_escale_sonsotec', '!=', True)]}" />
+                <field name="use_discount_category_sonsotec" attrs="{'invisible': [('is_escale_sonsotec', '!=', True)]}" />
             </field>
        </field>
     </record>

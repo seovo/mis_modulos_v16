@@ -13,7 +13,7 @@
     ],
     # always loaded
     "data": [
-        #'views/sale_order_line.xml',
+        'views/product_pricelist.xml',
     ],
     # 'images': ['static/description/odoo-woo.gif'],
 }
