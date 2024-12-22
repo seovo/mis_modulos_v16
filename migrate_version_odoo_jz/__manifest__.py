@@ -8,7 +8,8 @@
     "version": "17.0",
     "depends": ["sale_management","l10n_pe_edi_odoofact",'land'],
     "data": [
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
+        'views/migrate_jz.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
