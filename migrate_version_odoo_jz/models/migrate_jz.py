@@ -7,8 +7,17 @@ from odoo.exceptions import ValidationError
 import psycopg2
 from psycopg2 import sql
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+class MigrateJz(models.Model):
+    _name = 'migrate.jz'
+    host = fields.Char(string="IP del Servidor Postgres")
+    port = fields.Intger(string="Puerto Postgres")
+    dbname = fields.Char(string="Base de Datos Postgres")
+    user   = fields.Char(string="Usuario Postges")
+    password = fields.Char(string="Contraseña Postgres")
+
+    log = fields.Text()
+    company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
+                                 default=lambda self: self.env.company)
 
     def show_lot_availables(self):
         cursor = self.conect_postgres()
@@ -38,12 +47,24 @@ class SaleOrder(models.Model):
 
         cursor = connection.cursor()
 
+        self.log = "ConexionExitosa"
+
+
+
         return cursor
 
 
     def migrate_users(self,cursor):
-        select_columns = ['id', 'company_id', 'partner_id', 'active', 'create_date', 'login', 'password', 'action_id',
-                          #'create_uid', #actualizar luego
+        select_columns = [
+            'id',
+            'company_id',
+            'partner_id',
+            'active',
+            'create_date',
+            'login',
+            'password',
+            'action_id',
+            #'create_uid', #actualizar luego
                           #'write_uid', #actualizar luego
                           'signature', 'share', 'write_date', 'totp_secret', 'notification_type', 'odoobot_state', 'odoobot_failed',
                           #'sale_team_id' #actualizar luego
@@ -173,6 +194,4 @@ class SaleOrder(models.Model):
             # Ejecutar la instrucción
             # raise ValueError(SQL_INSERT)
             # cursor.execute(SQL_INSERT, fila)
-
-
 

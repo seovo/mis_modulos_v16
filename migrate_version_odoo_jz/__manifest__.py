@@ -8,6 +8,7 @@
     "version": "17.0",
     "depends": ["sale_management","l10n_pe_edi_odoofact",'land'],
     "data": [
+        'security/ir.model.access.csv'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

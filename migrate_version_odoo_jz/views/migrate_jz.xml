@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="action_migrate_jz" model="ir.actions.act_window">
+        <field name="name">Migracion V16->V17</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">migrate.jz</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_migrate_jz"
+              id="menu_migrate_jz"
+              web_icon="migrate_version_odoo_jz,static/description/icon.png"
+    />
+
+</odoo>
