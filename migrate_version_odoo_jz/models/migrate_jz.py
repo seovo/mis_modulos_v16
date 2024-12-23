@@ -102,30 +102,21 @@ class MigrateModelJz(models.Model):
         cursor = self.migrate_id.conect_postgres()
 
         select_columnsx = []
-        c = 0
+
         for colx in self.columns:
             #raise ValueError([col,col.ignore])
             if colx.ignore == True:
                 continue
                 #continue
 
-            #if colx.ignore == False:
-            #    continue
-
-            c += 1
-
-            if c > 6:
-                raise ValueError([colx,colx.ignore,colx.name])
-
-
             select_columnsx.append(colx.name)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
 
 
-        raise ValueError(select_columnsx)
+        #raise ValueError(select_columnsx)
 
-        self._migrate_table(cursor, select_columns)
+        self._migrate_table(cursor, select_columnsx)
 
 
 
