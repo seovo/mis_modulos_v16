@@ -57,7 +57,7 @@ class MigrateJz(models.Model):
 
 class MigrateModelColumnsJz(models.Model):
     _name  = 'migrate.model.columns.jz'
-    name   = fields.Char()
+    name   = fields.Char(required=True)
     ignore = fields.Boolean(string="Ignorar")
     migrate_model_id = fields.Many2one('migrate.model.jz')
 
@@ -79,6 +79,14 @@ class MigrateModelJz(models.Model):
                 #raise ValueError(table)
                 record.table = table
 
+    @api.onchange('table')
+    def change_table(self):
+        table = self.table
+        cursor = self.migrate_id.conect_postgres()
+        string_sql = f"SELECT * FROM {table} LIMIT 1"
+        cursor.execute(string_sql)
+
+
 
     def migrate_table(self,cursor,select_columns):
         table = self.table
@@ -87,6 +95,14 @@ class MigrateModelJz(models.Model):
         if table == 'res_users':
             string_sql += f'  where id != {self.env.user.id} ;'
         cursor.execute(string_sql)
+        column_names = [desc[0] for desc in cursor.description]
+        self.columns = None
+        for cname in column_names:
+            self.columns += self.env['migrate.model.columns.jz'].new({
+                'name': cname
+            })
+
+        #resultados = cursor.fetchall()
 
     ####################
 
