@@ -99,11 +99,15 @@ class MigrateModelJz(models.Model):
 
         self.columns = None
         for desc in cursor.description:
-            if desc[0] == 'name':
-                raise ValueError(desc[1])
-            self.columns += self.env['migrate.model.columns.jz'].new({
+            #if desc[0] == 'name':
+            #    raise ValueError(desc[1])
+            dx = {
                 'name': desc[0]
-            })
+            }
+            if desc[1] == 3802 :
+                dx.update({'type_field':'jsonb'})
+
+            self.columns += self.env['migrate.model.columns.jz'].new(dx)
 
     def migrate_table(self):
         cursor = self.migrate_id.conect_postgres()
