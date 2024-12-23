@@ -60,6 +60,7 @@ class MigrateModelColumnsJz(models.Model):
     name   = fields.Char()
     ignore = fields.Boolean(string="Ignorar")
 
+
 class MigrateModelJz(models.Model):
     _name = 'migrate.model.jz'
     model = fields.Many2one('ir.model')
