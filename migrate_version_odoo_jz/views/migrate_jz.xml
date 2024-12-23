@@ -1,7 +1,7 @@
 <odoo>
 
     <record id="action_migrate_jz" model="ir.actions.act_window">
-        <field name="name">Migracion V16->V17</field>
+        <field name="name">Migracion V17</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">migrate.jz</field>
         <field name="view_mode">tree,form</field>
