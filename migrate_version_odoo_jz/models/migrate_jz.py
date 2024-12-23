@@ -95,7 +95,7 @@ class MigrateModelJz(models.Model):
             self.columns = None
             return
 
-        raise ValueError(cursor.description)
+
 
         self.columns = None
         for desc in cursor.description:
