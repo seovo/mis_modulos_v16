@@ -117,7 +117,7 @@ class MigrateModelJz(models.Model):
         if table == 'res_users':
             string_sql += f'  where id != {self.env.user.id} ;'
         cursor.execute(string_sql)
-        self.insert_record_migrate(cursor, table)
+        self.insert_record_migrate(cursor, table,select_columns)
 
 
 
@@ -234,7 +234,47 @@ class MigrateModelJz(models.Model):
 
 
 
-    def insert_record_migrate(self,cursor,table):
+    def insert_record_migrate(self,cursor,table,column_names):
+        resultados = cursor.fetchall()  # Obtener todos los resultados
+        #raise ValueError(resultados)
+
+
+        # raise ValueError(column_names)
+
+        n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
+        corchetes_n = ','.join('%s' for _ in range(n))
+
+        # Generar la instrucción INSERT
+        for fila in resultados:
+            val1 = ','.join(column_names)
+            val2 = corchetes_n
+            val3 = ','.join(
+                "{} = EXCLUDED.{}".format(col, col) for col in column_names
+                if col != 'id'
+            )
+
+            # raise ValueError(val3)
+
+            SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+
+            # raise ValueError([len(fila),])
+
+            try:
+                self.env.cr.execute(SQL_INSERT, fila)
+            except:
+                raise ValueError([SQL_INSERT,fila])
+
+
+
+            # raise ValueError(SQL_INSERT)
+
+            # insert_query = sql.SQL(SQL_INSERT)
+            # Ejecutar la instrucción
+            # raise ValueError(SQL_INSERT)
+            # cursor.execute(SQL_INSERT, fila)
+
+
+    def insert_record_migratex(self,cursor,table):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         #raise ValueError(resultados)
         column_names = [desc[0] for desc in cursor.description]
