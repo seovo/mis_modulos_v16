@@ -12,12 +12,13 @@ class MigrateJz(models.Model):
     host = fields.Char(string="IP del Servidor Postgres",required=True)
     port = fields.Integer(string="Puerto Postgres",default=5432)
     dbname = fields.Char(string="Base de Datos Postgres",required=True)
-    user   = fields.Char(string="Usuario Postges",required=True)
+    user   = fields.Char(string="Usuario Postgres",required=True)
     password = fields.Char(string="Contraseña Postgres",required=True)
+    model_ids = fields.One2many('migrate.model.jz',string="Modelos")
 
     log = fields.Text()
-    company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
-                                 default=lambda self: self.env.company)
+    #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
+    #                             default=lambda self: self.env.company)
 
     def show_lot_availables(self):
         cursor = self.conect_postgres()
@@ -52,6 +53,37 @@ class MigrateJz(models.Model):
 
 
         return cursor
+
+
+class MigrateModelColumnsJz(models.Model):
+    _name  = 'migrate.model.columns.jz'
+    name   = fields.Char()
+    ignore = fields.Boolean(string="Ignorar")
+
+class MigrateModelJz(models.Model):
+    _name = 'migrate.model.jz'
+    model = fields.Many2one('ir.model')
+    table = fields.Char(required=True)
+    columns = fields.One2many('migrate.model.columns.jz')
+    log = fields.Text()
+
+    @api.onchange('model')
+    def change_model(self):
+        for record in self:
+            if record.model:
+                record.table = record.model.replace('.','_')
+
+
+    def migrate_table(self,cursor,select_columns):
+        table = self.table
+        string_columns = ",".join(select_columns)
+        string_sql = f"SELECT {string_columns} FROM {table}"
+        if table == 'res_users':
+            string_sql += f'  where id != {self.env.user.id} ;'
+        cursor.execute(string_sql)
+
+    ####################
+
 
 
     def migrate_users(self,cursor):

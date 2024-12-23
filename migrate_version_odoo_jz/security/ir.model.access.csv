@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 migratejz,migratejz,model_migrate_jz,,1,1,1,1
+model,model,model_migrate_model_jz,,1,1,1,1
+columns,columns,model_migrate_model_columns_jz,,1,1,1,1

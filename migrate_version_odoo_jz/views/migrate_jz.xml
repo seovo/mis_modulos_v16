@@ -41,28 +41,11 @@
                     </group>
 
                     <notebook>
-                        <page string="Sales" name="account_move_line_ids">
-                            <!--
+                        <page string="Modelos" name="mode_ids">
 
-                            <field name="line_ids" readonly="state not in ['draft']"
 
-                            >
-                                <tree string="Commisiones"  editable="bottom">
-                                    <field name="sale_id" optional="show"
-                                           domain="[('diff_payment_comision','>',0)]" />
-                                    <field name="mz_land" />
-                                    <field name="lot_land" />
-                                    <field name="nro_internal_land" />
-                                    <field name="date_order" />
-                                    <field name="date_sign_land" string="Fecha Contrato" />
-                                    <field name="commision_lan" />
-                                    <field name="amount" />
-                                    <field name="desc" />
-                                    <field name="subtotal" />
+                            <field name="model_ids" />
 
-                                </tree>
-                            </field>
-                            -->
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
                                <group colspan="4">
                                    <field colspan="2" name="log"/>
