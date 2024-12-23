@@ -159,7 +159,7 @@ class MigrateModelJz(models.Model):
             SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
             # raise ValueError([len(fila),])
-            '''
+
             self.env.cr.execute(SQL_INSERT, fila)
             '''
             try:
@@ -171,6 +171,7 @@ class MigrateModelJz(models.Model):
                 result = self.env.cr.fetchall()
                 raise ValueError(result)
                 raise ValueError([SQL_INSERT,fila,result])
+            '''
 
 
 
