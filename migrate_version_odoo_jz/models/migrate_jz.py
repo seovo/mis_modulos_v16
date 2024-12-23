@@ -136,7 +136,7 @@ class MigrateModelJz(models.Model):
         table = self.table
         string_columns = ",".join(select_columns)
         #quitar limit
-        string_sql = f"SELECT {string_columns} FROM {table} LIMIT 1"
+        string_sql = f"SELECT {string_columns} FROM {table} "
         if table == 'res_users':
             string_sql += f'  where id != {self.env.user.id} ;'
         cursor.execute(string_sql)
