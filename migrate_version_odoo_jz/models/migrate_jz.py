@@ -76,7 +76,7 @@ class MigrateModelJz(models.Model):
         for record in self:
             if record.model_id:
                 table = record.model_id.model.replace('.','_')
-                raise ValueError(table)
+                #raise ValueError(table)
                 record.table = table
 
 
