@@ -267,12 +267,13 @@ class MigrateModelJz(models.Model):
             SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
             # raise ValueError([len(fila),])
-
+            self.env.cr.execute(SQL_INSERT, fila)
+            '''
             try:
                 self.env.cr.execute(SQL_INSERT, fila)
             except:
                 raise ValueError([SQL_INSERT,fila])
-
+            '''
 
 
             # raise ValueError(SQL_INSERT)
