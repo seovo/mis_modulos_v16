@@ -10,7 +10,7 @@ from psycopg2 import sql
 class MigrateJz(models.Model):
     _name = 'migrate.jz'
     host = fields.Char(string="IP del Servidor Postgres")
-    port = fields.Intger(string="Puerto Postgres")
+    port = fields.Integer(string="Puerto Postgres")
     dbname = fields.Char(string="Base de Datos Postgres")
     user   = fields.Char(string="Usuario Postges")
     password = fields.Char(string="Contraseña Postgres")
