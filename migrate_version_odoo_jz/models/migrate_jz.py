@@ -109,6 +109,9 @@ class MigrateModelJz(models.Model):
                 continue
                 #continue
 
+            if colx.ignore == False:
+                continue
+
             c += 1
 
             if c > 3:
