@@ -64,7 +64,7 @@ class MigrateModelColumnsJz(models.Model):
 
 class MigrateModelJz(models.Model):
     _name = 'migrate.model.jz'
-    model = fields.Many2one('ir.model')
+    model_id = fields.Many2one('ir.model',string="Modelo")
     table = fields.Char(required=True)
     columns = fields.One2many('migrate.model.columns.jz','migrate_model_id')
     log = fields.Text()
@@ -73,8 +73,8 @@ class MigrateModelJz(models.Model):
     @api.onchange('model')
     def change_model(self):
         for record in self:
-            if record.model:
-                record.table = record.model.replace('.','_')
+            if record.model_id:
+                record.table = record.model_id.model.replace('.','_')
 
 
     def migrate_table(self,cursor,select_columns):
