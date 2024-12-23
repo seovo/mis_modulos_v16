@@ -73,6 +73,7 @@ class MigrateModelJz(models.Model):
     migrate_id = fields.Many2one('migrate.jz')
     name = fields.Char(related='table')
     update_if_exist = fields.Boolean(string="Actualizar si Existe")
+    no_existe_id = fields.Boolean()
 
 
     @api.onchange('model_id')
@@ -175,15 +176,21 @@ class MigrateModelJz(models.Model):
 
             # raise ValueError(val3)
 
-            if self.update_if_exist:
-                val3 = ','.join(
-                    "{} = EXCLUDED.{}".format(col, col) for col in column_names
-                    if col != 'id'
-                )
-
-                SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+            if self.no_existe_id:
+                SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
             else:
-                SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
+                if self.update_if_exist:
+                    val3 = ','.join(
+                        "{} = EXCLUDED.{}".format(col, col) for col in column_names
+                        if col != 'id'
+                    )
+
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+                else:
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
+
+
+
 
 
 
