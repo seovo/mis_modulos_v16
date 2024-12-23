@@ -133,114 +133,6 @@ class MigrateModelJz(models.Model):
 
         #resultados = cursor.fetchall()
 
-    ####################
-
-
-
-    def migrate_users(self,cursor):
-        select_columns = [
-            'id',
-            'company_id',
-            'partner_id',
-            'active',
-            'create_date',
-            'login',
-            'password',
-            'action_id',
-            #'create_uid', #actualizar luego
-                          #'write_uid', #actualizar luego
-                          'signature', 'share', 'write_date', 'totp_secret', 'notification_type', 'odoobot_state', 'odoobot_failed',
-                          #'sale_team_id' #actualizar luego
-                          ]
-        string_columns = ",".join(select_columns)
-        #string_columns = "*"
-        cursor.execute(f"SELECT {string_columns} FROM res_users where id != 2 ;")
-        self.insert_record_migrate(cursor,"res_users")
-
-
-    def migrate_contactos(self,cursor):
-
-
-        select_columns = [
-            'id',
-            'company_id',
-            'create_date',
-            'name',
-            'title',
-            'parent_id',
-            #'user_id', #luego actualizamo eto
-            'state_id',
-            'country_id',
-            'industry_id',
-            'color',
-            'commercial_partner_id',
-            #'create_uid', #luego actualizamo eto
-            #'write_uid', #luego actualizamo eto
-            #'display_name',
-            'ref',
-            'lang',
-            'tz',
-            'vat',
-            'company_registry',
-            'website',
-            'function',
-            'type',
-            'street',
-            'street2',
-            'zip',
-            'city',
-            'email',
-            'phone',
-            'mobile',
-            'commercial_company_name',
-            'company_name',
-            'date',
-            'comment',
-            'partner_latitude',
-            'partner_longitude',
-            'active',
-            'employee',
-            'is_company',
-            'partner_share',
-            'write_date',
-            #'message_main_attachment_id',
-            'message_bounce',
-            'email_normalized',
-            'contact_address_complete',
-            'signup_type',
-            'signup_expiration',
-            'signup_token',
-            #'team_id', #luego actualizamo eto
-            'ocn_token',
-            'partner_gid',
-            'additional_info',
-            'phone_sanitized',
-            'supplier_rank',
-            'customer_rank',
-            'invoice_warn',
-            'invoice_warn_msg',
-            'debit_limit',
-            'last_time_entries_checked',
-            'sale_warn',
-            'sale_warn_msg',
-            'city_id',
-            'street_name',
-            'street_number',
-            'street_number2',
-            'l10n_latam_identification_type_id',
-            'l10n_pe_district',
-            'online_partner_information',
-            'followup_reminder_type',
-            'purchase_warn',
-            'purchase_warn_msg',
-            'picking_warn',
-            'picking_warn_msg'
-        ]
-
-        string_columns = ",".join(select_columns)
-        cursor.execute(f"SELECT {string_columns} FROM res_partner;")
-
-        self.insert_record_migrate(cursor,"res_partner")
 
 
 
@@ -267,52 +159,13 @@ class MigrateModelJz(models.Model):
             SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
             # raise ValueError([len(fila),])
+            '''
             self.env.cr.execute(SQL_INSERT, fila)
             '''
             try:
                 self.env.cr.execute(SQL_INSERT, fila)
             except:
                 raise ValueError([SQL_INSERT,fila])
-            '''
-
-
-            # raise ValueError(SQL_INSERT)
-
-            # insert_query = sql.SQL(SQL_INSERT)
-            # Ejecutar la instrucción
-            # raise ValueError(SQL_INSERT)
-            # cursor.execute(SQL_INSERT, fila)
-
-
-    def insert_record_migratex(self,cursor,table):
-        resultados = cursor.fetchall()  # Obtener todos los resultados
-        #raise ValueError(resultados)
-        column_names = [desc[0] for desc in cursor.description]
-
-        # raise ValueError(column_names)
-
-        n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
-        corchetes_n = ','.join('%s' for _ in range(n))
-
-        # Generar la instrucción INSERT
-        for fila in resultados:
-            val1 = ','.join(column_names)
-            val2 = corchetes_n
-            val3 = ','.join(
-                "{} = EXCLUDED.{}".format(col, col) for col in column_names
-                if col != 'id'
-            )
-
-            # raise ValueError(val3)
-
-            SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
-
-            # raise ValueError([len(fila),])
-
-            try:
-                self.env.cr.execute(SQL_INSERT, fila)
-            except:
-                raise ValueError([SQL_INSERT,fila])
 
 
 
@@ -322,4 +175,6 @@ class MigrateModelJz(models.Model):
             # Ejecutar la instrucción
             # raise ValueError(SQL_INSERT)
             # cursor.execute(SQL_INSERT, fila)
+
+
 
