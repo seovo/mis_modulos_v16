@@ -109,12 +109,12 @@ class MigrateModelJz(models.Model):
                 continue
                 #continue
 
-            if colx.ignore == False:
-                continue
+            #if colx.ignore == False:
+            #    continue
 
             c += 1
 
-            if c > 3:
+            if c > 6:
                 raise ValueError([colx,colx.ignore,colx.name])
 
 
