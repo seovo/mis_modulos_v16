@@ -168,6 +168,7 @@ class MigrateModelJz(models.Model):
                 sql_strr = "SELECT * FROM product_template  "
                 self.env.cr.execute(sql_strr)
                 result = self.env.cr.fetchall()
+                raise ValueError(result)
                 raise ValueError([SQL_INSERT,fila,result])
 
 
