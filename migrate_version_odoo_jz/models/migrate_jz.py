@@ -86,7 +86,7 @@ class MigrateModelJz(models.Model):
     def change_table(self):
         table = self.table
         cursor = self.migrate_id.conect_postgres()
-        raise ValueError(cursor.description)
+
         string_sql = f"SELECT * FROM {table} LIMIT 1"
         try:
             cursor.execute(string_sql)
@@ -94,6 +94,8 @@ class MigrateModelJz(models.Model):
         except:
             self.columns = None
             return
+
+        raise ValueError(cursor.description)
 
         self.columns = None
         for desc in cursor.description:
