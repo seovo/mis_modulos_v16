@@ -238,7 +238,7 @@ class MigrateModelJz(models.Model):
         resultados = cursor.fetchall()  # Obtener todos los resultados
         #raise ValueError(resultados)
 
-        # raise ValueError(column_names)
+        raise ValueError(column_names)
 
         n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
         corchetes_n = ','.join('%s' for _ in range(n))
