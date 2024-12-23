@@ -113,11 +113,13 @@ class MigrateModelJz(models.Model):
             namm = colx.name
 
 
+
             column_names.append(namm)
 
             if namm == 'name':
                 namm += '::text'
-            select_columnsx.append(colx.name)
+                #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
+            select_columnsx.append(namm)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
 
@@ -168,12 +170,12 @@ class MigrateModelJz(models.Model):
             SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
 
             #raise ValueError([len(fila),fila])
-            self.env.cr.execute(SQL_INSERT, [fila[0],f'''"{fila[1]}"'''])
+            #self.env.cr.execute(SQL_INSERT, [fila[0],f'''"{fila[1]}"'''])
             '''
             self.env.cr.execute(SQL_INSERT, fila)
             '''
             try:
-                self.env.cr.execute(SQL_INSERT, [f'''"{fila[1]}"'''])
+                self.env.cr.execute(SQL_INSERT, fila)
             except:
                 raise ValueError([SQL_INSERT, fila])
                 #raise ValueError([fila,SQL_INSERT])
