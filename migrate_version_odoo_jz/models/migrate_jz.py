@@ -103,7 +103,8 @@ class MigrateModelJz(models.Model):
 
         select_columnsx = []
         for col in self.columns:
-            if col.ignore:
+            if col.ignore != True:
+                continue
                 select_columnsx.append(col.name)
 
         raise ValueError(select_columnsx)
