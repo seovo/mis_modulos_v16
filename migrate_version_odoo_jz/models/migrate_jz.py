@@ -100,7 +100,7 @@ class MigrateModelJz(models.Model):
         self.columns = None
         for desc in cursor.description:
             if desc[0] == 'name':
-                raise ValueError(desc)
+                raise ValueError(desc[1])
             self.columns += self.env['migrate.model.columns.jz'].new({
                 'name': desc[0]
             })
