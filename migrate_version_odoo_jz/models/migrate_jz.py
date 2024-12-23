@@ -14,7 +14,7 @@ class MigrateJz(models.Model):
     dbname = fields.Char(string="Base de Datos Postgres",required=True)
     user   = fields.Char(string="Usuario Postgres",required=True)
     password = fields.Char(string="Contraseña Postgres",required=True)
-    model_ids = fields.One2many('migrate.model.jz',string="Modelos")
+    model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
 
     log = fields.Text()
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
@@ -59,6 +59,7 @@ class MigrateModelColumnsJz(models.Model):
     _name  = 'migrate.model.columns.jz'
     name   = fields.Char()
     ignore = fields.Boolean(string="Ignorar")
+    migrate_model_id = fields.Many2one('migrate.model.jz')
 
 
 class MigrateModelJz(models.Model):
@@ -67,6 +68,7 @@ class MigrateModelJz(models.Model):
     table = fields.Char(required=True)
     columns = fields.One2many('migrate.model.columns.jz')
     log = fields.Text()
+    migrate_id = fields.Many2one('migrate.jz','migrate_model_id')
 
     @api.onchange('model')
     def change_model(self):
