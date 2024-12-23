@@ -89,14 +89,16 @@ class MigrateModelJz(models.Model):
         string_sql = f"SELECT * FROM {table} LIMIT 1"
         try:
             cursor.execute(string_sql)
-
-            column_names = [desc[0] for desc in cursor.description]
-
             self.columns = None
-            for cname in column_names:
+            for desc in cursor.description:
+                if desc[0] == 'name':
+                    raise ValueError(desc)
                 self.columns += self.env['migrate.model.columns.jz'].new({
-                    'name': cname
+                    'name': desc[0]
                 })
+
+
+
         except:
             self.columns = None
 
