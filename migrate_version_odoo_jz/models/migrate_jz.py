@@ -102,6 +102,7 @@ class MigrateModelJz(models.Model):
         cursor = self.migrate_id.conect_postgres()
 
         select_columnsx = []
+        column_names = []
 
         for colx in self.columns:
             #raise ValueError([col,col.ignore])
@@ -109,6 +110,13 @@ class MigrateModelJz(models.Model):
                 continue
                 #continue
 
+            namm = colx.name
+
+
+            column_names.append(namm)
+
+            if namm == 'name':
+                namm += '::text'
             select_columnsx.append(colx.name)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
@@ -116,18 +124,19 @@ class MigrateModelJz(models.Model):
 
         #raise ValueError(select_columnsx)
 
-        self._migrate_table(cursor, select_columnsx)
+        self._migrate_table(cursor, select_columnsx,column_names)
 
 
 
-    def _migrate_table(self,cursor,select_columns):
+    def _migrate_table(self,cursor,select_columns,column_names):
         table = self.table
         string_columns = ",".join(select_columns)
-        string_sql = f"SELECT {string_columns} FROM {table}"
+        #quitar limit
+        string_sql = f"SELECT {string_columns} FROM {table} LIMIT 1"
         if table == 'res_users':
             string_sql += f'  where id != {self.env.user.id} ;'
         cursor.execute(string_sql)
-        self.insert_record_migrate(cursor, table,select_columns)
+        self.insert_record_migrate(cursor, table,column_names)
 
 
 
