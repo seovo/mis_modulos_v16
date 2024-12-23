@@ -70,7 +70,7 @@ class MigrateModelJz(models.Model):
     log = fields.Text()
     migrate_id = fields.Many2one('migrate.jz')
 
-    @api.onchange('model')
+    @api.onchange('model_id')
     def change_model(self):
         for record in self:
             if record.model_id:
