@@ -39,9 +39,11 @@
 
 
                     </group>
-<!--
+
                     <notebook>
                         <page string="Sales" name="account_move_line_ids">
+                            <!--
+
                             <field name="line_ids" readonly="state not in ['draft']"
 
                             >
@@ -60,24 +62,15 @@
 
                                 </tree>
                             </field>
+                            -->
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
-                            <group colspan="4">
-                                   <field colspan="2" name="note"
-                                          readonly="state not in ['draft']"
-                                          nolabel="1" placeholder="Observaciones..."/>
-                            </group>
-                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                                <field name="amount_base" readonly="1" force_save="1" />
-                                <field name="amount_discount"  readonly="1" force_save="1" />
-                                <field name="amount_bonus"  readonly="1" force_save="1" />
+                               <group colspan="4">
+                                   <field colspan="2" name="log"/>
+                               </group>
 
-                                <field name="amount_total"  readonly="1" force_save="1" />
                             </group>
-                            <div class="clearfix"/>
-                        </group>
                         </page>
                     </notebook>
-                    -->
 
                 </sheet>
 
