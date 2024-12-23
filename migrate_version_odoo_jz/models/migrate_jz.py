@@ -101,10 +101,12 @@ class MigrateModelJz(models.Model):
     def migrate_table(self):
         cursor = self.migrate_id.conect_postgres()
 
-        select_columns = []
+        select_columnsx = []
         for col in self.columns:
             if not col.ignore:
-                select_columns.append(col.name)
+                select_columnsx.append(col.name)
+
+        raise ValueError(select_columnsx)
 
         self._migrate_table(cursor, select_columns)
 
