@@ -42,8 +42,6 @@
                             </field>
 
 
-
-
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
                                <group colspan="4">
                                    <field colspan="2" name="log"/>
