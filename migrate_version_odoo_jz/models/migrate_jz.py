@@ -74,7 +74,9 @@ class MigrateModelJz(models.Model):
     def change_model(self):
         for record in self:
             if record.model_id:
-                record.table = record.model_id.model.replace('.','_')
+                table = record.model_id.model.replace('.','_')
+                raise ValueError(table)
+                record.table = table
 
 
     def migrate_table(self,cursor,select_columns):
