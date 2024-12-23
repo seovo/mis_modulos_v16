@@ -38,6 +38,7 @@
                                 <tree editable="bottom">
                                     <field name="name" />
                                     <field name="ignore" />
+                                    <field name="type_field" />
                                 </tree>
                             </field>
 

@@ -59,7 +59,9 @@ class MigrateModelColumnsJz(models.Model):
     _name  = 'migrate.model.columns.jz'
     name   = fields.Char(required=True)
     ignore = fields.Boolean(string="Ignorar")
+    type_field = fields.Selection([('jsonb','jsonb')])
     migrate_model_id = fields.Many2one('migrate.model.jz')
+
 
 
 class MigrateModelJz(models.Model):
@@ -116,7 +118,7 @@ class MigrateModelJz(models.Model):
 
             column_names.append(namm)
 
-            if namm == 'name':
+            if colx.type_field in ['jsonb']:
                 namm += '::text'
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
             select_columnsx.append(namm)
