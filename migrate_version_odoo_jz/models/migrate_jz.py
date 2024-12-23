@@ -95,7 +95,7 @@ class MigrateModelJz(models.Model):
                     'name': cname
                 })
         except:
-            pass
+            self.columns = None
 
 
 
