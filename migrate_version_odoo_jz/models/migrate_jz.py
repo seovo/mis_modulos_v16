@@ -69,6 +69,7 @@ class MigrateModelJz(models.Model):
     columns = fields.One2many('migrate.model.columns.jz','migrate_model_id')
     log = fields.Text()
     migrate_id = fields.Many2one('migrate.jz')
+    name = fields.Char(related='table')
 
 
     @api.onchange('model_id')
@@ -97,17 +98,26 @@ class MigrateModelJz(models.Model):
         except:
             self.columns = None
 
+    def migrate_table(self):
+        cursor = self.migrate_id.conect_postgres()
+
+        select_columns = []
+        for col in self.columns:
+            if not col.ignore:
+                select_columns.append(col.name)
+
+        self._migrate_table(cursor, select_columns)
 
 
 
-
-    def migrate_table(self,cursor,select_columns):
+    def _migrate_table(self,cursor,select_columns):
         table = self.table
         string_columns = ",".join(select_columns)
         string_sql = f"SELECT {string_columns} FROM {table}"
         if table == 'res_users':
             string_sql += f'  where id != {self.env.user.id} ;'
         cursor.execute(string_sql)
+        self.insert_record_migrate(cursor, table)
 
 
 

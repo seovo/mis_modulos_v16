@@ -1,6 +1,66 @@
 <odoo>
 
 
+    <record model="ir.ui.view" id="migrate_model_jz_form" >
+        <field name="name">migrate.model.jz.form</field>
+        <field name="model">migrate.model.jz</field>
+        <field name="arch" type="xml">
+            <form string="Migracion">
+                <header>
+
+                     <button name="migrate_table"
+                             string="Sincronizar" type="object"
+                           />
+
+                </header>
+                <sheet>
+
+
+
+                    <group>
+                        <group>
+                            <field name="model_id"/>
+
+                        </group>
+                        <group>
+                            <field name="table" />
+                        </group>
+
+
+
+                    </group>
+
+                    <notebook>
+                        <page string="Campos" name="columns">
+
+
+                            <field name="columns">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="ignore" />
+                                </tree>
+                            </field>
+
+
+
+
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                               <group colspan="4">
+                                   <field colspan="2" name="log"/>
+                               </group>
+
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+
+            </form>
+        </field>
+    </record>
+
+
     <record model="ir.ui.view" id="migrate_jz_form" >
         <field name="name">migrate.jz.form</field>
         <field name="model">migrate.jz</field>
