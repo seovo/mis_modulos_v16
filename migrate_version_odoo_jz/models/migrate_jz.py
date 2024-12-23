@@ -86,6 +86,14 @@ class MigrateModelJz(models.Model):
         string_sql = f"SELECT * FROM {table} LIMIT 1"
         cursor.execute(string_sql)
 
+        column_names = [desc[0] for desc in cursor.description]
+
+        self.columns = None
+        for cname in column_names:
+            self.columns += self.env['migrate.model.columns.jz'].new({
+                'name': cname
+            })
+
 
 
     def migrate_table(self,cursor,select_columns):
@@ -95,12 +103,8 @@ class MigrateModelJz(models.Model):
         if table == 'res_users':
             string_sql += f'  where id != {self.env.user.id} ;'
         cursor.execute(string_sql)
-        column_names = [desc[0] for desc in cursor.description]
-        self.columns = None
-        for cname in column_names:
-            self.columns += self.env['migrate.model.columns.jz'].new({
-                'name': cname
-            })
+
+
 
         #resultados = cursor.fetchall()
 
