@@ -67,7 +67,7 @@ class MigrateModelColumnsJz(models.Model):
     ignore = fields.Boolean(string="Ignorar")
     type_field = fields.Selection([('jsonb','jsonb')])
     migrate_model_id = fields.Many2one('migrate.model.jz')
-    value_set = fields.Char()
+    value_set = fields.Text()
 
 
 
@@ -141,7 +141,7 @@ class MigrateModelJz(models.Model):
                 namm += '::text'
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
             if colx.value_set :
-                namm = f'''{colx.value_set} as {namm}'''
+                namm = f'''{colx.value_set} '''
             select_columnsx.append(namm)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
