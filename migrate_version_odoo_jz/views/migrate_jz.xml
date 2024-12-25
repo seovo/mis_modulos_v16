@@ -41,6 +41,7 @@
                                     <field name="name" />
                                     <field name="ignore" />
                                     <field name="type_field" />
+                                    <field name="value_set" />
                                 </tree>
                             </field>
 
