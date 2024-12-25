@@ -26,15 +26,6 @@ class MigrateJz(models.Model):
 
     def conect_postgres(self):
 
-
-
-        # Configuración de conexión
-        host = '89.116.73.100'  # Cambia esto por la dirección de tu servidor
-        port = 5432  # Puerto
-        dbname = 'villasur'  # Nombre de la base de datos
-        user = 'odoo'  # Tu usuario
-        password = 'RVFERo%gE65ZJcpf4Xz%'  # Tu contraseña
-
         host = self.host  # Cambia esto por la dirección de tu servidor
         port = self.port  # Puerto
         dbname = self.dbname  # Nombre de la base de datos
@@ -63,11 +54,14 @@ class MigrateJz(models.Model):
 
 class MigrateModelColumnsJz(models.Model):
     _name  = 'migrate.model.columns.jz'
-    name   = fields.Char(required=True)
-    ignore = fields.Boolean(string="Ignorar")
-    type_field = fields.Selection([('jsonb','jsonb')])
+    name             = fields.Char(required=True)
+    ignore           = fields.Boolean(string="Ignorar")
+    type_field       = fields.Selection([('jsonb','jsonb')])
     migrate_model_id = fields.Many2one('migrate.model.jz')
-    value_set = fields.Text()
+    value_set        = fields.Text()
+
+
+
 
 
 
@@ -81,6 +75,7 @@ class MigrateModelJz(models.Model):
     name = fields.Char(related='table')
     update_if_exist = fields.Boolean(string="Actualizar si Existe")
     no_existe_id = fields.Boolean()
+    where_set = fields.Text()
 
 
 
@@ -159,7 +154,11 @@ class MigrateModelJz(models.Model):
         #quitar limit
         string_sql = f"SELECT {string_columns} FROM {table} "
         if table == 'res_users':
-            string_sql += f'  where id != {self.env.user.id} ;'
+            add_where = f' AND {self.where_set}   ' if self.where_set else ''
+            string_sql += f'  where id != {self.env.user.id} {add_where} ;'
+        else:
+            if self.where_set:
+                string_sql += f'  where {self.where_set} ;'
         cursor.execute(string_sql)
         self.insert_record_migrate(cursor, table,column_names)
 

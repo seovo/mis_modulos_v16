@@ -21,6 +21,7 @@
                         <group>
                             <field name="model_id"/>
                             <field name="update_if_exist"/>
+                            <field name="where_set"/>
 
                         </group>
                         <group>
