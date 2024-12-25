@@ -16,7 +16,7 @@ class ProductPricelist(models.Model):
     amount_escale_sonsote = fields.Float(string='Monto Escala')
     use_discount_category_sonsotec =  fields.Boolean(string="Usar Descuento de Categoria")
     use_acquisition_cost  = fields.Boolean(string="Usar Precio : Costo de Adquisición")
-    use_rate_acquisition_cost  = fields.Boolean(string="Usar Tipo de cambio de Adquisición")
+    use_rate_acquisition_cost  = fields.Boolean(string="Usar Tipo de cambio Especial")
 
     @api.onchange('is_escale_sonsotec')
     def change_is_escale_sonsotec(self):
@@ -25,6 +25,7 @@ class ProductPricelist(models.Model):
                 record.use_discount_category_sonsotec = True
             if record.currency_id ==  self.env.ref('base.USD'):
                 record.use_acquisition_cost = True
+            if record.currency_id == self.env.ref('base.MXN'):
                 record.use_rate_acquisition_cost = True
 
 
@@ -55,17 +56,29 @@ class SaleOrderLine(models.Model):
 
             ######
 
-            if currency != self.order_id.pricelist_id.currency_id:
-                if tarifa.use_rate_acquisition_cost :
-                    rate = self.product_id.acq_exchange_rate
-                    #raise ValueError(price_unitx)
-                    res = price_unitx / rate if rate !=0 else 0
-                else:
-                    res = currency._convert(
-                        price_unitx, self.order_id.pricelist_id.currency_id,
-                        self.order_id.company_id or self.env.company, self.order_id.date_order or fields.Date.today())
+            #ES USD
+            if tarifa.use_acquisition_cost:
+                res = price_unitx
             else:
                 res = price_unitx
+                to_currency = self.order_id.pricelist_id.currency_id
+                if currency != to_currency:
+                    if tarifa.use_rate_acquisition_cost:
+                        rate = self.env['res.currency.special'].search([('from_currency','=',currency.id),
+                                                                        ('to_currency','=',to_currency.id)],limit=1)
+                        if not rate:
+                            raise ValueError('CONFIGURE MONEDA ESPECIAL')
+
+                        rate = rate.factor
+
+                        # raise ValueError(price_unitx)
+                        res = price_unitx / rate if rate != 0 else 0
+                    else:
+                        res = currency._convert(
+                            price_unitx, self.order_id.pricelist_id.currency_id,
+                            self.order_id.company_id or self.env.company,
+                            self.order_id.date_order or fields.Date.today())
+
 
             #record.price_unit = price_unitx
         #raise ValueError(res)
