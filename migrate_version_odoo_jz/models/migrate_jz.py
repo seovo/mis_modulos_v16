@@ -35,6 +35,12 @@ class MigrateJz(models.Model):
         user = 'odoo'  # Tu usuario
         password = 'RVFERo%gE65ZJcpf4Xz%'  # Tu contraseña
 
+        host = self.host  # Cambia esto por la dirección de tu servidor
+        port = self.port  # Puerto
+        dbname = self.dbname  # Nombre de la base de datos
+        user = self.user  # Tu usuario
+        password = self.password  # Tu contraseña
+
         # Establecer conexión
         connection = psycopg2.connect(
             host=host,
