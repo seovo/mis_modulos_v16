@@ -19,11 +19,12 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
+    def _get_combination_info(
+            self, combination=False, product_id=False, add_qty=1.0,
+            parent_combination=False, only_template=False,
+    ):
+        res = super()._get_combination_info(combination, product_id, add_qty,
+            parent_combination, only_template)
 
-
-    def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False,
-                             parent_combination=False, only_template=False):
-        res = super()._get_combination_info(combination, product_id, add_qty, pricelist,
-                             parent_combination, only_template)
         raise ValueError(res)
         return res
