@@ -18,12 +18,25 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
-
-            <xpath expr="//field[@name='lst_price']" position="after">
+            <xpath expr="//field[@name='default_code']" position="before">
                 <field name="new_price_comparation" />
             </xpath>
         </field>
     </record>
+
+
+    <record id="product_variant_easy_edit_view" model="ir.ui.view">
+        <field name="name">product.product.normal.form.extended</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='default_code']" position="before">
+                <field name="new_price_comparation" />
+            </xpath>
+        </field>
+    </record>
+
+
     <record id="product_product_normal_tree_view_extended" model="ir.ui.view">
         <field name="name">product.product.normal.form.extended</field>
         <field name="model">product.product</field>
