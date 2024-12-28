@@ -26,5 +26,11 @@ class ProductTemplate(models.Model):
         res = super()._get_combination_info(combination, product_id, add_qty,
             parent_combination, only_template)
 
-        raise ValueError(res)
+        if product_id:
+            product = self.env['product.product'].browse(product_id)
+            res.update({
+                'compare_list_price': product.new_price_comparation
+            })
+
+
         return res
