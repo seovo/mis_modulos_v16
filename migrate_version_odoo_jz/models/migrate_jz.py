@@ -74,6 +74,7 @@ class MigrateModelJz(models.Model):
     migrate_id = fields.Many2one('migrate.jz')
     name = fields.Char(related='table')
     update_if_exist = fields.Boolean(string="Actualizar si Existe")
+    #ignorar_if_error = fields.Boolean(string="Ignorar si Error")
     no_existe_id = fields.Boolean()
     where_set = fields.Text()
 
