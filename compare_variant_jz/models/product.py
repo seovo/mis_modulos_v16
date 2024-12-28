@@ -15,7 +15,7 @@ class ProductProduct(models.Model):
         'Precio Comparación', store=True,
         digits='Product Price')
 
-'''
+
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
@@ -35,4 +35,3 @@ class ProductTemplate(models.Model):
 
         return res
 
-'''
