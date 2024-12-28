@@ -19,7 +19,7 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    set_attribute_price = fields.Boolean(string='Set Attribute Price', default=False)
+
 
 
 
