@@ -12,8 +12,16 @@
                              string="Sincronizar" type="object"
                            />
 
+
                 </header>
                 <sheet>
+
+                    <div class="oe_button_box" name="button_box">
+                       <button name="show_lines" type="object" class="oe_stat_button"
+                               icon="fa-pencil-square-o" />
+
+
+                    </div>
 
 
 

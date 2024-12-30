@@ -20,6 +20,22 @@ class MigrateJz(models.Model):
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
+    def show_lines(self):
+        return {
+            "name": f"EDIT PRICE :   {self.name}",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "migrate.model.jz",
+            "target": "current",
+            "domain": [('migrate_model_id','=',self.id)] ,
+            "context": {
+                'default_migrate_model_id': self.id
+            }
+            #"res_id": self.id,
+            #"view_id": view.id
+        }
+
+
     def show_lot_availables(self):
         cursor = self.conect_postgres()
         self.migrate_users(cursor)
@@ -59,10 +75,6 @@ class MigrateModelColumnsJz(models.Model):
     type_field       = fields.Selection([('jsonb','jsonb')])
     migrate_model_id = fields.Many2one('migrate.model.jz')
     value_set        = fields.Text()
-
-
-
-
 
 
 class MigrateModelJz(models.Model):
