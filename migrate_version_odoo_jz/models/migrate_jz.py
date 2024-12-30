@@ -22,7 +22,7 @@ class MigrateJz(models.Model):
 
     def show_lines(self):
         return {
-            "name": f"EDIT PRICE :   {self.name}",
+            "name": f"LINEAS",
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "migrate.model.jz",
