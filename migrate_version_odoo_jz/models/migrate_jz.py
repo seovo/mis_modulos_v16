@@ -245,5 +245,5 @@ class MigrateModelJz(models.Model):
 
 
         if not self.no_existe_id:
-            sql_increment = f''' SELECT setval('public.{table}_id_seq, MAX(id)) FROM {table};'''
+            sql_increment = f''' SELECT setval('public.{table}_id_seq', MAX(id)) FROM {table};'''
             self.env.cr.execute(sql_increment)
