@@ -173,22 +173,9 @@ class MigrateModelJz(models.Model):
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
 
-        if not self.no_existe_id:
-            sql_increment = f' SELECT setval({table}, MAX(id)) FROM tu_tabla;'
-            string_sql += sql_increment
-
-
-
         cursor.execute(string_sql)
         self.insert_record_migrate(cursor, table,column_names)
-
-
-
-
-
         #resultados = cursor.fetchall()
-
-
 
 
     def insert_record_migrate(self,cursor,table,column_names):
@@ -256,4 +243,6 @@ class MigrateModelJz(models.Model):
             # cursor.execute(SQL_INSERT, fila)
 
 
-
+        if not self.no_existe_id:
+            sql_increment = f' SELECT setval({table}, MAX(id)) FROM tu_tabla;'
+            self.env.cr.execute(sql_increment)
