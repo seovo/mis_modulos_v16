@@ -243,6 +243,7 @@ class MigrateModelJz(models.Model):
             # cursor.execute(SQL_INSERT, fila)
 
 
+
         if not self.no_existe_id:
             sql_increment = f' SELECT setval({table}, MAX(id)) FROM tu_tabla;'
             self.env.cr.execute(sql_increment)
