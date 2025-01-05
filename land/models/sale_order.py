@@ -732,7 +732,7 @@ class SaleOrder(models.Model):
 
         self2 = object or self
 
-        raise ValueError(self2)
+        raise ValueError(self2.order_id)
 
         mz_lot = None
 
