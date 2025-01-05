@@ -742,7 +742,7 @@ class SaleOrder(models.Model):
 
             if objectx._name == 'sale.order':
 
-                domain_order.append(('id', '!=', objectx.id))
+                #domain_order.append(('id', '!=', objectx.id))
 
                 if objectx.repeat_mz_lot:
                     continue
@@ -784,6 +784,9 @@ class SaleOrder(models.Model):
                     ('state', 'in', ['done', 'sale']),
                     ('stage_land', '!=', 'cancel')
                 ]
+
+                if objectx._name == 'sale.order':
+                    domain_order.append(('id', '!=', objectx.id))
 
 
 
