@@ -740,7 +740,16 @@ class SaleOrder(models.Model):
         for record in self2:
             objectx = object if object else record
 
-            raise ValueError(self2.order_id)
+            if objectx._name == 'sale.order':
+
+                domain_order.append(('id', '!=', objectx.id))
+
+                if objectx.repeat_mz_lot:
+                    continue
+
+            if objectx._name == 'sale.order.line':
+                if objectx.order_id.repeat_mz_lot:
+                    continue
 
             if objectx._name == 'account.move':
                 if not objectx.is_separation_land:
@@ -776,16 +785,7 @@ class SaleOrder(models.Model):
                     ('stage_land', '!=', 'cancel')
                 ]
 
-                if objectx._name == 'sale.order':
 
-                    domain_order.append(('id', '!=', objectx.id))
-
-                    if objectx.repeat_mz_lot:
-                        continue
-
-                if objectx._name == 'sale.order.line':
-                    if objectx.order_id.repeat_mz_lot:
-                        continue
 
                 exist = self.env['sale.order'].search(domain_order)
 
