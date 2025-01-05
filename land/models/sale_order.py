@@ -795,7 +795,7 @@ class SaleOrder(models.Model):
 
                 if exist:
 
-                    raise ValueError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot} {objectx} {objectx.order_id}')
+                    raise ValueError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot} {objectx} {objectx.order_id}  {objectx.order_id.name}')
                     raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot} {objectx} {objectx.order_id}')
                 else:
                     lt = int(lt)
