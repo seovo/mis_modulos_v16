@@ -87,7 +87,7 @@ class SaleOrder(models.Model):
     price_unit_import = fields.Float(copy=False)
     invoice_payment_import_id = fields.Integer(copy=False)
     invoice_date_import =  fields.Date(copy=False)
-    journal_id = fields.Many2one('account.journal',string="Diario",copy=False)
+    #journal_id = fields.Many2one('account.journal',string="Diario",copy=False)
     move_separation_land_id = fields.Many2one('account.move',string='Factura Separación')
 
     stage_payment_lan = fields.Selection([
