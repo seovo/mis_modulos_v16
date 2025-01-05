@@ -293,6 +293,9 @@ class SaleOrderLine(models.Model):
         res = super().create(values)
         for record in res:
 
+            # ESTA FUNCION NO ESTA FUNCIONANDO BIEN CORREGIR
+            '''
+
             if record.product_id:
                 mz_lot = f'{record.product_id.manzana}-{record.product_id.lote}'
 
@@ -301,15 +304,15 @@ class SaleOrderLine(models.Model):
                      ('state', 'in', ['done', 'sale']),('stage_land','!=','cancel')])
 
                 if exist and not record.order_id.repeat_mz_lot:
-                    pass
-                    #raise ValueError(f'{mz_lot} ya se encuentra separado o vendido {record.order_id} {str(values)}')
+                    #pass
+                    raise ValueError(f'{mz_lot} ya se encuentra separado o vendido {record.order_id} {str(values)}')
                     #raise ValidationError(f'{mz_lot} ya se encuentra separado o vendido {record.order_id} {str(values)}')
 
                 #raise ValueError([record,record.order_id,values])
 
-                #ESTA FUNCION NO ESTA FUNCIONANDO BIEN CORREGIR
-                #self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
-
+                
+                self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
+            '''
 
 
 
