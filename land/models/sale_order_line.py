@@ -305,7 +305,8 @@ class SaleOrderLine(models.Model):
 
                 #raise ValueError([record,record.order_id,values])
 
-                self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
+                #ESTA FUNCION NO ESTA FUNCIONANDO BIEN CORREGIR
+                #self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
 
 
 
