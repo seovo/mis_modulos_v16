@@ -301,7 +301,7 @@ class SaleOrderLine(models.Model):
                      ('state', 'in', ['done', 'sale']),('stage_land','!=','cancel')])
 
                 if exist and not record.order_id.repeat_mz_lot:
-                    raise ValidationError(f'{mz_lot} ya se encuentra separado o vendido')
+                    raise ValidationError(f'{mz_lot} ya se encuentra separado o vendido {record.order_id}')
 
                 self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
 
