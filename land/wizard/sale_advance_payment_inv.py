@@ -4,7 +4,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = 'sale.advance.payment.inv'
     journal_id = fields.Many2one('account.journal',
                                  string="Diario",
-                                 required=True ,
+                                 #required=True ,
                                  domain=[('code_l10n_latam_document_type_id','in',['01','03'])])
 
     sale_line_id = fields.Many2one('sale.order.line',string="Especificar Pago")
