@@ -732,13 +732,15 @@ class SaleOrder(models.Model):
 
         self2 = object or self
 
-        raise ValueError(self2.order_id)
+
 
         mz_lot = None
 
 
         for record in self2:
             objectx = object if object else record
+
+            raise ValueError(self2.order_id)
 
             if objectx._name == 'account.move':
                 if not objectx.is_separation_land:
