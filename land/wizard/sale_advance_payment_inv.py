@@ -1,5 +1,19 @@
 from odoo import api, fields, models , _
 
+
+class AccountPaymentRegister(models.TransientModel):
+    _inherit =  'account.payment.register'
+
+    def action_create_payments(self):
+
+        raise ValueError(self.line_ids)
+        res = super().action_create_payments()
+
+
+
+        return res
+
+
 class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = 'sale.advance.payment.inv'
     journal_id = fields.Many2one('account.journal',
