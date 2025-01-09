@@ -126,7 +126,7 @@
                                     <field name="date_sign_land" string="Fecha Contrato" />
                                     <field name="commision_lan" />
                                     <field name="amount" />
-                                    <field name="discount" />
+                                    <field name="desc" />
                                     <field name="subtotal" />
 
                                 </tree>
@@ -201,7 +201,7 @@
                 <field name="date_sign_land" string="Fecha Contrato" />
                 <field name="commision_lan" />
                 <field name="amount" />
-                <field name="discount" />
+                <field name="desc" />
                 <field name="subtotal" />
 
             </tree>
