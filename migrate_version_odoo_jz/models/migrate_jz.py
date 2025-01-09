@@ -175,7 +175,7 @@ class MigrateModelJz(models.Model):
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
 
-        raise ValueError(string_sql)
+
 
         try:
             cursor.execute(string_sql)
@@ -197,6 +197,8 @@ class MigrateModelJz(models.Model):
 
         # Generar la instrucción INSERT
         for fila in resultados:
+            if column_names.find("desc") != -1:
+                column_names =column_names.replace('desc','"desc"')
             val1 = ','.join(column_names)
             val2 = corchetes_n
 
