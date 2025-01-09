@@ -150,6 +150,11 @@ class MigrateModelJz(models.Model):
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
             if colx.value_set :
                 namm = f'''{colx.value_set} '''
+
+
+            if namm == 'desc':
+                namm == '"desc"'
+
             select_columnsx.append(namm)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
@@ -199,8 +204,8 @@ class MigrateModelJz(models.Model):
         for fila in resultados:
 
             val1 = ','.join(column_names)
-            if val1.find("desc") != -1:
-                val1 = val1.replace('desc','"desc"')
+            #if val1.find("desc") != -1:
+            #    val1 = val1.replace('desc','"desc"')
             val2 = corchetes_n
 
             # raise ValueError(val3)
