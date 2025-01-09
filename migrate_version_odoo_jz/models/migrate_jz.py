@@ -220,6 +220,7 @@ class MigrateModelJz(models.Model):
             '''
             self.env.cr.execute(SQL_INSERT, fila)
             '''
+
             try:
                 self.env.cr.execute(SQL_INSERT, fila)
             except:
