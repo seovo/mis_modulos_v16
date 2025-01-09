@@ -6,7 +6,7 @@ class AccountPaymentRegister(models.TransientModel):
 
     def action_create_payments(self):
 
-        raise ValueError(self.line_ids)
+        raise ValueError(self.line_ids.move_id)
         res = super().action_create_payments()
 
 
