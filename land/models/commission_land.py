@@ -184,7 +184,7 @@ class CommissionRiman(models.Model):
             #record.goal = meta
 
 
-    @api.onchange('line_ids','line_ids.desc','line_ids.amount')
+    @api.onchange('line_ids','line_ids.discount','line_ids.amount')
     def calculate_totals(self):
         for record in self:
             total_base = 0
@@ -192,7 +192,7 @@ class CommissionRiman(models.Model):
 
             for line in record.line_ids:
                 total_base += line.amount
-                amount_discount +=  line.amount * ( line.desc / 100 )
+                amount_discount +=  line.amount * ( line.discount / 100 )
 
             record.amount_base = total_base
             record.amount_discount = amount_discount
@@ -251,7 +251,7 @@ class CommissionRiman(models.Model):
                         record.line_ids += self.env['commission.land.line'].new({
                             'sale_id': sale.id,
                             'amount': diff,
-                            'desc': record.team_id.percentage_sale_discount_commision if len_sales <= record.team_id.number_sale_discount_commision else 0
+                            'discount': record.team_id.percentage_sale_discount_commision if len_sales <= record.team_id.number_sale_discount_commision else 0
                         })
 
 
@@ -291,7 +291,7 @@ class CommissionRimanLine(models.Model):
     date_order = fields.Datetime(related='sale_id.date_order',string="Fecha Pedido")
     date_order_sto = fields.Datetime(related='sale_id.date_order', string="Fecha Pedido",store=True)
     amount             = fields.Float(string='Monto')
-    desc               = fields.Float(string='Descuento')
+    discount               = fields.Float(string='Descuento')
     subtotal           = fields.Float(compute='get_subtotal',store=True)
 
     nro_internal_land = fields.Char(related='sale_id.nro_internal_land')
@@ -303,11 +303,11 @@ class CommissionRimanLine(models.Model):
     lot_land = fields.Char(compute="get_info_land", store=True, string="Lote",related='sale_id.lot_land')
 
 
-    @api.depends('desc','amount')
+    @api.depends('discount','amount')
     def get_subtotal(self):
         for record in self:
             total = record.amount or 0
-            discount = total * ( (record.desc or 0) / 100 )
+            discount = total * ( (record.discount or 0) / 100 )
             record.subtotal = total - discount
 
 
