@@ -296,7 +296,7 @@ class CommissionRimanLine(models.Model):
 
     nro_internal_land = fields.Char(related='sale_id.nro_internal_land')
     commision_lan = fields.Float(related='sale_id.commision_lan')
-    seller_lan_id = fields.Many2one('seller.land', string="Proveedor Terreno", required=True,
+    seller_lan_id = fields.Many2one('seller.land', string="Proveedor Terreno",
                                      related='sale_id.seller_land_id',store=True)
     user_id   = fields.Many2one('res.users',related='sale_id.user_id',string="Vendedor",store=True)
     mz_land = fields.Char(compute="get_info_land", store=True, string="Manzana",related='sale_id.mz_land')
