@@ -164,6 +164,8 @@ class MigrateModelJz(models.Model):
     def _migrate_table(self,cursor,select_columns,column_names):
         table = self.table
         string_columns = ",".join(select_columns)
+        if  string_columns.find("desc") != -1 :
+            string_columns = string_columns.replace('desc','"desc"')
         #quitar limit
         string_sql = f"SELECT {string_columns} FROM {table} "
         if table == 'res_users':
