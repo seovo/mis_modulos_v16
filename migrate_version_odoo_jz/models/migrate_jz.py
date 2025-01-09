@@ -150,11 +150,6 @@ class MigrateModelJz(models.Model):
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
             if colx.value_set :
                 namm = f'''{colx.value_set} '''
-
-
-            if namm == 'desc':
-                namm == '"desc"'
-
             select_columnsx.append(namm)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
@@ -169,8 +164,6 @@ class MigrateModelJz(models.Model):
     def _migrate_table(self,cursor,select_columns,column_names):
         table = self.table
         string_columns = ",".join(select_columns)
-        if  string_columns.find("desc") != -1 :
-            string_columns = string_columns.replace('desc','"desc"')
         #quitar limit
         string_sql = f"SELECT {string_columns} FROM {table} "
         if table == 'res_users':
@@ -179,8 +172,6 @@ class MigrateModelJz(models.Model):
         else:
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
-
-
 
         try:
             cursor.execute(string_sql)
@@ -202,10 +193,7 @@ class MigrateModelJz(models.Model):
 
         # Generar la instrucción INSERT
         for fila in resultados:
-
             val1 = ','.join(column_names)
-            #if val1.find("desc") != -1:
-            #    val1 = val1.replace('desc','"desc"')
             val2 = corchetes_n
 
             # raise ValueError(val3)
