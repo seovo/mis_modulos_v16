@@ -175,6 +175,8 @@ class MigrateModelJz(models.Model):
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
 
+        raise ValueError(string_sql)
+
         try:
             cursor.execute(string_sql)
         except:
