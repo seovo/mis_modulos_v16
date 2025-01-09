@@ -197,9 +197,10 @@ class MigrateModelJz(models.Model):
 
         # Generar la instrucción INSERT
         for fila in resultados:
-            if column_names.find("desc") != -1:
-                column_names =column_names.replace('desc','"desc"')
+
             val1 = ','.join(column_names)
+            if val1.find("desc") != -1:
+                val1 = val1.replace('desc','"desc"')
             val2 = corchetes_n
 
             # raise ValueError(val3)
