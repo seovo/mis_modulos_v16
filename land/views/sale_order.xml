@@ -236,7 +236,7 @@
                                     <field name="commission_land_id"  />
                                     <field name="date_commission"  />
                                     <field name="amount"  />
-                                    <field name="desc"  />
+                                    <field name="discount"  />
                                     <field name="subtotal"  />
                                 </tree>
                        </field>
