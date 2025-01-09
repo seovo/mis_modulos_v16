@@ -173,6 +173,7 @@ class MigrateModelJz(models.Model):
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
 
+        raise ValueError(string_sql)
         cursor.execute(string_sql)
         self.insert_record_migrate(cursor, table,column_names)
         #resultados = cursor.fetchall()
@@ -207,14 +208,19 @@ class MigrateModelJz(models.Model):
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
 
-            raise ValueError([SQL_INSERT, fila])
+
+
+
+
+
+
+
             #raise ValueError([len(fila),fila])
             #self.env.cr.execute(SQL_INSERT, [fila[0],f'''"{fila[1]}"'''])
 
-            '''
+
             self.env.cr.execute(SQL_INSERT, fila)
             '''
-
             try:
                 self.env.cr.execute(SQL_INSERT, fila)
             except:
@@ -225,7 +231,7 @@ class MigrateModelJz(models.Model):
                 result = self.env.cr.fetchall()
                 raise ValueError(result)
                 raise ValueError([SQL_INSERT,fila,result])
-
+            '''
 
 
 
