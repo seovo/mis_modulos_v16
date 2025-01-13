@@ -7,6 +7,14 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        domain=lambda self: "[('company_ids', '=', company_id)]"
+    )
+
+
+    #############
+
     nro_internal_land =  fields.Char(string="Expediente",copy=False)
     mz_lot            =  fields.Char(string="MZ - LOTE",copy=False)
     sector            =  fields.Char(string="Etapa",copy=False)
