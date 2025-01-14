@@ -14,4 +14,31 @@
 
            </field>
     </record>
+
+
+    <record id="account_journal_dashboard_kanban_view" model="ir.ui.view">
+           <field name="name">account.journal.dashboard.kanban</field>
+           <field name="model">account.journal</field>
+           <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//div[@name='bank_journal_cta']" position="inside" >
+                   <div t-if="['undefined', 'file_import'].includes(dashboard.bank_statements_source)"
+                        class="w-100 d-flex" style="gap: 5px;">
+                       <!-- name="bank_journal_transactions"  -->
+                           <a id="create_transaction_import_villa_sur"
+                              name="action_import_transaction_villasur" type="object"
+                              groups="account.group_account_invoice">
+                               Importar Reportes Villa Sur
+                           </a>
+                   </div>
+
+               </xpath>
+
+
+           </field>
+    </record>
+
+
+
 </odoo>
