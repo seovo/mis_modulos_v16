@@ -11,7 +11,7 @@ class AccountJournal(models.Model):
             "type": "ir.actions.act_window",
             "view_mode": "form",
             # "view_id": self.env.ref('land.view_order_form_due').id,
-            "res_model": "import.bancarios.vill",
+            "res_model": "import.bancarios.villa",
             # "res_id": self.id,
             "target": "new",
             #"domain": [('team_id', '=', self.id)],
