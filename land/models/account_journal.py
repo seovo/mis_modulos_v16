@@ -16,7 +16,7 @@ class AccountJournal(models.Model):
             "target": "new",
             #"domain": [('team_id', '=', self.id)],
             "context": {
-                'search_journal_id': self.id,
+                'default_journal_id': self.id,
                 #'search_default_group_user_id': 1
             }
 
