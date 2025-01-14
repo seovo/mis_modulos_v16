@@ -37,6 +37,16 @@ class ImportBancariosVilla(models.TransientModel):
     journal_id = fields.Many2one('account.journal',required=True)
 
     def import_excell(self):
+
+        archivo_decodificado = base64.decodebytes(self.file)
+        # Crear un objeto BytesIO a partir del archivo decodificado
+        archivo_io = io.BytesIO(archivo_decodificado)
+
+        # Leer el archivo Excel con Pandas
+        ventas = pd.read_excel(archivo_io)
+
+        raise ValueError(str(ventas))
+
         return
 
 
