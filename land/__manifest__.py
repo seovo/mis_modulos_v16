@@ -14,7 +14,7 @@
         "views/product_template_form_view.xml",
         "views/account_move.xml",
         "views/sale_order.xml",
-        #"wizard/import_land.xml",
+        "wizard/import_bancarios.xml",
 
         "views/report_invoice_document.xml",
         #'wizard/view_sale_advance_payment_inv.xml',

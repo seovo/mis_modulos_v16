@@ -30,12 +30,23 @@ import base64
 import io
 from datetime import datetime, timedelta
 
-class ImportCiHrAttendance(models.TransientModel):
-    _name = "import.land"
+class ImportBancariosVilla(models.TransientModel):
+    _name = "import.bancarios.villa"
     file = fields.Binary(string="Archivo")
     file_name = fields.Char()
+    journal_id = fields.Many2one('account.journal',required=True)
 
     def import_excell(self):
+        return
+
+
+
+
+
+
+    ### esto ya no vale
+
+    def import_excellx(self):
         self.import_excell_sales()
         #self.import_excell_create_anticipo()
         #self.import_excell_create_invoices()
