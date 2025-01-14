@@ -43,9 +43,12 @@ class ImportBancariosVilla(models.TransientModel):
         archivo_io = io.BytesIO(archivo_decodificado)
 
         # Leer el archivo Excel con Pandas
-        ventas = pd.read_excel(archivo_io)
+        data = pd.read_excel(archivo_io)
 
-        raise ValueError(str(ventas))
+        for index, row in data.iterrows():
+            raise ValueError(str(row))
+
+        #raise ValueError(str(ventas))
 
         return
 
