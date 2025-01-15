@@ -59,7 +59,7 @@ class ImportBancariosVilla(models.TransientModel):
                 fecha = fecha_dt.strftime('%Y-%m-%d')
 
                 nro_operation = row['Nº operación']
-                amount = row['Monto']
+                amount = float(row['Monto'])
 
             if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
                 #raise ValueError(row)
@@ -78,7 +78,7 @@ class ImportBancariosVilla(models.TransientModel):
                 #raise ValueError(str(row))
 
                 nro_operation = str(int(row['N° OPER.']))
-                amount = row['CARGO/ABONO']
+                amount = float(row['CARGO/ABONO'])
 
             if amount <= 0 :
                 continue
