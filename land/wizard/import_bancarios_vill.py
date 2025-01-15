@@ -61,6 +61,9 @@ class ImportBancariosVilla(models.TransientModel):
                 nro_operation = row['Nº operación']
                 amount = row['Monto']
 
+            if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
+                raise ValueError(str(row))
+
 
 
 
