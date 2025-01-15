@@ -66,7 +66,7 @@ class ImportBancariosVilla(models.TransientModel):
 
                 if not fecha_str or str(fecha_str) == 'NaN':
                     continue
-                raise ValueError(str(row))
+                raise ValueError([fecha_str,str(fecha_str)])
 
 
 
