@@ -50,7 +50,14 @@ class ImportBancariosVilla(models.TransientModel):
         for index, row in data.iterrows():
 
             if bank_id == self.env.ref('l10n_pe.peruvian_bcplpepl_bank'):
-                fecha = row['Fecha']
+                fecha_str = row['Fecha']
+
+                # Convertir a objeto datetime
+                fecha_dt = datetime.strptime(fecha_str, '%d/%m/%Y')
+
+                # Formatear la fecha en el formato deseado
+                fecha = fecha_dt.strftime('%Y-%m-%d')
+
                 nro_operation = row['Nº operación']
                 amount = row['Monto']
 
