@@ -65,11 +65,11 @@ class ImportBancariosVilla(models.TransientModel):
                 #raise ValueError(row)
                 fecha_str = row['FECHA OPER.']
 
-                raise ValueError(str(fecha_str))
+                #raise ValueError(str(fecha_str))
 
-                if not fecha_str or str(fecha_str) == 'NaN':
+                if not fecha_str or str(fecha_str) == 'nan':
                     continue
-                raise ValueError([fecha_str,str(fecha_str)])
+                raise ValueError(str(row))
 
 
 
