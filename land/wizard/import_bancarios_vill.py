@@ -62,7 +62,7 @@ class ImportBancariosVilla(models.TransientModel):
                 amount = row['Monto']
 
             if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
-                fecha_str = row['FECHA VALOR']
+                fecha_str = row['FECHA OPER.']
 
                 if not fecha_str or str(fecha_str) == 'NaN':
                     continue
