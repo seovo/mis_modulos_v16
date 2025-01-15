@@ -62,6 +62,9 @@ class ImportBancariosVilla(models.TransientModel):
                 amount = row['Monto']
 
             if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
+                fecha_str = row['FECHA VALOR']
+                if not fecha_str:
+                    continue
                 raise ValueError(str(row))
 
 
