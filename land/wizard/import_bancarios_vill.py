@@ -69,9 +69,19 @@ class ImportBancariosVilla(models.TransientModel):
 
                 if not fecha_str or str(fecha_str) == 'nan':
                     continue
-                raise ValueError(str(row))
 
+                anio_actual = datetime.now().year
+                fecha_completa_str = f'{fecha_str}-{anio_actual}'
+                # Convertir a objeto datetime
+                fecha_dt = datetime.strptime(fecha_completa_str, '%d-%m-%Y')
+                fecha = fecha_dt.strftime('%Y-%m-%d')
+                #raise ValueError(str(row))
 
+                nro_operation = str(int(row['N° OPER.']))
+                amount = row['CARGO/ABONO']
+
+            if amount <= 0 :
+                continue
 
 
             dx =  {
