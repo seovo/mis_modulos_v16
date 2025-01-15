@@ -78,7 +78,7 @@ class ImportBancariosVilla(models.TransientModel):
                 #raise ValueError(str(row))
 
                 nro_operation = str(int(row['N° OPER.']))
-                amount = float(row['CARGO/ABONO'])
+                amount = float(row['CARGO/ABONO'].replace(',', ''))
 
             if amount <= 0 :
                 continue
