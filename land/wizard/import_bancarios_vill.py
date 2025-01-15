@@ -49,14 +49,31 @@ class ImportBancariosVilla(models.TransientModel):
 
         for index, row in data.iterrows():
 
-            fecha = row['Fecha']
+            if bank_id == self.env.ref('l10n_pe.peruvian_bcplpepl_bank'):
+                fecha = row['Fecha']
+                nro_operation = row['Nº operación']
+                amount = row['Monto']
+
+
+
 
             dx =  {
                 'date':  fecha ,
-                ''
+                'payment_ref': nro_operation ,
+                'amount': amount ,
+                'journal_id' : self.journal_id.id
+
             }
 
-            raise ValueError(str(row))
+            pago = self.env['account.payment'].search([('ref','=',nro_operation)])
+            if pago:
+                dx.update({
+                    'partner_id': pago.partner_id.id
+                })
+
+            self.env['account.bank.statement.line'].create(dx)
+
+            #raise ValueError(str(row))
 
         #raise ValueError(str(ventas))
 
