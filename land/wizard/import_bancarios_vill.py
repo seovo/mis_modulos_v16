@@ -62,8 +62,8 @@ class ImportBancariosVilla(models.TransientModel):
                 amount = row['Monto']
 
             if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
-                raise ValueError(row)
-                fecha_str = row['FECHA OPER']
+                #raise ValueError(row)
+                fecha_str = row[0]
 
                 raise ValueError(fecha_str)
 
