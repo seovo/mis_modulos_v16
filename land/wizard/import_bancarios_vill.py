@@ -45,7 +45,17 @@ class ImportBancariosVilla(models.TransientModel):
         # Leer el archivo Excel con Pandas
         data = pd.read_excel(archivo_io)
 
+        bank_id = self.journal_id.bank_id
+
         for index, row in data.iterrows():
+
+            fecha = row['Fecha']
+
+            dx =  {
+                'date':  fecha ,
+                ''
+            }
+
             raise ValueError(str(row))
 
         #raise ValueError(str(ventas))

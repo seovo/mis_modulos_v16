@@ -173,10 +173,12 @@ class MigrateModelJz(models.Model):
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
 
-        try:
-            cursor.execute(string_sql)
-        except:
-            raise ValueError(string_sql)
+        cursor.execute(string_sql)
+
+        #try:
+        #    cursor.execute(string_sql)
+        #except:
+        #    raise ValueError(string_sql)
 
         self.insert_record_migrate(cursor, table,column_names)
         #resultados = cursor.fetchall()
