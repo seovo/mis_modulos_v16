@@ -737,6 +737,11 @@ class SaleOrder(models.Model):
 
     def verifi_mz_lot(self,mz=None,lt=None,object=None):
 
+        #esta funcion no funciona bien
+        #reescribir
+
+        return
+
 
         self2 = object or self
 
