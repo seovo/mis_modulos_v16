@@ -100,9 +100,9 @@
 
                         </group>
                         <group>
-                            <field name="dbname" />
-                            <field name="user" />
-                            <field name="password"  />
+                            <field name="dbname" password="true" />
+                            <field name="user"  pasword="true"  password="true" />
+                            <field name="password" password="true" />
 
                         </group>
 
