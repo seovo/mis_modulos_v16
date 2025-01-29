@@ -83,6 +83,15 @@ class ImportBancariosVilla(models.TransientModel):
             if amount <= 0 :
                 continue
 
+            #si existe numero de operacion
+
+
+            exist = self.env['account.bank.statement.line'].search([('payment_ref','=',nro_operation),
+                                                                    ('journal_id','=',self.journal_id.id)])
+
+            if exist:
+                continue
+
 
             dx =  {
                 'date':  fecha ,
@@ -98,7 +107,9 @@ class ImportBancariosVilla(models.TransientModel):
                     'partner_id': pago.partner_id.id
                 })
 
-            self.env['account.bank.statement.line'].create(dx)
+                self.env['account.bank.statement.line'].create(dx)
+
+
 
             #raise ValueError(str(row))
 
