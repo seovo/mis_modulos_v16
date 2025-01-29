@@ -74,9 +74,13 @@ class ImportBancariosVilla(models.TransientModel):
                 anio_actual = datetime.now().year
                 fecha_completa_str = f'{fecha_str}-{anio_actual}'
                 # Convertir a objeto datetime
-                fecha_dt = datetime.strptime(fecha_completa_str, '%d-%m-%Y')
-                fecha = fecha_dt
-                #fecha = fecha_dt.strftime('%Y-%m-%d')
+                try:
+                    fecha_dt = datetime.strptime(fecha_completa_str, '%d-%m-%Y')
+                except:
+                    raise ValueError([fecha_completa_str])
+
+                #fecha = fecha_dt
+                fecha = fecha_dt.strftime('%Y-%m-%d')
                 #raise ValueError(str(row))
 
                 nro_operation = str(int(row['N° OPER.']))
