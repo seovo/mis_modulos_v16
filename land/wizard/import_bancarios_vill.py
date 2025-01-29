@@ -32,7 +32,6 @@ from datetime import datetime, timedelta
 
 
 class ImportBancariosVilla(models.TransientModel):
-
     _name = "import.bancarios.villa"
     file = fields.Binary(string="Archivo")
     file_name = fields.Char()
@@ -76,7 +75,8 @@ class ImportBancariosVilla(models.TransientModel):
                 fecha_completa_str = f'{fecha_str}-{anio_actual}'
                 # Convertir a objeto datetime
                 fecha_dt = datetime.strptime(fecha_completa_str, '%d-%m-%Y')
-                fecha = fecha_dt.strftime('%Y-%m-%d')
+                fecha = fecha_dt
+                #fecha = fecha_dt.strftime('%Y-%m-%d')
                 #raise ValueError(str(row))
 
                 nro_operation = str(int(row['N° OPER.']))
