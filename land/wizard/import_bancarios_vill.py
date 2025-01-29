@@ -30,7 +30,9 @@ import base64
 import io
 from datetime import datetime, timedelta
 
+
 class ImportBancariosVilla(models.TransientModel):
+
     _name = "import.bancarios.villa"
     file = fields.Binary(string="Archivo")
     file_name = fields.Char()
