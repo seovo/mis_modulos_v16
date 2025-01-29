@@ -71,13 +71,15 @@ class ImportBancariosVilla(models.TransientModel):
                 if not fecha_str or str(fecha_str) == 'nan':
                     continue
 
-                anio_actual = datetime.now().year
-                fecha_completa_str = f'{fecha_str}-{anio_actual}'
-                # Convertir a objeto datetime
+
                 try:
+                    anio_actual = datetime.now().year
+                    fecha_completa_str = f'{fecha_str}-{anio_actual}'
+                    # Convertir a objeto datetime
                     fecha_dt = datetime.strptime(fecha_completa_str, '%d-%m-%Y')
                 except:
-                    raise ValueError([fecha_completa_str])
+                    fecha_dt = fecha_str
+                    #raise ValueError([fecha_completa_str])
 
                 #fecha = fecha_dt
                 fecha = fecha_dt.strftime('%Y-%m-%d')
