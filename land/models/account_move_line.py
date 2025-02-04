@@ -3,6 +3,18 @@ from datetime import datetime, timedelta
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
 
+
+    def write(self,vals):
+
+        raise ValueError(vals)
+
+        res = super().write(vals)
+
+
+
+
+        return res
+
     def edit_desc_jz(self):
         view = self.env.ref('land.edit_account_move_line')
         return {
