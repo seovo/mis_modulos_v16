@@ -6,10 +6,8 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["sale_management","l10n_pe_edi_odoofact"],
+    "depends": ["website_sale"],
     "data": [
-
-
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

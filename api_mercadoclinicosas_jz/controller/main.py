@@ -11,7 +11,10 @@ from odoo.addons.payment.controllers.post_processing import PaymentPostProcessin
 
 _logger = logging.getLogger(__name__)
 
+
 class ApiClinicos(http.Controller):
+
+
 
     @http.route('/apiclinicos/websites', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
@@ -24,7 +27,7 @@ class ApiClinicos(http.Controller):
             if website.company_id.country_id:
                 #ir.config_parameter
                 url_base = request.env['ir.config_parameter'].sudo().search([('key','=','web.base.url')])
-                img_country = f'''{url_base}{website.company_id.country_id.image_url}'''
+                img_country = f'''{url_base.value}{website.company_id.country_id.image_url}'''
                 data.append({
                     'id': website.id,
                     'name': website.display_name,
@@ -33,7 +36,7 @@ class ApiClinicos(http.Controller):
 
                 })
 
-        return {'websites': websites}
+        return {'websites': data}
 
 
 
