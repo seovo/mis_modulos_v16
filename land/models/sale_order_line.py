@@ -270,7 +270,12 @@ class SaleOrderLine(models.Model):
             if record.product_id and record.product_id.is_advanced_land:
                 record.order_id._recalcule_price_land()
 
-            record.verify_product_id()
+            try:
+                record.verify_product_id()
+            except:
+                pass
+
+
 
             record.order_id.get_info_land()
 
