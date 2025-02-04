@@ -120,7 +120,7 @@ class ImportBancariosVilla(models.TransientModel):
                         'partner_id': pago.partner_id.id
                     })
                 except:
-                    raise ValueError([pago,pago.partner_id])
+                    raise ValueError([pago,pago.partner_id,nro_operation])
 
 
                 self.env['account.bank.statement.line'].create(dx)
