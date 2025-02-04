@@ -59,7 +59,13 @@ class ImportBancariosVilla(models.TransientModel):
                 # Formatear la fecha en el formato deseado
                 fecha = fecha_dt.strftime('%Y-%m-%d')
 
-                nro_operation = row['Nº operación']
+
+                if 'Nº operación' in row:
+                    nro_operation = row['Nº operación']
+                else:
+                    nro_operation = row['Operación - Número']
+
+
                 amount = float(row['Monto'])
 
             if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
