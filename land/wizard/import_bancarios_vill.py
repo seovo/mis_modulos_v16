@@ -115,9 +115,13 @@ class ImportBancariosVilla(models.TransientModel):
 
             pago = self.env['account.payment'].search([('ref','=',nro_operation)])
             if pago:
-                dx.update({
-                    'partner_id': pago.partner_id.id
-                })
+                try:
+                    dx.update({
+                        'partner_id': pago.partner_id.id
+                    })
+                except:
+                    raise ValueError([pago,pago.partner_id])
+
 
                 self.env['account.bank.statement.line'].create(dx)
 
