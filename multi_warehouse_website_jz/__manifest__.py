@@ -10,7 +10,7 @@
     "version": "17.0",
     "depends": ["website_sale","website_sale_stock"],
     "data": [
-        #'views/template_product.xml',
+        'views/templates.xml',
         #'views/view_warehouse.xml'
 
     ],
