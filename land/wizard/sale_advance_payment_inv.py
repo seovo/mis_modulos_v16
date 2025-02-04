@@ -32,9 +32,11 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
     sale_line_id = fields.Many2one('sale.order.line',string="Especificar Pago")
 
+    '''
+
     def create_invoices(self):
         for sale in self.sale_order_ids:
-            sale.journal_id = self.journal_id.id
+            #sale.journal_id = self.journal_id.id
             if self.sale_line_id:
                 sale.sale_line_payment_id = self.sale_line_id.id
         res = super().create_invoices()
@@ -51,5 +53,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
 
         return res
+        
+    '''
 
 
