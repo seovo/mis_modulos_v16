@@ -20,6 +20,8 @@ class AccountPaymentRegister(models.TransientModel):
             'bank_id': self.partner_bank_id.bank_id.id
         })
 
+        move.get_narration_dx()
+
         return res
 
 
