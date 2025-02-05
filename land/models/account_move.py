@@ -90,12 +90,17 @@ class AccountMove(models.Model):
     #este use para actulizar la fecha si por alguna razon es diferente a la que se publico en nubefact
     #@api.onchange('payment_reference')
     def validate_date_nubefact(self):
+
+        self.get_narration_dx()
+
+        '''
+        
         for record in self:
             if  record.l10n_pe_edi_request_id.document_date  :
                 if record.l10n_pe_edi_request_id.document_date != record.invoice_date:
                     record.invoice_date =  record.l10n_pe_edi_request_id.document_date
 
-
+        '''
 
     @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
     def get_proveedores_land(self):
