@@ -296,7 +296,9 @@ class AccountMove(models.Model):
         commercial = self.commercial_partner_id
         commercial_doc_type = commercial.l10n_latam_identification_type_id
         currency = CURRENCY.get(self.currency_id.name, False)
-        return {
+        has_advance_payment = self.l10n_pe_edi_odoofact_operation_type
+        apply_detraction = self.l10n_pe_edi_detraction_type_id and True or False
+        values = {
             "operacion": "generar_comprobante",
             "tipo_de_comprobante": self.l10n_latam_document_type_id.type_of,
             "serie": str(self.sequence_prefix)[0:4],
@@ -335,7 +337,7 @@ class AccountMove(models.Model):
             and abs(self.l10n_pe_edi_total_retention)
             or "",
             "total_impuestos_bolsas": self.l10n_pe_edi_amount_icbper,
-            "observaciones": self.narration_str or "",
+            "observaciones": self.narration or "",
             "documento_que_se_modifica_tipo": self.l10n_pe_edi_origin_move_id
             and (self.l10n_pe_edi_origin_move_id.name[0] == "F" and 1 or 2)
             or "",
@@ -369,20 +371,7 @@ class AccountMove(models.Model):
             and "venta_al_credito"
             or "contado",
             "orden_compra_servicio": self.l10n_pe_edi_service_order or "",
-            "detraccion": self.l10n_pe_edi_detraction_type_id and "true" or "false",
-            "detraccion_tipo": self.l10n_pe_edi_detraction_type_id
-            and int(self.l10n_pe_edi_detraction_type_id.code_of)
-            or "",
-            "detraccion_total": self.l10n_pe_edi_detraction_type_id
-            and self.l10n_pe_edi_total_detraction_signed
-            or "",
-            "detraccion_porcentaje": self.l10n_pe_edi_detraction_type_id
-            and self.l10n_pe_edi_detraction_type_id.rate
-            or "",
-            "medio_de_pago_detraccion": self.l10n_pe_edi_detraction_type_id
-            and self.l10n_pe_edi_detraction_payment_type_id
-            and int(self.l10n_pe_edi_detraction_payment_type_id.code_of)
-            or "",
+            "detraccion": "true" if has_advance_payment == "4" and apply_detraction == True else (self.l10n_pe_edi_detraction_type_id and "true" or "false"),
             "generado_por_contingencia": self.journal_id.l10n_pe_edi_contingency
             and "true"
             or "false",
@@ -392,6 +381,14 @@ class AccountMove(models.Model):
                 self, "_get_dues_values_generar_%s" % (ose_supplier)
             )(),
         }
+        if not (has_advance_payment == "4" and apply_detraction == True):
+            values.update({
+                "detraccion_tipo": self.l10n_pe_edi_detraction_type_id and int(self.l10n_pe_edi_detraction_type_id.code_of) or "",
+                "detraccion_total": self.l10n_pe_edi_detraction_type_id and self.l10n_pe_edi_total_detraction_signed or "",
+                "detraccion_porcentaje": self.l10n_pe_edi_detraction_type_id and self.l10n_pe_edi_detraction_type_id.rate or "",
+                "medio_de_pago_detraccion": self.l10n_pe_edi_detraction_type_id and self.l10n_pe_edi_detraction_payment_type_id and int(self.l10n_pe_edi_detraction_payment_type_id.code_of) or "",
+            })
+        return values
 
 
 class BankOrigin(models.Model):
