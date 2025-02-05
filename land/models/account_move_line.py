@@ -1,18 +1,13 @@
 from odoo import api, fields, models , _
 from datetime import datetime, timedelta
+
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
 
 
     def write(self,vals):
-
         #raise ValueError(vals)
-
         res = super().write(vals)
-
-
-
-
         return res
 
     def edit_desc_jz(self):
