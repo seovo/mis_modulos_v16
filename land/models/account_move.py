@@ -83,6 +83,7 @@ class AccountMove(models.Model):
         res = super().write(vals)
         if 'payment_reference' in vals:
             self.validate_date_nubefact()
+            self.get_narration_dx()
 
         return res
 
