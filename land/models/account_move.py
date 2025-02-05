@@ -337,7 +337,7 @@ class AccountMove(models.Model):
             and abs(self.l10n_pe_edi_total_retention)
             or "",
             "total_impuestos_bolsas": self.l10n_pe_edi_amount_icbper,
-            "observaciones": self.narration or "",
+            "observaciones": self.narration_str or "",
             "documento_que_se_modifica_tipo": self.l10n_pe_edi_origin_move_id
             and (self.l10n_pe_edi_origin_move_id.name[0] == "F" and 1 or 2)
             or "",
