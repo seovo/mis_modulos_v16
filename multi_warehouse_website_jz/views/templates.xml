@@ -8,9 +8,9 @@
 
 
 
-          <!--  <t t-set="active_warehouse" t-value="list(filter(lambda lg : lg[0] == lang, warehouses))[0]"/> -->
+          <!--<t t-set="active_warehouse" t-value="list(filter(lambda lg : lg[0] == warehouse, warehouses))[0]"/> -->
 
-          <t t-set="active_warehouse" t-value="warehouses[0]"/>
+          <t t-set="active_warehouse" t-value="warehouse if warehouse else warehouses[0]"/>
 
 
 
@@ -26,8 +26,8 @@
 
                 <div t-attf-class="dropdown-menu #{_dropdown_menu_class}" role="menu">
                     <t t-foreach="warehouses" t-as="lg">
-                         <a class="dropdown-item"
-                            t-att-href="url_for(request.httprequest.path + 'set_warehouse_session/' + str(lg[0].id) + '?' + keep_query())"
+                         <a t-attf-class="dropdown-item js_change_lang #{active_warehouse == lg and 'active'}"
+                            t-att-href="url_for('/set_warehouse_session/' + str(lg[0].id) + '?' + keep_query())"
                          >
 
 
