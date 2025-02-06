@@ -8,13 +8,14 @@ from odoo.tools import is_html_empty, lazy
 class IrQWeb(models.AbstractModel):
     _inherit = "ir.qweb"
 
+
     def _prepare_frontend_environment(self, values):
         """ Returns ir.qweb with context and update values with portal specific
             value (required to render portal layout template)
         """
         irQweb = super()._prepare_frontend_environment(values)
 
-        raise ValueError(values)
+        #raise ValueError(values)
 
         #raise ValueError(values['res_company'].id)
 

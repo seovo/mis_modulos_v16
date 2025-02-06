@@ -19,13 +19,18 @@
             <t t-set="warehouse_selector_visible" t-value="len(warehouses) &gt; 1"/>
             <div t-attf-class="js_language_selector #{_div_classes} d-print-none" t-if="warehouse_selector_visible">
                 <button t-attf-class="btn border-0 dropdown-toggle #{_btn_class or 'btn-sm btn-outline-secondary'}" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-fw fa-truck"></i>
                     <span t-if="not no_text" t-attf-class="align-middle #{_txt_class}" t-esc="active_warehouse.name"/>
                    <!-- <span t-elif="codes" class="align-middle" t-esc="active_warehouse[1].split('_').pop(0).upper()"/>  -->
                 </button>
 
                 <div t-attf-class="dropdown-menu #{_dropdown_menu_class}" role="menu">
                     <t t-foreach="warehouses" t-as="lg">
-                         <a class="dropdown-item"  >
+                         <a class="dropdown-item"
+                            t-att-href="url_for(request.httprequest.path + 'set_warehouse_session/' + str(lg[0].id) + '?' + keep_query())"
+                         >
+
+
 
                              <span  t-esc="lg.name" t-attf-class="#{_txt_class}"/>
 
