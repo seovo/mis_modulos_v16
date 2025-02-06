@@ -14,6 +14,8 @@ class IrQWeb(models.AbstractModel):
         """
         irQweb = super()._prepare_frontend_environment(values)
 
+        raise ValueError(values)
+
         #raise ValueError(values['res_company'].id)
 
         warehouses = irQweb.env['stock.warehouse'].sudo().search([('company_id','=',values['res_company'].id)])
