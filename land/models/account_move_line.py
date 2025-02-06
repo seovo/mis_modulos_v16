@@ -8,6 +8,12 @@ class AccountMoveLine(models.Model):
     def write(self,vals):
         #raise ValueError(vals)
         res = super().write(vals)
+
+        if 'price_unit' in vals:
+            if self.move_id.state != 'draft':
+                raise ValueError('Modificacion no permitida')
+
+
         return res
 
     def edit_desc_jz(self):
