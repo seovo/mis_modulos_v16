@@ -8,7 +8,7 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["website_sale","website_sale_stock"],
+    "depends": ["website_sale","website_sale_stock","stock"],
     "data": [
         "security/ir.model.access.csv",
         'views/templates.xml',

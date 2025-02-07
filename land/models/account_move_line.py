@@ -14,7 +14,6 @@ class AccountMoveLine(models.Model):
                 #return res
                 raise ValueError('Modificacion no permitida')
 
-
         return res
 
     def edit_desc_jz(self):
