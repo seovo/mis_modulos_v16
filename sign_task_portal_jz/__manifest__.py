@@ -8,6 +8,7 @@
     "version": "17.0",
     "depends": ["sale"],
     "data": [
+        'views/template.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
