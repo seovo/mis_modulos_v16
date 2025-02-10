@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
 
     def write(self,vals):
 
-        raise ValueError(vals)
+        #raise ValueError(vals)
 
         res = super().write(vals)
 
