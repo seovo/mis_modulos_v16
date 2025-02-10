@@ -4,6 +4,7 @@ from odoo import fields, models
 from odoo.http import request, route
 
 
+
 class Website(models.Model):
     _inherit = 'website'
 
