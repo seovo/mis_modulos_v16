@@ -321,10 +321,12 @@ class SaleOrderLine(models.Model):
 
 
 
+
+
             for line in record.order_id.order_line:
                 line.change_product_uom_qty_land()
 
-            #buscar las demas ordenes
+            #buscar las demas ordenes para agrgar producto indepencia
 
             if record.is_create_of_origin_idenpencia and record.product_id.is_independence:
                 orders = record.order_id.partner_id.sale_order_ids
@@ -337,7 +339,7 @@ class SaleOrderLine(models.Model):
                                 'is_create_of_origin_idenpencia' : False
                             })
 
-            if record.order_id.id == 589:
-                raise ValueError('QUE ESTA PASANDO AQUI')
+            #if record.order_id.id == 589:
+            #    raise ValueError('QUE ESTA PASANDO AQUI')
 
         return res
