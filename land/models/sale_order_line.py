@@ -326,7 +326,7 @@ class SaleOrderLine(models.Model):
 
             #buscar las demas ordenes
 
-            if record.is_create_of_origin_idenpencia:
+            if record.is_create_of_origin_idenpencia and record.product_id.is_independence:
                 orders = record.order_id.partner_id.sale_order_ids
 
                 for orderr in orders:
