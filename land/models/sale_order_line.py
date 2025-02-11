@@ -337,4 +337,7 @@ class SaleOrderLine(models.Model):
                                 'is_create_of_origin_idenpencia' : False
                             })
 
+            if record.order_id.id == 589:
+                raise ValueError('QUE ESTA PASANDO AQUI')
+
         return res
