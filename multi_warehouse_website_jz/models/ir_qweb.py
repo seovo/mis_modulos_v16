@@ -10,6 +10,16 @@ from odoo.http import request, route
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    def _get_cart_and_free_qty(self, product, line=None):
+        cart_qty, free_qty = super()._get_cart_and_free_qty(product, line)
+
+        if 'active_warehouse_id' in request.session:
+            active_w = int(request.session['active_warehouse_id'])
+            free_qty = (product or line.product_id).with_context(warehouse=active_w).free_qty
+
+        return cart_qty, free_qty
+
+
     def write(self, vals):
         res = super().write(vals)
         if 'state' in vals:
