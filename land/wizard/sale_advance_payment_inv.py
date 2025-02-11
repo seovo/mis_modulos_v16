@@ -11,14 +11,15 @@ class AccountPaymentRegister(models.TransientModel):
         #raise ValueError(self.line_ids.move_id)
         res = super().action_create_payments()
 
-        move = self.line_ids.move_id
+        if self.partner_bank_id.bank_id:
+            move = self.line_ids.move_id
 
-        self.env['bank.origin'].create({
-            'move_id': move.id ,
-            'date': self.payment_date ,
-            'operation_number': self.communication ,
-            'bank_id': self.partner_bank_id.bank_id.id
-        })
+            self.env['bank.origin'].create({
+                'move_id': move.id,
+                'date': self.payment_date,
+                'operation_number': self.communication,
+                'bank_id': self.partner_bank_id.bank_id.id
+            })
 
         move.get_narration_dx()
 
