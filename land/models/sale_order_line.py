@@ -321,8 +321,6 @@ class SaleOrderLine(models.Model):
 
 
 
-
-
             for line in record.order_id.order_line:
                 line.change_product_uom_qty_land()
 
