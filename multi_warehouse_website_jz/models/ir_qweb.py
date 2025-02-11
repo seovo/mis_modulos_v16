@@ -10,6 +10,7 @@ from odoo.http import request, route
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+
     def _get_cart_and_free_qty(self, product, line=None):
         cart_qty, free_qty = super()._get_cart_and_free_qty(product, line)
 
