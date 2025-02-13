@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paper_format_pos_z_report" model="report.paperformat">
+        <field name="name">POS Session Report</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">80</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_session_z" model="ir.actions.report">
+        <field name="name">Reporte Ticket</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_helpdesk_format_ticket_jz.report_pos_session_z</field>
+        <field name="report_file">report_helpdesk_format_ticket_jz.report_pos_session_z</field>
+        <field name="paperformat_id" ref="paper_format_pos_z_report"/>
+        <field name="print_report_name">(object.name or 'Ticket')</field>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_pos_session_z">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="pos_z_report_pdf"/>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="pos_z_report_pdf">
+        <t t-call="web.html_container">
+            <div class="page">
+                <div class="oe_structure"/>
+                <div>Hola</div>
+            </div>
+        </t>
+    </template>
+
+
+
+
+
+
+
+</odoo>

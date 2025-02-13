@@ -12,21 +12,63 @@ from odoo.addons.payment.controllers.post_processing import PaymentPostProcessin
 _logger = logging.getLogger(__name__)
 from odoo.exceptions import AccessError
 import odoo
+import uuid
+
 
 class ApiClinicos(http.Controller):
 
-    @http.route(['/apiclinicos/validate_login'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
-    def index_validate_login(self, **post):
-        redirect = None
+    @http.route(['/apiclinicos/inactive/uuid/<string:token>'], type='json', auth="public", methods=['POST'],
+                website=True, csrf=False)
+    def apiclinicos_inactive_uuid(self, token, **post):
+        exist = request.env['clinicos.web.services'].sudo().search([('token', '=', token)])
+
+        if exist:
+            exist.active = False
+            return True
+        else:
+            return False
+
+
+    @http.route(['/apiclinicos/validate/uuid/<string:token>'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def apiclinicos_validate_uuid(self, token , **post):
+        exist = request.env['clinicos.web.services'].sudo().search([('token','=',token)])
+
+        if exist:
+            return True
+        else:
+            return False
+
+    @http.route(['/apiclinicos/login'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def apiclinicos_validate_login(self, **post):
+
+        db = http.request.env.cr.dbname
+
+        data = http.request.httprequest.get_json()
+
+
         values = {}
 
-        return  request.session.authenticate(request.db, request.params['login'], request.params['password'])
 
         try:
-            uid = request.session.authenticate(request.db, request.params['login'], request.params['password'])
+            uid = request.session.authenticate(db, data['login'], data['password'])
             values.update({
-                'login_success': True
+                'login_success': True ,
+                'uid': uid
             })
+
+            #generar codigo token uid
+
+            unique_id = str(uuid.uuid4())  # Genera un UUID único
+
+            request.env['clinicos.web.services'].sudo().create({
+                'name': unique_id ,
+                'token': unique_id
+            })
+
+            values.update({'uuid': unique_id})
+
+
+
             #request.params['login_success'] = True
             #return request.redirect(self._login_redirect(uid, redirect=redirect))
         except odoo.exceptions.AccessDenied as e:

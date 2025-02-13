@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Api MercadoClinicosas",
-    "summary": "Api MercadoClinicosas",
-    "description": """Api MercadoClinicosas""",
+    "name": "Report HelpDesk Ticket",
+    "summary": "Report HelpDesk Ticket",
+    "description": """Report HelpDesk Ticket""",
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["website_sale"],
+    "depends": ["helpdesk"],
     "data": [
-        "security/ir.model.access.csv",
+        'views/report.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
