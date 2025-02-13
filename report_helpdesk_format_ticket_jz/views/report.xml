@@ -81,6 +81,8 @@
 
                 </div>
 
+                <br />
+
                 <h4>#<t t-esc="doc.id" /> </h4>
                 <h2>   <t t-esc="doc.name" /></h2>
 
