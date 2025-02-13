@@ -26,7 +26,7 @@
         <field name="paperformat_id" ref="paper_format_pos_z_report"/>
         <field name="print_report_name">(object.name or 'Ticket')</field>
         <field name="binding_type">report</field>
-        <field name="binding_model_id" ref="model_helpdesk_ticket"/>
+        <field name="binding_model_id" ref="helpdesk.model_helpdesk_ticket"/>
     </record>
 
 
