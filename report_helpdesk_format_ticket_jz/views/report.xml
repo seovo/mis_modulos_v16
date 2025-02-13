@@ -82,6 +82,13 @@
                 </div>
 
 
+                <h2><t t-esc="doc.name" /></h2>
+
+                <div>
+                    <t t-raw="doc.description" />
+                </div>
+
+
 
 
                 <!--
