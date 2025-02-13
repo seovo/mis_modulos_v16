@@ -83,53 +83,19 @@
 
                 <br />
 
-                <h4>  <t t-esc="doc.team_id.name" /></h4>
-                <h2> (#<t t-esc="doc.id" />)  <t t-esc="doc.name" /></h2>
+                <h2>  <t t-esc="doc.team_id.name" />  (#<t t-esc="doc.id" />) </h2>
+                <h4>  <t t-esc="doc.name" /></h4>
 
                 <div>
                     <t t-raw="doc.description" />
                 </div>
 
-
-
-
-                <!--
-
-                <img t-attf-src="/web/image?model=res.company&amp;id={{doc.company_id.id}}&amp;field=logo"
-                     alt="Logo" class="pos-receipt-logo"/>
-
-
-
-                <div class="pos-receipt-contact">
-
-                <div t-if="doc.company_id.partner_id" t-esc="doc.company_id.partner_id.display_name" />
-                <t t-if="doc.company_id.partner_id.contact_address">
-                    <div><t t-esc="doc.company_id.partner_id.contact_address" /></div>
-                </t>
-                <t t-if="doc.company_id.phone">
-                    <div>Tel:<t t-esc="doc.company_id.phone" /></div>
-                </t>
-                <t t-if="doc.company_id.vat">
-                    <div>N° Identificación:<t t-esc="doc.company_id.vat" /></div>
-                </t>
-                <t t-if="doc.company_id.email">
-                    <div><t t-esc="doc.company_id.email" /></div>
-                </t>
-                <t t-if="doc.company_id.website">
+                <div>
+                    <h5><br>Terminos y Condiciones</br></h5>
                     <div>
-                        <t t-esc="doc.company_id.website" />
+                        <!-- Ingresar Texto aqui -->
                     </div>
-                </t>
-
-
-
-
-
-
-
-            </div>
-
-            -->
+                </div>
 
             </div>
         </div>
