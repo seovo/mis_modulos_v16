@@ -49,7 +49,7 @@
 
                 <div class="pos-receipt-contact">
                 <!-- contact address -->
-                <div t-if="doc.company_id.partner_id?.[1]" t-esc="doc.company_id.partner_id[1]" />
+                <div t-if="doc.company_id.partner_id" t-esc="doc.company_id.partner_id.display_name" />
                 <t t-if="doc.company_id.contact_address">
                     <div><t t-esc="doc.company_id.contact_address" /></div>
                 </t>
