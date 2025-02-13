@@ -50,14 +50,14 @@
                 <div class="pos-receipt-contact">
                 <!-- contact address -->
                 <div t-if="doc.company_id.partner_id" t-esc="doc.company_id.partner_id.display_name" />
-                <t t-if="doc.company_id.contact_address">
-                    <div><t t-esc="doc.company_id.contact_address" /></div>
+                <t t-if="doc.company_id.partner_id.contact_address">
+                    <div><t t-esc="doc.company_id.partner_id.contact_address" /></div>
                 </t>
                 <t t-if="doc.company_id.phone">
                     <div>Tel:<t t-esc="doc.company_id.phone" /></div>
                 </t>
                 <t t-if="doc.company_id.vat">
-                    <div><t t-esc="doc.company_id.vat_label"/>:<t t-esc="doc.company_id.vat" /></div>
+                    <div>N° Identificación<!--<t t-esc="doc.company_id.vat_label"/> -->:<t t-esc="doc.company_id.vat" /></div>
                 </t>
                 <t t-if="doc.company_id.email">
                     <div><t t-esc="doc.company_id.email" /></div>
