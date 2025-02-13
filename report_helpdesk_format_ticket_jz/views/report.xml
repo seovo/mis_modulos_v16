@@ -40,15 +40,59 @@
 
 
     <template id="pos_z_report_pdf">
-        <t t-call="web.external_layout">
+        <div t-call="web.external_layout">
             <div class="page">
                 <div class="oe_structure"/>
+
+                <div class="sh_customer_detail" style="font-size:12px;text-align:left;">
+
+                    <div class="sh_receipt_footer" t-if="doc.partner_id">
+                        <br />
+                        <t style="text-align:left;">
+                            <div class="sh_customer_name" style="text-align:left;">Cliente : <t t-esc="doc.partner_id.name" /></div>
+                        </t>
+                        <t style="text-align:left;">
+                            <div class="sh_customer_name" style="text-align:left;"> NIT/CC :
+                             <t t-esc="doc.partner_id.vat" /></div>
+                        </t>
+                        <t style="text-align:left;">
+                              <t t-if="doc.partner_id.address">
+                                  <div class="sh_customer_address" style="text-align:left;">
+                                      Direccion: <t t-esc="doc.partner_id.address" />
+                                  </div>
+                              </t>
+                        </t>
+                        <t style="text-align:left;">
+                           <t t-if="doc.partner_id.mobile">
+                              <div class="sh_customer_mobile" style="text-align:left;">Telefono : <t t-esc="doc.partner_id.mobile" /></div>
+                           </t>
+                        </t>
+                        <t style="text-align:left;">
+                           <t t-if="doc.partner_id.phone">
+                              <div class="sh_customer_mobile" style="text-align:left;">Celular : <t t-esc="doc.partner_id.phone" /></div>
+                           </t>
+                        </t>
+                        <t style="text-align:left;">
+                           <t t-if="doc.partner_id.email">
+                            <div class="sh_customer_mobile" style="text-align:left;">Email : <t t-esc="doc.partner_id.email" /></div>
+                           </t>
+                        </t>
+                    </div>
+
+                </div>
+
+
+
+
+                <!--
 
                 <img t-attf-src="/web/image?model=res.company&amp;id={{doc.company_id.id}}&amp;field=logo"
                      alt="Logo" class="pos-receipt-logo"/>
 
+
+
                 <div class="pos-receipt-contact">
-                <!-- contact address -->
+
                 <div t-if="doc.company_id.partner_id" t-esc="doc.company_id.partner_id.display_name" />
                 <t t-if="doc.company_id.partner_id.contact_address">
                     <div><t t-esc="doc.company_id.partner_id.contact_address" /></div>
@@ -57,7 +101,7 @@
                     <div>Tel:<t t-esc="doc.company_id.phone" /></div>
                 </t>
                 <t t-if="doc.company_id.vat">
-                    <div>N° Identificación<!--<t t-esc="doc.company_id.vat_label"/> -->:<t t-esc="doc.company_id.vat" /></div>
+                    <div>N° Identificación:<t t-esc="doc.company_id.vat" /></div>
                 </t>
                 <t t-if="doc.company_id.email">
                     <div><t t-esc="doc.company_id.email" /></div>
@@ -70,10 +114,15 @@
 
 
 
-            </div>
+
+
+
 
             </div>
-        </t>
+
+            -->
+
+            </div>
     </template>
 
 
