@@ -56,9 +56,9 @@
                              <t t-esc="doc.partner_id.vat" /></div>
                         </t>
                         <t style="text-align:left;">
-                              <t t-if="doc.partner_id.address">
+                              <t t-if="doc.partner_id.contact_address_inline">
                                   <div class="sh_customer_address" style="text-align:left;">
-                                      Direccion: <t t-esc="doc.partner_id.address" />
+                                      Direccion: <t t-esc="doc.partner_id.contact_address_inline" />
                                   </div>
                               </t>
                         </t>
