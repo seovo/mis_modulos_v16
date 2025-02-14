@@ -47,7 +47,7 @@
                 <div class="sh_customer_detail" style="margin-top: 120px;">
 
                     <div class="sh_receipt_footer" t-if="doc.partner_id">
-                        <br />
+                        <br/><br/><br/><br/><br/><br/><br/>
                         <t style="text-align:left;">
                             <div class="sh_customer_name" style="text-align:left;">Cliente : <t t-esc="doc.partner_id.name" /></div>
                         </t>
