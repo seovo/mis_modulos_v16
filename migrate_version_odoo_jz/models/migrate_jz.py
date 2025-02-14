@@ -110,10 +110,9 @@ class MigrateModelJz(models.Model):
             cursor.execute(string_sql)
 
         except:
-            self.columns = None
-            return
-
-
+            cursor.execute(string_sql)
+            #self.columns = None
+            #return
 
         self.columns = None
         for desc in cursor.description:
