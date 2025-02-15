@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_project" model="ir.actions.report">
+        <field name="name">Reporte Proyecto</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_helpdesk_format_ticket_jz.report_project</field>
+        <field name="report_file">report_helpdesk_format_ticket_jz.report_project</field>
+       <!-- <field name="paperformat_id" ref="paper_format_pos_z_report"/> -->
+        <field name="print_report_name">(object.name or 'Proyecto')</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+    </record>
+
+    <template id="report_project">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report_helpdesk_format_ticket_jz.report_project_template"/>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="report_project_template">
+        <div t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure"/>
+
+                <div>Esto es un Reporte</div>
+
+            </div>
+        </div>
+    </template>
+
+</odoo>
