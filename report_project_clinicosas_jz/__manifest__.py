@@ -8,7 +8,7 @@
     "version": "17.0",
     "depends": ["project"],
     "data": [
-        "views/report.xml",
+        "report/report.xml",
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
