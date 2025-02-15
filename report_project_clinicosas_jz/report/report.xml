@@ -84,15 +84,15 @@
                         </tr>
 
                             <tr>
-                            <td scope="row"><b>Descripcion:</b><span t-field="line.x_studio_descripcion_1"/></td>
+                            <td scope="row"><b>Descripcion:</b><span class="ml-2" t-field="line.x_studio_descripcion_1"/></td>
                             <td><img t-att-src="image_data_uri(line.x_studio_imagen_del_producto)" style="max-height: 4cm; max-width: 8cm;" t-if="line.x_studio_imagen_del_producto"/></td>
                         </tr>
                             <tr>
-                            <td scope="row"><b>Descripción del trabajo:</b><span t-field="line.x_studio_descripcin_del_trabajo"/></td>
+                            <td scope="row"><b>Descripción del trabajo:</b><span class="ml-2" t-field="line.x_studio_descripcin_del_trabajo"/></td>
                             <td><img t-att-src="image_data_uri(line.x_studio_binary_field_65n_1idb6qt6t)" style="max-height: 4cm; max-width: 8cm;" t-if="line.x_studio_binary_field_65n_1idb6qt6t"/></td>
                         </tr>
                             <tr>
-                            <td scope="row"><b>Recomendaciones técnicas:</b><span t-field="line.x_studio_recomendaciones_tcnicas"/></td>
+                            <td scope="row"><b>Recomendaciones técnicas:</b><span class="ml-2" t-field="line.x_studio_recomendaciones_tcnicas"/></td>
                             <td><img t-att-src="image_data_uri(line.x_studio_binary_field_3af_1idb744bf)" style="max-height: 4cm; max-width: 8cm;" t-if="line.x_studio_binary_field_3af_1idb744bf"/></td>
                         </tr>
 
