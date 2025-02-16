@@ -29,6 +29,7 @@
                         </group>
                         <group>
                             <field name="table" />
+                            <field name="new_table" />
                             <field name="no_existe_id" />
                         </group>
 

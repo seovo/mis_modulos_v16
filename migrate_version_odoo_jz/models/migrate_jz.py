@@ -81,6 +81,7 @@ class MigrateModelJz(models.Model):
     _name = 'migrate.model.jz'
     model_id = fields.Many2one('ir.model',string="Modelo")
     table = fields.Char(required=True)
+    new_table = fields.Char(string="Nueva Tabla")
     columns = fields.One2many('migrate.model.columns.jz','migrate_model_id')
     log = fields.Text()
     migrate_id = fields.Many2one('migrate.jz')
@@ -211,12 +212,6 @@ class MigrateModelJz(models.Model):
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
-
-
-
-
-
-
 
 
             #raise ValueError([len(fila),fila])
