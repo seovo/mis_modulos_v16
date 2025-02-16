@@ -12,3 +12,13 @@ class WebServices(models.Model):
     name = fields.Char(required=True)
     token = fields.Char(required=True)
     active = fields.Boolean(default=True)
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    @api.model
+    def create(self,vals):
+        #raise ValueError('HOLAAA')
+        res = super().create(vals)
+        return res

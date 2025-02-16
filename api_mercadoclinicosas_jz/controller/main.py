@@ -17,6 +17,39 @@ import uuid
 
 class ApiClinicos(http.Controller):
 
+
+
+    @http.route(['/apiclinicos/signup'], type='json', auth="public", methods=['POST'],
+                website=True, csrf=False)
+    def apiclinicos_signup(self, **post):
+        #db = http.request.env.cr.dbname
+        data = http.request.httprequest.get_json()
+
+        #values = {key: qcontext.get(key) for key in ('login', 'name', 'password')}
+
+
+        values = {
+            'name': data['name'] ,
+            'email':  data['email'] ,
+            'login': data['email'],
+            'password': data['password'] ,
+            'lang': 'es_AR'
+        }
+
+        #if not values:
+        #    raise UserError(_("The form was not properly filled in."))
+
+        ########
+
+        login, password = request.env['res.users'].sudo().signup(values)
+        request.env.cr.commit()  # as authenticate will use its own cursor we need to commit the current transaction
+        pre_uid = request.session.authenticate(request.db, login, password)
+        if not pre_uid:
+            return False
+            #raise SignupError(_('Authentication Failed.'))
+
+        return True
+
     @http.route(['/apiclinicos/inactive/uuid/<string:token>'], type='json', auth="public", methods=['POST'],
                 website=True, csrf=False)
     def apiclinicos_inactive_uuid(self, token, **post):
