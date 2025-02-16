@@ -185,6 +185,10 @@ class MigrateModelJz(models.Model):
 
 
     def insert_record_migrate(self,cursor,table,column_names):
+
+        if self.new_table:
+            table = self.new_table
+
         resultados = cursor.fetchall()  # Obtener todos los resultados
         #raise ValueError(resultados)
 
