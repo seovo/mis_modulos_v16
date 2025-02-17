@@ -212,7 +212,9 @@ class MigrateModelJz(models.Model):
 
             self.env.cr.execute(sql)
             data =  self._cr.fetchall()
-            raise ValueError([data,sql])
+            if data:
+                raise ValueError([data, sql])
+
 
 
 
