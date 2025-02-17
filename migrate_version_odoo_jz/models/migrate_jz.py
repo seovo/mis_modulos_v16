@@ -203,16 +203,16 @@ class MigrateModelJz(models.Model):
 
             sql = f'''
             SELECT id 
-                FROM product_template_attribute_value PTAV
+                FROM product_template_attribute_value 
                 WHERE product_attribute_value_id = {fila[1]}
-                 AND  product_tmpl_id  = {product.product_tmpl_id.id}
+                AND  product_tmpl_id  = {product.product_tmpl_id.id}
                
             '''
 
 
             self.env.cr.execute(sql)
             data =  self._cr.fetchall()
-            raise ValueError(data)
+            raise ValueError([data,sql])
 
 
 
