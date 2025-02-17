@@ -21,6 +21,12 @@ class MigrateJz(models.Model):
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
+    def update_variant_combiation_products(self):
+        for product in self.en['product.product'].search([('product_template_variant_value_ids', '=', False),
+                                     ('product_template_attribute_value_ids', '!=', False)], limit=25):
+            #product.product_template_variant_value_ids = product.product_template_attribute_value_ids.ids
+            product.product_template_variant_value_ids = [(6,0,product.product_template_attribute_value_ids.ids)]
+
     def show_lines(self):
         return {
             "name": f"LINEAS",
@@ -219,19 +225,15 @@ class MigrateModelJz(models.Model):
 
                 SQL_INSERT = f'''
                        INSERT INTO product_variant_combination(product_product_id,product_template_attribute_value_id)
-                       VALUES ({fila[0]},{data[0][0]}); 
+                       VALUES ({fila[0]},{data[0][0]}) ON CONFLICT (product_product_id,product_template_attribute_value_id) DO NOTHING ; 
                 '''
-                #try:
-                #    self.env.cr.execute(SQL_INSERT)
-                #except:
-                #    pass
-
-                SQL_INSERT = f'''
-                    INSERT INTO product_attribute_value_product_template_attribute_line_rel(product_attribute_value_id,product_template_attribute_line_id)
-                    VALUES ({fila[1]},{data[0][1]}) ON CONFLICT (product_attribute_value_id,product_template_attribute_line_id) DO NOTHING ; 
-                '''
-
                 self.env.cr.execute(SQL_INSERT)
+                #SQL_INSERT = f'''
+                #    INSERT INTO product_attribute_value_product_template_attribute_line_rel(product_attribute_value_id,product_template_attribute_line_id)
+                #    VALUES ({fila[1]},{data[0][1]}) ON CONFLICT (product_attribute_value_id,product_template_attribute_line_id) DO NOTHING ;
+                #'''
+
+                #self.env.cr.execute(SQL_INSERT)
 
                 #product_attribute_value_id
                 #product_template_attribute_line_id
