@@ -98,8 +98,7 @@
                         <group>
                             <field name="host"/>
                             <field name="port"/>
-
-
+                            <field name="from_version"/>
                         </group>
                         <group>
                             <field name="dbname" password="true" />

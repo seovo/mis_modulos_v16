@@ -17,6 +17,7 @@ class MigrateJz(models.Model):
     model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
 
     log = fields.Text()
+    from_version = fields.Integer()
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
@@ -91,6 +92,7 @@ class MigrateModelJz(models.Model):
     #ignorar_if_error = fields.Boolean(string="Ignorar si Error")
     no_existe_id = fields.Boolean()
     where_set = fields.Text()
+
 
 
 
