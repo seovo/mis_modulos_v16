@@ -198,7 +198,19 @@ class MigrateModelJz(models.Model):
     def insert_product_variant_combination(self, cursor, table, column_names):
         resultados = cursor.fetchall()
         for fila in resultados:
-            raise ValueError(fila)
+
+            product = self.env['product.product'].browse(fila[0])
+
+            sql = f'''
+            SELECT id 
+                FROM product_template_attribute_value PTAV
+                WHERE product_attribute_value_id = {fila[1]}
+                AND  product_tmpl_id  = {product.product_tmpl_id.id}
+            '''
+
+            self.env.cr.execute(sql)
+            data =  self.env.cr.fetchall()
+            raise ValueError(data)
 
 
 
