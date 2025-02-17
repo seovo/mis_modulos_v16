@@ -205,8 +205,10 @@ class MigrateModelJz(models.Model):
             SELECT id 
                 FROM product_template_attribute_value PTAV
                 WHERE product_attribute_value_id = {fila[1]}
-                AND  product_tmpl_id  = {product.product_tmpl_id.id}
+               
             '''
+
+            # AND  product_tmpl_id  = {product.product_tmpl_id.id}
 
             self.env.cr.execute(sql)
             data =  self.env.cr.fetchall()
