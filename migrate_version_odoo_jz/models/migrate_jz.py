@@ -23,7 +23,7 @@ class MigrateJz(models.Model):
 
     def update_variant_combiation_products(self):
         for product in self.env['product.product'].search([('product_template_variant_value_ids', '=', False),
-                                     ('product_template_attribute_value_ids', '!=', False)], limit=25):
+                                     ('product_template_attribute_value_ids', '!=', False)], limit=100):
             #product.product_template_variant_value_ids = product.product_template_attribute_value_ids.ids
             product.product_template_variant_value_ids = [(6,0,product.product_template_attribute_value_ids.ids)]
 
