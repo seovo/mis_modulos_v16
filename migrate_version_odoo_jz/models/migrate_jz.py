@@ -211,7 +211,7 @@ class MigrateModelJz(models.Model):
             # AND  product_tmpl_id  = {product.product_tmpl_id.id}
 
             self.env.cr.execute(sql)
-            data =  self.env.cr.fetchall()
+            data =  self._cr.fetchone()
             raise ValueError(data)
 
 
