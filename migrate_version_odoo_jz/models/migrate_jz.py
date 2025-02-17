@@ -205,7 +205,7 @@ class MigrateModelJz(models.Model):
             product = self.env['product.product'].browse(fila[0])
 
             sql = f'''
-            SELECT id 
+            SELECT id , attribute_line_id
                 FROM product_template_attribute_value 
                 WHERE product_attribute_value_id = {fila[1]}
                 AND  product_tmpl_id  = {product.product_tmpl_id.id}
@@ -221,7 +221,18 @@ class MigrateModelJz(models.Model):
                        INSERT INTO product_variant_combination(product_product_id,product_template_attribute_value_id)
                        VALUES ({fila[0]},{data[0][0]}); 
                 '''
-                self.env.cr.execute(SQL_INSERT)
+                try:
+                    self.env.cr.execute(SQL_INSERT)
+                except:
+                    pass
+
+                SQL_INSERT = f'''
+                    INSERT INTO product_attribute_value_product_template_attribute_line_rel(product_attribute_value_id,product_template_attribute_line_id)
+                    VALUES ({data[0][0]},{data[0][1]}); 
+                '''
+
+                #product_attribute_value_id
+                #product_template_attribute_line_id
 
 
                 #raise ValueError([data, sql])
