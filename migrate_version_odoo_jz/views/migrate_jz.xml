@@ -47,6 +47,7 @@
                                     <field name="ignore" />
                                     <field name="type_field" />
                                     <field name="value_set" />
+                                   <!-- <field name="insert_as_jsonb" optional="hidden" /> -->
                                 </tree>
                             </field>
 

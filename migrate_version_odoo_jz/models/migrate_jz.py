@@ -75,6 +75,7 @@ class MigrateModelColumnsJz(models.Model):
     type_field       = fields.Selection([('jsonb','jsonb')])
     migrate_model_id = fields.Many2one('migrate.model.jz')
     value_set        = fields.Text()
+    #insert_as_jsonb   = fields.Boolean()
 
 
 class MigrateModelJz(models.Model):
@@ -217,8 +218,10 @@ class MigrateModelJz(models.Model):
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
 
-            raise ValueError([SQL_INSERT,len(fila),fila])
+            #raise ValueError([SQL_INSERT,len(fila),fila])
             #self.env.cr.execute(SQL_INSERT, [fila[0],f'''"{fila[1]}"'''])
+
+
 
 
             self.env.cr.execute(SQL_INSERT, fila)
