@@ -221,10 +221,10 @@ class MigrateModelJz(models.Model):
                        INSERT INTO product_variant_combination(product_product_id,product_template_attribute_value_id)
                        VALUES ({fila[0]},{data[0][0]}); 
                 '''
-                try:
-                    self.env.cr.execute(SQL_INSERT)
-                except:
-                    pass
+                #try:
+                #    self.env.cr.execute(SQL_INSERT)
+                #except:
+                #    pass
 
                 SQL_INSERT = f'''
                     INSERT INTO product_attribute_value_product_template_attribute_line_rel(product_attribute_value_id,product_template_attribute_line_id)
