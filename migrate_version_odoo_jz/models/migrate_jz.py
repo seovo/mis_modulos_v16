@@ -253,7 +253,7 @@ class MigrateModelJz(models.Model):
             #raise ValueError([SQL_INSERT,len(fila),fila])
             #self.env.cr.execute(SQL_INSERT, [fila[0],f'''"{fila[1]}"'''])
 
-            raise ValueError([SQL_INSERT,fila])
+            #raise ValueError([SQL_INSERT,fila])
 
 
             self.env.cr.execute(SQL_INSERT, fila)
