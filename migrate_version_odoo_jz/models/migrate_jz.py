@@ -231,10 +231,7 @@ class MigrateModelJz(models.Model):
                     VALUES ({fila[1]},{data[0][1]}); 
                 '''
 
-                try:
-                    self.env.cr.execute(SQL_INSERT)
-                except:
-                    pass
+                self.env.cr.execute(SQL_INSERT)
 
                 #product_attribute_value_id
                 #product_template_attribute_line_id
