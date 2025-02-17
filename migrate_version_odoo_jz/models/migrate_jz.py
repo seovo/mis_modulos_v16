@@ -23,7 +23,7 @@ class MigrateJz(models.Model):
 
     def update_variant_combiation_products(self):
 
-        line_variants_atrr =  self.env['product.template.attribute.line'].search([('value_count','=',0),('value_ids','!=',False)],limit=50)
+        line_variants_atrr =  self.env['product.template.attribute.line'].search([('value_count','=',False),('value_ids','!=',False)],limit=100)
         line_variants_atrr._compute_value_count()
     def show_lines(self):
         return {
