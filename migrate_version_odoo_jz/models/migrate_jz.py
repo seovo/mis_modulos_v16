@@ -183,8 +183,24 @@ class MigrateModelJz(models.Model):
         #except:
         #    raise ValueError(string_sql)
 
-        self.insert_record_migrate(cursor, table,column_names)
+        if self.table == 'product_attribute_value_product_product_rel' and self.migrate_id.from_version <= 12:
+
+            self.insert_product_variant_combination( cursor, table, column_names)
+
+
+        else:
+            self.insert_record_migrate(cursor, table, column_names)
+
+
+
         #resultados = cursor.fetchall()
+
+    def insert_product_variant_combination(self, cursor, table, column_names):
+        resultados = cursor.fetchall()
+        for fila in resultados:
+            raise ValueError(fila)
+
+
 
 
     def insert_record_migrate(self,cursor,table,column_names):
