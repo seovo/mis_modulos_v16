@@ -201,7 +201,6 @@ class MigrateModelJz(models.Model):
         for fila in resultados:
             val1 = ','.join(column_names)
             val2 = corchetes_n
-
             # raise ValueError(val3)
 
             if self.no_existe_id:
