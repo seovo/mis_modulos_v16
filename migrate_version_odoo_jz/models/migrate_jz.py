@@ -231,6 +231,8 @@ class MigrateModelJz(models.Model):
                     VALUES ({data[0][0]},{data[0][1]}); 
                 '''
 
+                self.env.cr.execute(SQL_INSERT)
+
                 #product_attribute_value_id
                 #product_template_attribute_line_id
 
