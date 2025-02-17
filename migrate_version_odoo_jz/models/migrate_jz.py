@@ -219,7 +219,7 @@ class MigrateModelJz(models.Model):
 
                 SQL_INSERT = f'''
                        INSERT INTO product_variant_combination(product_product_id,product_template_attribute_value_id)
-                       VALUES ({fila[0]},{data[0]}); 
+                       VALUES ({fila[0]},{data[0][0]}); 
                 '''
                 self.env.cr.execute(SQL_INSERT)
 
