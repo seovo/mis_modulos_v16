@@ -226,6 +226,9 @@ class AccountMove(models.Model):
                             orders.append(sale_line.order_id)
             for order in orders:
                 order.update_schedule()
+                order._get_stage_payment_land()
+                order.get_last_payment_date_land()
+                order.get_info_land()
 
 
 

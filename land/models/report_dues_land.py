@@ -44,7 +44,7 @@ class CommissionRiman(models.Model):
     ], string='Etapa Pago  Terreno')
 
     def update_data_cronograma(self):
-        self.order_ids.update_schedule()
+        self.env['sale.order'].update_schedule_all()
 
 
 

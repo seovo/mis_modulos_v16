@@ -22,7 +22,7 @@
         "views/commission_land.xml",
         "views/crm_team_view_form.xml",
         "data/sequence.xml",
-        #"data/cron.xml",
+        "data/cron.xml",
         "views/report_dues_land.xml",
         'views/product_template_attribute_value.xml',
         "views/report_lot_land.xml",
