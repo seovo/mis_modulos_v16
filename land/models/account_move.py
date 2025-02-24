@@ -229,6 +229,7 @@ class AccountMove(models.Model):
                 order._get_stage_payment_land()
                 order.get_last_payment_date_land()
                 order.get_info_land()
+                order.update_credit_saldo()
 
 
 

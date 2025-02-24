@@ -405,6 +405,7 @@ class SaleOrder(models.Model):
     def update_schedule_all(self):
         orders = self.env['sale.order'].search([])
         orders.update_schedule()
+        orders.update_credit_saldo()
 
 
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land','date_first_due_land')
