@@ -296,7 +296,10 @@ class AccountMove(models.Model):
         return res
 
     def button_cancel(self):
+
+        res = super().button_cancel()
         self.update_order_jz()
+        return res
 
 
     @api.depends('narration_text','bank_origin_ids','bank_origin_ids.bank_id',
