@@ -47,9 +47,9 @@ class CommissionRiman(models.Model):
 
 
     def action_preview_lines(self):
-        self.update_data()
-        self.order_ids.update_credit_saldo()
-        self.order_ids._get_stage_payment_land()
+        #self.update_data()
+        #self.order_ids.update_credit_saldo()
+        #self.order_ids._get_stage_payment_land()
 
         return {
             "name": f"Ventas",
@@ -115,10 +115,10 @@ class CommissionRiman(models.Model):
                         continue
                         # if not sale.schedule_land_ids:
 
-                sale.update_schedule()
-                sale._get_stage_payment_land()
-                sale.get_last_payment_date_land()
-                sale.get_info_land()
+                #sale.update_schedule()
+                #sale._get_stage_payment_land()
+                #sale.get_last_payment_date_land()
+                #sale.get_info_land()
 
                 if record.stage_payment_lan:
                     if record.stage_payment_lan != sale.stage_payment_lan:

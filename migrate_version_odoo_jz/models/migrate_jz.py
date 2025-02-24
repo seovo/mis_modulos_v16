@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 import psycopg2
 from psycopg2 import sql
 
+
 class MigrateJz(models.Model):
     _name = 'migrate.jz'
     host = fields.Char(string="IP del Servidor Postgres",required=True)

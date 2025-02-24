@@ -9,6 +9,7 @@
     "depends": ["project"],
     "data": [
         "report/report.xml",
+        'project_project.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
