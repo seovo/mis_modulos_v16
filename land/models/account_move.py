@@ -85,7 +85,7 @@ class AccountMove(models.Model):
             self.validate_date_nubefact()
             self.get_narration_dx()
 
-        #self.get_narration_dx()
+        self.update_order_jz()
 
         return res
 
