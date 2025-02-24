@@ -85,7 +85,7 @@ class AccountMove(models.Model):
             self.validate_date_nubefact()
             self.get_narration_dx()
 
-        self.get_narration_dx()
+        #self.get_narration_dx()
 
         return res
 
@@ -222,7 +222,7 @@ class AccountMove(models.Model):
             for line in record.invoice_line_ids:
                 if line.sale_line_ids:
                     for sale_line in line.sale_line_ids:
-                        if not sale_line.order_id in order:
+                        if not sale_line.order_id in orders:
                             orders.append(sale_line.order_id)
             for order in orders:
                 order.update_schedule()
@@ -294,6 +294,10 @@ class AccountMove(models.Model):
         self.get_narration_dx()
         self.update_order_jz()
         return res
+
+    def button_cancel(self):
+        self.update_order_jz()
+
 
     @api.depends('narration_text','bank_origin_ids','bank_origin_ids.bank_id',
                  'bank_origin_ids.operation_number','bank_origin_ids.date')
