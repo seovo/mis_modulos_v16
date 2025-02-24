@@ -43,6 +43,9 @@ class CommissionRiman(models.Model):
         ('completed', 'Cuotas Completada')
     ], string='Etapa Pago  Terreno')
 
+    def update_data_cronograma(self):
+        self.order_ids.update_schedule()
+
 
 
 
