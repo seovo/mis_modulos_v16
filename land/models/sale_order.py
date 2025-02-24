@@ -525,6 +525,7 @@ class SaleOrder(models.Model):
         self.get_last_payment_date_land()
         self._get_stage_payment_land()
         self.get_amount_prices_land()
+        self.get_info_land()
 
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
