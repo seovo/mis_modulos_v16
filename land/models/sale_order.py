@@ -402,8 +402,7 @@ class SaleOrder(models.Model):
         self.update_schedule()
 
 
-    @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land')
-    @api.onchange('date_first_due_land')
+    @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land','date_first_due_land')
     def update_schedule(self):
         for record in self:
             if record.date_first_due_land:

@@ -85,6 +85,8 @@ class AccountMove(models.Model):
             self.validate_date_nubefact()
             self.get_narration_dx()
 
+        self.get_narration_dx()
+
         return res
 
     #este use para actulizar la fecha si por alguna razon es diferente a la que se publico en nubefact
@@ -122,15 +124,6 @@ class AccountMove(models.Model):
             record.proveedores_land = ",".join(proveedor) if proveedor else None
             record.mz_lot = mz_lot
             record.description_land = description_land
-
-
-
-
-
-
-
-
-
 
     @api.depends('mz_land_separation_id', 'lot_land_separation_id')
     def get_report_lot_land_line_id(self, product_tmp=None):
@@ -187,7 +180,6 @@ class AccountMove(models.Model):
             record.days_count_expired_separation = diff
 
 
-
     def send_notify_separation(self):
         pass
 
@@ -222,6 +214,21 @@ class AccountMove(models.Model):
             }
 
         }
+
+
+    def update_order_jz(self):
+        for record   in self:
+            orders = []
+            for line in record.invoice_line_ids:
+                if line.sale_line_ids:
+                    for sale_line in line.sale_line_ids:
+                        if not sale_line.order_id in order:
+                            orders.append(sale_line.order_id)
+            for order in orders:
+                order.update_schedule()
+
+
+
     @api.model
     def create(self,vals):
         res = super(AccountMove, self).create(vals)
@@ -229,6 +236,9 @@ class AccountMove(models.Model):
 
         for record in res:
             self.env['sale.order'].verifi_mz_lot(mz=record.mz_land_separation_id.name, lt=record.lot_land_separation_id.name,object= record)
+
+
+
 
             for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
@@ -239,6 +249,7 @@ class AccountMove(models.Model):
                     record.stage_separation_land = 'initial'
 
                     #colocar la manza y lote
+
 
 
 
@@ -267,6 +278,8 @@ class AccountMove(models.Model):
 
 
         #verificar mz y lote
+        res.update_order_jz()
+
 
 
 
@@ -279,6 +292,7 @@ class AccountMove(models.Model):
     def action_post(self):
         res = super().action_post()
         self.get_narration_dx()
+        self.update_order_jz()
         return res
 
     @api.depends('narration_text','bank_origin_ids','bank_origin_ids.bank_id',
