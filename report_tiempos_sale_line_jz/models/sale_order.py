@@ -2,7 +2,9 @@ from odoo import api, fields, models
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
+    client_order_ref = fields.Char(related='order_id.client_order_ref', string="Referencia cliente")
     default_code = fields.Char(related='product_id.default_code',string="Referencia Interna")
+
     move_reference = fields.Char(compute='get_data_report_time',string='Stock Referencia')
     purchase_id = fields.Many2one('purchase.order',compute='get_data_report_time',string="Compra")
     purchase_create_date = fields.Datetime(compute='get_data_report_time',string="Fecha Creada Compra")
@@ -11,6 +13,9 @@ class SaleOrderLine(models.Model):
     purchase_product_qty = fields.Float( compute='get_data_report_time', string="Compra Cantidad")
     purchase_qty_received = fields.Float(compute='get_data_report_time', string="Compra Cant Recibida")
     purchase_product_uom_qty = fields.Float(compute='get_data_report_time', string="Compra Cant Total")
+    purchase_date_planned = fields.Datetime(compute='get_data_report_time', string="Fecha Prevista")
+
+
 
 
     def get_data_report_time(self):
@@ -27,3 +32,4 @@ class SaleOrderLine(models.Model):
             record.purchase_product_qty = purchase_line.product_qty if purchase_line else None
             record.purchase_qty_received = purchase_line.qty_received if purchase_line else None
             record.purchase_product_uom_qty = purchase_line.product_uom_qty if purchase_line else None
+            record.purchase_date_planned = purchase_line.purchase_date_planned if purchase_line else None
