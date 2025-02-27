@@ -27,7 +27,7 @@ class MigrateJz(models.Model):
     def update_images(self):
         import requests
         import base64
-        products = self.env['product.product'].search([('image_1920','=',False),('id','=','64566')],limit=80)
+        products = self.env['product.product'].search([('image_1920','=',False)],limit=80)
 
         for product in products:
             image_url = f"http://34.176.22.205:8069/web/image?model=product.product&id={product.id}&field=image"
