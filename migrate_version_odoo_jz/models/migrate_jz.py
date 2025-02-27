@@ -23,6 +23,7 @@ class MigrateJz(models.Model):
     #                             default=lambda self: self.env.company)
 
 
+
     def update_images(self):
         products = self.env['product.product'].search([('image_1920','=',False)],limit=5)
 
