@@ -23,7 +23,6 @@ class MigrateJz(models.Model):
     #                             default=lambda self: self.env.company)
 
 
-
     def update_images(self):
         import requests
         import base64
