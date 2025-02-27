@@ -26,6 +26,7 @@ class MigrateJz(models.Model):
 
     def update_images(self):
         import requests
+        import base64
         products = self.env['product.product'].search([('image_1920','=',False),('id','=',21542)],limit=5)
 
         for product in products:
@@ -34,9 +35,10 @@ class MigrateJz(models.Model):
             response = requests.get(image_url)
             if response.status_code == 200:
                 # Guarda la imagen en el campo binario
-                content = response.content
-                raise ValueError(content)
-                product.image_1920 = response.content
+                #content = response.content
+                content =  base64.b64encode(response.content).decode('utf-8')
+                #raise ValueError(content)
+                product.image_1920 = content
             else:
                 raise ValueError(f"Error downloading image: {image_url}")
 
