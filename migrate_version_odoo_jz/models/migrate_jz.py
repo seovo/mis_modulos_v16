@@ -22,6 +22,16 @@ class MigrateJz(models.Model):
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
+
+    def update_images(self):
+        products = self.env['product.product'].search([('image','=',False)],limit=5)
+
+        for product in products:
+            url = f"http://34.176.22.205:8069/web/image?model=product.product&id={product.id}&field=image"
+            raise ValueError(url)
+
+
+
     def update_variant_combiation_products(self):
 
         line_variants_atrr =  self.env['product.template.attribute.line'].search([('value_count','=',False),('value_ids','!=',False)],limit=1000)
