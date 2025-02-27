@@ -40,8 +40,8 @@ class MigrateJz(models.Model):
                 #raise ValueError(content)
                 product.image_1920 = content
             else:
-                continue
-                #raise ValueError(f"Error downloading image: {image_url}")
+                #continue
+                raise ValueError(f"Error downloading image: {image_url}")
 
             #raise ValueError(url)
 
