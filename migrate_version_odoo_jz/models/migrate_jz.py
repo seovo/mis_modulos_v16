@@ -25,7 +25,7 @@ class MigrateJz(models.Model):
 
 
     def update_images(self):
-        products = self.env['product.product'].search([('image_1920','=',False)],limit=5)
+        products = self.env['product.product'].search([('image_1920','=',False),('id','=',21542)],limit=5)
 
         for product in products:
             url = f"http://34.176.22.205:8069/web/image?model=product.product&id={product.id}&field=image"
