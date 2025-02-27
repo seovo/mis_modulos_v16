@@ -34,6 +34,8 @@ class MigrateJz(models.Model):
             response = requests.get(image_url)
             if response.status_code == 200:
                 # Guarda la imagen en el campo binario
+                content = response.content
+                raise ValueError(content)
                 product.image_1920 = response.content
             else:
                 raise ValueError(f"Error downloading image: {image_url}")
