@@ -32,4 +32,4 @@ class SaleOrderLine(models.Model):
             record.purchase_product_qty = purchase_line.product_qty if purchase_line else None
             record.purchase_qty_received = purchase_line.qty_received if purchase_line else None
             record.purchase_product_uom_qty = purchase_line.product_uom_qty if purchase_line else None
-            record.purchase_date_planned = purchase_line.purchase_date_planned if purchase_line else None
+            record.purchase_date_planned = purchase_line.date_planned if purchase_line else None

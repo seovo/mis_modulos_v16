@@ -46,7 +46,7 @@
 
 
     <record id="action_sale_order_line_tree" model="ir.actions.act_window">
-        <field name="name">Reporte de Tiempos</field>
+        <field name="name">Reporte General</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
         <field name="view_mode">tree</field>
