@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
         ('regularizado','Regularizado'),
     ],string="Estado Terreno",copy=False)
     dues_land            = fields.Float(string="Cuotas",copy=False)
-    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='')
+    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='_update_text_mz_lote')
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
     value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
