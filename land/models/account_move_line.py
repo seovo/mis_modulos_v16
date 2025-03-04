@@ -11,8 +11,8 @@ class AccountMoveLine(models.Model):
 
         if 'price_unit' in vals:
             if self.move_id.state != 'draft':
-                return res
-                #raise ValueError('Modificacion no permitida')
+                #return res
+                raise ValueError('Modificacion no permitida')
 
         return res
 
