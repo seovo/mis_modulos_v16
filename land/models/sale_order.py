@@ -85,8 +85,6 @@ class SaleOrder(models.Model):
 
 
     note = fields.Text()
-    recalcule_and_save_total_land = fields.Boolean(default=True,string="Recalcular Montos",copy=False)
-
     seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True,copy=False)
 
 
@@ -877,8 +875,8 @@ class SaleOrder(models.Model):
 
 
         for record in self:
-            if record.recalcule_and_save_total_land:
-                record._update_text_mz_lote()
+
+            record._update_text_mz_lote()
 
 
         #self.get_info_land()
@@ -886,6 +884,7 @@ class SaleOrder(models.Model):
 
 
         return res
+
 
     @api.model
     def create(self,vals):

@@ -132,8 +132,6 @@
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
                            <field name="obs_resolution" />
-                           <field name="recalcule_and_save_total_land"  readonly="1" force_save="1" />
-
 
                            <field name="move_separation_land_id"  readonly="1" force_save="1" />
                            <field name="stage_payment_lan" />
