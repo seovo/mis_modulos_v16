@@ -718,9 +718,7 @@ class SaleOrder(models.Model):
 
             if mz or lote:
                 mz_lot = (mz or '') + '-' + (lote or '')
-
-
-            record.mz_lot = mz_lot
+                record.mz_lot = mz_lot
             record.value_due_land = value_due
 
     def _recalcule_price_land(self):
