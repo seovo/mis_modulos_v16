@@ -270,12 +270,6 @@ class SaleOrderLine(models.Model):
             if record.product_id and record.product_id.is_advanced_land:
                 record.order_id._recalcule_price_land()
 
-            try:
-                record.verify_product_id()
-            except:
-                pass
-
-
 
             record.order_id.get_info_land()
 
@@ -283,16 +277,7 @@ class SaleOrderLine(models.Model):
         return res
 
 
-    def verify_product_id(self):
-        for record in self:
-            if record.invoice_lines:
-                for line in record.invoice_lines:
 
-                    if line.product_id != record.product_id:
-                        price_unit = line.price_unit
-                        line.product_id = record.product_id.id
-                        line.price_unit = price_unit
-                    #line.price_unit = record.price_unit
 
     def create(self,values):
         res = super().create(values)
