@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
         ('regularizado','Regularizado'),
     ],string="Estado Terreno",copy=False)
     dues_land            = fields.Float(string="Cuotas",copy=False)
-    value_due_land       = fields.Float(string="Precio Cuota",copy=False)
+    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='')
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
     value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
@@ -697,12 +697,12 @@ class SaleOrder(models.Model):
         for record in self:
             mz =   None
             lote = None
-            total = record.amount_total
-            dues = 0
+
             value_due = 0
+            mz_lot = None
 
 
-            credit = 0
+
 
             for line in record.order_line:
                 if line.product_id.manzana:
@@ -711,23 +711,17 @@ class SaleOrder(models.Model):
                     lote = line.product_id.lote
 
                 if line.product_id.payment_land_dues:
-                    credit = line.price_total
-                    dues =  line.product_uom_qty
+
                     value_due = line.price_unit
 
-            inicial = total - credit
 
 
             if mz or lote:
                 mz_lot = (mz or '') + '-' + (lote or '')
 
-                sql = f'''  UPDATE sale_order 
-                            SET mz_lot = '{mz_lot}'  , 
-                            dues_land = {dues} ,
-                            value_due_land = {value_due}
-                            WHERE id = {record.id}  
-                       '''
-                self.env.cr.execute(sql)
+
+            record.mz_lot = mz_lot
+            record.value_due_land = value_due
 
     def _recalcule_price_land(self):
         for record in self:
@@ -871,17 +865,6 @@ class SaleOrder(models.Model):
 
     def write(self,values):
         res = super().write(values)
-
-
-
-        for record in self:
-
-            record._update_text_mz_lote()
-
-
-        #self.get_info_land()
-        #self.check_adelanto()
-
 
         return res
 
