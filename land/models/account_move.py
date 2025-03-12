@@ -16,6 +16,7 @@ class AccountMove(models.Model):
     bank_origin_ids = fields.One2many('bank.origin','move_id',string="Cuentas Bancarias",copy=False)
     is_separation_land = fields.Boolean(string="Es una Separación Terreno",copy=False)
     is_initial_land = fields.Boolean(string="Es Inicial Terreno",compute='get_is_initial_land',copy=False)
+    is_independence = fields.Boolean(string="Es Idependizacion", compute='get_is_initial_land', store=True)
     days_expired_land = fields.Integer(copy=False)
     value_mora_land = fields.Float(string="Precio Mora", default=10,copy=False)
 
@@ -156,10 +157,14 @@ class AccountMove(models.Model):
             amount_mora = 0
             amount_due = 0
             qty_due = 0
+            is_independence = False
 
             for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
                     is_initial = True
+
+                if line.product_id.is_independence:
+                    is_independence = True
 
                 if line.product_id.is_mora_land:
                     amount_mora += line.price_total
@@ -170,6 +175,7 @@ class AccountMove(models.Model):
             record.is_initial_land = is_initial
             record.amount_due_land = amount_due
             record.amount_mora_land = amount_mora
+            record.is_independence = is_independence
 
     def get_days_count_expired_separation(self):
         for record in self:
