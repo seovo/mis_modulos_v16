@@ -50,6 +50,7 @@ class ImportBancariosVilla(models.TransientModel):
 
         for index, row in data.iterrows():
 
+            #BCP
             if bank_id == self.env.ref('l10n_pe.peruvian_bcplpepl_bank'):
                 fecha_str = row['Fecha']
 
@@ -68,6 +69,7 @@ class ImportBancariosVilla(models.TransientModel):
 
                 amount = float(row['Monto'])
 
+            #BBVA
             if bank_id == self.env.ref('l10n_pe.peruvian_bconpepl_bank'):
                 #raise ValueError(row)
                 fecha_str = row['FECHA OPER.']

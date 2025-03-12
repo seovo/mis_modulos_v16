@@ -22,6 +22,20 @@ class MigrateJz(models.Model):
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
+    def add_modelos_usuales(self):
+        #product_template
+        #product_category
+        #product_product
+        #res_partner
+        #sale_order
+        #sale_order_line
+
+        #account_move
+
+
+
+        return
+
 
     def update_images(self):
         import requests
@@ -57,9 +71,9 @@ class MigrateJz(models.Model):
             "view_mode": "tree,form",
             "res_model": "migrate.model.jz",
             "target": "current",
-            "domain": [('migrate_model_id','=',self.id)] ,
+            "domain": [('migrate_id','=',self.id)] ,
             "context": {
-                'default_migrate_model_id': self.id
+                'default_migrate_id': self.id
             }
             #"res_id": self.id,
             #"view_id": view.id
@@ -157,6 +171,26 @@ class MigrateModelJz(models.Model):
             if desc[1] == 3802 :
                 dx.update({'type_field':'jsonb'})
 
+            #para version16 a version 17
+            if table in ['product_template']:
+                if desc[0] == 'message_main_attachment_id':
+                    dx.update({'ignore': True})
+
+            if table in ['product_product']:
+                if desc[0] == 'message_main_attachment_id':
+                    dx.update({'ignore': True})
+
+            if table in ['res_partner']:
+                if desc[0] == 'display_name':
+                    dx.update({
+                        'name': 'complete_name',
+                        'value_set': 'display_name as complete_name'
+                    })
+
+                if desc[0] == 'message_main_attachment_id':
+                    dx.update({'ignore': True})
+
+
             self.columns += self.env['migrate.model.columns.jz'].new(dx)
 
     def migrate_table(self):
@@ -171,7 +205,7 @@ class MigrateModelJz(models.Model):
                 continue
                 #continue
 
-            namm = colx.name
+            namm = f'"{colx.name}"'
 
 
 
@@ -195,6 +229,8 @@ class MigrateModelJz(models.Model):
 
     def _migrate_table(self,cursor,select_columns,column_names):
         table = self.table
+        #raise ValueError(select_columns)
+        #select_columns = [f'"{element}"' for element in select_columns]
         string_columns = ",".join(select_columns)
         #quitar limit
         string_sql = f"SELECT {string_columns} FROM {table} "
@@ -205,12 +241,16 @@ class MigrateModelJz(models.Model):
             if self.where_set:
                 string_sql += f'  where {self.where_set} ;'
 
+
+        #raise ValueError(string_sql)
+
         cursor.execute(string_sql)
 
         #try:
         #    cursor.execute(string_sql)
         #except:
         #    raise ValueError(string_sql)
+
 
         if self.table == 'product_attribute_value_product_product_rel' and self.migrate_id.from_version <= 12:
 
@@ -265,13 +305,12 @@ class MigrateModelJz(models.Model):
                 #raise ValueError([data, sql])
 
 
-
-
-
     def insert_record_migrate(self,cursor,table,column_names):
 
         if self.new_table:
             table = self.new_table
+
+        #column_names = [f'"{element}"' for element in column_names]
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
         #raise ValueError(resultados)
@@ -282,6 +321,7 @@ class MigrateModelJz(models.Model):
         corchetes_n = ','.join('%s' for _ in range(n))
 
         # Generar la instrucción INSERT
+        #raise ValueError(resultados)
         for fila in resultados:
             val1 = ','.join(column_names)
             val2 = corchetes_n
@@ -296,16 +336,11 @@ class MigrateModelJz(models.Model):
                         if col != 'id'
                     )
 
-
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
 
-            #raise ValueError([SQL_INSERT,len(fila),fila])
-            #self.env.cr.execute(SQL_INSERT, [fila[0],f'''"{fila[1]}"'''])
-
-            #raise ValueError([SQL_INSERT,fila])
-
+            #raise ValueError([SQL_INSERT])
 
             self.env.cr.execute(SQL_INSERT, fila)
             '''
