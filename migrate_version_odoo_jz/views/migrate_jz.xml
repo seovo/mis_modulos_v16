@@ -24,6 +24,7 @@
                         <group>
                             <field name="model_id"/>
                             <field name="update_if_exist"/>
+                            <field name="ignorar_if_error"/>
                             <field name="where_set"/>
 
                         </group>

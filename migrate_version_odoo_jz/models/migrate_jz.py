@@ -132,7 +132,7 @@ class MigrateModelJz(models.Model):
     migrate_id = fields.Many2one('migrate.jz')
     name = fields.Char(related='table')
     update_if_exist = fields.Boolean(string="Actualizar si Existe")
-    #ignorar_if_error = fields.Boolean(string="Ignorar si Error")
+    ignorar_if_error = fields.Boolean(string="Ignorar si Error")
     no_existe_id = fields.Boolean()
     where_set = fields.Text()
 
@@ -328,7 +328,11 @@ class MigrateModelJz(models.Model):
             # raise ValueError(val3)
 
             if self.no_existe_id:
-                SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
+                if self.ignorar_if_error:
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2})  ON CONFLICT ({val1}) DO NOTHING  "
+                else:
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
+
             else:
                 if self.update_if_exist:
                     val3 = ','.join(
