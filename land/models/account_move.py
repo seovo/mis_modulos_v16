@@ -120,7 +120,7 @@ class AccountMove(models.Model):
                             if order.seller_land_id.name not in proveedor:
                                 proveedor.append(order.seller_land_id.name)
                 #if line.product_id.payment_land_dues:
-                description_land += line.name
+                description_land += line.name or  ''
 
             record.proveedores_land = ",".join(proveedor) if proveedor else None
             record.mz_lot = mz_lot

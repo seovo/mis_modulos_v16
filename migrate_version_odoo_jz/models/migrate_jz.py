@@ -329,7 +329,21 @@ class MigrateModelJz(models.Model):
 
             if self.no_existe_id:
                 if self.ignorar_if_error:
-                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2})  ON CONFLICT ({val1}) DO NOTHING  "
+                    conflict = val1.replace('"','')
+                    #SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2})  ON CONFLICT ({conflict}) DO NOTHING  "
+                    SQL_INSERT = f'''
+                    DO $$
+BEGIN
+    INSERT INTO {table} ({val1}) VALUES ({val2})  ON CONFLICT ({conflict}) DO NOTHING ;
+    
+EXCEPTION
+    WHEN foreign_key_violation THEN
+        RAISE NOTICE 'Error: El registro de invoice_line_id no existe. Ignorando...';
+    WHEN others THEN
+        RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
+        
+END $$;
+                    '''
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
 
@@ -345,8 +359,9 @@ class MigrateModelJz(models.Model):
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
 
             #raise ValueError([SQL_INSERT])
-
             self.env.cr.execute(SQL_INSERT, fila)
+
+
             '''
             try:
                 self.env.cr.execute(SQL_INSERT, fila)
