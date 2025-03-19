@@ -16,6 +16,7 @@ class MigrateJz(models.Model):
     user   = fields.Char(string="Usuario Postgres",required=True)
     password = fields.Char(string="Contraseña Postgres",required=True)
     model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
+    field_ids = fields.One2many('migrate.ir.model.fields','migrate_id',string="Modelos")
 
     log = fields.Text()
     from_version = fields.Integer()
@@ -110,6 +111,15 @@ class MigrateJz(models.Model):
 
 
         return cursor
+
+
+
+class MigrateIrModelFields(models.Model):
+    _name  = 'migrate.ir.model.fields'
+    name = fields.Char(required=True)
+    model = fields.Char(required=True)
+    ir_model_fields_id = fields.Many2one('ir.model.fields')
+    migrate_model_id = fields.Many2one('migrate.model.jz',required=True)
 
 
 class MigrateModelColumnsJz(models.Model):

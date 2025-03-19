@@ -39,9 +39,7 @@
                     </group>
 
                     <notebook>
-                        <page string="Campos" name="columns">
-
-
+                        <page string="Modelos" name="columns">
                             <field name="columns">
                                 <tree editable="bottom">
                                     <field name="name" />
@@ -51,14 +49,22 @@
                                    <!-- <field name="insert_as_jsonb" optional="hidden" /> -->
                                 </tree>
                             </field>
-
-
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
                                <group colspan="4">
                                    <field colspan="2" name="log"/>
                                </group>
 
                             </group>
+                        </page>
+
+                        <page string="Campos Odoo" name="columns">
+                            <field name="field_ids">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="model" />
+                                    <field name="ir_model_fields_id" />
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
 
