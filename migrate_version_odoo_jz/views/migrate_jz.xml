@@ -39,7 +39,7 @@
                     </group>
 
                     <notebook>
-                        <page string="Modelos" name="columns">
+                        <page string="Campos" name="columns">
                             <field name="columns">
                                 <tree editable="bottom">
                                     <field name="name" />
@@ -57,15 +57,7 @@
                             </group>
                         </page>
 
-                        <page string="Campos Odoo" name="columns">
-                            <field name="field_ids">
-                                <tree editable="bottom">
-                                    <field name="name" />
-                                    <field name="model" />
-                                    <field name="ir_model_fields_id" />
-                                </tree>
-                            </field>
-                        </page>
+
                     </notebook>
 
                 </sheet>
@@ -133,6 +125,17 @@
                                </group>
 
                             </group>
+                        </page>
+
+
+                        <page string="Campos Odoo" name="columns">
+                            <field name="field_ids">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="model" />
+                                    <field name="ir_model_fields_id" />
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
 

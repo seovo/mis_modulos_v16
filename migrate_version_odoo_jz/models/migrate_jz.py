@@ -23,6 +23,30 @@ class MigrateJz(models.Model):
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
+    #select A.id , A.name , B.model   from ir_model_fields as A join ir_model as B on  A.model_id = B.id ;
+    @api.onchange('from_version')
+    def set_fields(self):
+        for record in self:
+            host = self.host  # Cambia esto por la dirección de tu servidor
+            port = self.port  # Puerto
+            dbname = self.dbname  # Nombre de la base de datos
+            user = self.user  # Tu usuario
+            password = self.password  # Tu contraseña
+            if host and port and dbname and user and password:
+                cursor = record.conect_postgres()
+
+                string_sql = f"select A.id , A.name , B.model   from ir_model_fields as A join ir_model as B on  A.model_id = B.id ; "
+                try:
+                    cursor.execute(string_sql)
+
+                except:
+                    return
+
+                resultados = cursor.fetchall()
+
+                raise ValueError(resultados)
+
+
     def add_modelos_usuales(self):
         #product_template
         #product_category
@@ -113,13 +137,12 @@ class MigrateJz(models.Model):
         return cursor
 
 
-
 class MigrateIrModelFields(models.Model):
     _name  = 'migrate.ir.model.fields'
     name = fields.Char(required=True)
     model = fields.Char(required=True)
     ir_model_fields_id = fields.Many2one('ir.model.fields')
-    migrate_model_id = fields.Many2one('migrate.model.jz',required=True)
+    migrate_id = fields.Many2one('migrate.model.jz',required=True)
 
 
 class MigrateModelColumnsJz(models.Model):
