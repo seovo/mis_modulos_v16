@@ -7,8 +7,14 @@ import requests
 class MailComposeMessage(models.TransientModel):
     _inherit = "mail.compose.message"
     is_whatsapp_evolution_api = fields.Boolean(string="Enviar Whatsapp")
+    text_whatsapp_evolution_api = fields.Text(string='Texto Whatsapp')
 
     def action_send_mail(self):
+
+        raise ValueError(self.res_ids)
+
+        object = self.env[self.model].search([('id','in',0)])
+
         res = super().action_send_mail()
 
         if self.is_whatsapp_evolution_api:
