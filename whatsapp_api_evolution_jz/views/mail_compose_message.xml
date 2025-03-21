@@ -7,9 +7,9 @@
         <field name="arch" type="xml">
             <field name="subject" position="after">
 
-                <field name="is_whatsapp_evolution_api"  invisible="composition_mode != 'comment'" />
-                <field name="number_whatsapp_evolution_api"  invisible="not is_whatsapp_evolution_api" />
-                <field name="text_whatsapp_evolution_api" invisible="not is_whatsapp_evolution_api"  />
+                <field name="is_whatsapp_evolution_api"  invisible="composition_mode == 'comment'" />
+                <field name="number_whatsapp_evolution_api"  invisible="not is_whatsapp_evolution_api or composition_mode == 'comment'" />
+                <field name="text_whatsapp_evolution_api" invisible="not is_whatsapp_evolution_api or composition_mode == 'comment'"  />
 
             </field>
         </field>
