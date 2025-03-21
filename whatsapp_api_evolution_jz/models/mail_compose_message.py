@@ -62,6 +62,8 @@ class MailComposeMessage(models.TransientModel):
 
                     #raise ValidationError([self.attachment_ids.display_name,self.attachment_ids.datas])
 
+                    raise ValueError(self.attachment_ids.mimetype)
+
                     data.update({
                          'file': str(self.attachment_ids.datas) ,
                          'filename': self.attachment_ids.display_name
@@ -75,8 +77,6 @@ class MailComposeMessage(models.TransientModel):
                     response = res.json()
                 except:
                     raise ValueError([res,data])
-
-
 
                 json_response = json.dumps(response, indent=4)
 
