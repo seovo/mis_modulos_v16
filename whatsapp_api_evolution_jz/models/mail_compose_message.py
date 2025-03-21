@@ -10,16 +10,20 @@ class MailComposeMessage(models.TransientModel):
     _inherit = "mail.compose.message"
     is_whatsapp_evolution_api = fields.Boolean(string="Enviar Whatsapp")
     text_whatsapp_evolution_api = fields.Text(string='Texto Whatsapp')
-    number_whatsapp_evolution_api = fields.Text(string='Enviar a')
+    number_whatsapp_evolution_api = fields.Char(string='Enviar a')
 
-    @api.onchange('res_ids')
+    @api.onchange('res_ids','is_whatsapp_evolution_api')
     def change_res_ids(self):
         array = ast.literal_eval(self.res_ids)
 
         objects = self.env[self.model].search([('id', 'in', array)])
 
         for object in objects:
-            phone = object.partner_id.phone or object.partner_id.mobile
+            try:
+                phone = object.partner_id.phone or object.partner_id.mobile
+            except:
+                continue
+
             if not phone:
                 continue
             phone = phone.replace('+', '')
