@@ -66,6 +66,12 @@ class MailComposeMessage(models.TransientModel):
 
                     datas = str(self.attachment_ids.datas)
 
+                    # Decodificar de base64 a bytes
+                    contenido_decodificado = base64.b64decode(datas)
+
+                    # Si necesitas convertirlo a una cadena de texto
+                   datas = contenido_decodificado.decode('utf-8', errors='ignore')
+
                     raise ValidationError([self.attachment_ids.display_name,datas])
 
                     #raise ValueError(self.attachment_ids.mimetype)
