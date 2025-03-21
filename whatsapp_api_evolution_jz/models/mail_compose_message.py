@@ -33,12 +33,15 @@ class MailComposeMessage(models.TransientModel):
                 phone = phone.replace('+','')
                 phone = phone.replace(' ','')
 
-                raise ValueError(phone)
+                #raise ValueError(phone)
 
-                if len(phone) != 11 :
-                    raise ValidationError(f'No tiene los digitos suficientes {phone}')
+                #if len(phone) != 11 :
+                #    raise ValidationError(f'No tiene los digitos suficientes {phone}')
 
+                if not self.text_whatsapp_evolution_api:
+                    raise ValidationError('No se indico el mensaje')
 
+                msg = f'''{self.subject} , {self.text_whatsapp_evolution_api}'''
 
 
                 headers = {
@@ -49,9 +52,22 @@ class MailComposeMessage(models.TransientModel):
                 url = 'https://xalachi.qr.xalachi.com/api/message/send-text'
                 data = {
                     # "number": "123456789",
-                    "number": "50664307914",
-                    "message": "Plain text message"
+                    "number": phone,
+                    "message": msg
                 }
+
+                if self.attachment_ids:
+                    if len(self.attachment_ids) != 1:
+                        raise ValidationError('Solo se puede enviar un archivo')
+
+                    raise ValidationError([self.attachment_ids.display_name,self.attachment_ids.datas])
+
+                    data.update({
+                         'file': self.attachment_ids.datas ,
+                         'filename': self.attachment_ids.display_name
+                    })
+
+
                 res = requests.post(url, json=data, headers=headers)
 
                 response = res.json()
