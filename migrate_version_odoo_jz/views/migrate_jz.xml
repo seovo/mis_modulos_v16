@@ -46,6 +46,7 @@
                                     <field name="ignore" />
                                     <field name="type_field" />
                                     <field name="value_set" />
+                                    <field name="is_field" optional="hidden" />
                                    <!-- <field name="insert_as_jsonb" optional="hidden" /> -->
                                 </tree>
                             </field>
@@ -131,6 +132,7 @@
                         <page string="Campos Odoo" name="columns">
                             <field name="field_ids">
                                 <tree editable="bottom">
+                                    <field name="id_sql" />
                                     <field name="name" />
                                     <field name="model" />
                                     <field name="ir_model_fields_id" />

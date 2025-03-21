@@ -44,7 +44,19 @@ class MigrateJz(models.Model):
 
                 resultados = cursor.fetchall()
 
-                raise ValueError(resultados)
+                for resultado in resultados:
+                    dx = {
+                            'id_sql': resultado[0],
+                            'name': resultado[1],
+                            'model': resultado[2],
+                            'migrate_id': record._origin.id
+                        }
+                    try:
+                        self.env['migrate.ir.model.fields'].create(dx)
+                    except:
+                        raise ValueError(dx)
+
+                #raise ValueError(resultados)
 
 
     def add_modelos_usuales(self):
@@ -141,8 +153,17 @@ class MigrateIrModelFields(models.Model):
     _name  = 'migrate.ir.model.fields'
     name = fields.Char(required=True)
     model = fields.Char(required=True)
-    ir_model_fields_id = fields.Many2one('ir.model.fields')
-    migrate_id = fields.Many2one('migrate.model.jz',required=True)
+    ir_model_fields_id = fields.Many2one('ir.model.fields',compute="get_ir_model_fields_id")
+    migrate_id = fields.Many2one('migrate.jz',required=True)
+    id_sql = fields.Integer()
+
+    def get_ir_model_fields_id(self):
+        for record in self:
+            value = None
+            model = self.env['ir.model.fields'].search([('name','=',record.name),('model_id.model','=',record.model)])
+            if model:
+                value = model.id
+            record.ir_model_fields_id =  value
 
 
 class MigrateModelColumnsJz(models.Model):
@@ -152,6 +173,8 @@ class MigrateModelColumnsJz(models.Model):
     type_field       = fields.Selection([('jsonb','jsonb')])
     migrate_model_id = fields.Many2one('migrate.model.jz')
     value_set        = fields.Text()
+    is_field         = fields.Boolean(string="Es un Campo Odoo")
+
     #insert_as_jsonb   = fields.Boolean()
 
 
@@ -168,8 +191,6 @@ class MigrateModelJz(models.Model):
     ignorar_if_error = fields.Boolean(string="Ignorar si Error")
     no_existe_id = fields.Boolean()
     where_set = fields.Text()
-
-
 
 
     @api.onchange('model_id')
@@ -227,6 +248,11 @@ class MigrateModelJz(models.Model):
             self.columns += self.env['migrate.model.columns.jz'].new(dx)
 
     def migrate_table(self):
+
+        case_sql = None
+
+
+
         cursor = self.migrate_id.conect_postgres()
 
         select_columnsx = []
@@ -249,6 +275,24 @@ class MigrateModelJz(models.Model):
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
             if colx.value_set :
                 namm = f'''{colx.value_set} '''
+
+            if colx.is_field:
+                if not case_sql:
+
+                    insert_case =  ''
+                    for line in self.migrate_id.field_ids:
+                        if line.ir_model_fields_id:
+                            insert_case += f''' WHEN {line.id_sql} IS NULL   THEN {line.ir_model_fields_id.id}  '''
+
+
+                    case_sql = f'''
+                    CASE
+                    {insert_case}
+                    END AS field
+                    '''
+
+                namm = case_sql
+
             select_columnsx.append(namm)
             if colx.ignore :
                 raise ValueError([colx,colx.ignore,colx.name])
@@ -390,6 +434,22 @@ END $$;
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
+
+                if self.ignorar_if_error:
+                    SQL_INSERT = f'''
+                                        DO $$
+                    BEGIN
+                        {SQL_INSERT}  ; 
+
+                    EXCEPTION
+                        WHEN foreign_key_violation THEN
+                            RAISE NOTICE 'Error: El registro de invoice_line_id no existe. Ignorando...';
+                        WHEN others THEN
+                            RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
+
+                    END $$; '''
+
+
 
             #raise ValueError([SQL_INSERT])
             self.env.cr.execute(SQL_INSERT, fila)
