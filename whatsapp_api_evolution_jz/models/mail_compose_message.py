@@ -25,7 +25,7 @@ class MailComposeMessage(models.TransientModel):
             if self.is_whatsapp_evolution_api:
                 token = '2Qrlw2jjp30P7CGFlcSo1FkJ5SX27X'
 
-                phone = object.phone or object.mobile
+                phone = object.partner_id.phone or object.partner_id.mobile
 
                 if not phone:
                     raise ValidationError('No se indico Telefono')
