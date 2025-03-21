@@ -65,17 +65,16 @@ class MailComposeMessage(models.TransientModel):
                     if len(self.attachment_ids) != 1:
                         raise ValidationError('Solo se puede enviar un archivo')
 
-                    datas = self.attachment_ids.datas
+                    datas = str(self.attachment_ids.datas)
 
                     # Decodificar de base64 a bytes
-                    contenido_decodificado = base64.b64decode(datas)
-
-
-
+                    #contenido_decodificado = base64.b64decode(datas)
                     # Si necesitas convertirlo a una cadena de texto
-                    datas = contenido_decodificado.decode('utf-8', errors='ignore')
+                    #datas = contenido_decodificado.decode('utf-8', errors='ignore')
 
-                    #
+                    # Quitar el prefijo 'b' y la comilla final
+                    datas = datas[2:-1]
+
 
                     #raise ValueError(self.attachment_ids.mimetype)
 
