@@ -63,7 +63,9 @@ class MailComposeMessage(models.TransientModel):
                     if len(self.attachment_ids) != 1:
                         raise ValidationError('Solo se puede enviar un archivo')
 
-                    #raise ValidationError([self.attachment_ids.display_name,self.attachment_ids.datas])
+                    datas = str(self.attachment_ids.datas)
+
+                    raise ValidationError([self.attachment_ids.display_name,datas])
 
                     #raise ValueError(self.attachment_ids.mimetype)
 
@@ -75,7 +77,7 @@ class MailComposeMessage(models.TransientModel):
 
 
                     data.update({
-                         'file': str(self.attachment_ids.datas) ,
+                         'file': datas ,
                          'filename': self.attachment_ids.display_name
                     })
 
