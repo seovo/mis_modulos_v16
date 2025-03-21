@@ -18,6 +18,8 @@ class MailComposeMessage(models.TransientModel):
 
         objects = self.env[self.model].search([('id', 'in', array)])
 
+
+
         for object in objects:
             try:
                 phone = object.partner_id.phone or object.partner_id.mobile
@@ -28,6 +30,8 @@ class MailComposeMessage(models.TransientModel):
                 continue
             phone = phone.replace('+', '')
             phone = phone.replace(' ', '')
+
+            self.number_whatsapp_evolution_api = phone
 
 
 
