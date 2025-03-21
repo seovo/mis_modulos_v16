@@ -10,118 +10,122 @@ class MailComposeMessage(models.TransientModel):
     _inherit = "mail.compose.message"
     is_whatsapp_evolution_api = fields.Boolean(string="Enviar Whatsapp")
     text_whatsapp_evolution_api = fields.Text(string='Texto Whatsapp')
+    number_whatsapp_evolution_api = fields.Text(string='Enviar a')
+
+    @api.onchange('res_ids')
+    def change_res_ids(self):
+        array = ast.literal_eval(self.res_ids)
+
+        objects = self.env[self.model].search([('id', 'in', array)])
+
+        for object in objects:
+            phone = object.partner_id.phone or object.partner_id.mobile
+            if not phone:
+                continue
+            phone = phone.replace('+', '')
+            phone = phone.replace(' ', '')
+
+
 
     def action_send_mail(self):
 
         #raise ValueError(self.res_ids)
 
-        array = ast.literal_eval(self.res_ids)
 
-        objects = self.env[self.model].search([('id','in',array)])
 
         responses = []
 
-        for object in objects:
-            if self.is_whatsapp_evolution_api:
-                token = '2Qrlw2jjp30P7CGFlcSo1FkJ5SX27X'
+        if self.is_whatsapp_evolution_api:
+            token = '2Qrlw2jjp30P7CGFlcSo1FkJ5SX27X'
 
-                phone = object.partner_id.phone or object.partner_id.mobile
+            phone = self.number_whatsapp_evolution_api
 
-                if not phone:
-                    raise ValidationError('No se indico Telefono')
+            if not phone:
+                raise ValidationError('No se indico Telefono')
 
-                phone = phone.replace('+','')
-                phone = phone.replace(' ','')
+            # raise ValueError(phone)
 
-                #raise ValueError(phone)
+            # if len(phone) != 11 :
+            #    raise ValidationError(f'No tiene los digitos suficientes {phone}')
 
-                #if len(phone) != 11 :
-                #    raise ValidationError(f'No tiene los digitos suficientes {phone}')
+            if not self.text_whatsapp_evolution_api:
+                raise ValidationError('No se indico el mensaje')
 
-                if not self.text_whatsapp_evolution_api:
-                    raise ValidationError('No se indico el mensaje')
+            msg = f'''{self.subject} , {self.text_whatsapp_evolution_api}'''
 
-                msg = f'''{self.subject} , {self.text_whatsapp_evolution_api}'''
+            headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {token}",
+            }
 
+            dominio = 'https://xalachi.qr.xalachi.com'
 
-                headers = {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": f"Bearer {token}",
+            url = f'{dominio}/api/message/send-text'
+            data = {
+                "number": phone,
+                "message": msg
+            }
+
+            if self.attachment_ids:
+                import base64
+                if len(self.attachment_ids) != 1:
+                    raise ValidationError('Solo se puede enviar un archivo')
+
+                datas = str(self.attachment_ids.datas)
+
+                # Decodificar de base64 a bytes
+                # contenido_decodificado = base64.b64decode(datas)
+                # Si necesitas convertirlo a una cadena de texto
+                # datas = contenido_decodificado.decode('utf-8', errors='ignore')
+
+                # Quitar el prefijo 'b' y la comilla final
+                datas = datas[2:-1]
+
+                # raise ValueError(self.attachment_ids.mimetype)
+
+                '''
+                                        data = {
+                    "media": "image", // media | video | audio
+                    "caption": "Plain Text message",
+                    "link": "https://....", // url | base64
+                    "number": "51123456789"
                 }
 
-                dominio = 'https://xalachi.qr.xalachi.com'
 
-                url = f'{dominio}/api/message/send-text'
-                data = {
-                    "number": phone,
-                    "message": msg
-                }
+                                        '''
 
-
-
-
-                if self.attachment_ids:
-                    import base64
-                    if len(self.attachment_ids) != 1:
-                        raise ValidationError('Solo se puede enviar un archivo')
-
-                    datas = str(self.attachment_ids.datas)
-
-                    # Decodificar de base64 a bytes
-                    #contenido_decodificado = base64.b64decode(datas)
-                    # Si necesitas convertirlo a una cadena de texto
-                    #datas = contenido_decodificado.decode('utf-8', errors='ignore')
-
-                    # Quitar el prefijo 'b' y la comilla final
-                    datas = datas[2:-1]
-
-
-                    #raise ValueError(self.attachment_ids.mimetype)
-
-                    '''
-                                            data = {
-                        "media": "image", // media | video | audio
-                        "caption": "Plain Text message",
-                        "link": "https://....", // url | base64
-                        "number": "51123456789"
-                    }
-                    
-                    
-                                            '''
-
-                    if self.attachment_ids.mimetype == 'application/pdf':
-                        url = f'{dominio}/api/message/send/pdf'
-                    elif 'image/' in self.attachment_ids.mimetype:
-                        raise ValidationError('Solo se permiten PDFS')
-                        url = f'{dominio}/api/message/send-media'
-                        data.update({
-                            'media': 'image',
-                            'caption': msg ,
-                            'link': datas
-                        })
-                    #else:
-                    #    raise ValueError(self.attachment_ids.mimetype)
-
-                    #raise ValidationError([self.attachment_ids.display_name, url , datas])
-
+                if self.attachment_ids.mimetype == 'application/pdf':
+                    url = f'{dominio}/api/message/send/pdf'
+                elif 'image/' in self.attachment_ids.mimetype:
+                    raise ValidationError('Solo se permiten PDFS')
+                    url = f'{dominio}/api/message/send-media'
                     data.update({
-                         'file': datas ,
-                         'filename': self.attachment_ids.display_name
+                        'media': 'image',
+                        'caption': msg,
+                        'link': datas
                     })
+                # else:
+                #    raise ValueError(self.attachment_ids.mimetype)
 
+                # raise ValidationError([self.attachment_ids.display_name, url , datas])
 
-                res = requests.post(url, json=data, headers=headers)
+                data.update({
+                    'file': datas,
+                    'filename': self.attachment_ids.display_name
+                })
 
+            res = requests.post(url, json=data, headers=headers)
 
-                try:
-                    response = res.json()
-                except:
-                    raise ValueError([res,data])
+            try:
+                response = res.json()
+            except:
+                raise ValueError([res, data])
 
-                json_response = json.dumps(response, indent=4)
+            json_response = json.dumps(response, indent=4)
 
-                responses.append(str(json_response))
+            responses.append(str(json_response))
+
 
         if responses:
             self.body = str(responses)

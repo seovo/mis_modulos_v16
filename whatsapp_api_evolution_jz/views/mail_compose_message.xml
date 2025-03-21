@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <field name="subject" position="after">
                 <field name="is_whatsapp_evolution_api" />
+                <field name="number_whatsapp_evolution_api" />
                 <field name="text_whatsapp_evolution_api" />
 
             </field>
