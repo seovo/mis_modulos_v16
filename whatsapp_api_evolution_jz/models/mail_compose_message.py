@@ -77,7 +77,7 @@ class MailComposeMessage(models.TransientModel):
                     datas = datas[2:-1]
 
 
-                    raise ValueError(self.attachment_ids.mimetype)
+                    #raise ValueError(self.attachment_ids.mimetype)
 
                     '''
                                             data = {
@@ -86,15 +86,21 @@ class MailComposeMessage(models.TransientModel):
                         "link": "https://....", // url | base64
                         "number": "51123456789"
                     }
+                    
+                    
                                             '''
 
                     if self.attachment_ids.mimetype == 'application/pdf':
                         url = f'{dominio}/api/message/send/pdf'
-                    #else if
-
-
-
+                    elif 'image/' in self.attachment_ids.mimetype:
                         url = f'{dominio}/api/message/send-media'
+                        data.update({
+                            'media': 'image',
+                            'caption': msg ,
+                            'link': datas
+                        })
+                    else:
+                        raise ValueError(self.attachment_ids.mimetype)
 
                     #raise ValidationError([self.attachment_ids.display_name, url , datas])
 
