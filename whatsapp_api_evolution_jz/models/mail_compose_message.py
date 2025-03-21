@@ -83,9 +83,7 @@ class MailComposeMessage(models.TransientModel):
                     else:
                         url = f'{dominio}/api/message/send-media'
 
-                    raise ValidationError([self.attachment_ids.display_name, url , datas])
-
-
+                    #raise ValidationError([self.attachment_ids.display_name, url , datas])
 
                     data.update({
                          'file': datas ,
