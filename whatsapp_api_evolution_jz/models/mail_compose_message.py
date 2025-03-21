@@ -93,14 +93,15 @@ class MailComposeMessage(models.TransientModel):
                     if self.attachment_ids.mimetype == 'application/pdf':
                         url = f'{dominio}/api/message/send/pdf'
                     elif 'image/' in self.attachment_ids.mimetype:
+                        raise ValidationError('Solo se permiten PDFS')
                         url = f'{dominio}/api/message/send-media'
                         data.update({
                             'media': 'image',
                             'caption': msg ,
                             'link': datas
                         })
-                    else:
-                        raise ValueError(self.attachment_ids.mimetype)
+                    #else:
+                    #    raise ValueError(self.attachment_ids.mimetype)
 
                     #raise ValidationError([self.attachment_ids.display_name, url , datas])
 
