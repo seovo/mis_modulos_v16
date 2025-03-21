@@ -39,12 +39,12 @@ class MailComposeMessage(models.TransientModel):
 
         #raise ValueError(self.res_ids)
 
-        raise ValueError(self.message_type)
+        #raise ValueError(self.message_type)
 
 
         responses = []
 
-        if self.is_whatsapp_evolution_api:
+        if self.is_whatsapp_evolution_api and self.message_type == 'comment' :
             token = '2Qrlw2jjp30P7CGFlcSo1FkJ5SX27X'
 
             phone = self.number_whatsapp_evolution_api
