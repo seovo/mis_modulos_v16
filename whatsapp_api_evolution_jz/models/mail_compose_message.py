@@ -39,6 +39,7 @@ class MailComposeMessage(models.TransientModel):
 
         #raise ValueError(self.res_ids)
 
+        raise ValueError(self.message_type)
 
 
         responses = []
