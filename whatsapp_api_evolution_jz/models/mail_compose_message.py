@@ -70,7 +70,13 @@ class MailComposeMessage(models.TransientModel):
 
                 res = requests.post(url, json=data, headers=headers)
 
-                response = res.json()
+
+                try:
+                    response = res.json()
+                except:
+                    raise ValueError([res,data])
+
+
 
                 json_response = json.dumps(response, indent=4)
 
