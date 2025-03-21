@@ -63,7 +63,7 @@ class MailComposeMessage(models.TransientModel):
                     #raise ValidationError([self.attachment_ids.display_name,self.attachment_ids.datas])
 
                     data.update({
-                         'file': self.attachment_ids.datas ,
+                         'file': str(self.attachment_ids.datas) ,
                          'filename': self.attachment_ids.display_name
                     })
 
