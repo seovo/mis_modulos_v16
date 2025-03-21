@@ -85,7 +85,7 @@ class MailComposeMessage(models.TransientModel):
 
 
                     data.update({
-                         'file': datas ,
+                         'file': contenido_decodificado ,
                          'filename': self.attachment_ids.display_name
                     })
 
