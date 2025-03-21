@@ -59,6 +59,7 @@ class MailComposeMessage(models.TransientModel):
                     "message": msg
                 }
 
+
                 if self.attachment_ids:
                     if len(self.attachment_ids) != 1:
                         raise ValidationError('Solo se puede enviar un archivo')
