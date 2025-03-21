@@ -49,7 +49,10 @@ class MailComposeMessage(models.TransientModel):
                     "Content-Type": "application/json",
                     "Authorization": f"Bearer {token}",
                 }
-                url = 'https://xalachi.qr.xalachi.com/api/message/send-text'
+
+                dominio = 'https://xalachi.qr.xalachi.com'
+
+                url = f'{dominio}/api/message/send-text'
                 data = {
                     # "number": "123456789",
                     "number": phone,
@@ -62,7 +65,14 @@ class MailComposeMessage(models.TransientModel):
 
                     #raise ValidationError([self.attachment_ids.display_name,self.attachment_ids.datas])
 
-                    raise ValueError(self.attachment_ids.mimetype)
+                    #raise ValueError(self.attachment_ids.mimetype)
+
+                    if self.attachment_ids.mimetype == 'application/pdf':
+                        url = f'{dominio}/api/message/send/pdf'
+                    else:
+                        url = f'{dominio}/api/message/send-media'
+
+
 
                     data.update({
                          'file': str(self.attachment_ids.datas) ,
