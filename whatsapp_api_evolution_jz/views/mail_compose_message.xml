@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
         <field name="arch" type="xml">
             <field name="subject" position="after">
-                <field name="message_type" invisible="1" />
-                <field name="is_whatsapp_evolution_api" invisible="message_type != 'comment' " />
+
+                <field name="is_whatsapp_evolution_api"  invisible="composition_mode != 'comment' or subtype_is_log" />
                 <field name="number_whatsapp_evolution_api"  invisible="not is_whatsapp_evolution_api" />
                 <field name="text_whatsapp_evolution_api" invisible="not is_whatsapp_evolution_api"  />
 
