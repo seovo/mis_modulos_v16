@@ -22,6 +22,8 @@ class ProductTemplate(models.Model):
 
             quants = self.env["stock.quant"].sudo().search(domain)
 
+            #raise ValueError(quants)
+
             stock_locations = {
 
             }

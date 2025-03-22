@@ -12,10 +12,20 @@ class StockQuant(models.Model):
             wares = self.env['stock.warehouse'].search([])
             for war in wares:
                 location = war.lot_stock_id
-                quants = self.env['stock.quant'].search([('location_id', 'child_of', [location.id])])
+                #quants = self.env['stock.quant'].search([('location_id', 'child_of', [location.id])])
 
-                if war.id in quants.ids:
+                if record.location_id == location:
                     ware = war.id
                     break
+
+
+                if record.location_id.location_id == location:
+                    ware = war.id
+                    break
+
+
+                #if war.id in quants.ids:
+                #    ware = war.id
+                #    break
 
             record.warehouse_jz_id = ware
