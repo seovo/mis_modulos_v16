@@ -45,7 +45,8 @@ class MailComposeMessage(models.TransientModel):
         responses = []
 
         if self.is_whatsapp_evolution_api and self.message_type == 'comment' :
-            token = '2Qrlw2jjp30P7CGFlcSo1FkJ5SX27X'
+
+            token = self.env.company."token_whatsapp_evolution_api
 
             phone = self.number_whatsapp_evolution_api
 
@@ -68,7 +69,7 @@ class MailComposeMessage(models.TransientModel):
                 "Authorization": f"Bearer {token}",
             }
 
-            dominio = 'https://xalachi.qr.xalachi.com'
+            dominio = self.env.company.url_whatsapp_evolution_api
 
             url = f'{dominio}/api/message/send-text'
             data = {
