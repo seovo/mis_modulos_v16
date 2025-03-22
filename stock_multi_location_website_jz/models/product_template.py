@@ -12,12 +12,13 @@ class ProductTemplate(models.Model):
             parent_combination=parent_combination, only_template=only_template)
 
 
-        raise ValueError(combination)
+        #raise ValueError(combination)
 
-        if combination:
+        if 1 == 1 :
             domain = [("location_id.usage", "in", ["internal", "transit"]),
                       #("location_id.warehouse_id.show_stock_website_jz", "=", True),
                       ('product_id', '=', res['product_id'])]
+
 
             quants = self.env["stock.quant"].sudo().search(domain)
 
