@@ -32,8 +32,9 @@ class ProductPricelist(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    def _get_display_price(self, product):
-        res = super()._get_display_price(product)
+    def get_price_value_tarifas(self,product):
+        res = None
+
         tarifa = self.order_id.pricelist_id
         if tarifa.is_escale_sonsotec and self.product_id:
             price_unit = self.product_id.acquisition_cost if tarifa.use_acquisition_cost else self.product_id.list_price
@@ -56,7 +57,7 @@ class SaleOrderLine(models.Model):
 
             ######
 
-            #ES USD
+            # ES USD
             if tarifa.use_acquisition_cost:
                 res = price_unitx
             else:
@@ -64,8 +65,8 @@ class SaleOrderLine(models.Model):
                 to_currency = self.order_id.pricelist_id.currency_id
                 if currency != to_currency:
                     if tarifa.use_rate_acquisition_cost:
-                        rate = self.env['res.currency.special'].search([('from_currency','=',currency.id),
-                                                                        ('to_currency','=',to_currency.id)],limit=1)
+                        rate = self.env['res.currency.special'].search([('from_currency', '=', currency.id),
+                                                                        ('to_currency', '=', to_currency.id)], limit=1)
                         if not rate:
                             raise ValueError('CONFIGURE MONEDA ESPECIAL')
 
@@ -79,13 +80,28 @@ class SaleOrderLine(models.Model):
                             self.order_id.company_id or self.env.company,
                             self.order_id.date_order or fields.Date.today())
 
+            # record.price_unit = price_unitx
+        # raise ValueError(res)
 
-            #record.price_unit = price_unitx
-        #raise ValueError(res)
+        return res
+
+    def _get_display_price(self, product):
+        res = super()._get_display_price(product)
+
+        if product:
+            resx = self.get_price_value_tarifas(product)
+            if resx:
+                res = resx
+
         return res
 
 
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
-
-
-
+    def force_update_price_tarifas_jz(self):
+        for line in self.order_line:
+            if line.product_id:
+                res = line.get_price_value_tarifas(line.product_id)
+                if res:
+                    line.price_unit = res
