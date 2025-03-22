@@ -46,7 +46,7 @@ class MailComposeMessage(models.TransientModel):
 
         if self.is_whatsapp_evolution_api and self.message_type == 'comment' :
 
-            token = self.env.company."token_whatsapp_evolution_api
+            token = self.env.company.token_whatsapp_evolution_api
 
             phone = self.number_whatsapp_evolution_api
 
