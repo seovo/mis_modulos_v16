@@ -12,6 +12,14 @@
                 <field name="text_whatsapp_evolution_api" invisible="not is_whatsapp_evolution_api or not subtype_is_log"  />
 
             </field>
+
+            <field name="body" position="replace">
+                <field name="body" class="oe-bordered-editor"
+                       invisible="is_whatsapp_evolution_api and  subtype_is_log"
+                       placeholder="Write your message here..."
+                       options="{'style-inline': true}" readonly="not can_edit_body" force_save="1"/>
+
+            </field>
         </field>
     </record>
 
