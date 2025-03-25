@@ -594,6 +594,7 @@
                                     <field name="state" optional="hidden" />
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
+                                    <field name="value_due_land" optional="show" />
                                     <button name="show_dues_land" string="Pagos" type="object" />
                                     <field name="amount_total"  optional="hidden" />
                                     <field name="price_initial_land" string="Inicial"  optional="hidden" />
