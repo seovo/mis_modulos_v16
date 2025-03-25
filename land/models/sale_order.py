@@ -614,7 +614,7 @@ class SaleOrder(models.Model):
 
 
     @api.depends('order_line','order_line.product_id','order_line.qty_invoiced',
-                 'note','invoice_ids','invoice_ids.state','invoice_ids.invoice_date')
+                 'note','invoice_ids','invoice_ids.state','invoice_ids.invoice_date','repeat_mz_lot')
     def _get_stage_payment_land(self):
         #raise ValueError('okkk')
         for record in self:
@@ -629,18 +629,18 @@ class SaleOrder(models.Model):
             total_dues_invoiced = 0
             for line in record.order_line:
 
-                if line.product_id.is_advanced_land:
+                if line.product_id.is_advanced_land and not line.is_due_land :
                     total_initial += line.product_uom_qty
                     total_initial_invoiced += line.qty_invoiced
 
-                if line.product_id.payment_land_dues:
+                elif line.product_id.payment_land_dues or line.is_due_land:
                     total_dues += line.product_uom_qty
                     total_dues_invoiced +=  line.qty_invoiced
 
-                if line.product_id.is_separation_land:
+                elif line.product_id.is_separation_land:
                     total_separation_invoiced +=  line.qty_invoiced
 
-                if line.product_id.is_anticipo_land:
+                elif line.product_id.is_anticipo_land:
                     total_anticipo_invoiced += line.qty_invoiced
 
 
@@ -655,12 +655,6 @@ class SaleOrder(models.Model):
 
                 if total_initial_invoiced > 0 :
                     stage = 'initial'
-
-
-
-
-
-
 
 
             if not stage and total_initial_invoiced > 0:

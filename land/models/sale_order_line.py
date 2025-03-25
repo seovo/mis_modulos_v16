@@ -31,6 +31,7 @@ class SaleOrderLine(models.Model):
     land_stage_id = fields.Many2one('product.template.attribute.value', string="Etapa")
 
     is_create_of_origin_idenpencia = fields.Boolean(default=True)
+    is_due_land = fields.Boolean(string="Es una Cuota Terreno")
 
 
 

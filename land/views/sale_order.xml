@@ -120,6 +120,7 @@
                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace" >
                    <field name="price_unit"  readonly="1"  force_save="1" />
                    <button name="edit_price_jz" type="object" icon="fa-pencil-square-o" />
+                   <field name="is_due_land"  optional="hidden" />
                </xpath>
 
                <xpath expr="//notebook" position="inside" >
