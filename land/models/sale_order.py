@@ -58,8 +58,8 @@ class SaleOrder(models.Model):
     price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True,copy=False)
     price_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True,copy=False)
 
-    @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty')
-    @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty')
+    @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty','repeat_mz_lot')
+    @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty','repeat_mz_lot')
     def get_amount_prices_land(self):
         for record in self:
 
@@ -67,9 +67,9 @@ class SaleOrder(models.Model):
             price_credit = 0
             price_iden = 0
             for line in record.order_line:
-                if line.product_id.is_advanced_land :
+                if line.product_id.is_advanced_land and not line.is_due_land:
                     price_inicial += line.price_total
-                if line.product_id.payment_land_dues and not line.product_id.is_independence:
+                if ( line.product_id.payment_land_dues or line.is_due_land ) and not line.product_id.is_independence:
                     price_credit += line.price_total
 
                 if line.product_id.is_independence:
@@ -370,9 +370,6 @@ class SaleOrder(models.Model):
     def update_credit_saldo(self):
         for record in self:
             total_payment = 0
-
-
-
 
             for line in record.order_line:
                 if line.product_id.payment_land_dues:
