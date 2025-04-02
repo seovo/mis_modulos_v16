@@ -34,33 +34,36 @@ class SaleOrderLine(models.Model):
 
     def get_price_value_tarifas(self,product):
         res = None
+        price_unitx0 = None
+        price_unitx = None
 
         tarifa = self.order_id.pricelist_id
-        if tarifa.is_escale_sonsotec and self.product_id:
-            price_unit = self.product_id.acquisition_cost if tarifa.use_acquisition_cost else self.product_id.list_price
+        if tarifa.is_escale_sonsotec and product:
+            price_unit = product.acquisition_cost if tarifa.use_acquisition_cost else product.list_price
 
-            price_unitx = price_unit - (price_unit * self.product_id.categ_id.supplier_disc / 100)
+            price_unitx0 = price_unit - (price_unit * product.categ_id.supplier_disc / 100)
 
-            price_unitx = price_unitx / tarifa.amount_escale_sonsote if tarifa.amount_escale_sonsote != 0 else 0
+            price_unitx = price_unitx0 / tarifa.amount_escale_sonsote if tarifa.amount_escale_sonsote != 0 else 0
 
-            ##########
 
-            product_context = dict(self.env.context, partner_id=self.order_id.partner_id.id,
-                                   date=self.order_id.date_order, uom=self.product_uom.id)
-            final_price, rule_id = self.order_id.pricelist_id.with_context(product_context).get_product_price_rule(
-                product or self.product_id, self.product_uom_qty or 1.0, self.order_id.partner_id)
-
-            base_price, currency = self.with_context(product_context)._get_real_price_currency(product, rule_id,
-                                                                                               self.product_uom_qty,
-                                                                                               self.product_uom,
-                                                                                               self.order_id.pricelist_id.id)
-
-            ######
 
             # ES USD
             if tarifa.use_acquisition_cost:
                 res = price_unitx
             else:
+                ##########
+
+                product_context = dict(self.env.context, partner_id=self.order_id.partner_id.id,
+                                       date=self.order_id.date_order, uom=self.product_uom.id)
+                final_price, rule_id = self.order_id.pricelist_id.with_context(product_context).get_product_price_rule(
+                    product or self.product_id, self.product_uom_qty or 1.0, self.order_id.partner_id)
+
+                base_price, currency = self.with_context(product_context)._get_real_price_currency(product, rule_id,
+                                                                                                   self.product_uom_qty,
+                                                                                                   self.product_uom,
+                                                                                                   self.order_id.pricelist_id.id)
+
+                ######
                 res = price_unitx
                 to_currency = self.order_id.pricelist_id.currency_id
                 if currency != to_currency:
@@ -81,7 +84,10 @@ class SaleOrderLine(models.Model):
                             self.order_id.date_order or fields.Date.today())
 
             # record.price_unit = price_unitx
-        # raise ValueError(res)
+
+        if not res:
+            raise ValueError([res, tarifa, tarifa.use_acquisition_cost, price_unitx0, price_unitx])
+
 
         return res
 
@@ -105,3 +111,6 @@ class SaleOrder(models.Model):
                 res = line.get_price_value_tarifas(line.product_id)
                 if res:
                     line.price_unit = res
+                else:
+                    tarifa = line.order_id.pricelist_id
+                    raise ValueError([tarifa,tarifa.is_escale_sonsotec])
