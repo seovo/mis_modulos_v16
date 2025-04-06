@@ -6,7 +6,7 @@
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
         <field name="priority" >0</field>
-        <field name="inherit_id">False</field>
+        <field name="inherit_id">false</field>
         <field name="arch" type="xml">
             <form string="Sales Order">
                 <sheet>
