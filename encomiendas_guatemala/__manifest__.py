@@ -9,6 +9,7 @@
     "depends": ["website_sale","delivery"],
 
     "data": [
+        "security/group.xml",
         "security/ir.model.access.csv",
         'views/templates.xml',
         'views/sale_order.xml',
