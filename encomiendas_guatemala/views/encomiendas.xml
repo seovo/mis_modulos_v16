@@ -5,7 +5,7 @@
         name="Encomiendas"
         web_icon="sale_management,static/description/icon.png"
         active="True"
-        group="encomiendas_guatemala.group_encomiendas"
+        groups="encomiendas_guatemala.group_encomiendas"
     >
 
         <menuitem id="sale_order_menu"
