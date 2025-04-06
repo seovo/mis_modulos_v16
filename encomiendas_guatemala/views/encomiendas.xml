@@ -223,8 +223,8 @@
                                      <field name="product_type" column_invisible="True"/>
                                      <field name="product_updatable" column_invisible="True"/>
                                      <field name="is_downpayment" column_invisible="True"/>
-                                     <field
-                                    name="product_id"
+                                     <field name="product_id"
+                                            domain="[('is_encomienda','=',True)]"
                                     readonly="not product_updatable"
                                     required="not display_type"
                                     force_save="1"
@@ -240,7 +240,6 @@
                                     options="{
                                         'no_open': True,
                                     }"
-                                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                     widget="sol_product_many2one"/>
                                      <field name="product_template_id"
                                     string="Product"
@@ -317,7 +316,7 @@
                                      <field name="product_packaging_id"
                                              column_invisible="True"
                                             invisible="not product_id" context="{'default_product_id': product_id, 'tree_view_ref':'product.product_packaging_tree_view', 'form_view_ref':'product.product_packaging_form_view'}" groups="product.group_stock_packaging" optional="show"/>
-                                     <field name="is_encomienda" column_invisible="1" />
+                                     <field name="is_encomienda" column_invisible="True" />
                                      <field name="price_unit"  readonly="1"  force_save="1"  column_invisible="1" />
                                      <button name="edit_price_jz" type="object"  icon="fa-pencil-square-o"
                                              invisible="not is_encomienda" />
