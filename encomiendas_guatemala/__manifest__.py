@@ -17,6 +17,7 @@
         'views/product.xml',
         'views/report_templates.xml',
         'views/delivery_carrier.xml',
+        'views/encomiendas.xml'
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
