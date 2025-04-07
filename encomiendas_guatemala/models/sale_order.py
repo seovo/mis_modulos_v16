@@ -27,6 +27,45 @@ class SaleOrder(models.Model):
     total_peso_cobro = fields.Float(compute='get_total_peso_cobro', string='Peso Cobro')
     search_vat_partner = fields.Char(string="DPI")
     search_vat_partner_delivery = fields.Char(string="DPI")
+    html_preview_partner = fields.Html(compute='get_html_preview_partner')
+
+    @api.depends('partner_id')
+    def get_html_preview_partner(self):
+        for record in self:
+            html = '''
+            <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+            '''
+            record.html_preview_partner = html
+
+
 
     @api.onchange('search_vat_partner')
     def change_search_vat_partner(self):
@@ -45,6 +84,16 @@ class SaleOrder(models.Model):
                 record.partner_shipping_id = partner.id if partner else False
             else:
                 record.partner_shipping_id = False
+
+    @api.onchange('partner_id')
+    def cambiando_partner(self):
+        for record in self:
+            record.search_vat_partner = record.partner_id.vat or False
+
+    @api.onchange('partner_shipping_id')
+    def cambiando_partner(self):
+        for record in self:
+            record.search_vat_partner_delivery = record.partner_shipping_id.vat or False
 
 
 
