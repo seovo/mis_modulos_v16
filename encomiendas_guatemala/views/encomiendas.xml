@@ -104,11 +104,11 @@
                          </group>
                          <group>
                              <div class="o_td_label" groups="base.group_no_one" invisible="state in ['sale', 'cancel']">
-                            <label for="date_order" string="Quotation Date"/>
+                            <label for="date_order" string="Fecha Cotización"/>
                         </div>
                         <field name="date_order" nolabel="1" groups="base.group_no_one" invisible="state in ['sale', 'cancel']" readonly="state in ['cancel', 'sale']"/>
                         <div class="o_td_label" invisible="state in ['draft', 'sent']">
-                            <label for="date_order" string="Order Date"/>
+                            <label for="date_order" string="Fecha Pedido"/>
                         </div>
                         <field name="date_order" invisible="state in ['draft', 'sent']" readonly="state in ['cancel', 'sale']" nolabel="1"/>
 
@@ -119,16 +119,16 @@
                     <group name="sale_header">
                         <group name="partner_details" string="Persona que envía la encomienda">
                             <field name="search_vat_partner" readonly="state in ['cancel', 'sale']" />
-                            <field name="partner_id"
+                            <field name="partner_id" string="Envia"
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
-                            <field name="html_preview_partner" />
+                            <field name="html_preview_partner"  string="-"/>
                         </group>
 
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
                             <field name="search_vat_partner_delivery" />
-                            <field name="partner_shipping_id"
+                            <field name="partner_shipping_id" string="Recibe"
                                    readonly="state in ['cancel', 'sale']" />
-                            <field name="html_preview_partner_delivery" />
+                            <field name="html_preview_partner_delivery" string="-" />
                         </group>
                     </group>
 
