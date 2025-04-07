@@ -198,6 +198,9 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
 
+        if not self.client_order_ref:
+            raise UserError('Debe Indicar el Recibo de pago')
+
         if self.env.context.get('force_action_confirm_n'):
             return super().action_confirm()
 
