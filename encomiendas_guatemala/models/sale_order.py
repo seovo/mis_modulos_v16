@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
     def change_search_vat_partner(self):
         for record in self:
             if record.search_vat_partner:
-                partner = self.env['sale.order'].search([('vat', '=', record.search_vat_partner)], limit=1)
+                partner = self.env['res.partner'].search([('vat', '=', record.search_vat_partner)], limit=1)
                 record.partner_id = partner.id if partner else False
             else:
                 record.partner_id = False
