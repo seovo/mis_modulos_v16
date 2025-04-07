@@ -122,6 +122,7 @@
                             <field name="partner_id" string="Envia"
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
                             <field name="html_preview_partner"  string="-"/>
+                            <field name="partner_invoice_id" readonly="state == 'cancel' or locked"/>
                         </group>
 
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
