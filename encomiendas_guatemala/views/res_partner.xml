@@ -101,7 +101,15 @@
 
                     <notebook colspan="4">
                         <page string="Contacts &amp; Addresses" name="contact_addresses" autofocus="autofocus">
-                            <field name="child_ids" mode="kanban" context="{'default_parent_id': id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_lang': lang, 'default_user_id': user_id, 'default_type': 'other'}">
+                            <field name="child_ids" mode="kanban"
+                                   context="{
+                                   'default_parent_id': id,
+                                   'default_street': street,
+                                   'default_street2': street2,
+                                   'default_city': city,
+                                   'default_state_id': state_id,
+                                   'default_zip': zip, 'default_country_id': country_id, 'default_lang': lang,
+                                   'default_user_id': user_id, 'default_type': 'invoice'}">
                                 <kanban>
                                     <field name="id"/>
                                     <field name="color"/>
@@ -154,7 +162,7 @@
                                 </kanban>
                                 <form string="Contact / Address">
                                     <sheet>
-                                        <field name="type" required="1" widget="radio" options="{'horizontal': true}"/>
+                                        <field name="type" required="1" widget="radio" options="{'horizontal': true}" invisible="1"/>
                                         <field name="parent_id" invisible="1"/>
                                         <div class="text-muted oe_edit_only">
                                             <p class="mb-0" invisible="type != 'contact'">
@@ -173,29 +181,39 @@
                                         <hr/>
                                         <group>
                                             <group>
-                                                <field name="name" string="Contact Name" required="type == 'contact'"/>
-                                                <field name="title" options="{'no_open': True}" placeholder="e.g. Mr."
-                                                    invisible="type != 'contact'"/>
-                                                <field name="function" placeholder="e.g. Sales Director"
-                                                    invisible="type != 'contact'"/>
-                                                <label for="street" string="Address" invisible="type == 'contact'"/>
-                                                <div invisible="type == 'contact'">
-                                                    <div class="o_address_format" name="div_address">
-                                                        <field name="street" placeholder="Street..." class="o_address_street"/>
-                                                        <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                                                        <field name="city" placeholder="City" class="o_address_city"/>
-                                                        <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
-                                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                                                        <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
-                                                    </div>
-                                                </div>
-                                            </group>
+
+                            <field name="type" invisible="1" readonly="user_ids" required="not is_company" class="fw-bold"/>
+
+                            <field name="vat" string="DPI" />
+                            <field name="street" string="Dirección"  />
+                            <field name="street2" string="Dirección"  invisible="1" />
+                            <field name="country_id" string="Pais"  />
+                            <field name="state_id"  string="Estado" placeholder="Estado" options="{'no_open': True, 'no_quick_create': True}"
+                                   context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                            <field name="city" placeholder="Ciudad" string="Ciudad"
+                                    readonly="type == 'contact' and parent_id"/>
+                            <field name="zip" placeholder="ZIP" readonly="type == 'contact' and parent_id"/>
+
+                        </group>
                                             <group>
-                                                <field name="email" widget="email"/>
-                                                <field name="phone" widget="phone"/>
-                                                <field name="mobile" widget="phone"/>
-                                                <field name="company_id" invisible="1"/>
-                                            </group>
+                            <field name="function" placeholder="e.g. Sales Director"
+                                invisible="is_company"/>
+                            <field name="use_whatsapp" />
+                            <field name="phone" widget="phone"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="user_ids" invisible="1"/>
+                            <field name="email" widget="email" context="{'gravatar_image': True}" required="user_ids"/>
+                            <field name="website" string="Website" widget="url" placeholder="e.g. https://www.odoo.com"/>
+                            <field name="title" options='{"no_open": True}' placeholder="e.g. Mister"
+                                invisible="is_company"/>
+                            <field name="active_lang_count" invisible="1"/>
+                            <field name="lang" invisible="active_lang_count &lt;= 1"/>
+                            <field name="file_vat" widget="file" filename="name_file_vat" />
+                            <field name="name_file_vat" invisible="1"  />
+
+
+                        </group>
+
                                         </group>
                                         <group>
                                             <field name="comment" placeholder="Internal notes..." nolabel="1" colspan="2"/>
@@ -206,24 +224,7 @@
                                 </form>
                             </field>
                         </page>
-                        <page name='sales_purchases' string="Sales &amp; Purchase">
-                            <group name="container_row_2">
-                                <group string="Sales" name="sale" priority="1">
-                                    <field name="user_id" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
-                                </group>
-                                <group string="Purchase" name="purchase" priority="2">
-                                </group>
-                                <group name="misc" string="Misc">
-                                    <field name="company_registry" invisible="parent_id"/>
-                                    <field name="ref" string="Reference"/>
-                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" readonly="parent_id" force_save="1"/>
-                                    <field name="industry_id" invisible="not is_company" options="{'no_create': True}"/>
-                                </group>
-                            </group>
-                        </page>
-                        <page name='internal_notes' string="Internal Notes">
-                            <field name="comment" placeholder="Internal notes..."/>
-                        </page>
+
                     </notebook>
                 </sheet>
                 </form>
