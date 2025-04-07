@@ -3,6 +3,14 @@ import math
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
+SALE_ORDER_STATE = [
+    ('draft', "Orden de envio"),
+    ('sent', "Orden de envío impresa"),
+    ('sale', "Envio Encomienda"),
+    ('cancel', "Encomienda"),
+]
+
+
 class SaleOrder(models.Model):
     _inherit       = 'sale.order'
     state_encomienda = fields.Selection([
@@ -32,6 +40,12 @@ class SaleOrder(models.Model):
     search_vat_partner_delivery = fields.Char(string="DPI")
     html_preview_partner = fields.Html(compute='get_html_preview_partner',string="")
     html_preview_partner_delivery = fields.Html(compute='get_html_preview_partner_delivery', string="")
+    state = fields.Selection(
+        selection=SALE_ORDER_STATE,
+        string="Status",
+        readonly=True, copy=False, index=True,
+        tracking=3,
+        default='draft')
 
     @api.depends('partner_id')
     def get_html_preview_partner(self):
@@ -178,7 +192,6 @@ class SaleOrder(models.Model):
     def cambiando_partner_shiping(self):
         for record in self:
             record.search_vat_partner_delivery = record.partner_shipping_id.vat or False
-
 
 
     def _compute_has_active_pricelist(self):

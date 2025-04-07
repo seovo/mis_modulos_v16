@@ -125,7 +125,9 @@
                             <field name="partner_id" string="Envia"
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
                             <field name="html_preview_partner"  string="-"/>
-                            <field name="partner_invoice_id" readonly="state == 'cancel' or locked"/>
+                            <field name="partner_invoice_id"
+                                   invisible="1"
+                                   readonly="state == 'cancel' or locked"/>
                             <field name="type_doc_encomienda" />
                         </group>
 
