@@ -123,6 +123,7 @@
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
                             <field name="html_preview_partner"  string="-"/>
                             <field name="partner_invoice_id" readonly="state == 'cancel' or locked"/>
+                            <field name="type_doc_encomienda" />
                         </group>
 
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
@@ -132,7 +133,7 @@
                             <field name="html_preview_partner_delivery" string="-" />
                             <field name="state_encomienda" />
                             <field name="clase_encomienda" />
-                            <field name="type_doc_encomienda" />
+
                             <field name="carrier_id" string="Caja Rural" />
                         </group>
                     </group>
@@ -467,8 +468,9 @@
                                 <field name="amount_total" nolabel="1" colspan="2" readonly="1"/>
                             </group>
                                   <div class="clearfix"/>
-                                  <field name="client_order_ref" string="Recibo de Pago" />
+
                              </group>
+
                         </page>
 
                        <page string="Otra Información" name="other_information">
