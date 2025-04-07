@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
     total_peso_cobro = fields.Float(compute='get_total_peso_cobro', string='Peso Cobro')
     search_vat_partner = fields.Char(string="DPI")
-    search_vat_partner_delivery = fields.Char(string="DPI")
+    search_vat_partner_delivery = fields.Char(string="Telefono")
     html_preview_partner = fields.Html(compute='get_html_preview_partner',string="")
     html_preview_partner_delivery = fields.Html(compute='get_html_preview_partner_delivery', string="")
     state = fields.Selection(
@@ -170,16 +170,18 @@ class SaleOrder(models.Model):
     def change_search_vat_partner(self):
         for record in self:
             if record.search_vat_partner:
-                partner = self.env['res.partner'].search([('vat', '=', record.search_vat_partner)], limit=1)
+                partner = self.env['res.partner'].search([('dpi', '=', record.search_vat_partner)], limit=1)
                 record.partner_id = partner.id if partner else False
+                record.partner_shipping_id = False
             else:
                 record.partner_id = False
+                record.partner_shipping_id = False
 
     @api.onchange('search_vat_partner_delivery')
     def change_search_vat_partner_delivery(self):
         for record in self:
             if record.search_vat_partner_delivery:
-                partner = self.env['res.partner'].search([('vat', '=', record.search_vat_partner_delivery)], limit=1)
+                partner = self.env['res.partner'].search([('phone', '=', record.search_vat_partner_delivery)], limit=1)
                 record.partner_shipping_id = partner.id if partner else False
             else:
                 record.partner_shipping_id = False
@@ -188,6 +190,7 @@ class SaleOrder(models.Model):
     def cambiando_partner(self):
         for record in self:
             record.search_vat_partner = record.partner_id.vat or False
+            record.partner_shipping_id = False
 
     @api.onchange('partner_shipping_id')
     def cambiando_partner_shiping(self):

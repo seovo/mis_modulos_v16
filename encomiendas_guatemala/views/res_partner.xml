@@ -48,6 +48,7 @@
                             <field id="company" options="{'line_breaks': False}" widget="text" class="text-break" name="name" default_focus="1" placeholder="e.g. Lumber Inc" invisible="not is_company" required="type == 'contact'"/>
                             <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break" name="name" default_focus="1" placeholder="e.g. Brandom Freeman" invisible="is_company" required="type == 'contact'"/>
                         </h1>
+                        <!--
                         <div class="o_row">
                             <field name="parent_id"
                                 widget="res_partner_many2one"
@@ -59,6 +60,7 @@
                                     type="object" class="oe_edit_only btn-link"
                                     invisible="is_company or company_name == '' or not company_name"/>
                         </div>
+                        -->
                     </div>
 
                     <group>
@@ -85,7 +87,6 @@
 
                             <field name="use_whatsapp" />
                             <field name="phone" widget="phone"/>
-                            <field name="mobile" widget="phone"/>
                             <field name="user_ids" invisible="1"/>
                             <field name="email" widget="email" context="{'gravatar_image': True}" required="user_ids"/>
                             <field name="file_vat" widget="file" filename="name_file_vat" />
