@@ -33,9 +33,10 @@ class MailComposeMessage(models.TransientModel):
 
             self.number_whatsapp_evolution_api = phone
 
-            if self.model in ['sale.order']:
+            if self.model in ['sale.order'] and self.is_whatsapp_evolution_api:
+                url_main =  self.env['ir.config_parameter'].search([('key','=','web.base.url')])
                 url = object.action_preview_sale_order()['url']
-                self.text_whatsapp_evolution_api = f'''  revise la orden aqui: {url}  '''
+                self.text_whatsapp_evolution_api = f'''  revise la orden aqui: {url_main.value}{url}  '''
 
 
 
