@@ -33,6 +33,11 @@ class SaleOrder(models.Model):
     def get_html_preview_partner(self):
         for record in self:
             partner = record.partner_id
+            phones = []
+            if partner.mobile:
+                phones.append(partner.mobile)
+            if partner.phone:
+                phones.append(partner.phone)
             if partner:
                 html = f'''
                             <table class="table table-bordered">
@@ -46,6 +51,31 @@ class SaleOrder(models.Model):
                     <tr>
                       <th scope="row">Pais </th>
                       <td>{partner.country_id.display_name or ''}</td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">Estado </th>
+                      <td>{partner.state_id.display_name or ''}</td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">Municipio </th>
+                      <td>{partner.city or ''}</td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">Teléfono </th>
+                      <td>{','.join(phones)  if phones else ''} </td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">Correo electronico </th>
+                      <td>{partner.email or ''} </td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">Whatsapp</th>
+                      <td>{'SI' if  partner.use_whatsapp else 'NO'} </td>
                     </tr>
 
                   </tbody>
