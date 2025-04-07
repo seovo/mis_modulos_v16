@@ -175,7 +175,7 @@ class SaleOrder(models.Model):
             record.search_vat_partner = record.partner_id.vat or False
 
     @api.onchange('partner_shipping_id')
-    def cambiando_partner(self):
+    def cambiando_partner_shiping(self):
         for record in self:
             record.search_vat_partner_delivery = record.partner_shipping_id.vat or False
 
