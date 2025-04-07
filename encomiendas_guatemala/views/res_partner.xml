@@ -171,14 +171,12 @@
                                                 <span>Use this to organize the contact details of employees of a given company (e.g. CEO, CFO, ...).</span>
                                             </p>
                                             <p class="mb-0" invisible="type != 'invoice'">
-                                                <span>Preferred address for all invoices. Selected by default when you invoice an order that belongs to this company.</span>
+                                                <span>Dirección preferida para todas las facturas. Seleccionada por defecto al facturar un pedido de esta empresa.</span>
                                             </p>
                                             <p class="mb-0" invisible="type != 'delivery'">
                                                 <span>Preferred address for all deliveries. Selected by default when you deliver an order that belongs to this company.</span>
                                             </p>
-                                            <p class="mb-0" invisible="type != 'other'">
-                                                <span>Other address for the company (e.g. subsidiary, ...)</span>
-                                            </p>
+
                                         </div>
                                         <hr/>
                                         <group>
