@@ -6,6 +6,7 @@ class ResPartner(models.Model):
     use_whatsapp = fields.Boolean(string='Tiene Wasap')
     file_vat     = fields.Binary(string="Adjunto Documento")
     name_file_vat     = fields.Char()
+    dpi = fields.Char()
 
     @api.model
     def default_get(self, default_fields):
