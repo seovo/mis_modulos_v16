@@ -162,6 +162,7 @@
                                 </kanban>
                                 <form string="Contact / Address">
                                     <sheet>
+                                        <field name="is_company" invisible="1"/>
                                         <field name="type" required="1" widget="radio" options="{'horizontal': true}" invisible="1"/>
                                         <field name="parent_id" invisible="1"/>
                                         <div class="text-muted oe_edit_only">
