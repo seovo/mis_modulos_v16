@@ -25,14 +25,43 @@
         <field name="mode" >primary</field>
         <field name="arch" type="xml">
             <form string="Sales Order">
-                <field name="avatar_128" invisible="1"/>
-                <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "avatar_128"}' readonly="1"/>
-                <div class="oe_title">
-                        <h1>
-                            <field name="name" readonly="1"/>
-                        </h1>
+                <div class="alert alert-warning oe_edit_only" role="alert" name="warning_tax" invisible="not same_vat_partner_id">
+                  A partner with the same <span><span class="o_vat_label">Tax ID</span></span> already exists (<field name="same_vat_partner_id"/>), are you sure to create a new one?
                 </div>
-                <field name="parent_id" invisible="1"/>
+                <div class="alert alert-warning oe_edit_only" role="alert" name="warning_company" invisible="not same_company_registry_partner_id">
+                  A partner with the same <span><span class="o_vat_label">Company Registry</span></span> already exists (<field name="same_company_registry_partner_id"/>), are you sure to create a new one?
+                </div>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="avatar_128" invisible="1"/>
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "avatar_128"}'/>
+                    <div class="oe_title mb24">
+                        <field name="is_company" invisible="1"/>
+                        <field name="commercial_partner_id" invisible="1"/>
+                        <field name="active" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="country_code" invisible="1"/>
+                        <field name="company_type" widget="radio" options="{'horizontal': true}"/>
+                        <h1>
+                            <field id="company" options="{'line_breaks': False}" widget="text" class="text-break" name="name" default_focus="1" placeholder="e.g. Lumber Inc" invisible="not is_company" required="type == 'contact'"/>
+                            <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break" name="name" default_focus="1" placeholder="e.g. Brandom Freeman" invisible="is_company" required="type == 'contact'"/>
+                        </h1>
+                        <div class="o_row">
+                            <field name="parent_id"
+                                widget="res_partner_many2one"
+                                placeholder="Company Name..."
+                                domain="[('is_company', '=', True)]" context="{'default_is_company': True, 'show_vat': True, 'default_user_id': user_id}"
+                                invisible="((is_company and not parent_id) or company_name) and company_name != ''"/>
+                                <field name="company_name" invisible="not company_name or company_name == '' or is_company"/>
+                                <button name="create_company" icon="fa-plus-square" string="Create company"
+                                    type="object" class="oe_edit_only btn-link"
+                                    invisible="is_company or company_name == '' or not company_name"/>
+                        </div>
+
+
+                    </div>
+                </sheet>
 
             </form>
         </field>
