@@ -40,7 +40,7 @@ class SaleOrder(models.Model):
     @api.onchange('search_vat_partner_delivery')
     def change_search_vat_partner_delivery(self):
         for record in self:
-            if record.search_vat_partner:
+            if record.search_vat_partner_delivery:
                 partner = self.env['res.partner'].search([('vat', '=', record.search_vat_partner_delivery)], limit=1)
                 record.partner_shipping_id = partner.id if partner else False
             else:
