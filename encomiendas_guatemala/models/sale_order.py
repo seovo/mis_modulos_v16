@@ -25,6 +25,8 @@ class SaleOrder(models.Model):
     ],string="Clase de Documentos")
     packing_list_ids = fields.One2many('sale.order.packing.list','order_id')
     total_peso_cobro = fields.Float(compute='get_total_peso_cobro', string='Peso Cobro')
+    search_vat_partner = fields.Char(string="DPI")
+    search_vat_partner_delivery = fields.Char(string="DPI")
 
     def _compute_has_active_pricelist(self):
         res = super()._compute_has_active_pricelist()
