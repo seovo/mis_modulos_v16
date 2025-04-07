@@ -195,7 +195,7 @@ class SaleOrder(models.Model):
     @api.onchange('partner_shipping_id')
     def cambiando_partner_shiping(self):
         for record in self:
-            record.search_vat_partner_delivery = record.partner_shipping_id.vat or False
+            record.search_vat_partner_delivery = record.partner_shipping_id.phone or False
 
 
     def _compute_has_active_pricelist(self):
