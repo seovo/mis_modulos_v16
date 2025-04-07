@@ -15,8 +15,27 @@
                    <field name="name_file_vat" invisible="1"  />
 
                </xpath>
-
-
            </field>
     </record>
+
+    <record id="view_partner_form_new" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="priority" >0</field>
+        <field name="mode" >primary</field>
+        <field name="arch" type="xml">
+            <form string="Sales Order">
+                <field name="avatar_128" invisible="1"/>
+                <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "avatar_128"}' readonly="1"/>
+                <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                </div>
+                <field name="parent_id" invisible="1"/>
+
+            </form>
+        </field>
+    </record>
+
 </odoo>
