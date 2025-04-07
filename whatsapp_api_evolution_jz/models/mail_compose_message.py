@@ -33,6 +33,10 @@ class MailComposeMessage(models.TransientModel):
 
             self.number_whatsapp_evolution_api = phone
 
+            if self.model in ['sale.order']:
+                url = object.action_preview_sale_order()['url']
+                self.text_whatsapp_evolution_api = f'''  revise la orden aqui: {url}  '''
+
 
 
     def action_send_mail(self):
