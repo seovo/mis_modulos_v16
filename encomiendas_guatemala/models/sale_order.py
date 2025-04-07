@@ -144,7 +144,7 @@ class SaleOrder(models.Model):
             else:
                 html = ''
 
-            record.html_preview_partner = html
+            record.html_preview_partner_delivery = html
 
 
 
