@@ -173,6 +173,8 @@ class SaleOrder(models.Model):
                 partner = self.env['res.partner'].search([('dpi', '=', record.search_vat_partner)], limit=1)
                 record.partner_id = partner.id if partner else False
                 record.partner_shipping_id = False
+                if partner.carrier_id:
+                    record.carrier_id = partner.carrier_id.id
             else:
                 record.partner_id = False
                 record.partner_shipping_id = False
@@ -191,6 +193,8 @@ class SaleOrder(models.Model):
         for record in self:
             record.search_vat_partner = record.partner_id.vat or False
             record.partner_shipping_id = False
+            if record.partner_id.carrier_id:
+                record.carrier_id = record.partner_id.carrier_id.id
 
     @api.onchange('partner_shipping_id')
     def cambiando_partner_shiping(self):

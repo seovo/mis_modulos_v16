@@ -469,12 +469,9 @@
                                     groups="product.group_discount_per_so_line"/>
                         </div>
                               <group name="note_group" col="6" class="mt-2 mt-md-0">
-                                  <group colspan="4">
-                                <field  colspan="2" name="note" nolabel="1" placeholder="Terms and conditions..."/>
-                            </group>
                                   <group class="oe_subtotal_footer" colspan="2" name="sale_total">
-                                <field name="amount_total" nolabel="1" colspan="2" readonly="1"/>
-                            </group>
+                                    <field name="amount_total"  string="Monto Total" colspan="2" readonly="1"/>
+                                  </group>
                                   <div class="clearfix"/>
 
                              </group>
