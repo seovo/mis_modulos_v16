@@ -127,7 +127,7 @@
 
                        <group name="note_group" col="6" class="mt-2 mt-md-0">
                             <group colspan="4">
-                                <field name="price_extra_libre"  />
+                                <field name="price_extra_libre" invisible="1"  />
                                 <field name="total_peso_cobro" />
 
                             </group>
