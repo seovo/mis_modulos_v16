@@ -140,6 +140,8 @@
                             <field name="html_preview_partner_delivery" string="-" />
                             <field name="state_encomienda" />
                             <field name="client_order_ref" string="Recibo de Pago" />
+                            <field name="carrier_enc"  groups="encomiendas_guatemala.group_encomiendas_carr_guia" />
+                            <field name="guia_enc"  groups="encomiendas_guatemala.group_encomiendas_carr_guia" />
 
 
                          <!--   <field name="carrier_id" string="Caja Rural" invisible="1" /> -->

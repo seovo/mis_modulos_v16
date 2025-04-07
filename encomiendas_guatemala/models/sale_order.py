@@ -46,6 +46,8 @@ class SaleOrder(models.Model):
         readonly=True, copy=False, index=True,
         tracking=3,
         default='draft')
+    carrier_enc = fields.Char(string="Carrier")
+    guia_enc = fields.Char(string="Guia")
 
 
     @api.depends('partner_id')
@@ -178,6 +180,7 @@ class SaleOrder(models.Model):
             else:
                 record.partner_id = False
                 record.partner_shipping_id = False
+                record.carrier_id = False
 
     @api.onchange('search_vat_partner_delivery')
     def change_search_vat_partner_delivery(self):
