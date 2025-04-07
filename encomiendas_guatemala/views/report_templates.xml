@@ -307,6 +307,7 @@
     </template>
 
 
+
     <template id="report_saleorder_document_inherit_sale_stock" inherit_id="sale.report_saleorder_document">
         <xpath expr="//div[@name='expiration_date']" position="after">
             <div class="col-auto col-3 mw-100 mb-2" t-if="doc.carrier_id">
