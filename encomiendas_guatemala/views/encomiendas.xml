@@ -139,7 +139,7 @@
                             <field name="state_encomienda" />
                             <field name="clase_encomienda" />
 
-                            <field name="carrier_id" string="Caja Rural" />
+                            <field name="carrier_id" string="Caja Rural" invisible="1" />
                         </group>
                     </group>
 
