@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
         readonly=True, copy=False, index=True,
         tracking=3,
         default='draft')
-    carrier_id = fields.Many2one('delivery.carrie',string="Caja Rural")
+
 
     @api.depends('partner_id')
     def get_html_preview_partner(self):

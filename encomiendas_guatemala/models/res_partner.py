@@ -11,6 +11,7 @@ class ResPartner(models.Model):
     adress_invoice = fields.Char(string="Dirección Factura")
     date_born = fields.Date(string="Fecha Nacimiento")
     is_destinatario = fields.Boolean()
+    carrier_id = fields.Many2one('delivery.carrie', string="Caja Rural")
 
     @api.model
     def default_get(self, default_fields):
