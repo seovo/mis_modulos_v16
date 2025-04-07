@@ -132,6 +132,7 @@
                             <field name="type_doc_encomienda" />
                         </group>
 
+
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
                             <field name="search_vat_partner_delivery" />
                             <field name="partner_shipping_id" string="Recibe"
