@@ -91,17 +91,34 @@
                          <i class="fa fa-lock"/>
                          Locked
                      </div>
-                     <div class="oe_title">
+
+                     <group>
+                         <group>
+                             <div class="oe_title">
                         <h1>
                            <field name="name" readonly="1"/>
                             <field name="company_id" invisible="1"/>
                              <field name="pricelist_id" invisible="1"/>
                         </h1>
                      </div>
+                         </group>
+                         <group>
+                             <div class="o_td_label" groups="base.group_no_one" invisible="state in ['sale', 'cancel']">
+                            <label for="date_order" string="Quotation Date"/>
+                        </div>
+                        <field name="date_order" nolabel="1" groups="base.group_no_one" invisible="state in ['sale', 'cancel']" readonly="state in ['cancel', 'sale']"/>
+                        <div class="o_td_label" invisible="state in ['draft', 'sent']">
+                            <label for="date_order" string="Order Date"/>
+                        </div>
+                        <field name="date_order" invisible="state in ['draft', 'sent']" readonly="state in ['cancel', 'sale']" nolabel="1"/>
+
+                         </group>
+                     </group>
+
 
                     <group name="sale_header">
                         <group name="partner_details" string="Persona que envía la encomienda">
-                            <field name="search_vat_partner" />
+                            <field name="search_vat_partner" readonly="state in ['cancel', 'sale']" />
                             <field name="partner_id"
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
                             <field name="html_preview_partner" />
@@ -110,7 +127,8 @@
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
                             <field name="search_vat_partner_delivery" />
                             <field name="partner_shipping_id"
-                                   readonly="state == 'cancel' or locked"/>
+                                   readonly="state in ['cancel', 'sale']" />
+                            <field name="html_preview_partner_delivery" />
                         </group>
                     </group>
 

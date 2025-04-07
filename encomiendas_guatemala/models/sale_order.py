@@ -28,17 +28,19 @@ class SaleOrder(models.Model):
     search_vat_partner = fields.Char(string="DPI")
     search_vat_partner_delivery = fields.Char(string="DPI")
     html_preview_partner = fields.Html(compute='get_html_preview_partner',string="")
+    html_preview_partner_delivery = fields.Html(compute='get_html_preview_partner_delivery', string="")
 
     @api.depends('partner_id')
     def get_html_preview_partner(self):
         for record in self:
             partner = record.partner_id
-            phones = []
-            if partner.mobile:
-                phones.append(partner.mobile)
-            if partner.phone:
-                phones.append(partner.phone)
+
             if partner:
+                phones = []
+                if partner.mobile:
+                    phones.append(partner.mobile)
+                if partner.phone:
+                    phones.append(partner.phone)
                 html = f'''
                             <table class="table table-bordered">
                   <tbody>
@@ -81,6 +83,64 @@ class SaleOrder(models.Model):
                   </tbody>
                 </table>
                             '''
+            else:
+                html = ''
+
+            record.html_preview_partner = html
+
+    @api.depends('partner_shipping_id')
+    def get_html_preview_partner_delivery(self):
+        for record in self:
+            partner = record.partner_shipping_id
+
+            if partner:
+                phones = []
+                if partner.mobile:
+                    phones.append(partner.mobile)
+                if partner.phone:
+                    phones.append(partner.phone)
+                html = f'''
+                                <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Dirección </th>
+                          <td>{partner.street}</td>
+                        </tr>
+
+
+                        <tr>
+                          <th scope="row">Pais </th>
+                          <td>{partner.country_id.display_name or ''}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Estado </th>
+                          <td>{partner.state_id.display_name or ''}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Municipio </th>
+                          <td>{partner.city or ''}</td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Teléfono </th>
+                          <td>{','.join(phones) if phones else ''} </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Correo electronico </th>
+                          <td>{partner.email or ''} </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="row">Whatsapp</th>
+                          <td>{'SI' if partner.use_whatsapp else 'NO'} </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                                '''
             else:
                 html = ''
 
