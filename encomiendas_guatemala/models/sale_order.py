@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
         ('2','Despacho a USA'),
         ('3', 'Salio a Aduana'),
         ('4', 'Entregado'),
-    ],default='1',string="Estado Encomienda")
+    ],default='1',string="Rastreo")
 
     clase_encomienda  = fields.Selection([
         ('doc','Documento'),

@@ -130,11 +130,15 @@
                             <field name="partner_shipping_id" string="Recibe"
                                    readonly="state in ['cancel', 'sale']" />
                             <field name="html_preview_partner_delivery" string="-" />
+                            <field name="state_encomienda" />
+                            <field name="clase_encomienda" />
+                            <field name="type_doc_encomienda" />
+                            <field name="carrier_id" string="Caja Rural" />
                         </group>
                     </group>
 
                     <notebook>
-                       <page string="Order Lines" name="order_lines">
+                       <page string="Envio" name="order_lines">
                              <field name="order_line"
                                     widget="section_and_note_one2many"
                                     mode="tree,kanban"
@@ -353,8 +357,7 @@
                                       <field name="is_downpayment" column_invisible="True"/>
                                       <field name="price_subtotal" string="Tax excl." invisible="is_downpayment" column_invisible="True" />
                                       <field name="price_total"
-                                       string="Tax incl."
-                                       column_invisible="parent.tax_calculation_rounding_method == 'round_globally'"
+                                       string="Total"
                                        invisible="is_downpayment"
                                        optional="show"/>
                                 <!-- Others fields -->
@@ -448,7 +451,7 @@
                                 </templates>
                             </kanban>
                              </field>
-                        <div class="float-end d-flex gap-1 mb-2 ms-1"
+                              <div class="float-end d-flex gap-1 mb-2 ms-1"
                              name="so_button_below_order_lines">
                             <button string="Discount"
                                     name="action_open_discount_wizard"
@@ -456,73 +459,60 @@
                                     class="btn btn-secondary"
                                     groups="product.group_discount_per_so_line"/>
                         </div>
-                        <group name="note_group" col="6" class="mt-2 mt-md-0">
-                            <group colspan="4">
+                              <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                  <group colspan="4">
                                 <field  colspan="2" name="note" nolabel="1" placeholder="Terms and conditions..."/>
                             </group>
-                            <group class="oe_subtotal_footer" colspan="2" name="sale_total">
-                                <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" colspan="2" readonly="1"/>
+                                  <group class="oe_subtotal_footer" colspan="2" name="sale_total">
+                                <field name="amount_total" nolabel="1" colspan="2" readonly="1"/>
                             </group>
-                            <div class="clearfix"/>
-                        </group>
+                                  <div class="clearfix"/>
+                                  <field name="client_order_ref" string="Recibo de Pago" />
+                             </group>
                         </page>
-                       <page string="Other Info" name="other_information">
+
+                       <page string="Otra Información" name="other_information">
                         <group>
                             <group name="sales_person" string="Sales">
                                 <field name="user_id" widget="many2one_avatar_user"/>
                                 <field name="team_id" context="{'kanban_view_ref': 'sales_team.crm_team_view_kanban'}" options="{'no_create': True}"/>
                                 <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
-                                <field name="require_signature"
-                                       readonly="state in ['cancel', 'sale']"/>
-                                <label for="require_payment"/>
-                                <div id="require_payment">
-                                    <field name="require_payment"
-                                        readonly="state in ['cancel', 'sale']"/>
-                                    <span class="mx-3" invisible="not require_payment">of</span>
-                                    <field name="prepayment_percent"
-                                        readonly="state in ['cancel', 'sale']"
-                                        invisible="not require_payment"
-                                        widget="percentage"
-                                        style="width: 3rem"/>
-                                </div>
+
+
                                 <field name="reference" readonly="1" invisible="not reference"/>
-                                <field name="client_order_ref"/>
-                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                                <field name="client_order_ref" string="Recibo de Pago" />
+
                             </group>
-                            <group name="sale_info" string="Invoicing">
-                                <field name="show_update_fpos" invisible="1"/>
-                                <label for="fiscal_position_id"/>
-                                <div class="o_row">
-                                    <field name="fiscal_position_id" options="{'no_create': True}"/>
-                                    <button name="action_update_taxes" type="object"
-                                        string=" Update Taxes"
-                                        help="Recompute all taxes based on this fiscal position"
-                                        class="btn-link mb-1 px-0" icon="fa-refresh"
-                                        confirm="This will update all taxes based on the currently selected fiscal position."
-                                        invisible="not show_update_fpos or state in ['sale', 'cancel']"/>
-                                </div>
-                                <field name="partner_invoice_id" groups="!account.group_delivery_invoice_address" invisible="1"/>
-                                <field name="analytic_account_id" context="{'default_partner_id':partner_invoice_id, 'default_name':name}" readonly="invoice_count != 0 and state == 'sale'" groups="analytic.group_analytic_accounting" force_save="1"/>
-                                <field name="journal_id" groups="base.group_no_one" readonly="invoice_count != 0 and state == 'sale'"/>
-                                <field name="invoice_status" invisible="state != 'sale'" groups="base.group_no_one"/>
-                                <!-- test_event_configurator -->
-                                <field name="invoice_status" invisible="1" groups="!base.group_no_one"/>
-                            </group>
-                            <group name="sale_shipping" string="Shipping">
-                                <label for="commitment_date" string="Delivery Date"/>
-                                <div name="commitment_date_div" class="o_row">
-                                    <field name="commitment_date" readonly="state == 'cancel' or locked"/>
-                                    <span name="expected_date_span" class="text-muted">Expected: <field name="expected_date" class="oe_inline" widget="date"/></span>
-                                </div>
-                            </group>
-                            <group string="Tracking" name="sale_reporting">
-                                <field name="origin"/>
-                                <field name="campaign_id" options="{'create_name_field': 'title'}"/>
-                                <field name="medium_id"/>
-                                <field name="source_id"/>
-                            </group>
+
+
+
                         </group>
                     </page>
+                       <page string="Lista de Empaque"
+                         invisible="clase_encomienda != 'mer'"
+                         name="packing_list">
+                       <field name="packing_list_ids"
+                              invisible="clase_encomienda != 'mer'"
+                              widget="section_and_note_one2many" >
+                           <tree  editable="bottom"  >
+                               <control>
+                                    <create name="add_product_control" string="Agregar Producto"/>
+                                    <create name="add_section_control" string="Agregar Sección" context="{'default_display_type': 'line_section'}"/>
+                                   <create name="add_note_control" string="Agregar Nota" context="{'default_display_type': 'line_note'}"/> -
+                                </control>
+
+                               <field name="sequence" widget="handle"/>
+
+                               <field name="display_type"  column_invisible="True" />
+
+                               <field name="qty" />
+                               <field name="type_mercaderia"  />
+                               <field name="name" />
+                               <field name="code_hds" optional="hide" />
+
+                           </tree>
+                       </field>
+                   </page>
 
                     </notebook>
 
