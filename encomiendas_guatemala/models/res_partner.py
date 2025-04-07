@@ -7,10 +7,10 @@ class ResPartner(models.Model):
     file_vat     = fields.Binary(string="Adjunto Documento")
     name_file_vat     = fields.Char()
     dpi = fields.Char()
-    name_invoice = fields.Char(string="Nombre Factura")
-    adress_invoice = fields.Char(string="Dirección Factura")
-    date_born = fields.Date(string="Fecha Nacimiento")
-    is_destinatario = fields.Boolean()
+    #name_invoice = fields.Char(string="Nombre Factura")
+    #adress_invoice = fields.Char(string="Dirección Factura")
+    #date_born = fields.Date(string="Fecha Nacimiento")
+    #is_destinatario = fields.Boolean()
 
     @api.model
     def default_get(self, default_fields):
