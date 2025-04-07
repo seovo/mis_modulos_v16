@@ -27,42 +27,33 @@ class SaleOrder(models.Model):
     total_peso_cobro = fields.Float(compute='get_total_peso_cobro', string='Peso Cobro')
     search_vat_partner = fields.Char(string="DPI")
     search_vat_partner_delivery = fields.Char(string="DPI")
-    html_preview_partner = fields.Html(compute='get_html_preview_partner')
+    html_preview_partner = fields.Html(compute='get_html_preview_partner',string="")
 
     @api.depends('partner_id')
     def get_html_preview_partner(self):
         for record in self:
-            html = '''
-            <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-            '''
+            partner = record.partner_id
+            if partner:
+                html = f'''
+                            <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Dirección </th>
+                      <td>{partner.street}</td>
+                    </tr>
+
+
+                    <tr>
+                      <th scope="row">Pais </th>
+                      <td>{partner.country_id.display_name or ''}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                            '''
+            else:
+                html = ''
+
             record.html_preview_partner = html
 
 
