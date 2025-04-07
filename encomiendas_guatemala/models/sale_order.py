@@ -28,6 +28,17 @@ class SaleOrder(models.Model):
     search_vat_partner = fields.Char(string="DPI")
     search_vat_partner_delivery = fields.Char(string="DPI")
 
+    @api.onchange('search_vat_partner')
+    def change_search_vat_partner(self):
+        for record in self:
+            if record.search_vat_partner:
+                partner = self.env['sale.order'].search([('vat', '=', record.search_vat_partner)], limit=1)
+                record.partner_id = partner.id if partner else False
+            else:
+                record.partner_id = False
+
+
+
     def _compute_has_active_pricelist(self):
         res = super()._compute_has_active_pricelist()
 
