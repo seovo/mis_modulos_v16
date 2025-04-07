@@ -37,6 +37,15 @@ class SaleOrder(models.Model):
             else:
                 record.partner_id = False
 
+    @api.onchange('search_vat_partner_delivery')
+    def change_search_vat_partner_delivery(self):
+        for record in self:
+            if record.search_vat_partner:
+                partner = self.env['res.partner'].search([('vat', '=', record.search_vat_partner_delivery)], limit=1)
+                record.partner_shipping_id = partner.id if partner else False
+            else:
+                record.partner_shipping_id = False
+
 
 
     def _compute_has_active_pricelist(self):
