@@ -104,7 +104,7 @@
                             <field name="search_vat_partner" />
                             <field name="partner_id"
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
-                            <field name="html_preview_partner" />
+                            <field name="html_preview_partner" nolabel="1" />
                         </group>
 
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
