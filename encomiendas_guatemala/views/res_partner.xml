@@ -101,6 +101,9 @@
                             <group>
                                 <field name="name_invoice" />
                                 <field name="vat" />
+                                <field name="adress_invoice" />
+                                <field name="date_born" />
+
                             </group>
                         </page>
 
