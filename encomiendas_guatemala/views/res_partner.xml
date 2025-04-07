@@ -82,6 +82,7 @@
                         <group>
                             <field name="function" placeholder="e.g. Sales Director"
                                 invisible="is_company"/>
+                            <field name="use_whatsapp" />
                             <field name="phone" widget="phone"/>
                             <field name="mobile" widget="phone"/>
                             <field name="user_ids" invisible="1"/>
@@ -91,8 +92,10 @@
                                 invisible="is_company"/>
                             <field name="active_lang_count" invisible="1"/>
                             <field name="lang" invisible="active_lang_count &lt;= 1"/>
-                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"
-                                   placeholder='e.g. "B2B", "VIP", "Consulting", ...'/>
+                            <field name="file_vat" widget="file" filename="name_file_vat" />
+                            <field name="name_file_vat" invisible="1"  />
+
+
                         </group>
                     </group>
 
