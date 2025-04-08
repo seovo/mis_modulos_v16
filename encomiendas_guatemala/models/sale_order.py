@@ -50,6 +50,11 @@ class SaleOrder(models.Model):
     guia_enc = fields.Char(string="Guia")
 
 
+    def action_print_send(self):
+        self.state = 'sent'
+        return self.env.ref('sale_pdf_quote_builder.action_report_saleorder_raw').report_action(self)
+
+
     @api.depends('partner_id')
     def get_html_preview_partner(self):
         for record in self:

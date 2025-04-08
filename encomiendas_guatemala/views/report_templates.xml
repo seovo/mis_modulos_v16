@@ -46,7 +46,7 @@
                     <span class="m-0" t-field="doc.client_order_ref">SO0000</span>
                 </div>
                 <div t-if="doc.date_order" class="col-auto col-3 mw-100 mb-2" name="informations_date">
-                    <strong t-if="doc.state in ['draft', 'sent']">Quotation Date:</strong>
+                    <strong t-if="doc.state in ['draft', 'sent']">Fecha del envió:</strong>
                     <strong t-else="">Fecha del envió:</strong><br/>
                     <span class="m-0" t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}">2023-12-31</span>
                 </div>
