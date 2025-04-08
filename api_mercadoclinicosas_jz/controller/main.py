@@ -47,7 +47,7 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
         '/apiclinicos/shop/category/<model("product.public.category"):category>',
         '/apiclinicos/shop/category/<model("product.public.category"):category>/page/<int:page>',
     ], type='http', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop)
-    def shop(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
+    def shopmercadoclinico(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
         add_qty = int(post.get('add_qty', 1))
         try:
             min_price = float(min_price)
