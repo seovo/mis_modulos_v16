@@ -194,7 +194,7 @@
                         <th name="th_taxes" class="text-end">Taxes</th>
                         -->
                         <th name="th_subtotal" class="text-end">
-                            <span>Amount</span>
+                            <span>Total</span>
                         </th>
                     </tr>
                 </thead>
@@ -232,7 +232,7 @@
                                 </td>
                                 -->
                                 <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
-                                    <span t-field="line.price_subtotal">27.00</span>
+                                    <span t-field="line.price_total">27.00</span>
                                 </td>
                             </t>
                             <t t-elif="line.display_type == 'line_section'">
@@ -261,24 +261,23 @@
                     </t>
                 </tbody>
             </table>
+               <!--
             <div class="clearfix" name="so_total_summary">
                 <div id="total" class="row" name="total">
                     <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
                         <table class="table table-sm table-borderless">
-                            <!-- Tax totals -->
+
                             <tr>
                                 <td>Total</td>
                                 <td><span t-field="doc.amount_total" /></td>
                             </tr>
-                            <!--
-                            <t t-set="tax_totals" t-value="doc.tax_totals"/>
-                            <t t-call="sale.document_tax_totals"/>
-                            -->
+
                         </table>
                     </div>
                 </div>
             </div>
             <div class="oe_structure"/>
+               -->
 
             <div t-if="not doc.signature" class="oe_structure"/>
             <div t-else="" class="mt-4 ml64 mr4" name="signature">
@@ -312,7 +311,7 @@
     <template id="report_saleorder_document_inherit_sale_stock" inherit_id="sale.report_saleorder_document">
         <xpath expr="//div[@name='expiration_date']" position="after">
             <div class="col-auto col-3 mw-100 mb-2" t-if="doc.carrier_id">
-                <strong>Caja Rural:</strong>
+                <strong>Caja BANRURAL:</strong>
                 <p  class="m-0"><t t-esc="doc.carrier_id.name" /></p>
             </div>
 
