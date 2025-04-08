@@ -98,10 +98,10 @@
                         </group>
                     </group>
 
-                    <notebook colspan="4">
+                    <notebook colspan="4" invisible="is_destinario" >
                         <page string="Datos de Facturación" name="contact_addresses" autofocus="autofocus">
                             <group>
-                                <field name="name_invoice" required="1" />
+                                <field name="name_invoice"  />
                                 <field name="vat" />
                                 <field name="adress_invoice" />
                                 <field name="date_born" />
