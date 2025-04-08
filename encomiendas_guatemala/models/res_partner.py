@@ -17,17 +17,19 @@ class ResPartner(models.Model):
     def create(self,vals):
         res = super().create(vals)
         if 'name_invoice' in vals:
-            dx = {
-                'name': vals['name_invoice'] ,
-                'parent_id' : res.id
-            }
-            if 'adress_invoice' in vals:
-                dx.update({'street': vals['adress_invoice']})
-            if 'date_born' in vals:
-                dx.update({'date_born': vals['date_born']})
-            if 'carrier_id' in vals:
-                dx.update({'carrier_id': vals['carrier_id']})
-            self.env['res.partner'].create(dx)
+            if vals['name_invoice']:
+                dx = {
+                    'name': vals['name_invoice'],
+                    'parent_id': res.id
+                }
+                if 'adress_invoice' in vals:
+                    dx.update({'street': vals['adress_invoice']})
+                if 'date_born' in vals:
+                    dx.update({'date_born': vals['date_born']})
+                if 'carrier_id' in vals:
+                    dx.update({'carrier_id': vals['carrier_id']})
+                self.env['res.partner'].create(dx)
+
         return res
 
     @api.model
