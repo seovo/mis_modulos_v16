@@ -54,7 +54,7 @@
 
                     <button name="action_print_send"
                             type="object" string="Imprimir"
-                     invisible="state == 'draft' or invoice_count &gt;= 1"
+                     invisible="state != 'draft'"
                      context="{'proforma': True, 'validate_analytic': True}"/>
 
 
