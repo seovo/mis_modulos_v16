@@ -25,6 +25,8 @@ class ResPartner(models.Model):
                 dx.update({'street': vals['adress_invoice']})
             if 'date_born' in vals:
                 dx.update({'date_born': vals['date_born']})
+            if 'carrier_id' in vals:
+                dx.update({'carrier_id': vals['carrier_id']})
             self.env
         return res
 
