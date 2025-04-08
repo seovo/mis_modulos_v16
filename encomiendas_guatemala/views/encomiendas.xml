@@ -26,7 +26,7 @@
 
                     -->
 
-                    <button id="create_invoice" name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    <button id="create_invoice" name="%(sale.action_view_sale_advance_payment_inv)d" string="Crear Factura"
                             type="action" class="btn-primary" data-hotkey="c"
                              invisible="invoice_status != 'to invoice'"/>
 
@@ -63,7 +63,7 @@
                     <!--
                     <button name="action_preview_sale_order" string="Preview" type="object" class="btn-secondary"/>
                     -->
-                    <button name="action_cancel" type="object" string="Cancel" invisible="state not in ['draft', 'sent', 'sale'] or not id" data-hotkey="x"/>
+                    <button name="action_cancel" type="object" string="Cancelar" invisible="state not in ['draft', 'sent', 'sale'] or not id" data-hotkey="x"/>
                     <button name="action_draft" invisible="state != 'cancel'" type="object" string="Set to Quotation" data-hotkey="w"/>
                     <t groups="sale.group_auto_done_setting">
                     <button name="action_lock" type="object" string="Lock"
@@ -107,13 +107,15 @@
                          </group>
                          <group>
                              <div class="o_td_label" groups="base.group_no_one" invisible="state in ['sale', 'cancel']">
-                            <label for="date_order" string="Fecha Cotización"/>
+                            <label for="date_order" string="Fecha del envió"/>
                         </div>
-                        <field name="date_order" nolabel="1" groups="base.group_no_one" invisible="state in ['sale', 'cancel']" readonly="state in ['cancel', 'sale']"/>
+                        <field name="date_order" nolabel="1" groups="base.group_no_one" invisible="state in ['sale', 'cancel']"
+                               readonly="state in ['cancel', 'sale']"/>
                         <div class="o_td_label" invisible="state in ['draft', 'sent']">
-                            <label for="date_order" string="Fecha Pedido"/>
+                            <label for="date_order" string="Fecha del envió"/>
                         </div>
-                        <field name="date_order" invisible="state in ['draft', 'sent']" readonly="state in ['cancel', 'sale']" nolabel="1"/>
+                        <field name="date_order" invisible="state in ['draft', 'sent']"
+                               readonly="state in ['cancel', 'sale']" nolabel="1" string="Fecha del envió"/>
 
                          </group>
                      </group>
@@ -123,6 +125,7 @@
                         <group name="partner_details" string="Persona que envía la encomienda">
                             <field name="search_vat_partner" readonly="state in ['cancel', 'sale']" />
                             <field name="partner_id" string="Envia"
+                                   domain="[('parent_id','=',False)]"
                                    placeholder="Type to find a customer..." readonly="state in ['cancel', 'sale']"/>
                             <field name="html_preview_partner"  string="-"/>
                             <field name="partner_invoice_id"
@@ -137,7 +140,9 @@
                             <field name="search_vat_partner_delivery" />
                             <field name="partner_shipping_id" string="Recibe"
                                    domain="[('parent_id','=',False)]"
-                                   readonly="state in ['cancel', 'sale']" />
+                                   readonly="state in ['cancel', 'sale']"
+                                   context="{'default_is_destinatario': True}"
+                            />
                             <field name="html_preview_partner_delivery" string="-" />
                             <field name="state_encomienda" />
                             <field name="client_order_ref" string="Recibo de Pago" />

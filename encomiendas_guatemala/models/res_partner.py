@@ -14,14 +14,23 @@ class ResPartner(models.Model):
     carrier_id = fields.Many2one('delivery.carrier', string="Caja Banrural")
 
     @api.model
+    def create(self,vals):
+        res = super().create(vals)
+        if 'name_invoice' in vals:
+            dx = {
+                'name': vals['name_invoice'] ,
+                'parent_id' : res.id
+            }
+            if 'adress_invoice' in vals:
+                dx.update({'street': vals['adress_invoice']})
+            if 'date_born' in vals:
+                dx.update({'date_born': vals['date_born']})
+            self.env
+        return res
+
+    @api.model
     def default_get(self, default_fields):
-        """Add the company of the parent as default if we are creating a child partner.
-        Also take the parent lang by default if any, otherwise, fallback to default DB lang."""
         values = super().default_get(default_fields)
-
-
-
-        # protection for `default_type` values leaking from menu action context (e.g. for crm's email)
         values['is_company'] = False
 
         return values

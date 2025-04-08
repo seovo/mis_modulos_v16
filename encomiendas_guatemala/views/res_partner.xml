@@ -89,7 +89,7 @@
                             <field name="use_whatsapp" />
                             <field name="phone" widget="phone"/>
                             <field name="user_ids" invisible="1"/>
-                            <field name="email" widget="email" context="{'gravatar_image': True}" required="user_ids"/>
+                            <field name="email" widget="email" context="{'gravatar_image': True}" required="1"/>
                             <field name="file_vat" widget="file" filename="name_file_vat" />
                             <field name="name_file_vat" invisible="1"  />
                             <field name="is_destinatario" invisible="1" />
@@ -101,7 +101,7 @@
                     <notebook colspan="4">
                         <page string="Datos de Facturación" name="contact_addresses" autofocus="autofocus">
                             <group>
-                                <field name="name_invoice" />
+                                <field name="name_invoice" required="1" />
                                 <field name="vat" />
                                 <field name="adress_invoice" />
                                 <field name="date_born" />
