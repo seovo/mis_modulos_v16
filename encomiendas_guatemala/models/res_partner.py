@@ -27,7 +27,7 @@ class ResPartner(models.Model):
                 dx.update({'date_born': vals['date_born']})
             if 'carrier_id' in vals:
                 dx.update({'carrier_id': vals['carrier_id']})
-            self.env
+            self.env['res.partner'].create(dx)
         return res
 
     @api.model
