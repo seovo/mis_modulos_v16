@@ -216,7 +216,7 @@ class CustomerPortal(portal.CustomerPortal):
         order_sudo = record
 
         try:
-            order_sudo.write({
+            order_sudo.sudo().write({
                 # 'signed_by': name,
                 # 'signed_on': fields.Datetime.now(),
                 'signature': signature,
