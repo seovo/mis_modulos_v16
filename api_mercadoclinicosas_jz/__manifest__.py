@@ -9,6 +9,7 @@
     "depends": ["website_sale"],
     "data": [
         "security/ir.model.access.csv",
+        'views/view.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

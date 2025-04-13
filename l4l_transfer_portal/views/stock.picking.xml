@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+           <field name="name">stock.picking.Form</field>
+           <field name="model">stock.picking</field>
+           <field name="inherit_id" ref="stock.view_picking_form" />
+           <field name="arch" type="xml">
+               <xpath expr="//header" position="inside" >
+                    <button name="action_preview_stock_picking"
+                            string="Vista Previa"
+                            type="object" class="btn-secondary"/>
+               </xpath>
+
+               <xpath expr="//notebook" position="inside" >
+                   <page groups="base.group_no_one"
+                         string="Cliente Firma" name="customer_signature" >
+                        <group>
+                            <!--
+                            <field name="signed_by" readonly="signature"/>
+                            <field name="signed_on" readonly="signature"/>
+                            -->
+                            <field name="signature" widget="image"/>
+                        </group>
+                    </page>
+               </xpath>
+           </field>
+    </record>
+
+</odoo>

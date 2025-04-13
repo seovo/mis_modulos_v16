@@ -26,7 +26,15 @@ from odoo.tools import lazy, str2bool
 from odoo.tools.json import scriptsafe as json_scriptsafe
 from odoo import fields, http, SUPERUSER_ID, tools, _
 
-class WebsiteSaleClinicos(payment_portal.PaymentPortal):
+#class WebsiteSaleClinicos(payment_portal.PaymentPortal):
+class WebsiteSaleClinicos(WebsiteSale):
+
+    #@http.route(['/apiclinicosx/shop'], type='json', auth="public", methods=['POST'],
+    #            website=True, csrf=False)
+    #def apiclinicos_signup(self, **post):
+    #    return {}
+
+
 
     #como referencia ya no usar
     def apiclinicos_sitemap_shop(env, rule, qs):
@@ -46,8 +54,8 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
         '/apiclinicos/shop/page/<int:page>',
         '/apiclinicos/shop/category/<model("product.public.category"):category>',
         '/apiclinicos/shop/category/<model("product.public.category"):category>/page/<int:page>',
-    ], type='http', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop)
-    def shopmercadoclinico(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
+    ], type='json', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop, csrf=False, methods=['POST'])
+    def shop_clinicos(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
         add_qty = int(post.get('add_qty', 1))
         try:
             min_price = float(min_price)
@@ -96,7 +104,7 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
                 post['tags'] = None
                 tags = {}
 
-        keep = QueryURL('/shop',
+        keep = QueryURL('/apiclinicos/shop',
                         **self._shop_get_query_url_kwargs(category and int(category), search, min_price, max_price,
                                                           **post))
 
@@ -123,7 +131,7 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
         else:
             conversion_rate = 1
 
-        url = '/shop'
+        url = '/apiclinicos/shop'
         if search:
             post['search'] = search
         if attrib_list:
@@ -195,7 +203,7 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
         categs = lazy(lambda: Category.search(categs_domain))
 
         if category:
-            url = "/shop/category/%s" % slug(category)
+            url = "/apiclinicos/shop/category/%s" % slug(category)
 
         pager = website.pager(url=url, total=product_count, page=page, step=ppg, scope=5, url_args=post)
         offset = pager['offset']
@@ -223,30 +231,82 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
         fiscal_position_sudo = website.fiscal_position_id.sudo()
         products_prices = lazy(lambda: products._get_sales_prices(pricelist, fiscal_position_sudo))
 
+
+        ###formateoo
+        categ_format = []
+        for catg in categs:
+            categ_format.append({
+                'id': catg.id ,
+                'name': catg.display_name
+            })
+
+        products_format = []
+
+        url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
+
+
+        for prt in products:
+            img_product = f'''{url_base.value}/web/image/product.template/{prt.id}/image_512'''
+            #https://mercadoclinicosas-mercado-vpm-18386037.dev.odoo.com/web/image/product.template/846/image_512
+            dx = {
+                'id': prt.id ,
+                'name': prt.display_name ,
+                'url_image': img_product
+            }
+
+            products_pricex = products_prices[prt.id]
+            if products_pricex:
+                dx.update(products_pricex)
+
+
+            products_format.append(dx)
+
+
+
+
+        search_product_format = []
+        for prt in products:
+            img_product = f'''{url_base.value}/web/image/product.template/{prt.id}/image_512'''
+            # https://mercadoclinicosas-mercado-vpm-18386037.dev.odoo.com/web/image/product.template/846/image_512
+            search_product_format.append({
+                'id': prt.id,
+                'name': prt.display_name,
+                'url_image': img_product
+            })
+
+        attributes_format = []
+        for at in attributes:
+            attributes_format.append({
+                'id': at.id ,
+                'name': at.display_name
+            })
+
         values = {
             'search': fuzzy_search_term or search,
             'original_search': fuzzy_search_term and search,
             'order': post.get('order', ''),
-            'category': category,
+            'category': {'id': category.id , 'name': category.display_name} if category else {} ,
+            #'category': category,
             'attrib_values': attrib_values,
             'attrib_set': attrib_set,
             'pager': pager,
-            'pricelist': pricelist,
-            'fiscal_position': fiscal_position_sudo,
+            'pricelist': {'id': pricelist.id , 'name': pricelist.display_name} if pricelist else {},
+            'fiscal_position': {'id': fiscal_position_sudo.id , 'name': fiscal_position_sudo.display_name} if fiscal_position_sudo else {},
             'add_qty': add_qty,
-            'products': products,
-            'search_product': search_product,
+            'products': products_format,
+            'search_product': search_product_format,
             'search_count': product_count,  # common for all searchbox
             'bins': lazy(lambda: TableCompute().process(products, ppg, ppr)),
             'ppg': ppg,
             'ppr': ppr,
-            'categories': categs,
-            'attributes': attributes,
+            'categories': categ_format,
+            'attributes': attributes_format,
             'keep': keep,
             'search_categories_ids': search_categories.ids,
             'layout_mode': layout_mode,
             'products_prices': products_prices,
-            'get_product_prices': lambda product: lazy(lambda: products_prices[product.id]),
+            #'get_product_prices': lambda product: lazy(lambda: products_prices[product.id]),
+            #'get_product_prices': products_prices[product.id] if product else {},
             'float_round': tools.float_round,
         }
         if filter_by_price_enabled:
@@ -258,15 +318,17 @@ class WebsiteSaleClinicos(payment_portal.PaymentPortal):
             values.update({'all_tags': all_tags, 'tags': tags})
         if category:
             values['main_object'] = category
-        #values.update(self._get_additional_shop_values(values))
-        values.update(WebsiteSale._get_additional_shop_values(values))
+        values.update(self._get_additional_shop_values(values))
+        #values.update(WebsiteSale._get_additional_shop_values(values))
+
         return values
 
         #return request.render("website_sale.products", values)
 
 
-class ApiClinicos(http.Controller):
 
+
+class ApiClinicos(http.Controller):
 
 
 
@@ -278,6 +340,9 @@ class ApiClinicos(http.Controller):
 
         #values = {key: qcontext.get(key) for key in ('login', 'name', 'password')}
 
+        #partner = request.env['res.partner'].sudo().create({
+        #    'name':
+        #})
 
         values = {
             'name': data['name'] ,
@@ -372,7 +437,7 @@ class ApiClinicos(http.Controller):
     @http.route('/apiclinicos/websites', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
     def mercadopagolink_payment_response(self, **data):
-        websites = request.env['website'].sudo().search([])
+        websites = request.env['website'].sudo().search([('show_app','=',True)])
         data = []
         for website in websites:
 

@@ -5,6 +5,9 @@ import string
 import secrets
 import time
 
+class Website(models.Model):
+    _inherit = 'website'
+    show_app =  fields.Boolean()
 
 class WebServices(models.Model):
     _name = "clinicos.web.services"
@@ -22,3 +25,5 @@ class ResPartner(models.Model):
         #raise ValueError('HOLAAA')
         res = super().create(vals)
         return res
+
+    #website
