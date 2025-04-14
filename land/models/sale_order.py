@@ -82,8 +82,6 @@ class SaleOrder(models.Model):
 
 
 
-
-
     note = fields.Text()
     seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True,copy=False)
 
@@ -134,6 +132,9 @@ class SaleOrder(models.Model):
     comision_payment = fields.Float(string="Comision Pagada",compute='get_comision_payment')
     comision_payment_real = fields.Float(string="Comision Pagada (Con Descuentos)", compute='get_comision_payment')
     diff_payment_comision =  fields.Float(string="Diferencia Comision", compute='get_comision_payment',store=True)
+
+    def open_product_land(self):
+        return
 
 
     @api.depends('commision_line_ids','commision_line_ids.commission_land_id.state')

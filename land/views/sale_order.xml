@@ -264,9 +264,10 @@
 
                </xpath>
 
-
-
-
+               <xpath expr="//field[@name='order_line']" position="before" >
+                   <button name="open_product_land" string="Agregar Terreno"
+                           type="object" class="m-4  btn-primary" />
+               </xpath>
 
            </field>
     </record>
