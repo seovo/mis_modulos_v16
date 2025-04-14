@@ -280,8 +280,6 @@ class SaleOrderLine(models.Model):
         return res
 
 
-
-
     def create(self,values):
         res = super().create(values)
         for record in res:
