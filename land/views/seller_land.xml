@@ -10,4 +10,19 @@
     <menuitem action="action_seller_land"
               id="menu_seller_land"
               parent="sale.menu_sale_config" />
+
+
+
+    <record id="action_land_etapa" model="ir.actions.act_window">
+        <field name="name">Etapa</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">land.etapa</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_land_etapa"
+              id="menu_land_etapa"
+              parent="sale.menu_sale_config" />
+
+
 </odoo>

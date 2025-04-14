@@ -2,16 +2,15 @@ from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
 from datetime import date
-'''
-class ReportLotLand(models.Model):
-    _name        = 'report.lot.land'
-    _description = 'report.lot.land'
-    mz_value_id     = fields.Many2one('product.attribute.value',string="Manzana")
-    #stage_value_id  = fields.Many2one('product.template.attribute.value')
-    max_lot         = fields.Integer(string='Cantidad Lotes')
-    line_ids        = fields.One2many('report.lot.land.line','report_lot_land_id')
-    product_tmp_id  = fields.Many2one('product.template',string='Producto')
 
+
+
+class LandEtapa(models.Model):
+    _name        = 'land.etapa'
+    _description = 'land.etapa'
+    name  = fields.Char(required=True)
+    value = fields.Float()
+    '''
     _sql_constraints = [
         (
             "unique_report_lot_land",
@@ -19,17 +18,23 @@ class ReportLotLand(models.Model):
             "There can be no duplication mz and stage",
         )
     ]
+    '''
     
-'''
+
 
 class ReportLotLandLine(models.Model):
     _name        = 'report.lot.land.line'
     _description = 'report.lot.land.line'
     #report_lot_land_id = fields.Many2one('report.lot.land')
     mz_value_id        = fields.Many2one('product.template.attribute.value', string="Manzana")
+
+    manzana            = fields.Char()
     name               = fields.Char(string="Lote")
-    shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
     area               = fields.Float()
+    etapa              = fields.Many2one('land.etapa')
+
+    shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
+
     area_id            = fields.Many2one('product.attribute.value', domain=[('attribute_id.type_land', '=', 'm2')], string="Area")
     front              = fields.Float(string='Frente')
     large1             = fields.Float(string='Largo 1')
@@ -41,7 +46,7 @@ class ReportLotLandLine(models.Model):
     product_tmp_id     = fields.Many2one('product.template', string='Producto')
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
-    sector_land_separation_id = fields.Many2one('product.attribute.value',domain=[('attribute_id.type_land','=','stage')],string="Etapa")
+
 
     @api.depends('order_ids','move_ids')
     def get_state(self):
