@@ -139,12 +139,12 @@ class SaleOrder(models.Model):
             "type": "ir.actions.act_window",
             "view_mode": "form",
             # "view_id": self.env.ref('land.view_order_form_due').id,
-            "res_model": "sale.order.line",
-            # "res_id": self.id,
+            "res_model": "sale.order",
+            "res_id": self.id,
             "target": "new",
-            "context": {
-                'default_order_id': self.id
-            }
+            #"context": {
+            #    'default_order_id': self.id
+            #}
 
         }
 
