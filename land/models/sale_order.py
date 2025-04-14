@@ -134,7 +134,19 @@ class SaleOrder(models.Model):
     diff_payment_comision =  fields.Float(string="Diferencia Comision", compute='get_comision_payment',store=True)
 
     def open_product_land(self):
-        return
+        return {
+            "name": f"AGREGAR TERRENO",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            # "view_id": self.env.ref('land.view_order_form_due').id,
+            "res_model": "sale.order.line",
+            # "res_id": self.id,
+            "target": "new",
+            "context": {
+                'default_order_id': self.id
+            }
+
+        }
 
 
     @api.depends('commision_line_ids','commision_line_ids.commission_land_id.state')
