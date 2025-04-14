@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_order_form_due" model="ir.ui.view">
+    <record id="add_terreno_sale" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order</field>
            <field name="priority">1000</field>
