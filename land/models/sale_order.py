@@ -125,7 +125,7 @@ class SaleOrder(models.Model):
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
-    report_lot_land_line_id = fields.Many2one('report.lot.land.line',compute='get_report_lot_land_line_id',store=True)
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line')
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
     sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
 
@@ -230,7 +230,7 @@ class SaleOrder(models.Model):
                 if record.user_id in team.member_ids:
                     record.commision_lan = team.commission_land
 
-    @api.depends('mz_land','lot_land','state','mz_lot','note')
+    @api.onchange('mz_land','lot_land','state','mz_lot','note')
     def get_report_lot_land_line_id(self,product_tmp=None):
 
         for record in self:
