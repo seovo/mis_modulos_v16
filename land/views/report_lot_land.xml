@@ -82,10 +82,10 @@
                 <field name="sector_land_separation_id"   />
                 <field name="shape"   />
                 <field name="area_id"   />
-                <field name="front"   />
-                <field name="large1"   />
-                <field name="large2"   />
-                <field name="background"   />
+                <field name="front"   optional="hide" />
+                <field name="large1"  optional="hide" />
+                <field name="large2"  optional="hide" />
+                <field name="background"  optional="hide" />
                 <field name="price"   />
 
                 <field name="state"
