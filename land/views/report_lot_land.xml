@@ -77,12 +77,13 @@
 
                 <!-- decoration-info="state in ['draft', 'sent']" decoration-muted="state == 'cancel'" -->
 
-                <field name="mz_value_id"  />
+                <field name="mz_value_id" optional="hide" />
+                <field name="manzana"   />
                 <field name="name"   />
                 <field name="zona"   />
                 <field name="ettapa"   />
                 <field name="shape"   />
-                <field name="area_id"   />
+                <field name="area"   />
                 <field name="front"   optional="hide" />
                 <field name="large1"  optional="hide" />
                 <field name="large2"  optional="hide" />

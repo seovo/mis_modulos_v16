@@ -14,7 +14,6 @@ class LandZona(models.Model):
 class ReportLotLandLine(models.Model):
     _name        = 'report.lot.land.line'
     _description = 'report.lot.land.line'
-    #report_lot_land_id = fields.Many2one('report.lot.land')
     mz_value_id        = fields.Many2one('product.template.attribute.value', string="Manzana")
 
     manzana            = fields.Char()
@@ -25,7 +24,7 @@ class ReportLotLandLine(models.Model):
 
     shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
 
-    area_id            = fields.Many2one('product.attribute.value', domain=[('attribute_id.type_land', '=', 'm2')], string="Area")
+
     front              = fields.Float(string='Frente')
     large1             = fields.Float(string='Largo 1')
     large2             = fields.Float(string='Largo 2')
@@ -33,7 +32,7 @@ class ReportLotLandLine(models.Model):
     price              = fields.Float(string='Precio')
     order_ids          = fields.One2many('sale.order','report_lot_land_line_id',string="Ventas")
     move_ids           = fields.One2many('account.move','report_lot_land_line_id',string="Separaciones")
-    product_tmp_id     = fields.Many2one('product.template', string='Producto')
+    product_tmp_id     = fields.Many2one('product.template', string='Producto',required=True)
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
 
