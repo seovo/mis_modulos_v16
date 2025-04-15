@@ -29,13 +29,17 @@ class ReportLotLandLine(models.Model):
     large1             = fields.Float(string='Largo 1')
     large2             = fields.Float(string='Largo 2')
     background         = fields.Float(string='Fondo')
-    price              = fields.Float(string='Precio')
+    price              = fields.Float(string='Precio',compute='set_price')
     order_ids          = fields.One2many('sale.order','report_lot_land_line_id',string="Ventas")
     move_ids           = fields.One2many('account.move','report_lot_land_line_id',string="Separaciones")
     product_tmp_id     = fields.Many2one('product.template', string='Producto',required=True)
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
 
+    @api.depends('zona','area')
+    def set_price(self):
+        for record in self:
+            record.price = record.zona.value * record.area if record.zona and record.area else 0
 
     @api.depends('order_ids','move_ids')
     def get_state(self):
