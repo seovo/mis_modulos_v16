@@ -14,7 +14,7 @@ class LandZona(models.Model):
 class ReportLotLandLine(models.Model):
     _name        = 'report.lot.land.line'
     _description = 'report.lot.land.line'
-    mz_value_id        = fields.Many2one('product.template.attribute.value', string="Manzana")
+    mz_value_id        = fields.Many2one('product.template.attribute.value', string="Manzana ID")
 
     manzana            = fields.Char()
     name               = fields.Char(string="Lote")
