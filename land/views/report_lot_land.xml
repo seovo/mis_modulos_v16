@@ -80,7 +80,7 @@
                 <field name="mz_value_id"  />
                 <field name="name"   />
                 <field name="zona"   />
-                <field name="etapa"   />
+                <field name="ettapa"   />
                 <field name="shape"   />
                 <field name="area_id"   />
                 <field name="front"   optional="hide" />

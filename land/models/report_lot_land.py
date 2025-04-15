@@ -21,7 +21,7 @@ class ReportLotLandLine(models.Model):
     name               = fields.Char(string="Lote")
     area               = fields.Float()
     zona               = fields.Many2one('land.zona')
-    etapa              = fields.Char()
+    ettapa              = fields.Char(string="Etapa")
 
     shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
 
