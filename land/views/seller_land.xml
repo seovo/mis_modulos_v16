@@ -13,15 +13,15 @@
 
 
 
-    <record id="action_land_etapa" model="ir.actions.act_window">
-        <field name="name">Etapa</field>
+    <record id="action_land_zona" model="ir.actions.act_window">
+        <field name="name">Tipo de Ubicacion</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">land.etapa</field>
+        <field name="res_model">land.zona</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem action="action_land_etapa"
-              id="menu_land_etapa"
+    <menuitem action="action_land_zona"
+              id="menu_land_zona"
               parent="sale.menu_sale_config" />
 
 

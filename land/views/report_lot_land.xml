@@ -79,6 +79,7 @@
 
                 <field name="mz_value_id"  />
                 <field name="name"   />
+                <field name="zona"   />
                 <field name="etapa"   />
                 <field name="shape"   />
                 <field name="area_id"   />

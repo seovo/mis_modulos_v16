@@ -3,24 +3,13 @@ from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
 from datetime import date
 
-
-
-class LandEtapa(models.Model):
-    _name        = 'land.etapa'
-    _description = 'land.etapa'
+class LandZona(models.Model):
+    _name        = 'land.zona'
+    _description = 'land.zona'
     name  = fields.Char(required=True)
     value = fields.Float()
-    '''
-    _sql_constraints = [
-        (
-            "unique_report_lot_land",
-            "unique(product_tmp_id, mz_value_id )",
-            "There can be no duplication mz and stage",
-        )
-    ]
-    '''
-    
 
+    
 
 class ReportLotLandLine(models.Model):
     _name        = 'report.lot.land.line'
@@ -31,7 +20,8 @@ class ReportLotLandLine(models.Model):
     manzana            = fields.Char()
     name               = fields.Char(string="Lote")
     area               = fields.Float()
-    etapa              = fields.Many2one('land.etapa')
+    zona               = fields.Many2one('land.zona')
+    etapa              = fields.Char()
 
     shape              = fields.Selection([('regular','Regular'),('irregular','Irregular')],string='Forma')
 
@@ -77,7 +67,7 @@ class ReportLotLandLine(models.Model):
     _sql_constraints = [
         (
             "unique_report_lot_land_line",
-            "unique(report_lot_land_id, number_lot )",
+            "unique(manzana, name , product_tmp_id )",
             "There can be no report.lot.land.line",
         )
     ]
