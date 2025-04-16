@@ -43,11 +43,6 @@ class ReportLotLandLine(models.Model):
             record.display_name = name
 
 
-    def _search_name(self, operator, value):
-        domain = [('product_tmp_id.company_id', '=', self.env.company.id), '|', '|', ('name', '=ilike', name),
-                  ('ettapa', '=ilike', value),
-                  ('manzana', '=ilike', value)]
-        return domain
 
     @api.depends('zona','area')
     def set_price(self):
