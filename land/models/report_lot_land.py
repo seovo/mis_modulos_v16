@@ -36,13 +36,17 @@ class ReportLotLandLine(models.Model):
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
 
-    @api.depends('manzana')
+    @api.depends('manzana','ettapa','name')
     def _compute_display_name(self):
         for record in self:
-            name = record.name
-            if record.manzana:
-                name = f'{name} - {record.manzana}'
+            name = f'{record.name} - {record.manzana} ({record.ettapa})'
             record.display_name = name
+
+    @api.model
+    def _name_search(self, name, domain=None, operator='ilike', limit=None, order=None):
+
+        domain =  ['|','|', ('name', '=ilike', name), ('ettapa', '=ilike', name), ('manzana', '=ilike', name)]
+        return self._search(domain, limit=limit, order=order)
 
     @api.depends('zona','area')
     def set_price(self):
