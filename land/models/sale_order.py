@@ -80,8 +80,6 @@ class SaleOrder(models.Model):
             record.price_total_land = price_inicial + price_credit
             record.price_independence_land = price_iden
 
-
-
     note = fields.Text()
     seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True,copy=False)
 
@@ -125,7 +123,8 @@ class SaleOrder(models.Model):
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
-    report_lot_land_line_id = fields.Many2one('report.lot.land.line',string="Lote")
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line',
+                                              string="Lote",domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
     sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
 
