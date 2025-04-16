@@ -36,6 +36,14 @@ class ReportLotLandLine(models.Model):
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
 
+    @api.depends('manzana')
+    def _compute_display_name(self):
+        for record in self:
+            name = record.name
+            if record.manzana:
+                name = f'{name} - {record.manzana}'
+            record.display_name = name
+
     @api.depends('zona','area')
     def set_price(self):
         for record in self:
