@@ -42,11 +42,22 @@ class ReportLotLandLine(models.Model):
             name = f'{record.name} - {record.manzana} ({record.ettapa})'
             record.display_name = name
 
-    def _search_name(self, operator, value):
-        domain = [('product_tmp_id.company_id', '=', self.env.company.id), '|', '|', ('name', '=ilike', value),
-                  ('ettapa', '=ilike', value),
-                  ('manzana', '=ilike', value)]
-        return domain
+    @api.model
+    def _name_search(self, name, domain=None, operator='ilike', limit=None, order=None):
+        domain = domain or []
+        if name:
+
+            domain = [('product_tmp_id.company_id', '=', self.env.company.id), '|', '|', ('name', '=ilike', name),
+                      ('ettapa', '=ilike', name),
+                      ('manzana', '=ilike', name)]
+
+            product_ids = self._search([('product_tmpl_id.seller_ids', 'in', domain)], limit=limit,
+                                       order=order)
+        else:
+            product_ids = self._search(domain, limit=limit, order=order)
+        return product_ids
+
+
 
     '''
     @api.model
