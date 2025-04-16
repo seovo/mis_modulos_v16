@@ -21,7 +21,8 @@ class StockPicking(models.Model):
         return {
             'type': 'ir.actions.act_url',
             'target': 'self',
-            'url': self.get_portal_url(),
+            'url': self.company_id.website+self.access_url
+            #'url': self.get_portal_url(),
         }
 
     def _compute_access_url(self):
