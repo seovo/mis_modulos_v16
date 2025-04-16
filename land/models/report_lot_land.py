@@ -51,7 +51,7 @@ class ReportLotLandLine(models.Model):
                       ('ettapa', '=ilike', name),
                       ('manzana', '=ilike', name)]
 
-            product_ids = self._search([('product_tmpl_id.seller_ids', 'in', domain)], limit=limit,
+            product_ids = self._search(domain, limit=limit,
                                        order=order)
         else:
             product_ids = self._search(domain, limit=limit, order=order)
