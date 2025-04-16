@@ -124,7 +124,8 @@ class SaleOrder(models.Model):
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',
-                                              string="Lote",domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
+                                              string="Lote")
+    #,domain="[('product_tmp_id.company_id', 'in', (False, company_id))]"
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
     sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
 
