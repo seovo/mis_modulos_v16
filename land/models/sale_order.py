@@ -311,9 +311,6 @@ class SaleOrder(models.Model):
                     #qty += line.qty_invoiced
             record.qty_dues_payment = cantidad_facturada
 
-
-
-
     @api.onchange('date_sign_land','type_periodo_invoiced')
     @api.depends('date_sign_land', 'type_periodo_invoiced')
     def change_date_first_due_date(self):
@@ -879,6 +876,13 @@ class SaleOrder(models.Model):
     def write(self,values):
         res = super().write(values)
 
+
+        if  'report_lot_land_line_id' in values:
+            self.order_line += self.env['sale.order.line'].new({
+                'product_id': self.product_tmp_id.product_variant_ids.id ,
+                'price_unit':  self.report_lot_land_line_id.price / self.product_tmp_id.dues_qty ,
+                'product_uom_qty':  self.product_tmp_id.dues_qty
+            })
         return res
 
 
