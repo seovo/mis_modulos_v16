@@ -891,9 +891,15 @@ class SaleOrder(models.Model):
 
         if  'report_lot_land_line_id' in values:
             if self.report_lot_land_line_id:
+
+                amount_total = self.report_lot_land_line_id.price
+
+                if self.inicial_lot_set > 0:
+                    amount_total -= self.inicial_lot_set
+
                 self.order_line += self.env['sale.order.line'].new({
                     'product_id': self.report_lot_land_line_id.product_tmp_id.product_variant_ids.id,
-                    'price_unit': self.report_lot_land_line_id.price / self.report_lot_land_line_id.product_tmp_id.dues_qty,
+                    'price_unit': amount_total / self.report_lot_land_line_id.product_tmp_id.dues_qty,
                     'product_uom_qty': self.report_lot_land_line_id.product_tmp_id.dues_qty
                 })
 
