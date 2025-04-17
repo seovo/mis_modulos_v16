@@ -257,6 +257,11 @@ class SaleOrder(models.Model):
     def get_report_lot_land_line_id(self,product_tmp=None):
 
         for record in self:
+
+            if record.report_lot_land_line_id:
+                if record.report_lot_land_line_id.zona:
+                    continue
+
             if not  product_tmp:
                 product_tmp = self.env['product.template'].search(
                     [('company_id', '=', record.company_id.id), ('payment_land_dues', '=', True),
