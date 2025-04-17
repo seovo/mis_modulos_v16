@@ -366,24 +366,33 @@ class SaleOrder(models.Model):
             lt = None
             stage = None
             m2 = None
-            for line in record.order_line:
-                if line.product_id.manzana and  line.product_id.manzana != '':
-                    mz = line.product_id.manzana
 
-                if line.product_id.lote and  line.product_id.lote  != '':
-                    lt = line.product_id.lote
+            if record.report_lot_land_line_id.zona:
+                mz = record.report_lot_land_line_id.manzana
+                lt = record.report_lot_land_line_id.name
+                m2 = record.report_lot_land_line_id.area
+                stage = record.report_lot_land_line_id.ettapa
 
-                if line.product_id.sector_land and  line.product_id.sector_land  != '':
-                    stage = line.product_id.sector_land
+            else:
+                for line in record.order_line:
+                    if line.product_id.manzana and line.product_id.manzana != '':
+                        mz = line.product_id.manzana
 
-                if line.product_id.m2_land and  line.product_id.m2_land  != '':
-                    m2 = line.product_id.m2_land
+                    if line.product_id.lote and line.product_id.lote != '':
+                        lt = line.product_id.lote
 
-            if record.mz_lot and not mz and not lt:
-                mz_lot = record.mz_lot.split('-')
-                if len(mz_lot) == 2:
-                    mz = str(mz_lot[0])
-                    lt = str(mz_lot[1])
+                    if line.product_id.sector_land and line.product_id.sector_land != '':
+                        stage = line.product_id.sector_land
+
+                    if line.product_id.m2_land and line.product_id.m2_land != '':
+                        m2 = line.product_id.m2_land
+
+                if record.mz_lot and not mz and not lt:
+                    mz_lot = record.mz_lot.split('-')
+                    if len(mz_lot) == 2:
+                        mz = str(mz_lot[0])
+                        lt = str(mz_lot[1])
+
 
 
             record.mz_land = mz if mz != 'None' else None
