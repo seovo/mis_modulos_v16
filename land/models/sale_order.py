@@ -136,6 +136,7 @@ class SaleOrder(models.Model):
                                               domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
     area_lot_related = fields.Float(related='report_lot_land_line_id.area',readonly=False,string="Area")
     zona_lot_related = fields.Many2one('land.zona',related='report_lot_land_line_id.zona',readonly=False,string="Zona")
+    price_lot_related = fields.Float(string='Precio',related='report_lot_land_line_id.price')
 
     def open_product_land(self):
         return {
