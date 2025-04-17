@@ -131,12 +131,24 @@ class SaleOrder(models.Model):
     comision_payment_real = fields.Float(string="Comision Pagada (Con Descuentos)", compute='get_comision_payment')
     diff_payment_comision =  fields.Float(string="Diferencia Comision", compute='get_comision_payment',store=True)
 
+    ########
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',
                                               string="Lote",
                                               domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
     area_lot_related = fields.Float(related='report_lot_land_line_id.area',readonly=False,string="Area")
     zona_lot_related = fields.Many2one('land.zona',related='report_lot_land_line_id.zona',readonly=False,string="Zona")
     price_lot_related = fields.Float(string='Precio',related='report_lot_land_line_id.price')
+    ###########
+
+    inicial_lot_set = fields.Float(string="Inicial")
+
+
+    @api.onchange('report_lot_land_line_id')
+    def change_report_lot_land(self):
+        for record in self:
+            if self.report_lot_land_line_id:
+                record.inicial_lot_set = self.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].list_price
+
 
 
     @api.onchange('zona_lot_related','area_lot_related')
@@ -884,6 +896,15 @@ class SaleOrder(models.Model):
                     'price_unit': self.report_lot_land_line_id.price / self.report_lot_land_line_id.product_tmp_id.dues_qty,
                     'product_uom_qty': self.report_lot_land_line_id.product_tmp_id.dues_qty
                 })
+
+
+            if 'inicial_lot_set' in values:
+                self.order_line += self.env['sale.order.line'].new({
+                    'product_id': self.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].product_variant_ids.id,
+                    'price_unit': self.report_lot_land_line_id.price / self.report_lot_land_line_id.product_tmp_id.dues_qty,
+                    'product_uom_qty': 1
+                })
+
 
         return res
 
