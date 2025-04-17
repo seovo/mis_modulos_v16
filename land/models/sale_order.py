@@ -897,7 +897,7 @@ class SaleOrder(models.Model):
                     'product_uom_qty': self.report_lot_land_line_id.product_tmp_id.dues_qty
                 })
 
-            if self.inicial_lot_set:
+            if self.inicial_lot_set and self.report_lot_land_line_id:
                 if self.inicial_lot_set > 0:
                     self.order_line += self.env['sale.order.line'].new({
                         'product_id': self.report_lot_land_line_id.product_tmp_id.optional_product_ids[
