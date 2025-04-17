@@ -124,10 +124,11 @@ class SaleOrderLine(models.Model):
 
     def _price_land(self,product,returnx=False,qty=None,inicial=0):
         price_total = 1
+        price_totalx = 1
         is_land = False
         if product.product_template_attribute_value_ids:
 
-            price_totalx = 1
+
             # array_total = []
             for value_line in product.product_template_attribute_value_ids:
                 value = value_line.product_attribute_value_id
@@ -136,14 +137,23 @@ class SaleOrderLine(models.Model):
                     price_totalx = price_totalx * value.value_land
                     # array_total.append(value.value_land)
             # raise ValueError([array_total,price_total , record.product_uom_qty,price_total / record.product_uom_qty])
-            if is_land:
-                price_total = price_totalx
-                if not returnx:
-                    if self.order_id.invoice_ids:
-                        return
-                    price_final = ( price_totalx - inicial ) / self.product_uom_qty if  self.product_uom_qty and  self.product_uom_qty != 0 else 0
-                    #raise ValueError([self.name,price_final,price_totalx, inicial])
-                    self.price_unit = price_final
+
+
+        else:
+            if self.order_id.report_lot_land_line_id and product.payment_land_dues:
+                if self.order_id.report_lot_land_line_id.zona:
+                    is_land = True
+                    price_totalx = self.order_id.report_lot_land_line_id.price
+
+        if is_land:
+            price_total = price_totalx
+            if not returnx:
+                if self.order_id.invoice_ids:
+                    return
+                price_final = (price_totalx - inicial) / self.product_uom_qty if self.product_uom_qty and self.product_uom_qty != 0 else 0
+                # raise ValueError([self.name,price_final,price_totalx, inicial])
+                self.price_unit = price_final
+
 
         if returnx and is_land:
             if qty:

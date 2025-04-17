@@ -901,6 +901,7 @@ class SaleOrder(models.Model):
                     'product_id': self.report_lot_land_line_id.product_tmp_id.product_variant_ids.id,
                     'price_unit': amount_total / self.report_lot_land_line_id.product_tmp_id.dues_qty,
                     'product_uom_qty': self.report_lot_land_line_id.product_tmp_id.dues_qty
+
                 })
 
             if self.inicial_lot_set and self.report_lot_land_line_id:
