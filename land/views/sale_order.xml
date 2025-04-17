@@ -12,6 +12,7 @@
                            <field name="company_id"  invisible="1"/>
                            <field name="report_lot_land_line_id"  />
                            <field name="area_lot_related"  />
+                           <field name="zona_lot_related"  />
                        </group>
                    </sheet>
 
