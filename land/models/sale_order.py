@@ -66,19 +66,24 @@ class SaleOrder(models.Model):
             price_inicial = 0
             price_credit = 0
             price_iden = 0
+            amount_dues = 0
             for line in record.order_line:
                 if line.product_id.is_advanced_land and not line.is_due_land:
                     price_inicial += line.price_total
                 if ( line.product_id.payment_land_dues or line.is_due_land ) and not line.product_id.is_independence:
                     price_credit += line.price_total
+                    amount_dues += line.product_uom_qty
 
                 if line.product_id.is_independence:
                     price_iden += line.price_total
+
+
 
             record.price_initial_land = price_inicial
             record.price_credit_land =  price_credit
             record.price_total_land = price_inicial + price_credit
             record.price_independence_land = price_iden
+            record.dues_land = amount_dues
 
     note = fields.Text()
     seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True,copy=False)
@@ -364,13 +369,14 @@ class SaleOrder(models.Model):
 
         }
 
-    @api.depends('order_line','mz_lot','sector','order_line.price_unit')
+    @api.depends('order_line','mz_lot','sector','order_line.price_unit','order_line.product_uom_qty')
     def get_info_land(self):
         for record in self:
             mz = None
             lt = None
             stage = None
             m2 = None
+
 
             if record.report_lot_land_line_id.zona:
                 mz = record.report_lot_land_line_id.manzana
