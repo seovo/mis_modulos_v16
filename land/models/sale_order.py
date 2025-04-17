@@ -897,16 +897,15 @@ class SaleOrder(models.Model):
                     'product_uom_qty': self.report_lot_land_line_id.product_tmp_id.dues_qty
                 })
 
+            if self.inicial_lot_set:
+                if self.inicial_lot_set > 0:
+                    self.order_line += self.env['sale.order.line'].new({
+                        'product_id': self.report_lot_land_line_id.product_tmp_id.optional_product_ids[
+                            0].product_variant_ids.id,
+                        'price_unit': self.inicial_lot_set,
+                        'product_uom_qty': 1
+                    })
 
-            if 'inicial_lot_set' in values:
-                if self.inicial_lot_set:
-                    if self.inicial_lot_set > 0:
-                        self.order_line += self.env['sale.order.line'].new({
-                            'product_id': self.report_lot_land_line_id.product_tmp_id.optional_product_ids[
-                                0].product_variant_ids.id,
-                            'price_unit': self.inicial_lot_set,
-                            'product_uom_qty': 1
-                        })
 
 
 
