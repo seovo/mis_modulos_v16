@@ -41,7 +41,7 @@ class AccountMove(models.Model):
     amount_due_land = fields.Float(compute='get_is_initial_land')
     qty_due_land = fields.Float(compute='get_is_initial_land')
     amount_mora_land = fields.Float(compute='get_is_initial_land')
-    report_lot_land_line_id = fields.Many2one('report.lot.land.line', compute='get_report_lot_land_line_id', store=True)
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line',  store=True,string="LOte")
     stage_separation_land = fields.Selection([
         ('active','Activo'),
         ('down','Caido'),
@@ -127,7 +127,7 @@ class AccountMove(models.Model):
             record.mz_lot = mz_lot
             record.description_land = description_land
 
-    @api.depends('mz_land_separation_id', 'lot_land_separation_id')
+    @api.onchnage('mz_land_separation_id', 'lot_land_separation_id')
     def get_report_lot_land_line_id(self, product_tmp=None):
         for record in self:
             if not product_tmp:

@@ -135,21 +135,32 @@
                <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after" >
                    <field name="mz_land_separation_id"
                           invisible="not is_separation_land"
-                          required="is_separation_land"
-                   />
-                   <field name="lot_land_separation_id"
-                          invisible="not is_separation_land"
-                          required="is_separation_land"
 
                    />
+                   <!-- required="is_separation_land" -->
+                   <field name="lot_land_separation_id"
+                          invisible="not is_separation_land"
+
+
+                   />
+                   <!-- required="is_separation_land" -->
                    <field name="sector_land_separation_id"
                           invisible="not is_separation_land"
                           required="is_separation_land"
                    />
+                   <!-- required="is_separation_land" -->
                    <field name="stage_separation_land"
                           invisible="not is_separation_land"
-                          required="is_separation_land"
+
                    />
+                   <!-- required="is_separation_land" -->
+
+                   <field name="report_lot_land_line_id"
+                          invisible="not is_separation_land"
+
+                   />
+                   <!-- required="is_separation_land" -->
+
                </xpath>
 
                <xpath expr="//field[@name='partner_bank_id']" position="after" >
