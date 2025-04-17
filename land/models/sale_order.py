@@ -123,8 +123,6 @@ class SaleOrder(models.Model):
     qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
-    report_lot_land_line_id = fields.Many2one('report.lot.land.line',
-                                              string="Lote",domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
 
     state_lawyer_land  = fields.Selection([('draft','Pendiente'),('sent','Enviado')],default='draft',string='Envio Reporte Abogado')
     sale_line_payment_id = fields.Many2one('sale.order.line', string="Especificar Pago")
@@ -132,6 +130,11 @@ class SaleOrder(models.Model):
     comision_payment = fields.Float(string="Comision Pagada",compute='get_comision_payment')
     comision_payment_real = fields.Float(string="Comision Pagada (Con Descuentos)", compute='get_comision_payment')
     diff_payment_comision =  fields.Float(string="Diferencia Comision", compute='get_comision_payment',store=True)
+
+    report_lot_land_line_id = fields.Many2one('report.lot.land.line',
+                                              string="Lote",
+                                              domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
+    area_lot_related = fields.Float(related='report_lot_land_line_id.area',readonly=False,string="Area")
 
     def open_product_land(self):
         return {

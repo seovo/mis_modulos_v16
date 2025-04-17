@@ -18,10 +18,15 @@ class StockPicking(models.Model):
 
     def action_preview_stock_picking(self):
         self.ensure_one()
+        website = self.company_id.website
+        url = website+self.access_url
+        if self.company_id.id == 1:
+            url = self.get_portal_url()
+
         return {
             'type': 'ir.actions.act_url',
             'target': 'self',
-            'url': self.company_id.website+self.access_url
+            'url': url
             #'url': self.get_portal_url(),
         }
 

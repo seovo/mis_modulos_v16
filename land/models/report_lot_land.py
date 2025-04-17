@@ -39,7 +39,7 @@ class ReportLotLandLine(models.Model):
     @api.depends('manzana','ettapa','name')
     def _compute_display_name(self):
         for record in self:
-            name = f'{record.name} - {record.manzana} ({record.ettapa})'
+            name = f'{record.manzana} - {record.name} ({record.ettapa})'
             record.display_name = name
 
     @api.model
