@@ -127,6 +127,7 @@ class AccountMove(models.Model):
             record.mz_lot = mz_lot
             record.description_land = description_land
 
+
     @api.onchange('mz_land_separation_id', 'lot_land_separation_id')
     def get_report_lot_land_line_id(self, product_tmp=None):
         for record in self:
