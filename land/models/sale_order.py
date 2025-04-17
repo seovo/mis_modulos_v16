@@ -138,6 +138,12 @@ class SaleOrder(models.Model):
     zona_lot_related = fields.Many2one('land.zona',related='report_lot_land_line_id.zona',readonly=False,string="Zona")
     price_lot_related = fields.Float(string='Precio',related='report_lot_land_line_id.price')
 
+
+    @api.onchange('zona_lot_related','area_lot_related')
+    def change_zona_area(self):
+        for record in self:
+            record.price_lot_related = record.area_lot_related * record.zona_lot_related.value
+
     def open_product_land(self):
         return {
             "name": f"AGREGAR TERRENO",
