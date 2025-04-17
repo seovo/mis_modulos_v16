@@ -880,7 +880,7 @@ class SaleOrder(models.Model):
         if  'report_lot_land_line_id' in values:
             if self.report_lot_land_line_id:
                 self.order_line += self.env['sale.order.line'].new({
-                    'product_id': self.product_tmp_id.product_variant_ids.id,
+                    'product_id': self.report_lot_land_line_id.product_tmp_id.product_variant_ids.id,
                     'price_unit': self.report_lot_land_line_id.price / self.report_lot_land_line_id.product_tmp_id.dues_qty,
                     'product_uom_qty': self.product_tmp_id.dues_qty
                 })
