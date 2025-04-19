@@ -302,7 +302,6 @@ class CommissionRimanLine(models.Model):
     mz_land = fields.Char(store=True, string="Manzana",related='sale_id.mz_land')
     lot_land = fields.Char(store=True, string="Lote",related='sale_id.lot_land')
 
-
     @api.depends('desc','amount')
     def get_subtotal(self):
         for record in self:
