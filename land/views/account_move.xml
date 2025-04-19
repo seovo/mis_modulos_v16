@@ -146,7 +146,7 @@
                    <!-- required="is_separation_land" -->
                    <field name="sector_land_separation_id"
                           invisible="not is_separation_land"
-                          required="is_separation_land"
+                         
                    />
                    <!-- required="is_separation_land" -->
                    <field name="stage_separation_land"

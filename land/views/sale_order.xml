@@ -148,7 +148,7 @@
                <xpath expr="//notebook" position="inside" >
                    <page string="Terreno Información" >
                        <group>
-
+                           <field name="price_m2" />
                            <field name="days_tolerance_land" />
                            <field name="value_mora_land" />
                            <field name="percentage_refund_land" />

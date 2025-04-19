@@ -11,8 +11,6 @@ class SaleOrder(models.Model):
         comodel_name='res.users',
         domain=lambda self: "[('company_ids', '=', company_id)]"
     )
-
-
     #############
 
     nro_internal_land =  fields.Char(string="Expediente",copy=False)
@@ -146,6 +144,7 @@ class SaleOrder(models.Model):
     ###########
 
     inicial_lot_set = fields.Float(string="Inicial")
+    price_m2 = fields.Float(string='Precio M2')
 
 
     @api.onchange('report_lot_land_line_id')
@@ -985,8 +984,6 @@ class SaleOrder(models.Model):
 
                 #raise ValueError(line_set.price_unit)
             #raise ValueError(line_set)
-
-
 
 
     def _get_invoiceable_lines(self, final=False):
