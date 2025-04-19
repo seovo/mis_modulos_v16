@@ -145,7 +145,7 @@ class SaleOrderLine(models.Model):
                         raise ValidationError('Configure Precio M2')
 
 
-                    price_totalx = self.order_id.report_lot_land_line_id.area  *
+                    price_totalx = self.order_id.report_lot_land_line_id.area  * self.order_id.price_m2
 
         if is_land:
             price_total = price_totalx

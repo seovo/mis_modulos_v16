@@ -158,7 +158,13 @@ class SaleOrder(models.Model):
     @api.onchange('zona_lot_related','area_lot_related')
     def change_zona_area(self):
         for record in self:
-            record.price_lot_related = record.area_lot_related * record.zona_lot_related.value
+            if record.area_lot_related and record.zona_lot_related:
+                record.price_lot_related = record.area_lot_related * record.zona_lot_related.value
+
+            if record.zona_lot_related:
+                record.price_m2 = record.zona_lot_related.value
+
+
 
     def open_product_land(self):
         return {
