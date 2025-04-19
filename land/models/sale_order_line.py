@@ -142,7 +142,7 @@ class SaleOrderLine(models.Model):
                 if self.order_id.report_lot_land_line_id.zona:
                     is_land = True
                     if not self.order_id.price_m2 or self.order_id.price_m2 <= 0 :
-                        raise ValidationError('Configure Precio M2')
+                        raise ValidationError(f'Configure Precio M2 {self.report_lot_land_line_id} {self.order_id.price_m2}')
 
 
                     price_totalx = self.order_id.report_lot_land_line_id.area  * self.order_id.price_m2
