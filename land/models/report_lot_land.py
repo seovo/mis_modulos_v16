@@ -8,6 +8,8 @@ class LandZona(models.Model):
     _description = 'land.zona'
     name  = fields.Char(required=True)
     value = fields.Float()
+    company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
+                                 default=lambda self: self.env.company)
 
     
 
