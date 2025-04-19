@@ -102,7 +102,7 @@ class ReportLotLandLine(models.Model):
     _sql_constraints = [
         (
             "unique_report_lot_land_line",
-            "unique(manzana, name , product_tmp_id )",
+            "unique(manzana, name , product_tmp_id , area)",
             "There can be no report.lot.land.line",
         )
     ]

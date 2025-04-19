@@ -34,8 +34,6 @@ class SaleOrderLine(models.Model):
     is_due_land = fields.Boolean(string="Es una Cuota Terreno")
 
 
-
-
     def edit_price_jz(self):
         self.add_separation_land = 0
         view = self.env.ref('land.edit_sale_order_line')
@@ -143,7 +141,11 @@ class SaleOrderLine(models.Model):
             if self.order_id.report_lot_land_line_id and product.payment_land_dues:
                 if self.order_id.report_lot_land_line_id.zona:
                     is_land = True
-                    price_totalx = self.order_id.report_lot_land_line_id.price
+                    if not self.order_id.price_m2 or self.order_id.price_m2 <= 0 :
+                        raise ValidationError('Configure Precio M2')
+
+
+                    price_totalx = self.order_id.report_lot_land_line_id.area  *
 
         if is_land:
             price_total = price_totalx
