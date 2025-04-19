@@ -12,10 +12,11 @@
                            <field name="company_id"  invisible="1"/>
                            <field name="report_lot_land_line_id"  />
                            <field name="area_lot_related"  />
-                           <field name="zona_lot_related"  />
+                           <field name="zona_lot_related" domain="[('company_id','=',company_id)]" />
                            <field name="price_lot_related"  />
                            <field name="inicial_lot_set"  />
                            <field name="price_m2" invisible="1"  />
+                           <field name="company_id" invisible="1"  />
                        </group>
                    </sheet>
 
@@ -276,11 +277,11 @@
                </xpath>
 
                <xpath expr="//field[@name='payment_term_id']" position="after" >
-                   <field name="mz_land" />
-                   <field name="lot_land" />
-                   <field name="sector_land" />
-                   <field name="m2_land" />
-                   <field name="report_lot_land_line_id" />
+                   <field name="mz_land" readonly="1"  force_save="1" />
+                   <field name="lot_land"  readonly="1"  force_save="1" />
+                   <field name="sector_land"  readonly="1"  force_save="1" />
+                   <field name="m2_land"  readonly="1"  force_save="1" />
+                   <field name="report_lot_land_line_id"  readonly="1"  force_save="1" />
                    <field name="repeat_mz_lot" />
                    <field name="user_id" />
 
