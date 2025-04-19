@@ -728,20 +728,7 @@ class SaleOrder(models.Model):
             record.stage_payment_lan = stage
 
 
-    def show_m2_land(self):
 
-        object = self.env['product.attribute'].search([('type_land','=','m2')])
-
-        return {
-            "name": f"METRADO",
-            "type": "ir.actions.act_window",
-            "view_mode": "form",
-            "res_model": "product.attribute",
-            "res_id": object.id,
-            "target": "new",
-
-
-        }
 
     def _update_text_mz_lote(self):
         for record in self:
