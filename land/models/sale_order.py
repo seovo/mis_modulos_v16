@@ -152,7 +152,7 @@ class SaleOrder(models.Model):
         for record in self:
             if self.report_lot_land_line_id:
                 record.inicial_lot_set = self.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].list_price
-                record.price_m2 = self.report_lot_land_line_id.zona_lot_related.value
+                record.price_m2 = self.report_lot_land_line_id.zona.value
 
 
 
