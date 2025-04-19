@@ -15,6 +15,7 @@
                            <field name="zona_lot_related"  />
                            <field name="price_lot_related"  />
                            <field name="inicial_lot_set"  />
+                           <field name="price_m2"  />
                        </group>
                    </sheet>
 
