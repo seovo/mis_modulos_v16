@@ -117,9 +117,9 @@ class SaleOrder(models.Model):
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación")
     schedule_land_ids = fields.One2many('schedule.dues.land','order_id')
-    mz_land = fields.Char(compute="get_info_land",store=True,string="Manzana Terreno")
-    lot_land = fields.Char(compute="get_info_land",store=True,string="Lote Terreno")
-    sector_land = fields.Char(compute="get_info_land", store=True, string="Etapa Terreno")
+    mz_land = fields.Char(store=True,string="Manzana Terreno")
+    lot_land = fields.Char(store=True,string="Lote Terreno")
+    sector_land = fields.Char(store=True, string="Etapa Terreno")
     m2_land = fields.Char(string="AREA (m2)")
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
@@ -374,7 +374,7 @@ class SaleOrder(models.Model):
 
         }
 
-    @api.depends('order_line','mz_lot','sector','order_line.price_unit','order_line.product_uom_qty')
+    @api.onchange('order_line','mz_lot','sector','order_line.price_unit','order_line.product_uom_qty')
     def get_info_land(self):
         for record in self:
             mz = None
@@ -573,12 +573,12 @@ class SaleOrder(models.Model):
 
 
             record.update_credit_saldo()
-            record.get_info_land()
+
 
         self.get_last_payment_date_land()
         self._get_stage_payment_land()
         self.get_amount_prices_land()
-        self.get_info_land()
+
 
     @api.depends('invoice_ids','invoice_ids.state','date_first_due_land','date_first_due_land','type_periodo_invoiced')
     def get_last_payment_date_land(self):
@@ -947,7 +947,7 @@ class SaleOrder(models.Model):
     @api.model
     def create(self,vals):
         res = super().create(vals)
-        #res.get_info_land()
+
         #res.check_adelanto()
 
         return res
