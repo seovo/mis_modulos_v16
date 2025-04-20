@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_consolidado_mercaderia"
+        model="stock.picking.batch"
+        string="Consolidado de mercadería"
+        report_type="qweb-pdf"
+        name="custom_stock_picking_batch.reporte_consolidado_mercaderia"
+        file="custom_stock_picking_batch.reporte_consolidado_mercaderia"
+    />
+    <report
+        id="report_consolidado_documentos"
+        model="stock.picking.batch"
+        string="Consolidado de documentos"
+        report_type="qweb-pdf"
+        name="custom_stock_picking_batch.reporte_consolidado_documentos"
+        file="custom_stock_picking_batch.reporte_consolidado_documentos"
+    />
+</odoo>

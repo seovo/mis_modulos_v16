@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reporte_consolidado_mercaderia">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <t t-set="company" t-value="doc.company_id"/>
+                    <t t-set="document_display_name" t-value="'Consolidado de mercadería'"/>
+                    <t t-call="web.external_layout_standard">
+                        <div class="row" id="informations">
+                            <div name="invoice_address" class="w-100">
+                                <table class="w-100">
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'CHOFER: '"/>
+                                        </th>
+                                        <!-- <td class="label">
+                                            <t t-if="doc.modalidad_transporte == '01'">
+                                                <span t-esc="doc.conductor_publico_id.name"/>
+                                            </t>
+                                            <t t-elif="doc.modalidad_transporte == '02'">
+                                                <span t-esc="doc.conductor_privado_partner_id.name"/>
+                                            </t>
+                                        </td> -->
+                                        <th>
+                                            <label t-esc="'FECHA: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-esc="doc.date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'VEHICULO: '"/>
+                                        </th>
+                                        <!-- <td class="label">
+                                            <t t-if="doc.modalidad_transporte == '01'">
+                                                <span t-esc="doc.vehiculo_publico_id.numero_placa"/>
+                                            </t>
+                                            <t t-elif="doc.modalidad_transporte == '02'">
+                                                <span t-esc="doc.vehiculo_privado_id.numero_placa"/>
+                                            </t>
+                                        </td> -->
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-invoice-lines row pt-2 pb-2">
+                                    <table class="w-100">
+                                        <thead>
+                                            <tr>
+                                                <th class="h_name">Código</th>
+                                                <th class="h_name">Producto</th>
+                                                <!-- <th class="h_product_uom_id">U.M.</th> -->
+                                                <th class="h_name">Cantidad</th>
+                                                <th class="h_name">Peso</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
+                                            <t t-set="new_products" t-value="doc.group_stock_picking_lines()" />
+                                            <t t-set="categories" t-value="doc.move_line_ids.mapped('product_id.categ_id')"/>
+                                            <t t-foreach="categories" t-as="categ">
+                                                <tr>
+                                                    <td colspan="5" class="v_name">
+                                                        <b>
+                                                            <span t-esc="categ.name"/>
+                                                        </b>
+                                                    </td>
+                                                </tr>
+                                                <tr t-foreach="new_products" t-as="line">
+                                                    <t t-if="categ.id == line['product'].categ_id.id">
+                                                        <td class="v_name text-center">
+                                                            <span t-field="line['product'].default_code"/>
+                                                        </td>
+                                                        <td class="v_name">
+                                                            <span t-field="line['product'].name"/>
+                                                        </td>
+                                                        <td class="v_name">
+                                                            <t t-set="qty_paq" t-value="int(line['qty']*line['uom_id'].factor_inv/line['product'].uom_po_id.factor_inv)"/>
+                                                            <t t-set="qty_paq_uom" t-value="line['product'].uom_po_id.name"/>
+                                                            <t t-set="qty_uni" t-value="int(line['qty']*line['uom_id'].factor_inv%line['product'].uom_po_id.factor_inv)"/>
+                                                            <t t-set="qty_uni_uom" t-value="line['uom_id'].name"/>
+                                                            <t t-if="qty_paq == 0">
+                                                                <span t-esc="'{} {}'.format(qty_uni,qty_uni_uom)"/>
+                                                            </t>
+                                                            <t t-elif="(qty_paq_uom == qty_uni_uom) or (qty_uni == 0)">
+                                                                <span t-esc="'{} {}'.format(qty_paq,qty_paq_uom)"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span t-esc="'{} {} y {} {}'.format(qty_paq,qty_paq_uom,qty_uni,qty_uni_uom)"/>
+                                                            </t>
+                                                        </td>
+                                                        <td class="v_name">
+                                                            <span t-esc="'{:.2f}'.format(line['product'].weight*line['qty'])"/>
+                                                        </td>
+                                                    </t>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Documentos: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.qty_documents"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Clientes: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.qty_partners"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Peso total: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.total_weight"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Valorizado: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.total_amount"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reporte_consolidado_documentos">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <t t-set="company" t-value="doc.company_id"/>
+                    <t t-set="document_display_name" t-value="'Consolidado de documentos'"/>
+                    <t t-call="web.external_layout_standard">
+                        <div class="row" id="informations">
+                            <div name="invoice_address" class="w-100">
+                                <table class="w-100">
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'CHOFER: '"/>
+                                        </th>
+                                        <!-- <td class="label">
+                                            <t t-if="doc.modalidad_transporte == '01'">
+                                                <span t-esc="doc.conductor_publico_id.name"/>
+                                            </t>
+                                            <t t-elif="doc.modalidad_transporte == '02'">
+                                                <span t-esc="doc.conductor_privado_partner_id.name"/>
+                                            </t>
+                                        </td> -->
+                                        <th>
+                                            <label t-esc="'FECHA: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-esc="doc.date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'VEHICULO: '"/>
+                                        </th>
+                                        <!-- <td class="label">
+                                            <t t-if="doc.modalidad_transporte == '01'">
+                                                <span t-esc="doc.vehiculo_publico_id.numero_placa"/>
+                                            </t>
+                                            <t t-elif="doc.modalidad_transporte == '02'">
+                                                <span t-esc="doc.vehiculo_privado_id.numero_placa"/>
+                                            </t>
+                                        </td> -->
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-invoice-lines row pt-2 pb-2">
+                                    <table class="w-100">
+                                        <thead>
+                                            <tr>
+                                                <th class="h_name">Documento</th>
+                                                <th class="h_name">Cliente</th>
+                                                <th class="h_name">F.P.</th>
+                                                <th class="h_name">Importe</th>
+                                                <th class="h_name">Imp. pagado</th>
+                                                <th class="h_name">Devolución</th>
+                                                <th class="h_name">Observación</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
+                                            <t t-set="vendedores" t-value="doc.picking_ids.mapped('sale_user_id')"/>
+                                            <t t-foreach="vendedores" t-as="vendor">
+                                                <tr>
+                                                    <td colspan="7" class="v_name">
+                                                        <small>
+                                                            <b>
+                                                                <span t-esc="vendor.name"/>
+                                                            </b>
+                                                        </small>
+                                                    </td>
+                                                </tr>
+                                                <tr t-foreach="doc.picking_ids" t-as="line">
+                                                    <t t-if="vendor.id == line.sale_user_id.id">
+                                                        <td class="v_name">
+                                                            <small>
+                                                                <span t-field="line.invoice_id"/>
+                                                            </small>
+                                                        </td>
+                                                        <td class="v_name">
+                                                            <small>
+                                                                <span t-field="line.partner_id"/>
+                                                            </small>
+                                                        </td>
+                                                        <td class="v_name">
+                                                            <small>
+                                                                <span t-field="line.sale_id.payment_term_id"/>
+                                                            </small>
+                                                        </td>
+                                                        <td class="v_name">
+                                                            <small>
+                                                                <span t-field="line.invoice_amount"/>
+                                                            </small>
+                                                        </td>
+                                                        <td class="v_name"></td>
+                                                        <td class="v_name"></td>
+                                                        <td class="v_name"></td>
+                                                    </t>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Documentos: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.qty_documents"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Clientes: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.qty_partners"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Peso total: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.total_weight"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label t-esc="'Valorizado: '"/>
+                                        </th>
+                                        <td class="label">
+                                            <span t-field="doc.total_amount"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

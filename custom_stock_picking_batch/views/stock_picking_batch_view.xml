@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="inherit_stock_batch_picking_form" model="ir.ui.view">
+        <field name="name">model.name.view.form.inherit</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='picking_ids']" position="replace">
+                <field name="picking_ids" >
+                    <tree>
+                        <field name="name" />
+                        <field name="location_id" />
+                        <field name="location_dest_id" />
+                        <field name="partner_id" />
+                        <field name="scheduled_date" />
+                        <field name="sale_user_id" />
+                        <field name="sale_id" />
+                        <field name="invoice_id" />
+                        <field name="invoice_amount" />
+                        <field name="shipping_weight" />
+                        <field name="state" />
+                    </tree>
+                </field>
+            </xpath> -->
+            <xpath expr="//sheet/group" position="replace">
+                <group>
+                    <group>
+                        <field name="company_id" invisible="1"/>
+                        <field name="company_partner_id" invisible="1"/>
+                        <field name="use_oca_batch_validation" invisible="1"/>
+                        <field name="user_id"/>
+                        <field name="date"/>
+                        <field name="qty_documents" invisible="1" />
+                        <field name="qty_partners" invisible="1" />
+                        <field name="total_weight" invisible="1" />
+                        <field name="total_amount" invisible="1" />
+                    </group>
+                    <group>                    	
+                        <!--<field name="modalidad_transporte" widget="radio"/>-->
+                    </group>
+                </group>
+                <!--<group string="Transporte Público" attrs="{'invisible':[('modalidad_transporte','!=','01')]}">
+                    <field name="transporte_partner_id" options="{'no_create_edit': True,'no_quick_create':True,'no_open':True}" domain="[('es_empresa_transporte_publico','=',True)]"/>
+                    <field name="conductor_publico_id" widget="radio" domain="[('parent_id','=',transporte_partner_id),('parent_id','!=',False)]"/>
+                    <field name="vehiculo_publico_id" widget="radio" domain="[('propietario_id','=',transporte_partner_id),('propietario_id','!=',False)]"/>
+                </group>-->
+                <!--<group string="Transporte Privado" attrs="{'invisible':[('modalidad_transporte','!=','02')]}">
+                    <field name="conductor_privado_partner_id" widget="radio" domain="[('es_conductor','=',True),('parent_id','=',company_partner_id)]"/>
+                    <field name="vehiculo_privado_id" widget="radio" domain="[('propietario_id','=',company_partner_id),('propietario_id','!=',False)]"/>
+                </group>-->
+            </xpath>
+        </field>
+    </record>
+</odoo>

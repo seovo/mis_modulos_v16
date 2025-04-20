@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="stock_vpicktree_inherit" model="ir.ui.view">
+        <field name="name">custom.stock.picking.batch.view.tree.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="sale_user_id" />
+                <field name="sale_id" />
+                <field name="invoice_id" />
+                <field name="invoice_amount" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
