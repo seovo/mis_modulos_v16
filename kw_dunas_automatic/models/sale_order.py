@@ -1,3 +1,5 @@
+from unittest.util import unorderable_list_difference
+
 from odoo import api, fields, models , _
 from odoo.tools import float_is_zero, format_amount, format_date, html_keep_url, is_html_empty
 from dateutil.relativedelta import relativedelta
@@ -205,10 +207,6 @@ class StockPicking(models.Model):
                 quantity_total += quantity
             record.quantity_return_jz = quantity_total
 
-
-
-
-
     def return_picking_jz(self):
         return {
             "name": f"Retornar",
@@ -226,5 +224,29 @@ class StockPicking(models.Model):
         }
 
 
+class StockQuant(models.Model):
+    _inherit = 'stock.quant'
+    cajas_kw = fields.Integer(compute="get_stock_kw")
+    unidades_kw = fields.Integer(compute="get_stock_kw")
 
+    @api.depends('quantity')
+    def get_stock_kw(self):
+        for record in self:
+            cajas = 0
+            unidades = 0
+
+            if record.product_id.uom_po_id.uom_type == 'bigger':
+                ratio = record.product_id.uom_po_id.factor_inv
+                cajas = int(record.quantity/ratio if ratio > 0 else 0)
+                unidades = record.quantity -  (cajas * ratio)
+
+            else :
+                unidades = record.quantity
+
+            record.cajas_kw = cajas
+            record.unidades_kw = unidades
+
+
+
+            
 

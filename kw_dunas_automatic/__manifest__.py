@@ -9,7 +9,7 @@
     "depends": ["sale_management","stock",
                 "l10n_latam_invoice_document",
                 "stock_picking_batch_extended",
-                "custom_stock_picking_batch"],
+                "custom_stock_picking_batch","purchase"],
     "data": [
         'views/sale_order.xml',
         'views/stock_picking_batch.xml'

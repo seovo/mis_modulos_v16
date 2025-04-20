@@ -19,4 +19,37 @@
 
            </field>
     </record>
+
+
+    <record id="view_stock_quant_tree_editable" model="ir.ui.view">
+           <field name="name">stock.quant.tree</field>
+           <field name="model">stock.quant</field>
+           <field name="inherit_id" ref="stock.view_stock_quant_tree_editable" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='product_uom_id']" position="after" >
+                    <field name="cajas_kw"  optional="show" />
+                   <field name="unidades_kw"  optional="show" />
+
+               </xpath>
+
+           </field>
+    </record>
+
+
+    <record id="view_stock_quant_tree_inventory_editable" model="ir.ui.view">
+           <field name="name">stock.quant.tree</field>
+           <field name="model">stock.quant</field>
+           <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='product_uom_id']" position="after" >
+                    <field name="cajas_kw"  optional="show" />
+                   <field name="unidades_kw"  optional="show" />
+
+               </xpath>
+
+           </field>
+    </record>
+
 </odoo>
