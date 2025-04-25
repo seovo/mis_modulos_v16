@@ -135,6 +135,6 @@
     <menuitem id="menu_res_partnerx"
                 action="action_res_partner_separation"
                 parent="sale.sale_order_menu"
-                sequence="9"/>
+                sequence="11"/>
 
 </odoo>
