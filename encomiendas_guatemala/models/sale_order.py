@@ -235,6 +235,7 @@ class SaleOrder(models.Model):
             raise UserError('Debe Indicar el Recibo de pago')
 
         if self.env.context.get('force_action_confirm_n'):
+            self.partner_shipping_id.is_destinatario = True
             return super().action_confirm()
 
         if self.carrier_id:
