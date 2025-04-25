@@ -10,7 +10,7 @@ class ResPartner(models.Model):
     name_invoice = fields.Char(string="Nombre Factura")
     adress_invoice = fields.Char(string="Dirección Factura")
     date_born = fields.Date(string="Fecha Nacimiento")
-    is_destinatario = fields.Boolean()
+    is_destinatario = fields.Boolean(string="Destinatario")
     carrier_id = fields.Many2one('delivery.carrier', string="Caja Banrural")
 
     @api.model

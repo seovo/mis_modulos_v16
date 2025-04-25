@@ -146,7 +146,7 @@
                         <group name="order_details" string="Persona que recibe la encomienda en destino">
                             <field name="search_vat_partner_delivery" />
                             <field name="partner_shipping_id" string="Recibe"
-                                   domain="[('parent_id','=',False)]"
+                                   domain="[('parent_id','=',False),('is_destinatario','=',True)]"
                                    readonly="state in ['cancel', 'sale']"
                                    context="{'default_is_destinatario': True}"
                             />
