@@ -548,6 +548,10 @@
                 action="sale.action_quotations_with_onboarding"
                 sequence="10"/>
 
+            <menuitem id="menu_res_partner"
+                action="action_res_partner_separation"
+                sequence="11"/>
+
         </menuitem>
 
     </menuitem>

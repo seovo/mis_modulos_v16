@@ -116,4 +116,25 @@
             </field>
     </record>
 
+
+    <record id="action_res_partner_separation" model="ir.actions.act_window">
+        <field name="name">Destinatarios</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_destinatario','=',True)]</field>
+        <field name="context">{
+            'default_is_destinatario': True
+            }</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('encomiendas_guatemala.view_partner_form_new')})]"
+            />
+    </record>
+
+    <menuitem id="menu_res_partner"
+                action="action_res_partner_separation"
+                parent="sale.sale_order_menu"
+                sequence="9"/>
+
 </odoo>
