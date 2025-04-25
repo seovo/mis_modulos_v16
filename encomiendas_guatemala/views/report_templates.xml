@@ -302,6 +302,9 @@
                     <span t-field="doc.fiscal_position_id.sudo().note">No further requirements for this payment</span>
                 </p>
             </div>
+            <div>
+                !Gracias por tu confianza!  - Recibirás tu factura en 24 horas hábiles , guarda tu recibo de pago Caja Banrural para cualquier referencia.
+            </div>
         </div>
         </t>
     </template>
