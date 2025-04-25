@@ -178,9 +178,12 @@ class SaleOrder(models.Model):
     def change_search_vat_partner(self):
         for record in self:
             if record.search_vat_partner:
-                partner = self.env['res.partner'].search([('dpi', '=', record.search_vat_partner)], limit=1)
+                dpi = record.search_vat_partner
+                dpi = dpi.replace(' ','')
+                partner = self.env['res.partner'].search([('dpi', '=', dpi)], limit=1)
                 record.partner_id = partner.id if partner else False
                 record.partner_shipping_id = False
+                record.search_vat_partner = dpi
                 if partner.carrier_id:
                     record.carrier_id = partner.carrier_id.id
             else:
