@@ -132,7 +132,7 @@
             />
     </record>
 
-    <menuitem id="menu_res_partner"
+    <menuitem id="menu_res_partnerx"
                 action="action_res_partner_separation"
                 parent="sale.sale_order_menu"
                 sequence="9"/>
