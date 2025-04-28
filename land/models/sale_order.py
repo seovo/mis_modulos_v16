@@ -375,7 +375,7 @@ class SaleOrder(models.Model):
 
         }
 
-    @api.onchange('order_line','mz_lot','sector','order_line.price_unit','order_line.product_uom_qty')
+    @api.onchange('order_line','mz_lot','sector','order_line.price_unit','order_line.product_uom_qty','note')
     def get_info_land(self):
         for record in self:
             mz = None
