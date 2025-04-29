@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
         ('regularizado','Regularizado'),
     ],string="Estado Terreno",copy=False)
     dues_land            = fields.Float(string="Cuotas",copy=False)
-    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='_update_text_mz_lote')
+    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='_update_text_mz_lote',digits=(12, 3))
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
     value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
@@ -144,7 +144,7 @@ class SaleOrder(models.Model):
     ###########
 
     inicial_lot_set = fields.Float(string="Inicial")
-    price_m2 = fields.Float(string='Precio M2')
+    price_m2 = fields.Float(string='Precio M2',digits=(12, 3))
 
 
     @api.onchange('report_lot_land_line_id')
