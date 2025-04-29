@@ -20,7 +20,7 @@ class ReportLotLandLine(models.Model):
 
     manzana            = fields.Char()
     name               = fields.Char(string="Lote")
-    area               = fields.Float()
+    area               = fields.Float(digits=(12, 8))
     zona               = fields.Many2one('land.zona')
     ettapa              = fields.Char(string="Etapa")
 
