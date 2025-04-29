@@ -150,15 +150,19 @@ class SaleOrder(models.Model):
     @api.onchange('report_lot_land_line_id')
     def change_report_lot_land(self):
         for record in self:
-            if self.report_lot_land_line_id:
-                record.inicial_lot_set = self.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].list_price
-                record.price_m2 = self.report_lot_land_line_id.zona.value
+            if record.report_lot_land_line_id and not record.order_line:
+                record.inicial_lot_set = record.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].list_price
+                record.price_m2 = record.report_lot_land_line_id.zona.value
 
 
 
     @api.onchange('zona_lot_related','area_lot_related')
     def change_zona_area(self):
         for record in self:
+
+            if record.self.order_line:
+                continue
+
             if record.area_lot_related and record.zona_lot_related:
                 record.price_lot_related = record.area_lot_related * record.zona_lot_related.value
 
@@ -902,7 +906,7 @@ class SaleOrder(models.Model):
         res = super().write(values)
 
 
-        if  'report_lot_land_line_id' in values:
+        if  'report_lot_land_line_id' in values and not self.order_line:
             if self.report_lot_land_line_id:
 
                 amount_total = self.report_lot_land_line_id.price

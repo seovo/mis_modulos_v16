@@ -166,6 +166,9 @@
                            <field name="mz_lot"  readonly="1" force_save="1" />
                            <field name="dues_land" readonly="1" force_save="1" />
                            <field name="value_due_land" readonly="1" force_save="1" />
+                           <button name="open_product_land" string="Modificar"
+                           invisible="state == 'draft'"
+                           type="object" class="m-4  btn-primary" />
                        </group>
                    </page>
                    <page string="Cronograma">
