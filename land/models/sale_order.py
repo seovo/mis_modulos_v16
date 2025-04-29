@@ -160,7 +160,7 @@ class SaleOrder(models.Model):
     def change_zona_area(self):
         for record in self:
 
-            if record.self.order_line:
+            if record.order_line:
                 continue
 
             if record.area_lot_related and record.zona_lot_related:
