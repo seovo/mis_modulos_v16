@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
+    partner_commision_id = fields.Many2one('res.partner',string='Comissión')
 
 
     def write(self,vals):
