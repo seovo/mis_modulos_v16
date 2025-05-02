@@ -180,6 +180,7 @@
                                <field name="saldo_payment_land" readonly="1" force_save="1" />
                            </group>
                            <group>
+                               <field name="journal_id"  />
                                <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
                                <button name="publish_invoice"
                                        groups="land.group_reordenate_date_sale"
