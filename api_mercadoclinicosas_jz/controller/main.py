@@ -400,9 +400,42 @@ class ApiClinicos(http.Controller):
 
         try:
             uid = request.session.authenticate(db, data['login'], data['password'])
+            user = request.env['res.users'].sudo().search([('id','=',uid)])
+            url_image =  f'''/web/image?model=res.users&id={uid}&field=avatar_128'''
+
+            roles = []
+            for group in user.sudo().groups_id:
+                # Busca el xml_id correspondiente
+                xml_id = request.env['ir.model.data'].sudo().search([
+                    ('model', '=', group._name),
+                    ('res_id', '=', group.id)
+                ], limit=1)
+
+                if xml_id:
+                    roles.append({
+                        'id': xml_id.complete_name ,
+                        'name': group.display_name ,
+                        'image': '' ,
+                        'created_at': group.create_date ,
+                        'updated_at': group.write_date ,
+                        'route': ''
+                    })
+
             values.update({
                 'login_success': True ,
-                'uid': uid
+                'uid': uid ,
+                'user': {
+                    'id': uid ,
+                    'name': user.name ,
+                    'lastname': '',
+                    'email': user.partner_id.sudo().email ,
+                    'phone': user.partner_id.sudo().phone ,
+                    'image': url_image ,
+                    'password': '' ,
+                    'notificationToken': '',
+                    'roles': roles
+
+                }
             })
 
             #generar codigo token uid
@@ -414,7 +447,10 @@ class ApiClinicos(http.Controller):
                 'token': unique_id
             })
 
-            values.update({'uuid': unique_id})
+            values.update({
+                'uuid': unique_id ,
+                'token': unique_id ,
+            })
 
 
 
