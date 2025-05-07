@@ -9,6 +9,7 @@
                    <page string="Detalle" name="detail_line">
                          <field name="order_line" readonly="state != 'draft' " >
                             <tree string="Detalle" editable="bottom">
+                                <field name="product_id" />
                                 <field name="name" />
                                 <field name="code" />
                                 <field name="price" />
