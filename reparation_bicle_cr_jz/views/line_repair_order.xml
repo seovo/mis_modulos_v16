@@ -22,7 +22,7 @@
         <field name="name">line.repair.order.tree</field>
         <field name="model">line.repair.order</field>
         <field name="arch" type="xml">
-            <tree string="Repairs order" multi_edit="1" sample="1" decoration-info="state == 'draft'">
+            <tree string="Repairs order" >
 
 
                 <field name="name"/>
