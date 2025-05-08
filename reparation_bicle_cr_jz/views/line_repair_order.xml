@@ -22,8 +22,7 @@
         <field name="model">line.repair.order</field>
         <field name="arch" type="xml">
             <form string="Repair Order">
-                <field name="unreserve_visible" invisible="1"/>
-                <field name="reserve_visible" invisible="1"/>
+
 
                <sheet string="Repairs order">
 
