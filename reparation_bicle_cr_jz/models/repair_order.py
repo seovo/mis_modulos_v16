@@ -37,6 +37,8 @@ class RepairOrder(models.Model):
 class LineRepairOrder(models.Model):
     _name = 'line.repair.order'
     _description = 'line.repair.order'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
     product_id = fields.Many2one('product.product',required=True)
     name = fields.Text(string='Descriptión',required=True)
     code = fields.Char(string='Codigo')
