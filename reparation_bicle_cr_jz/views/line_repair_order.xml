@@ -16,6 +16,48 @@
             </field>
     </record>
 
+
+    <record id="line_repair_order_form" model="ir.ui.view">
+        <field name="name">line.repair.order.form</field>
+        <field name="model">line.repair.order</field>
+        <field name="arch" type="xml">
+            <form string="Repair Order">
+                <field name="unreserve_visible" invisible="1"/>
+                <field name="reserve_visible" invisible="1"/>
+
+               <sheet string="Repairs order">
+
+                    <div class="oe_title">
+                        <label class="o_form_label" for="name"/>
+                        <h1 class="d-flex">
+
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="repair_id" />
+                            <field name="product_id" />
+                            <field name="code" />
+
+                        </group>
+                        <group>
+                            <field name="product_ids" widget="many2many_tags" />
+
+                        </group>
+                    </group>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
     <menuitem id="repair_tareas_menu" name="Tareas" action="action_tareas"
 
               parent="repair.menu_repair_order"/>
