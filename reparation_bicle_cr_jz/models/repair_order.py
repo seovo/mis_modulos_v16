@@ -39,13 +39,13 @@ class LineRepairOrder(models.Model):
     _description = 'line.repair.order'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    product_id = fields.Many2one('product.product',required=True)
-    name = fields.Text(string='Descriptión',required=True)
+    product_id = fields.Many2one('product.product',required=True,string="")
+    name = fields.Text(string='Descripción',required=True)
     code = fields.Char(string='Codigo')
     price = fields.Float(string='Precio')
     user_id = fields.Many2one('res.users',string='Tecnico Asignado')
     product_ids = fields.Many2many('product.product',string="Piezas Utilizadas")
-    repair_id = fields.Many2one('repair.order')
+    repair_id = fields.Many2one('repair.order',string="Reparación")
     sale_line_id = fields.Many2one('sale.order.line')
 
     @api.onchange('product_id')
