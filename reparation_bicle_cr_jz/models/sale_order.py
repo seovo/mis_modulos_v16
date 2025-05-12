@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError, ValidationError
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     product_repair_id = fields.Many2one('product.product',string="Producto a reparar")
