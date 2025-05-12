@@ -9,8 +9,8 @@
     "depends": ["repair"],
     "data": [
         "security/ir.model.access.csv",
-        'views/repair_order.xml',
-        'views/line_repair_order.xml'
+        '#views/repair_order.xml',
+        #'views/line_repair_order.xml'
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
