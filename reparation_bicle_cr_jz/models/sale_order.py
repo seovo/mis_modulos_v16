@@ -9,3 +9,11 @@ from odoo.exceptions import UserError, ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     product_repair_id = fields.Many2one('product.product',string="Producto a reparar")
+    cat_bycle_id = fields.Many2one('category.bycle',string='Categoria')
+    under_warranty_bycle = fields.Selection([('taller','Taller'),('purchase','Compra')],string='Bajo Garantia')
+
+
+class CategoryBycle(models.Model):
+    _name = 'category.bycle'
+    _description = 'category.bycle'
+    name = fields.Char()
