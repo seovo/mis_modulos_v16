@@ -9,7 +9,7 @@
     "depends": ["repair"],
     "data": [
         "security/ir.model.access.csv",
-        '#views/repair_order.xml',
+        'views/sale_order.xml',
         #'views/line_repair_order.xml'
 
     ],
