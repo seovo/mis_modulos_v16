@@ -8,7 +8,7 @@
     "version": "17.0",
     "depends": ["repair"],
     "data": [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         'views/sale_order.xml',
         #'views/line_repair_order.xml'
 
