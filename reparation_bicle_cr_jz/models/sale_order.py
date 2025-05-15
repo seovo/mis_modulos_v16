@@ -22,8 +22,13 @@ class MailComposeMessage(models.TransientModel):
             objects = self.env[self.model].search([('id', 'in', array)])
 
             for object in objects:
-                url = object.action_preview_sale_order()['url']
-                self.text_whatsapp_evolution_api = f'''  zrevise la orden aqui: {url_main.value}{url}  '''
+                if self.model in ['sale.order'] and self.is_whatsapp_evolution_api:
+                    if object.company_id.whatsapp_sale_msg_format:
+                        url = object.action_preview_sale_order()['url']
+                        testx = object.company_id.whatsapp_sale_msg_format
+                        self.text_whatsapp_evolution_api = testx
+
+
 
 
 
