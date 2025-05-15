@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
             'proforma': self.env.context.get('proforma', False),
             'force_email': True,
             'model_description': self.with_context(lang=lang).type_name,
-            'is_whatsapp_evolution_api': True
+            'default_is_whatsapp_evolution_api': True
 
         }
         return {
