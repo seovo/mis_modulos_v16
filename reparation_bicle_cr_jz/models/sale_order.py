@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
 from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError, ValidationError
+import ast
 
 class MailComposeMessage(models.TransientModel):
     _inherit = "mail.compose.message"
@@ -15,8 +16,16 @@ class MailComposeMessage(models.TransientModel):
     def change_res_ids_sale(self):
         if self.model in ['sale.order'] and self.is_whatsapp_evolution_api:
             url_main = self.env['ir.config_parameter'].search([('key', '=', 'web.base.url')])
-            url = object.action_preview_sale_order()['url']
-            self.text_whatsapp_evolution_api = f'''  revise la orden aqui: {url_main.value}{url}  '''
+
+            array = ast.literal_eval(self.res_ids)
+
+            objects = self.env[self.model].search([('id', 'in', array)])
+
+            for object in objects:
+                url = object.action_preview_sale_order()['url']
+                self.text_whatsapp_evolution_api = f'''  zrevise la orden aqui: {url_main.value}{url}  '''
+
+
 
 
 
