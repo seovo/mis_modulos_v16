@@ -31,7 +31,8 @@ class SaleOrder(models.Model):
             #'force_email': True,
             'model_description': self.with_context(lang=lang).type_name,
             'default_is_whatsapp_evolution_api': True ,
-            'default_subtype_is_log': True
+            'default_subtype_is_log': True ,
+            'default_text_whatsapp_evolution_api': 'OK'
 
         }
         return {
