@@ -25,7 +25,8 @@ class MailComposeMessage(models.TransientModel):
                 if self.model in ['sale.order'] and self.is_whatsapp_evolution_api:
                     if object.company_id.whatsapp_sale_msg_format:
                         url = object.action_preview_sale_order()['url']
-                        testx = object.company_id.whatsapp_sale_msg_format
+                        url = f'''{url_main.value}{url}'''
+                        testx = object.company_id.whatsapp_sale_msg_format.replace('%report',url)
                         self.text_whatsapp_evolution_api = testx
 
 
