@@ -620,8 +620,8 @@
                    <field name="seller_land_id" optional="hidden" />
 
 
-                   <field name="stage_land" widget="badge" />
-                   <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'" />
+                   <field name="stage_land" widget="badge" optional="show" />
+                   <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'" optional="show" />
                    <field name="state" optional="hidden" />
                    <field name="dues_land" optional="show" />
                    <field name="qty_dues_payment" optional="show" />
