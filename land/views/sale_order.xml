@@ -54,6 +54,8 @@
                        <field name="schedule_land_ids"
                               create="false"
                               delete="false"
+                              decoration-danger="is_paid == False"
+                              decoration-success="is_paid == True"
                             >
                                 <tree string="Sales" readonly="1" >
                                     <field name="is_paid" readonly="1"   />
