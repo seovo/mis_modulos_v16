@@ -52,13 +52,14 @@
                        <notebook>
                            <page string="Cronograma" name="cronograma">
                        <field name="schedule_land_ids"
-                              create="false"
-                              delete="false"
+
 
                             >
                                 <tree string="Sales"
                                       decoration-danger="is_paid == False"
                                       decoration-success="is_paid == True"
+                                      create="false"
+                                      delete="false"
                                       readonly="1" >
                                     <field name="is_paid" readonly="1"   />
                                     <field name="number_due" readonly="1"  />
@@ -198,7 +199,13 @@
                               create="false"
                               delete="false"
                             >
-                                <tree string="Sales"   editable="bottom">
+                                <tree string="Sales"
+                                      decoration-danger="is_paid == False"
+                                      decoration-success="is_paid == True"
+                                      create="false"
+                                      delete="false"
+                                      readonly="1"
+                                      editable="bottom">
                                     <field name="number_due" readonly="1"  />
                                     <button name="invoice_here_land" string="Pagar"
                                             groups="land.group_payment_cronograma"
