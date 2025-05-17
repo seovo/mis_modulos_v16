@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="main_bycle" name="Reparaciones" sequence="1"
+    <menuitem id="main_bycle" name="Reparaciones"
               web_icon="reparation_bicle_cr_jz,static/description/icon.png" >
         <menuitem id="sale_order_menu" name="Ordenes" >
             <menuitem id="menu_sale_quotations"
