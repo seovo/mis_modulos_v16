@@ -639,17 +639,17 @@
                    <field name="value_due_land" optional="show" />
                    <button name="show_dues_land" string="Pagos" type="object" />
                    <field name="paid_land_1" optional="hidden"  decoration-success="paid_land_1 > 0"  decoration-danger="paid_land_1 * -1 > 0" />
-                   <field name="paid_land_2" optional="hidden" />
-                   <field name="paid_land_3" optional="hidden" />
-                   <field name="paid_land_4" optional="hidden" />
-                   <field name="paid_land_5" optional="hidden" />
-                   <field name="paid_land_6" optional="hidden" />
-                   <field name="paid_land_7" optional="hidden" />
-                   <field name="paid_land_8" optional="hidden" />
-                   <field name="paid_land_9" optional="hidden" />
-                   <field name="paid_land_10" optional="hidden" />
-                   <field name="paid_land_11" optional="hidden" />
-                   <field name="paid_land_12" optional="hidden" />
+                   <field name="paid_land_2" optional="hidden"  decoration-success="paid_land_2 > 0"  decoration-danger="paid_land_3 * -1 > 0" />
+                   <field name="paid_land_3" optional="hidden"  decoration-success="paid_land_3 > 0"  decoration-danger="paid_land_3 * -1 > 0" />
+                   <field name="paid_land_4" optional="hidden"  decoration-success="paid_land_4 > 0"  decoration-danger="paid_land_4 * -1 > 0"  />
+                   <field name="paid_land_5" optional="hidden"  decoration-success="paid_land_5 > 0"  decoration-danger="paid_land_5 * -1 > 0"  />
+                   <field name="paid_land_6" optional="hidden"  decoration-success="paid_land_6 > 0"  decoration-danger="paid_land_6 * -1 > 0"  />
+                   <field name="paid_land_7" optional="hidden"  decoration-success="paid_land_7 > 0"  decoration-danger="paid_land_7 * -1 > 0"  />
+                   <field name="paid_land_8" optional="hidden"  decoration-success="paid_land_8 > 0"  decoration-danger="paid_land_8 * -1 > 0"  />
+                   <field name="paid_land_9" optional="hidden"  decoration-success="paid_land_9 > 0"  decoration-danger="paid_land_9 * -1 > 0"  />
+                   <field name="paid_land_10" optional="hidden"  decoration-success="paid_land_10 > 0"  decoration-danger="paid_land_10 * -1 > 0"  />
+                   <field name="paid_land_11" optional="hidden"  decoration-success="paid_land_11 > 0"  decoration-danger="paid_land_11 * -1 > 0"  />
+                   <field name="paid_land_12" optional="hidden"  decoration-success="paid_land_12 > 0"  decoration-danger="paid_land_12 * -1 > 0"  />
                    <field name="amount_total"  optional="hidden" />
                    <field name="price_initial_land" string="Inicial"  optional="hidden" />
                    <field name="price_credit_land" string="Credito" />
