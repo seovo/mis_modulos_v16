@@ -637,7 +637,7 @@
                    <field name="dues_land" optional="show" />
                    <field name="qty_dues_payment" optional="show" />
                    <field name="value_due_land" optional="show" />
-                   <field name="credit_year_now"  optional="show"  />
+                   <field name="credit_year_now"  optional="hidden"  />
                    <button name="show_dues_land" string="Pagos" type="object" />
                    <field name="paid_land_1" optional="hidden"  decoration-success="paid_land_1 > 0"  decoration-danger="paid_land_1 * -1 > 0" />
                    <field name="paid_land_2" optional="hidden"  decoration-success="paid_land_2 > 0"  decoration-danger="paid_land_3 * -1 > 0" />
@@ -660,8 +660,8 @@
                    <field name="obs_resolution"  optional="hidden" />
 
 
-                   <field name="payment_year_now"  optional="show" />
-                   <field name="saldo_year_now"   optional="show"  />
+                   <field name="payment_year_now"  optional="hidden" />
+                   <field name="saldo_year_now"   optional="hidden"  />
 
                </tree>
            </field>
