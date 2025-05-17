@@ -183,7 +183,13 @@ class SaleOrder(models.Model):
                     if datex.month == 1 :
                         record.paid_land_1 = sche.amount_due_land
 
-                    record[f'paid_land_{datex.month}'] = sche.amount_due_land
+                    if sche.amount_due_land > 0 :
+                        record[f'paid_land_{datex.month}'] = sche.amount_due_land
+                    else:
+                        record[f'paid_land_{datex.month}'] = -1 * sche.amount
+
+
+
 
 
 
