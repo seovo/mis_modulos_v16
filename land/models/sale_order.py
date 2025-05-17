@@ -158,6 +158,9 @@ class SaleOrder(models.Model):
     paid_land_10 = fields.Float(compute='get_amounts_paid_land', string='Oct')
     paid_land_11 = fields.Float(compute='get_amounts_paid_land', string='Nov')
     paid_land_12 = fields.Float(compute='get_amounts_paid_land', string='Dic')
+    credit_year_now = fields.Float(compute='get_amounts_paid_land', string='Credito Anual')
+    payment_year_now = fields.Float(compute='get_amounts_paid_land', string='Aportado Anual')
+    saldo_year_now = fields.Float(compute='get_amounts_paid_land', string='Saldo Anual')
 
     @api.depends('schedule_land_ids')
     def get_amounts_paid_land(self):
@@ -176,6 +179,10 @@ class SaleOrder(models.Model):
             record.paid_land_11 = None
             record.paid_land_12 = None
 
+            credit_year_now = 0
+            payment_year_now = 0
+            saldo_year_now = 0
+
             for sche in record.schedule_land_ids:
                 datex = sche.date
 
@@ -185,8 +192,18 @@ class SaleOrder(models.Model):
 
                     if sche.amount_due_land > 0 :
                         record[f'paid_land_{datex.month}'] = sche.amount_due_land
+                        payment_year_now = sche.amount_due_land
                     else:
                         record[f'paid_land_{datex.month}'] = -1 * sche.amount
+                        saldo_year_now += sche.amount
+
+                    credit_year_now += sche.amount
+
+            record.credit_year_now = credit_year_now
+            record.payment_year_now = payment_year_now
+            record.saldo_year_now = saldo_year_now
+
+
 
 
 

@@ -652,11 +652,15 @@
                    <field name="paid_land_12" optional="hidden"  decoration-success="paid_land_12 > 0"  decoration-danger="paid_land_12 * -1 > 0"  />
                    <field name="amount_total"  optional="hidden" />
                    <field name="price_initial_land" string="Inicial"  optional="hidden" />
-                   <field name="price_credit_land" string="Credito" />
-                   <field name="total_payment_land" string="Abonado" />
-                   <field name="saldo_payment_land"  string="Saldo" />
+                   <field name="price_credit_land" string="Credito" optional="show"  />
+                   <field name="total_payment_land" string="Abonado" optional="show"  />
+                   <field name="saldo_payment_land"  string="Saldo" optional="show"  />
                    <field name="state_lawyer_land"  optional="hidden" />
                    <field name="obs_resolution"  optional="hidden" />
+
+                   <field name="price_credit_land"  optional="show"  />
+                   <field name="total_payment_land"  optional="show" />
+                   <field name="saldo_payment_land"   optional="show"  />
 
                </tree>
            </field>
