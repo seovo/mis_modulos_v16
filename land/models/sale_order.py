@@ -161,7 +161,7 @@ class SaleOrder(models.Model):
 
     @api.depends('schedule_land_ids')
     def get_amounts_paid_land(self):
-        year = fields.Datetime.now().date().year()
+        year = fields.Datetime.now().year
         for record in self:
             record.paid_land_1 = None
             record.paid_land_2 = None
