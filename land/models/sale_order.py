@@ -146,6 +146,42 @@ class SaleOrder(models.Model):
     inicial_lot_set = fields.Float(string="Inicial")
     price_m2 = fields.Float(string='Precio M2',digits=(12, 3))
 
+    paid_land_1 = fields.Float(compute='get_amounts_paid_land',string='Ene')
+    paid_land_2 = fields.Float(compute='get_amounts_paid_land', string='Feb')
+    paid_land_3 = fields.Float(compute='get_amounts_paid_land', string='Mar')
+    paid_land_4 = fields.Float(compute='get_amounts_paid_land', string='Abr')
+    paid_land_5 = fields.Float(compute='get_amounts_paid_land', string='May')
+    paid_land_6 = fields.Float(compute='get_amounts_paid_land', string='Jun')
+    paid_land_7 = fields.Float(compute='get_amounts_paid_land', string='Jul')
+    paid_land_8 = fields.Float(compute='get_amounts_paid_land', string='Agos')
+    paid_land_9 = fields.Float(compute='get_amounts_paid_land', string='Sep')
+    paid_land_10 = fields.Float(compute='get_amounts_paid_land', string='Oct')
+    paid_land_11 = fields.Float(compute='get_amounts_paid_land', string='Nov')
+    paid_land_12 = fields.Float(compute='get_amounts_paid_land', string='Dic')
+
+    @api.depends('schedule_land_ids')
+    def get_amounts_paid_land(self):
+        year = fields.Datetime.now().date().year()
+        for record in self:
+            record.paid_land_1 = None
+            record.paid_land_2 = None
+            record.paid_land_3 = None
+            record.paid_land_4 = None
+            record.paid_land_5 = None
+            record.paid_land_6 = None
+            record.paid_land_7 = None
+            record.paid_land_8 = None
+            record.paid_land_9 = None
+            record.paid_land_10 = None
+            record.paid_land_11 = None
+            record.paid_land_12 = None
+
+            for sche in record.schedule_land_ids:
+                datex = sche.date
+                record.paid_land_1 = year
+
+
+
 
     @api.onchange('report_lot_land_line_id')
     def change_report_lot_land(self):
