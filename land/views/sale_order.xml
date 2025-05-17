@@ -638,7 +638,7 @@
                    <field name="qty_dues_payment" optional="show" />
                    <field name="value_due_land" optional="show" />
                    <button name="show_dues_land" string="Pagos" type="object" />
-                   <field name="paid_land_1" optional="hidden"  decoration-success="paid_land_1 > 0"  decoration-danger="paid_land_1 &lt 0" />
+                   <field name="paid_land_1" optional="hidden"  decoration-success="paid_land_1 > 0"  decoration-danger="paid_land_1 * -1 > 0" />
                    <field name="paid_land_2" optional="hidden" />
                    <field name="paid_land_3" optional="hidden" />
                    <field name="paid_land_4" optional="hidden" />
