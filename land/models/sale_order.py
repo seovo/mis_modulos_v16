@@ -179,9 +179,11 @@ class SaleOrder(models.Model):
             for sche in record.schedule_land_ids:
                 datex = sche.date
 
-                if datex.year == year:
+                if datex and datex.year == year:
                     if datex.month == 1 :
                         record.paid_land_1 = sche.amount_due_land
+
+                    record[f'paid_land_{datex.month}'] = sche.amount_due_land
 
 
 
