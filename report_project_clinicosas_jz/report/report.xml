@@ -13,6 +13,8 @@
         <field name="binding_model_id" ref="reparation_bicle_cr_jz.model_project_project"/>
     </record>
 
+
+
     <template id="report_project">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
