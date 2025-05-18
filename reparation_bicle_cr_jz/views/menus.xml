@@ -13,11 +13,11 @@
                 action="account.res_partner_action_customer"
                 groups="sales_team.group_sale_salesman"
                 string="Clientes"
-                sequence="40"/>
+                sequence="40" />
             <menuitem id="menu_product_template_action"
                 action="sale.product_template_action"
                 string="Productos"
-                sequence="50"/>
+                sequence="50" />
 
         </menuitem>
 
