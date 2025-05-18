@@ -6,18 +6,17 @@
         <menuitem id="sale_order_menux" name="Ordenes"  groups="sales_team.group_sale_salesman" >
             <menuitem id="menu_sale_quotationsx"
                 action="sale.action_quotations_with_onboarding"
-
-                string="Ordenes"
+                name="Ordenes"
                 sequence="10" />
 
             <menuitem id="res_partner_menux"
                 action="account.res_partner_action_customer"
 
-                string="Clientes"
+                name="Clientes"
                 sequence="40"/>
             <menuitem id="menu_product_template_actionx"
                 action="sale.product_template_action"
-                string="Productos"
+                name="Productos"
                 sequence="50"/>
 
         </menuitem>
