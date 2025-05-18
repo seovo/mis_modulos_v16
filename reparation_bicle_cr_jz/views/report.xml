@@ -72,7 +72,7 @@
 
                     <tbody class="sale_tbody">
 
-                        <t t-foreach="doc.tasks" t-as="line">
+                        <t t-foreach="doc.order_line" t-as="line">
 
                             <tr class="bg-200 fw-bold o_line_section">
                                 <td name="td_section_line" colspan="99">
