@@ -13,6 +13,13 @@
 
                </xpath>
 
+               <xpath expr="//button[10]" position="replace" >
+                    <button name="action_quotation_send" id="send_by_email" string="Enviar Whatsapp" type="object"
+                            invisible="state not in ('sent', 'sale')" data-hotkey="g"
+                            context="{'validate_analytic': True}"/>
+
+               </xpath>
+
 
            </field>
     </record>
