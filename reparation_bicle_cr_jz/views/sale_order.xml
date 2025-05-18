@@ -11,11 +11,10 @@
                    <field name="under_warranty_bycle" />
 
                </xpath>
-               <xpath expr="//button[@id='send_by_email_primary']" position="replace" >
-                   <button name="action_quotation_send" id="send_by_email_primary" string="Enviar Whatsapp"
-                           type="object" data-hotkey="g" invisible="state != 'draft'" class="btn-primary"
-                           context="{'validate_analytic': True}"
-                   />
+               <xpath expr="//button[name='action_quotation_send'][4]" position="replace" >
+                   <button name="action_quotation_send" id="send_by_email" string="Enviar Whatsapp"
+                           type="object" invisible="state not in ('sent', 'sale')" data-hotkey="g"
+                           context="{'validate_analytic': True}"/>
 
                </xpath>
 
