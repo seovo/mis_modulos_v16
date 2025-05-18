@@ -11,8 +11,8 @@
         "security/ir.model.access.csv",
         'views/sale_order.xml',
         'views/view_company_form.xml',
-        #'views/menu.xml',
-        'views/report.xml',
+        'views/menu.xml',
+        #'views/report.xml',
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
