@@ -49,13 +49,13 @@ class SaleOrder(models.Model):
         self.ensure_one()
         #self.order_line._validate_analytic_distribution()
         lang = self.env.context.get('lang')
-        #mail_template = self._find_mail_template()
+        mail_template = self.company_id.whatsapp_template_id
         #if mail_template and mail_template.lang:
         #    lang = mail_template._render_lang(self.ids)[self.id]
         ctx = {
             'default_model': 'sale.order',
             'default_res_ids': self.ids,
-            #'default_template_id': mail_template.id if mail_template else None,
+            'default_template_id': mail_template.id if mail_template else None,
             'default_composition_mode': 'comment',
             #'mark_so_as_sent': True,
             #"'default_email_layout_xmlid': 'mail.mail_notification_layout_with_responsible_signature',
