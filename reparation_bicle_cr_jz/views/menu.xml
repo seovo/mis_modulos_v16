@@ -36,7 +36,7 @@
                 sequence="30"/>
             <menuitem id="sale.menu_reporting_customer"
                 name="Clientes"
-                action="action_order_report_customers"
+                action="sale.action_order_report_customers"
                 sequence="40"/>
 
         </menuitem>
