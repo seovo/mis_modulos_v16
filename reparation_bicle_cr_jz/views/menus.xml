@@ -20,34 +20,6 @@
                 sequence="50"/>
 
         </menuitem>
-<!--
-        <menuitem id="menu_sale_report"
-            name="Reportes"
-            groups="sales_team.group_sale_manager"
-            sequence="40">
-
-            <menuitem id="menu_reporting_sales"
-                name="Ventas"
-                action="sale.action_order_report_all"
-                sequence="10"/>
-            <menuitem id="menu_reporting_salespeople"
-                name="Vendedores"
-                action="sale.action_order_report_salesperson"
-                sequence="20"/>
-            <menuitem id="menu_reporting_product"
-                name="Productos"
-                action="sale.action_order_report_products"
-                sequence="30"/>
-            <menuitem id="sale.menu_reporting_customer"
-                name="Clientes"
-                action="sale.action_order_report_customers"
-                sequence="40"/>
-
-        </menuitem>
-        -->
 
     </menuitem>
-
-
-
 </odoo>
