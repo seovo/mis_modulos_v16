@@ -3,7 +3,7 @@
 
     <record id="action_report_projectx" model="ir.actions.report">
         <field name="name">Reporte Proyecto</field>
-        <field name="model">project.project</field>
+        <field name="model">sale.order</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">reparation_bicle_cr_jz.report_project</field>
         <field name="report_file">reparation_bicle_cr_jz.report_project</field>
