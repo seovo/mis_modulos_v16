@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="action_report_project" model="ir.actions.report">
+    <record id="action_report_projectx" model="ir.actions.report">
         <field name="name">Reporte Proyecto</field>
         <field name="model">project.project</field>
         <field name="report_type">qweb-pdf</field>
