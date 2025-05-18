@@ -11,12 +11,7 @@
                    <field name="under_warranty_bycle" />
 
                </xpath>
-               <xpath expr="//header/button[10]" position="after" >
 
-                   <button name="Enviar Whatsapp"
-                            string="Devolver" type="object" class="oe_highlight"  />
-
-               </xpath>
 
            </field>
     </record>
