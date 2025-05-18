@@ -20,7 +20,7 @@
                 sequence="50"/>
 
         </menuitem>
-<!--
+
         <menuitem id="menu_sale_report"
             name="Reportes"
             groups="sales_team.group_sale_manager"
@@ -44,7 +44,7 @@
                 sequence="40"/>
 
         </menuitem>
-        -->
+
 
     </menuitem>
 

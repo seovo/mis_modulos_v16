@@ -11,7 +11,7 @@
         "security/ir.model.access.csv",
         'views/sale_order.xml',
         'views/view_company_form.xml',
-        'views/menus.xml',
+        'views/menu.xml',
         'views/report.xml',
 
     ],
