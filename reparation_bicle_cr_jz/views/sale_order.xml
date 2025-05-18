@@ -11,7 +11,7 @@
                    <field name="under_warranty_bycle" />
 
                </xpath>
-               <xpath expr="//header" position="inside" >
+               <xpath expr="//field[@name='state']" position="before" >
                    <button name="action_quotation_send" string="Enviar Whatsapp"
                            type="object" invisible="state not in ('sent', 'sale')"
                           />
