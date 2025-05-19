@@ -45,7 +45,7 @@
                 <div class="row mt-4 mb-2" id="informations">
 
                     <div t-if="doc.user_id" class="col-auto col-3 mw-100 mb-2">
-                        <strong>Mecanico:</strong><br/>
+                        <strong>Mecánico:</strong><br/>
                         <span class="m-0" t-field="doc.user_id"></span>
                     </div>
 
