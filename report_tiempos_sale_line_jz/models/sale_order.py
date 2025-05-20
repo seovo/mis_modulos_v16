@@ -16,6 +16,7 @@ class SaleOrderLine(models.Model):
     purchase_product_uom_qty = fields.Float(compute='get_data_report_time', string="Compra Cant Total")
     purchase_date_planned = fields.Datetime(compute='get_data_report_time', string="Fecha Prevista")
     purchase_partner_id = fields.Many2one('res.partner', compute='get_data_report_time', string="Proveedor")
+    purchase_currency_id = fields.Many2one('res.currency', compute='get_data_report_time', string="Compra Moneda")
 
 
 
@@ -38,3 +39,4 @@ class SaleOrderLine(models.Model):
             record.purchase_product_uom_qty = purchase_line.product_uom_qty if purchase_line else None
             record.purchase_date_planned = purchase_line.date_planned if purchase_line else None
             record.purchase_price_unit = purchase_line.price_unit if purchase_line else None
+            record.purchase_currency_id = purchase_line.currency_id.id if purchase_line else None

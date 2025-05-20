@@ -28,6 +28,7 @@
                 <field name="purchase_date_planned"  optional="show" readonly="1"  />
                 <field name="purchase_product_qty"  optional="show" readonly="1"  />
                 <field name="purchase_price_unit"  optional="show" readonly="1"  />
+                <field name="purchase_currency_id"  optional="show" readonly="1"  />
                 <field name="purchase_qty_received"  optional="show" readonly="1"  />
                 <field name="purchase_product_uom_qty"  optional="show" readonly="1"  />
                 <field name="company_id" optional="show"  readonly="1"/>
