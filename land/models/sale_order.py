@@ -472,6 +472,7 @@ class SaleOrder(models.Model):
                 stage = record.report_lot_land_line_id.ettapa
 
             else:
+                raise ValidationError('Se requiere ZONA Y ETAPA DEL TERRENO')
                 for line in record.order_line:
                     if line.product_id.manzana and line.product_id.manzana != '':
                         mz = line.product_id.manzana
