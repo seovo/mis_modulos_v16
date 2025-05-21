@@ -467,7 +467,7 @@ class SaleOrder(models.Model):
             m2 = None
 
             if record.partner_id:
-                if record.report_lot_land_line_id.zona:
+                if record.report_lot_land_line_id:
                     mz = record.report_lot_land_line_id.manzana
                     lt = record.report_lot_land_line_id.name
                     m2 = record.report_lot_land_line_id.area
