@@ -1138,26 +1138,25 @@ class SaleOrder(models.Model):
             res['days_expired_land'] = self.days_expired_land
             res['value_mora_land'] = self.value_mora_land
 
-        if self.mz_land:
-            mz = self.env['product.attribute.value'].search(
-                [('attribute_id.type_land', '=', 'mz'), ('name', '=', self.mz_land)])
-
-            if mz:
-                res['mz_land_separation_id'] = mz.id
-
-
-        if self.lot_land:
-            lt = self.env['product.attribute.value'].search(
-                [('attribute_id.type_land', '=', 'lot'), ('name', '=', self.lot_land)])
-            if lt:
-                res['lot_land_separation_id'] = lt.id
+        #if self.mz_land:
+        #    mz = self.env['product.attribute.value'].search(
+        #        [('attribute_id.type_land', '=', 'mz'), ('name', '=', self.mz_land)])
+        #    if mz:
+        #        res['mz_land_separation_id'] = mz.id
 
 
-        if self.sector_land:
-            st = self.env['product.attribute.value'].search(
-                [('attribute_id.type_land', '=', 'stage'), ('name', '=', self.sector_land)])
-            if st:
-                res['sector_land_separation_id'] = st.id
+        #if self.lot_land:
+        #    lt = self.env['product.attribute.value'].search(
+        #        [('attribute_id.type_land', '=', 'lot'), ('name', '=', self.lot_land)])
+        #    if lt:
+        #        res['lot_land_separation_id'] = lt.id
+
+
+        #if self.sector_land:
+        #    st = self.env['product.attribute.value'].search(
+        #        [('attribute_id.type_land', '=', 'stage'), ('name', '=', self.sector_land)])
+        #    if st:
+        #        res['sector_land_separation_id'] = st.id
 
 
 
