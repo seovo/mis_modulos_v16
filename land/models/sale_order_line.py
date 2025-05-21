@@ -64,16 +64,16 @@ class SaleOrderLine(models.Model):
 
         if self.product_id.is_anticipo_land:
 
-            if self.product_id.manzana and self.product_id.lote:
-                return f"ANTICIPO  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} "
+            if self.order_id.mz_land and self.order_id.lot_land:
+                return f"ANTICIPO  , MZ: {self.order_id.mz_land} - LT : {self.order_id.lot_land} "
             else:
 
                 return f"ANTICIPO ,  {sale_line.order_id.mz_lot or ''} "
 
         if self.product_id.is_separation_land:
 
-            if self.product_id.manzana and self.product_id.lote:
-                return f"SEPARACION  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote}  {self.product_id.description_sale}"
+            if self.order_id.mz_land and self.order_id.lot_land:
+                return f"SEPARACION  , MZ: {self.order_id.mz_land} - LT : {self.order_id.lot_land}  {self.product_id.description_sale}"
             else:
 
                 return f"SEPARACION ,  {sale_line.order_id.mz_lot or ''}  {self.product_id.description_sale}"
@@ -83,15 +83,15 @@ class SaleOrderLine(models.Model):
 
         if self.product_id.is_advanced_land:
 
-            if self.product_id.manzana and self.product_id.lote:
-                return f"CANCELACION  INICIAL  , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {self.product_id.description_sale}"
+            if self.order_id.mz_land and self.order_id.lot_land:
+                return f"CANCELACION  INICIAL  , MZ: {self.order_id.mz_land} - LT : {self.order_id.lot_land} {self.product_id.description_sale}"
             else:
 
                 return f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''}  {self.product_id.description_sale}"
 
 
-        if self.product_id.manzana and self.product_id.lote:
-            name = f"CANCELACION  CUOTA  {int(sale_line.order_id.qty_dues_payment + 1)} , MZ: {self.product_id.manzana} - LT : {self.product_id.lote} {mes_ano} "
+        if self.order_id.mz_land and self.order_id.lot_land:
+            name = f"CANCELACION  CUOTA  {int(sale_line.order_id.qty_dues_payment + 1)} , MZ: {self.order_id.mz_land} - LT : {self.order_id.lot_land} {mes_ano} "
             return name
         else:
             if sale_line.order_id.mz_lot:
@@ -125,6 +125,7 @@ class SaleOrderLine(models.Model):
         price_totalx = 1
         is_land = False
         if product.product_template_attribute_value_ids:
+            raise ValidationError('CALCULO X ATRIBUTOS DESACTIVADO')
 
 
             # array_total = []
