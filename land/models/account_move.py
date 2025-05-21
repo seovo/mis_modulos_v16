@@ -127,7 +127,7 @@ class AccountMove(models.Model):
 
     def update_all_moves(self):
         moves = self.env['account.move'].search([])
-        moves[1000:2000].get_proveedores_land()
+        moves[2000:3000].get_proveedores_land()
 
     @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
     def get_proveedores_land(self):
