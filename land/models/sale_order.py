@@ -813,20 +813,15 @@ class SaleOrder(models.Model):
 
     def _update_text_mz_lote(self):
         for record in self:
-            mz =   None
-            lote = None
 
             value_due = 0
-            mz_lot = None
+
 
 
 
 
             for line in record.order_line:
-                if line.product_id.manzana:
-                    mz = line.product_id.manzana
-                if line.product_id.lote:
-                    lote = line.product_id.lote
+
 
                 if line.product_id.payment_land_dues:
 
@@ -834,9 +829,7 @@ class SaleOrder(models.Model):
 
 
 
-            if mz or lote:
-                mz_lot = (mz or '') + '-' + (lote or '')
-                record.mz_lot = mz_lot
+
             record.value_due_land = value_due
 
     def _recalcule_price_land(self):
