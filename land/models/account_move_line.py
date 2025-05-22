@@ -45,10 +45,11 @@ class AccountMoveLine(models.Model):
 
     @api.onchange('product_id')
     def change_product_autocomplete_description_jz(self):
-        raise ValueError('DESACTIVADO')
+
 
         for record in self:
             if record.move_id.is_separation_land and record.product_id :
+                raise ValueError('DESACTIVADO')
                 if record.move_id.mz_land_separation_id and record.move_id.lot_land_separation_id and  record.move_id.sector_land_separation_id:
                     name = record.name or ''
                     name += f''' MZ. : {record.move_id.mz_land_separation_id.name} , LOTE: {record.move_id.lot_land_separation_id.name} , ETAPA: {record.move_id.sector_land_separation_id.name} '''
