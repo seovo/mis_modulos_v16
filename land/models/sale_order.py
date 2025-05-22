@@ -136,11 +136,12 @@ class SaleOrder(models.Model):
 
     ########
     product_tmp_lot_id  = fields.Many2one('product.template',string="Proyecto",
-                                       domain="[('company_id', 'in', (False, company_id)),('payment_land_dues','=',True)]"
+                                       domain="[('company_id', 'in', (False, company_id)),"
+                                              "('payment_land_dues','=',True),('sale_ok','=',True)]"
                                        )
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',
                                               string="Lote",
-                                              domain="[('product_tmp_id', 'in', (product_tmp_lot_id))]")
+                                              domain="[('product_tmp_id', '=', product_tmp_lot_id)]")
     area_lot_related = fields.Float(related='report_lot_land_line_id.area',readonly=False,string="Area")
     zona_lot_related = fields.Many2one('land.zona',related='report_lot_land_line_id.zona',readonly=False,string="Zona")
     ettapa_lot_related = fields.Char(related='report_lot_land_line_id.ettapa', readonly=False,
