@@ -84,7 +84,7 @@ class SaleOrder(models.Model):
             record.dues_land = amount_dues
 
     note = fields.Text()
-    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",required=True,copy=False)
+    seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",copy=False)
 
 
     #esto es para importar
