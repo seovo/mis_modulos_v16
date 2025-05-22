@@ -37,6 +37,8 @@ class ReportLotLandLine(models.Model):
     product_tmp_id     = fields.Many2one('product.template', string='Producto',required=True)
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
+    seller_land_id    = fields.Many2one('seller.land', string="Proveedor Terreno",  copy=False)
+
 
     @api.depends('manzana','ettapa','name')
     def _compute_display_name(self):
