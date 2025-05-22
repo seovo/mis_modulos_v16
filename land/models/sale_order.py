@@ -136,7 +136,7 @@ class SaleOrder(models.Model):
 
     ########
     product_tmp_lot_id  = fields.Many2one('product.template',string="Proyecto",
-                                       domain="[('product_tmp_id.company_id', 'in', (False, company_id)),('payment_land_dues','=',True)]"
+                                       domain="[('company_id', 'in', (False, company_id)),('payment_land_dues','=',True)]"
                                        )
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',
                                               string="Lote",
