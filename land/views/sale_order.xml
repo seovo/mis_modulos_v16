@@ -10,6 +10,7 @@
                    <sheet>
                        <group>
                            <field name="company_id"  invisible="1"/>
+                           <field name="product_tmp_lot_id"  />
                            <field name="report_lot_land_line_id"  />
                            <field name="area_lot_related"  />
                            <field name="ettapa_lot_related"  />

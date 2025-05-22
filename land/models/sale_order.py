@@ -135,9 +135,12 @@ class SaleOrder(models.Model):
     diff_payment_comision =  fields.Float(string="Diferencia Comision", compute='get_comision_payment',store=True)
 
     ########
+    product_tmp_lot_id  = fields.Many2one('product.template',string="Proyecto",
+                                       domain="[('product_tmp_id.company_id', 'in', (False, company_id)),('payment_land_dues','=',True)]"
+                                       )
     report_lot_land_line_id = fields.Many2one('report.lot.land.line',
                                               string="Lote",
-                                              domain="[('product_tmp_id.company_id', 'in', (False, company_id))]")
+                                              domain="[('product_tmp_id', 'in', (product_tmp_lot_id))]")
     area_lot_related = fields.Float(related='report_lot_land_line_id.area',readonly=False,string="Area")
     zona_lot_related = fields.Many2one('land.zona',related='report_lot_land_line_id.zona',readonly=False,string="Zona")
     ettapa_lot_related = fields.Char(related='report_lot_land_line_id.ettapa', readonly=False,
