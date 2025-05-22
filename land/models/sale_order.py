@@ -447,6 +447,8 @@ class SaleOrder(models.Model):
 
     def update_all_seller_lot(self):
         for record in self:
+            if record.id ==  804 or record._origin.id == 804 :
+                continue
             if record.seller_land_id:
                 if not  record.report_lot_land_line_id:
                     raise ValueError(record.name)
