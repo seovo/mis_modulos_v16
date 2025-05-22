@@ -211,13 +211,6 @@ class SaleOrder(models.Model):
 
 
 
-
-
-
-
-
-
-
     @api.onchange('report_lot_land_line_id')
     def change_report_lot_land(self):
         for record in self:
@@ -451,9 +444,21 @@ class SaleOrder(models.Model):
         }
 
 
+
+    def update_all_seller_lot(self):
+        for record in self:
+            if record.seller_land_id:
+                if not  record.report_lot_land_line_id:
+                    raise ValueError(record.name)
+                record.report_lot_land_line_id = record.seller_land_id.id
+
+
     def update_all_info_land(self):
         record = self.env['sale.order'].search([])
         record.get_info_land()
+        record.update_all_seller_lot()
+
+
 
     @api.onchange('order_line','mz_lot','sector','order_line.price_unit',
                   'order_line.product_uom_qty','note','report_lot_land_line_id','report_lot_land_line_id.zona',
