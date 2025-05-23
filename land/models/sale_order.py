@@ -218,8 +218,16 @@ class SaleOrder(models.Model):
             if record.report_lot_land_line_id and not record.order_line:
                 record.inicial_lot_set = record.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].list_price
                 record.price_m2 = record.report_lot_land_line_id.zona.value
+                record.seller_land_id = record.report_lot_land_line_id.seller_land_id.id
 
 
+
+    @api.onchange('seller_land_id')
+    def changer_seller_land_id(self):
+        for record in self:
+            if not record.report_lot_land_line_id:
+                continue
+            record.report_lot_land_line_id.seller_land_id = record.seller_land_id.id if record.seller_land_id else None
 
     @api.onchange('zona_lot_related','area_lot_related')
     def change_zona_area(self):

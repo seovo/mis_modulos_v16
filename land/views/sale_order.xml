@@ -9,8 +9,8 @@
                <form>
                    <sheet>
                        <group>
-                           <field name="company_id"  invisible="1"/>
-                           <field name="product_tmp_lot_id"  />
+                           <field name="company_id"  invisible="state == 'draft"/>
+                           <field name="product_tmp_lot_id"   domain="[('company_id','=',company_id)]" />
                            <field name="report_lot_land_line_id"  />
                            <field name="area_lot_related"  />
                            <field name="ettapa_lot_related"  />
@@ -18,7 +18,7 @@
                            <field name="price_lot_related"  />
                            <field name="inicial_lot_set"  />
                            <field name="price_m2" invisible="1"  />
-                           <field name="company_id" invisible="1"  />
+                           <field name="pseller_land_id" invisible="1"  />
                        </group>
                    </sheet>
 
@@ -158,10 +158,14 @@
                <xpath expr="//notebook" position="inside" >
                    <page string="Terreno Información" >
                        <group>
+                           <button name="open_product_land" string="Modificar"
+                           invisible="state == 'draft'"
+                           type="object" class="m-4  btn-primary" />
                            <field name="price_m2" />
                            <field name="days_tolerance_land" />
                            <field name="value_mora_land" />
                            <field name="percentage_refund_land" />
+                           <field name="seller_land_id"  widget="selection" />
                            <field name="modality_land" />
                            <field name="obs_modality_land" />
                            <field name="obs_resolution" />
@@ -173,9 +177,7 @@
                            <field name="mz_lot"  readonly="1" force_save="1" />
                            <field name="dues_land" readonly="1" force_save="1" />
                            <field name="value_due_land" readonly="1" force_save="1" />
-                           <button name="open_product_land" string="Modificar"
-                           invisible="state == 'draft'"
-                           type="object" class="m-4  btn-primary" />
+
                        </group>
                    </page>
                    <page string="Cronograma">
@@ -284,7 +286,7 @@
                </xpath>
 
                <xpath expr="//field[@name='partner_shipping_id']" position="after" >
-                   <field name="seller_land_id"  widget="selection" />
+                   <field name="company_id"  />
                    <field name="date_sign_land" />
                    <field name="type_periodo_invoiced" />
                    <field name="date_first_due_land" />

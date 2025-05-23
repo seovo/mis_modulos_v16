@@ -11,9 +11,9 @@
 
 
     <record id="seller_land_rule" model="ir.rule">
-        <field name="name">ZONA multi-company</field>
+        <field name="name">SELLER multi-company</field>
         <field name="model_id" ref="model_seller_land"/>
-        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="domain_force">['|',('company_id', 'in', company_ids),('company_id.parent_id', 'in', company_ids)]</field>
     </record>
 
 
