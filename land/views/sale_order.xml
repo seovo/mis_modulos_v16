@@ -18,6 +18,7 @@
                            <field name="price_lot_related"  />
                            <field name="inicial_lot_set"  />
                            <field name="price_m2" invisible="1"  />
+                           <field name="state" invisible="1"  />
                            <field name="seller_land_id"  />
                        </group>
                    </sheet>
