@@ -356,10 +356,10 @@ class SaleOrder(models.Model):
                     if typex == 'mz':
                         mz_land = at.name
                     if typex == 'lot':
-                        mz_land = at.name
+                        lot_land = at.name
 
 
-            raise ValueError([mz_land,lot_land])
+            #raise ValueError([mz_land,lot_land])
 
 
             if not mz_land or not lot_land:
