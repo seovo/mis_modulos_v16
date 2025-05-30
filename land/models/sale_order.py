@@ -341,23 +341,16 @@ class SaleOrder(models.Model):
                 if record.user_id in team.member_ids:
                     record.commision_lan = team.commission_land
 
-    @api.onchange('mz_land','lot_land','state','mz_lot','note')
+    #@api.onchange('mz_land','lot_land','state','mz_lot','note')
     def get_report_lot_land_line_id(self,product_tmp=None):
 
         for record in self:
 
-            if record.report_lot_land_line_id:
-                if record.report_lot_land_line_id.zona:
-                    continue
+            mz_land =  None
+            for line in  record.order_line:
+                for at in line.product_id.product_template_attribute_value_ids:
+                    raise ValueError(at.attribute_id.type_land)
 
-            if not  product_tmp:
-                product_tmp = self.env['product.template'].search(
-                    [('company_id', '=', record.company_id.id), ('payment_land_dues', '=', True),
-                     ('is_independence','=',False)])
-                if not product_tmp:
-                    product_tmp = self.env['product.template'].search(
-                        [('payment_land_dues', '=', True), ('attribute_line_ids', '!=', False),
-                         ('is_independence','=',False)])
 
             line = None
 
@@ -477,6 +470,9 @@ class SaleOrder(models.Model):
                   'report_lot_land_line_id.ettapa','report_lot_land_line_id.price_m2'
                   )
     def get_info_land(self):
+
+        self.get_report_lot_land_line_id()
+
         for record in self:
 
 
