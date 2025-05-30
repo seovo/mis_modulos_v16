@@ -20,6 +20,8 @@
                            <field name="price_m2" invisible="1"  />
                            <field name="state" invisible="1"  />
                            <field name="seller_land_id"  />
+                           <field name="mz_land" invisible="1"  />
+                           <field name="lot_land" invisible="1"  />
                        </group>
                    </sheet>
 
