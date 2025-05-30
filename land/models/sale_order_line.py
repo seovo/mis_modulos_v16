@@ -125,7 +125,7 @@ class SaleOrderLine(models.Model):
         price_totalx = 1
         is_land = False
         if product.product_template_attribute_value_ids:
-            raise ValidationError('CALCULO X ATRIBUTOS DESACTIVADO')
+            raise ValueError('CALCULO X ATRIBUTOS DESACTIVADO')
 
 
             # array_total = []
@@ -180,9 +180,9 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_uom_qty',)
     def change_product_uom_qty_land(self):
         for record in self:
-            #if record.product_id and record.product_id.is_advanced_land:
-            #    record.product_uom_qty = 1
-            record._calculate_price_land()
+            if record.product_id and record.product_id.payment_land_dues:
+                record._calculate_price_land()
+
 
     @api.onchange('product_id')
     def change_product_id_land(self):
