@@ -359,6 +359,9 @@ class SaleOrder(models.Model):
                         mz_land = at.name
 
 
+            raise ValueError([mz_land,lot_land])
+
+
             if not mz_land or not lot_land:
                 continue
 
