@@ -342,7 +342,7 @@ class SaleOrder(models.Model):
                     record.commision_lan = team.commission_land
 
     #@api.onchange('mz_land','lot_land','state','mz_lot','note')
-    def get_report_lot_land_line_id(self,product_tmp=None):
+    def get_report_lot_land_line_id(self):
 
         for record in self:
 
@@ -369,10 +369,8 @@ class SaleOrder(models.Model):
 
             if record.mz_land and record.lot_land and record.lot_land != None:
                 try:
-                    dm = [('mz_value_id.name', '=', mz_land),('name', '=', str(lot_land)),('product_tmp_id', '=', product_tmp.id)]
-                    #('mz_value_id.name', '=', mz_land),
-                    #    ('name', '=', str(lot_land),
-                    #     ('product_tmp_id', '=', product_tmp.id)
+                    dm = [('mz_value_id.name', '=', mz_land),
+                          ('name', '=', str(int(lot_land))),('product_tmp_id', '=', product_tmp.id)]
 
                     line = self.env['report.lot.land.line'].search(dm)
                 except:
