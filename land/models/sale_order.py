@@ -474,7 +474,7 @@ class SaleOrder(models.Model):
     @api.onchange('order_line','mz_lot','sector','order_line.price_unit',
                   'order_line.product_uom_qty','note','report_lot_land_line_id','report_lot_land_line_id.zona',
                   'report_lot_land_line_id.manzana','report_lot_land_line_id.name','report_lot_land_line_id.area',
-                  'report_lot_land_line_id.ettapa','report_lot_land_line_id.price_m2',
+                  'report_lot_land_line_id.ettapa','report_lot_land_line_id.price_m2'
                   )
     def get_info_land(self):
         for record in self:
