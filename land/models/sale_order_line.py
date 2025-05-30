@@ -319,10 +319,11 @@ class SaleOrderLine(models.Model):
                 self.env['sale.order'].verifi_mz_lot(mz=record.product_id.manzana,lt=record.product_id.lote,object=record)
             '''
 
+            if not record.product_id.is_independence:
+                for line in record.order_id.order_line:
+                    line.change_product_uom_qty_land()
 
 
-            for line in record.order_id.order_line:
-                line.change_product_uom_qty_land()
 
             #buscar las demas ordenes para agrgar producto indepencia
 
