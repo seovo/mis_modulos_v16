@@ -347,9 +347,20 @@ class SaleOrder(models.Model):
         for record in self:
 
             mz_land =  None
+            lot_land =  None
+            product_tmp = None
             for line in  record.order_line:
                 for at in line.product_id.product_template_attribute_value_ids:
-                    raise ValueError(at.attribute_id.type_land)
+                    product_tmp = line.product_id.product_tmpl_id
+                    typex = at.attribute_id.type_land
+                    if typex == 'mz':
+                        mz_land = at.name
+                    if typex == 'lot':
+                        mz_land = at.name
+
+
+            if not mz_land or not lot_land:
+                continue
 
 
             line = None
@@ -358,11 +369,12 @@ class SaleOrder(models.Model):
 
             if record.mz_land and record.lot_land and record.lot_land != None:
                 try:
-                    line = self.env['report.lot.land.line'].search([
-                        ('mz_value_id.name', '=', record.mz_land),
-                        ('name', '=', str(int(record.lot_land))),
-                        ('product_tmp_id', '=', product_tmp.id)
-                    ])
+                    dm = [('mz_value_id.name', '=', mz_land),('name', '=', str(lot_land)),('product_tmp_id', '=', product_tmp.id)]
+                    #('mz_value_id.name', '=', mz_land),
+                    #    ('name', '=', str(lot_land),
+                    #     ('product_tmp_id', '=', product_tmp.id)
+
+                    line = self.env['report.lot.land.line'].search(dm)
                 except:
                     if record.lot_land == None or str(record.lot_land) == 'None':
                         pass
