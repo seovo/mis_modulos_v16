@@ -195,7 +195,8 @@ class SaleOrderLine(models.Model):
             if  record.product_id and record.product_id.is_advanced_land:
                 record.product_uom_qty = 1
 
-            record._calculate_price_land()
+            if record.product_id and record.product_id.payment_land_dues:
+                record._calculate_price_land()
 
 
     def check_adelanto(self):
