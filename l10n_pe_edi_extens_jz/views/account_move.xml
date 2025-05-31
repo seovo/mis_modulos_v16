@@ -14,4 +14,22 @@
                </xpath>
            </field>
     </record>
+
+    <record id="view_move_form_inherit" model="ir.ui.view">
+           <field name="name">account.move.tree</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account_edi.view_move_form_inherit" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='edi_state']" position="replace" >
+
+                   <field name="edi_state"
+                          widget="badge"
+                          decoration-success="edi_state == 'sent'"
+                          decoration-danger="state != 'sent'"
+                          decoration-info="not edi_state or state == 'draft'"
+                          optional="show"/>
+               </xpath>
+           </field>
+    </record>
+
 </odoo>
