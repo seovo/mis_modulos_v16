@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Api Rest de consultas RUC, DNI y Tipo de cambio ",
-    "summary": "Api Rest de consultas RUC, DNI y Tipo de cambio ",
-    "description": """Api Rest de consultas RUC, DNI y Tipo de cambio """,
+    "name": "Facturación electrónica para Perú",
+    "summary": "Facturación electrónica para Perú",
+    "description": """Facturación electrónica para Perú""",
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "1.1",
-    "depends": ["contacts","l10n_pe"],
+    "depends": ["l10n_pe_edi"],
     "data": [
-        "views/view_company_form.xml",
+        "views/account_move.xml",
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
