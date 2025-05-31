@@ -393,7 +393,7 @@ class SaleOrder(models.Model):
                                 codigo = codigo.split('-')
                                 mz_land = codigo[0].replace(' ','')
                                 lot_land = codigo[1].replace(' ','')
-                                raise ValueError([texto, coincidencia, mz_land, lot_land])
+                                #raise ValueError([texto, coincidencia, mz_land, lot_land])
 
                             else:
                                 continue
@@ -413,6 +413,8 @@ class SaleOrder(models.Model):
                 dm = [('manzana', '=', mz_land),
                       ('name', '=', str(int(lot_land))), ('product_tmp_id', '=', 3)]
                 line = self.env['report.lot.land.line'].search(dm)
+
+                raise ValueError([line,dm])
 
 
                 try:
