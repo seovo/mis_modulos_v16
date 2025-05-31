@@ -374,8 +374,11 @@ class SaleOrder(models.Model):
 
                             if coincidencia:
                                 codigo = coincidencia.group()
-                                raise ValueError(codigo)
-                            raise ValueError(invoices.name)
+                                codigo = codigo.split('-')
+                                mz_land = codigo[0].replace(' ','')
+                                lot_land = codigo[1].replace(' ','')
+                                #raise ValueError(codigo)
+                            #raise ValueError(invoices.name)
 
 
                 continue
