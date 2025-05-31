@@ -415,6 +415,7 @@ class SaleOrder(models.Model):
                           ('name', '=', str(int(lot_land))), ('product_tmp_id', '=', 3)]
                     line = self.env['report.lot.land.line'].search(dm)
                 except:
+
                     continue
                 if not line:
                     continue
@@ -425,7 +426,11 @@ class SaleOrder(models.Model):
                     continue
 
 
-            record.report_lot_land_line_id = line
+            if line:
+                record.report_lot_land_line_id = line
+
+
+
 
 
     def show_dues_land(self):
