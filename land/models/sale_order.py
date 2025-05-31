@@ -365,8 +365,8 @@ class SaleOrder(models.Model):
 
             if not mz_land or not lot_land:
                 for line in record.order_line:
-                    if line.invoice_lines:
-                        product_tmp = line.product_id.product_tmpl_id
+                    if line.invoice_lines and line.product_id.payment_land_dues:
+                        #product_tmp = line.product_id.product_tmpl_id
                         if len(line.invoice_lines) >  1 :
                             invoices = line.invoice_lines[0]
                             import re
