@@ -363,6 +363,13 @@ class SaleOrder(models.Model):
 
 
             if not mz_land or not lot_land:
+                for line in record.order_line:
+                    if line.invoice_lines:
+                        if len(line.invoice_lines) >  1 :
+                            invoices = line.invoice_lines[0]
+                            raise ValueError(invoices.name)
+
+
                 continue
 
 
