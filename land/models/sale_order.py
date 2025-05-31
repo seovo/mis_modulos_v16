@@ -349,6 +349,7 @@ class SaleOrder(models.Model):
             mz_land =  None
             lot_land =  None
             product_tmp = None
+            '''
             for line in  record.order_line:
                 for at in line.product_id.product_template_attribute_value_ids:
                     #product_tmp = line.product_id.product_tmpl_id
@@ -357,7 +358,7 @@ class SaleOrder(models.Model):
                         mz_land = at.name
                     if typex == 'lot':
                         lot_land = at.name
-
+            '''
 
             #raise ValueError([mz_land,lot_land])
 
