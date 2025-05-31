@@ -430,7 +430,7 @@ class SaleOrder(models.Model):
                     continue
                 '''
                 if not line:
-                    raise ValueError([line, dm])
+                    raise ValueError([line, dm,record])
                     continue
                     #raise ValueError(dm)
 
