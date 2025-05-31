@@ -377,8 +377,8 @@ class SaleOrder(models.Model):
                             texto = texto.replace(':', '')
                             texto = texto.replace(' ', '')
                             #coincidencia = re.search(r'\b[A-Z]\d-\d{2}\b', texto)
-                            coincidencia = re.search(r'\b[A-Z]-\d{2}\b', texto)
-                            #coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
+                            #coincidencia = re.search(r'\b[A-Z]-\d{2}\b', texto)
+                            coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
 
 
                             if coincidencia:
@@ -388,11 +388,12 @@ class SaleOrder(models.Model):
                                 lot_land = codigo[1].replace(' ','')
                                 #raise ValueError(codigo)
                             else:
-                                raise ValueError(texto)
+                                continue
+                                #raise ValueError(texto)
                             #raise ValueError(invoices.name)
 
 
-                continue
+
 
 
             line = None
