@@ -391,8 +391,12 @@ class SaleOrder(models.Model):
                                 codigo = coincidencia.group()
                                 codigo = codigo.replace(',','')
                                 codigo = codigo.split('-')
-                                mz_land = codigo[0].replace(' ','')
-                                lot_land = codigo[1].replace(' ','')
+
+                                try:
+                                    mz_land = codigo[0].replace(' ', '')
+                                    lot_land = codigo[1].replace(' ', '')
+                                except:
+                                    continue
                                 #raise ValueError([texto, coincidencia, mz_land, lot_land])
 
                             else:
