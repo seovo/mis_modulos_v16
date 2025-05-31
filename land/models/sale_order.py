@@ -389,8 +389,8 @@ class SaleOrder(models.Model):
                                 lot_land = codigo[1].replace(' ','')
                                 #raise ValueError(codigo)
                             else:
-                                #continue
-                                raise ValueError(texto)
+                                continue
+                                #raise ValueError(texto)
                             #raise ValueError(invoices.name)
 
 
@@ -403,10 +403,11 @@ class SaleOrder(models.Model):
 
             if record.mz_land and record.lot_land and record.lot_land != None:
                 try:
-                    dm = [('mz_value_id.name', '=', mz_land),
+                    dm = [('manzana', '=', mz_land),
                           ('name', '=', str(int(lot_land))),('product_tmp_id', '=', product_tmp.id)]
 
                     line = self.env['report.lot.land.line'].search(dm)
+
                 except:
                     continue
 
