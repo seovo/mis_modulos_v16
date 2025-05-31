@@ -377,8 +377,8 @@ class SaleOrder(models.Model):
                             texto = texto.replace(':', '')
                             texto = texto.replace(' ', '')
                             #coincidencia = re.search(r'\b[A-Z]\d-\d{2}\b', texto)
-                            coincidencia = re.search(r'\b[A-Z]-\d{2}\b', texto)
-                            #coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
+                            #coincidencia = re.search(r'\b[A-Z]-\d{2}\b', texto)
+                            coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
 
                             if coincidencia:
                                 codigo = coincidencia.group()
