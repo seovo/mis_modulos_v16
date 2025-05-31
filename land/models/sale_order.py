@@ -409,6 +409,10 @@ class SaleOrder(models.Model):
 
             if record.mz_land and record.lot_land :
 
+                dm = [('manzana', '=', mz_land),
+                      ('name', '=', str(int(lot_land))), ('product_tmp_id', '=', 3)]
+                line = self.env['report.lot.land.line'].search(dm)
+
 
                 try:
                     dm = [('manzana', '=', mz_land),
