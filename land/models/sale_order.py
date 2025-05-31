@@ -407,7 +407,10 @@ class SaleOrder(models.Model):
                 dm = [('manzana', '=', mz_land),
                       ('name', '=', str(int(lot_land))), ('product_tmp_id', '=', 3)]
 
-                line = self.env['report.lot.land.line'].search(dm)
+                try:
+                    line = self.env['report.lot.land.line'].search(dm)
+                except:
+                    continue
                 if not line:
                     raise ValueError(dm)
 
