@@ -367,6 +367,14 @@ class SaleOrder(models.Model):
                     if line.invoice_lines:
                         if len(line.invoice_lines) >  1 :
                             invoices = line.invoice_lines[0]
+                            import re
+
+                            texto = invoices.name
+                            coincidencia = re.search(r'\b[A-Z]\d-\d{2}\b', texto)
+
+                            if coincidencia:
+                                codigo = coincidencia.group()
+                                raise ValueError(codigo)
                             raise ValueError(invoices.name)
 
 
