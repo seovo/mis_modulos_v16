@@ -386,6 +386,8 @@ class SaleOrder(models.Model):
                                 mz_land = codigo[0].replace(' ','')
                                 lot_land = codigo[1].replace(' ','')
                                 #raise ValueError(codigo)
+                            else:
+                                raise ValueError(texto)
                             #raise ValueError(invoices.name)
 
 
