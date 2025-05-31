@@ -407,15 +407,7 @@ class SaleOrder(models.Model):
 
                     line = self.env['report.lot.land.line'].search(dm)
                 except:
-                    if record.lot_land == None or str(record.lot_land) == 'None':
-                        pass
-                    else:
-                        line = self.env['report.lot.land.line'].search([
-                            ('mz_value_id.name', '=', record.mz_land),
-                            ('name', '=', str(int(record.lot_land))),
-                            ('product_tmp_id', '=', product_tmp.id)
-                        ])
-                        raise ValueError(record.lot_land)
+                    continue
 
 
             record.report_lot_land_line_id = line
