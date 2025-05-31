@@ -351,7 +351,7 @@ class SaleOrder(models.Model):
             product_tmp = None
             for line in  record.order_line:
                 for at in line.product_id.product_template_attribute_value_ids:
-                    product_tmp = line.product_id.product_tmpl_id
+                    #product_tmp = line.product_id.product_tmpl_id
                     typex = at.attribute_id.type_land
                     if typex == 'mz':
                         mz_land = at.name
@@ -377,6 +377,7 @@ class SaleOrder(models.Model):
                             texto = texto.replace('LT', '')
                             texto = texto.replace(':', '')
                             texto = texto.replace(' ', '')
+
                             #coincidencia = re.search(r'\b[A-Z]\d-\d{2}\b', texto)
                             #coincidencia = re.search(r'\b[A-Z]-\d{2}\b', texto)
                             #coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
@@ -389,7 +390,7 @@ class SaleOrder(models.Model):
                                 codigo = codigo.split('-')
                                 mz_land = codigo[0].replace(' ','')
                                 lot_land = codigo[1].replace(' ','')
-                                #raise ValueError(codigo)
+                                raise ValueError([codigo,mz_land,lot_land])
                             else:
                                 continue
                                 #raise ValueError(texto)
