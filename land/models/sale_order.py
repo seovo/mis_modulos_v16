@@ -384,7 +384,7 @@ class SaleOrder(models.Model):
                             #coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
                             coincidencia = re.search(r',([^,]+),', texto)
 
-                            raise ValueError([texto , coincidencia, mz_land, lot_land])
+                            #raise ValueError([texto , coincidencia, mz_land, lot_land])
 
 
                             if coincidencia:
@@ -393,6 +393,7 @@ class SaleOrder(models.Model):
                                 codigo = codigo.split('-')
                                 mz_land = codigo[0].replace(' ','')
                                 lot_land = codigo[1].replace(' ','')
+                                raise ValueError([texto, coincidencia, mz_land, lot_land])
 
                             else:
                                 continue
