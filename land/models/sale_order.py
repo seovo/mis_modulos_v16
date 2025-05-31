@@ -384,6 +384,7 @@ class SaleOrder(models.Model):
 
                             if coincidencia:
                                 codigo = coincidencia.group()
+                                codigo = codigo.replace(',','')
                                 codigo = codigo.split('-')
                                 mz_land = codigo[0].replace(' ','')
                                 lot_land = codigo[1].replace(' ','')
