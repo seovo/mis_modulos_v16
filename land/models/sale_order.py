@@ -412,6 +412,10 @@ class SaleOrder(models.Model):
                     raise ValueError(dm)
 
 
+                if len(line) > 1:
+                    continue
+
+
             record.report_lot_land_line_id = line
 
 
