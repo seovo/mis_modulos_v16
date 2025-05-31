@@ -22,6 +22,7 @@
                            <field name="seller_land_id"  />
                            <field name="mz_land" invisible="1"  />
                            <field name="lot_land" invisible="1"  />
+                           <field name="mz_lot" />
                        </group>
                    </sheet>
 
