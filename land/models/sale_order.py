@@ -384,7 +384,7 @@ class SaleOrder(models.Model):
                             #coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
                             coincidencia = re.search(r',([^,]+),', texto)
 
-                            raise ValueError([texto, mz_land, lot_land])
+                            #raise ValueError([texto, mz_land, lot_land])
 
 
                             if coincidencia:
