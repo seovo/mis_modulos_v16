@@ -401,15 +401,13 @@ class SaleOrder(models.Model):
 
             #raise ValueError(product_tmp)
 
-            if record.mz_land and record.lot_land and record.lot_land != None:
-                try:
-                    dm = [('manzana', '=', mz_land),
-                          ('name', '=', str(int(lot_land))),('product_tmp_id', '=', product_tmp.id)]
+            if record.mz_land and record.lot_land :
+                dm = [('manzana', '=', mz_land),
+                      ('name', '=', str(int(lot_land))), ('product_tmp_id', '=', product_tmp.id)]
 
-                    line = self.env['report.lot.land.line'].search(dm)
-
-                except:
-                    continue
+                line = self.env['report.lot.land.line'].search(dm)
+                if not line:
+                    raise ValueError(dm)
 
 
             record.report_lot_land_line_id = line
