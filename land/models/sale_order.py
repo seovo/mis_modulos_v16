@@ -413,7 +413,8 @@ class SaleOrder(models.Model):
                 except:
                     continue
                 if not line:
-                    raise ValueError(dm)
+                    continue
+                    #raise ValueError(dm)
 
 
                 if len(line) > 1:
