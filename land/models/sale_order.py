@@ -369,6 +369,7 @@ class SaleOrder(models.Model):
                             invoices = line.invoice_lines[0]
                             import re
 
+
                             texto = invoices.name
                             #coincidencia = re.search(r'\b[A-Z]\d-\d{2}\b', texto)
                             coincidencia = re.search(r'\b[A-Z]\d{1,2}-\d{1,2}\b', texto)
