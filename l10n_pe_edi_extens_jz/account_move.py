@@ -5,17 +5,12 @@ class AccountMove(models.Model):
 
 
     def action_post(self):
-        if len(self) == 1:
-            if self.l10n_pe_edi_operation_type == '1001'  :
-                note = self.narration
-                self.narration = None
 
         res = super().action_post()
 
-        if len(self) == 1:
-            if self.l10n_pe_edi_operation_type == '1001'  :
-                self.narration = note
-
+        if len(self) == 1 :
+            if self.edi_document_ids:
+                self.button_process_edi_web_services()
 
         return  res
 
