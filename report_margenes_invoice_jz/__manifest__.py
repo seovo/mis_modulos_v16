@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Tarifas Sensotek",
-    "summary": """Tarifas Sensotek""",
-    "description": """Tarifas Sensotek""",
+    "name": "REPORTE MARGENES",
+    "summary": """REPORTE MARGENES""",
+    "description": """REPORTE MARGENES""",
     "author": "JZOLUTIONS",
 
     "category": "Uncategorized",
     "version": "0.1",
     "depends": [
         "sale_purchase",
+        "account",
+        "tarifas_sensotek_jz"
 
     ],
     # always loaded
     "data": [
-        'views/product_pricelist.xml',
-        'views/product_category.xml',
-        #'views/sale_order.xml',
+        'views/account_move_line.xml',
     ],
     # 'images': ['static/description/odoo-woo.gif'],
 }

@@ -85,14 +85,15 @@ class SaleOrderLine(models.Model):
 
             # record.price_unit = price_unitx
 
-        if not res:
-            raise ValueError([res, tarifa, tarifa.use_acquisition_cost, price_unitx0, price_unitx])
+        #if not res:
+        #    raise ValueError([res, tarifa, tarifa.use_acquisition_cost, price_unitx0, price_unitx])
 
 
         return res
 
     def _get_display_price(self, product):
         res = super()._get_display_price(product)
+        return res
 
         if product:
             resx = self.get_price_value_tarifas(product)
@@ -106,6 +107,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def force_update_price_tarifas_jz(self):
+        return
         for line in self.order_line:
             if line.product_id:
                 res = line.get_price_value_tarifas(line.product_id)
@@ -113,4 +115,4 @@ class SaleOrder(models.Model):
                     line.price_unit = res
                 else:
                     tarifa = line.order_id.pricelist_id
-                    raise ValueError([tarifa,tarifa.is_escale_sonsotec])
+                    #raise ValueError([tarifa,tarifa.is_escale_sonsotec])
