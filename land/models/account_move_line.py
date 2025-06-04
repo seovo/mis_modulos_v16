@@ -48,6 +48,7 @@ class AccountMoveLine(models.Model):
 
 
         for record in self:
+            continue
             if record.move_id.is_separation_land and record.product_id :
                 raise ValueError('DESACTIVADO')
                 if record.move_id.mz_land_separation_id and record.move_id.lot_land_separation_id and  record.move_id.sector_land_separation_id:
