@@ -13,10 +13,15 @@
                 <field name="quantity"  />
                 <field name="price_unit"  />
                 <field name="standard_price"  />
-                <field name="acquisition_cost"  />
+
+                <field name="acquisition_cost" string="Costo de adquisición" />
+
+
                 <field name="margin_cost_usd_jz"  />
                 <field name="margin_suggested_usd_jz"  />
+                <field name="margin_priceunit_usd_jz" />
                 <field name="margin_margin_usd_jz"  />
+
                 <field name="company_id"  />
                 <field name="date"  />
                 <field name="create_uid"  />

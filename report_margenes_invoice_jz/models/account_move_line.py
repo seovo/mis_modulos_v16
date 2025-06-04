@@ -1,21 +1,12 @@
 from odoo import api, fields, models
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-    acquisition_cost = fields.Float(string="Costo de adquisición")
-    acq_exchange_rate = fields.Float(string="Tipo de cambio de adquisición")
-
-class ProductCategory(models.Model):
-    _inherit = 'product.category'
-    supplier_disc = fields.Float(string="	Descuento %")
-
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
     supplier_disc = fields.Float(string="Descuento Proveedor",related='product_id.categ_id.supplier_disc')
     standard_price = fields.Float(string="Costo",related='product_id.standard_price')
-    acquisition_cost = fields.Float(string="Adquisicon", related='product_id.acquisition_cost')
+    acquisition_cost = fields.Float(string="Costo de adquisición", related='product_id.acquisition_cost')
     categ_id = fields.Many2one('product.category', string="Categoria", related='product_id.categ_id')
 
     margin_cost_usd_jz = fields.Float(string="Precio costo USD",compute='get_margin_jz')
@@ -42,7 +33,7 @@ class AccountMoveLine(models.Model):
             record.pricelist_id_jz = pricelist_id.id if pricelist_id else None
 
 
-            desc = ( 1 - record.supplier_disc ) * 100
+            desc =  1 - ( record.supplier_disc / 100  )
 
             cost = record.standard_price
 
