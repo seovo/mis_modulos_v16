@@ -9,7 +9,7 @@
                <xpath expr="//field[@name='partner_shipping_id']" position="after" >
                    <field name="product_repair_id" />
                    <field name="cat_bycle_id" />
-                   <field name="under_warranty_bycle" />
+                   <field name="warranty_bycle_id" />
 
                </xpath>
 
