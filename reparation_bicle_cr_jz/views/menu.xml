@@ -50,5 +50,30 @@
     </menuitem>
 
 
+    <record id="action_category_bycle" model="ir.actions.act_window">
+        <field name="name">Categoria Bicicletas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">category.bycle</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_category_bycle"
+              id="menu_category_bycle"
+              parent="sale.menu_sale_config" />
+
+
+
+    <record id="action_garantia_bycle" model="ir.actions.act_window">
+        <field name="name">Tipo de Ubicacion</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">garantia.bycle</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_garantia_bycle"
+              id="menu_garantia_bycle"
+              parent="sale.menu_sale_config" />
+
+
 
 </odoo>

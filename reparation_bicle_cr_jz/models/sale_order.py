@@ -29,20 +29,11 @@ class MailComposeMessage(models.TransientModel):
                         testx = object.company_id.whatsapp_sale_msg_format.replace('%report',url)
                         self.text_whatsapp_evolution_api = testx
 
-
-
-
-
-
-
-
-
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     product_repair_id = fields.Many2one('product.product',string="Producto a reparar")
     cat_bycle_id = fields.Many2one('category.bycle',string='Categoria')
-    under_warranty_bycle = fields.Selection([('taller','Taller'),('purchase','Compra')],string='Bajo Garantia')
+    under_warranty_bycle = fields.Many2one('garantia.bycle',string='Bajo Garantia')
 
     def action_quotation_send(self):
         """ Opens a wizard to compose an email, with relevant mail template loaded by default """
@@ -82,5 +73,10 @@ class SaleOrder(models.Model):
 
 class CategoryBycle(models.Model):
     _name = 'category.bycle'
+    _description = 'category.bycle'
+    name = fields.Char()
+
+class GarantiaBycle(models.Model):
+    _name = 'garantia.bycle'
     _description = 'category.bycle'
     name = fields.Char()
