@@ -33,7 +33,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     product_repair_id = fields.Many2one('product.product',string="Producto a reparar")
     cat_bycle_id = fields.Many2one('category.bycle',string='Categoria')
-    warranty_bycle_id = fields.Many2one('garantia.bycle',string='Bajo Garantia')
+    warranty_bycle_id = fields.Many2one('garantia.bycle',string='Ingreso a servicio')
 
     def action_quotation_send(self):
         """ Opens a wizard to compose an email, with relevant mail template loaded by default """
