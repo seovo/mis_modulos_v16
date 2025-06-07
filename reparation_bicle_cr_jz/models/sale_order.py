@@ -34,6 +34,7 @@ class SaleOrder(models.Model):
     product_repair_id = fields.Many2one('product.product',string="Producto a reparar")
     cat_bycle_id = fields.Many2one('category.bycle',string='Categoria')
     warranty_bycle_id = fields.Many2one('garantia.bycle',string='Ingreso a servicio')
+    validity_date = fields.Date(string='Fecha Entrega')
 
     def action_quotation_send(self):
         """ Opens a wizard to compose an email, with relevant mail template loaded by default """
