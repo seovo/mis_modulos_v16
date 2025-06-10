@@ -539,7 +539,7 @@ class SaleOrder(models.Model):
                   )
     def get_info_land(self):
 
-        self.get_report_lot_land_line_id()
+        #self.get_report_lot_land_line_id()
 
         for record in self:
 
