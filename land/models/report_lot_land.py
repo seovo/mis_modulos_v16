@@ -62,7 +62,7 @@ class ReportLotLandLine(models.Model):
 
             domain = [
                 ('product_tmp_id.company_id', '=', self.env.company.id),
-                '|','|', ('name', '=ilike', lote),('manzana', '=like', manzana),('manzana', '=like', manzana)]
+                '|','|', ('name', '=ilike', lote),('manzana', 'like', manzana),('manzana', '=like', manzana)]
 
             product_ids = self._search(domain, limit=limit,
                                        order=order)
