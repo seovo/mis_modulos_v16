@@ -52,12 +52,9 @@ class ReportLotLandLine(models.Model):
         if name:
 
 
-            manzana = name
-            lote = name
-
             domain = [
                 ('product_tmp_id.company_id', '=', self.env.company.id),
-                '|', '|', ('name', '=ilike', lote), ('manzana', 'like', manzana), ('manzana', '=like', manzana)]
+                '|', '|', ('name', '=ilike', name), ('manzana', 'like', name), ('manzana', '=like', name)]
 
             if '-' in name:
                 try:
