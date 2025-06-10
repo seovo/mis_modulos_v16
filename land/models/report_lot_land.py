@@ -51,13 +51,17 @@ class ReportLotLandLine(models.Model):
         domain = domain or []
         if name:
 
-            domain = [('product_tmp_id.company_id', '=', self.env.company.id), '|', '|', ('name', '=ilike', name),
-                      ('ettapa', '=ilike', name),
-                      ('manzana', '=ilike', name)]
-
 
             manzana = name
             lote = name
+
+            if '-' in name:
+                try:
+                    name = name.split('-')
+                    manzana = name[0]
+                    lote = name[1]
+                except:
+                    pass
 
 
             domain = [
