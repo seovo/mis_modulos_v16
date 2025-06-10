@@ -12,7 +12,7 @@
                 <field name="name" />
                 <field name="ettapa" />
                 <group string="Group By..." expand="0" name="groupby">
-                    <filter string="Manzana" name="manzana" context="{'group_by': 'mz_value_id'}"/>
+                    <filter string="Manzana" name="manzana" context="{'group_by': 'manzana'}"/>
                     <filter string="Estado" name="gr_state" context="{'group_by': 'state'}"/>
                     <filter string="Etapa" name="gr_ettapa" context="{'group_by': 'ettapa'}"/>
                 </group>
