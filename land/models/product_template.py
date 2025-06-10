@@ -73,8 +73,9 @@ class ProductTemplate(models.Model):
             "target": "current",
             "domain": [('product_tmp_id','=',self.id)] ,
             "context": {
-                'search_default_manzanaf' : 1 ,
                 'search_default_gr_ettapa': 1,
+                'search_default_manzanaf' : 1 ,
+
             }
 
         }
