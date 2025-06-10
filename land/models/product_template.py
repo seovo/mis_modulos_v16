@@ -76,6 +76,7 @@ class ProductTemplate(models.Model):
                 'search_default_gr_ettapa': 1,
                 'search_default_manzanaf' : 1 ,
 
+
             }
 
         }
