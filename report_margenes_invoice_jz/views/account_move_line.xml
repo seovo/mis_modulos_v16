@@ -42,7 +42,7 @@
         <field name="res_model">account.move.line</field>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="report_margenes_invoice_jz.report_margenes" />
-        <field name="domain">[('sale_line_ids','=',False),('product_id','!=',False)]</field>
+        <field name="domain">[('move_id.type','=','out_invoice'),('sale_line_ids','!=',False),('parent_state','=','posted'),('product_id','!=',False)]</field>
 
     </record>
 
