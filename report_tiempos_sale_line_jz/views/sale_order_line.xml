@@ -53,6 +53,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
         <field name="view_mode">tree</field>
+
         <field name="view_id" ref="report_tiempos_sale_line_jz.report_time" />
 
     </record>
