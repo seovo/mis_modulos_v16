@@ -226,7 +226,7 @@ class AccountMove(models.Model):
 
     def create_sale_if_separation(self):
 
-        note = f' SEPARADO PARA {self.mz_land_separation_id.name}-{ self.lot_land_separation_id.name} , {self.sector_land_separation_id.name} '
+        #note = f' SEPARADO PARA {self.mz_land_separation_id.name}-{ self.lot_land_separation_id.name} , {self.sector_land_separation_id.name} '
 
         return {
             "name": f"Cotizacion",
@@ -237,7 +237,7 @@ class AccountMove(models.Model):
             "context": {
                 'default_move_separation_land_id': self.id  ,
                 'default_partner_id': self.partner_id.id ,
-                'default_note': note
+                #'default_note': note
             }
 
         }
