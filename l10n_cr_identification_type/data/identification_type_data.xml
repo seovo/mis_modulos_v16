@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo >
-    <?xml version="1.0" encoding="utf-8"?>
     <record id="identificationtype_01" model="l10n_latam.document.type">
         <field name="code">01</field>
         <field name="name">Cédula física</field>
@@ -44,7 +43,7 @@
         </field>
     </record>
 
-    <record id="identificationtype_05" model="l10n_latam.document.type">
+    <record id="Identificationtype_05" model="l10n_latam.document.type">
         <field name="code">05</field>
         <field name="name">Extranjero</field>
         <field name="doc_code_prefix">PPN</field>
@@ -55,7 +54,7 @@
         </field>
     </record>
 
-    <record id="identificationtype_08" model="l10n_latam.document.type">
+    <record id="Identificationtype_08" model="l10n_latam.document.type">
         <field name="code">08</field>
         <field name="name">Otros</field>
         <field name="doc_code_prefix">OTR</field>
