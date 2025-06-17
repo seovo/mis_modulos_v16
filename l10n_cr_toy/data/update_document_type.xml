@@ -9,7 +9,7 @@
 		<record id="l10n_cr_identification_type.cr_02" model="l10n_latam.identification.type">
 			<field name="code_sirett">2</field>
 		</record>
-		<record id="l10n_latam_base" model="l10n_latam.identification.type">
+		<record id="l10n_latam_base.it_fid" model="l10n_latam.identification.type">
 			<field name="code_sirett">4</field>
 		</record>
 		<record id="l10n_cr_identification_type.cr_04" model="l10n_latam.identification.type">
