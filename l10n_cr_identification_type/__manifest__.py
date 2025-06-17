@@ -12,6 +12,6 @@
     ],
     'data': [
         'data/identification_type_data.xml',
-        'views/res_partner.xml'
+        #'views/res_partner.xml'
     ],
 }
