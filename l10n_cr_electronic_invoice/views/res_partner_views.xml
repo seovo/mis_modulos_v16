@@ -14,11 +14,13 @@
             <field name="property_payment_term_id" position="after">
                 <field name="payment_methods_id" groups="account.group_account_invoice" string="Método de pago" required="0"/>
             </field>
+            <!--
             <field name="vat" position="replace"/>
             <field name="website" position="before">
                 <field name="identification_id" string="Tipo identificación"/>
                 <field name="vat" string="Nro Documento"/>
             </field>
+            -->
             <field name="category_id" position="after">
                 <field name="has_exoneration"/>
             </field>
