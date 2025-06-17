@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo >
-    <record id="Identificationtype_01" model="l10n_latam.document.type">
+    <data>
+        <record id="Identificationtype_01" model="l10n_latam.document.type">
         <field name="code">01</field>
         <field name="name">Cédula física</field>
         <field name="doc_code_prefix">CRCPF</field>
@@ -63,4 +64,7 @@
         <field name="notes">Identificación para otros casos específicos. Máximo 20 caracteres.
         </field>
     </record>
+
+    </data>
+
 </odoo>
