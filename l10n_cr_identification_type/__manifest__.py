@@ -10,6 +10,7 @@
         'l10n_latam_invoice_document',
         'l10n_latam_base'
     ],
+
     'data': [
         'data/identification_type_data.xml',
         #'views/res_partner.xml'
