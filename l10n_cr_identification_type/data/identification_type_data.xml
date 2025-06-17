@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo >
+    <?xml version="1.0" encoding="utf-8"?>
     <record id="identificationtype_01" model="l10n_latam.document.type">
         <field name="code">01</field>
         <field name="name">Cédula física</field>

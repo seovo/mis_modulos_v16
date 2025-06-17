@@ -7,12 +7,10 @@
     'author': 'aular.hector.dev@gmail.com',
     'license': '',
     'depends': [
-        'l10n_latam_invoice_document',
-        'l10n_latam_base'
+        'l10n_latam_invoice_document'
     ],
-
     'data': [
         'data/identification_type_data.xml',
-        #'views/res_partner.xml'
+        'views/res_partner.xml'
     ],
 }
