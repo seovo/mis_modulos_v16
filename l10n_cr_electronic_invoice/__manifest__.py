@@ -18,6 +18,7 @@
         "l10n_cr_territories",
         "uom",
         "sale",
+        "l10n_cr_identification_type"
         #"fetchmail",
     ],
     "data": [
