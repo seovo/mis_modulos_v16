@@ -12,7 +12,7 @@
     ],
 
     'data': [
-        'data/identification_type_datax.xml',
+        'data/identification_type_data.xml',
         #'views/res_partner.xml'
     ],
 }
