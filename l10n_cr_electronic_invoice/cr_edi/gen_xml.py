@@ -3,7 +3,7 @@ from xml.sax import saxutils
 from odoo import _
 from odoo.exceptions import UserError
 import phonenumbers
-from odoo.tools import html2plaintext
+
 from . import utils
 
 
@@ -252,10 +252,6 @@ def gen_from_template(
                 receiver.phone,
                 (receiver.country_id or issuer.country_id) and (receiver.country_id.code or issuer.country_id.code)
             )
-
-        if notes:
-            notes = html2plaintext(notes)
-
         render = template.render(
             document=document,
             activity_code=activity_code,

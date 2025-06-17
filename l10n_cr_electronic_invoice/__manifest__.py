@@ -18,7 +18,6 @@
         "l10n_cr_territories",
         "uom",
         "sale",
-        "l10n_cr_identification_type"
         #"fetchmail",
     ],
     "data": [
@@ -33,7 +32,7 @@
         "data/reference_document_data.xml",
         "data/config_settings.xml",
         "data/currency_data.xml",
-        #"data/identification_type_data.xml",
+        "data/identification_type_data.xml",
         "data/ir_cron_data.xml",
         "data/product_category_data.xml",
         "data/sequence.xml",  # Special case, this calls a function
@@ -47,7 +46,7 @@
         # views
         "views/account_move_views.xml",
         "views/account_journal_views.xml",
-        #"views/identification_type_views.xml",
+        "views/identification_type_views.xml",
         "views/res_company_views.xml",
         "views/account_invoice_import_config_views.xml",
         "views/account_invoice_import_config_extend_views.xml", #Nuevo
