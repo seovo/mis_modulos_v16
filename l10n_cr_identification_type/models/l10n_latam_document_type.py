@@ -5,5 +5,4 @@ from odoo import fields, models
 class L10nLatamDocumentType(models.Model):
 
     _inherit = 'l10n_latam.document.type'
-
     notes = fields.Char('Notes')

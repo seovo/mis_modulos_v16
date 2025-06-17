@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo >
-    <data>
-        <record id="Identificationtype_01" model="l10n_latam.document.type">
+    <record id="identificationtype_01" model="l10n_latam.document.type">
         <field name="code">01</field>
         <field name="name">Cédula física</field>
         <field name="doc_code_prefix">CRCPF</field>
@@ -11,7 +10,7 @@
         </field>
     </record>
 
-    <record id="Identificationtype_02" model="l10n_latam.document.type">
+    <record id="identificationtype_02" model="l10n_latam.document.type">
         <field name="code">02</field>
         <field name="name">Cédula jurídica</field>
         <field name="doc_code_prefix">CPJ</field>
@@ -22,7 +21,7 @@
         </field>
     </record>
 
-    <record id="Identificationtype_03" model="l10n_latam.document.type">
+    <record id="identificationtype_03" model="l10n_latam.document.type">
         <field name="code">03</field>
         <field name="name">DIMEX</field>
         <field name="doc_code_prefix">DIMEX</field>
@@ -33,7 +32,7 @@
         </field>
     </record>
 
-    <record id="Identificationtype_04" model="l10n_latam.document.type">
+    <record id="identificationtype_04" model="l10n_latam.document.type">
         <field name="code">04</field>
         <field name="name">NITE</field>
         <field name="doc_code_prefix">DIMEX</field>
@@ -44,7 +43,7 @@
         </field>
     </record>
 
-    <record id="Identificationtype_05" model="l10n_latam.document.type">
+    <record id="identificationtype_05" model="l10n_latam.document.type">
         <field name="code">05</field>
         <field name="name">Extranjero</field>
         <field name="doc_code_prefix">PPN</field>
@@ -55,7 +54,7 @@
         </field>
     </record>
 
-    <record id="Identificationtype_08" model="l10n_latam.document.type">
+    <record id="identificationtype_08" model="l10n_latam.document.type">
         <field name="code">08</field>
         <field name="name">Otros</field>
         <field name="doc_code_prefix">OTR</field>
@@ -64,7 +63,4 @@
         <field name="notes">Identificación para otros casos específicos. Máximo 20 caracteres.
         </field>
     </record>
-
-    </data>
-
 </odoo>
