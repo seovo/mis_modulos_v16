@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--MENU ICONO-->
+    <menuitem id="menu_get_api_web"
+                  name="API SERVICE"
+                  web_icon="l10n_cr_api,static/image/icon.png"
+                  sequence="20"/>
+
+    <!--MENU PARA OBTENER LOS DATOS-->
+    <menuitem id="menu_sirett_item" name="Api sirett" parent="stock.menu_stock_config_settings" sequence="1"/>
+</odoo>
+

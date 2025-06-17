@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_external_layout" inherit_id="web.external_layout_boxed">
+        <xpath expr="//div[contains(@class, 'o_boxed_header')]" position="inside">
+            <div>
+                <strong>Encabezado Personalizado</strong>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[contains(@class, 'o_boxed_footer')]" position="inside">
+            <div>
+                <strong>Pie de Página Personalizado</strong>
+            </div>
+        </xpath>
+    </template>
+</odoo>
