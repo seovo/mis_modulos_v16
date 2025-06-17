@@ -14,11 +14,13 @@
             <field name="property_payment_term_id" position="after">
                 <field name="payment_methods_id" groups="account.group_account_invoice" string="Método de pago" required="0"/>
             </field>
+            <!--
             <field name="vat" position="replace"/>
             <field name="website" position="before">
                 <field name="identification_id" string="Tipo identificación"/>
                 <field name="vat" string="Nro Documento"/>
             </field>
+            -->
             <field name="category_id" position="after">
                 <field name="has_exoneration"/>
             </field>
@@ -47,6 +49,7 @@
         </field>
     </record>
 
+    <!--
 
     <record id="view_partner_vat_form" model="ir.ui.view">
         <field name="name">res.partner.vat.electronic.inherit</field>
@@ -62,6 +65,8 @@
         </field>
     </record>
 
+    -->
+
       <record id="view_partner_property_fecr_form" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form"/>
@@ -71,6 +76,9 @@
             </xpath>
         </field>
     </record>
+
+
+    <!--
 
      <record id="view_company_form_vat" model="ir.ui.view">
         <field name="name">res.company.form.vat.electronic.inherit</field>
@@ -82,6 +90,8 @@
             </xpath>
         </field>
     </record>
+
+    -->
 
 
 </odoo>
