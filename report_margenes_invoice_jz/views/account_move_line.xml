@@ -6,8 +6,11 @@
             <tree  edit="0" create="0" delete="0">
                 <field name="partner_id"  />
                 <field name="move_id" string="Factura" />
+                <field name="date"  />
+
                 <field name="always_set_currency_id" />
                 <field name="company_currency_id"  optional="hidden"  />
+                <field name="categ_id"  />
                 <field name="product_id"  />
                 <field name="supplier_disc"  />
                 <field name="quantity"  />
@@ -23,10 +26,10 @@
                 <field name="margin_margin_usd_jz"  />
 
                 <field name="company_id"  />
-                <field name="date"  />
+
                 <field name="create_uid"  />
                 <field name="pricelist_id_jz"  />
-                <field name="categ_id"  />
+
 
 
 
@@ -42,8 +45,11 @@
         <field name="res_model">account.move.line</field>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="report_margenes_invoice_jz.report_margenes" />
-        <field name="domain">[('move_id.type','=','out_invoice'),('sale_line_ids','!=',False),('parent_state','=','posted'),('product_id','!=',False)]</field>
 
+        <field name="domain">[('tax_ids','!=',False),('move_id.type','=','out_invoice'),('parent_state','=','posted'),('product_id','!=',False)]</field>
+<!--
+        <field name="domain">[('move_id.type','=','out_invoice'),('sale_line_ids','!=',False),('parent_state','=','posted'),('product_id','!=',False)]</field>
+-->
     </record>
 
     <menuitem action="action_account_move_line_tree" id="menu_account_move_line_tree"

@@ -61,6 +61,8 @@ class AccountMoveLine(models.Model):
                         ('parent_state', '=', 'posted'),
                         ('product_id', '=', record.product_id.id),
                         ('move_id.type', '=', 'in_invoice'),
+                        ('date','<=',record.date)
+
                     ],
                     order='date DESC',
                     limit=1
