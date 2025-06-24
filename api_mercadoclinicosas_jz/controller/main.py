@@ -237,7 +237,9 @@ class WebsiteSaleClinicos(WebsiteSale):
         for catg in categs:
             categ_format.append({
                 'id': catg.id ,
-                'name': catg.display_name
+                'name': catg.display_name ,
+                'description': catg.display_name ,
+                'image': 'https://images.icon-icons.com/37/PNG/512/purchaseorderapplication_compra_orde_4474.png'
             })
 
         products_format = []
@@ -251,12 +253,20 @@ class WebsiteSaleClinicos(WebsiteSale):
             dx = {
                 'id': prt.id ,
                 'name': prt.display_name ,
-                'url_image': img_product
+                'description': prt.display_name ,
+                'image1': img_product ,
+                'image2': img_product ,
+                'id_category': prt.categ_id.id ,
+                'quantity': 1
+
             }
 
             products_pricex = products_prices[prt.id]
             if products_pricex:
                 dx.update(products_pricex)
+                dx.update({
+                    'price': dx['price_reduce']
+                })
 
 
             products_format.append(dx)
@@ -412,14 +422,26 @@ class ApiClinicos(http.Controller):
                 ], limit=1)
 
                 if xml_id:
-                    roles.append({
-                        'id': xml_id.complete_name ,
-                        'name': group.display_name ,
-                        'image': '' ,
-                        'created_at': group.create_date ,
-                        'updated_at': group.write_date ,
-                        'route': ''
-                    })
+                    if xml_id.complete_name == 'base.group_user':
+                        roles.append({
+                            'id': xml_id.complete_name,
+                            'name': group.display_name,
+                            'image': 'https://cdn-icons-png.flaticon.com/512/1077/1077063.png',
+                            'created_at': group.create_date,
+                            'updated_at': group.write_date,
+                            'route': 'admin/home'
+                        })
+
+                    if xml_id.complete_name == 'base.group_portal':
+                        roles.append({
+                            'id': 'CLIENT',
+                            'name': group.display_name,
+                            'image': 'https://cdn-icons-png.flaticon.com/512/1077/1077063.png',
+                            'created_at': group.create_date,
+                            'updated_at': group.write_date,
+                            'route': 'client/home'
+                        })
+
 
             values.update({
                 'login_success': True ,
