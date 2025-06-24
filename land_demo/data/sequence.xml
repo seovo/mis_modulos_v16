@@ -1,0 +1,13 @@
+<odoo>
+
+    <record id="sequence_riman" model="ir.sequence">
+        <field name="name">COMISSION TERRENO</field>
+        <field name="prefix">CCC-</field>
+        <field name="active">True</field>
+        <field name="code">commission_land</field>
+        <field name="number_increment">1</field>
+        <field name="padding">5</field>
+    </record>
+
+
+</odoo>
