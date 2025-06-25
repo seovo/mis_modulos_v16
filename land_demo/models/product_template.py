@@ -62,7 +62,6 @@ class ProductTemplate(models.Model):
         self.update_lots_jz()
 
 
-
         return {
             "name": f"LOTES",
             "type": "ir.actions.act_window",
