@@ -472,8 +472,8 @@ class SaleOrder(models.Model):
 
                         if line_inv.move_id.payment_state ==  'reversed':
                             continue
-                        if not line_inv.move_id.debit_origin_id:
-                            cantidad_facturada += line_inv.quantity
+                        #if not line_inv.move_id.debit_origin_id:
+                        #    cantidad_facturada += line_inv.quantity
                     #qty += line.qty_invoiced
             record.qty_dues_payment = cantidad_facturada
 
