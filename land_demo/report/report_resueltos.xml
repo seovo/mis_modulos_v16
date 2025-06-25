@@ -122,7 +122,7 @@
         <field name="print_report_name">(object.name or 'Appointment').replace('/','_')</field>
         <field name="binding_model_id" ref="model_report_dues_land"/>
         <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="land.paperformat_re_id" />
+        <field name="paperformat_id" ref="land_demo.paperformat_re_id" />
     </record>
 
 </odoo>
