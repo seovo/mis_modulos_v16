@@ -655,7 +655,7 @@ class SaleOrder(models.Model):
                             if line_inv.move_id.payment_state == 'reversed' : #or line_inv.move_id.l10n_pe_edi_reversal_type_id
                                 continue
 
-                            if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
+                            if  line_inv.move_id.state == 'cancel': #line_inv.move_id.debit_origin_id or
                                 continue
                             if 1 == 1 :
                                 #raise ValueError([line_inv.move_id,line_inv,line_inv.quantity])
