@@ -66,7 +66,7 @@ class ProductTemplate(models.Model):
         return {
             "name": f"LOTES",
             "type": "ir.actions.act_window",
-            "view_mode": "tree,kanban",
+            "view_mode": "tree,kanban,form",
             #"view_id": self.env.ref('land.view_order_form_due').id,
             "res_model": "report.lot.land.line",
             "res_id": self.id,
