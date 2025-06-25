@@ -20,7 +20,7 @@
     <template id="report_report_schedule">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="land.report_schedule_document"/>
+                <t t-call="land_demo.report_schedule_document"/>
             </t>
         </t>
     </template>
@@ -218,8 +218,8 @@
         <field name="name">CRONOGRAMA</field>
         <field name="model">sale.order</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">land.report_report_schedule</field>
-        <field name="report_file">land.report_report_schedule</field>
+        <field name="report_name">land_demo.report_report_schedule</field>
+        <field name="report_file">land_demo.report_report_schedule</field>
         <field name="print_report_name">('CRONOGRAMA').replace('/','_')</field>
         <field name="binding_model_id" ref="model_sale_order"/>
         <field name="binding_type">report</field>

@@ -22,7 +22,7 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <div class="row header" />
-                <t t-call="land.report_re_document"/>
+                <t t-call="land_demo.report_re_document"/>
             </t>
         </t>
     </template>
@@ -117,8 +117,8 @@
         <field name="name">REPORTE RESUELTOS Y PRE AVISO</field>
         <field name="model">report.dues.land</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">land.report_report_re</field>
-        <field name="report_file">land.report_report_re</field>
+        <field name="report_name">land_demo.report_report_re</field>
+        <field name="report_file">land_demo.report_report_re</field>
         <field name="print_report_name">(object.name or 'Appointment').replace('/','_')</field>
         <field name="binding_model_id" ref="model_report_dues_land"/>
         <field name="binding_type">report</field>
