@@ -149,7 +149,7 @@
 
                    <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
                    <button name="show_lot_availables" string="Mostrar Lotes" type="object"  />
-                   <button name="update_dates_land" string="Reorganizar Fechas" type="object" groups="land.group_reordenate_date_sale"  />
+                   <button name="update_dates_land" string="Reorganizar Fechas" type="object" groups="land_demo.group_reordenate_date_sale"  />
 
                </xpath>
 
@@ -199,7 +199,7 @@
                                <field name="journal_id"  />
                                <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
                                <button name="publish_invoice"
-                                       groups="land.group_reordenate_date_sale"
+                                       groups="land_demo.group_reordenate_date_sale"
                                        confirm="Haga esto solo si esta seguro que desea confirmar las facturas en estado borrador y estan correcto los datos como monto y fecha"
                                        string="Publicar Facturas Portal Sunat" type="object"  />
                            </group>
@@ -219,7 +219,7 @@
                                       editable="bottom">
                                     <field name="number_due" readonly="1"  />
                                     <button name="invoice_here_land" string="Pagar"
-                                            groups="land.group_payment_cronograma"
+                                            groups="land_demo.group_payment_cronograma"
                                             type="object"  />
                                     <field name="date" readonly="1" />
                                     <field name="invoice_date" optional="show" readonly="1"  />
@@ -268,7 +268,7 @@
                        </group>
                    </page>
 
-                   <page string="Comissión" groups="land.group_commission" >
+                   <page string="Comissión" groups="land_demo.group_commission" >
                        <group>
                            <field name="commision_lan" />
                            <field name="comision_payment" />
@@ -334,19 +334,19 @@
                            <field name="price_unit" />
                            <field name="add_separation_land" />
                            <field name="product_template_id"
-                                  groups="land.group_edit_attr_mz_lot" />
-                           <field name="product_id" groups="land.group_edit_mz_lot" />
+                                  groups="land_demo.group_edit_attr_mz_lot" />
+                           <field name="product_id" groups="land_demo.group_edit_mz_lot" />
 
                            <field name="land_area_id"
                                   domain="[('attribute_id.type_land', '=', 'm2'),('product_tmpl_id','=',product_template_id)]"
-                                  groups="land.group_edit_attr_mz_lot" />
+                                  groups="land_demo.group_edit_attr_mz_lot" />
                            <field name="land_mz_id"
                                   domain="[('attribute_id.type_land', '=', 'mz'),('product_tmpl_id','=',product_template_id)]"
-                                  groups="land.group_edit_attr_mz_lot" />
+                                  groups="land_demo.group_edit_attr_mz_lot" />
                            <field name="land_lote_id"
                                   domain="[('attribute_id.type_land', '=', 'lot'),('product_tmpl_id','=',product_template_id)]"
-                                  groups="land.group_edit_attr_mz_lot" />
-                           <field name="land_stage_id" groups="land.group_edit_attr_mz_lot"
+                                  groups="land_demo.group_edit_attr_mz_lot" />
+                           <field name="land_stage_id" groups="land_demo.group_edit_attr_mz_lot"
                                   domain="[('attribute_id.type_land', '=', 'stage'),('product_tmpl_id','=',product_template_id)]"
                            />
 
@@ -485,7 +485,7 @@
         <field name="domain">[('is_separation_land','=',True),('move_type', '=', 'out_invoice')]</field>
         <field name="context">{'default_is_separation_land': True , 'default_move_type': 'out_invoice' }</field>
         <field name="view_ids" eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_invoice_tree_jz')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land_demo.view_invoice_tree_jz')}),
                 (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_move_form')})]"
             />
     </record>
@@ -497,7 +497,7 @@
         <field name="domain">[('stage_payment_lan','in',['separation'])]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_separacion')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land_demo.view_order_tree_separacion')}),
                 (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
             />
     </record>
@@ -511,7 +511,7 @@
         <field name="domain">[('stage_payment_lan','in',['initial'])]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_separacion')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land_demo.view_order_tree_separacion')}),
                 (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
             />
     </record>
@@ -609,7 +609,7 @@
         <field name="domain">[('stage_land','=','cancel')]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_preaviso_cancelx')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land_demo.view_order_tree_preaviso_cancelx')}),
                 (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
             />
     </record>
@@ -681,8 +681,8 @@
 
     <record id="update_mzlt_sale_order" model="ir.actions.server">
 			<field name="name">Actualizar MZ LT</field>
-			<field name="model_id" ref="land.model_sale_order"/>
-			<field name="binding_model_id" ref="land.model_sale_order"/>
+			<field name="model_id" ref="land_demo.model_sale_order"/>
+			<field name="binding_model_id" ref="land_demo.model_sale_order"/>
 			<field name="state">code</field>
 			<field name="code">action = records.get_info_land()</field>
     </record>
