@@ -600,8 +600,8 @@ class SaleOrder(models.Model):
             for line in record.order_line:
                 if line.product_id.payment_land_dues:
                     for line_invoice in line.invoice_lines:
-                        if line_invoice.move_id.l10n_pe_edi_reversal_type_id:
-                            continue
+                        #if line_invoice.move_id.l10n_pe_edi_reversal_type_id:
+                        #    continue
                         if line_invoice.move_id.state != 'cancel' and line_invoice.move_id.payment_state != 'reversed':
                             total_payment += line_invoice.price_total
 
@@ -652,7 +652,7 @@ class SaleOrder(models.Model):
 
 
 
-                            if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
+                            if line_inv.move_id.payment_state == 'reversed' : #or line_inv.move_id.l10n_pe_edi_reversal_type_id
                                 continue
 
                             if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
