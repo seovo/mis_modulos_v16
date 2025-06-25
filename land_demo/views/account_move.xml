@@ -22,8 +22,8 @@
                </xpath>
 
                <xpath expr="//field[@name='invoice_partner_display_name']" position="after" >
-                   <field name="identification_type"  optional="show" />
-                   <field name="l10n_pe_vat_code"  optional="show" />
+                 <!--  <field name="identification_type"  optional="show" /> -->
+                <!--   <field name="l10n_pe_vat_code"  optional="show" /> -->
                    <field name="vat"  optional="show" />
                    <field name="bank_name"  optional="show" />
                    <field name="bank_operation" optional="show"  />
