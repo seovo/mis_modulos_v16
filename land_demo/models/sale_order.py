@@ -249,7 +249,7 @@ class SaleOrder(models.Model):
             "name": f"AGREGAR TERRENO",
             "type": "ir.actions.act_window",
             "view_mode": "form",
-            "view_id": self.env.ref('land.add_terreno_sale').id,
+            "view_id": self.env.ref('land_demo.add_terreno_sale').id,
             "res_model": "sale.order",
             "res_id": self.id,
             "target": "new",
