@@ -291,8 +291,7 @@
 
 
                     <field name="move_type" invisible="context.get('default_move_type', True)"/>
-                    <field name="l10n_pe_edi_ose_accepted"  optional="hide" />
-                    <field name="l10n_pe_edi_sunat_accepted"  optional="hide" />
+
                     <field name="days_count_expired_separation"  optional="hide" />
 
                   </tree>
