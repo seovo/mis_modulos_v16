@@ -242,6 +242,9 @@ class SaleOrder(models.Model):
             if record.zona_lot_related:
                 record.price_m2 = record.zona_lot_related.value
 
+            if record.area_lot_related:
+                record.m2_land = record.area_lot_related
+
 
 
     def open_product_land(self):

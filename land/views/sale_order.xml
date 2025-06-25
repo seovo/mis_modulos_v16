@@ -23,6 +23,7 @@
                            <field name="mz_land" invisible="1"  />
                            <field name="lot_land" invisible="1"  />
                            <field name="mz_lot" invisible="1" />
+                           <field name="m2_land" invisible="1" />
                        </group>
                    </sheet>
 
