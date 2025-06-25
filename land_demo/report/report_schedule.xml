@@ -223,7 +223,7 @@
         <field name="print_report_name">('CRONOGRAMA').replace('/','_')</field>
         <field name="binding_model_id" ref="model_sale_order"/>
         <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="land.paperformat_schedule_id" />
+        <field name="paperformat_id" ref="land_demo.paperformat_schedule_id" />
     </record>
 
 </odoo>
