@@ -11,16 +11,20 @@ class AccountMoveLine(models.Model):
 
     margin_cost_usd_jz = fields.Float(string="Precio costo USD",compute='get_margin_jz',help=" precio unitario de la ultima factura de compra , si es MX  /tipo cambio")
     margin_suggested_usd_jz = fields.Float(string="Precio sugerido de Venta", compute='get_margin_jz',help="precio costo USD / escala")
-    margin_priceunit_usd_jz = fields.Float(string="Precio unitario venta USD", compute='get_margin_jz',help="precio unitario / tipo de cambio  , si es US es 19")
-    margin_margin_usd_jz = fields.Float(string="Margen unitario", compute='get_margin_jz',help="(M. Unit = P.Unit - precio costo USD )/ precio costo USD")
+    margin_priceunit_usd_jz = fields.Float(string="Precio unitario venta USD", compute='get_margin_jz',help="precio unitario / tipo de cambio  , si es US es el mismo precio unitario")
+    margin_margin_usd_jz = fields.Float(string="Margen Unitario", compute='get_margin_jz',help="(P.Unitario  USD - precio costo USD) / P.Unitario  USD")
     pricelist_id_jz = fields.Many2one('product.pricelist',string="Tarifa", compute='get_margin_jz')
     last_purchase_move_id_jz = fields.Many2one('account.move',string="Ultima Factura Proveedor", compute='get_margin_jz')
+    last_purchase_jz = fields.Char(string="Ultima Compra Proveedor",compute='get_margin_jz')
+    last_purchase_partner_jz = fields.Many2one('res.partner',string="Ultimo Proveedor", compute='get_margin_jz')
 
 
 
     def get_margin_jz(self):
         for record in self:
+            purchase_name = None
             purchase_move_id = None
+            last_purchase_partner_jz = None
 
             pricelist_id = None
 
@@ -68,6 +72,11 @@ class AccountMoveLine(models.Model):
                     limit=1
                 )
                 if ultima_compra:
+
+                    if ultima_compra.purchase_line_id.order_id:
+                        purchase_name =  ultima_compra.purchase_line_id.order_id.name
+
+                    last_purchase_partner_jz = ultima_compra.move_id.partner_id.id or None
                     purchase_move_id = ultima_compra.move_id.id
                     rate_sell = ultima_compra.move_id.inv_exchange_rate_display
                     if ultima_compra.move_id.currency_id != self.env.ref('base.USD') and rate_sell <= 1:
@@ -94,6 +103,9 @@ class AccountMoveLine(models.Model):
             record.margin_priceunit_usd_jz = price_unitario
 
             #M. Unit = P.Unit - precio costo USD / precio costo USD
-            record.margin_margin_usd_jz = ( price_unitario - record.margin_cost_usd_jz  ) / record.margin_cost_usd_jz  if record.margin_cost_usd_jz != 0 else 0
+            record.margin_margin_usd_jz = ( price_unitario - record.margin_cost_usd_jz  ) / price_unitario  if price_unitario != 0 else 0
             record.last_purchase_move_id_jz = purchase_move_id
+
+            record.last_purchase_jz = purchase_name
+            record.last_purchase_partner_jz = last_purchase_partner_jz
 
