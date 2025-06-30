@@ -508,7 +508,8 @@ class ApiClinicos(http.Controller):
                     'id': website.id,
                     'name': website.display_name,
                     'country_name': website.company_id.country_id.name ,
-                    'country_image': img_country
+                    'country_image': img_country ,
+                    'url': website.domain
 
                 })
 
