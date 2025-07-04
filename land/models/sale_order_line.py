@@ -268,7 +268,8 @@ class SaleOrderLine(models.Model):
                     })
 
                     record.copy(default={
-                        'add_separation_land': add_separation_land
+                        'add_separation_land': add_separation_land ,
+                        'order_id': record.order_id.id
                     })
 
                 if  record.product_id.is_advanced_land:
