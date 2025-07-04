@@ -268,7 +268,7 @@ class SaleOrderLine(models.Model):
                     })
 
                     record.copy(default={
-                        'add_separation_land': add_separation_land ,
+                        'price_unit': add_separation_land ,
                         'order_id': record.order_id.id
                     })
 
