@@ -22,7 +22,7 @@ meses_espanol = {
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    add_separation_land = fields.Float(string="Agregar Separación")
+    add_separation_land = fields.Float(string="Agregar Separación/Adelanto")
     amount_initial_desc = fields.Float()
 
     land_area_id  = fields.Many2one('product.template.attribute.value', string="Area")
@@ -253,44 +253,55 @@ class SaleOrderLine(models.Model):
         res = super().write(values)
         for record in self:
 
-            if record.add_separation_land and record.add_separation_land > 0 and record.product_id.is_advanced_land:
+            if record.add_separation_land and record.add_separation_land > 0 :
 
-                if len(record.order_id.order_line) == 2:
+                add_separation_land = record.add_separation_land
 
-                    dx = {
-                        'name': 'Separación',
-                        'order_id': record.order_id.id ,
-                        'price_unit': record.add_separation_land
-                        #"'product_id': record.move_separation_land_id.invoice_line_ids[
-                        #                                0].product_id.id
+                if record.product_id.is_independence:
+                    if record.product_uom_qty != 1 :
+                        raise ValidationError('Cantidad debe ser uno')
+
+
+                    record.write({
+                        'price_unit': record.price_unit - add_separation_land
+                    })
+
+                    record.copy(default={
+                        'add_separation_land': add_separation_land
+                    })
+
+                if  record.product_id.is_advanced_land:
+                    if len(record.order_id.order_line) == 2:
+
+                        dx = {
+                            'name': 'Separación',
+                            'order_id': record.order_id.id,
+                            'price_unit': record.add_separation_land
+                            # "'product_id': record.move_separation_land_id.invoice_line_ids[
+                            #                                0].product_id.id
                         }
 
-                    product_separation =  self.env['product.product'].search([('is_separation_land','=',True)])
+                        product_separation = self.env['product.product'].search([('is_separation_land', '=', True)])
 
-                    if product_separation:
-                        dx.update({
-                            'product_id': product_separation.id
-                        })
+                        if product_separation:
+                            dx.update({
+                                'product_id': product_separation.id
+                            })
 
+                        clone_line = record.copy(default=dx)
 
-                    clone_line = record.copy(default=dx)
+                        clone_line.price_unit = record.add_separation_land
+                        record.add_separation_land = 0
 
-                    clone_line.price_unit = record.add_separation_land
-                    record.add_separation_land = 0
+                        amount_initial_desc = record.price_unit - clone_line.price_unit
 
-                    amount_initial_desc =  record.price_unit - clone_line.price_unit
+                        record.price_unit = amount_initial_desc
+                        record.amount_initial_desc = amount_initial_desc
 
-                    record.price_unit = amount_initial_desc
-                    record.amount_initial_desc = amount_initial_desc
+                        # line.price_unit = line.price_unit - clone_line.price_unit
 
+                    record.order_id._recalcule_price_land()
 
-                    #line.price_unit = line.price_unit - clone_line.price_unit
-
-            if record.product_id and record.product_id.is_advanced_land:
-                record.order_id._recalcule_price_land()
-
-
-            record.order_id.get_info_land()
 
 
         return res
