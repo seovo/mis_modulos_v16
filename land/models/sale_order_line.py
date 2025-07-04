@@ -263,7 +263,8 @@ class SaleOrderLine(models.Model):
 
 
                     record.write({
-                        'price_unit': record.price_unit - add_separation_land
+                        'price_unit': record.price_unit - add_separation_land ,
+                        'add_separation_land' :  0
                     })
 
                     record.copy(default={
