@@ -181,8 +181,8 @@ class SaleOrderLine(models.Model):
     def change_product_uom_qty_land(self):
         for record in self:
             if record.product_id and record.product_id.payment_land_dues:
-                if record.product_id.product_template_attribute_value_ids:
-                    continue
+                #if record.product_id.product_template_attribute_value_ids:
+                #    continue
                 record._calculate_price_land()
 
 
