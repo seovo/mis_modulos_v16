@@ -301,8 +301,23 @@ class SaleOrderLine(models.Model):
                         record.amount_initial_desc = amount_initial_desc
 
                         # line.price_unit = line.price_unit - clone_line.price_unit
+                        record.order_id._recalcule_price_land()
+                    else:
+                        if record.product_uom_qty != 1:
+                            raise ValidationError('Cantidad debe ser uno')
 
-                    record.order_id._recalcule_price_land()
+                        record.write({
+                            'price_unit': record.price_unit - add_separation_land,
+                            'add_separation_land': 0
+                        })
+
+                        record.copy(default={
+                            'price_unit': add_separation_land,
+                            'order_id': record.order_id.id
+                        })
+
+
+
 
 
 
