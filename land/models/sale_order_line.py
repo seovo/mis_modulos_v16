@@ -124,7 +124,7 @@ class SaleOrderLine(models.Model):
         price_total = 1
         price_totalx = 1
         is_land = False
-        if product.product_template_attribute_value_ids:
+        if product.product_template_attribute_value_ids and 5 == 6:
             raise ValueError('CALCULO X ATRIBUTOS DESACTIVADO')
 
 
@@ -140,8 +140,12 @@ class SaleOrderLine(models.Model):
 
         else:
             if self.order_id.report_lot_land_line_id and product.payment_land_dues:
-                if self.order_id.report_lot_land_line_id.zona:
+                if self.order_id.report_lot_land_line_id:
                     is_land = True
+
+                    if not self.order_id.report_lot_land_line_id.area or self.order_id.report_lot_land_line_id.area <= 0:
+                        raise ValidationError(f'configure m2 : ')
+
                     if not self.order_id.price_m2 or self.order_id.price_m2 <= 0 :
                         raise ValidationError(f'Configure Precio M2 {self.order_id.report_lot_land_line_id} {self.order_id.price_m2}')
 
