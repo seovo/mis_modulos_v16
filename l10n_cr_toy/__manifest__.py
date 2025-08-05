@@ -27,7 +27,7 @@
         'view/stock_sucursal_sirett_views.xml',
         'view/product_template_views.xml',
         'view/sale.xml',
-        #'view/document_type.xml',
+        'view/document_type.xml',
         'wizard/sirett_api_wizard.xml',
         #'data/api.params.csv',
         'data/api_params_data.xml',
