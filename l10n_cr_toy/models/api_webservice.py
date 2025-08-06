@@ -250,11 +250,11 @@ class ApiWebservice(models.TransientModel):
             result = r.result
         else:
 
-            raise ValidationError(str(type))
+            #raise ValidationError(str(type))
             data = r.data
             #raise ValueError(type)
             if type == 'new':
-
+                raise ValueError(product_id)
                 if product_id:
                     result = self.update_product(data, location_id, product_id, sucursal_id, stock_inventory_id, api_id)
                 else:
