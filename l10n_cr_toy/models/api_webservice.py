@@ -192,7 +192,7 @@ class ApiWebservice(models.TransientModel):
 
                 product_template = self.env['product.template'].create(data)
 
-                raise ValueError(product_template)
+                #raise ValueError(product_template)
 
                 sku_new.append(product.codigo)
 
