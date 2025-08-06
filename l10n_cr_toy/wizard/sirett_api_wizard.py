@@ -81,7 +81,7 @@ class StocksirettApiWizard(models.TransientModel):
         web_service = self.env['api.webservice'].sudo()
         mensaje = ""
         for sucursal in self.sucursal_id:
-            res = web_service.update_images( sucursal,self.step)
+            res = web_service.update_images( self.step ,  sucursal_id = sucursal)
             if isinstance(res, list):
                 msn = self._create_mensaje(res,sucursal,mensaje)
                 self.description = msn
