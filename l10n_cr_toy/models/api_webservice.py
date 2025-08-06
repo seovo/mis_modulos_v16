@@ -131,7 +131,8 @@ class ApiWebservice(models.TransientModel):
         return resultado
 
     #@staticmethod
-    def _prepare_product_data(self, product):
+    def _prepare_product_data(self, product , location_id , api_id , sucursal):
+        url_image = api_id.url_base + '' + product.image_url if product.image_url else ''
         ret_product = {
                 'name': product.descripcion,
                 'default_code': product.codigo,
@@ -142,10 +143,15 @@ class ApiWebservice(models.TransientModel):
                 'marca': product.marca,
                 'familia': product.familia,
                 'type': 'product',
+                'barcode': product.codigo ,
+                'locacion_id': location_id.id,
+                "url_image": url_image,
+                "sucursal_id": sucursal.id,
+
             }
-        existe_barcode = self.env["product.template"].search([('barcode', '=', product.codigo)])
-        if len(existe_barcode) > 0:
-            ret_product['barcode'] = product.codigo
+        #existe_barcode = self.env["product.template"].search([('barcode', '=', product.codigo)])
+        #if len(existe_barcode) > 0:
+        #    ret_product['barcode'] = product.codigo
         return ret_product
 
     def _update_products(self, datos, api_id, sucursal, location_id, stock_inventory_id=None):
@@ -165,47 +171,42 @@ class ApiWebservice(models.TransientModel):
             #raise ValueError(product.codigo)
 
             product_template = product_t.search([('default_code', '=', product.codigo)])
+
+
+
+            data = self._prepare_product_data(product,location_id, api_id , sucursal)
+
+
             if product_template:
-                url_image = api_id.url_base + '' + product.image_url if product.image_url else ''
 
 
-                product_template.write({
-                    'locacion_id': location_id.id,
-                    'stock_actual_sirett': product.stock or 0.0,
-                    'list_price': product.precio or 0.0,
-                    'date_consult': datetime.now().date(),
-                    "url_image": url_image
-                })
+
+                product_template.write(data)
 
                 update += 1
                 sku_updates.append(product.codigo)
                 self.create_stock_move(product_template, product.stock, location_id, sucursal, stock_inventory_id)
 
             else:
-                data = self._prepare_product_data(product)
-                # additionals
-                data.update(
-                    url_image=api_id.url_base + '' + product.image_url if product.image_url else product.image_url,
-                    sucursal_id=sucursal.id,
-                    locacion_id=location_id.id
-                )
-                info.append(data)
+
+
+                product_template = self.env['product.template'].create(data)
+
+                raise ValueError(product_template)
+
                 sku_new.append(product.codigo)
 
-        num_lotes, all_p = self.procedure_lotes(info, update)
-        if len(all_p) > 0:
-            for p in all_p[0]:
-                self.create_stock_move(p, p.stock_actual_sirett, location_id, sucursal, stock_inventory_id)
+
 
         actualizaciones = update
         nuevos = len(info)
         total_updates = sucursal.last_import + nuevos + actualizaciones
         total = len(datos)
-        num_lotes = num_lotes
+
 
         #a retornar
         result = []
-        result.append('Lotes procesados: ' + str(num_lotes))
+        #result.append('Lotes procesados: ' + str(num_lotes))
         result.append('Nuevos: ' + str(nuevos))
         result.append('Actualizados: ' + str(actualizaciones))
         #result.append('Encontrados/No actualizados: ' + str(len(ids_not_update)))
@@ -281,19 +282,7 @@ class ApiWebservice(models.TransientModel):
 
         return result
 
-    def procedure_lotes(self, info, update):
-        product_t = self.env['product.template']
-        initial, end, part_lote = self.params()
-        t = len(info)+update
-        div = t / part_lote
-        part = int(div) + 1 if div > int(div) else int(div)
-        all_p = []
-        for i in range(0, part):
-            if len(info) > 0:
-                all_p.append(product_t.create(info[initial:end]))
-            initial = initial + part_lote
-            end = end + part_lote
-        return part, all_p
+
 
     def api_consult_by_sucursal(self, sucursal_id, api_id,  type,location_id , product_id = None):
 
@@ -405,11 +394,6 @@ class ApiWebservice(models.TransientModel):
         else:
             return False
 
-    def params(self):
-        initial = 0
-        end = 1000
-        part_lote = 1000
-        return initial, end, part_lote
 
     def create_stock_move(self, product, qty, location_id, sucursal, stock_inventory_id):
         quant = self.env['stock.quant'].search([
