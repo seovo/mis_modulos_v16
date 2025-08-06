@@ -105,7 +105,7 @@ class ApiWebservice(models.TransientModel):
             ret_product['barcode'] = product.codigo
         return ret_product
 
-    def _new(self, datos, api_id, sucursal, location_id, stock_inventory_id=None):
+    def _update_products(self, datos, api_id, sucursal, location_id, stock_inventory_id=None):
         product_t = self.env['product.template']
         info = []
         update = 0
@@ -118,22 +118,37 @@ class ApiWebservice(models.TransientModel):
 
         for product in new_datos:
 
+
+            raise ValueError(product.codigo)
+
             product_template = product_t.search([('default_code', '=', product.codigo)])
             if product_template:
-                product_template.write({'locacion_id': location_id.id})
+                url_image = api_id.url_base + '' + product.image_url if product.image_url else ''
+
+
+                product_template.write({
+                    'locacion_id': location_id.id,
+                    'stock_actual_sirett': product.stock or 0.0,
+                    'list_price': product.precio or 0.0,
+                    'date_consult': datetime.now().date(),
+                    "url_image": url_image
+                })
+
                 update += 1
                 sku_updates.append(product.codigo)
                 self.create_stock_move(product_template, product.stock, location_id, sucursal, stock_inventory_id)
-                continue
-            data = self._prepare_product_data(product)
-            # additionals
-            data.update(
-                url_image=api_id.url_base + '' + product.image_url if product.image_url else product.image_url,
-                sucursal_id=sucursal.id,
-                locacion_id=location_id.id
-            )
-            info.append(data)
-            sku_new.append(product.codigo)
+
+            else:
+                data = self._prepare_product_data(product)
+                # additionals
+                data.update(
+                    url_image=api_id.url_base + '' + product.image_url if product.image_url else product.image_url,
+                    sucursal_id=sucursal.id,
+                    locacion_id=location_id.id
+                )
+                info.append(data)
+                sku_new.append(product.codigo)
+
         num_lotes, all_p = self.procedure_lotes(info, update)
         if len(all_p) > 0:
             for p in all_p[0]:
@@ -237,31 +252,29 @@ class ApiWebservice(models.TransientModel):
             end = end + part_lote
         return part, all_p
 
-    def api_consult_by_sucursal(self, sucursal_id, api_id, product_id, type, location_id):
+    def api_consult_by_sucursal(self, sucursal_id, api_id,  type,location_id , product_id = None):
 
+        #obtener data
         r = self.get_result(str(sucursal_id.id_search), api_id)
 
 
         stock_inventory_id = None
 
+        # raise ValidationError(str(type))
+        data = r.data
+        # raise ValueError(type)
+        if type == 'data':
 
-        if r.result != 0:
-            #raise ValueError(r.result)
-            result = r.result
+            if product_id:
+                result = self.update_product(data, location_id, product_id, sucursal_id, stock_inventory_id, api_id)
+            else:
+                result = self._update_products(data, api_id, sucursal_id, location_id, stock_inventory_id)
+
+        elif type == 'price_stock':
+            result = self.update_pricestock(data, api_id, sucursal_id, stock_inventory_id)
         else:
+            raise ValidationError('Valor no permitido')
 
-            #raise ValidationError(str(type))
-            data = r.data
-            #raise ValueError(type)
-            if type == 'new':
-                raise ValueError(product_id)
-                if product_id:
-                    result = self.update_product(data, location_id, product_id, sucursal_id, stock_inventory_id, api_id)
-                else:
-                    result = self._new(data, api_id, sucursal_id, location_id, stock_inventory_id)
-
-            elif type == 'update_price_stock':
-                result = self.update_pricestock(data, api_id, sucursal_id, stock_inventory_id)
 
 
         return result
@@ -269,7 +282,7 @@ class ApiWebservice(models.TransientModel):
     def update_product(self, datos, location_id, product_id, sucursal, stock_inventory_id, api_id):
         update = 0
         for product in self.datos_step(datos,sucursal):
-            url_image = api_id.url_base + '' + product.image_url if product.image_url else product.image_url,
+            url_image = api_id.url_base + '' + product.image_url if product.image_url else ''
             if product.codigo == product_id.default_code:
                 product_id.write({
                     'locacion_id': location_id.id,

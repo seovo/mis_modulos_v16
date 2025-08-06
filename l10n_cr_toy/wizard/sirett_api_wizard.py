@@ -9,8 +9,12 @@ from odoo.exceptions import ValidationError
 import requests
 import threading
 
-OPTIONS = [('data', 'Obtener/Actualizar productos'), ('images', 'Actualizar imágenes'), ('price_stock', 'Actualizar precio y stock')]
-result = 6450
+OPTIONS = [
+    ('data', 'Obtener/Actualizar productos'),
+    ('images', 'Actualizar imágenes'),
+    ('price_stock', 'Actualizar precio y stock')
+]
+
 
 _logger = logging.getLogger(__name__)
 
@@ -101,6 +105,7 @@ class StocksirettApiWizard(models.TransientModel):
 
     def process(self):
 
+        #verificar parametro step
         config = self.env['ir.config_parameter'].sudo().search([('key', '=', 'step_sirett_api')])
         if not config:
             self.env['ir.config_parameter'].sudo().create({
@@ -114,11 +119,9 @@ class StocksirettApiWizard(models.TransientModel):
         r = 0
         mensaje = ""
         for sucursal in self.sucursal_id:
-            opt = 'new'
-            if self.option == 'price_stock':
-                opt = 'update_price_stock'
 
-            res = web_service.api_consult_by_sucursal(sucursal, self.api_id, False, opt, self.location_id)
+
+            res = web_service.api_consult_by_sucursal(sucursal, self.api_id,  self.option , self.location_id)
             _logger.info('res: %s' % res)
             if isinstance(res, list):
                 msn = self._create_mensaje(res, sucursal, mensaje)

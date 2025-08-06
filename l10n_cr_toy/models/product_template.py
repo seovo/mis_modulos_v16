@@ -22,10 +22,10 @@ class ProductTemplate(models.Model):
         sirett_api_consult = self.env['api.webservice']
         api_id = self.env['api.params'].sudo().browse(1)
         for product in self:
-            sirett_api_consult.api_consult_by_sucursal(product.sucursal_id, api_id, product, 'new', product.locacion_id)
+            sirett_api_consult.api_consult_by_sucursal(product.sucursal_id, api_id,  'data', product.locacion_id , product_id=product)
 
         self.env.user.notify_success(
-            message='Los datos del producto fueron actualizdos correctamente. ',
+            message='Los datos del producto fueron actualizados correctamente. ',
             title="BIEN! ")
 
     def update_image_sirett(self):
