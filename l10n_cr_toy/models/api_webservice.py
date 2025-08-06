@@ -328,7 +328,7 @@ class ApiWebservice(models.TransientModel):
                 break
 
 
-    def update_images(self, product_id, sucursal_id,step):
+    def update_images(self,  step , product_id=None ,  sucursal_id = None):
 
         if sucursal_id:
             products = self.env['product.template'].search([
@@ -346,13 +346,17 @@ class ApiWebservice(models.TransientModel):
                 for pro in products:
                     pro.api_siret_img_update = False
 
-            products = self.env['product.template'].search([
-                ('sucursal_id', '=', sucursal_id.id),
-                ('url_image', '!=', False),
-                ('api_siret_img_update', '=', False)
-            ], limit=step)
+                products = self.env['product.template'].search([
+                    ('sucursal_id', '=', sucursal_id.id),
+                    ('url_image', '!=', False),
+                    ('api_siret_img_update', '=', False)
+                ], limit=step)
+
+
 
         else:
+            if not product_id:
+                raise ValidationError('NO SE INDICO PRODUCTO')
             products = self.env['product.template'].search([
                 ('id', '=', product_id.id),
                 ('url_image', '!=', False),
@@ -365,8 +369,7 @@ class ApiWebservice(models.TransientModel):
 
         #initial, end, part_lote = self.params()
         t = len(products)
-        #div = t / part_lote
-        #part = int(div) + 1 if div > int(div) else int(div)
+
 
         for product in products:
             image_1920 = self.get_img(product)

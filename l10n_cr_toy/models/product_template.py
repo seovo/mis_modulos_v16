@@ -38,9 +38,9 @@ class ProductTemplate(models.Model):
         webservice = self.env['api.webservice'].sudo()
         sw = 0
         for product in self:
-            r = webservice.update_images(product,None, 1)
-            if r == 0:
-                break
+            r = webservice.update_images(1 ,product_id= product)
+            #if r == 0:
+            #    break
 
         #if sw == 1:
         #    self.env.user.notify_warning(message='No se encontró el producto. ', title = "Ups! ")

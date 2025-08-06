@@ -81,7 +81,7 @@ class StocksirettApiWizard(models.TransientModel):
         web_service = self.env['api.webservice'].sudo()
         mensaje = ""
         for sucursal in self.sucursal_id:
-            res = web_service.update_images(None, sucursal,self.step)
+            res = web_service.update_images( sucursal,self.step)
             if isinstance(res, list):
                 msn = self._create_mensaje(res,sucursal,mensaje)
                 self.description = msn
@@ -163,6 +163,45 @@ class StocksirettApiWizard(models.TransientModel):
             'views': [[kanban_id, "kanban"], [list_id, "tree"], [form_id, "form"]]
         }
 
+
+    def action_process_image(self):
+        config = self.env['ir.config_parameter'].sudo().search([('key', '=', 'step_sirett_api_image')])
+        if not config:
+            self.env['ir.config_parameter'].sudo().create({
+                'key': 'step_sirett_api_image',
+                'value': 50
+            })
+
+        step = int(config.value)
+
+        products = self.env['product.template'].search([
+            #('sucursal_id', '=', sucursal_id.id),
+            ('url_image', '!=', False),
+            ('api_siret_img_update', '=', False)
+        ], limit=step)
+
+        if not products:
+            products = self.env['product.template'].search([
+                ('url_image', '!=', False),
+                ('api_siret_img_update', '=', False)
+            ])
+
+            for pro in products:
+                pro.api_siret_img_update = False
+
+            products = self.env['product.template'].search([
+
+                ('url_image', '!=', False),
+                ('api_siret_img_update', '=', False)
+            ], limit=step)
+
+        webservice = self.env['api.webservice'].sudo()
+
+        for product in products:
+            r = webservice.update_images(1 ,product_id= product)
+            product.api_siret_img_update = True
+
+
     def action_process(self,option='data', sucursal=None):
 
         config = self.env['ir.config_parameter'].sudo().search([('key', '=', 'step_sirett_api')])
@@ -216,3 +255,4 @@ class StocksirettApiWizard(models.TransientModel):
 
 
         config.value = step_init
+
