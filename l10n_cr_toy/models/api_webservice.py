@@ -162,7 +162,7 @@ class ApiWebservice(models.TransientModel):
         for product in new_datos:
 
 
-            raise ValueError(product.codigo)
+            #raise ValueError(product.codigo)
 
             product_template = product_t.search([('default_code', '=', product.codigo)])
             if product_template:
