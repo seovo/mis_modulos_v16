@@ -18,6 +18,12 @@ class ProductTemplate(models.Model):
     locacion_id = fields.Many2one('stock.location', string=u'Última ubicación obtenida', store=True)
     api_siret_img_update = fields.Boolean()
 
+    @api.model
+    def create(self,vals):
+        raise ValueError(vals)
+        res = super().create(vals)
+        return res
+
     def consult_stock_sirett(self):
         sirett_api_consult = self.env['api.webservice']
         api_id = self.env['api.params'].sudo().browse(1)
