@@ -241,7 +241,7 @@ class ApiWebservice(models.TransientModel):
 
         r = self.get_result(str(sucursal_id.id_search), api_id)
 
-
+        raise ValueError(r)
         stock_inventory_id = None
 
 
