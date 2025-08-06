@@ -10,12 +10,55 @@ from zeep import Client, Settings
 from datetime import date
 from odoo import models, fields
 from odoo.exceptions import UserError, ValidationError
-from .consult_api_sirett import basic_data
-from .consult_api_sirett import body
-from .consult_api_sirett import order_client
-from .consult_api_sirett import order_items
+
+
 from .zirett_message import zirett_message as MESSAGE
 import logging
+
+basic_data = """
+<ws_pid>{}</ws_pid>
+      <ws_passwd>{}</ws_passwd>
+      <bid>{}</bid>
+      <ws_orden_id>{}</ws_orden_id>
+"""
+
+
+body = """
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap-env:Body>
+    <ns0:wsp_send_orden xmlns:ns0="urn:server">
+      {}
+      {}
+      <detalle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns0:ordenitems_Table"  arrayType="tns:ordenitems_Row[{}]">
+        {}  
+      </detalle>
+    </ns0:wsp_send_orden>
+  </soap-env:Body>
+</soap-env:Envelope>
+"""
+
+order_client = """
+<cliente xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns0:clientes_Row">
+        <idtipo>{}</idtipo>
+        <identificacion>{}</identificacion>
+        <nombre>{}</nombre>
+        <email>{}</email>
+        <phone>{}</phone>
+        <fe_email></fe_email>
+        <provincia>{}</provincia>
+        <ciudad>{}</ciudad>
+        <distrito>{}</distrito>
+        <direccion>{}</direccion>
+</cliente>
+"""
+
+order_items = """
+        <ordenitems_Row>
+          <codigo>{}</codigo>
+          <cantidad>{}</cantidad>
+          <precio>{}</precio>
+        </ordenitems_Row>
+"""
 
 _logger = logging.getLogger(__name__)
 
