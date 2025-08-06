@@ -122,6 +122,7 @@ class SirettApiConsult(models.TransientModel):
         for sucursal in sucursal_id:
             r = self.get_result(str(sucursal.id_search))
             data = r.data
+            raise ValueError(data)
             sucursal_id.write({'date_consult': datetime.now().date(), 'total_consult': len(r.data)})
             if product_id and (type=='image' or type=='stock'):
                 product = list(filter(lambda x: x.codigo == product_id.default_code, data))[0]
@@ -139,6 +140,7 @@ class SirettApiConsult(models.TransientModel):
                     else:
                         image_1920 = None
                         url_image = None
+
                     data = {
                         'name': product.descripcion,
                         'default_code': product.codigo,
