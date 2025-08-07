@@ -80,6 +80,9 @@ class ApiWebservice(models.TransientModel):
             sucursal.last_import = config.value
             return datos[0:int(config.value)]
         else:
+
+            raise ValueError([ int(sucursal.last_import),int(config.value)])
+
             sucursal.last_import = int(sucursal.last_import) + int(config.value)
 
 
