@@ -221,23 +221,20 @@ class StocksirettApiWizard(models.TransientModel):
         #if option in ['data','image','price_stock']:
         #    self = self.with_context(default_option=option)
 
-        sucursal_id = None
+        sucursal_ids = None
         if sucursal:
-            sucursal_id = self.env['stock.sucursal.sirett'].search([('id', '=', int(sucursal))])
+            sucursal_ids = self.env['stock.sucursal.sirett'].search([('id', '=', int(sucursal))])
 
-        if not sucursal_id:
-            sucursal_id = self.env['stock.sucursal.sirett'].search([('was_imported','!=',True)],limit=1)
-            if not sucursal_id:
-                sucursales = self.env['stock.sucursal.sirett'].search([])
-                for ss in sucursales:
-                    ss.was_imported = False
+        if not sucursal_ids:
+            sucursal_ids = self.env['stock.sucursal.sirett'].search([])
+
 
 
         #if sucursal_id:
         #    self = self.with_context(default_sucursal_id=sucursal_id.id, default_location_id=sucursal_id.warehouse_id.lot_stock_id.id)
-        if option and sucursal_id:
+        if option and sucursal_ids:
 
-            for sucursalx  in sucursal_id:
+            for sucursalx  in sucursal_ids:
                 wiz_id = self.env['stock.sirett.api.wizard'].create({
                     'sucursal_id': sucursalx.id,
                     'location_id': sucursalx.warehouse_id.lot_stock_id.id,
