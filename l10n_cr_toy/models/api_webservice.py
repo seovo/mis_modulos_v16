@@ -432,7 +432,7 @@ class ApiWebservice(models.TransientModel):
         direccion = order_id.partner_id.street or ''
         direccion += order_id.partner_id.street2 or ''
         return order_client.format(
-            partner_id.l10n_latam_identification_type_idid.code_sirett,
+            partner_id.l10n_latam_identification_type_id.code_sirett,
             partner_id.vat,
             partner_id.name,
             partner_id.email,
