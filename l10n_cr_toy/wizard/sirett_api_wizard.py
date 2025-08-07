@@ -214,9 +214,9 @@ class StocksirettApiWizard(models.TransientModel):
         step_init = config.value
 
 
-        sucursales = len(self.env['stock.sucursal.sirett'].search([]))
-        if not sucursal and sucursales > 1:
-            config.value = int(step_init) / sucursales
+        sucursales = self.env['stock.sucursal.sirett'].search([])
+        if not sucursal and len(sucursales) > 1:
+            config.value = int(step_init) / len(sucursales)
 
         #if option in ['data','image','price_stock']:
         #    self = self.with_context(default_option=option)
