@@ -381,11 +381,16 @@ class ApiWebservice(models.TransientModel):
         return result
 
     def get_img(self,product):
-        if product.url_image.split('.com')[1][0] != '/':
-            url_split = product.url_image.split('.com')
-            url = url_split[0] + '.com/' + url_split[1]
-        else:
-            url = product.url_image
+        try:
+            if product.url_image.split('.com')[1][0] != '/':
+                url_split = product.url_image.split('.com')
+                url = url_split[0] + '.com/' + url_split[1]
+            else:
+                url = product.url_image
+        except:
+            return False
+
+
         response_image = requests.get(url)
         if response_image.status_code == 200:
             img_bytes = response_image.content

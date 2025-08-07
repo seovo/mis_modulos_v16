@@ -15,5 +15,8 @@
 		<record id="l10n_cr_identification_type.cr_04" model="l10n_latam.identification.type">
 			<field name="code_sirett">4</field>
 		</record>
+		<record id="l10n_latam_base.it_pass" model="l10n_latam.identification.type">
+			<field name="code_sirett">5</field>
+		</record>
 	</data>
 </odoo>
