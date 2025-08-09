@@ -757,12 +757,13 @@ class SaleOrder(models.Model):
                                 'balan': 0,
                                 'amount': factura_line.price_unit,
                                 'is_paid': True,
-                                'line_move_id': factura_line.id
+                                'line_move_id': factura_line.id ,
+                                'order_id': record.id
                             }
 
                             if not exist_line and factura_line:
 
-                                record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
+                                record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
                             #else:
                             #    exist_line.write(dx)
 
