@@ -172,7 +172,7 @@ class SaleOrder(models.Model):
     cuota_mensual_loan = fields.Float(compute='get_cuota_mensual_loan')
 
 
-    @api.depends('tasa_interes_lan','saldo_payment_land','dues_land')
+    @api.depends('tasa_interes_land','saldo_payment_land','dues_land')
     def get_cuota_mensual_loan(self):
         for record in self:
             def calcular_pago_prestamo(C4, C5, C6):
