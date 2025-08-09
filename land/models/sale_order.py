@@ -760,7 +760,7 @@ class SaleOrder(models.Model):
                                 'line_move_id': factura_line.id
                             }
 
-                            if not exist_line:
+                            if not exist_line and factura_line:
 
                                 record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
                             #else:
