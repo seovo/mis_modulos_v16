@@ -19,7 +19,7 @@ class ScheduleDuesLand(models.Model):
     amount_due_land = fields.Float(related='line_move_id.price_unit',string="Monto Pagado")
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
 
-    _order = 'number_due asc'
+    _order = 'number_due asc ,  invoice_date asc '
 
     def invoice_here_land(self):
 
