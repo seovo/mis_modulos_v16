@@ -36,7 +36,7 @@ class SaleOrderLine(models.Model):
 
     def edit_price_jz(self):
         self.add_separation_land = 0
-        view = self.env.ref('land.edit_sale_order_line')
+        view = self.env.ref('land_demo.edit_sale_order_line')
         return {
             "name": f"EDIT PRICE :   {self.name}",
             "type": "ir.actions.act_window",
