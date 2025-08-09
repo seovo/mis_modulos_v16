@@ -755,7 +755,7 @@ class SaleOrder(models.Model):
                         df = [
                             '|', ('line_move_id', '=', factura_linex.id), ('line_move_id', '=', factura_linex._origin.id)
                         ]
-                        df = [('order_id','=',record.id)]
+                        df = [('order_id','=',record.id),('line_move_id', '=', factura_linex.id)]
                         exist_line = self.env['schedule.dues.land'].search(df)
 
                         raise ValueError(exist_line)
