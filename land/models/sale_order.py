@@ -748,7 +748,7 @@ class SaleOrder(models.Model):
                     for factura_line in factura.invoice_line_ids:
                         if not factura_line.sale_line_ids and factura_line.number_advance_land > 0:
                             exist_line = self.env['schedule.dues.land'].search([
-                                ('line_move_id','=',factura_line.id),('order_id','=',record.id)
+                                ('line_move_id','=',factura_line.id)
                             ])
 
                             dx = {
