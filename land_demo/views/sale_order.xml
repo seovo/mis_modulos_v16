@@ -196,7 +196,7 @@
                                <field name="saldo_payment_land" readonly="1" force_save="1" />
                                <field name="tasa_interes_land"  />
                                <field name="dues_land"  />
-                               <field name="cuota_mensual_load"  />
+                               <field name="cuota_mensual_loan"  />
                            </group>
                            <group>
                                <field name="journal_id"  />
