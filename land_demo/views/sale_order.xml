@@ -147,7 +147,7 @@
                <xpath expr="//header" position="inside" >
 
 
-                   <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
+                   <button name="recreate_schedule" string="Actualizar Cronograma" type="object"  />
                    <button name="show_lot_availables" string="Mostrar Lotes" type="object"  />
                    <button name="update_dates_land" string="Reorganizar Fechas" type="object" groups="land_demo.group_reordenate_date_sale"  />
 
@@ -205,7 +205,7 @@
                                <field name="total_payment_land" readonly="1" force_save="1" />
                                <field name="saldo_payment_land" readonly="1" force_save="1" />
                                <field name="journal_id"  />
-                               <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
+                               <button name="<recreate_schedule>" string="Actualizar Cronograma" type="object"  />
                                <button name="publish_invoice"
                                        groups="land_demo.group_reordenate_date_sale"
                                        confirm="Haga esto solo si esta seguro que desea confirmar las facturas en estado borrador y estan correcto los datos como monto y fecha"
