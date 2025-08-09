@@ -698,14 +698,19 @@ class SaleOrder(models.Model):
                         capital_last = 0
                         datex = record.date_first_due_land
                         for i in range(int(qty_dues)):
+                            balan = total_dues - capital_last
+                            interes =  balan * record.tasa_interes_land,
+                            capital =  record.cuota_mensual_loan - interes
                             dx = {
                                 'number_due' : i + 1 ,
                                 'date': datex ,
-                                'balan': total_dues - capital_last ,
+                                'balan': balan ,
                                 #'balan': total_dues - (i * price_unit),
-                                #'amount': price_unit ,
+                                'amount': interes + capital ,
                                 'is_paid' : True if (i + 1) <= qty_invoiced else False ,
-                                'order_id': record.id
+                                'order_id': record.id ,
+
+                                #"'capital' :
                             }
 
 
@@ -717,8 +722,9 @@ class SaleOrder(models.Model):
                                 datex = datex - timedelta(days=1)
 
                             line_sche = self.env['schedule.dues.land'].create(dx)
-                            line_sche.get_interes()
-                            line_sche.amount = line_sche.capital + line_sche.interes
+                            #line_sche.get_interes()
+
+                            #line_sche.amount = line_sche.capital + line_sche.interes
 
                             capital_last = line_sche.capital
 
