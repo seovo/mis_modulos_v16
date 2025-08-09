@@ -752,9 +752,11 @@ class SaleOrder(models.Model):
 
                 if factura_line_idsx:
                     for factura_linex in factura_line_idsx:
-                        exist_line = self.env['schedule.dues.land'].search([
+                        df = [
                             '|', ('line_move_id', '=', factura_linex.id), ('line_move_id', '=', factura_linex._origin.id)
-                        ])
+                        ]
+                        df = [('order_id','!=',False)]
+                        exist_line = self.env['schedule.dues.land'].search(df)
 
                         raise ValueError(exist_line)
 
