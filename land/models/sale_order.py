@@ -742,6 +742,32 @@ class SaleOrder(models.Model):
                         i += 1
 
 
+                #añadir adelantos
+
+                for factura in record.invoice_ids:
+                    for factura_line in factura.invoice_line_ids:
+                        if not factura_line.sale_line_ids and factura_line.number_advance_land:
+                            exist_line = self.env['schedule.dues.land'].search([
+                                ('line_move_id','=',factura_line.id),('order_id','=',record.id)
+                            ])
+
+                            dx = {
+                                'number_due': factura_line.number_advance_land,
+                                'date': factura_line.move_id.invoice_date,
+                                'balan': 0,
+                                'amount': factura_line.price_unit,
+                                'is_paid': True,
+                                'line_move_id': factura_line.id
+                            }
+
+                            if not exist_line:
+
+                                record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
+                            else:
+                                exist_line.write(dx)
+
+
+
 
             record.update_credit_saldo()
 
