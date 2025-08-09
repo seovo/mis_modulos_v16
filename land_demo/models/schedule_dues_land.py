@@ -7,7 +7,7 @@ class ScheduleDuesLand(models.Model):
     number_due     = fields.Integer(string="Cuota")
     date           = fields.Date(string="Fecha")
     balan          = fields.Float(string="Balance")
-    amount         = fields.Float(string="A Pagar Mensual")
+    amount         = fields.Float(string="A Pagar Mensual",compute='get_interes')
     note           = fields.Text(string="Nota")
     is_paid        = fields.Boolean(string="Pagado?")
     order_id       = fields.Many2one('sale.order')
@@ -25,6 +25,7 @@ class ScheduleDuesLand(models.Model):
         for record in self:
             record.interes = record.balan * record.order_id.tasa_interes_land
             record.capital =  record.order_id.cuota_mensual_loan - record.interes
+            record.amount = record.capital  + record.interes
 
     def invoice_here_land(self):
 
