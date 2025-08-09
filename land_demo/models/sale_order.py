@@ -717,6 +717,7 @@ class SaleOrder(models.Model):
                                 datex = datex - timedelta(days=1)
 
                             line_sche = self.env['schedule.dues.land'].create(dx)
+                            line_sche.get_interes()
                             line_sche.amount = line_sche.capital + line_sche.interes
 
                             capital_last = line_sche.capital
