@@ -695,14 +695,17 @@ class SaleOrder(models.Model):
 
 
                     if qty_dues > 0:
+                        capital_last = o
                         datex = record.date_first_due_land
                         for i in range(int(qty_dues)):
                             dx = {
                                 'number_due' : i + 1 ,
                                 'date': datex ,
-                                'balan': total_dues - (i*price_unit) ,
-                                'amount': price_unit ,
-                                'is_paid' : True if (i + 1) <= qty_invoiced else False
+                                'balan': total_dues - capital_last ,
+                                #'balan': total_dues - (i * price_unit),
+                                #'amount': price_unit ,
+                                'is_paid' : True if (i + 1) <= qty_invoiced else False ,
+                                'order_id': record.id
                             }
 
 
@@ -713,10 +716,15 @@ class SaleOrder(models.Model):
                                 datex = datetime(year=datex.year, month=datex.month, day=1, hour=10) +  relativedelta(months=1)
                                 datex = datex - timedelta(days=1)
 
-                            try:
-                                record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
-                            except:
-                                raise ValueError(dx)
+                            line_sche = self.env['schedule.dues.land'].create(dx)
+                            line_sche.amount = line_sche.capital + line_sche.interes
+
+                            capital_last = line_sche.capital
+
+                            #try:
+                            #    record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
+                            #except:
+                            #    raise ValueError(dx)
 
                 if record.schedule_land_ids :
 

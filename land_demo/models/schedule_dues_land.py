@@ -7,7 +7,7 @@ class ScheduleDuesLand(models.Model):
     number_due     = fields.Integer(string="Cuota")
     date           = fields.Date(string="Fecha")
     balan          = fields.Float(string="Balance")
-    amount         = fields.Float(string="Mensualidad")
+    amount         = fields.Float(string="A Pagar Mensual")
     note           = fields.Text(string="Nota")
     is_paid        = fields.Boolean(string="Pagado?")
     order_id       = fields.Many2one('sale.order')
@@ -18,13 +18,13 @@ class ScheduleDuesLand(models.Model):
     amount_due_land = fields.Float(related='line_move_id.price_unit',string="Monto Pagado")
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
     interes          = fields.Float(compute='get_interes')
-    #capital        = fields.Float(compute='get_interes')
+    capital        = fields.Float(compute='get_interes')
 
     @api.depends('balan', 'order_id.tasa_interes_land', 'order_id.cuota_mensual_loan','interes')
     def get_interes(self):
         for record in self:
             record.interes = record.balan * record.order_id.tasa_interes_land
-    #        record.capital =  record.order_id.cuota_mensual_loan - record.interes
+            record.capital =  record.order_id.cuota_mensual_loan - record.interes
 
     def invoice_here_land(self):
 

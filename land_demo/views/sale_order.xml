@@ -233,6 +233,7 @@
                                     <field name="invoice_date" optional="show" readonly="1"  />
                                     <field name="balan" readonly="1"  />
                                     <field name="interes" readonly="1"  />
+                                    <field name="capital" readonly="1"  />
                                     <field name="amount" readonly="1"   />
                                     <field name="note"  readonly="1"  />
                                     <field name="is_paid" readonly="1"   />
