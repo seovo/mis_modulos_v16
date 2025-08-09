@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
     partner_commision_id = fields.Many2one('res.partner',string='Comissión')
+    number_advance_land = fields.Integer(string='N° Cuota Adelanto')
 
 
     def write(self,vals):
