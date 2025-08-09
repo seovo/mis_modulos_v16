@@ -770,9 +770,9 @@ class SaleOrder(models.Model):
                             #if linu.line_move_id == factura_linex :
                             #    exist_line = True
 
-                        exist_line.append(factura_linex)
+                        #exist_line.append(factura_linex)
 
-                        raise ValueError(exist_line)
+                        raise ValueError([exist_line,factura_linex])
 
                         dx = {
                             'number_due': factura_linex.number_advance_land,
