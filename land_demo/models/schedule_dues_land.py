@@ -17,6 +17,14 @@ class ScheduleDuesLand(models.Model):
     currency_id    = fields.Many2one('res.currency',related='move_id.currency_id')
     amount_due_land = fields.Float(related='line_move_id.price_unit',string="Monto Pagado")
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
+    interes          = fields.Float(compute='get_interes')
+    #capital        = fields.Float(compute='get_interes')
+
+    @api.depends('balan', 'order_id.tasa_interes_land', 'order_id.cuota_mensual_loan','interes')
+    def get_interes(self):
+        for record in self:
+            record.interes = record.balan * record.order_id.tasa_interes_land
+    #        record.capital =  record.order_id.cuota_mensual_loan - record.interes
 
     def invoice_here_land(self):
 

@@ -194,6 +194,9 @@
                                <field name="price_credit_land" readonly="1" force_save="1" />
                                <field name="total_payment_land" readonly="1" force_save="1" />
                                <field name="saldo_payment_land" readonly="1" force_save="1" />
+                               <field name="tasa_interes_land"  />
+                               <field name="dues_land"  />
+                               <field name="cuota_mensual_load"  />
                            </group>
                            <group>
                                <field name="journal_id"  />
@@ -224,6 +227,7 @@
                                     <field name="date" readonly="1" />
                                     <field name="invoice_date" optional="show" readonly="1"  />
                                     <field name="balan" readonly="1"  />
+                                    <field name="interes" readonly="1"  />
                                     <field name="amount" readonly="1"   />
                                     <field name="note"  readonly="1"  />
                                     <field name="is_paid" readonly="1"   />

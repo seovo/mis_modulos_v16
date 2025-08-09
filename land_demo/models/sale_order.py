@@ -168,6 +168,28 @@ class SaleOrder(models.Model):
     payment_year_now = fields.Float(compute='get_amounts_paid_land', string='Aportado Anual')
     saldo_year_now = fields.Float(compute='get_amounts_paid_land', string='Saldo Anual')
 
+    tasa_interes_land = fields.Float(digits=(12,3))
+    cuota_mensual_loan = fields.Float(compute='get_cuota_mensual_loan')
+
+
+    @api.depends('tasa_interes_lan','saldo_payment_land','dues_land')
+    def get_cuota_mensual_loan(self):
+        for record in self:
+            def calcular_pago_prestamo(C4, C5, C6):
+                try:
+                    return C4 * ((C5 * (1 + C5) ** C6) / ((1 + C5) ** C6 - 1))
+                except:
+                    return 0
+
+
+            # Ejemplo de uso
+            C4 = record.saldo_payment_land  # Monto del préstamo
+            C5 = record.tasa_interes_lan  # Tasa de interés (5%)
+            C6 = record.dues_land  # Número de pagos (meses)
+
+            pago_mensual = calcular_pago_prestamo(C4, C5, C6)
+            record.cuota_mensual_loan = C6
+
     @api.depends('schedule_land_ids')
     def get_amounts_paid_land(self):
         year = fields.Datetime.now().year
