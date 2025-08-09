@@ -184,7 +184,7 @@ class SaleOrder(models.Model):
 
             # Ejemplo de uso
             C4 = record.saldo_payment_land  # Monto del préstamo
-            C5 = record.tasa_interes_lan  # Tasa de interés (5%)
+            C5 = record.tasa_interes_land  # Tasa de interés (5%)
             C6 = record.dues_land  # Número de pagos (meses)
 
             pago_mensual = calcular_pago_prestamo(C4, C5, C6)
