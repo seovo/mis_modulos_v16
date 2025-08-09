@@ -695,7 +695,7 @@ class SaleOrder(models.Model):
 
 
                     if qty_dues > 0:
-                        capital_last = o
+                        capital_last = 0
                         datex = record.date_first_due_land
                         for i in range(int(qty_dues)):
                             dx = {
