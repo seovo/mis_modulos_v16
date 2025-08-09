@@ -232,7 +232,7 @@
 
                                     <field name="amount_due_land"  />
                                     <field name="amount_mora_land"  />
-                                    <field name="note"  />
+
                                     <field name="line_move_id"  optional="hide" />
 
                                 </tree>
