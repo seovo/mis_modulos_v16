@@ -725,6 +725,8 @@ class SaleOrder(models.Model):
 
                     i = 0
                     for linex in record.schedule_land_ids :
+                        if linex.line_move_id.number_advance_land > 0 :
+                            continue
                         linex.update({
                             'is_paid' : True if (i + 1) <= qty_invoiced else False ,
 
