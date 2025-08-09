@@ -760,19 +760,10 @@ class SaleOrder(models.Model):
                         #
                         #      ]
 
-                        df = [('order_id','=',record.id),('number_due', '=', factura_linex.number_advance_land)]
-                        linesss = self.env['schedule.dues.land'].search(df)
+                        df = [('order_id','=',record.id),('id_line_move_id', '=', factura_linex.id)]
+                        exist_line = self.env['schedule.dues.land'].search(df)
 
-                        exist_line = []
 
-                        for linu in linesss:
-                            exist_line.append(linu.line_move_id)
-                            #if linu.line_move_id == factura_linex :
-                            #    exist_line = True
-
-                        #exist_line.append(factura_linex)
-
-                        raise ValueError([exist_line,factura_linex])
 
                         dx = {
                             'number_due': factura_linex.number_advance_land,
@@ -781,7 +772,8 @@ class SaleOrder(models.Model):
                             'amount': factura_linex.price_unit,
                             'is_paid': True,
                             'line_move_id': factura_linex.id,
-                            'order_id': record.id
+                            'order_id': record.id ,
+                            'id_line_move_id': factura_linex.id
                         }
 
                         if not exist_line:
