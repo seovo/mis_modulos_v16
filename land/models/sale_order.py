@@ -763,8 +763,8 @@ class SaleOrder(models.Model):
                             if not exist_line:
 
                                 record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
-                            else:
-                                exist_line.write(dx)
+                            #else:
+                            #    exist_line.write(dx)
 
 
 
