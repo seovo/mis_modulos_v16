@@ -743,31 +743,36 @@ class SaleOrder(models.Model):
 
 
                 #añadir adelantos
+                factura_line_ids = []
 
                 for factura in record.invoice_ids:
                     for factura_line in factura.invoice_line_ids:
                         if not factura_line.sale_line_ids and factura_line.number_advance_land > 0:
-                            exist_line = self.env['schedule.dues.land'].search([
-                                '|',('line_move_id','=',factura_line.id),('line_move_id','=',factura_line._origin.id)
-                            ])
+                            factura_line_ids.append(factura_line)
 
-                            dx = {
-                                'number_due': factura_line.number_advance_land,
-                                'date': factura_line.move_id.invoice_date,
-                                'balan': 0,
-                                'amount': factura_line.price_unit,
-                                'is_paid': True,
-                                'line_move_id': factura_line.id ,
-                                'order_id': record.id
-                            }
+                if factura_line_ids:
+                    for factura_linex in factura_line_ids:
+                        exist_line = self.env['schedule.dues.land'].search([
+                            '|', ('line_move_id', '=', factura_linex.id), ('line_move_id', '=', factura_linex._origin.id)
+                        ])
 
-                            if not exist_line :
+                        dx = {
+                            'number_due': factura_linex.number_advance_land,
+                            'date': factura_linex.move_id.invoice_date,
+                            'balan': 0,
+                            'amount': factura_linex.price_unit,
+                            'is_paid': True,
+                            'line_move_id': factura_linex.id,
+                            'order_id': record.id
+                        }
 
-                                #raise ValueError([dx,exist_line])
+                        if not exist_line:
+                            # raise ValueError([dx,exist_line])
 
-                                record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
-                            #else:
-                            #    exist_line.write(dx)
+                            record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
+                        # else:
+                        #    exist_line.write(dx)
+
 
 
 
