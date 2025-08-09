@@ -188,7 +188,7 @@ class SaleOrder(models.Model):
             C6 = record.dues_land  # Número de pagos (meses)
 
             pago_mensual = calcular_pago_prestamo(C4, C5, C6)
-            record.cuota_mensual_loan = C6
+            record.cuota_mensual_loan = pago_mensual
 
     @api.depends('schedule_land_ids')
     def get_amounts_paid_land(self):
