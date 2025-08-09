@@ -743,18 +743,20 @@ class SaleOrder(models.Model):
 
 
                 #añadir adelantos
-                factura_line_ids = []
+                factura_line_idsx = []
 
                 for factura in record.invoice_ids:
                     for factura_line in factura.invoice_line_ids:
                         if not factura_line.sale_line_ids and factura_line.number_advance_land > 0:
-                            factura_line_ids.append(factura_line)
+                            factura_line_idsx.append(factura_line)
 
-                if factura_line_ids:
-                    for factura_linex in factura_line_ids:
+                if factura_line_idsx:
+                    for factura_linex in factura_line_idsx:
                         exist_line = self.env['schedule.dues.land'].search([
                             '|', ('line_move_id', '=', factura_linex.id), ('line_move_id', '=', factura_linex._origin.id)
                         ])
+
+                        raise ValueError(exist_line)
 
                         dx = {
                             'number_due': factura_linex.number_advance_land,
