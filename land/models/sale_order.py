@@ -761,9 +761,9 @@ class SaleOrder(models.Model):
                                 'order_id': record.id
                             }
 
-                            if not exist_line and factura_line:
+                            if not exist_line :
 
-                                raise ValueError([dx,exist_line])
+                                #raise ValueError([dx,exist_line])
 
                                 record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
                             #else:
