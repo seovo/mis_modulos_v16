@@ -699,7 +699,7 @@ class SaleOrder(models.Model):
                         datex = record.date_first_due_land
                         for i in range(int(qty_dues)):
                             balan = total_dues - capital_last
-                            interes =  balan * record.tasa_interes_land,
+                            interes =  balan * record.tasa_interes_land
                             capital =  record.cuota_mensual_loan - interes
                             dx = {
                                 'number_due' : i + 1 ,
