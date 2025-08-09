@@ -172,18 +172,18 @@ class SaleOrder(models.Model):
     cuota_mensual_loan = fields.Float(compute='get_cuota_mensual_loan')
 
 
-    @api.depends('tasa_interes_land','saldo_payment_land','dues_land')
+    @api.depends('tasa_interes_land','price_credit_land','dues_land')
     def get_cuota_mensual_loan(self):
         for record in self:
             def calcular_pago_prestamo(C4, C5, C6):
                 try:
-                    return C4 * ((C5 * (1 + C5) ** C6) / ((1 + C5) ** C6 - 1))
+                    return C4 * (  (C5 * (1 + C5) ** C6) / ((1 + C5) ** C6 - 1) )
                 except:
                     return 0
 
 
             # Ejemplo de uso
-            C4 = record.saldo_payment_land  # Monto del préstamo
+            C4 = record.price_credit_land  # Monto del préstamo
             C5 = record.tasa_interes_land  # Tasa de interés (5%)
             C6 = record.dues_land  # Número de pagos (meses)
 
