@@ -527,8 +527,8 @@ class ApiClinicos(http.Controller):
             img_country = f'''{url_base.value}{country.image_url}'''
             country_name =  country.name
 
-            if len(country_name) > 40:
-                country_name =  country_name[:40]
+            if len(country_name) > 35:
+                country_name =  country_name[:35]
 
             data.append({
                 'id': country.id,
