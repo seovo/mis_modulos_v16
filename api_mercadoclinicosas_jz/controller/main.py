@@ -527,7 +527,7 @@ class ApiClinicos(http.Controller):
             img_country = f'''{url_base.value}{country.image_url}'''
             data.append({
                 'id': country.id,
-                'name': country.display_name,
+                'name': country.name,
                 'country_name': '',
                 'country_image': img_country,
                 'url': ''
