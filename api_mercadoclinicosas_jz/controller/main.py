@@ -526,7 +526,7 @@ class ApiClinicos(http.Controller):
             url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
             img_country = f'''{url_base.value}{country.image_url}'''
             data.append({
-                'id': website.id,
+                'id': country.id,
                 'name': country.display_name,
                 'country_name': '',
                 'country_image': img_country,
