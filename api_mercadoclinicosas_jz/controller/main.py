@@ -515,6 +515,7 @@ class ApiClinicos(http.Controller):
 
         return {'websites': data}
 
+
     @http.route('/apiclinicos/contries', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
     def apiclinicos_contries(self, **data):
