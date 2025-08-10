@@ -494,7 +494,7 @@ class ApiClinicos(http.Controller):
 
     @http.route('/apiclinicos/websites', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
-    def mercadopagolink_payment_response(self, **data):
+    def apiclinicos_websites(self, **data):
         websites = request.env['website'].sudo().search([('show_app','=',True)])
         data = []
         for website in websites:
@@ -514,6 +514,28 @@ class ApiClinicos(http.Controller):
                 })
 
         return {'websites': data}
+
+    @http.route('/apiclinicos/contries', type="json", auth='public',
+                website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
+    def apiclinicos_contries(self, **data):
+        contries = request.env['res.country'].sudo().search([])
+        data = []
+        for country in contries:
+            # ir.config_parameter
+            url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
+            img_country = f'''{url_base.value}{country.image_url}'''
+            data.append({
+                'id': website.id,
+                'name': country.display_name,
+                'country_name': '',
+                'country_image': img_country,
+                'url': ''
+
+            })
+
+
+        return {'contries': data}
+
 
 
 
