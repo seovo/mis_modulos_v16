@@ -525,9 +525,14 @@ class ApiClinicos(http.Controller):
             # ir.config_parameter
             url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
             img_country = f'''{url_base.value}{country.image_url}'''
+            country_name =  country.name
+
+            if len(country_name) > 40:
+                country_name =  country_name[:40]
+
             data.append({
                 'id': country.id,
-                'name': country.name,
+                'name': country_name,
                 'country_name': '',
                 'country_image': img_country,
                 'url': ''
