@@ -470,6 +470,10 @@ class SaleOrder(models.Model):
                 if line.product_id.payment_land_dues:
 
                     for line_inv in line.invoice_lines:
+
+                        if line_inv.move_id.state == 'cancel':
+                            continue
+
                         if line_inv.move_id.l10n_pe_edi_reversal_type_id:
                             continue
 
