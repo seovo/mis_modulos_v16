@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="l10n_cr_patent_reject_wizard_view_form" model="ir.ui.view">
+        <field name="name">l10n_cr.patent.reject_wizard.view.form</field>
+        <field name="model">l10n_cr.patent.reject_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Denegar Patente">
+                <h2>
+                    <field name="patent_id"/>
+                </h2>
+                <group>
+                    <field name="reject_motive"/>
+                </group>
+                <footer>
+                    <button name="reject" type="object" string="Denegar" class="oe_highlight"/>
+                    o
+                    <button special="cancel" string="Cancelar"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

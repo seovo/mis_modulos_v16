@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Aprobacion Licor OK -->
+     <record id="paperformat_aprob_licores" model="report.paperformat">
+            <field name="name">US Letter</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+    <record id="paperformat_aprob_mcr" model="report.paperformat">
+            <field name="name">US Letter</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+    <!-- Report allow Licor -->
+    <report
+        id="report_patent_aprob_licor"
+        model="l10n_cr.patent"
+        string="Resolucion Aprobacion Licor"
+        report_type="qweb-pdf"
+        name="l10n_cr_municipality.report_aprob_licor"
+        file="l10n_cr_municipality.report_aprob_licor"
+        paperformat="paperformat_aprob_licores"
+        menu = "False"
+    />
+
+     <!-- Report deny Licor -->
+    <report
+        id="report_patent_deneg_licor"
+        model="l10n_cr.patent"
+        string="Resolucion Denegacion Licor"
+        report_type="qweb-pdf"
+        name="l10n_cr_municipality.report_deneg_licor"
+        file="l10n_cr_municipality.report_deneg_licor"
+        paperformat="paperformat_aprob_licores"
+        menu = "False"
+    />
+
+    <!-- Report deny MCR -->
+     <report
+        id="report_patent_deneg_mcr"
+        model="l10n_cr.patent"
+        string="Resolucion Denegacion"
+        report_type="qweb-pdf"
+        name="l10n_cr_municipality.report_deneg_mcr"
+        file="l10n_cr_municipality.report_deneg_mcr"
+        paperformat="paperformat_aprob_licores"
+        menu = "False"
+    />
+
+    <!-- Report allow MCR -->
+    <report
+        id="report_patent_aprob_mcr"
+        model="l10n_cr.patent"
+        string="Resolucion Aprobacion"
+        report_type="qweb-pdf"
+        name="l10n_cr_municipality.report_aprob_mcr"
+        file="l10n_cr_municipality.report_aprob_mcr"
+        paperformat="paperformat_aprob_mcr"
+        menu = "False"
+    />
+
+
+
+
+</odoo>

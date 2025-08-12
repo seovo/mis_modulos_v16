@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="traditional_sequence" model="ir.sequence">
+        <field name="name">Regimen Tradicional</field>
+        <field name="code">traditional</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="simplified_sequence" model="ir.sequence">
+        <field name="name">Regimen Simplificado</field>
+        <field name="code">simplified</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="entrepreneur_sequence" model="ir.sequence">
+        <field name="name">Emprendedores</field>
+        <field name="code">entrepreneur</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="precarious_sequence" model="ir.sequence">
+        <field name="name">Precario</field>
+        <field name="code">precarious</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="liquors_sequence" model="ir.sequence">
+        <field name="name">Licores</field>
+        <field name="code">liquors</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="temporary_sequence" model="ir.sequence">
+        <field name="name">Temporales</field>
+        <field name="code">temporary</field>
+        <field name="padding">4</field>
+    </record>
+    <record id="resolution_sequence" model="ir.sequence">
+        <field name="name">Secuencia para resolucion</field>
+        <field name="code">resolucion.patent</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

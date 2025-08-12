@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_patent_prevention" model="ir.actions.report">
+            <field name="name">Reporte de Prevención</field>
+            <field name="model">l10n_cr.patent</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_cr_municipality.patent_prevention</field>
+            <field name="report_file">l10n_cr_municipality.patent_prevention</field>
+            <field name="paperformat_id" ref="l10n_cr_municipality.paperformat_patent_prevention"/>
+        </record>
+
+    </data>
+</odoo>

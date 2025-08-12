@@ -21,8 +21,8 @@
                             <div class="col-12">
                                 <span t-field="o.partner_id.name" style="color:#0a8dc3"/>
                                 <br/>
-                                <t t-if="o.partner_id.identification_id">
-                                    <span t-field="o.partner_id.identification_id.name"/>:
+                                <t t-if="o.partner_id.l10n_latam_identification_type_id">
+                                    <span t-field="o.partner_id.l10n_latam_identification_type_id.name"/>:
                                 </t>
                                 <t t-else="">
                                     <span>Documento:</span>

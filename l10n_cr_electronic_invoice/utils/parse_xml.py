@@ -707,7 +707,7 @@ def create_partner(self, root, namespaces, company, invoice_payment_term_id):
     partner_vals = {
         'type': False,
         'name': name,
-        'identification_id': type_id.id,
+        'l10n_latam_identification_type_id': type_id.id,
         'vat': vat,
         'country_id': pais_id,
         'state_id': provincia.id if provincia else False,

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Reporte para prevención -->
+
+    <record id="paperformat_patent_prevention" model="report.paperformat">
+        <field name="name">US Letter</field>
+        <field name="default" eval="True"/>
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="report_patent_prevention"
+        model="l10n_cr.patent"
+        string="Patente Preventiva"
+        report_type="qweb-pdf"
+        name="l10n_cr_municipality.patent_prevention"
+        file="l10n_cr_municipality.patent_prevention"
+        paperformat="paperformat_patent_prevention"
+        menu="False"
+    />
+
+    <template id="patent_prevention">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="row">
+                        <div class="col-6">
+                            <img t-att-src="image_data_uri(o.company_id.logo)" class="float-left" width="80"
+                                 alt="Logo"/>
+                        </div>
+                        <div class="col-6 font-weight-bold text-primary" style="font-size: 14pt;text-align:right">
+                            <div class="place" style="text-align:right">
+                                <strong>MUNICIPALIDAD DE RIO CUARTO</strong>
+                            </div>
+                            <div class="place1" style="text-align:right">RIO CUARTO, ALAJUELA</div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <hr/>
+                        <div class="row bold">
+                            <div class="col-12 text-center font-weight-bold text-success" style="font-size: 13.5pt;">
+                                PREV-PT-<t t-esc="o.number_preventive"/>-2021
+                            </div>
+                        </div>
+                        <div class="row pl-1" style="text-align: right;">
+                            <t t-set="hour" t-value="context_timestamp(datetime.datetime.now()).strftime('%I')"/>
+                            <t t-set="minute" t-value="context_timestamp(datetime.datetime.now()).strftime('%M')"/>
+                            <t t-set="day" t-value="context_timestamp(datetime.datetime.now()).strftime('%d')"/>
+                            <t t-set="month" t-value="context_timestamp(datetime.datetime.now()).strftime('%m')"/>
+                            <t t-set="year" t-value="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>
+                            <p>
+                                <span>
+                                    <t t-esc="day"/>
+                                    de
+                                    <t t-if="month == '01' ">Enero</t>
+                                    <t t-if="month == '02' ">Febrero</t>
+                                    <t t-if="month == '03' ">Marzo</t>
+                                    <t t-if="month == '04' ">Abril</t>
+                                    <t t-if="month == '05' ">Mayo</t>
+                                    <t t-if="month == '06' ">Junio</t>
+                                    <t t-if="month == '07' ">Julio</t>
+                                    <t t-if="month == '08' ">Agosto</t>
+                                    <t t-if="month == '09' ">Setiembre</t>
+                                    <t t-if="month == '10' ">Octubre</t>
+                                    <t t-if="month == '11' ">Noviembre</t>
+                                    <t t-if="month == '12' ">Diciembre</t>
+                                    del <t t-esc="year"/>.
+                                </span>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 bold">
+                                <p>
+                                    <strong>Señor(a):</strong>
+                                </p>
+                                <p>
+                                    <strong>
+                                        <t t-esc="o.partner_id.name"/>
+                                    </strong>
+                                </p>
+                                <p>
+                                    <strong>Solicitante de Licencia Comercial y/o Licores.</strong>
+                                </p>
+                                <p style="text-align: center;">
+                                    <strong>ASUNTO: PREVENCIÓN PARA EL APORTE DE DOCUMENTACIÓN FALTANTE</strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <br/>
+                                <p>Estimado (a) señor (a):</p>
+                                <p>
+                                    Reciba un muy cordial saludo. Por la presente, se indica que el día de hoy
+                                    <t t-esc="o.name"/>
+                                    se presentó ante la Municipalidad de Río Cuarto una solicitud a su
+                                    nombre para el otorgamiento de la Licencia Comercial y/o Licencia Municipal para el
+                                    expendio de bebidas con contenido alcohólico. Al respecto se aportó la siguiente
+                                    documentación:
+                                </p>
+                                <p align="center">
+                                    <t t-if="o.req_deliver_id">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <ul>
+                                                    <t t-foreach="o.req_deliver_id" t-as="req">
+                                                        <li>
+                                                            <t t-esc="req.name"/>
+                                                        </li>
+                                                    </t>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <span>No hay documentos adjuntos</span>
+                                    </t>
+                                </p>
+                                <p>
+                                    Revisada la documentación presentada de acuerdo a los requisitos establecidos en el
+                                    artículo 9 de la Ley de Patentes de la Municipalidad de Río Cuarto se observó la
+                                    ausencia
+                                    de los siguientes requisitos:
+                                </p>
+                                <p style="text-align: center;">
+                                    <t t-if="o.req_miss_id">
+                                        <ol style="text-align: center;">
+                                            <t t-foreach="o.req_miss_id" t-as="req">
+                                                <li>
+                                                    <t t-esc="req.name"/>
+                                                </li>
+                                            </t>
+
+                                        </ol>
+                                    </t>
+                                    <t t-else="">
+                                        <span>No hay documentos adjuntos</span>
+                                    </t>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>
+                                Por lo tanto, se otorga un plazo improrrogable de 10 días hábiles para el cumplimiento
+                                de
+                                los requisitos faltantes. Esto con el propósito de tramitar su solicitud. La información
+                                solicitada podrá ser presentada de manera física en la Municipalidad de Río Cuarto o
+                                enviada de manera digital a la dirección de correo electrónico
+                                patentes@muniriocuarto.go.cr.
+                                De no cumplirse con la presentación de la documentación faltantes dentro del plazo
+                                otorgado se resolverá la solicitud con la información incorporada al expediente.
+
+                                Atentamente,
+                            </p>
+                        </div>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

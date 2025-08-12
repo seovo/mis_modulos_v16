@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="patent_type_traditional" model="l10n_cr.patent.type">
+        <field name="name">Regimen Tradicional</field>
+        <field name="code">RT</field>
+        <field name="sequence_id" eval="ref('l10n_cr_municipality.traditional_sequence')"/>
+        <field name="product_id" eval="ref('l10n_cr_municipality.product_patent')"/>
+        <field name="product_advance_id" eval="ref('l10n_cr_municipality.product_patent_advance')"/>
+    </record>
+    <record id="patent_type_simplified" model="l10n_cr.patent.type">
+        <field name="name">Regimen Simplificado</field>
+        <field name="code">RS</field>
+        <field name="sequence_id" eval="ref('l10n_cr_municipality.simplified_sequence')"/>
+        <field name="product_id" eval="ref('l10n_cr_municipality.product_patent')"/>
+        <field name="product_advance_id" eval="ref('l10n_cr_municipality.product_patent_advance')"/>
+    </record>
+    <record id="patent_type_entrepreneur" model="l10n_cr.patent.type">
+        <field name="name">Emprendedores</field>
+        <field name="code">EM</field>
+        <field name="sequence_id" eval="ref('l10n_cr_municipality.entrepreneur_sequence')"/>
+        <field name="product_id" eval="ref('l10n_cr_municipality.product_patent')"/>
+        <field name="product_advance_id" eval="ref('l10n_cr_municipality.product_patent_advance')"/>
+    </record>
+    <record id="patent_type_precarious" model="l10n_cr.patent.type">
+        <field name="name">Precario</field>
+        <field name="code">PR</field>
+        <field name="sequence_id" eval="ref('l10n_cr_municipality.precarious_sequence')"/>
+        <field name="product_id" eval="ref('l10n_cr_municipality.product_patent')"/>
+        <field name="product_advance_id" eval="ref('l10n_cr_municipality.product_patent_advance')"/>
+    </record>
+    <record id="patent_type_liquors" model="l10n_cr.patent.type">
+        <field name="name">Licores</field>
+        <field name="code">LC</field>
+        <field name="sequence_id" eval="ref('l10n_cr_municipality.liquors_sequence')"/>
+        <field name="product_id" eval="ref('l10n_cr_municipality.product_patent_liqueur')"/>
+        <field name="product_advance_id" eval="ref('l10n_cr_municipality.product_patent_liqueur_advance')"/>
+        <field name="product_licor_id" eval="ref('l10n_cr_municipality.product_timbre_licores')"/>
+    </record>
+    <record id="patent_type_temporary" model="l10n_cr.patent.type">
+        <field name="name">Temporales</field>
+        <field name="code">TM</field>
+        <field name="sequence_id" eval="ref('l10n_cr_municipality.temporary_sequence')"/>
+        <field name="product_id" eval="ref('l10n_cr_municipality.product_patent')"/>
+        <field name="product_advance_id" eval="ref('l10n_cr_municipality.product_patent_advance')"/>
+    </record>
+</odoo>

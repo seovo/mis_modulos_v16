@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="autorization_patent_certificate_form">
+            <field name="name">patent.certificate.autorization.wizard.form</field>
+            <field name="model">patent.certificate.autorization.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Descargar reporte export file">
+                    <sheet>
+                        <group>
+                            <field name="patent_id" readonly="1"/>
+                            <field name="aprobado_por"/>
+                            <field name="autorizado_por"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="print_certificate" string="Imprimir" type="object" class="btn-primary"
+                                icon="fa-download" style="background-color:#055d97"/>
+                        <button string="Cerrar" class="btn-secondary" special="cancel" icon="fa-times-circle"
+                                style="background-color: #cecece"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_autorization_patent_certificate_wizard" model="ir.actions.act_window">
+            <field name="name">Autorización para impresión de certificados</field>
+            <field name="res_model">patent.certificate.autorization.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

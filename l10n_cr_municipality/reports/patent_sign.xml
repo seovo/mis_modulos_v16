@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+        id="patent_certificate_sign"
+        model="l10n_cr.patent"
+        string="Solicitud de Patente"
+        name="l10n_cr_municipality.patent_sign_document"
+        file="l10n_cr_municipality.patent_sign_document"
+        report_type="qweb-pdf"
+        paperformat="l10n_cr_municipality.paperformat_aprob_licores"
+    />
+
+    <template id="patent_sign_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="row">
+                            <div class="col-4">
+                                <img t-att-src="image_data_uri(o.company_id.logo)" class="float-left" width="100" alt="Logo"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <h3>Solicitud de Patente </h3>
+                            </div>
+                            <div class="col-4 text-right">
+                                <h3 t-field="o.company_id.name"/>
+                            </div>
+                        </div>
+                    <div class="page">
+                        <br/>
+                        <br/>
+                        <div class="text-primary">
+                            <strong>Número de Solicitud:</strong>
+                            <strong><span t-field="o.name"/></strong>
+
+                        </div>
+                        <div>
+                            <strong>Fecha:</strong>
+                            <span t-field="o.create_date"/>
+                        </div>
+                        <div>
+                            <strong>Solicitante:</strong>
+                            <span t-field="o.partner_id.name"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Identificación:</strong>
+                            <span t-field="o.partner_id.vat"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Teléfono:</strong>
+                            <span t-field="o.partner_id.phone"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Correo:</strong>
+                            <span t-field="o.partner_id.email"/>
+                        </div>
+                        <div>
+                            <strong>Tipo de Patente:</strong>
+                            <span t-field="o.type_id"/>
+                        </div>
+                        <div>
+                            <strong>Nombre de Fantasía:</strong>
+                            <span t-field="o.fantasy_name"/>
+                        </div>
+                        <div>
+                            <strong>Actividad Comercial:</strong>
+                            <span t-field="o.commercial_activity"/>
+                        </div>
+                        <div>
+                            <strong>Actividad CIIU:</strong>
+                            <t t-if="len(o.activity_ids)">
+                                <t t-set="foo" t-value="''"/>
+                                <t t-foreach="o.activity_ids" t-as="r">
+                                    <t t-if="foo =='' ">
+                                        <t t-set="foo" t-value="r.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="foo" t-value="foo+','+r.name"/>
+                                    </t>
+
+                                </t>
+                            </t>
+                            <t t-esc="foo"/>
+                        </div>
+                        <div>
+                            <strong>Régimen:</strong>
+                            <span t-field="o.regimen"/>
+                        </div>
+                        <div>
+                            <strong>Categoria:</strong>
+                            <span t-field="o.category"/>
+                        </div>
+                        <div>
+                            <strong>Datos de la Propiedad:</strong>
+                            <span t-field="o.land_id.name"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Dirección:</strong>
+                            <span t-field="o.land_id.address"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Distrito:</strong>
+                            <span t-field="o.land_id.district_id.name"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Nº de Plano:</strong>
+                            <span t-field="o.land_id.plan_number"/>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Propietario:</strong>
+                            <span t-field="o.land_id.partner_id.name"/>
+                        </div>
+                        <div>
+                            <strong>Tipo Relación:</strong>
+                            <span t-field="o.relation_type"/>
+                        </div>
+                        <div>
+                            <strong>Area:</strong>
+                            <span t-field="o.area"/>
+                        </div>
+                        <div>
+                            <strong>Uso de suelo:</strong>
+                            <span t-field="o.land_use_number"/>
+                        </div>
+                        <div>
+                            <strong>Permiso Sanitario:</strong>
+                            <span t-field="o.sanitary_permit"/>
+                        </div>
+                        <div>
+                            <strong>Vencimiento Permiso Sanitario:</strong>
+                            <span t-field="o.sanitary_permit_expiration"/>
+                        </div>
+                        <div>
+                            <strong>Cumple Ley 7600:</strong>
+                            <t t-if="o.comply_7600">
+                                <span>SI</span>
+                            </t>
+                            <t t-else="">
+                                <span>NO</span>
+                            </t>
+
+                        </div>
+
+<!--                        <t t-if="o.needs_liqueur  or  o.type_id.code != 'LC'  ">-->
+<!--                                <div class="text-success">-->
+<!--                                    <strong>Información Financiera : </strong>-->
+<!--                                </div>-->
+<!--                                <div class="ml-4">-->
+<!--                                    <strong>Ingresos Brutos:</strong>-->
+<!--                                    <span t-field="o.income_total"/>-->
+<!--                                </div>-->
+<!--                                <div class="ml-4">-->
+<!--                                    <strong>Pago Anual:</strong>-->
+<!--                                    <span t-field="o.yearly_payment"/>-->
+<!--                                </div>-->
+<!--                                <div class="ml-4">-->
+<!--                                    <strong>Pago Trimestral:</strong>-->
+<!--                                    <span t-field="o.trimester_payment"/>-->
+<!--                                </div>-->
+<!--                        </t>-->
+
+                        <div>
+                            <strong>Requiere Patente de Licores:</strong>
+                            <t t-if="o.needs_liqueur">
+                                <span>SI</span>
+                            </t>
+                            <t t-else="">
+                                <span>NO</span>
+                            </t>
+
+                        </div>
+                         <t t-if="o.liqueur_patent_id">
+                            <div class="text-success">
+                                <strong>Datos Patente Licor: </strong>
+                            </div>
+                            <div class="ml-4">
+                                <strong>Patente de Licor:</strong>
+                                <span t-field="o.liqueur_patent_id.name"/>
+                            </div>
+
+                            <div class="ml-4">
+                                <strong>Cantidad de Empleados:</strong>
+                                <span t-field="o.employees_rel"/>
+                            </div>
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Valor de los activos:</strong>-->
+<!--                                <span t-field="o.actives_value_rel"/>-->
+<!--                            </div>-->
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Valor de ventas netas:</strong>-->
+<!--                                <span t-field="o.sales_value_rel"/>-->
+<!--                            </div>-->
+                            <div class="ml-4">
+                                <strong>Puntaje:</strong>
+                                <span t-field="o.score"/>
+                            </div>
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Pago Anual:</strong>-->
+<!--                                <span t-field="o.yearly_payment_rel"/>-->
+<!--                            </div>-->
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Pago Trimestral:</strong>-->
+<!--                                <span t-field="o.trimester_payment_rel"/>-->
+<!--                            </div>-->
+                         </t>
+                         <t t-if="o.type_id.code == 'LC' ">
+                            <div class="text-success">
+                                <strong>Datos Patente Licor </strong>
+                            </div>
+                            <div class="ml-4">
+                                <strong>Cantidad de Empleados:</strong>
+                                <span t-field="o.employees"/>
+                            </div>
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Valor de los activos:</strong>-->
+<!--                                <span t-field="o.actives_value"/>-->
+<!--                            </div>-->
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Valor de ventas netas:</strong>-->
+<!--                                <span t-field="o.sales_value"/>-->
+<!--                            </div>-->
+                            <div class="ml-4">
+                                <strong>Puntaje:</strong>
+                                <span t-field="o.score"/>
+                            </div>
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Pago Anual:</strong>-->
+<!--                                <span t-field="o.yearly_payment"/>-->
+<!--                            </div>-->
+<!--                            <div class="ml-4">-->
+<!--                                <strong>Pago Trimestral:</strong>-->
+<!--                                <span t-field="o.trimester_payment"/>-->
+<!--                            </div>-->
+
+                         </t>
+
+<!--                        &lt;!&ndash;SUBTOTALES Y TOTALES&ndash;&gt;-->
+<!--                        <hr/>-->
+<!--                         <div class="text-success">-->
+<!--                            <strong>TOTALES </strong>-->
+<!--                        </div>-->
+<!--                         <div class="ml-4">-->
+<!--                            <strong>Timbres:</strong>-->
+<!--                            <span t-field="o.timbre"/>-->
+<!--                        </div>-->
+<!--                          <div class="ml-4">-->
+<!--                            <strong>Pago Anual:</strong>-->
+<!--                            <span t-field="o.yearly_payment_subtotal"/>-->
+<!--                        </div>-->
+<!--                         <div class="ml-4">-->
+<!--                            <strong>Pago Trimestral:</strong>-->
+<!--                            <span t-field="o.trimester_payment_total"/>-->
+<!--                        </div>-->
+<!--                         <div class="ml-4">-->
+<!--                            <strong>Pago Anual con Timbre:</strong>-->
+<!--                            <span t-field="o.yearly_payment_total"/>-->
+<!--                        </div>-->
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mt-3">
+                            <div class="mx-3 text-center border-top">Firma Solicitante</div>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <div class="mx-3 text-center border-top">Cédula</div>
+                        </div>
+<!--                            <div class="col-6 mb-5 mx-1 text-center border-top">Firma Solicitante</div>-->
+<!--                            <div class="col-6 mb-5 mx-1 text-center border-top">Cédula</div>-->
+                    </div>
+
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

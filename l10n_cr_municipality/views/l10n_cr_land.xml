@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="l10n_cr_land_view_form" model="ir.ui.view">
+        <field name="name">l10n_cr.land.view.form</field>
+        <field name="model">l10n_cr.land</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="identification" string="Identification">
+                            <field name="land_type"/>
+                            <field name="land_number"/>
+                            <field name="duplicate"/>
+                            <field name="horizontal"/>
+                            <field name="tome"/>
+                            <field name="folio"/>
+                            <field name="seat"/>
+                            <field name="rights_qty"/>
+                            <field name="plan_number"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group name="location" string="Location">
+                            <field name="address"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="county_id" invisible="1"/>
+                            <field name="district_id" domain="[('county_id', '=', county_id)]"/>
+                            <field name="zone"/>
+                            <field name="gis"/>
+                        </group>
+                        <group name="characteristics" string="Characteristics">
+                            <field name="area"/>
+                            <field name="uom_id"/>
+                            <field name="allotment_type"/>
+                        </group>
+                        <group name="data" string="Data">
+                            <field name="land"/>
+                            <field name="constructions"/>
+                            <field name="total_value"/>
+                            <field name="last_declaration_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- l10n_cr_land tree view -->
+    <record id="l10n_cr_land_view_tree" model="ir.ui.view">
+        <field name="name">l10n_cr_land.view.tree</field>
+        <field name="model">l10n_cr.land</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="land_number"/>
+                <field name="partner_id"/>
+                <field name="rights_qty"/>
+                <field name="plan_number"/>
+                <field name="district_id"/>
+                <field name="total_value"/>
+                <field name="last_declaration_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="l10n_cr_land_action" model="ir.actions.act_window">
+        <field name="name">Propiedades</field>
+        <field name="res_model">l10n_cr.land</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="l10n_cr_land_menu"
+        parent="main_municipality_menu"
+        action="l10n_cr_land_action"
+        sequence="2"
+    />
+</odoo>

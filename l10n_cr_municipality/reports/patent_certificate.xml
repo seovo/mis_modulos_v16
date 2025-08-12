@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--    <report-->
+<!--        id="patent_certificate"-->
+<!--        model="l10n_cr.patent"-->
+<!--        string="Certificado"-->
+<!--        name="l10n_cr_municipality.patent_certificate_print_view"-->
+<!--        file="l10n_cr_municipality.patent_certificate_print_view"-->
+<!--        report_type="qweb-pdf"-->
+<!--        menu = "False"-->
+<!--    />-->
+
+    <record id="patent_certificate" model="ir.actions.report">
+        <field name="name">Certificado</field>
+        <field name="model">l10n_cr.patent</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_cr_municipality.patent_certificate_print_view</field>
+        <field name="report_file">l10n_cr_municipality.patent_certificate_print_view</field>
+        <field name="paperformat_id" ref="l10n_cr_municipality.patent_certificate_paperformat"/>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+
+<!--    <record id="patent_certificate" model="ir.actions.report">-->
+<!--        <field name="paperformat_id" ref="l10n_cr_municipality.patent_certificate_paperformat"/>-->
+<!--    </record>-->
+
+    <template id="patent_certificate_print_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        * {
+                            font-family: arial, sans-serif;
+                            font-size: 22px;
+                            color: #0D539B;
+                        }
+
+                        h1 {
+                            font-size: 40px;
+                        }
+
+                        .bold {
+                            font-weight: bold;
+                        }
+
+                        .italic {
+                            font-style: italic;
+                        }
+
+                        .underlined {
+                            text-decoration: underline;
+                        }
+
+                        .center {
+                            text-align: center;
+                        }
+
+                        .light-blue {
+                            color: #1EB1ED;
+                        }
+
+                        .medium-text {
+                            font-size: 22px;
+                        }
+
+                        .small-text {
+                            font-size: 18px;
+                        }
+
+                        .page {
+                            background-image: url('/l10n_cr_municipality/static/src/files/images/patent_certificate_bg.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+
+                        .row {
+                            margin-bottom: 1rem;
+                        }
+
+                        .row:last-of-type {
+                            margin-bottom: 0;
+                        }
+                    </style>
+                    <div class="page">
+                        <div class="container" style="padding: 4rem 4rem ;">
+                            <div class="row center">
+                                <div class="col-1 center">
+                                    <img src="/l10n_cr_municipality/static/src/files/images/escudo_rio_cuarto.jpg" height="90"/>
+                                </div>
+                                <div class="col-9 center">
+                                    <h1>MUNICIPALIDAD DE RÍO CUARTO</h1>
+                                    <h2>Certificado de Patente Comercial</h2>
+                                </div>
+                            </div>
+                            <div class="row center">
+                                <div class="col-8">
+                                    <div class="row medium-text">
+                                        Patente de:
+                                        <span class="bold" t-field="o.commercial_activity"/>
+                                    </div>
+                                    <div class="row medium-text">
+                                        Pertenece a:
+                                        <span class="bold" t-field="o.partner_id.name"/>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row medium-text">
+                                        Patente N°:
+                                        <span class="bold" t-field="o.name"/>
+                                    </div>
+                                    <div class="row medium-text">
+                                        Cédula:
+                                        <span class="bold" t-field="o.partner_id.vat"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="center bold medium-text">Para usar únicamente en su negocio</p>
+                                    <p class="medium-text">
+                                        Denominado:
+                                        <span class="bold" t-field="o.fantasy_name"/>
+                                        Situado en:
+                                        <span class="bold">
+                                            <span t-field="o.address"/>
+                                            ,
+                                            <span t-field="o.district_id.name"/>
+                                            ,
+                                            <span t-field="o.district_id.county_id.name"/>.
+                                        </span>
+                                    </p>
+                                    <p class="medium-text">
+                                        Ubicado en la finca:
+                                        <span class="bold" t-field="o.land_id.name"/>
+                                    </p>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="row bold">
+                                <div class="col-6 medium-text">
+                                    <hr/>
+                                    Aprobado :<span t-esc="o.aprobado_por.name"></span>
+                                </div>
+                                <div class="col-6 medium-text">
+                                    <hr/>
+                                    Vo. Bo. :<span t-esc="o.autorizado_por.name"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="bold" style="font-size:18px;color:#0D539B">Nota:</span>
+                                    <p class="small-text" style="text-align: justify;color:black">
+                                        Si esta patente fuese trasladada a otra persona, debe presentarse este certificado a la Sección de Patentes de la Municipalidad, donde previo los trámites del caso, se extenderá un nuevo certificado. Sin este requisito, no se autorizará ningún traspaso de patente.
+                                    </p>
+                                    <p class="small-text" style="text-align: justify;color:black">
+                                        Recuerde que si no va a realizar más la actividad para la que solicitó esta licencia, debe presentarse a la Municipalidad para su
+                                        <span class="bold italic underlined">retiro</span>
+                                        o de lo contrario, se seguirá cobrando su monto trimestral, ello con base en el
+                                        <span class="bold italic">artículo 88 del Código Municipal</span>
+                                        .
+                                    </p>
+                                    <p style="text-align: right;" class="bold medium-text">
+                                        Río Cuarto,
+                                         <span t-esc="o.date_approved" />
+<!--                                        <span t-esc="datetime.date.today()"/>-->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 center" >
+                                    <img t-att-src="'/report/barcode/QR/%s' % o.name" style="margin-top: -50px;" alt="QR code" width="100" height="100"/>
+                                </div>
+                                <div class="col-6 center">
+                                    <p class="light-blue medium-text">Colóquese en un lugar visible</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
