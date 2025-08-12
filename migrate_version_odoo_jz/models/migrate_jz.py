@@ -105,7 +105,7 @@ class MigrateJz(models.Model):
         return {
             "name": f"LINEAS",
             "type": "ir.actions.act_window",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "migrate.model.jz",
             "target": "current",
             "domain": [('migrate_id','=',self.id)] ,
