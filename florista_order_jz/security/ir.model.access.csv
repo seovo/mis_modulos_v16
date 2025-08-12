@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-product_product_florista,product_product_florista,model_product_product_florista,,1,1,1,1
-until_hour_florista,until_hour_florista,model_until_hour_florista,,1,1,1,1

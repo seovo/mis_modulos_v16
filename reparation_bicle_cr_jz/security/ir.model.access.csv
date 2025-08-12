@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-category_bycle,category_bycle,model_category_bycle,,1,1,1,1
-garantia_bycle,garantia_bycle,model_garantia_bycle,,1,1,1,1

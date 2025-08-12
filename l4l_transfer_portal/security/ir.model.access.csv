@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-sp,sp,model_stock_picking,,1,1,1,1
-spt,spt,stock.model_stock_picking_type,,1,1,1,1
-sw,sw,stock.model_stock_warehouse,,1,1,1,1
-iar,iar,base.model_ir_actions_report,,1,1,1,1
-sm,sm,stock.model_stock_move,,1,1,1,1
-sml,sml,stock.model_stock_move_line,,1,1,1,1
