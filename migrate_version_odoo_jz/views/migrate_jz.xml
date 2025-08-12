@@ -41,14 +41,14 @@
                     <notebook>
                         <page string="Campos" name="columns">
                             <field name="columns">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="name" />
                                     <field name="ignore" />
                                     <field name="type_field" />
                                     <field name="value_set" />
                                     <field name="is_field" optional="hidden" />
                                    <!-- <field name="insert_as_jsonb" optional="hidden" /> -->
-                                </tree>
+                                </list>
                             </field>
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
                                <group colspan="4">
