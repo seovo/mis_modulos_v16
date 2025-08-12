@@ -8,6 +8,7 @@
     "version": "17.0",
     "depends": ["base"],
     "data": [
+
         'security/ir.model.access.csv',
         'views/migrate_jz.xml',
         #'data/cron.xml'
