@@ -15,10 +15,11 @@ class AccountMove(models.Model):
         return  res
 
 
-    def action_retry_edi_documents_error(self):
-        for record in self:
-            record.edi_document_ids.unlink()
-            record.button_process_edi_web_services()
+
+    #def action_retry_edi_documents_error(self):
+    #    for record in self:
+    #        record.edi_document_ids.unlink()
+    #        record.button_process_edi_web_services()
 
 
 
