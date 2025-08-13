@@ -15,6 +15,14 @@ class AccountMove(models.Model):
         return  res
 
 
+    def action_retry_edi_documents_error(self):
+        for record in self:
+            record.edi_documents.unlink()
+            record.button_process_edi_web_services()
+
+
+
+
     def button_process_edi_web_services(self):
         if len(self) == 1:
             note = self.narration
