@@ -8,15 +8,7 @@ import xmltodict
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.model
-    def write(self,vals):
-        if 'vat' in vals:
-            vals['vat'] = str(vals['vat']).strip()
 
-        raise ValueError(vals)
-
-        res = super(ResPartner, self).write(vals)
-        return res
 
 
 class PaymentTransaction(models.Model):
