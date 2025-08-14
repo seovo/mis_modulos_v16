@@ -12,6 +12,9 @@ class ResPartner(models.Model):
     def write(self,vals):
         if 'vat' in vals:
             vals['vat'] = str(vals['vat']).strip()
+
+        raise ValueError(vals)
+
         res = super(ResPartner, self).write(vals)
         return res
 
