@@ -191,6 +191,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
             pre_values = self.values_preprocess(kw)
+            raise ValueError(pre_values)
             errors, error_msg = self.checkout_form_validate(mode, kw, pre_values)
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
 
