@@ -290,7 +290,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             post['district_id'] = values['district_id']
 
         if values.get('l10n_latam_identification_type_id'):
-            post['l10n_latam_identification_type_id'] = values['l10n_latam_identification_type_idd']
+            post['l10n_latam_identification_type_id'] = values['l10n_latam_identification_type_id']
 
 
 
