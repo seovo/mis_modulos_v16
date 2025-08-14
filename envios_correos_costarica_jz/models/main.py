@@ -292,6 +292,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if values.get('l10n_latam_identification_type_id'):
             post['l10n_latam_identification_type_id'] = values['l10n_latam_identification_type_id']
 
+        if values.get('vat'):
+            post['vat'] = str(values['vat']).strip()
+
 
 
         return post, errors, error_msg
