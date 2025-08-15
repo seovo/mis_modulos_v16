@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _,Command
 from odoo.exceptions import UserError, ValidationError
+'''
 from odoo.tools import (
     date_utils,
     email_re,
@@ -14,6 +15,24 @@ from odoo.tools import (
     get_lang,
     is_html_empty,
     sql
+)
+'''
+
+from odoo.tools import (
+    create_index,
+    date_utils,
+    float_compare,
+    float_is_zero,
+    float_repr,
+    format_amount,
+    format_date,
+    formatLang,
+    frozendict,
+    get_lang,
+    groupby,
+    index_exists,
+    OrderedSet,
+    SQL,
 )
 
 import logging

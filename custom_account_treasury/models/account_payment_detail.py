@@ -1,7 +1,24 @@
 from odoo import fields, models, api, _
 import logging
 _logger = logging.getLogger(__name__)
-from odoo.tools import float_is_zero, float_compare
+#from odoo.tools import float_is_zero, float_compare
+
+from odoo.tools import (
+    create_index,
+    date_utils,
+    float_compare,
+    float_is_zero,
+    float_repr,
+    format_amount,
+    format_date,
+    formatLang,
+    frozendict,
+    get_lang,
+    groupby,
+    index_exists,
+    OrderedSet,
+    SQL,
+)
 
 MAP_INVOICE_TYPE_PAYMENT_SIGN = {
 	'out_invoice': 1,
