@@ -15,7 +15,7 @@
 							<field name="internal_type"/>
 						</group>
 						<group>
-							<field name="company_id"/>
+							<field name="company_ids"   widget="many2many_tags"   />
 						</group>
 					</group>
 				</sheet>
@@ -31,7 +31,7 @@
 				<field name="name"/>
 				<field name="account_id" invisible="True"/>
 				<field name="internal_type"/>
-				<field name="company_id" groups="base.group_multi_company"/>
+				<field name="company_ids" groups="base.group_multi_company"  widget="many2many_tags"  />
 			</tree>
 		</field>
 	</record>

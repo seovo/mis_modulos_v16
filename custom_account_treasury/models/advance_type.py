@@ -7,7 +7,7 @@ class AdvanceType(models.Model):
 	name = fields.Char(string="Name", required=True)
 	account_id = fields.Many2one('account.account', string="Cuenta de anticipo", required=True, domain=[('account_type','in',('asset_receivable', 'liability_payable'))])
 	internal_type = fields.Selection(related='account_id.account_type', string="Internal Type", store=True, readonly=True)
-	company_id = fields.Many2one('res.company', related='account_id.company_id', string='Company', store=True, readonly=True)
+	company_ids = fields.Many2many('res.company', related='account_id.company_ids', string='Company', store=True, readonly=True)
 
 class Account(models.Model):
     _inherit = 'account.account'
