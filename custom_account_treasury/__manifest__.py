@@ -1,7 +1,7 @@
 
 {
     "name": "Tesoreria Pagos y Cobros",
-    "version": "17.0.0.0",
+    "version": "18.0",
     "category": "Treasury",
     "license": "AGPL-3",
     "summary": "Permite el pago multiple de cuentas por cobrar y/o pagar",
