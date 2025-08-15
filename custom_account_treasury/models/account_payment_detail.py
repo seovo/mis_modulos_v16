@@ -17,7 +17,7 @@ from odoo.tools import (
     groupby,
     index_exists,
     OrderedSet,
-    SQL,
+    #SQL,
 )
 
 MAP_INVOICE_TYPE_PAYMENT_SIGN = {

@@ -32,7 +32,7 @@ from odoo.tools import (
     groupby,
     index_exists,
     OrderedSet,
-    SQL,
+    #SQL,
 )
 
 import logging
