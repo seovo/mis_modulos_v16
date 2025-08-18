@@ -17,7 +17,7 @@
             </field>
             <field name="vat" position="replace"/>
             <field name="partner_id" position="after">
-                <field name="identification_id"/>
+                <field name="l10n_latam_identification_type_id"/>
                 <field name="vat" string="Identificación"/>
             </field>
             <xpath expr="//page[1]" position="after">

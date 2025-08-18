@@ -66,7 +66,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if request.website.sudo().company_id.country_id.code != "CR":
             return res
 
-        req = ["name", "email", "street", "city", "country_id", "vat", "identification_id"]
+        req = ["name", "email", "street", "city", "country_id", "vat", "l10n_latam_identification_type_id"]
         if country_id:
             country = request.env['res.country'].browse(country_id)
             if country.state_required:
@@ -191,6 +191,12 @@ class WebsiteSale(payment_portal.PaymentPortal):
         # IF POSTED
         if 'submitted' in kw and request.httprequest.method == "POST":
             pre_values = self.values_preprocess(kw)
+            #raise ValueError(pre_values)
+
+
+            if 'vat' in pre_values:
+                pre_values['vat'] = str(pre_values['vat']).strip()
+
             errors, error_msg = self.checkout_form_validate(mode, kw, pre_values)
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
 
@@ -289,8 +295,11 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if values.get('district_id') and website.company_id.country_code == 'CR':
             post['district_id'] = values['district_id']
 
-        if values.get('identification_id'):
-            post['identification_id'] = values['identification_id']
+        if values.get('l10n_latam_identification_type_id'):
+            post['l10n_latam_identification_type_id'] = values['l10n_latam_identification_type_id']
+
+        if values.get('vat'):
+            post['vat'] = str(values['vat']).strip()
 
 
 

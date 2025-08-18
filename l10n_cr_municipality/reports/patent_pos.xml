@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Definición del formato de papel -->
+    <record id="patent_pos_paperformat" model="report.paperformat">
+        <field name="name">Patente Ticket</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">52</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Configuración del reporte principal -->
+    <report
+        id="patent_pos_report"
+        model="account.move"
+        string="Ticket"
+        name="l10n_cr_municipality.patent_pos_document"
+        file="l10n_cr_municipality.patent_pos_document"
+        report_type="qweb-pdf"
+    />
+
+    <!-- Acción vinculada al reporte -->
+    <record id="patent_pos_report_action" model="ir.actions.report">
+        <field name="name">Patente Ticket</field>
+        <field name="model">account.move</field>
+        <field name="report_name">l10n_cr_municipality.patent_pos_document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="paperformat_id" ref="l10n_cr_municipality.patent_pos_paperformat"/>
+    </record>
+
+    <!-- Plantilla del reporte -->
+    <template id="patent_pos_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-size: 12px;">
+                        <!-- Encabezado -->
+                        <div class="row" id="header" style="font-size: 24px;">
+                            <div class="col text-center">
+                                <strong>
+                                    <span t-field="o.patent_id.company_id.name"/>
+                                </strong>
+                                <div style="font-size: 22px;">
+                                    Cédula Jurídica:
+                                    <span t-field="o.patent_id.company_id.vat"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Datos principales -->
+                        <div id="main_data">
+                            <div>
+                                <strong>Nombre:</strong> <span t-field="o.name"/>
+                            </div>
+                            <div>
+                                <strong>Cédula:</strong> <span t-field="o.patent_id.partner_id.vat"/>
+                            </div>
+                            <div>
+                                <strong>Propietario:</strong> <span t-field="o.patent_id.partner_id.name"/>
+                            </div>
+                        </div>
+
+                        <!-- Ubicación -->
+                        <div id="land">
+                            <div>
+                                <strong>Dirección:</strong> <span t-field="o.patent_id.address"/>
+                            </div>
+                        </div>
+
+                        <!-- Datos secundarios -->
+                        <div id="secondary_data">
+                            <div>
+                                <strong>Fecha de creación:</strong> <span t-field="o.patent_id.create_date"/>
+                            </div>
+                            <div>
+                                <strong>Creado por:</strong> <span t-field="o.patent_id.user_id.name"/>
+                            </div>
+                        </div>
+
+                        <!-- Detalles de líneas de venta -->
+                        <table class="table table-sm o_main_table" id="lines" t-if="o.patent_id.sale_id">
+                            <thead>
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th class="text-right">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.patent_id.sale_id.order_line" t-as="line">
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Resumen de totales -->
+                        <table class="table table-sm o_main_table" id="summary" t-if="o.patent_id.sale_id">
+                            <tbody>
+                                <tr>
+                                    <th>Sub Total</th>
+                                    <td class="text-right">
+                                        <span t-field="o.patent_id.sale_id.amount_untaxed"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Intereses</th>
+                                    <td class="text-right">
+                                        0.0
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>TOTAL</th>
+                                    <td class="text-right">
+                                        <span t-field="o.patent_id.sale_id.amount_total"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

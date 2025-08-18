@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <menuitem action="account.action_move_out_invoice_type" id="menu_municipalidad_invoices" name="Facturas"
+            parent="l10n_cr_municipality.main_municipality_menu" sequence="4"/>
+
+      <menuitem action="account.action_account_payments" id="menu_municipalidad_payments" name="Pagos"
+            parent="l10n_cr_municipality.main_municipality_menu" sequence="5"/>
+</odoo>

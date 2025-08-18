@@ -13,6 +13,6 @@
     'data': [
         'data/l10n_latam_identification_type_data.xml'
         #'data/identification_type_data.xml',
-        #'views/res_partner.xml'
+
     ],
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="patent_preventive_sequence" model="ir.sequence">
+        <field name="name">Secuencia para pantente preventiva</field>
+        <field name="code">patent.preventive</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

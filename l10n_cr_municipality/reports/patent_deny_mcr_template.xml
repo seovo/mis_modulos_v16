@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_deneg_mcr">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="l10n_cr_municipality.report_deneg_mcr_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+    <template id="report_deneg_mcr_document">
+        <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />
+        <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <style>
+                        *{
+                            font-family: arial, sans-serif;
+                            font-size: 12pt;
+                            text-align: justify;
+                        }
+
+                        .bold {
+                            font-weight: bold;
+                        }
+
+                        .italic {
+                            font-style: italic;
+                        }
+
+                        .center {
+                            text-align: center;
+                        }
+
+                        .row{
+                            margin-bottom: 1rem;
+                        }
+
+                        .row:last-of-type {
+                                    margin-bottom: 0;
+                        }
+
+                        .place{
+                            font-size: 14pt;
+                            display: flex;
+                            justify-content: flex-end;
+                        }
+                        .place1{
+                            font-size: 14pt;
+                            display: flex;
+                            justify-content: flex-end;
+                            margin-left: 80px;
+                        }
+
+                    </style>
+
+                    <div class="page">
+                        <div class="container">
+                            <div class="row mb-5">
+                                    <div class="col-7">
+                                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 45px;" alt="Logo"/>
+                                    </div>
+                                    <div class="col-5 bold text-primary" style="font-size: 14pt;">
+                                        <div class="place">MUNICIPALIDAD DE RIO CUARTO</div>
+                                        <div class="place1">RIO CUARTO, ALAJUELA</div>
+                                    </div>
+                            </div>
+                            <div class="row bold">
+                                <div class="col-12 text-center">
+                                    RESOLUCIÓN N° RES-PT-<t t-esc="o.number_resolution"/>-el presente año
+                                </div>
+                            </div>
+                            <div class="row pl-1" style="text-align: justify;">
+                                <t t-set="hour" t-value="context_timestamp(datetime.datetime.now()).strftime('%I')"/>
+                                    <t t-set="minute" t-value="context_timestamp(datetime.datetime.now()).strftime('%M')"/>
+                                    <t t-set="day" t-value="context_timestamp(datetime.datetime.now()).strftime('%d')"/>
+                                    <t t-set="month" t-value="context_timestamp(datetime.datetime.now()).strftime('%-m')"/>
+                                    <p>
+                                        <span class="bold">MUNICIPALIDAD DE RÍO CUARTO.
+                                        OFICINA DE PATENTES</span>,<span> a las <t t-esc="hour"/> horas y
+                                        <t t-esc="minute"/> minutos del <t t-esc="day"/> de
+                                            <t t-if="month == '1' ">Enero</t>
+                                            <t t-if="month == '2' ">Febrero</t>
+                                            <t t-if="month == '3' ">Marzo</t>
+                                            <t t-if="month == '4' ">Abril</t>
+                                            <t t-if="month == '5' ">Mayo</t>
+                                            <t t-if="month == '6' ">Junio</t>
+                                            <t t-if="month == '7' ">Julio</t>
+                                            <t t-if="month == '8' ">Agosto</t>
+                                            <t t-if="month == '9' ">Setiembre</t>
+                                            <t t-if="month == '10' ">Octubre</t>
+                                            <t t-if="month == '11' ">Noviembre</t>
+                                            <t t-if="month == '12' ">Diciembre</t>
+
+                                        el presente año</span>.
+                                    </p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center bold">
+                                    RESULTANDOS
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: justify;">
+                                <div class="col-12 text-justify pl-5">
+                                    <ol>
+                                        <li>
+                                            <t t-set="date_solicitation" t-value="datetime.datetime.strptime(str(o.solicitation_date), '%Y-%m-%d')"/>
+                                            <t t-set="day_solicitation" t-value="context_timestamp(date_solicitation).strftime('%d')"/>
+                                            <t t-set="month_solicitation" t-value="context_timestamp(date_solicitation).strftime('%-m')"/>
+                                            <t t-set="year_solicitation" t-value="context_timestamp(date_solicitation).strftime('%Y')"/>
+                                            <p>
+                                                Que en fecha <t t-esc="day_solicitation"/> de
+                                                    <t t-if="month_solicitation == '1' ">Enero</t>
+                                                    <t t-if="month_solicitation == '2' ">Febrero</t>
+                                                    <t t-if="month_solicitation == '3' ">Marzo</t>
+                                                    <t t-if="month_solicitation == '4' ">Abril</t>
+                                                    <t t-if="month_solicitation == '5' ">Mayo</t>
+                                                    <t t-if="month_solicitation == '6' ">Junio</t>
+                                                    <t t-if="month_solicitation == '7' ">Julio</t>
+                                                    <t t-if="month_solicitation == '8' ">Agosto</t>
+                                                    <t t-if="month_solicitation == '9' ">Setiembre</t>
+                                                    <t t-if="month_solicitation == '10' ">Octubre</t>
+                                                    <t t-if="month_solicitation == '11' ">Noviembre</t>
+                                                    <t t-if="month_solicitation == '12' ">Diciembre</t>
+                                                del <t t-esc="year_solicitation"/> , se hizo presente a este
+                                                despacho el señor / la señora <t t-esc="o.partner_id.name"/>, portador (a) de
+                                                la cédula de identidad número <t t-esc="o.partner_id.vat"/>, vecino (a) del
+                                                distrito de <t t-esc="o.partner_id.state_id.name"/>. <t t-esc="o.partner_id.country_id.name"/>  ,
+                                                <t t-esc="o.partner_id.district_id.name"/>,
+                                                <t t-if="o.partner_id.parent_id.name">
+                                                en representación de la sociedad <t t-esc="o.partner_id.parent_id.name"/>, titular de la cédula jurídica número
+                                                <t t-esc="o.partner_id.parent_id.vat"/>;
+                                                </t>
+                                                <t t-else="">
+                                                en representación de la sociedad no aplica, titular de la cédula jurídica número no aplica;
+                                                </t>
+                                                para el ejercicio de la actividad comercial de <t t-esc="o.commercial_activity"/> en el inmueble
+                                                inscrito en el partido de Alajuela, número de folio real <t t-esc="o.land_id.folio"/>,
+                                                ubicado en, <t t-esc="o.land_id.address"/> propiedad de <t t-esc="o.land_id.partner_id.name"/>,
+                                                portador de la cédula de identidad número <t t-esc="o.land_id.partner_id.vat"/>.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <t t-if="len(o.req_deliver_id)">
+                                                    <t t-set="foo" t-value=""/>
+                                                    <t t-foreach="o.req_deliver_id" t-as="r">
+                                                        <t t-set="foo" t-value="r.name"/>
+<!--                                                       <t t-if="r_first">-->
+<!--                                                        <t t-set="foo" t-value="r.name"/>-->
+<!--                                                       </t>-->
+<!--                                                       <t t-else="">-->
+<!--                                                        <t t-set="foo" t-value="foo+','+r.name"/>-->
+<!--                                                       </t>-->
+                                                    </t>
+                                                </t>
+                                                Que se tienen por incorporados al expediente administrativo los siguientes
+                                                documentos: <t t-esc="foo"/>
+                                            </p>
+                                        </li>
+                                        <li>
+                                             <p>
+                                                Que una vez revisada la solicitud y los documentos
+                                                incorporados junto con esta al expediente se elevó la
+                                                misma a la correspondiente etapa de análisis y revisión.
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center bold">
+                                    CONSIDERANDOS
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: justify;">
+                                <div class="col-12 text-justify">
+                                            <p>
+                                                <span class="bold">Único. </span>
+                                                Que una vez analizada toda la documentación aportada al expediente administrativo
+                                                número <t t-esc="o.name"/>-el presente año en relación a lo dispuesto en la Ley de Patentes del Cantón de Río
+                                                Cuarto, Ley N°9932 del Cantón de Río Cuarto, Ley N°9932, publicada en el Diario Oficial
+                                                La Gaceta No. 18 del 27 de enero de el presente año; el artículo 88 y siguientes del Código Municipal;
+                                                así como en estricto apego a la Ley General de la Administración Pública se determina que no
+                                                cumple con los requisitos establecidos en la normativa vigente.
+                                            </p>
+                                             <p><span style="margin-left:57px;">Al respecto, la Ley de Patentes de la Municipalidad de
+                                            Río Cuarto en el artículo 9 inciso x) establece que es requisito para el otorgamiento de la
+                                            licencia comercial el contar  <span class="italic">
+                                            <t t-esc="o.reject_motive"/>
+                                            </span></span>
+                                            </p>
+                                            <p><span style="margin-left:57px;">
+                                                A su vez, el numeral 90 del Código Municipal establece:
+                                                </span>
+                                            </p>
+                                            <p><span class="italic">
+                                            “Artículo 90. - La licencia municipal referida en el artículo anterior solo
+                                            podrá ser denegada cuando la actividad sea contraria a la ley, la moral o las
+                                            buenas costumbres, cuando el establecimiento no haya llenado los requisitos
+                                            legales y reglamentarios o cuando la actividad, en razón de su ubicación física,
+                                            no esté permitida por las leyes o, en su defecto, por los reglamentos municipales
+                                            vigentes.”</span>
+                                            </p>
+
+                                            <p><span style="margin-left:57px;">Debido a lo anterior, este ente municipal no se encuentra
+                                            facultado -en este momento-</span> para otorgar la licencia solicitada.
+                                            </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center bold">
+                                    POR TANTO
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: justify;">
+                                <div class="col-12 text-justify">
+                                    <p>
+                                        Con fundamento en lo expuesto y a lo dispuesto en el artículo 9 de la Ley de
+                                        Patentes de la Municipalidad de Río Cuarto y el artículo 90 del Código Municipal
+                                        se RECHAZA la solicitud presentada a nombre del señor <t t-esc="o.partner_id.name.upper()"/>
+                                        , portador de la cédula de identidad número <t t-esc="o.partner_id.vat"/>,
+                                        para el otorgamiento de la licencia comercial para el desarrollo de la actividad
+                                        de
+                                          <t t-if="len(o.activity_ids)">
+                                                <t t-set="foo" t-value="''"/>
+                                                <t t-foreach="o.activity_ids" t-as="r">
+                                                    <t t-if="foo =='' ">
+                                                        <t t-set="foo" t-value="r.name"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-set="foo" t-value="foo+','+r.name"/>
+                                                    </t>
+
+                                                </t>
+                                            </t>
+                                            <t t-esc="foo"/>
+                                        en el cantón de Río Cuarto. Contra esta resolución caben los
+                                        recursos de revocatoria y apelación en subsidio, de conformidad con el numeral
+                                        171 del Código Municipal. NOTIFÍQUESE. -
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:100px;margin-bottom: 0cm; line-height: 100%;">
+                                <div class="col-12 text-center bold">
+                                    <t t-esc="request.env.user.name.upper()"/>
+                                    <div class="col-12 text-center bold">
+                                        Encargado de Patentes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+        </t>
+    </template>
+</odoo>

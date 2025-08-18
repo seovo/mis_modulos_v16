@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de formulario -->
+    <record id="l10n_cr_patent_view_form" model="ir.ui.view">
+        <field name="name">l10n_cr.patent.view.form</field>
+        <field name="model">l10n_cr.patent</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="process" type="object" string="Procesar" class="btn-primary"
+                            modifiers="{'invisible': [('state', 'not in', ['requested', 'prevention'])]}"/>
+                    <button name="approve" type="object" string="Aprobar" class="btn-primary"
+                            modifiers="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="reject" type="object" string="Denegar" class="btn-danger"
+                            modifiers="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="state_prevention" type="object" string="Prevenir" class="btn-secondary"
+                            modifiers="{'invisible': [('state', 'not in', ['requested', 'in_progress'])]}"/>
+                    <button name="state_cancel" type="object" string="Cancelar" class="btn-danger"
+                            confirm="¿Está seguro de cancelar esta patente?"
+                            modifiers="{'invisible': [('state', 'not in', ['requested', 'in_progress'])]}"/>
+                    <button name="print_approve" type="object" string="Imprimir Resolución" class="btn-primary"
+                            modifiers="{'invisible': [('state', '!=', 'approved')]}"/>
+                    <button name="print_cert" type="object" string="Imprimir Certificado" class="btn-primary"
+                            modifiers="{'invisible': [('state', '!=', 'approved')]}"/>
+                    <button name="print_reject" type="object" string="Imprimir Resolución" class="btn-danger"
+                            modifiers="{'invisible': [('state', '!=', 'rejected')]}"/>
+                    <button name="print_prevention" type="object" string="Imprimir Prevención" class="btn-secondary"
+                            modifiers="{'invisible': [('state', '!=', 'prevention')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="sale_id" invisible="1"/>
+                        <field name="patent_origin_id" invisible="1"/>
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_sale"
+                                modifiers="{'invisible': [('sale_id', '=', False)]}"
+                                icon="fa-usd"
+                                string="Venta"/>
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_patent_origin"
+                                modifiers="{'invisible': [('patent_origin_id', '=', False)]}"
+                                icon="fa-certificate"
+                                string="Patente Padre"/>
+                    </div>
+                    <h2>
+                        <field name="name"/>
+                    </h2>
+                    <group>
+                        <group name="information" string="Información">
+                            <field name="partner_id"/>
+                            <field name="vat" invisible="1"/>
+                            <field name="solicitation_date"/>
+                            <field name="type_id"/>
+                            <field name="type_code" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="county_id" invisible="1"/>
+                            <field name="fantasy_name"/>
+                            <field name="needs_liqueur" modifiers="{'invisible': [('is_liqueur', '=', True)]}"/>
+                            <field name="activity_ids" widget="many2many_tags"/>
+                            <field name="commercial_activity"/>
+                            <field name="regimen"/>
+                            <field name="category"/>
+                            <field name="req_deliver_id" widget="many2many_tags" string="Requisitos de entrega"/>
+                            <field name="req_miss_id" widget="many2many_tags" string="Requisitos faltantes"/>
+                            <field name="pay_to"/>
+                            <field name="number_resolution" invisible="1"/>
+                            <field name="amount_prorate" invisible="1"/>
+                            <field name="code_letter" invisible="1"/>
+                            <field name="prevention_type" invisible="1"/>
+                        </group>
+                        <group name="land" string="Propiedad">
+                            <field name="land_id"/>
+                            <field name="address"/>
+                            <field name="property_owner"/>
+                            <field name="district_id" domain="[('county_id', '=', county_id)]"/>
+                            <field name="plan_number"/>
+                            <field name="relation_type"/>
+                            <field name="area"/>
+                            <field name="land_use_number"/>
+                            <field name="sanitary_permit"/>
+                            <field name="sanitary_permit_expiration"/>
+                            <field name="comply_7600"/>
+                            <field name="condition"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="financial" string="Información Financiera"
+                               modifiers="{'invisible': [('is_liqueur', '=', True)]}">
+                            <field name="income_total"/>
+                            <field name="yearly_payment" modifiers="{'readonly': [('type_code', '!=', 'TM')]}"/>
+                            <field name="trimester_payment" readonly="1"/>
+                        </group>
+                        <group name="liqueur" string="Datos de Licor"
+                               modifiers="{'invisible': [('is_liqueur', '=', False)]}">
+                            <field name="is_liqueur" invisible="1"/>
+                            <field name="employees"/>
+                            <field name="actives_value"/>
+                            <field name="sales_value"/>
+                            <field name="score"/>
+                            <field name="yearly_payment"/>
+                            <field name="trimester_payment"/>
+                            <field name="category_liqueur"/>
+                            <field name="subcategory_liqueur"/>
+                            <field name="liqueur_open_hour" widget="float_time"/>
+                            <field name="liqueur_close_hour" widget="float_time"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de árbol -->
+    <record id="l10n_cr_patent_view_tree" model="ir.ui.view">
+        <field name="name">l10n_cr.patent.view.tree</field>
+        <field name="model">l10n_cr.patent</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="type_id"/>
+                <field name="land_id"/>
+                <field name="district_id"/>
+                <field name="state"/>
+                <field name="resolution_date"/>
+                <field name="condition"/>
+                <field name="pay_to"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda -->
+    <record id="patent_list_search" model="ir.ui.view">
+        <field name="name">l10n_cr.patent.search</field>
+        <field name="model">l10n_cr.patent</field>
+        <field name="arch" type="xml">
+            <search string="Buscar por ...">
+                <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="partner_id" filter_domain="[('partner_id', 'ilike', self)]"/>
+                <field name="vat" filter_domain="[('vat', 'ilike', self)]"/>
+                <separator/>
+                <group expand="1" string="Agrupar por">
+                    <filter string="Contribuyente" name="partner_id" context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="l10n_cr_patent_action" model="ir.actions.act_window">
+        <field name="name">Patentes</field>
+        <field name="res_model">l10n_cr.patent</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="patent_list_search"/>
+    </record>
+
+    <!-- Menú -->
+    <menuitem
+        id="l10n_cr_patent_menu"
+        parent="main_municipality_menu"
+        action="l10n_cr_patent_action"
+        sequence="3"
+    />
+</odoo>

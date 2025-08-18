@@ -4,6 +4,13 @@ import requests
 import json
 import xmltodict
 
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+
+
+
 class PaymentTransaction(models.Model):
     _inherit = 'payment.transaction'
 

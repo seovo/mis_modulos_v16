@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_cr_ciiu,access_l10n_cr_ciiu,model_l10n_cr_ciiu,,1,1,1,1
+access_l10n_cr_identification,access_l10n_cr_identification,model_l10n_cr_identification,,1,1,1,1
+access_l10n_cr_land,access_l10n_cr_land,model_l10n_cr_land,,1,1,1,1
+access_l10n_cr_patent,access_l10n_cr_patent,model_l10n_cr_patent,,1,1,1,1
+access_l10n_cr_patent_type,access_l10n_cr_patent_type,model_l10n_cr_patent_type,,1,1,1,1
+access_l10n_cr_patent_approve_wizard,access_l10n_cr_patent_approve_wizard,model_l10n_cr_patent_approve_wizard,base.group_user,1,1,1,1
+access_l10n_cr_patent_reject_wizard,access_l10n_cr_patent_reject_wizard,model_l10n_cr_patent_reject_wizard,base.group_user,1,1,1,1
+access_l10n_cr_req_deliver,access_l10n_cr_req_deliver,model_l10n_cr_req_deliver,,1,1,1,1
+access_l10n_cr_req_miss,access_l10n_cr_req_miss,model_l10n_cr_req_miss,,1,1,1,1
+access_patent_certificate_autorization_wizard,patent_certificate_autorization_wizard,model_patent_certificate_autorization_wizard,,1,1,1,1
+access_patent_select_prevention_wizard,patent_select_prevention_wizard,model_patent_select_prevention_wizard,,1,1,1,1
+access_patent_change_number_wizard,patent_change_number_wizard,model_patent_change_number_wizard,,1,1,1,1

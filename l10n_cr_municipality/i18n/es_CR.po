@@ -1,0 +1,477 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_cr_municipality
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20210111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-28 01:42+0000\n"
+"PO-Revision-Date: 2021-01-28 01:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__states__active
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__res_partner__condition__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__activity_ids
+msgid "Activity"
+msgstr "Actividad"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__address
+msgid "Address"
+msgstr "Dirección"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner__alias
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_users__alias
+msgid "Alias"
+msgstr "Conocido como"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__allotment_type
+msgid "Allotment Type"
+msgstr "Tipo de Lote"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__area
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__area
+msgid "Area"
+msgstr "Área"
+
+#. module: l10n_cr_municipality
+#: model:ir.model,name:l10n_cr_municipality.model_l10n_cr_ciiu
+msgid "CR CIIU"
+msgstr "CR CIIU"
+
+#. module: l10n_cr_municipality
+#: model:ir.model,name:l10n_cr_municipality.model_l10n_cr_identification
+msgid "CR Identification"
+msgstr "CR Identificación"
+
+#. module: l10n_cr_municipality
+#: model:ir.model,name:l10n_cr_municipality.model_l10n_cr_land
+msgid "CR Land"
+msgstr "CR Propiedad"
+
+#. module: l10n_cr_municipality
+#: model:ir.model,name:l10n_cr_municipality.model_l10n_cr_patent
+msgid "CR Patent"
+msgstr "CR Patente"
+
+#. module: l10n_cr_municipality
+#: model:ir.model,name:l10n_cr_municipality.model_l10n_cr_patent_type
+msgid "CR Patent Type"
+msgstr "CR Tipo de Patente"
+
+#. module: l10n_cr_municipality
+#: model_terms:ir.ui.view,arch_db:l10n_cr_municipality.l10n_cr_land_view_form
+msgid "Characteristics"
+msgstr "Datos del Terreno"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__code
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__commercial_activity
+msgid "Commercial Activity"
+msgstr "Actividad Comercial"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__comply_7600
+msgid "Comply 7600"
+msgstr "Cumple Ley 7600"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner__condition
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_users__condition
+msgid "Condition"
+msgstr "Condición"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__constructions
+msgid "Constructions"
+msgstr "Construcciones"
+
+#. module: l10n_cr_municipality
+#: model:ir.model,name:l10n_cr_municipality.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__county_id
+msgid "County"
+msgstr "Cantón"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__create_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__create_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__create_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__create_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__create_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__create_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__create_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__create_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_cr_municipality
+#: model_terms:ir.ui.view,arch_db:l10n_cr_municipality.l10n_cr_land_view_form
+msgid "Data"
+msgstr "Valores"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__display_name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__display_name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__display_name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__display_name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__display_name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__district_id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__district_id
+msgid "District"
+msgstr "Distrito"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__duplicate
+msgid "Duplicate"
+msgstr "Duplicado"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__exact_address
+msgid "Exact Address"
+msgstr "Dirección Exacta"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__fantasy_name
+msgid "Fantasy Name"
+msgstr "Nombre de Fantasia"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__folio
+msgid "Folio"
+msgstr "Folio"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__gis
+msgid "Gis"
+msgstr "GIS"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__horizontal
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner__identification_id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_users__identification_id
+#: model_terms:ir.ui.view,arch_db:l10n_cr_municipality.l10n_cr_land_view_form
+msgid "Identification"
+msgstr "Tipo de Identificación"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__states__in_progress
+msgid "In Progress"
+msgstr "En progreso"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__res_partner__condition__inactive
+msgid "Inactive"
+msgstr "Inactivo"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__zone__insdustrial
+msgid "Industrial"
+msgstr "Industrial"
+
+#. module: l10n_cr_municipality
+#: model_terms:ir.ui.view,arch_db:l10n_cr_municipality.l10n_cr_patent_view_form
+msgid "Information"
+msgstr "Información"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__is_liqueur
+msgid "Is Liqueur"
+msgstr "Requiere Licor"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__land
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__land_id
+#: model_terms:ir.ui.view,arch_db:l10n_cr_municipality.l10n_cr_patent_view_form
+msgid "Land"
+msgstr "Propiedad"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__land_number
+msgid "Land Number"
+msgstr "Nº de Propiedad"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__land_type
+msgid "Land Type"
+msgstr "Tipo de Propiedad"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__land_use_number
+msgid "Land Use Number"
+msgstr "Uso de Suelo"
+
+#. module: l10n_cr_municipality
+#: model:ir.actions.act_window,name:l10n_cr_municipality.l10n_cr_land_action
+#: model:ir.ui.menu,name:l10n_cr_municipality.l10n_cr_land_menu
+msgid "Lands"
+msgstr "Propiedades"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__last_declaration_date
+msgid "Last Declaration Date"
+msgstr "Fecha Última Declaración"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu____last_update
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification____last_update
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land____last_update
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent____last_update
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type____last_update
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__write_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__write_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__write_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__write_uid
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__write_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__write_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__write_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__write_date
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__relation_type__loaned
+msgid "Loaned"
+msgstr "Prestada"
+
+#. module: l10n_cr_municipality
+#: model_terms:ir.ui.view,arch_db:l10n_cr_municipality.l10n_cr_land_view_form
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: l10n_cr_municipality
+#: model:ir.ui.menu,name:l10n_cr_municipality.main_municipality_menu
+msgid "Municipality"
+msgstr "Municipalidad"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_ciiu__name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_identification__name
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__land_type__no_real_folio
+msgid "No Real Folio"
+msgstr "No Folio Real"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__allotment_type__no_registered
+msgid "No Registered"
+msgstr "No Registrado"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__name
+msgid "Number"
+msgstr "Número"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__allotment_type__other
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__zone__other
+msgid "Other"
+msgstr "Otro"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__relation_type__owned
+msgid "Owned"
+msgstr "Propia"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__partner_id
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__partner_id
+msgid "Partner"
+msgstr "Propietario"
+
+#. module: l10n_cr_municipality
+#: model:ir.actions.act_window,name:l10n_cr_municipality.l10n_cr_patent_action
+#: model:ir.ui.menu,name:l10n_cr_municipality.l10n_cr_patent_menu
+#: model:ir.ui.menu,name:l10n_cr_municipality.patents_menu
+msgid "Patents"
+msgstr "Patentes"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__plan_number
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__land_type__plan_number
+msgid "Plan Number"
+msgstr "Nº de Plano"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__allotment_type__possessory
+msgid "Possessory"
+msgstr "Poseria"
+
+#. module: l10n_cr_municipality
+#: model:ir.ui.menu,name:l10n_cr_municipality.properties_menu
+msgid "Properties"
+msgstr "Propiedades"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__land_type__real_folio
+msgid "Real Folio"
+msgstr "Folio Real"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__allotment_type__registered
+msgid "Registered"
+msgstr "Registrado"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__relation_type
+msgid "Relation Type"
+msgstr "Tipo de Relación"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__relation_type__rented
+msgid "Rented"
+msgstr "Alquilada"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__states__retreat
+msgid "Retreat"
+msgstr "Retirada"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__rights_qty
+msgid "Rights Qty"
+msgstr "Nº de Derechos"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_land__zone__rural
+msgid "Rural"
+msgstr "Rural"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__sanitary_permit
+msgid "Sanitary Permit"
+msgstr "Permiso Sanitario"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__sanitary_permit_expiration
+msgid "Sanitary Permit Expiration"
+msgstr "Expiración Permiso Sanitario"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__seat
+msgid "Seat"
+msgstr "Asiento"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__states__solicitaction
+msgid "Solicitation"
+msgstr "Solicitud"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__solicitation_date
+msgid "Solicitation Date"
+msgstr "Fecha de Solicitud"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__states
+msgid "States"
+msgstr "Estados"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields.selection,name:l10n_cr_municipality.selection__l10n_cr_patent__states__suspended
+msgid "Suspended"
+msgstr "Suspendida"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_partner__taxpayer
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_res_users__taxpayer
+msgid "Taxpayer"
+msgstr "Contribuyente"
+
+#. module: l10n_cr_municipality
+#: model:ir.actions.act_window,name:l10n_cr_municipality.taxpayer_action
+#: model:ir.ui.menu,name:l10n_cr_municipality.taxpayer_menu
+msgid "Taxpayers"
+msgstr "Contribuyentes"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__tome
+msgid "Tome"
+msgstr "Tomo"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__total_value
+msgid "Total Value"
+msgstr "Valor Total"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_patent__type_id
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__uom_id
+msgid "Uom"
+msgstr "Unidad de medida"
+
+#. module: l10n_cr_municipality
+#: model:ir.model.fields,field_description:l10n_cr_municipality.field_l10n_cr_land__zone
+msgid "Zone"
+msgstr "Zona"

@@ -87,14 +87,14 @@
                                                 -->
 
 
-                                                <div t-attf-class="#{error.get('identification_id') and 'o_has_error'} col-lg-6 mb-2">
-                                                    <label class="col-form-label" for="identification_id">Tipo de Identificación</label>
-                                                    <select id="identification_id" name="identification_id"
-                                                            t-attf-class="form-select #{error.get('identification_id') and 'is-invalid' or ''}" >
+                                                <div t-attf-class="#{error.get('l10n_latam_identification_type_id') and 'o_has_error'} col-lg-6 mb-2">
+                                                    <label class="col-form-label" for="l10n_latam_identification_type_id">Tipo de Identificación</label>
+                                                    <select id="l10n_latam_identification_type_id" name="l10n_latam_identification_type_id"
+                                                            t-attf-class="form-select #{error.get('l10n_latam_identification_type_id') and 'is-invalid' or ''}" >
                                                            <option value="">Tipo de Documento...</option>
                                                            <t t-foreach="type_documents" t-as="t">
                                                               <option t-att-value="t.id"
-                                                                      t-att-selected="t.id == ('identification_id' in checkout and country and checkout['identification_id'] != '' and int(checkout['identification_id']))">
+                                                                      t-att-selected="t.id == ('l10n_latam_identification_type_id' in checkout and country and checkout['l10n_latam_identification_type_id'] != '' and int(checkout['l10n_latam_identification_type_id']))">
                                                                       <t t-esc="t.name" />
                                                               </option>
                                                            </t>

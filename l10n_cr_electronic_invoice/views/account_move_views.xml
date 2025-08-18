@@ -21,6 +21,9 @@
                         />
                 <button name="generate_and_send_invoices" type="object" string="Enviar a Hacienda" confirm="Está seguro de continuar este proceso ?"
                         invisible="state_send_invoice != False or not electronic_sequence or move_type not in ['in_invoice','in_refund'] or state in ('draft','cancel') "
+
+
+
                        />
 
             </button>
