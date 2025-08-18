@@ -533,14 +533,17 @@ class ApiClinicos(http.Controller):
         })
 
         return {
-            'id': usuario.id ,
-            'name': usuario.name ,
-            'city': usuario.city ,
-            'street': usuario.street ,
-            'phone': usuario.phone ,
-            'email': usuario.email  ,
-            'country_id': usuario.country_id.id ,
-            'state_id': usuario.state_id.id  ,
+            'data': {
+
+                'id': usuario.id ,
+                'name': usuario.name ,
+                'city': usuario.city ,
+                'street': usuario.street ,
+                'phone': usuario.phone ,
+                'email': usuario.email  ,
+                'country_id': usuario.country_id.id ,
+                'state_id': usuario.state_id.id  ,
+            }
         }
 
 
