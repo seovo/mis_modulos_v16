@@ -539,8 +539,8 @@ class ApiClinicos(http.Controller):
             'street': usuario.street ,
             'phone': usuario.phone ,
             'email': usuario.email  ,
-            'country_id': usuario.country_id ,
-            'state_id': usuario.state_id  ,
+            'country_id': usuario.country_id.id ,
+            'state_id': usuario.state_id.id  ,
         }
 
 
