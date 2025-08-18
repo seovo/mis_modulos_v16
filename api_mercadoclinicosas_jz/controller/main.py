@@ -522,7 +522,7 @@ class ApiClinicos(http.Controller):
     def apiclinicos_address(self, **data):
         data = http.request.httprequest.get_json()
 
-        usuario = request.env['ir.config_parameter'].sudo().create({
+        usuario = request.env['res.partner'].sudo().create({
             'name': data['name'] ,
             'street': data['address'] ,
             'city': data['neighborhood'],
