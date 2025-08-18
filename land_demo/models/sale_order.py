@@ -726,7 +726,7 @@ class SaleOrder(models.Model):
 
                             #line_sche.amount = line_sche.capital + line_sche.interes
 
-                            capital_last = line_sche.capital
+                            capital_last += line_sche.capital
 
                             #try:
                             #    record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
