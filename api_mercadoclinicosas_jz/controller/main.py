@@ -516,6 +516,39 @@ class ApiClinicos(http.Controller):
         return {'websites': data}
 
 
+    #address
+    @http.route('/apiclinicos/address', type="json", auth='public',
+                website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
+    def apiclinicos_address(self, **data):
+        data = http.request.httprequest.get_json()
+
+        usuario = request.env['res.partner'].sudo().create({
+            'name': data['name'] ,
+            'street': data['address'] ,
+            'city': data['neighborhood'],
+            'email': data['email'],
+            'phone': data['phone'],
+            'country_id': int(data['country']),
+            'state_id':  int(data['state']),
+        })
+
+        return {
+            'data': {
+
+                'id': usuario.id ,
+                'name': usuario.name ,
+                'city': usuario.city ,
+                'street': usuario.street ,
+                'phone': usuario.phone ,
+                'email': usuario.email  ,
+                'country_id': usuario.country_id.id ,
+                'state_id': usuario.state_id.id  ,
+            }
+        }
+
+
+
+
     @http.route('/apiclinicos/contries', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
     def apiclinicos_contries(self, **data):
