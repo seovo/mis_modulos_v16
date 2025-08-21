@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_sale_product" name="My Task" inherit_id="website_sale.product" >
+        <xpath expr="//t[@t-set='combination']" position="replace">
+            <t t-set="combination" t-value="product._get_first_possible_combination2()"/>
+        </xpath>
+
+    </template>
+</odoo>
