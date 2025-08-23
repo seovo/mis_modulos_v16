@@ -59,6 +59,37 @@ soap_body = f'''<?xml version="1.0" encoding="UTF-8"?>
     </soap:Body>
 </soap:Envelope>'''
 
+
+soapenv_body = f'''<?xml version="1.0" encoding="UTF-8"?>
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="https://ws.smcmx.com.mx/wssmc_test/smcmx_service_test.php">
+           <soapenv:Body>
+             <tns:enviarDetalleVenta>
+                 <tns:usuario>alfen_t</tns:usuario>
+                 <tns:password>PwSnil91p_Pb7q9Z</tns:password>
+                 <tns:token>{token_generado}</tns:token>
+                 <tns:numeroDT>{numero_dt}</tns:numeroDT>
+                 <tns:nombreDT>SERVICIOS INDUSTRIALES ALFEN</tns:nombreDT>
+                 <tns:oListaClientes>
+                     <tns:item>
+                         <tns:clienteFinal>123456</tns:clienteFinal>
+                         <tns:RFC>ABCDE123456789</tns:RFC>
+                         <tns:razonSocial>Razón Social del Cliente</tns:razonSocial>
+                         <tns:codigoPostal>12345</tns:codigoPostal>
+                         <tns:colonia>Colonia Ejemplo</tns:colonia>
+                         <tns:calle>Calle Ejemplo</tns:calle>
+                         <tns:numeroExterior>123</tns:numeroExterior>
+                         <tns:tipoNegocioArea>ARMADORA</tns:tipoNegocioArea>
+                         <tns:areaEmpresarial>Area Ejemplo</tns:areaEmpresarial>
+                         
+                
+                     </tns:item>
+                     
+                 </tns:oListaClientes>
+             </tns:enviarDetalleVenta>
+           </soapenv:Body>
+        </soapenv:Envelope>'''
+
+
 # Establecer los headers
 headers = {
     'Content-Type': 'text/xml; charset=utf-8',

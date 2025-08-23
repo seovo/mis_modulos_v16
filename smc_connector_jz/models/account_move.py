@@ -4,22 +4,36 @@ import requests
 # URL del servicio SOAP
 url = 'https://ws.smcmx.com.mx/wssmc_test/smcmx_service_test.php'
 import hashlib
-from datetime import datetime
+
+
+from datetime import datetime, timedelta
 import pytz
 
 import http.client
+
+
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
 
     def generar_token(self,numero_dt):
-        # Establecer la zona horaria
+
         timezone = pytz.timezone('America/Mexico_City')
-        # Obtener la fecha y hora actual en la zona horaria especificada
+        # Establecer la zona horaria
+
         ahora = datetime.now(timezone)
+
+
+        una_hora_menos = ahora - timedelta(hours=1)
+
+
+        #raise ValueError(una_hora_menos)
+        #raise ValueError(fields.datetime.now())
         # Formatear la fecha y hora como 'YYYYMMDDHH'
-        fecha_formateada = ahora.strftime('%Y%m%d%H')
+        fecha_formateada = una_hora_menos.strftime('%Y%m%d%H')
+
+
 
         # Concatenar el número de DT con la fecha formateada
         dato_previo = f"{numero_dt}{fecha_formateada}"
@@ -39,8 +53,8 @@ class AccountMove(models.Model):
 
         # Establecer los headers
         headers = {
-            #'Content-Type': 'text/xml; charset=utf-8',
-            'Content-Type': 'text/xml',
+            'Content-Type': 'text/xml; charset=utf-8',
+            #'Content-Type': 'text/xml',
             'SOAPAction': 'https://ws.smcmx.com.mx/wssmc_test/smcmx_service_test.php#enviarDetalleVenta'
         }
 
@@ -48,25 +62,41 @@ class AccountMove(models.Model):
         # Crear el cuerpo de la petición SOAP
 
 
-        soap_body = f'''<?xml version="1.0" encoding="UTF-8"?>
-        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="https://ws.smcmx.com.mx/wssmc_test/smcmx_service_test.php">
-           <soapenv:Body>
-             <tns:enviarDetalleVenta>
-                 <tns:usuario>alfen_t</tns:usuario>
-                 <tns:password>PwSnil91p_Pb7q9Z</tns:password>
-                 <tns:token>{token_generado}</tns:token>
-                 <tns:numeroDT>{numero_dt}</tns:numeroDT>
-                 <tns:nombreDT>SERVICIOS INDUSTRIALES ALFEN</tns:nombreDT>
-                 <tns:oListaClientes>
-                 </tns:oListaClientes>
-             </tns:enviarDetalleVenta>
-           </soapenv:Body>
-        </soapenv:Envelope>'''
 
-        response = requests.post(url, data=soap_body, headers=headers)
+
+
+
+        soap_body = f'''<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="https://ws.smcmx.com.mx/wssmc_test/smcmx_service_test.php">
+    <soap:Body>
+        <tns:enviarDetalleVenta>
+            <usuario>alfen_t</usuario>
+            <password>PwSnil91p_Pb7q9Z</password>
+            <token>{token_generado}</token>
+            <numeroDT>{numero_dt}</numeroDT>
+            <nombreDT>SERVICIOS INDUSTRIALES ALFEN</nombreDT>
+            <oListaClientes>
+                <item>
+                    <clienteFinal>123456</clienteFinal>
+                    <RFC>ABCDE123456789</RFC>
+                    <razonSocial>Razón Social del Cliente</razonSocial>
+                    <codigoPostal>12345</codigoPostal>
+                    <colonia>Colonia Ejemplo</colonia>
+                    <calle>Calle Ejemplo</calle>
+                    <numeroExterior>123</numeroExterior>
+                    <tipoNegocioArea>ARMADORA</tipoNegocioArea>
+                    <areaEmpresarial>Area Ejemplo</areaEmpresarial>
+                </item>
+            </oListaClientes>
+        </tns:enviarDetalleVenta>
+    </soap:Body>
+</soap:Envelope>'''
+
+
+
+        response = requests.post(url, data=soap_body.encode('utf-8'), headers=headers)
         # Mostrar la respuesta
         raise ValueError(response.text)
         print(response.text)
-
 
 
