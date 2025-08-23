@@ -6,7 +6,7 @@
             <tree  edit="0" create="0" delete="0">
                 <field name="partner_id"  optional="show" />
                 <field name="move_name" string="Factura" optional="hidden"  />
-                <field name="ref" string="Factura" optional="hidden"  />
+                <field name="ref" optional="hidden" string="Referencia"  />
                 <field name="date" optional="show" />
 
                 <field name="always_set_currency_id"  optional="hidden"   />
