@@ -607,6 +607,7 @@ class ApiClinicos(http.Controller):
         partner = request.env['res.partner'].sudo().search([('id','=',  data['id_client'] )])
 
         sale = request.env['sale.order'].sudo().create({
+            'name': _("New"),
             'partner_id': data['id_client'],
             'partner_invoice_id': data['id_client'],
             'partner_shipping_id': data['id_address'],
