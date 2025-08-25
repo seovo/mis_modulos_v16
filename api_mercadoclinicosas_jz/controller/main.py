@@ -619,7 +619,7 @@ class ApiClinicos(http.Controller):
 
         for line in data['products']:
 
-            product = request.env['product.template'].sudo().search([('id','=',  line['d'] )])
+            product = request.env['product.template'].sudo().search([('id','=',  line['id'] )])
 
             sale._cart_update_order_line( product.product_variant_ids[0].id, line['quantity'], None, **kwargs)
 
