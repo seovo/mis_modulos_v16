@@ -517,6 +517,28 @@ class ApiClinicos(http.Controller):
 
 
     #address
+    @http.route('/apiclinicos/address/<int:partner_id>', type="json", auth='public',
+                website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
+    def get_apiclinicos_address(self, partner_id, **data):
+        partner = request.env['res.partner'].sudo().search([('id','=',partner_id)])
+        address = [{
+            'id': partner.id ,
+            'name': partner.name ,
+            'street': partner.street ,
+            'city': partner.city ,
+            'email': partner.email ,
+            'phone': partner.phone ,
+            'country_id': partner.country_id.id if partner.country_id  else None ,
+            'state_id': partner.state_id.id if partner.state_id else None ,
+
+        }]
+
+        return address
+
+
+
+
+
     @http.route('/apiclinicos/address', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
     def apiclinicos_address(self, **data):
