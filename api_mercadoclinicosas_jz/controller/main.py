@@ -521,6 +521,7 @@ class ApiClinicos(http.Controller):
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
     def get_apiclinicos_address(self, partner_id, **data):
         partner = request.env['res.partner'].sudo().search([('id','=',partner_id)])
+
         address = [{
             'id': partner.id ,
             'name': partner.name ,
