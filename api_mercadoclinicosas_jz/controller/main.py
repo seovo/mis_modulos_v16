@@ -524,12 +524,12 @@ class ApiClinicos(http.Controller):
         address = [{
             'id': partner.id ,
             'name': partner.name ,
-            'street': partner.street ,
-            'city': partner.city ,
+            'address': partner.street ,
+            'neighborhood': partner.city ,
             'email': partner.email ,
             'phone': partner.phone ,
-            'country_id': partner.country_id.id if partner.country_id  else None ,
-            'state_id': partner.state_id.id if partner.state_id else None ,
+            'country': partner.country_id.id if partner.country_id  else None ,
+            'stateId': partner.state_id.id if partner.state_id else None ,
 
         }]
 
