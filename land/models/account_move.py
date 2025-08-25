@@ -67,9 +67,39 @@ class AccountMove(models.Model):
         ('initial','Inicial')
     ],string='Estado Separación')
 
-    proveedores_land = fields.Char(compute="get_proveedores_land",store=True,string="Proveedor",copy=False)
-    mz_lot = fields.Char(string="MZ-LT", compute="get_proveedores_land",store=True,copy=False)
-    description_land = fields.Char(string="Descripcion", compute="get_proveedores_land")
+    proveedores_land   = fields.Char(compute="get_proveedores_land",store=True,string="Proveedor",copy=False)
+    mz_lot             = fields.Char(string="MZ-LT", compute="get_proveedores_land",store=True,copy=False)
+    description_land   = fields.Char(string="Descripcion", compute="get_proveedores_land")
+    nro_internal_land  = fields.Char(string="Expediente", compute="get_proveedores_land")
+
+    @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
+    def get_proveedores_land(self):
+        for record in self:
+            proveedor = []
+            mz_lot = None
+            description_land = ''
+            nro_internal_land = ''
+
+            for line in record.invoice_line_ids:
+                if line.sale_line_ids:
+                    for sale_line in line.sale_line_ids:
+                        order = sale_line.order_id
+                        mz_lot = order.mz_lot
+                        nro_internal_land = order.nro_internal_land
+                        if order.seller_land_id:
+                            if order.seller_land_id.name not in proveedor:
+                                proveedor.append(order.seller_land_id.name)
+                #if line.product_id.payment_land_dues:
+
+                description_land += line.name or  ''
+
+            record.proveedores_land = ",".join(proveedor) if proveedor else None
+            record.mz_lot = mz_lot
+            record.description_land = description_land
+            record.nro_internal_land = nro_internal_land
+
+
+
     vat = fields.Char(related='partner_id.vat',string="RUC/DNI")
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name',string="Doc")
     l10n_pe_vat_code    = fields.Char(related='partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code',string="Codigo Doc")
@@ -129,27 +159,7 @@ class AccountMove(models.Model):
         moves = self.env['account.move'].search([])
         moves[11000:12000].get_proveedores_land()
 
-    @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
-    def get_proveedores_land(self):
-        for record in self:
-            proveedor = []
-            mz_lot = None
-            description_land = ''
-            for line in record.invoice_line_ids:
-                if line.sale_line_ids:
-                    for sale_line in line.sale_line_ids:
-                        order = sale_line.order_id
-                        mz_lot = order.mz_lot
-                        if order.seller_land_id:
-                            if order.seller_land_id.name not in proveedor:
-                                proveedor.append(order.seller_land_id.name)
-                #if line.product_id.payment_land_dues:
 
-                description_land += line.name or  ''
-
-            record.proveedores_land = ",".join(proveedor) if proveedor else None
-            record.mz_lot = mz_lot
-            record.description_land = description_land
 
 
     @api.onchange('mz_land_separation_id', 'lot_land_separation_id')

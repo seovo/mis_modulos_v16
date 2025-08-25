@@ -122,7 +122,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 res.update({'districts': districts})
 
         #type_documents
-        type_documents =  request.env['l10n_latam.document.type'].sudo().search([])
+        type_documents =  request.env['l10n_latam.identification.type'].sudo().search([])
         if type_documents:
             res.update({'type_documents': type_documents})
 

@@ -95,7 +95,7 @@
                                                            <t t-foreach="type_documents" t-as="t">
                                                               <option t-att-value="t.id"
                                                                       t-att-selected="t.id == ('l10n_latam_identification_type_id' in checkout and country and checkout['l10n_latam_identification_type_id'] != '' and int(checkout['l10n_latam_identification_type_id']))">
-                                                                      <t t-esc="t.name" />
+                                                                      <t t-esc="t.name" /> (  <t t-esc="t.doc_code_prefix" /> )
                                                               </option>
                                                            </t>
                                                     </select>
