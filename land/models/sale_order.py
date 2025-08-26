@@ -827,9 +827,9 @@ class SaleOrder(models.Model):
                             'balan': 0,
                             'amount': inv_inicial.price_total,
                             'is_paid': True,
-                            'line_move_id': factura_linex.id,
+                            'line_move_id': inv_inicial.id,
                             'order_id': record.id ,
-                            'id_line_move_id': factura_linex.id
+                            'id_line_move_id': inv_inicial.id
                         }
 
                         if not exist_line:
