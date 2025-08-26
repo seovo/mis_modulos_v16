@@ -5,7 +5,7 @@ class ScheduleDuesLand(models.Model):
     _name          = 'schedule.dues.land'
     _description   = 'schedule.dues.land'
     number_due     = fields.Integer(string="Cuota")
-    date           = fields.Date(string="Fecha")
+    date           = fields.Date(string="Fecha Prevista")
     balan          = fields.Float(string="Balance")
     amount         = fields.Float(string="Mensualidad")
     #note           = fields.Text(string="Nota")

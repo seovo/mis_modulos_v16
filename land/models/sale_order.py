@@ -637,6 +637,36 @@ class SaleOrder(models.Model):
         orders.update_credit_saldo()
 
 
+    def invoice_lines_available_land(self):
+        invoice_lines = []
+        qty_invoiced = 0
+
+        for line in record.order_line:
+            if line.product_id.payment_land_dues and not line.product_id.is_independence:
+                qty_dues = line.product_uom_qty
+                total_dues = qty_dues * line.price_unit
+                price_unit = line.price_unit
+                for line_inv in line.invoice_lines:
+                    if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
+                        continue
+
+                    if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
+                        continue
+
+                    qty_invoiced += line_inv.quantity
+                    x = range(int(line_inv.quantity))
+
+                    for n in x:
+                        invoice_lines.append(line_inv)
+
+        if invoice_lines:
+            invoice_lines.reverse()
+
+        return qty_invoiced , invoice_lines
+
+
+
+
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land','date_first_due_land')
     def update_schedule(self):
         for record in self:
@@ -644,40 +674,16 @@ class SaleOrder(models.Model):
                 qty_dues = 0
                 total_dues = 0
                 price_unit = 0
-                qty_invoiced = 0
-
-                invoice_lines = []
+                qty_invoiced , invoice_lines = record.invoice_lines_available_land()
 
 
-                for line in record.order_line:
-                    if line.product_id.payment_land_dues and not line.product_id.is_independence:
-                        qty_dues = line.product_uom_qty
-                        total_dues = qty_dues * line.price_unit
-                        price_unit = line.price_unit
-
-
-                        for line_inv in line.invoice_lines:
+                schedule_land_dues = self.env['schedule.dues.land'].search([
+                    ('number_due','>',0),('order_id','=',record.id)
+                ])
 
 
 
-                            if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
-                                continue
-
-                            if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
-                                continue
-                            if 1 == 1 :
-                                #raise ValueError([line_inv.move_id,line_inv,line_inv.quantity])
-                                qty_invoiced += line_inv.quantity
-                                x = range(int(line_inv.quantity))
-
-                                for n in x:
-                                    invoice_lines.append(line_inv)
-
-
-                if invoice_lines:
-                    invoice_lines.reverse()
-
-                if not record.schedule_land_ids :
+                if not schedule_land_dues :
 
 
                     if qty_dues > 0:
@@ -691,7 +697,7 @@ class SaleOrder(models.Model):
                                 'is_paid' : True if (i + 1) <= qty_invoiced else False
                             }
 
-
+                            #predecir la fecha futura
 
                             datex = datex +  relativedelta(months=1)
 
@@ -704,7 +710,12 @@ class SaleOrder(models.Model):
                             except:
                                 raise ValueError(dx)
 
-                if record.schedule_land_ids :
+
+                schedule_land_dues = self.env['schedule.dues.land'].search([
+                    ('number_due','>',0),('order_id','=',record.id)
+                ])
+
+                if schedule_land_dues :
 
                     #invoices = self.env['account.move'].search([
                     #    ('id', 'in', record.invoice_ids.ids),
