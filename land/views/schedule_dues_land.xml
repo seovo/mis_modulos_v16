@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <search>
                 <filter name="show_cuotas" string="Cuotas" domain="[('number_due', '>=', 0)]" />
-                <filter name="show_advanced" string="Iniciales - Adelantos" domain="[('number_due', '<=', 0)]" />
+                <filter name="show_advanced" string="Iniciales - Adelantos" domain="[('number_due', '=', 0)]" />
                 <!--<filter name="show_separated" string="Separados" domain="[('state', '=', 'reserved')]" /> -->
                 <field name="nro_internal_land" />
                 <field name="order_id" />
