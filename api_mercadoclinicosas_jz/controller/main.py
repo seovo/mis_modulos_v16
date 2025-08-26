@@ -517,6 +517,29 @@ class ApiClinicos(http.Controller):
 
 
     #address
+    @http.route('/apiclinicos/address/<int:partner_id>', type="json", auth='public',
+                website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
+    def get_apiclinicos_address(self, partner_id, **data):
+        partner = request.env['res.partner'].sudo().search([('id','=',partner_id)])
+
+        address = [{
+            'id': partner.id ,
+            'name': partner.name ,
+            'address': partner.street ,
+            'neighborhood': partner.city ,
+            'email': partner.email ,
+            'phone': partner.phone ,
+            'country': partner.country_id.id if partner.country_id  else None ,
+            'stateId': partner.state_id.id if partner.state_id else None ,
+
+        }]
+
+        return address
+
+
+
+
+
     @http.route('/apiclinicos/address', type="json", auth='public',
                 website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
     def apiclinicos_address(self, **data):
@@ -529,7 +552,7 @@ class ApiClinicos(http.Controller):
             'email': data['email'],
             'phone': data['phone'],
             'country_id': int(data['country']),
-            'state_id':  int(data['state']),
+            'state_id':  int(data['stateId']),
         })
 
         return {
@@ -537,12 +560,12 @@ class ApiClinicos(http.Controller):
 
                 'id': usuario.id ,
                 'name': usuario.name ,
-                'city': usuario.city ,
-                'street': usuario.street ,
+                'neighborhood': usuario.city ,
+                'address': usuario.street ,
                 'phone': usuario.phone ,
                 'email': usuario.email  ,
-                'country_id': usuario.country_id.id ,
-                'state_id': usuario.state_id.id  ,
+                'country': usuario.country_id.id ,
+                'stateId': usuario.state_id.id  ,
             }
         }
 
@@ -574,6 +597,38 @@ class ApiClinicos(http.Controller):
 
 
         return {'contries': data}
+
+    @http.route('/apiclinicos/payment/create', type="json", auth='public',
+                website=True, methods=['POST', 'GET'], csrf=False, save_session=False)
+    def apiclinicos_payment_create(self, **kwargs):
+        data = http.request.httprequest.get_json()
+
+        website  = request.env['website'].sudo().search([('id','=',  data['website_id'] )])
+        partner = request.env['res.partner'].sudo().search([('id','=',  data['id_client'] )])
+
+        sale = request.env['sale.order'].sudo().create({
+            #'name': _("New"),
+            'partner_id': data['id_client'],
+            'partner_invoice_id': data['id_client'],
+            'partner_shipping_id': data['id_address'],
+            'website_id': data['website_id'],
+            'company_id': website.company_id.id ,
+            'user_id':website.salesperson_id ,
+            'payment_term_id' : website.with_company(website.company_id).sale_get_payment_term(partner)
+        })
+
+        for line in data['products']:
+
+            product = request.env['product.template'].sudo().search([('id','=',  line['id'] )])
+
+            sale._cart_update_order_line( product.product_variant_ids[0].id, line['quantity'], None, **kwargs)
+
+        return {
+            'id': sale.id
+        }
+
+
+
 
 
 
