@@ -207,10 +207,12 @@
 
                        </group>
 
-                       <field name="schedule_land_ids"
+                       <field name="schedule_land_ids" readonly="1" />
+
+                       <!--
                               create="false"
                               delete="false"
-                       />
+                       -->
 
                    </page>
                    <page string="Mora" >

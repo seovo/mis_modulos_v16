@@ -7,10 +7,13 @@
             <tree string="Sales"
                   decoration-danger="is_paid == False"
                   decoration-success="is_paid == True"
-                  create="false"
+                  >
+
+                <!-- create="false"
                   delete="false"
                   readonly="1"
-                  editable="bottom">
+                  editable="bottom" -->
+
                 <field name="number_due" readonly="1"  />
                 <!--
                 <button name="invoice_here_land" string="Pagar"
