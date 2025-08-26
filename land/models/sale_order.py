@@ -641,7 +641,7 @@ class SaleOrder(models.Model):
         invoice_lines = []
         qty_invoiced = 0
 
-        for line in record.order_line:
+        for line in self.order_line:
             if line.product_id.payment_land_dues and not line.product_id.is_independence:
                 qty_dues = line.product_uom_qty
                 total_dues = qty_dues * line.price_unit
