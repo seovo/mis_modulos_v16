@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
         ('regularizado','Regularizado'),
     ],string="Estado Terreno",copy=False)
     dues_land            = fields.Float(string="Cuotas",copy=False)
-    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='_update_text_mz_lote',digits=(12, 3))
+    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='get_amount_prices_land',digits=(12, 3))
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
     value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
@@ -64,13 +64,15 @@ class SaleOrder(models.Model):
             price_inicial = 0
             price_credit = 0
             price_iden = 0
-            amount_dues = 0
+            dues_land = 0
+            value_due = 0
             for line in record.order_line:
                 if line.product_id.is_advanced_land and not line.is_due_land:
                     price_inicial += line.price_total
                 if ( line.product_id.payment_land_dues or line.is_due_land ) and not line.product_id.is_independence:
                     price_credit += line.price_total
-                    amount_dues += line.product_uom_qty
+                    dues_land += line.product_uom_qty
+                    value_due = line.price_unit
 
                 if line.product_id.is_independence:
                     price_iden += line.price_total
@@ -81,7 +83,9 @@ class SaleOrder(models.Model):
             record.price_credit_land =  price_credit
             record.price_total_land = price_inicial + price_credit
             record.price_independence_land = price_iden
-            record.dues_land = amount_dues
+            record.dues_land = dues_land
+
+            record.value_due_land = value_due
 
     note = fields.Text()
     seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",copy=False)
@@ -638,14 +642,18 @@ class SaleOrder(models.Model):
 
 
     def invoice_lines_available_land(self):
-        invoice_lines = []
+        invoice_lines_dues = []
+        invoice_lines_initial = []
         qty_invoiced = 0
 
         for line in self.order_line:
+
+
+            #para cuotas
             if line.product_id.payment_land_dues and not line.product_id.is_independence:
-                qty_dues = line.product_uom_qty
-                total_dues = qty_dues * line.price_unit
-                price_unit = line.price_unit
+
+
+
                 for line_inv in line.invoice_lines:
                     if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
                         continue
@@ -657,12 +665,18 @@ class SaleOrder(models.Model):
                     x = range(int(line_inv.quantity))
 
                     for n in x:
-                        invoice_lines.append(line_inv)
+                        invoice_lines_dues.append(line_inv)
 
-        if invoice_lines:
-            invoice_lines.reverse()
+            #para iniciales
+            if line.product_id.is_advanced_land:
+                pass
 
-        return qty_invoiced , invoice_lines
+
+
+        if invoice_lines_dues:
+            invoice_lines_dues.reverse()
+
+        return qty_invoiced , invoice_lines_dues
 
 
 
@@ -671,9 +685,12 @@ class SaleOrder(models.Model):
     def update_schedule(self):
         for record in self:
             if record.date_first_due_land:
-                qty_dues = 0
-                total_dues = 0
-                price_unit = 0
+
+                record.get_amount_prices_land()
+
+                qty_dues = record.dues_land
+                total_dues = record.price_credit_land
+                price_unit = record.value_due_land
                 qty_invoiced , invoice_lines = record.invoice_lines_available_land()
 
 
@@ -961,27 +978,6 @@ class SaleOrder(models.Model):
 
 
 
-
-    def _update_text_mz_lote(self):
-        for record in self:
-
-            value_due = 0
-
-
-
-
-
-            for line in record.order_line:
-
-
-                if line.product_id.payment_land_dues:
-
-                    value_due = line.price_unit
-
-
-
-
-            record.value_due_land = value_due
 
     def _recalcule_price_land(self):
         for record in self:
