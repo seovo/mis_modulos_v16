@@ -648,28 +648,26 @@ class SaleOrder(models.Model):
 
         for line in self.order_line:
 
+            for line_inv in line.invoice_lines:
+                if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
+                    continue
 
-            #para cuotas
-            if line.product_id.payment_land_dues and not line.product_id.is_independence:
+                if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
+                    continue
 
 
-
-                for line_inv in line.invoice_lines:
-                    if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
-                        continue
-
-                    if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
-                        continue
-
+                #para cuotas
+                if line.product_id.payment_land_dues and not line.product_id.is_independence:
                     qty_invoiced += line_inv.quantity
                     x = range(int(line_inv.quantity))
 
                     for n in x:
                         invoice_lines_dues.append(line_inv)
 
-            #para iniciales
-            if line.product_id.is_advanced_land:
-                pass
+                #para iniciales
+                if line.product_id.is_advanced_land or line.product_id.is_separation_land:
+                    pass
+
 
 
 
