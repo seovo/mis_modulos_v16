@@ -123,7 +123,7 @@
 
     <menuitem action="action_report_dues_land"
               id="menu_report_dues_land"
-              parent="sale.sale_order_menu"
+              parent="sale.menu_sale_report"
               sequence="101"
     />
 

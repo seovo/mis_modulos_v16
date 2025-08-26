@@ -18,6 +18,7 @@ class ScheduleDuesLand(models.Model):
     currency_id    = fields.Many2one('res.currency',related='move_id.currency_id')
     amount_due_land = fields.Float(related='line_move_id.price_unit',string="Monto Pagado")
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
+    nro_internal_land =  fields.Char(string="Expediente",related='order_id.nro_internal_land',store=True)
 
     _order = 'number_due asc ,  invoice_date asc '
 

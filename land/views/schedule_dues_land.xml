@@ -1,5 +1,37 @@
 <odoo>
 
+    <record model="ir.ui.view" id="report_report_lot_land_line_tree" >
+        <field name="name">report.lot.land.line.tree</field>
+        <field name="model">report.lot.land.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sales"
+                                      decoration-danger="is_paid == False"
+                                      decoration-success="is_paid == True"
+                                      create="false"
+                                      delete="false"
+                                      readonly="1"
+                                      editable="bottom">
+                                    <field name="number_due" readonly="1"  />
+                                    <button name="invoice_here_land" string="Pagar"
+                                            groups="land.group_payment_cronograma"
+                                            type="object"  />
+                                    <field name="date" readonly="1" />
+                                    <field name="invoice_date" optional="show" readonly="1"  />
+                                    <field name="balan" readonly="1"  />
+                                    <field name="amount" readonly="1"   />
+
+                                    <field name="is_paid" readonly="1"   />
+                                    <field name="move_id"  optional="show" />
+
+                                    <field name="amount_due_land"  />
+                                    <field name="amount_mora_land"  />
+
+                                    <field name="line_move_id"  optional="hide" />
+
+                                </tree>
+        </field>
+    </record>
+
     <record id="action_schedule_dues_land" model="ir.actions.act_window">
         <field name="name">Reporte de Cuotas</field>
         <field name="type">ir.actions.act_window</field>
@@ -9,7 +41,7 @@
 
     <menuitem action="action_schedule_dues_land"
               id="menu_schedule_dues_land"
-              parent="sale.sale_order_menu"
+              parent="sale.menu_sale_report"
               sequence="102"
     />
 
