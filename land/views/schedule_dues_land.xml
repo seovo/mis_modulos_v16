@@ -1,6 +1,6 @@
 <odoo>
 
-    <record id="schedule_dues_land_view" model="ir.actions.act_window">
+    <record id="action_schedule_dues_land" model="ir.actions.act_window">
         <field name="name">Reporte de Cuotas</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">schedule.dues.land</field>
