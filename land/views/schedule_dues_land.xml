@@ -1,5 +1,27 @@
 <odoo>
 
+
+    <record model="ir.ui.view" id="schedule_dues_land_search" >
+        <field name="name">schedule.dues.land.search</field>
+        <field name="model">schedule.dues.land</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="show_cuotas" string="Cuotas" domain="[('number_due', '>=', 0)]" />
+                <filter name="show_advanced" string="Iniciales - Adelantos" domain="[('number_due', '<=', 0)]" />
+                <!--<filter name="show_separated" string="Separados" domain="[('state', '=', 'reserved')]" /> -->
+                <field name="nro_internal_land" />
+                <field name="order_id" />
+                <field name="line_move_id" />
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Expediente" name="gr_nro_internal_land" context="{'group_by': 'nro_internal_land'}"/>
+                    <filter string="Venta" name="gr_order_id" context="{'group_by': 'order_id'}"/>
+
+
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="schedule_dues_land_tree" >
         <field name="name">schedule.dues.land.tree</field>
         <field name="model">schedule.dues.land</field>
@@ -7,6 +29,7 @@
             <tree string="Sales"
                   decoration-danger="is_paid == False"
                   decoration-success="is_paid == True"
+                  delete="false"
                   >
 
                 <!-- create="false"
@@ -42,6 +65,14 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">schedule.dues.land</field>
         <field name="view_mode">tree</field>
+        <field name="context">
+            {
+               'search_default_gr_nro_internal_land' : 1 ,
+               'search_default_gr_order_id' : 1 ,
+            }
+        </field>
+
+
     </record>
 
     <menuitem action="action_schedule_dues_land"
