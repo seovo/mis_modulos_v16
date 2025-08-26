@@ -670,7 +670,6 @@ class SaleOrder(models.Model):
 
 
 
-
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
