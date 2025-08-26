@@ -666,14 +666,14 @@ class SaleOrder(models.Model):
 
                 #para iniciales
                 if line.product_id.is_advanced_land or line.product_id.is_separation_land:
-                    pass
+                    invoice_lines_initial.append(line_inv)
 
 
 
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
-        return qty_invoiced , invoice_lines_dues
+        return qty_invoiced , invoice_lines_dues , invoice_lines_initial
 
 
 
@@ -688,7 +688,7 @@ class SaleOrder(models.Model):
                 qty_dues = record.dues_land
                 total_dues = record.price_credit_land
                 price_unit = record.value_due_land
-                qty_invoiced , invoice_lines = record.invoice_lines_available_land()
+                qty_invoiced , invoice_lines , invoice_lines_initial = record.invoice_lines_available_land()
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
@@ -814,6 +814,28 @@ class SaleOrder(models.Model):
                             record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
                         # else:
                         #    exist_line.write(dx)
+
+                #Añadir iniciales:
+                if invoice_lines_initial:
+                    for inv_inicial in invoice_lines_initial:
+                        df = [('order_id','=',record.id),('id_line_move_id', '=', inv_inicial.id)]
+                        exist_line = self.env['schedule.dues.land'].search(df)
+
+                        dx = {
+                            'number_due': 0,
+                            'date': inv_inicial.move_id.invoice_date,
+                            'balan': 0,
+                            'amount': inv_inicial.price_total,
+                            'is_paid': True,
+                            'line_move_id': factura_linex.id,
+                            'order_id': record.id ,
+                            'id_line_move_id': factura_linex.id
+                        }
+
+                        if not exist_line:
+                            # raise ValueError([dx,exist_line])
+
+                            record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
 
 
 
