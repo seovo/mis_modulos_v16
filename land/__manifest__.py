@@ -32,6 +32,7 @@
         'report/report_resueltos.xml',
         'views/account_journal.xml',
         "report/report_sale.xml",
+        'views/schedule_dues_land.xml'
 
     ],
     # 'uninstall_hook': 'uninstall_hook',

@@ -1,0 +1,16 @@
+<odoo>
+
+    <record id="schedule_dues_land_view" model="ir.actions.act_window">
+        <field name="name">Reporte de Cuotas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">schedule.dues.land</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem action="action_schedule_dues_land"
+              id="menu_schedule_dues_land"
+              parent="sale.sale_order_menu"
+              sequence="102"
+    />
+
+</odoo>
