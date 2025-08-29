@@ -779,6 +779,7 @@ class SaleOrder(models.Model):
                 #para adelantos
                 #raise ValidationError(str(invoice_lines_adelanto))
 
+
                 invoice_lines_adelanto = []
 
                 for factura in record.invoice_ids:
