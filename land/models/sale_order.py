@@ -780,6 +780,7 @@ class SaleOrder(models.Model):
 
 
                 #para adelantos
+                raise ValidationError(str(invoice_lines_adelant))
 
                 if invoice_lines_adelanto:
                     for inv_line_ade in invoice_lines_adelanto:
