@@ -744,6 +744,7 @@ class SaleOrder(models.Model):
                     sche.write({
                         'date': datex ,
                         'balan': total_dues - (i*record.value_due_land) ,
+                        'amount': record.value_due_land
                     })
 
                     i += 1
