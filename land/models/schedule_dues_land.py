@@ -46,7 +46,7 @@ class ScheduleDuesLand(models.Model):
 
             record.description = description
 
-            record.order_identificador = f" {record.nro_internal_land}  - {record.order_id.name}"
+            record.order_identificador = f" {record.order_id.nro_internal_land}  - {record.order_id.name}"
 
 
 
