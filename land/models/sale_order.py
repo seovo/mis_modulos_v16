@@ -802,6 +802,7 @@ class SaleOrder(models.Model):
                             'type_number_schedule': 2
                         }
 
+
                         if not exist_line:
                             # raise ValueError([dx,exist_line])
 
