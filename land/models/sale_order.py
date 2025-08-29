@@ -675,7 +675,7 @@ class SaleOrder(models.Model):
                     invoice_lines_initial.append(line_inv)
 
                 #para adelanto de cuotas
-                if line.number_advance_land > 0 :
+                if line_inv.number_advance_land > 0 :
                     invoice_lines_adelanto.append(line_inv)
 
 
