@@ -705,7 +705,8 @@ class SaleOrder(models.Model):
                                 'date': None ,
                                 'balan': 0 ,
                                 'amount': 0 ,
-                                'is_paid' : False
+                                'is_paid' : False ,
+                                'move_id': False
                             }
                         sche.write(dx)
 
