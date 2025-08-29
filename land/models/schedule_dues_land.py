@@ -49,7 +49,7 @@ class ScheduleDuesLand(models.Model):
 
 
 
-    _order = 'type_number_schedule  asc , number_due asc ,  invoice_date asc '
+    _order = 'number_due asc ,  invoice_date asc '
 
     def invoice_here_land(self):
 
