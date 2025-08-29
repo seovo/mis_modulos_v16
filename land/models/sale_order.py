@@ -681,6 +681,9 @@ class SaleOrder(models.Model):
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land','date_first_due_land')
     def update_schedule(self):
         for record in self:
+
+            #si tiene fecha de inicio del cronograma
+
             if record.date_first_due_land:
 
                 record.get_amount_prices_land()
@@ -694,6 +697,23 @@ class SaleOrder(models.Model):
                 schedule_land_dues = self.env['schedule.dues.land'].search([
                     ('number_due','>',0),('order_id','=',record.id)
                 ])
+
+                if schedule_land_dues:
+                    for sche in schedule_land_dues:
+                        dx = {
+                                'number_due' : 0 ,
+                                'date': None ,
+                                'balan': 0 ,
+                                'amount': 0 ,
+                                'is_paid' : False
+                            }
+                        sche.write(dx)
+
+
+
+
+                #####lo antiguo
+                continue
 
 
 
