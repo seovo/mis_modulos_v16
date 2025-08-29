@@ -15,6 +15,8 @@
                 <group string="Group By..." expand="0" name="groupby">
                     <filter string="Expediente" name="gr_nro_internal_land" context="{'group_by': 'nro_internal_land'}"/>
                     <filter string="Venta" name="gr_order_id" context="{'group_by': 'order_id'}"/>
+                    <filter string="Expediente - Venta" name="gr_order_identificador" context="{'group_by': 'order_identificador'}"/>
+
 
 
                 </group>
@@ -71,8 +73,7 @@
         <field name="view_mode">tree</field>
         <field name="context">
             {
-               'search_default_gr_nro_internal_land' : 1 ,
-               'search_default_gr_order_id' : 1 ,
+               'search_default_gr_order_identificador' : 1
             }
         </field>
 
