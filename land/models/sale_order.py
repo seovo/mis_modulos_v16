@@ -768,7 +768,7 @@ class SaleOrder(models.Model):
                         pass
                     else:
                         schedule_land_dues[c].write({
-                            'paid': True ,
+                            'is_paid': True ,
                             'line_move_id': inv_line.id
                         })
 
