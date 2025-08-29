@@ -37,7 +37,7 @@
                   readonly="1"
                   editable="bottom" -->
 
-                <field name="number_due" readonly="1"  />
+                <field name="description" readonly="1"  />
                 <!--
                 <button name="invoice_here_land" string="Pagar"
                                             groups="land.group_payment_cronograma"

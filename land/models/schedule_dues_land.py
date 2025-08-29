@@ -20,8 +20,33 @@ class ScheduleDuesLand(models.Model):
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
     nro_internal_land =  fields.Char(string="Expediente",related='order_id.nro_internal_land',store=True)
 
+    name = fields.Char(compute="get_name_jz",store=True)
+    description = fields.Char(compute="get_name_jz",string="Descripción")
+
     # 0 -> Inicial , 1 --> Cuota , 2 --> Independizacion
     type_number_schedule = fields.Integer(string="Tipo de Schedule")
+
+    def get_name_jz(self):
+        for record in self:
+            n = f'''  {record.move_id.display_name }  {record.nro_internal_land}  {record.order_id.display_name}'''
+            n += f''' {record.line_move_id.display_name} {record.number_due}  '''
+            record.name = n
+
+            description = ''
+            if record.type_number_schedule  == 0:
+                type = 'INICIAL'
+
+            if record.type_number_schedule  == 1:
+                type = f'CUOTA #{record.number_due}'
+
+            if record.type_number_schedule  == 0:
+                type = f'INDEPENDIZACION #{record.number_due}'
+
+            record.description = description
+
+
+
+
 
     _order = 'type_number_schedule  asc , number_due asc ,  invoice_date asc '
 
