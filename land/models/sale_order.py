@@ -644,6 +644,7 @@ class SaleOrder(models.Model):
     def invoice_lines_available_land(self):
         invoice_lines_dues = []
         invoice_lines_initial = []
+        invoice_lines_adelanto = []
         qty_invoiced = 0
 
         for line in self.order_line:
@@ -673,12 +674,16 @@ class SaleOrder(models.Model):
                 if line.product_id.is_advanced_land or line.product_id.is_separation_land:
                     invoice_lines_initial.append(line_inv)
 
+                #para adelanto de cuotas
+                if line.number_advance_land > 0 :
+                    invoice_lines_adelanto.append(line_inv)
+
 
 
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
-        return qty_invoiced , invoice_lines_dues , invoice_lines_initial
+        return qty_invoiced , invoice_lines_dues , invoice_lines_initial , invoice_lines_adelanto
 
 
 
@@ -696,7 +701,7 @@ class SaleOrder(models.Model):
                 qty_dues = record.dues_land
                 total_dues = record.price_credit_land
                 #price_unit = record.value_due_land
-                qty_invoiced , invoice_lines , invoice_lines_initial = record.invoice_lines_available_land()
+                qty_invoiced , invoice_lines , invoice_lines_initial , invoice_lines_adelanto = record.invoice_lines_available_land()
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
@@ -766,22 +771,33 @@ class SaleOrder(models.Model):
                 c = 0
 
                 for inv_line in invoice_lines:
-                    if inv_line.number_advance_land > 0 :
+                    schedule_land_dues[c].write({
+                        'is_paid': True ,
+                        'line_move_id': inv_line.id
+                    })
+
+                    c += 1
+
+
+                #para adelantos
+
+                if invoice_lines_adelanto:
+                    for inv_line_ade in invoice_lines_adelanto:
                         #rellenar adelantos
                         df = [
                             ('order_id','=',record.id),
-                            ('line_move_id', '=', factura_linex.id),
+                            ('line_move_id', '=', inv_line_ade.id),
                             ('type_number_schedule', '=', 2)
                         ]
                         exist_line = self.env['schedule.dues.land'].search(df)
 
                         dx = {
-                            'number_due': factura_linex.number_advance_land,
-                            'date': factura_linex.move_id.invoice_date,
+                            'number_due': inv_line_ade.number_advance_land,
+                            'date': inv_line_ade.invoice_date,
                             'balan': 0,
 
                             'is_paid': True,
-                            'line_move_id': factura_linex.id,
+                            'line_move_id': inv_line_ade.id,
                             'order_id': record.id ,
                             'type_number_schedule': 2
                         }
@@ -792,14 +808,6 @@ class SaleOrder(models.Model):
                             record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
                         # else:
                         #    exist_line.write(dx)
-
-                    else:
-                        schedule_land_dues[c].write({
-                            'is_paid': True ,
-                            'line_move_id': inv_line.id
-                        })
-
-                    c += 1
 
 
                 #Añadir iniciales:
