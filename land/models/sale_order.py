@@ -712,7 +712,6 @@ class SaleOrder(models.Model):
 
 
 
-
                 #####lo antiguo
                 continue
 
