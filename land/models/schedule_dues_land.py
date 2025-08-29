@@ -26,7 +26,7 @@ class ScheduleDuesLand(models.Model):
     # 0 -> Inicial , 1 --> Cuota , 2 --> Independizacion
     type_number_schedule = fields.Integer(string="Tipo de Schedule")
 
-    @api.depends('move_id','nro_internal_land','order_id','line_move_id')
+    @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_number_schedule')
     def get_name_jz(self):
         for record in self:
             n = f'''  {record.move_id.display_name }  {record.nro_internal_land}  {record.order_id.display_name}'''
@@ -40,7 +40,7 @@ class ScheduleDuesLand(models.Model):
             if record.type_number_schedule  == 1:
                 type = f'CUOTA #{record.number_due}'
 
-            if record.type_number_schedule  == 0:
+            if record.type_number_schedule  == 2:
                 type = f'INDEPENDIZACION #{record.number_due}'
 
             record.description = description

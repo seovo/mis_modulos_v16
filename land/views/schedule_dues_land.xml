@@ -38,6 +38,9 @@
                   editable="bottom" -->
 
                 <field name="description" readonly="1"  />
+
+                <field name="number_due" readonly="1" optional="hidden" />
+                <field name="type_number_schedule" readonly="1" optional="hidden" />
                 <!--
                 <button name="invoice_here_land" string="Pagar"
                                             groups="land.group_payment_cronograma"
