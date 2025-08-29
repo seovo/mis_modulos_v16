@@ -21,6 +21,7 @@ class ScheduleDuesLand(models.Model):
     nro_internal_land =  fields.Char(string="Expediente",related='order_id.nro_internal_land',store=True)
 
     name = fields.Char(compute="get_name_jz",store=True)
+    order_identificador = fields.Char(compute="get_name_jz",store=True,string="Expediente - Venta")
     description = fields.Char(compute="get_name_jz",string="Descripción")
 
     # 0 -> Inicial , 1 --> Cuota , 3 --> Adelantos ,  3 --> Independizacion
@@ -44,6 +45,8 @@ class ScheduleDuesLand(models.Model):
                 description = f'ADELANTO CUOTA #{record.number_due}'
 
             record.description = description
+
+            record.order_identificador = f" {record.record.nro_internal_land}  - {record.name}"
 
 
 
