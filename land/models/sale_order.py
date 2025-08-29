@@ -649,6 +649,11 @@ class SaleOrder(models.Model):
         for line in self.order_line:
 
             for line_inv in line.invoice_lines:
+
+                if line_inv.move_id.move_type in ['out_refund']:
+                    continue
+
+
                 if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
                     continue
 
@@ -726,7 +731,12 @@ class SaleOrder(models.Model):
                             }
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
 
-                #crear las fechas previstas
+
+                schedule_land_dues = self.env['schedule.dues.land'].search([
+                    ('type_number_schedule','=',1),('order_id','=',record.id)
+                ])
+
+                #crear las fechas previstas y balances
                 datex = record.date_first_due_land
                 i = 0
                 for sche in schedule_land_dues:
@@ -748,6 +758,23 @@ class SaleOrder(models.Model):
                 schedule_land_dues = self.env['schedule.dues.land'].search([
                     ('type_number_schedule','=',1),('order_id','=',record.id)
                 ])
+
+                #rellenar las facturas secuencialmente
+
+                c = 0
+
+                for inv_line in invoice_lines:
+                    if linex.line_move_id.number_advance_land > 0 :
+                        pass
+                    else:
+                        schedule_land_dues[c].write({
+                            'paid': True ,
+                            'line_move_id': inv_line.id
+                        })
+
+
+
+
 
 
                 #####lo antiguo
