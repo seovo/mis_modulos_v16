@@ -68,6 +68,8 @@ class ScheduleDuesLand(models.Model):
             ('invoice_ids','!=',False)
         ],limit=50)
 
+        raise ValidationError(str(ventas))
+
 
         ventas.update_schedule()
 
