@@ -61,19 +61,15 @@ class ScheduleDuesLand(models.Model):
         #select * FROM schedule_dues_land ;
 
         ventas = self.env['sale.order'].search([
-            ('nro_internal_land','!=',False),
-            ('stage_land','!=','cancel'),
-            ('stage_land','!=',False),
+            #('nro_internal_land','!=',False),
+            #('stage_land','!=','cancel'),
+            #('stage_land','!=',False),
             ('schedule_land_ids','!=',False),
             ('invoice_ids','!=',False)
         ],limit=50)
 
 
         ventas.update_schedule()
-
-
-        return
-
 
 
 
