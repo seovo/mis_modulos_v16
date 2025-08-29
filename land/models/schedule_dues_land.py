@@ -64,11 +64,11 @@ class ScheduleDuesLand(models.Model):
             #('nro_internal_land','!=',False),
             #('stage_land','!=','cancel'),
             #('stage_land','!=',False),
-            ('schedule_land_ids','!=',False),
+            ('schedule_land_ids','=',False),
             ('invoice_ids','!=',False)
         ],limit=50)
 
-        raise ValidationError(str(ventas))
+        #raise ValidationError(str(ventas))
 
 
         ventas.update_schedule()
