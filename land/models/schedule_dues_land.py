@@ -23,7 +23,7 @@ class ScheduleDuesLand(models.Model):
     name = fields.Char(compute="get_name_jz",store=True)
     description = fields.Char(compute="get_name_jz",string="Descripción")
 
-    # 0 -> Inicial , 1 --> Cuota , 2 --> Independizacion
+    # 0 -> Inicial , 1 --> Cuota , 3 --> Adelantos ,  3 --> Independizacion
     type_number_schedule = fields.Integer(string="Tipo de Schedule")
 
     @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_number_schedule')
@@ -41,7 +41,7 @@ class ScheduleDuesLand(models.Model):
                 description = f'CUOTA #{record.number_due}'
 
             if record.type_number_schedule  == 2:
-                description = f'INDEPENDIZACION #{record.number_due}'
+                description = f'ADELANTO CUOTA #{record.number_due}'
 
             record.description = description
 

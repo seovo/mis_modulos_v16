@@ -765,7 +765,31 @@ class SaleOrder(models.Model):
 
                 for inv_line in invoice_lines:
                     if inv_line.number_advance_land > 0 :
-                        pass
+                        df = [
+                            ('order_id','=',record.id),
+                            ('line_move_id', '=', factura_linex.id),
+                            ('type_number_schedule', '=', 2)
+                        ]
+                        exist_line = self.env['schedule.dues.land'].search(df)
+
+                        dx = {
+                            'number_due': factura_linex.number_advance_land,
+                            'date': factura_linex.move_id.invoice_date,
+                            'balan': 0,
+
+                            'is_paid': True,
+                            'line_move_id': factura_linex.id,
+                            'order_id': record.id ,
+                            'type_number_schedule': 2
+                        }
+
+                        if not exist_line:
+                            # raise ValueError([dx,exist_line])
+
+                            record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
+                        # else:
+                        #    exist_line.write(dx)
+
                     else:
                         schedule_land_dues[c].write({
                             'is_paid': True ,
@@ -775,7 +799,32 @@ class SaleOrder(models.Model):
                     c += 1
 
 
+                #Añadir iniciales:
+                if invoice_lines_initial:
+                    for inv_inicial in invoice_lines_initial:
+                        df = [
+                            ('order_id','=',record.id),
+                            ('line_move_id', '=', inv_inicial.id),
+                            ('type_number_schedule', '=', 0)
+                        ]
+                        exist_line = self.env['schedule.dues.land'].search(df)
 
+                        dx = {
+                            'number_due': 0,
+                            'date': inv_inicial.move_id.invoice_date,
+                            'balan': 0,
+                            #'amount': inv_inicial.price_total,
+                            'is_paid': True,
+                            'line_move_id': inv_inicial.id,
+                            'order_id': record.id ,
+                            'type_number_schedule': 0
+
+                        }
+
+                        if not exist_line:
+                            # raise ValueError([dx,exist_line])
+
+                            record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
 
 
 
@@ -902,27 +951,7 @@ class SaleOrder(models.Model):
                         # else:
                         #    exist_line.write(dx)
 
-                #Añadir iniciales:
-                if invoice_lines_initial:
-                    for inv_inicial in invoice_lines_initial:
-                        df = [('order_id','=',record.id),('id_line_move_id', '=', inv_inicial.id)]
-                        exist_line = self.env['schedule.dues.land'].search(df)
 
-                        dx = {
-                            'number_due': 0,
-                            'date': inv_inicial.move_id.invoice_date,
-                            'balan': 0,
-                            'amount': inv_inicial.price_total,
-                            'is_paid': True,
-                            'line_move_id': inv_inicial.id,
-                            'order_id': record.id ,
-                            'id_line_move_id': inv_inicial.id
-                        }
-
-                        if not exist_line:
-                            # raise ValueError([dx,exist_line])
-
-                            record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
 
 
 
