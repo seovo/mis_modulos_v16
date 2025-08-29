@@ -764,7 +764,7 @@ class SaleOrder(models.Model):
                 c = 0
 
                 for inv_line in invoice_lines:
-                    if linex.line_move_id.number_advance_land > 0 :
+                    if inv_line.number_advance_land > 0 :
                         pass
                     else:
                         schedule_land_dues[c].write({
