@@ -726,7 +726,24 @@ class SaleOrder(models.Model):
                             }
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
 
+                #crear las fechas previstas
+                datex = record.date_first_due_land
+                for sche in schedule_land_dues:
+                    sche.write({
+                        'date': datex ,
+                    })
 
+                    #predecir la fecha futura
+
+                    datex = datex +  relativedelta(months=1)
+
+                    if datex.day > 24:
+                        datex = datetime(year=datex.year, month=datex.month, day=1, hour=10) +  relativedelta(months=1)
+                        datex = datex - timedelta(days=1)
+
+                schedule_land_dues = self.env['schedule.dues.land'].search([
+                    ('type_number_schedule','=',1),('order_id','=',record.id)
+                ])
 
 
                 #####lo antiguo
