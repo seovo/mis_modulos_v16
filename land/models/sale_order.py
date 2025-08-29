@@ -706,7 +706,9 @@ class SaleOrder(models.Model):
                                 'balan': 0 ,
                                 'amount': 0 ,
                                 'is_paid' : False ,
-                                'line_move_id': False
+                                'line_move_id': False ,
+                                'invoice_date': False ,
+                                'nro_internal_land': False
                             }
                         sche.write(dx)
 
