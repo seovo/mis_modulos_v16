@@ -7,7 +7,7 @@ class ScheduleDuesLand(models.Model):
     number_due     = fields.Integer(string="Cuota")
     date           = fields.Date(string="Fecha Prevista")
     balan          = fields.Float(string="Balance")
-    amount         = fields.Float(string="Mensualidad")
+    amount         = fields.Float(string="Mensualidad",related='move_id.value_due_land')
     #note           = fields.Text(string="Nota")
     is_paid        = fields.Boolean(string="Pagado?")
     order_id       = fields.Many2one('sale.order',string='Venta')

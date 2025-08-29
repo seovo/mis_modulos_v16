@@ -47,12 +47,13 @@
                                             type="object"  />
                 -->
                 <field name="date" readonly="1" />
-                <field name="invoice_date" optional="show" readonly="1"  />
+
                 <field name="balan" readonly="1"  />
                 <field name="amount" readonly="1"   />
 
                 <field name="is_paid" readonly="1"   />
                 <field name="move_id"  optional="show" />
+                <field name="invoice_date" optional="show" readonly="1"  />
 
                 <field name="amount_due_land"  />
                 <field name="amount_mora_land"  />

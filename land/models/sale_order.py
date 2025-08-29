@@ -690,7 +690,7 @@ class SaleOrder(models.Model):
 
                 qty_dues = record.dues_land
                 total_dues = record.price_credit_land
-                price_unit = record.value_due_land
+                #price_unit = record.value_due_land
                 qty_invoiced , invoice_lines , invoice_lines_initial = record.invoice_lines_available_land()
 
 
@@ -705,7 +705,7 @@ class SaleOrder(models.Model):
                             'number_due' : c + 1 ,
                             'date': None ,
                             'balan': 0 ,
-                            'amount': 0 ,
+                            #'amount': 0 ,
                             'is_paid' : False ,
                             'line_move_id': False ,
                             'invoice_date': False ,
@@ -728,12 +728,14 @@ class SaleOrder(models.Model):
 
                 #crear las fechas previstas
                 datex = record.date_first_due_land
+                i = 0
                 for sche in schedule_land_dues:
                     sche.write({
                         'date': datex ,
+                        'balan': total_dues - (i*record.value_due_land) ,
                     })
 
-                    #predecir la fecha futura
+                    #predecir la siguiente fecha futura
 
                     datex = datex +  relativedelta(months=1)
 
