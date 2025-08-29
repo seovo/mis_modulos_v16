@@ -695,22 +695,31 @@ class SaleOrder(models.Model):
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
-                    ('number_due','>',0),('order_id','=',record.id)
+                    ('type_number_schedule','=',1),('order_id','=',record.id)
                 ])
 
                 if schedule_land_dues:
                     for sche in schedule_land_dues:
                         dx = {
-                                'number_due' : 0 ,
-                                'date': None ,
-                                'balan': 0 ,
-                                'amount': 0 ,
-                                'is_paid' : False ,
-                                'line_move_id': False ,
-                                'invoice_date': False ,
-                                'nro_internal_land': False
-                            }
+                            'number_due' : 0 ,
+                            'date': None ,
+                            'balan': 0 ,
+                            'amount': 0 ,
+                            'is_paid' : False ,
+                            'line_move_id': False ,
+                            'invoice_date': False ,
+                            'nro_internal_land': False
+                        }
                         sche.write(dx)
+
+                else:
+                    #crear cuotas
+                    if qty_dues > 0:
+
+                        for i in range(int(qty_dues)):
+                            dx = {}
+                            record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
+
 
 
 

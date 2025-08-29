@@ -20,7 +20,10 @@ class ScheduleDuesLand(models.Model):
     amount_mora_land = fields.Float(related='move_id.amount_mora_land',string="Mora")
     nro_internal_land =  fields.Char(string="Expediente",related='order_id.nro_internal_land',store=True)
 
-    _order = 'number_due asc ,  invoice_date asc '
+    # 0 -> Inicial , 1 --> Cuota , 2 --> Independizacion
+    type_number_schedule = fields.Integer(string="Tipo de Schedule")
+
+    _order = 'type_number_schedule  asc , number_due asc ,  invoice_date asc '
 
     def invoice_here_land(self):
 
