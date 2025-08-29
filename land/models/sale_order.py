@@ -710,7 +710,7 @@ class SaleOrder(models.Model):
                             'number_due' : c + 1 ,
                             'date': None ,
                             'balan': 0 ,
-                            #'amount': 0 ,
+                            'amount': 0 ,
                             'is_paid' : False ,
                             'line_move_id': False ,
                             'invoice_date': False ,
@@ -727,7 +727,8 @@ class SaleOrder(models.Model):
                         for i in range(int(qty_dues)):
                             dx = {
                                 'number_due' : i + 1 ,
-                                'type_number_schedule': 1
+                                'type_number_schedule': 1 ,
+                                'amount': record.value_due_land
                             }
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
 
@@ -765,6 +766,7 @@ class SaleOrder(models.Model):
 
                 for inv_line in invoice_lines:
                     if inv_line.number_advance_land > 0 :
+                        #rellenar adelantos
                         df = [
                             ('order_id','=',record.id),
                             ('line_move_id', '=', factura_linex.id),
@@ -812,8 +814,8 @@ class SaleOrder(models.Model):
                         dx = {
                             'number_due': 0,
                             'date': inv_inicial.move_id.invoice_date,
-                            'balan': 0,
-                            #'amount': inv_inicial.price_total,
+                            'balan':  inv_inicial.price_total,
+                            'amount': inv_inicial.price_total,
                             'is_paid': True,
                             'line_move_id': inv_inicial.id,
                             'order_id': record.id ,
