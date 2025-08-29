@@ -735,6 +735,8 @@ class SaleOrder(models.Model):
                         'balan': total_dues - (i*record.value_due_land) ,
                     })
 
+                    i += 1
+
                     #predecir la siguiente fecha futura
 
                     datex = datex +  relativedelta(months=1)
