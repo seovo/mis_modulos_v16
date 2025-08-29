@@ -644,7 +644,7 @@ class SaleOrder(models.Model):
     def invoice_lines_available_land(self):
         invoice_lines_dues = []
         invoice_lines_initial = []
-        invoice_lines_adelanto = []
+
         qty_invoiced = 0
 
         for line in self.order_line:
@@ -675,16 +675,13 @@ class SaleOrder(models.Model):
                     invoice_lines_initial.append(line_inv)
 
                 #para adelanto de cuotas
-                if line_inv.number_advance_land > 0 :
-                    invoice_lines_adelanto.append(line_inv)
 
 
 
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
-        return qty_invoiced , invoice_lines_dues , invoice_lines_initial , invoice_lines_adelanto
-
+        return qty_invoiced , invoice_lines_dues , invoice_lines_initial
 
 
 
@@ -701,7 +698,7 @@ class SaleOrder(models.Model):
                 qty_dues = record.dues_land
                 total_dues = record.price_credit_land
                 #price_unit = record.value_due_land
-                qty_invoiced , invoice_lines , invoice_lines_initial , invoice_lines_adelanto = record.invoice_lines_available_land()
+                qty_invoiced , invoice_lines , invoice_lines_initial  = record.invoice_lines_available_land()
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
@@ -780,7 +777,14 @@ class SaleOrder(models.Model):
 
 
                 #para adelantos
-                raise ValidationError(str(invoice_lines_adelanto))
+                #raise ValidationError(str(invoice_lines_adelanto))
+
+                invoice_lines_adelanto = []
+
+                for factura in record.invoice_ids:
+                    for factura_line in factura.invoice_line_ids:
+                        if not factura_line.sale_line_ids and factura_line.number_advance_land > 0:
+                            invoice_lines_adelanto.append(factura_line)
 
                 if invoice_lines_adelanto:
                     for inv_line_ade in invoice_lines_adelanto:
