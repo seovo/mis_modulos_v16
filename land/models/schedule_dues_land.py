@@ -55,56 +55,25 @@ class ScheduleDuesLand(models.Model):
     _order = 'number_due asc ,  invoice_date asc '
 
     def invoice_here_land(self):
+        pass
 
-        #if not self.order_id.journal_id:
-        #    raise ValidationError('INDIQUE UN DIARIO')
+    def update_all_cronogramas(self):
+        #select * FROM schedule_dues_land ;
 
-        numer_due = self.number_due
-        sale = self.order_id
-
-        for invc in self.order_id.invoice_ids:
-            if invc.amount_total == self.order_id.price_initial_land:
-                #invc.invoice_date = self.order_id.date_sign_land
-                invc.get_is_initial_land()
-
-        invoice_idsx = self.order_id.invoice_ids
-        invoice_ids = []
-
-        for inv in invoice_idsx:
-            if inv.is_initial_land :
-                continue
-            invoice_ids.append(inv.id)
+        ventas = self.env['sale.order'].search([
+            ('nro_internal_land','!=',False),
+            ('stage_land','!=','cancel'),
+            ('stage_land','!=',False),
+            ('schedule_land_ids','!=',False),
+            ('invoice_ids','!=',False)
+        ],limit=50)
 
 
-        invoices = self.order_id.env['account.move'].search([
-            ('id', 'in', invoice_ids),
-            ('is_initial_land','!=',True)
-        ], order='invoice_date asc')
+        ventas.update_schedule()
 
-        len_invoices = len(invoices)
 
-        diff_invoices = numer_due - len_invoices
+        return
 
-        if diff_invoices > 0:
-            for i in range(diff_invoices):
-                dx = {
-                    'advance_payment_method': 'delivered',
-                    'sale_order_ids': [(6, 0, [sale.id])],
-                    'journal_id':  self.order_id.journal_id.id  if   self.order_id.journal_id.id else 10
-
-                }
-                wizard = self.env['sale.advance.payment.inv'].create(dx)
-                wizard.create_invoices()
-
-        self.order_id.update_dates_land()
-
-        for invoice in self.order_id.invoice_ids:
-            if invoice.state == 'draft':
-                invoice.action_post()
-
-        self.order_id.update_schedule()
-
-        self.order_id.journal_id = None
 
 
 
