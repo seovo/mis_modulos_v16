@@ -772,6 +772,8 @@ class SaleOrder(models.Model):
                             'line_move_id': inv_line.id
                         })
 
+                    c += 1
+
 
 
 
