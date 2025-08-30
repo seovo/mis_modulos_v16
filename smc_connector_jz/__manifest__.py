@@ -22,7 +22,8 @@
     "depends": ["base","account"],
     # always loaded
     "data": [
-        'views/account_move.xml'
+        'views/account_move.xml',
+        'views/res_company.xml'
 
     ],
     "license": "LGPL-3"
