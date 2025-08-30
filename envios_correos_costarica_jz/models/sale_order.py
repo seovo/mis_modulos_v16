@@ -230,7 +230,7 @@ class SaleOrder(models.Model):
             }
 
             try:
-                responsex = requests.post(urlx, data=xml_data, headers=headers)
+                responsex = requests.post(urlx, data=xml_data.encode('utf-8'), headers=headers)
             except:
 
                 xml_dict = xmltodict.parse(xml_data)

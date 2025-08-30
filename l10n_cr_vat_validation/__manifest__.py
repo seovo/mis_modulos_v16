@@ -11,5 +11,5 @@
         # reports
         # views
     ],
-    "auto_install": True,
+    #"auto_install": True,
 }
