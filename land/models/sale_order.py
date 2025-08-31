@@ -702,7 +702,7 @@ class SaleOrder(models.Model):
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
-                    ('type_number_schedule','=',1),('order_id','=',record.id)
+                    ('type_schedule','=','dues'),('order_id','=',record.id)
                 ])
 
                 if schedule_land_dues:
@@ -717,7 +717,7 @@ class SaleOrder(models.Model):
                             'line_move_id': False ,
                             'invoice_date': False ,
                             'nro_internal_land': False ,
-                            'type_number_schedule': 1
+                            'type_schedule': 'dues'
                         }
                         sche.write(dx)
                         c += 1
@@ -729,14 +729,14 @@ class SaleOrder(models.Model):
                         for i in range(int(qty_dues)):
                             dx = {
                                 'number_due' : i + 1 ,
-                                'type_number_schedule': 1 ,
+                                'type_schedule': 'dues',
                                 'amount': record.value_due_land
                             }
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
-                    ('type_number_schedule','=',1),('order_id','=',record.id)
+                    ('type_schedule','=','dues'),('order_id','=',record.id)
                 ])
 
                 #crear las fechas previstas y balances
@@ -760,7 +760,7 @@ class SaleOrder(models.Model):
                         datex = datex - timedelta(days=1)
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
-                    ('type_number_schedule','=',1),('order_id','=',record.id)
+                    ('type_schedule','=','dues'),('order_id','=',record.id)
                 ])
 
                 #rellenar las facturas secuencialmente
@@ -774,6 +774,8 @@ class SaleOrder(models.Model):
                     })
 
                     c += 1
+
+                ## FIN DE CUOTASS
 
 
                 #para adelantos
@@ -793,7 +795,7 @@ class SaleOrder(models.Model):
                         df = [
                             ('order_id','=',record.id),
                             ('line_move_id', '=', inv_line_ade.id),
-                            ('type_number_schedule', '=', 2)
+                            ('type_schedule','=','advances')
                         ]
                         exist_line = self.env['schedule.dues.land'].search(df)
 
@@ -805,7 +807,7 @@ class SaleOrder(models.Model):
                             'is_paid': True,
                             'line_move_id': inv_line_ade.id,
                             'order_id': record.id ,
-                            'type_number_schedule': 2
+                            'type_schedule': 'advances'
                         }
 
 
@@ -823,7 +825,7 @@ class SaleOrder(models.Model):
                         df = [
                             ('order_id','=',record.id),
                             ('line_move_id', '=', inv_inicial.id),
-                            ('type_number_schedule', '=', 0)
+                            ('type_schedule','=','initial')
                         ]
                         exist_line = self.env['schedule.dues.land'].search(df)
 
@@ -835,7 +837,7 @@ class SaleOrder(models.Model):
                             'is_paid': True,
                             'line_move_id': inv_inicial.id,
                             'order_id': record.id ,
-                            'type_number_schedule': 0
+                            'type_schedule': 'initial'
 
                         }
 

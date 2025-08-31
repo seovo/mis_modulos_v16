@@ -25,7 +25,12 @@ class ScheduleDuesLand(models.Model):
     description = fields.Char(compute="get_name_jz",string="Descripción")
 
     # 0 -> Inicial , 1 --> Cuota , 3 --> Adelantos ,  3 --> Independizacion
-    type_number_schedule = fields.Integer(string="Tipo de Schedule")
+    type_schedule = fields.Selection([
+        ('initial','Inicial'),
+        ('dues','Cuotas'),
+        ('advances','Adelantos'),
+        ('Independence','Independizacion')
+    ],string="Tipo de Schedule")
 
     @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_number_schedule')
     def get_name_jz(self):
@@ -59,6 +64,7 @@ class ScheduleDuesLand(models.Model):
 
     def update_all_cronogramas(self):
         #select * FROM schedule_dues_land ;
+        #TRUNCATE TABLE schedule_dues_land RESTART IDENTITY;
 
         ventas = self.env['sale.order'].search([
             #('nro_internal_land','!=',False),
