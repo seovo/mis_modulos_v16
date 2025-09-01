@@ -82,6 +82,7 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 15, 'ESTADO', bold)
         sheet.set_column('P:P', 15)
 
+
         xc += 1
 
 
