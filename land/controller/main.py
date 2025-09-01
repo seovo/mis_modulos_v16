@@ -30,7 +30,7 @@ class Binary(http.Controller):
             ('Content-Disposition', content_disposition(filename))
         ])
 
-    @http.route('/web/binary/download_excell_report_schedule_land_sale/<model("sale.order"):sale>', type='http', auth="public")
+    @http.route('/web/binary/download_excell_report_schedule_land_order/<model("sale.order"):sale>', type='http', auth="public")
     #@serialize_exception
     def download_excell_report_schedule_land_sale(self, sale , **kw):
         excel_data = request.env['report.schedule.land'].get_report_xls(None,sale=sale)
