@@ -41,6 +41,8 @@ class ReportScheduleLand(models.TransientModel):
         format_body = workbook.add_format(
             {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
 
+        sheet.set_column('B:B', 50)
+
         sheet.write(xc, 1, 'EXPEDIENTE', bold)
         sheet.write(xc, 2, 'MZ', bold)
         sheet.write(xc, 3, 'LOTE', bold)
