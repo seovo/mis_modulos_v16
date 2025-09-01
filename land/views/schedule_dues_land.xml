@@ -86,6 +86,32 @@
         <field name="target">new</field>
     </record>
 
+
+    <record model="ir.ui.view" id="view_report_schedule_land">
+            <field name="name">report.schedule.land.form</field>
+            <field name="model">report.schedule.land</field>
+            <field name="arch" type="xml">
+                <form string="Server Form">
+                    <sheet>
+                        <group>
+                            <field name="company_id" />
+                        </group>
+
+
+
+                        <footer>
+                            <button name="do_excell" string="Generar Excell" type="object" class="oe_highlight" />
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+
+
+
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+
     <menuitem id="report_schedules_parent"  sequence="102"
               parent="sale.menu_sale_report"  name="Reporte de Cuotas" >
         <menuitem action="action_schedule_dues_land" id="menu_schedule_dues_land" />
