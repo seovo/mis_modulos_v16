@@ -10,6 +10,13 @@ try:
 except:
     install('xlsxwriter')
 
+try:
+    import tempfile
+except:
+    install('tempfile')
+
+
+
 class ReportScheduleLand(models.TransientModel):
     _name = "report.schedule.land"
     _description  = "report.schedule.land"
