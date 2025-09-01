@@ -137,7 +137,7 @@
                    <field name="price_initial_land"  readonly="1" force_save="1" />
                    <field name="price_credit_land"  readonly="1" force_save="1" />
 
-                   <hr/><br />
+                    <hr/><br />
                     <field name="price_total_land"  readonly="1" force_save="1" />
                     <field name="price_independence_land"  readonly="1" force_save="1" />
 
@@ -147,7 +147,7 @@
 
                <xpath expr="//header" position="inside" >
 
-
+                   <button name="print_report_schedule_excell" string="Reporte Pagos Excell" type="object"  />
                    <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
                    <button name="show_lot_availables" string="Mostrar Lotes" type="object"  />
                    <button name="update_dates_land" string="Reorganizar Fechas" type="object" groups="land.group_reordenate_date_sale"  />

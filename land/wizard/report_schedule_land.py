@@ -15,6 +15,15 @@ class ReportScheduleLand(models.TransientModel):
     _description  = "report.schedule.land"
     company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
 
+    def print_report_schedule_excell(self,order):
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/binary/download_excell_report_schedule_land_order/{order.id}',
+            'target': 'self',
+        }
+
+
+
     def do_excell(self):
         return {
             'type': 'ir.actions.act_url',
@@ -44,8 +53,9 @@ class ReportScheduleLand(models.TransientModel):
         # Definir el formato para las celdas coloreadas
         format_red = workbook.add_format({
           'bg_color': '#FFCCCC',  # Color de fondo (rojo claro)
-         'font_color': '#000000',  # Color de texto (negro)
-         'bold': True  # Opcional: texto en negrita
+          'font_color': '#000000',  # Color de texto (negro)
+          'bold': True ,  # Opcional: texto en negrita ,
+          'align': 'center', 'valign': 'vcenter'
         })
 
 

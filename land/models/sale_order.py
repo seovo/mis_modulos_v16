@@ -1486,6 +1486,8 @@ class SaleOrder(models.Model):
 
         return res
 
+    def print_report_schedule_excell(self):
+        self.env['report.schedule.land'].print_report_schedule_excell(self)
 
 
 
