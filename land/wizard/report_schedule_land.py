@@ -66,7 +66,7 @@ class ReportScheduleLand(models.TransientModel):
 
             order = schedule_due.order_id
 
-            invoice_pagada = str(schedule_due.invoice_date) if schedule_due.invoice_date else fields.Datetime.now().date()
+            invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
 
             sheet.write(xc, 1, schedule_due.nro_internal_land, format_body)
             sheet.write(xc, 2, order.mz_land, format_body)
@@ -74,15 +74,15 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
             sheet.write(xc, 5, order.m2_land, format_body)
             sheet.write(xc, 6, str(schedule_due.date), format_body)
-            sheet.write(xc, 7, invoice_pagada , format_body)
-            sheet.write(xc, 8, 'DIAS VENCIDOS', format_body)
-            sheet.write(xc, 9, 'N° CUOTA', format_body)
-            sheet.write(xc, 10, 'MONTO', format_body)
-            sheet.write(xc, 11, 'ETAPA', format_body)
-            sheet.write(xc, 10, 'EMPRESA', format_body)
-            sheet.write(xc, 10, 'COMPROBANTE DE CUOTA', format_body)
-            sheet.write(xc, 10, 'FECHA DE EMISION', format_body)
-            sheet.write(xc, 10, 'ESTADO', format_body)
+            sheet.write(xc, 7, str(invoice_pagada) , format_body)
+            sheet.write(xc, 8, (invoice_pagada - schedule_due.date ).days , format_body)
+            sheet.write(xc, 9, schedule_due.number_due, format_body)
+            sheet.write(xc, 10, schedule_due.amount_due_land , format_body)
+            sheet.write(xc, 11, schedule_due.sector_land, format_body)
+            sheet.write(xc, 10, order.company_id.display_name, format_body)
+            sheet.write(xc, 10, schedule_due.move_id.display_name, format_body)
+            sheet.write(xc, 10, str(schedule_due.invoice_date or '') , format_body)
+            sheet.write(xc, 10, 'CANCELADO'  if schedule_due.is_paid else 'PENDIENTE', format_body)
 
             xc +=  1
 
