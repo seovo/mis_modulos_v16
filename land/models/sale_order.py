@@ -651,8 +651,8 @@ class SaleOrder(models.Model):
 
             for line_inv in line.invoice_lines:
 
-                #if line_inv.move_id.move_type in ['out_refund']:
-                #    continue
+                if line_inv.move_id.move_type in ['out_refund']:
+                    continue
 
 
                 if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:

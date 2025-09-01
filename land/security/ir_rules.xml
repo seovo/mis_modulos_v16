@@ -17,5 +17,14 @@
     </record>
 
 
+    <!-- MULTI COMPANY REPORTE CRONOGRAMA -->
+    <record id="schedule_dues_land_rule" model="ir.rule">
+        <field name="name">schedule multi-company</field>
+        <field name="model_id" ref="model_schedule_dues_land"/>
+        <field name="domain_force">[('order_id.company_id', 'in', company_ids)]</field>
+    </record>
+
+
+
 
 </odoo>
