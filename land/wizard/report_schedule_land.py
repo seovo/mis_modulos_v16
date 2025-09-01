@@ -47,7 +47,7 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
         sheet.write(xc, 5, 'METRAJE', bold)
         sheet.write(xc, 6, 'FECHA DE COBRANZA', bold)
-        sheet.write(xc, 7, 'FECHA PAGADA', bold)
+        sheet.write(xc, 7, 'FECHA PAGADA / HOY', bold)
         sheet.write(xc, 8, 'DIAS VENCIDOS', bold)
         sheet.write(xc, 9, 'N° CUOTA', bold)
         sheet.write(xc, 10, 'MONTO', bold)
@@ -65,13 +65,15 @@ class ReportScheduleLand(models.TransientModel):
 
             order = schedule_due.order_id
 
+            invoice_pagada = str(schedule_due.invoice_date) if schedule_due.invoice_date else fields.Datetime.date().now()
+
             sheet.write(xc, 1, schedule_due.nro_internal_land, format_body)
             sheet.write(xc, 2, order.mz_land, format_body)
             sheet.write(xc, 3, order.lot_land, format_body)
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
             sheet.write(xc, 5, order.m2_land, format_body)
             sheet.write(xc, 6, str(schedule_due.date), format_body)
-            sheet.write(xc, 7, str(schedule_due.invoice_date), format_body)
+            sheet.write(xc, 7, invoice_pagada , format_body)
             sheet.write(xc, 8, 'DIAS VENCIDOS', format_body)
             sheet.write(xc, 9, 'N° CUOTA', format_body)
             sheet.write(xc, 10, 'MONTO', format_body)
