@@ -83,7 +83,7 @@ class ReportScheduleLand(models.TransientModel):
 
                     # Insertar la imagen en la hoja de cálculo
                     sheet.insert_image(xc, contador, temp_file_path)
-                    os.remove(temp_file_path)
+                    #os.remove(temp_file_path)
 
                     #xc += 1
                     contador += 1
