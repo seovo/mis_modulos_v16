@@ -67,6 +67,7 @@ class ReportScheduleLand(models.TransientModel):
             move = schedule_due.move_id
 
             for attach in move.attachment_ids:
+                contador = 1
                 if 'image' in attach.mimetype:
                     #sheet.write(xc, 1, attach.datas, format_body)
 
@@ -79,10 +80,11 @@ class ReportScheduleLand(models.TransientModel):
                         temp_file_path = temp_file.name
 
                     # Insertar la imagen en la hoja de cálculo
-                    sheet.insert_image(xc, 1, temp_file_path)
+                    sheet.insert_image(xc, contador, temp_file_path)
                     os.remove(temp_file_path)
 
-                    xc += 1
+                    #xc += 1
+                    contador += 1
 
 
 
