@@ -40,13 +40,13 @@ class ScheduleDuesLand(models.Model):
             record.name = n
 
             description = '*'
-            if record.type_number_schedule  == 0:
+            if record.type_schedule  == 'initial':
                 description = 'INICIAL'
 
-            if record.type_number_schedule  == 1:
+            if record.type_schedule  == 'dues':
                 description = f'CUOTA #{record.number_due}'
 
-            if record.type_number_schedule  == 2:
+            if record.type_schedule  == 'advances':
                 description = f'ADELANTO CUOTA #{record.number_due}'
 
             record.description = description
