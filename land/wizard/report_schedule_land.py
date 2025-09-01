@@ -70,7 +70,7 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 3, order.lot_land, format_body)
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
             sheet.write(xc, 5, order.m2_land, format_body)
-            sheet.write(xc, 6, order.date, format_body)
+            sheet.write(xc, 6, schedule_due.date, format_body)
             sheet.write(xc, 7, 'FECHA PAGADA', format_body)
             sheet.write(xc, 8, 'DIAS VENCIDOS', format_body)
             sheet.write(xc, 9, 'N° CUOTA', format_body)
