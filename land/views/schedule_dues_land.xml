@@ -76,14 +76,23 @@
                'search_default_gr_order_identificador' : 1
             }
         </field>
-
-
     </record>
 
-    <menuitem action="action_schedule_dues_land"
-              id="menu_schedule_dues_land"
-              parent="sale.menu_sale_report"
-              sequence="102"
-    />
+    <record id="action_schedule_dues_land_excell" model="ir.actions.act_window">
+        <field name="name">Generar Excell</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.schedule.land</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="report_schedules_parent"  sequence="102"
+              parent="sale.menu_sale_report"  name="Reporte de Cuotas" >
+        <menuitem action="action_schedule_dues_land" id="menu_schedule_dues_land" />
+        <menuitem action="action_schedule_dues_land_excell" id="menu_schedule_dues_land_excell" />
+
+    </menuitem>
+
+
 
 </odoo>

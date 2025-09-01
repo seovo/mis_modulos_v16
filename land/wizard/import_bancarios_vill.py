@@ -33,6 +33,7 @@ from datetime import datetime, timedelta
 
 class ImportBancariosVilla(models.TransientModel):
     _name = "import.bancarios.villa"
+    _description  = "import.bancarios.villa"
     file = fields.Binary(string="Archivo")
     file_name = fields.Char()
     journal_id = fields.Many2one('account.journal',required=True)
