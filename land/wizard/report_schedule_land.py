@@ -15,6 +15,8 @@ try:
 except:
     install('tempfile')
 
+import os
+
 
 
 class ReportScheduleLand(models.TransientModel):
