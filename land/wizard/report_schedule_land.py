@@ -22,28 +22,65 @@ class ReportScheduleLand(models.TransientModel):
             'target': 'self',
         }
 
-    def get_report_xls(self):
+    def get_report_xls(self,company):
         fp = io.BytesIO()
         workbook = xlsxwriter.Workbook(fp)
         sheet = workbook.add_worksheet()
-        self.get_report_xls_data(workbook, sheet)
+        self.get_report_xls_data(workbook, sheet,company)
         workbook.close()
         excel_file = base64.encodebytes(fp.getvalue())
         fp.close()
         return excel_file
 
-    def get_report_xls_data(self,workbook, sheet):
+    def get_report_xls_data(self,workbook, sheet,company):
 
 
         xc = 1
 
         bold = workbook.add_format({'bold': True})
-        sheet.write(xc, 1, 'A', bold)
-        sheet.write(xc, 2, 'B', bold)
-        #sheet.write(xc, 3, 'UM', bold)
-        #sheet.write(xc, 4, _('Unit Cost'), bold)
-        #sheet.write(xc, 5, _('Total Cost'), bold)
-        #sheet.write(xc, 6, _('Price Unit'), bold)
-        #sheet.write(xc, 7, _('Price Total'), bold)
+        format_body = workbook.add_format(
+            {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
+
+        sheet.write(xc, 1, 'EXPEDIENTE', bold)
+        sheet.write(xc, 2, 'MZ', bold)
+        sheet.write(xc, 3, 'LOTE', bold)
+        sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
+        sheet.write(xc, 5, 'METRAJE', bold)
+        sheet.write(xc, 6, 'FECHA DE COBRANZA', bold)
+        sheet.write(xc, 7, 'FECHA PAGADA', bold)
+        sheet.write(xc, 8, 'DIAS VENCIDOS', bold)
+        sheet.write(xc, 9, 'N° CUOTA', bold)
+        sheet.write(xc, 10, 'MONTO', bold)
+        sheet.write(xc, 11, 'ETAPA', bold)
+        sheet.write(xc, 10, 'EMPRESA', bold)
+        sheet.write(xc, 10, 'COMPROBANTE DE CUOTA', bold)
+        sheet.write(xc, 10, 'FECHA DE EMISION', bold)
+        sheet.write(xc, 10, 'ESTADO', bold)
+
+        xc += 1
+
+        schedule_dues = self.env['schedule.dues.land'].search([('order_id.company_id','=',company_id.id)])
+
+        for schedule_due in schedule_dues:
+
+            order = schedule_due.order_id
+
+            sheet.write(xc, 1, schedule_due.nro_internal_land, format_body)
+            sheet.write(xc, 2, order.mz_land, format_body)
+            sheet.write(xc, 3, order.lot_land, format_body)
+            sheet.write(xc, 4, order.partner_id.display_name, format_body)
+            sheet.write(xc, 5, order.m2_land, format_body)
+            sheet.write(xc, 6, order.date, format_body)
+            sheet.write(xc, 7, 'FECHA PAGADA', format_body)
+            sheet.write(xc, 8, 'DIAS VENCIDOS', format_body)
+            sheet.write(xc, 9, 'N° CUOTA', format_body)
+            sheet.write(xc, 10, 'MONTO', format_body)
+            sheet.write(xc, 11, 'ETAPA', format_body)
+            sheet.write(xc, 10, 'EMPRESA', format_body)
+            sheet.write(xc, 10, 'COMPROBANTE DE CUOTA', format_body)
+            sheet.write(xc, 10, 'FECHA DE EMISION', format_body)
+            sheet.write(xc, 10, 'ESTADO', format_body)
+
+
 
 

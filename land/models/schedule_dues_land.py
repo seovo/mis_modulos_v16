@@ -57,7 +57,7 @@ class ScheduleDuesLand(models.Model):
 
 
 
-    _order = 'number_due asc ,  invoice_date asc '
+    _order = 'order_id asc , number_due asc ,  invoice_date asc '
 
     def invoice_here_land(self):
         pass
