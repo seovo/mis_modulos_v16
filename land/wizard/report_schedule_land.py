@@ -115,14 +115,14 @@ class ReportScheduleLand(models.TransientModel):
                     # Insertar la imagen en la hoja de cálculo
                     #sheet.insert_image(xc, contador, temp_file_path)
 
-                    image_width = 100  # ancho en píxeles
-                    image_height = 100  # altura en píxeles
+                    image_width = 10  # ancho en píxeles
+                    image_height = 10  # altura en píxeles
 
                     #sheet.insert_image(xc, contador, temp_file_path, {'x_scale': 0.5, 'y_scale': 0.5})
                     sheet.insert_image(xc, contador, temp_file_path, {'x_scale': image_width / 100, 'y_scale': image_height / 100})
                     #os.remove(temp_file_path)
                     # Ajustar la altura de la celda
-                    sheet.set_row(xc, image_height)  # Establecer la altura de la fila
+                    sheet.set_row(xc, 100)  # Establecer la altura de la fila
 
                     #xc += 1
                     contador += 1
