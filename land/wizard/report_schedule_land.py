@@ -33,6 +33,9 @@ class ReportScheduleLand(models.TransientModel):
         return excel_file
 
     def get_report_xls_data(self,workbook, sheet):
+
+        xc = 1
+
         bold = workbook.add_format({'bold': True})
         sheet.write(xc, 1, 'A', bold)
         sheet.write(xc, 2, 'B', bold)
