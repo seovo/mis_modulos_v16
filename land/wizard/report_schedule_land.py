@@ -37,18 +37,30 @@ class ReportScheduleLand(models.TransientModel):
 
         xc = 1
 
-        bold = workbook.add_format({'bold': True})
+        bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
         format_body = workbook.add_format(
             {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
 
-        sheet.set_column('B:B', 50)
+
+
 
         sheet.write(xc, 1, 'EXPEDIENTE', bold)
+        sheet.set_column('B:B', 20)
+
         sheet.write(xc, 2, 'MZ', bold)
         sheet.write(xc, 3, 'LOTE', bold)
+        sheet.set_column('C:D', 15)
+
+
         sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
+        sheet.set_column('E:E', 50)
+
         sheet.write(xc, 5, 'METRAJE', bold)
+        sheet.set_column('F:F', 20)
+
         sheet.write(xc, 6, 'FECHA DE COBRANZA', bold)
+        sheet.set_column('F:F', 25)
+
         sheet.write(xc, 7, 'FECHA PAGADA / HOY', bold)
         sheet.write(xc, 8, 'DIAS VENCIDOS', bold)
         sheet.write(xc, 9, 'N° CUOTA', bold)
