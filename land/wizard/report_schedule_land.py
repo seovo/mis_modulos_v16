@@ -70,8 +70,8 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 3, order.lot_land, format_body)
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
             sheet.write(xc, 5, order.m2_land, format_body)
-            sheet.write(xc, 6, schedule_due.date, format_body)
-            sheet.write(xc, 7, 'FECHA PAGADA', format_body)
+            sheet.write(xc, 6, str(schedule_due.date), format_body)
+            sheet.write(xc, 7, str(schedule_due.invoice_date), format_body)
             sheet.write(xc, 8, 'DIAS VENCIDOS', format_body)
             sheet.write(xc, 9, 'N° CUOTA', format_body)
             sheet.write(xc, 10, 'MONTO', format_body)
@@ -80,6 +80,9 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 10, 'COMPROBANTE DE CUOTA', format_body)
             sheet.write(xc, 10, 'FECHA DE EMISION', format_body)
             sheet.write(xc, 10, 'ESTADO', format_body)
+
+            xc +=  1
+
 
 
 
