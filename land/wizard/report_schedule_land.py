@@ -56,20 +56,31 @@ class ReportScheduleLand(models.TransientModel):
         sheet.set_column('E:E', 50)
 
         sheet.write(xc, 5, 'METRAJE', bold)
-        sheet.set_column('F:F', 20)
+        sheet.set_column('F:F', 15)
 
         sheet.write(xc, 6, 'FECHA DE COBRANZA', bold)
-        sheet.set_column('F:F', 25)
+        sheet.set_column('G:G', 20)
 
         sheet.write(xc, 7, 'FECHA PAGADA / HOY', bold)
+        sheet.set_column('H:H', 20)
+
         sheet.write(xc, 8, 'DIAS VENCIDOS', bold)
         sheet.write(xc, 9, 'N° CUOTA', bold)
         sheet.write(xc, 10, 'MONTO', bold)
         sheet.write(xc, 11, 'ETAPA', bold)
+        sheet.set_column('I:L', 15)
+
         sheet.write(xc, 12, 'EMPRESA', bold)
+        sheet.set_column('M:M', 50)
+
         sheet.write(xc, 13, 'COMPROBANTE DE CUOTA', bold)
+        sheet.set_column('N:N', 25)
+
         sheet.write(xc, 14, 'FECHA DE EMISION', bold)
+        sheet.set_column('O:O', 20)
+
         sheet.write(xc, 15, 'ESTADO', bold)
+        sheet.set_column('P:P', 15)
 
         xc += 1
 
