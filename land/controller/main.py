@@ -32,7 +32,7 @@ class Binary(http.Controller):
 
     @http.route('/web/binary/download_excell_report_schedule_land_sale/<model("sale.order"):sale>', type='http', auth="public")
     #@serialize_exception
-    def download_document(self, sale , **kw):
+    def download_excell_report_schedule_land_sale(self, sale , **kw):
         excel_data = request.env['report.schedule.land'].get_report_xls(None,sale=sale)
 
         filename = f'Report_Cuotas_{sale.parter_id.name}_{sale.nro_internal_land}.xlsx'
