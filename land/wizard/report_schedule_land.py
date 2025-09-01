@@ -60,6 +60,18 @@ class ReportScheduleLand(models.TransientModel):
         xc = 1
 
         ##HEADER
+        bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
+        format_body = workbook.add_format(
+            {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
+
+
+        sheet.write(xc, 1, 'DESCRIPCION', bold)
+        sheet.write(xc, 2, 'ABONADO', bold)
+        sheet.write(xc, 3, 'FECHA DE CUOTA', bold)
+        sheet.write(xc, 4, 'N° OP', bold)
+        sheet.write(xc, 5, 'N° BOLETA / FACTURA', bold)
+        sheet.write(xc, 6, 'COMPROBANTE', bold)
+
 
         schedule_dues = self.env['schedule.dues.land'].search([
             ('order_id','=',order.id)
@@ -68,8 +80,22 @@ class ReportScheduleLand(models.TransientModel):
         for schedule_due in schedule_dues:
             move = schedule_due.move_id
 
+            OPS = []
+
+            for pago in schedule_due.bank_origin_ids:
+                OPS.append(pago.operation_number)
+
+            OPS = ','.join(OPS) if OPS else ''
+
+            sheet.write(xc, 1, schedule_due.description, format_body)
+            sheet.write(xc, 2, schedule_due.amount_due_land, format_body)
+            sheet.write(xc, 3, str(schedule_due.invoice_date or '') , format_body)
+            sheet.write(xc, 4, OPS, format_body)
+            sheet.write(xc, 5, schedule_due.move_id.display_name or '', format_body)
+
+
             for attach in move.attachment_ids:
-                contador = 1
+                contador = 6
                 if 'image' in attach.mimetype:
                     #sheet.write(xc, 1, attach.datas, format_body)
 
@@ -82,12 +108,14 @@ class ReportScheduleLand(models.TransientModel):
                         temp_file_path = temp_file.name
 
                     # Insertar la imagen en la hoja de cálculo
-                    sheet.insert_image(xc, contador, temp_file_path)
+                    #sheet.insert_image(xc, contador, temp_file_path)
+                    sheet.insert_image(xc, contador, temp_file_path, {'x_scale': 0.5, 'y_scale': 0.5})
                     #os.remove(temp_file_path)
 
                     #xc += 1
                     contador += 1
 
+            xc += 1
 
 
 
