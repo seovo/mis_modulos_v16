@@ -31,15 +31,55 @@ class ReportScheduleLand(models.TransientModel):
             'target': 'self',
         }
 
-    def get_report_xls(self,company):
+    def get_report_xls(self,company,sale=None):
         fp = io.BytesIO()
         workbook = xlsxwriter.Workbook(fp)
         sheet = workbook.add_worksheet()
-        self.get_report_xls_data(workbook, sheet,company)
+        if sale:
+            self.get_report_xls_data_sale(workbook, sheet,sale)
+        else:
+            self.get_report_xls_data(workbook, sheet,company)
+
+
         workbook.close()
         excel_file = base64.encodebytes(fp.getvalue())
         fp.close()
         return excel_file
+
+    def get_report_xls_data_sale(self,workbook, sheet,order):
+
+        xc = 1
+
+        ##HEADER
+
+        schedule_dues = self.env['schedule.dues.land'].search([
+            ('order_id.','=',order.id)
+        ])
+
+        for schedule_due in schedule_dues:
+            move = schedule_due.move_id
+
+            for attach in move.attachment_ids:
+                if 'image' in attach.mimetype:
+                    #sheet.write(xc, 1, attach.datas, format_body)
+
+                    # Decodificar el contenido Base64
+                    image_data = base64.b64decode(attach.datas)
+
+                    # Guardar la imagen en un archivo temporal
+                    with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
+                        temp_file.write(image_data)
+                        temp_file_path = temp_file.name
+
+                    # Insertar la imagen en la hoja de cálculo
+                    sheet.insert_image(xc, 1, temp_file_path)
+                    #os.remove(temp_file_path)
+
+
+
+            xc += 1
+
+
 
     def get_report_xls_data(self,workbook, sheet,company):
 
