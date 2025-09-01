@@ -53,7 +53,7 @@ class ReportScheduleLand(models.TransientModel):
         ##HEADER
 
         schedule_dues = self.env['schedule.dues.land'].search([
-            ('order_id.','=',order.id)
+            ('order_id','=',order.id)
         ])
 
         for schedule_due in schedule_dues:
