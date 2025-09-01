@@ -41,6 +41,13 @@ class ReportScheduleLand(models.TransientModel):
         format_body = workbook.add_format(
             {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
 
+        # Definir el formato para las celdas coloreadas
+        format_red = workbook.add_format({
+          'bg_color': '#FFCCCC',  # Color de fondo (rojo claro)
+         'font_color': '#000000',  # Color de texto (negro)
+         'bold': True  # Opcional: texto en negrita
+        })
+
 
 
 
@@ -86,7 +93,9 @@ class ReportScheduleLand(models.TransientModel):
         xc += 1
 
 
-        schedule_dues = self.env['schedule.dues.land'].search([('order_id.company_id','=',company.id)])
+        schedule_dues = self.env['schedule.dues.land'].search([
+            ('order_id.company_id','=',company.id),('type_schedule','=','dues')
+        ])
 
         for schedule_due in schedule_dues:
 
@@ -108,7 +117,11 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 12, order.company_id.display_name, format_body)
             sheet.write(xc, 13, schedule_due.move_id.display_name, format_body)
             sheet.write(xc, 14, str(schedule_due.invoice_date or '') , format_body)
-            sheet.write(xc, 15, 'CANCELADO'  if schedule_due.is_paid else 'PENDIENTE', format_body)
+
+            if schedule_due.is_paid:
+                sheet.write(xc, 15, 'CANCELADO', format_red)
+            else:
+                sheet.write(xc, 15, 'PENDIENTE', format_body)
 
             xc +=  1
 

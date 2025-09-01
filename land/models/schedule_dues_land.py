@@ -29,7 +29,7 @@ class ScheduleDuesLand(models.Model):
         ('initial','Inicial'),
         ('dues','Cuotas'),
         ('advances','Adelantos'),
-        ('Independence','Independizacion')
+        ('independence','Independizacion')
     ],string="Tipo de Schedule")
 
     @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_schedule')
