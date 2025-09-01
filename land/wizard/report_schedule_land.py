@@ -52,10 +52,10 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 9, 'N° CUOTA', bold)
         sheet.write(xc, 10, 'MONTO', bold)
         sheet.write(xc, 11, 'ETAPA', bold)
-        sheet.write(xc, 10, 'EMPRESA', bold)
-        sheet.write(xc, 10, 'COMPROBANTE DE CUOTA', bold)
-        sheet.write(xc, 10, 'FECHA DE EMISION', bold)
-        sheet.write(xc, 10, 'ESTADO', bold)
+        sheet.write(xc, 12, 'EMPRESA', bold)
+        sheet.write(xc, 13, 'COMPROBANTE DE CUOTA', bold)
+        sheet.write(xc, 14, 'FECHA DE EMISION', bold)
+        sheet.write(xc, 15, 'ESTADO', bold)
 
         xc += 1
 
@@ -79,10 +79,10 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 9, schedule_due.number_due, format_body)
             sheet.write(xc, 10, schedule_due.amount_due_land , format_body)
             sheet.write(xc, 11, order.sector_land, format_body)
-            sheet.write(xc, 10, order.company_id.display_name, format_body)
-            sheet.write(xc, 10, schedule_due.move_id.display_name, format_body)
-            sheet.write(xc, 10, str(schedule_due.invoice_date or '') , format_body)
-            sheet.write(xc, 10, 'CANCELADO'  if schedule_due.is_paid else 'PENDIENTE', format_body)
+            sheet.write(xc, 12, order.company_id.display_name, format_body)
+            sheet.write(xc, 13, schedule_due.move_id.display_name, format_body)
+            sheet.write(xc, 14, str(schedule_due.invoice_date or '') , format_body)
+            sheet.write(xc, 15, 'CANCELADO'  if schedule_due.is_paid else 'PENDIENTE', format_body)
 
             xc +=  1
 
