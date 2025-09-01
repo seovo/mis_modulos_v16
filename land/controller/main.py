@@ -35,7 +35,7 @@ class Binary(http.Controller):
     def download_excell_report_schedule_land_sale(self, sale , **kw):
         excel_data = request.env['report.schedule.land'].get_report_xls(None,sale=sale)
 
-        filename = f'Report_Cuotas_{sale.parter_id.name}_{sale.nro_internal_land}.xlsx'
+        filename = f'Report_Cuotas_{sale.partner_id.name}_{sale.nro_internal_land}.xlsx'
         filecontent = base64.b64decode(excel_data or '')
         return request.make_response(filecontent, [
             ('Content-Type', 'application/vnd.ms-excel'),
