@@ -59,6 +59,7 @@ class ReportScheduleLand(models.TransientModel):
 
         xc += 1
 
+
         schedule_dues = self.env['schedule.dues.land'].search([('order_id.company_id','=',company.id)])
 
         for schedule_due in schedule_dues:
