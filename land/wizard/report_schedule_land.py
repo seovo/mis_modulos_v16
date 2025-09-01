@@ -78,7 +78,7 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 8, (invoice_pagada - schedule_due.date ).days , format_body)
             sheet.write(xc, 9, schedule_due.number_due, format_body)
             sheet.write(xc, 10, schedule_due.amount_due_land , format_body)
-            sheet.write(xc, 11, schedule_due.sector_land, format_body)
+            sheet.write(xc, 11, order.sector_land, format_body)
             sheet.write(xc, 10, order.company_id.display_name, format_body)
             sheet.write(xc, 10, schedule_due.move_id.display_name, format_body)
             sheet.write(xc, 10, str(schedule_due.invoice_date or '') , format_body)
