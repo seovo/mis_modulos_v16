@@ -66,7 +66,7 @@ class ReportScheduleLand(models.TransientModel):
 
             order = schedule_due.order_id
 
-            invoice_pagada = str(schedule_due.invoice_date) if schedule_due.invoice_date else fields.Datetime.date().now()
+            invoice_pagada = str(schedule_due.invoice_date) if schedule_due.invoice_date else fields.Datetime.now().date()
 
             sheet.write(xc, 1, schedule_due.nro_internal_land, format_body)
             sheet.write(xc, 2, order.mz_land, format_body)
