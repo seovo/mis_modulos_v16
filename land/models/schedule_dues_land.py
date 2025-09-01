@@ -32,7 +32,7 @@ class ScheduleDuesLand(models.Model):
         ('Independence','Independizacion')
     ],string="Tipo de Schedule")
 
-    @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_number_schedule')
+    @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_schedule')
     def get_name_jz(self):
         for record in self:
             n = f'''  {record.move_id.display_name }  {record.nro_internal_land}  {record.order_id.display_name}'''
