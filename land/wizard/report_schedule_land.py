@@ -70,7 +70,12 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 3, 'FECHA DE CUOTA', bold)
         sheet.write(xc, 4, 'N° OP', bold)
         sheet.write(xc, 5, 'N° BOLETA / FACTURA', bold)
+        sheet.set_column('B:F', 15)
+
         sheet.write(xc, 6, 'COMPROBANTE', bold)
+        sheet.set_column('G:G', 30)
+
+        xc += 1
 
 
         schedule_dues = self.env['schedule.dues.land'].search([
