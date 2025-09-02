@@ -255,6 +255,9 @@ class SaleOrderLine(models.Model):
 
 
         res = super().write(values)
+
+        #para verificar separciones o adelantos
+
         for record in self:
 
             if record.add_separation_land and record.add_separation_land > 0 :
@@ -287,7 +290,9 @@ class SaleOrderLine(models.Model):
                             #                                0].product_id.id
                         }
 
-                        product_separation = self.env['product.product'].search([('is_separation_land', '=', True)])
+                        product_separation = self.env['product.product'].search([
+                            ('is_separation_land', '=', True)
+                        ],limit=1)
 
                         if product_separation:
                             dx.update({

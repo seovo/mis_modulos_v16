@@ -1317,6 +1317,7 @@ class SaleOrder(models.Model):
         return res
 
 
+    #esto verifica si existe una factura de separacion
     def check_adelanto(self):
         for record in self:
 
