@@ -296,7 +296,8 @@ class SaleOrderLine(models.Model):
 
                         if product_separation:
                             dx.update({
-                                'product_id': product_separation.id
+                                'product_id': product_separation.id ,
+                                'add_separation_land': 0
                             })
 
                         clone_line = record.copy(default=dx)
@@ -309,10 +310,10 @@ class SaleOrderLine(models.Model):
                         record.price_unit = amount_initial_desc
                         record.amount_initial_desc = amount_initial_desc
 
-                        raise ValueError(record.price_unit)
+                        #raise ValueError([record.price_unit,record.add_separation_land,clone_line.price_unit])
 
-                        if record.product_id == 0:
-                            raise UserError(record.price_unit)
+                        #if record.product_id == 0:
+                        #    raise UserError(record.price_unit)
 
                         # line.price_unit = line.price_unit - clone_line.price_unit
                         record.order_id._recalcule_price_land()
