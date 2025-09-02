@@ -309,6 +309,8 @@ class SaleOrderLine(models.Model):
                         record.price_unit = amount_initial_desc
                         record.amount_initial_desc = amount_initial_desc
 
+                        raise ValueError(record.price_unit)
+
                         if record.product_id == 0:
                             raise UserError(record.price_unit)
 
