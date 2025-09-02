@@ -309,6 +309,9 @@ class SaleOrderLine(models.Model):
                         record.price_unit = amount_initial_desc
                         record.amount_initial_desc = amount_initial_desc
 
+                        if record.product_id == 0:
+                            raise UserError(record.price_unit)
+
                         # line.price_unit = line.price_unit - clone_line.price_unit
                         record.order_id._recalcule_price_land()
                     else:
