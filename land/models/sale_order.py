@@ -786,7 +786,7 @@ class SaleOrder(models.Model):
 
                 for factura in record.invoice_ids:
                     for factura_line in factura.invoice_line_ids:
-                        if not factura_line.sale_line_ids and factura_line.number_advance_land > 0:
+                        if  factura_line.number_advance_land > 0:
                             invoice_lines_adelanto.append(factura_line)
 
                 if invoice_lines_adelanto:
