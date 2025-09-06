@@ -23,7 +23,8 @@
     # always loaded
     "data": [
         'views/account_move.xml',
-        'views/res_company.xml'
+        'views/res_company.xml',
+        'views/res_partner.xml'
 
     ],
     "license": "LGPL-3"
