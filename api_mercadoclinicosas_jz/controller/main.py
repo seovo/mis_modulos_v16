@@ -235,13 +235,15 @@ class WebsiteSaleClinicos(WebsiteSale):
         ###formateoo
         categ_format = []
         for catg in categs:
+            img_categ = f'''{url_base.value}/web/image/product.public.category/{catg.id}/image_128'''
             categ_format.append({
                 'id': catg.id ,
                 'name': catg.display_name ,
                 'description': catg.display_name ,
-                'image': 'https://images.icon-icons.com/37/PNG/512/purchaseorderapplication_compra_orde_4474.png'
+                'image': img_categ
             })
 
+            #https://ecommerce.jzolutions.com/web/image?model=product.public.category&id=1&field=image_128&unique=1750651142000
         products_format = []
 
         url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
