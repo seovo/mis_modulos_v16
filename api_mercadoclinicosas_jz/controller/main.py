@@ -56,6 +56,7 @@ class WebsiteSaleClinicos(WebsiteSale):
         '/apiclinicos/shop/category/<model("product.public.category"):category>/page/<int:page>',
     ], type='json', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop, csrf=False, methods=['POST'])
     def shop_clinicos(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
+        url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
         add_qty = int(post.get('add_qty', 1))
         try:
             min_price = float(min_price)
@@ -246,7 +247,7 @@ class WebsiteSaleClinicos(WebsiteSale):
             #https://ecommerce.jzolutions.com/web/image?model=product.public.category&id=1&field=image_128&unique=1750651142000
         products_format = []
 
-        url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
+
 
 
         for prt in products:
