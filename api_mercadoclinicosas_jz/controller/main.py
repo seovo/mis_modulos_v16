@@ -56,6 +56,7 @@ class WebsiteSaleClinicos(WebsiteSale):
         '/apiclinicos/shop/category/<model("product.public.category"):category>/page/<int:page>',
     ], type='json', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop, csrf=False, methods=['POST'])
     def shop_clinicos(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
+        url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
         add_qty = int(post.get('add_qty', 1))
         try:
             min_price = float(min_price)
@@ -235,16 +236,18 @@ class WebsiteSaleClinicos(WebsiteSale):
         ###formateoo
         categ_format = []
         for catg in categs:
+            img_categ = f'''{url_base.value}/web/image/product.public.category/{catg.id}/image_128'''
             categ_format.append({
                 'id': catg.id ,
                 'name': catg.display_name ,
                 'description': catg.display_name ,
-                'image': 'https://images.icon-icons.com/37/PNG/512/purchaseorderapplication_compra_orde_4474.png'
+                'image': img_categ
             })
 
+            #https://ecommerce.jzolutions.com/web/image?model=product.public.category&id=1&field=image_128&unique=1750651142000
         products_format = []
 
-        url_base = request.env['ir.config_parameter'].sudo().search([('key', '=', 'web.base.url')])
+
 
 
         for prt in products:
