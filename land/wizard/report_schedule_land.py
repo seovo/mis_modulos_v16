@@ -61,15 +61,26 @@ class ReportScheduleLand(models.TransientModel):
 
         ##HEADER
         bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
-        format_body = workbook.add_format(
-            {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
-        bg_color = workbook.add_format({'bg_color': '#003366', 'border': 1 , 'align': 'center', 'valign': 'vcenter' , 'color': 'white'})
+        format_body = workbook.add_format({
+            'bold': False, 'align': 'center', 'valign': 'vcenter',
+            'bottom': 2, 'top': 2, 'left': 2, 'right': 2
+        })
+        bg_azul_text_white = workbook.add_format({
+            'bg_color': '#003366', 'border': 1 , 'bold': True ,
+            'align': 'center', 'valign': 'vcenter' , 'color': 'white'
+        })
+        bg_azulwhite_bold = workbook.add_format({
+            'bg_color': '#449ef8ff', 'border': 1 , 'bold': True ,
+            'align': 'center', 'valign': 'vcenter'
+        })
 
         #sheet.write(xc, 1, 'REPORTE  CUOTAS', bold)
-        sheet.merge_range('B1:G1', 'REPORTE CUOTAS', bg_color)
-
+        sheet.merge_range('B1:G1', 'REPORTE CUOTAS', bg_azul_text_white)
         xc += 1
 
+        sheet.write(xc, 1, 'MZ-LT:', bold)
+        sheet.merge_range('C1:G1', order.partner_id.display_name, bg_azul_text_white)
+        xc += 1
 
 
         sheet.write(xc, 1, 'DESCRIPCION', bold)
