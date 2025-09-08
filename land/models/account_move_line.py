@@ -6,6 +6,19 @@ class AccountMoveLine(models.Model):
     partner_commision_id = fields.Many2one('res.partner',string='Comissión')
     number_advance_land = fields.Integer(string='N° Cuota Adelanto')
 
+    def unlink(self):
+
+        sales = []
+
+        for record in self:
+            if record.sale_line_ids:
+                sales.append(record.sale_line_ids[0].order_id)
+
+        res = super().unlink()
+        for sale in sales:
+            sale.update_schedule()
+        return res
+
 
     def write(self,vals):
         #raise ValueError(vals)
