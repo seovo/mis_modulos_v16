@@ -158,6 +158,8 @@
                    <field name="price_unit"  readonly="1"  force_save="1" />
                    <button name="edit_price_jz" type="object" icon="fa-pencil-square-o" />
                    <field name="is_due_land"  optional="hidden" />
+                   <field name="number_advance_land"  optional="hidden" />
+                   <field name="amount_advance_land"  optional="hidden" />
                </xpath>
 
                <xpath expr="//notebook" position="inside" >

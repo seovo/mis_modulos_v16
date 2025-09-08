@@ -32,6 +32,8 @@ class SaleOrderLine(models.Model):
 
     is_create_of_origin_idenpencia = fields.Boolean(default=True)
     is_due_land = fields.Boolean(string="Es una Cuota Terreno")
+    number_advance_land = fields.Integer(string='N° Cuota Adelanto')
+    amount_advance_land = fields.Float(string='Monto Adelanto')
 
 
     def edit_price_jz(self):
@@ -119,6 +121,15 @@ class SaleOrderLine(models.Model):
 
         if name:
             res['name'] = name
+
+        #number_advance_land = fields.Integer(string='N° Cuota Adelanto')
+        #amount_advance_land = fields.Float(string='Monto Adelanto')
+
+        if self.number_advance_land > 0 :
+            res.update({
+                'number_advance_land': self.number_advance_land ,
+                'price_unit': self.amount_advance_land
+            })
 
 
         return res
