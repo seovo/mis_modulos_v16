@@ -50,11 +50,11 @@ class ReportScheduleLand(models.TransientModel):
         domain = []
 
         if 'start' in kw:
-            if kw['start']:
+            if kw['start'] and kw['start'] != 'False' :
                 domain.append(('date','>=',kw['start']))
 
         if 'end' in kw:
-            if kw['end']:
+            if kw['end'] and kw['end'] != 'False' :
                 domain.append(('date','<=',kw['end']))
 
         if sale:
