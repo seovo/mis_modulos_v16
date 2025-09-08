@@ -66,7 +66,7 @@ class ReportScheduleLand(models.TransientModel):
         bg_color = workbook.add_format({'bg_color': '#003366', 'border': 1})
 
         #sheet.write(xc, 1, 'REPORTE  CUOTAS', bold)
-        worksheet.merge_range('A1:E1', 'REPORTE CUOTAS', bg_color)
+        sheet.merge_range('A1:E1', 'REPORTE CUOTAS', bg_color)
 
         x *= 1
 
