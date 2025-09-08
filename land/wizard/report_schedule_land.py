@@ -78,8 +78,8 @@ class ReportScheduleLand(models.TransientModel):
         sheet.merge_range('B1:G1', 'REPORTE CUOTAS', bg_azul_text_white)
         xc += 1
 
-        sheet.write(xc, 1, 'MZ-LT:', bold)
-        sheet.merge_range('C1:G1', order.partner_id.display_name, bg_azul_text_white)
+        sheet.write(xc, 1, 'NOMBRE DE CLIENTE::', bg_azulwhite_bold)
+        sheet.merge_range('C3:G3', order.partner_id.display_name, bg_azulwhite_bold)
         xc += 1
 
 
