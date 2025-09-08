@@ -70,16 +70,16 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
         bg_azulwhite_bold = workbook.add_format({
-            'bg_color': '#449ef8ff', 'border': 1 , 'bold': True ,
+            'bg_color': '4599ecff', 'border': 1 , 'bold': True ,
             'align': 'center', 'valign': 'vcenter'
         })
 
         #sheet.write(xc, 1, 'REPORTE  CUOTAS', bold)
         sheet.merge_range('B1:G1', 'REPORTE CUOTAS', bg_azul_text_white)
-        xc += 1
+
 
         sheet.write(xc, 1, 'NOMBRE DE CLIENTE::', bg_azulwhite_bold)
-        sheet.merge_range('C3:G3', order.partner_id.display_name, bg_azulwhite_bold)
+        sheet.merge_range('C2:G2', order.partner_id.display_name, bg_azulwhite_bold)
         xc += 1
 
 
