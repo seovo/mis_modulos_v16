@@ -5,6 +5,7 @@ class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
     partner_commision_id = fields.Many2one('res.partner',string='Comissión')
     number_advance_land = fields.Integer(string='N° Cuota Adelanto')
+    order_advance_land = fields.Many2one('sale.order',string='Venta Adelanto')
 
     def unlink(self):
 

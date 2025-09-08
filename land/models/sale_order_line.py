@@ -128,7 +128,8 @@ class SaleOrderLine(models.Model):
         if self.number_advance_land > 0 :
             res.update({
                 'number_advance_land': self.number_advance_land ,
-                'price_unit': self.amount_advance_land
+                'price_unit': self.amount_advance_land ,
+                'order_advance_land': self.order_id.id
             })
 
 

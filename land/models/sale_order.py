@@ -818,11 +818,13 @@ class SaleOrder(models.Model):
                         # else:
                         #    exist_line.write(dx)
 
-                #eliminar los adelantos sin factura relacionada
-                unlink_empty_advance = self.env['schedule.dues.land'].search([
+                domainx = [
                     ('type_schedule','=','advances'),('order_id','=',record.id),
                     ('line_move_id', '=', False)
-                ])
+                ]
+
+                #eliminar los adelantos sin factura relacionada
+                unlink_empty_advance = self.env['schedule.dues.land'].search(domainx)
 
                 if unlink_empty_advance:
                     unlink_empty_advance.unlink()
