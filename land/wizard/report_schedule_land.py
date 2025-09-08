@@ -159,9 +159,6 @@ class ReportScheduleLand(models.TransientModel):
 
 
 
-
-
-
     def get_report_xls_data(self,workbook, sheet,company):
 
 
@@ -227,6 +224,8 @@ class ReportScheduleLand(models.TransientModel):
         schedule_dues = self.env['schedule.dues.land'].search([
             ('order_id.company_id','=',company.id),('type_schedule','=','dues')
         ])
+
+        raise ValueError(len(schedule_dues))
 
         for schedule_due in schedule_dues:
 

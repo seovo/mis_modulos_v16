@@ -193,7 +193,11 @@ class SaleOrder(models.Model):
             payment_year_now = 0
             saldo_year_now = 0
 
-            for sche in record.schedule_land_ids:
+            schedule_land_dues = self.env['schedule.dues.land'].search([
+                ('type_schedule','=','dues'),('order_id','=',record.id)
+            ])
+
+            for sche in schedule_land_dues:
                 datex = sche.date
 
                 if datex and datex.year == year:
@@ -223,8 +227,6 @@ class SaleOrder(models.Model):
                 record.inicial_lot_set = record.report_lot_land_line_id.product_tmp_id.optional_product_ids[0].list_price
                 record.price_m2 = record.report_lot_land_line_id.zona.value
                 record.seller_land_id = record.report_lot_land_line_id.seller_land_id.id
-
-
 
     @api.onchange('seller_land_id')
     def changer_seller_land_id(self):
@@ -288,7 +290,6 @@ class SaleOrder(models.Model):
             if record.nro_internal_land and not  record.stage_land:
                 record.stage_land = 'signed'
 
-
     def update_dates_land(self):
         for invc in self.invoice_ids:
             if invc.amount_total == self.price_initial_land:
@@ -338,7 +339,6 @@ class SaleOrder(models.Model):
 
                     invoice.invoice_date = date_initx
                 c += 1
-
 
     @api.onchange('user_id')
     def  change_team_comission(self):
@@ -448,10 +448,6 @@ class SaleOrder(models.Model):
 
             if line:
                 record.report_lot_land_line_id = line
-
-
-
-
 
     def show_dues_land(self):
         self.update_schedule()
