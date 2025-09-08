@@ -1044,8 +1044,14 @@ class SaleOrder(models.Model):
                 #diff_month = ((date_now - date_next).days) / 30
                 #hay que cambiar este calculo
                 #diff_month += 1
-                diff_month = self.env['schedule.dues.land'].search_count([
-                    ('is_paid','!=',True),('order_id','=',record.id),('date','<=',date_now)])
+                diff_month = self.env['schedule.dues.land'].search_count(
+                    [
+                        ('is_paid','!=',True),
+                        ('order_id','=',record.id),
+                        ('date','<=',date_now),
+                        ('type_schedule','=','dues')
+                    ]
+                )
 
             if date_next and record.qty_dues_payment == 0:
                 diff_month = ((date_now - date_next).days) / 30
