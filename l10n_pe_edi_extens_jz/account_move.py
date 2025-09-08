@@ -1,4 +1,5 @@
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -6,13 +7,17 @@ class AccountMove(models.Model):
     @api.onchange('invoice_date')
     def change_date_jz_jz(self):
         for record in self:
-            if record.invoice_date:
+            if record.invoice_date and record.state == 'draft' :
                 diff = fields.Datetime.now().date() - record.invoice_date
+
+                if diff.days < 5 :
+                    raise ValidationError('SOLO SE PERMITE COLOCAR FECHAS HASTA 5 DIAS ATRAS')
 
                 raise ValueError(diff)
 
 
     def action_post(self):
+        self.change_date_jz_jz()
         res = super().action_post()
         if len(self) == 1 :
             if self.edi_document_ids:
