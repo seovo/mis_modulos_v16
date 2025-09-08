@@ -9,7 +9,7 @@ class AccountMove(models.Model):
             if record.invoice_date:
                 diff = fields.Datetime.now().date() - record.invoice_date
 
-                raise ValueError(diff.date)
+                raise ValueError(diff)
 
 
     def action_post(self):
