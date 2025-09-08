@@ -38,7 +38,7 @@ class ReportScheduleLand(models.TransientModel):
     def do_excell(self):
         return {
             'type': 'ir.actions.act_url',
-            'url': f'/web/binary/download_excell_report_schedule_land/{self.company_id.id}',
+            'url': f'/web/binary/download_excell_report_schedule_land/{self.company_id.id}?start={self.date_start}&end={self.date_end}',
             'target': 'self',
         }
 
