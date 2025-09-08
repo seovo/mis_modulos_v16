@@ -89,14 +89,19 @@ class SaleOrderLine(models.Model):
 
                 return f"CANCELACION  INICIAL ,  {sale_line.order_id.mz_lot or ''}  {self.product_id.description_sale}"
 
+        if self.product_id.payment_land_dues:
+            if self.order_id.mz_land and self.order_id.lot_land:
 
-        if self.order_id.mz_land and self.order_id.lot_land:
-            name = f"CANCELACION  CUOTA  {int(sale_line.order_id.qty_dues_payment + 1)} , MZ: {self.order_id.mz_land} - LT : {self.order_id.lot_land} {mes_ano} "
-            return name
-        else:
-            if sale_line.order_id.mz_lot:
-                name = f"CANCELACION  CUOTA {int(sale_line.order_id.qty_dues_payment + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
+                name = f"CANCELACION  CUOTA  {int(sale_line.order_id.qty_dues_payment + 1)} , MZ: {self.order_id.mz_land} - LT : {self.order_id.lot_land} {mes_ano} "
                 return name
+            else:
+                if sale_line.order_id.mz_lot:
+                    name = f"CANCELACION  CUOTA {int(sale_line.order_id.qty_dues_payment + 1)} , {sale_line.order_id.mz_lot} {mes_ano}"
+                    return name
+
+        return None
+
+
 
 
 
