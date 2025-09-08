@@ -13,7 +13,7 @@ class AccountMove(models.Model):
                 if diff.days < 5 :
                     raise ValidationError('SOLO SE PERMITE COLOCAR FECHAS HASTA 5 DIAS ATRAS')
 
-                raise ValueError(diff)
+
 
 
     def action_post(self):
