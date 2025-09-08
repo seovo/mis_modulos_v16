@@ -42,14 +42,29 @@ class ReportScheduleLand(models.TransientModel):
             'target': 'self',
         }
 
-    def get_report_xls(self,company,sale=None):
+    def get_report_xls(self,company,sale=None,kw={}):
         fp = io.BytesIO()
         workbook = xlsxwriter.Workbook(fp)
         sheet = workbook.add_worksheet()
+
+        domain = []
+
+        if 'start' in kw:
+            if kw['start']:
+                domain.append(('date','>=',kw['start']))
+
+        if 'end' in kw:
+            if kw['end']:
+                domain.append(('date','<=',kw['end']))
+
         if sale:
-            self.get_report_xls_data_sale(workbook, sheet,sale)
+            domain.append(('order_id','=',order.id))
+            schedule_dues = self.env['schedule.dues.land'].search(domain)
+            self.get_report_xls_data_sale(workbook, sheet,sale,schedule_dues)
         else:
-            self.get_report_xls_data(workbook, sheet,company)
+            domain += [('order_id.company_id','=',company.id),('type_schedule','=','dues')]
+            schedule_dues = self.env['schedule.dues.land'].search(domain)
+            self.get_report_xls_data(workbook, sheet,company,schedule_dues)
 
 
         workbook.close()
@@ -57,7 +72,9 @@ class ReportScheduleLand(models.TransientModel):
         fp.close()
         return excel_file
 
-    def get_report_xls_data_sale(self,workbook, sheet,order):
+    def get_report_xls_data_sale(self,workbook, sheet,order,schedule_dues):
+
+
 
         xc = 1
 
@@ -108,9 +125,7 @@ class ReportScheduleLand(models.TransientModel):
         xc += 1
 
 
-        schedule_dues = self.env['schedule.dues.land'].search([
-            ('order_id','=',order.id)
-        ])
+
 
         for schedule_due in schedule_dues:
             move = schedule_due.move_id
@@ -161,7 +176,9 @@ class ReportScheduleLand(models.TransientModel):
 
 
 
-    def get_report_xls_data(self,workbook, sheet,company):
+    def get_report_xls_data(self,workbook, sheet,company,schedule_dues):
+
+
 
 
         xc = 1
@@ -223,9 +240,7 @@ class ReportScheduleLand(models.TransientModel):
         xc += 1
 
 
-        schedule_dues = self.env['schedule.dues.land'].search([
-            ('order_id.company_id','=',company.id),('type_schedule','=','dues')
-        ])
+
 
         #raise ValueError(len(schedule_dues))
 
