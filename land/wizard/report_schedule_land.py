@@ -70,16 +70,26 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
         bg_azulwhite_bold = workbook.add_format({
-            'bg_color': '#ADD8E6', 'border': 1 , 'bold': True ,
-            'align': 'center', 'valign': 'vcenter'
+            'bg_color': '#ADD8E6', 'border': 1 , 'bold': True
+        })
+        bg_azulwhite = workbook.add_format({
+            'bg_color': '#ADD8E6', 'border': 1
         })
 
         #sheet.write(xc, 1, 'REPORTE  CUOTAS', bold)
         sheet.merge_range('B1:G1', 'REPORTE CUOTAS', bg_azul_text_white)
 
 
-        sheet.write(xc, 1, 'NOMBRE DE CLIENTE::', bg_azulwhite_bold)
-        sheet.merge_range('C2:G2', order.partner_id.display_name, bg_azulwhite_bold)
+        sheet.write(xc, 1, 'CLIENTE:', bg_azulwhite_bold)
+        sheet.merge_range('C2:G2', order.partner_id.display_name, bg_azulwhite)
+        xc += 1
+
+        sheet.write(xc, 1, 'MZ-LT:', bg_azulwhite_bold)
+        sheet.merge_range('C3:G3', order.mz_lot, bg_azulwhite)
+        xc += 1
+
+        sheet.write(xc, 1, 'DEVOLUCION:', bg_azulwhite_bold)
+        sheet.merge_range('C4:G4', order.percentage_refund_land, bg_azulwhite)
         xc += 1
 
 
