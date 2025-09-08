@@ -799,6 +799,11 @@ class SaleOrder(models.Model):
                         ]
                         exist_line = self.env['schedule.dues.land'].search(df)
 
+                        if inv_line_ade.order_advance_land != record:
+                            if exist_line:
+                                exist_line.unlink()
+                            continue
+
                         dx = {
                             'number_due': inv_line_ade.number_advance_land,
                             'date': inv_line_ade.invoice_date,
