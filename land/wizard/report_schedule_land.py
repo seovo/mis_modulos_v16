@@ -70,7 +70,7 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
         bg_azulwhite_bold = workbook.add_format({
-            'bg_color': '4599ecff', 'border': 1 , 'bold': True ,
+            'bg_color': '#ADD8E6', 'border': 1 , 'bold': True ,
             'align': 'center', 'valign': 'vcenter'
         })
 
