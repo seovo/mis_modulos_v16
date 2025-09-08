@@ -68,7 +68,7 @@ class ReportScheduleLand(models.TransientModel):
         #sheet.write(xc, 1, 'REPORTE  CUOTAS', bold)
         sheet.merge_range('A1:E1', 'REPORTE CUOTAS', bg_color)
 
-        x *= 1
+        xc += 1
 
 
 
