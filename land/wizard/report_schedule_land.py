@@ -20,14 +20,16 @@ import os
 
 
 class ReportScheduleLand(models.TransientModel):
-    _name = "report.schedule.land"
+    _name         = "report.schedule.land"
     _description  = "report.schedule.land"
-    company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
+    company_id    = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
+    date_start    = fields.Date(string='Fecha Inicio Cuota')
+    date_end    = fields.Date(string='Fecha Fin Cuota')
 
     def print_report_schedule_excell(self,order):
         return {
             'type': 'ir.actions.act_url',
-            'url': f'/web/binary/download_excell_report_schedule_land_order/{order.id}',
+            'url': f'/web/binary/download_excell_report_schedule_land_order/{order.id}?start={self.date_start}&end={self.date_end}',
             'target': 'self',
         }
 
@@ -225,7 +227,7 @@ class ReportScheduleLand(models.TransientModel):
             ('order_id.company_id','=',company.id),('type_schedule','=','dues')
         ])
 
-        raise ValueError(len(schedule_dues))
+        #raise ValueError(len(schedule_dues))
 
         for schedule_due in schedule_dues:
 

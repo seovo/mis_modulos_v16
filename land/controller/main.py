@@ -21,6 +21,7 @@ class Binary(http.Controller):
     @http.route('/web/binary/download_excell_report_schedule_land/<model("res.company"):company>', type='http', auth="public")
     #@serialize_exception
     def download_excell_report_schedule_land(self, company , **kw):
+        raise ValueError(kw)
         excel_data = request.env['report.schedule.land'].get_report_xls(company)
 
         filename = f'Report_Cuotas_{company.name}.xlsx'
@@ -33,6 +34,7 @@ class Binary(http.Controller):
     @http.route('/web/binary/download_excell_report_schedule_land_order/<model("sale.order"):sale>', type='http', auth="public")
     #@serialize_exception
     def download_excell_report_schedule_land_sale(self, sale , **kw):
+
         excel_data = request.env['report.schedule.land'].get_report_xls(None,sale=sale)
 
         filename = f'Report_Cuotas_{sale.partner_id.name}_{sale.nro_internal_land}.xlsx'
