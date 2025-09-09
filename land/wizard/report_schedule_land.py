@@ -57,7 +57,7 @@ class ReportScheduleLand(models.TransientModel):
 
 
     def do_excell(self):
-        url =  f'/web/binary/download_excell_report_schedule_land/{self.company_id.id}?start={self.date_start}&end={self.date_end}&byear={self.balance_year}'
+        url =  f'/web/binary/download_excell_report_schedule_land/{self.company_id.id}?start={self.date_start}&end={self.date_end}&byear={self.balance_year}&year={self.year}'
         return {
             'type': 'ir.actions.act_url',
             'url': url,
@@ -82,7 +82,7 @@ class ReportScheduleLand(models.TransientModel):
 
                 orders = self.env['sale.order'].search(domain)
 
-                self.get_report_xls_data_year(workbook, sheet,orders,2025)
+                self.get_report_xls_data_year(workbook, sheet,orders,int(kw['year']))
 
 
         if continue_report:
