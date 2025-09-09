@@ -128,7 +128,7 @@ class ReportScheduleLand(models.TransientModel):
         green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
         # Definir el formato para el fondo rojo claro
         red_format = workbook.add_format({'bg_color': '#FFCCCB', 'border': 1})
-        gray_format = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1})
+        gray_format = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1 , 'align': 'center', 'valign': 'vcenter'})
 
 
         sheet.write(xc, 1, 'EXPEDIENTE', bg_azul_text_white)
