@@ -178,7 +178,7 @@ class SaleOrder(models.Model):
         # Filtrar los registros
         schedule_land_dues = self.env['schedule.dues.land'].search([
             ('type_schedule', '=', 'dues'),
-            ('order_id', '=', record.id),
+            ('order_id', '=', self.id),
             ('date', '>=', start_date),
             ('date', '<=', end_date),
         ])
@@ -211,7 +211,7 @@ class SaleOrder(models.Model):
             saldo_year_now = 0
 
 
-            schedule_land_dues = self.get_schedule_x_year(year)
+            schedule_land_dues = record.get_schedule_x_year(year)
 
             for sche in schedule_land_dues:
                 datex = sche.date
