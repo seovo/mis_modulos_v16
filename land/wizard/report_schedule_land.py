@@ -100,17 +100,36 @@ class ReportScheduleLand(models.TransientModel):
             'bottom': 2, 'top': 2, 'left': 2, 'right': 2}
         )
 
+        bg_azul_text_white = workbook.add_format({
+            'bg_color': '#003366', 'border': 1 , 'bold': True ,
+            'align': 'center', 'valign': 'vcenter' , 'color': 'white'
+        })
 
-        sheet.write(xc, 1, 'EXPEDIENTE', bold)
+
+        sheet.write(xc, 1, 'EXPEDIENTE', bg_azul_text_white)
         sheet.set_column('B:B', 20)
 
-        sheet.write(xc, 2, 'MZ', bold)
-        sheet.write(xc, 3, 'LOTE', bold)
-        sheet.set_column('C:D', 15)
+        sheet.write(xc, 2, 'MZ', bg_azul_text_white)
+        sheet.write(xc, 3, 'LOTE', bg_azul_text_white)
+        sheet.set_column('C:D', bg_azul_text_white)
 
 
-        sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
+        sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bg_azul_text_white)
         sheet.set_column('E:E', 50)
+
+        sheet.write(xc, 5, 'ESTADO', bg_azul_text_white)
+        sheet.set_column('F:F', 20)
+
+        sheet.write(xc, 5, 'ESTADO PAGO', bg_azul_text_white)
+        sheet.set_column('G:G', 20)
+
+        meses = ["Enero","Febrero","Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+
+        c = 0
+        for mes in meses:
+            c += 1
+            sheet.write(xc, 5 + c, mes, bg_azul_text_white)
+
 
         xc += 1
 
