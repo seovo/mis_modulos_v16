@@ -119,6 +119,8 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bg_azul_text_white)
         sheet.set_column('E:E', 50)
 
+        return
+
         sheet.write(xc, 5, 'ESTADO', bg_azul_text_white)
         sheet.set_column('F:F', 20)
 
