@@ -33,6 +33,8 @@ stage_land   = {
   'regularizado' :'Regularizado'
 }
 
+year_current = fields.Datetime.now().year
+
 
 class ReportScheduleLand(models.TransientModel):
     _name         = "report.schedule.land"
@@ -41,6 +43,8 @@ class ReportScheduleLand(models.TransientModel):
     date_start    = fields.Date(string='Fecha Inicio Cuota')
     date_end    = fields.Date(string='Fecha Fin Cuota')
     balance_year = fields.Boolean(string='Balance Anual')
+
+    year   = fields.Integer(default=year_current)
 
     def print_report_schedule_excell(self,order):
         url = f'/web/binary/download_excell_report_schedule_land_order/{order.id}?start={self.date_start}&end={self.date_end}'

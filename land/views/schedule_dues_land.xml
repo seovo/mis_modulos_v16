@@ -95,9 +95,10 @@
                     <sheet>
                         <group>
                             <field name="company_id" />
-                            <field name="date_start" />
-                            <field name="date_end" />
+                            <field name="date_start" invisible="balance_year" />
+                            <field name="date_end" invisible="balance_year"  />
                             <field name="balance_year" />
+                            <field name="year"  invisible="not balance_year" />
                         </group>
 
 
