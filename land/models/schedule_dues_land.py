@@ -32,6 +32,19 @@ class ScheduleDuesLand(models.Model):
         ('independence','Independizacion')
     ],string="Tipo de Schedule")
 
+
+    def get_value_adelantos(self):
+        adelantos = self.env['schedule.dues.land'].search([
+            ('order_id','=',self.order_id.id),('type_schedule','=','advances'),('number_due','=',self.number_due)
+        ])
+
+        total = 0
+
+        for adel in adelantos:
+            total += adel.amount_due_land
+
+        return total
+
     @api.depends('move_id','nro_internal_land','order_id','line_move_id','type_schedule')
     def get_name_jz(self):
         for record in self:

@@ -202,7 +202,7 @@ class ReportScheduleLand(models.TransientModel):
                 sh_month = sche.date.month
 
                 if sche.amount_due_land > 0 :
-                    pagadox =  sche.amount_due_land
+                    pagadox = sche.amount_due_land + sche.get_value_adelantos()
                     pagado += pagadox
                     sheet.write(xc, n_start + sh_month, pagadox, green_format)
                     m_pgados += 1
@@ -220,6 +220,7 @@ class ReportScheduleLand(models.TransientModel):
 
             sheet.write(xc, n_start + 13, pagado, format_body)
             sheet.write(xc, n_start + 14, credito - pagado, format_body)
+            sheet.set_column('X:Y', 20)
 
 
             xc += 1

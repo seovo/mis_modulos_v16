@@ -177,11 +177,13 @@ class SaleOrder(models.Model):
         end_date = date(year, 12, 31)
         # Filtrar los registros
         schedule_land_dues = self.env['schedule.dues.land'].search([
-            ('type_schedule', '=', 'dues'),
+            ('type_schedule', 'in', ['dues']),
             ('order_id', '=', self.id),
             ('date', '>=', start_date),
             ('date', '<=', end_date),
         ])
+
+
 
         return schedule_land_dues
 
