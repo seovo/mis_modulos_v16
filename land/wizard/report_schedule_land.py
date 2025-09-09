@@ -120,7 +120,7 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 5, 'ESTADO', bg_azul_text_white)
         sheet.set_column('F:F', 20)
 
-        sheet.write(xc, 5, 'ESTADO PAGO', bg_azul_text_white)
+        sheet.write(xc, 6, 'ESTADO PAGO', bg_azul_text_white)
         sheet.set_column('G:G', 20)
 
         meses = ["Enero","Febrero","Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
@@ -128,7 +128,9 @@ class ReportScheduleLand(models.TransientModel):
         c = 0
         for mes in meses:
             c += 1
-            sheet.write(xc, 5 + c, mes, bg_azul_text_white)
+            sheet.write(xc, 6 + c, mes, bg_azul_text_white)
+
+        sheet.set_column('H:T', 20)
 
 
         xc += 1
