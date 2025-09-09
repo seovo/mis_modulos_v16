@@ -78,7 +78,7 @@ class ReportScheduleLand(models.TransientModel):
             if kw['byear'] == 'True':
                 continue_report = False
 
-                domain = [('state','=','sale')]
+                domain = [('state','=','sale'),('company_id','=',company.id)]
 
                 orders = self.env['sale.order'].search(domain)
 
