@@ -128,6 +128,7 @@ class ReportScheduleLand(models.TransientModel):
         green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
         # Definir el formato para el fondo rojo claro
         red_format = workbook.add_format({'bg_color': '#FFCCCB', 'border': 1})
+        gray_format = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1})
 
 
         sheet.write(xc, 1, 'EXPEDIENTE', bg_azul_text_white)
@@ -186,19 +187,21 @@ class ReportScheduleLand(models.TransientModel):
             if not schedule_land_dues:
                 continue
 
-            sheet.write(xc, 1, order.nro_internal_land, format_body)
-            sheet.write(xc, 2, order.mz_land, format_body)
-            sheet.write(xc, 3, order.lot_land, format_body)
-            sheet.write(xc, 4, order.partner_id.display_name, format_body)
-            sheet.write(xc, 5, stage_land.get(order.stage_land) if order.stage_land else '', format_body)
-            sheet.write(xc, 6, stage_payment_lan.get(order.stage_payment_lan) if order.stage_payment_lan else '', format_body)
+            format_bodyx = gray_format if order.stage_land == 'cancel' else format_body
+
+            sheet.write(xc, 1, order.nro_internal_land, format_bodyx)
+            sheet.write(xc, 2, order.mz_land, format_bodyx)
+            sheet.write(xc, 3, order.lot_land, format_bodyx)
+            sheet.write(xc, 4, order.partner_id.display_name, format_bodyx)
+            sheet.write(xc, 5, stage_land.get(order.stage_land) if order.stage_land else '', format_bodyx)
+            sheet.write(xc, 6, stage_payment_lan.get(order.stage_payment_lan) if order.stage_payment_lan else '', format_bodyx)
 
             #7 MESES A PAGAR
             m_a_pgar = 0
             #8 MESES PAGADOS
             m_pgados = 0
             #9 CUOTA
-            sheet.write(xc, 9,  order.value_due_land, format_body)
+            sheet.write(xc, 9,  order.value_due_land, format_bodyx)
             #10 CREDITO ANUAL
 
             ##CUOTAS
@@ -220,15 +223,15 @@ class ReportScheduleLand(models.TransientModel):
                 m_a_pgar += 1
 
             #7 MESES A PAGAR
-            sheet.write(xc, 7, m_a_pgar, format_body)
+            sheet.write(xc, 7, m_a_pgar, format_bodyx)
             #8 MESES PAGADOS
-            sheet.write(xc, 8, m_pgados, format_body)
+            sheet.write(xc, 8, m_pgados, format_bodyx)
             #9 CREDITO ANUAL
             credito = m_a_pgar * order.value_due_land
-            sheet.write(xc, 10, credito, format_body)
+            sheet.write(xc, 10, credito, format_bodyx)
 
-            sheet.write(xc, n_start + 13, pagado, format_body)
-            sheet.write(xc, n_start + 14, credito - pagado, format_body)
+            sheet.write(xc, n_start + 13, pagado, format_bodyx)
+            sheet.write(xc, n_start + 14, credito - pagado, format_bodyx)
             sheet.set_column('X:Y', 20)
 
 
