@@ -120,6 +120,11 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
 
+        # Definir el formato para el fondo verde claro
+        green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
+        # Definir el formato para el fondo rojo claro
+        red_format = workbook.add_format({'bg_color': '#FFCCCB', 'border': 1})
+
 
         sheet.write(xc, 1, 'EXPEDIENTE', bg_azul_text_white)
         sheet.set_column('B:B', 20)
@@ -179,10 +184,14 @@ class ReportScheduleLand(models.TransientModel):
             schedule_land_dues = order.get_schedule_x_year(year)
 
             c = 0
+            n_start = 9
             for sche in schedule_land_dues:
                 c += 1
                 if sche.amount_due_land > 0 :
-                    sheet.write(xc, 10 + c, sche.amount_due_land , format_body)
+                    sheet.write(xc, n_start + c, sche.amount_due_land , green_format)
+                else:
+                    sheet.write(xc, n_start + c, sche.amount , red_format)
+
 
             xc += 1
 
