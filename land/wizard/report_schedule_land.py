@@ -183,15 +183,15 @@ class ReportScheduleLand(models.TransientModel):
 
             schedule_land_dues = order.get_schedule_x_year(year)
 
-            c = 0
+
             n_start = 9
             for sche in schedule_land_dues:
-                sh_year = sche.date.year
-                c += 1
+                sh_month = sche.date.month
+
                 if sche.amount_due_land > 0 :
-                    sheet.write(xc, n_start + sh_year, sche.amount_due_land , green_format)
+                    sheet.write(xc, n_start + sh_month, sche.amount_due_land , green_format)
                 else:
-                    sheet.write(xc, n_start + sh_year, sche.amount , red_format)
+                    sheet.write(xc, n_start + sh_month, sche.amount , red_format)
 
 
             xc += 1
