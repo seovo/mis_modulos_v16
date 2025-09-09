@@ -166,8 +166,8 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 2, order.mz_land, format_body)
             sheet.write(xc, 3, order.lot_land, format_body)
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
-            sheet.write(xc, 5, stage_land(order.stage_land), format_body)
-            sheet.write(xc, 6, stage_payment_lan(order.stage_payment_lan), format_body)
+            sheet.write(xc, 5, stage_land(order.stage_land) if order.stage_land else '', format_body)
+            sheet.write(xc, 6, stage_payment_lan(order.stage_payment_lan) if order.stage_payment_lan else '', format_body)
 
             #7 MESES A PAGAR
             #8 MESES PAGADOS
