@@ -128,7 +128,7 @@ class ReportScheduleLand(models.TransientModel):
         c = 0
         for mes in meses:
             c += 1
-            sheet.write(xc, 5 + c, mes, bg_azul_text_white)
+            sheet.write(xc, 5 + c, str(mes), bg_azul_text_white)
 
 
         xc += 1
