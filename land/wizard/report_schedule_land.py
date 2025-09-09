@@ -109,6 +109,8 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 1, 'EXPEDIENTE', bg_azul_text_white)
         sheet.set_column('B:B', 20)
 
+        return
+
         sheet.write(xc, 2, 'MZ', bg_azul_text_white)
         sheet.write(xc, 3, 'LOTE', bg_azul_text_white)
         sheet.set_column('C:D', bg_azul_text_white)
