@@ -63,7 +63,7 @@ class ReportScheduleLand(models.TransientModel):
 
                 orders = self.env['sale.order'].search(domain)
 
-                self.get_report_xls_data_year(workbook, sheet,sale,orders)
+                self.get_report_xls_data_year(workbook, sheet,orders)
 
 
         if continue_report:
@@ -92,7 +92,7 @@ class ReportScheduleLand(models.TransientModel):
         fp.close()
         return excel_file
 
-    def get_report_xls_data_year(self,workbook, sheet,order,orders):
+    def get_report_xls_data_year(self,workbook, sheet,orders):
         xc = 1
         bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
         format_body = workbook.add_format({
