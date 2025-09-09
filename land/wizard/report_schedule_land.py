@@ -17,20 +17,20 @@ except:
 
 import os
 
-stage_payment_lan = [
-    ('separation','Separado'),
-    ('initial','Inicial Incompletada'),
-    ('dues','Cuotas Pendientes'),
-    ('payment', 'Pagando Cuotas'),
-    ('completed','Cuotas Completada')
-]
+stage_payment_lan = {
+    'separation' :'Separado',
+    'initial'    :'Inicial Incompletada',
+    'dues'       :'Cuotas Pendientes',
+    'payment'    : 'Pagando Cuotas',
+    'completed'  :'Cuotas Completada'
+}
 
-stage_land   = [
-  ('signed',_('Firmado'))  ,
-  ('preaviso',_('Carta Preaviso')),
-  ('cancel',_('Resuelto')),
-  ('regularizado','Regularizado'),
-]
+stage_land   = {
+  'signed'       :'Firmado',
+  'preaviso'     :'Carta Preaviso',
+  'cancel'       :'Resuelto',
+  'regularizado' :'Regularizado'
+}
 
 
 class ReportScheduleLand(models.TransientModel):
