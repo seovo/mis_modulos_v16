@@ -189,7 +189,7 @@ class ReportScheduleLand(models.TransientModel):
             #8 MESES PAGADOS
             m_pgados = 0
             #9 CUOTA
-            sheet.write(xc, 4,  order.value_due_land, format_body)
+            sheet.write(xc, 9,  order.value_due_land, format_body)
             #10 CREDITO ANUAL
 
             ##CUOTAS
@@ -215,7 +215,7 @@ class ReportScheduleLand(models.TransientModel):
             #8 MESES PAGADOS
             sheet.write(xc, 8, m_pgados, format_body)
             #9 CREDITO ANUAL
-            credito = m_pgados * order.value_due_land
+            credito = m_a_pgar * order.value_due_land
             sheet.write(xc, 10, credito, format_body)
 
             sheet.write(xc, n_start + 13, pagado, format_body)
