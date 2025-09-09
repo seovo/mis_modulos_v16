@@ -149,7 +149,12 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 8, 'MESES PAGADOS', bg_azul_text_white)
         sheet.set_column('I:I', 15)
 
-        sheet.write(xc, 9, 'CREDITO ANUAL', bg_azul_text_white)
+        sheet.write(xc, 9, 'CUOTA', bg_azul_text_white)
+        sheet.set_column('I:I', 15)
+
+        n_start = 10
+
+        sheet.write(xc, n_start, 'CREDITO ANUAL', bg_azul_text_white)
         sheet.set_column('J:J', 20)
 
         meses = ["Enero","Febrero","Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
@@ -157,7 +162,7 @@ class ReportScheduleLand(models.TransientModel):
         c = 0
         for mes in meses:
             c += 1
-            sheet.write(xc, 9 + c, mes, bg_azul_text_white)
+            sheet.write(xc, n_start + c, mes, bg_azul_text_white)
 
         sheet.set_column('K:W', 20)
 
@@ -176,22 +181,36 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 6, stage_payment_lan.get(order.stage_payment_lan) if order.stage_payment_lan else '', format_body)
 
             #7 MESES A PAGAR
+            m_a_pgar = 0
             #8 MESES PAGADOS
-            #9 CREDITO ANUAL
+            m_pgados = 0
+            #9 CUOTA
+            sheet.write(xc, 4,  order.value_due_land, format_body)
+            #10 CREDITO ANUAL
 
             ##CUOTAS
 
             schedule_land_dues = order.get_schedule_x_year(year)
 
 
-            n_start = 9
+
             for sche in schedule_land_dues:
                 sh_month = sche.date.month
 
                 if sche.amount_due_land > 0 :
                     sheet.write(xc, n_start + sh_month, sche.amount_due_land , green_format)
+                    m_pgados += 1
                 else:
                     sheet.write(xc, n_start + sh_month, sche.amount , red_format)
+                m_a_pgar += 1
+
+            #7 MESES A PAGAR
+            sheet.write(xc, 7, m_a_pgar, format_body)
+            #8 MESES PAGADOS
+            sheet.write(xc, 8, m_pgados, format_body)
+            #9 CREDITO ANUAL
+            credito = m_pgados * order.value_due_land
+            sheet.write(xc, 9, credito, format_body)
 
 
             xc += 1
