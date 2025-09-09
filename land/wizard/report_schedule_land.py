@@ -52,28 +52,72 @@ class ReportScheduleLand(models.TransientModel):
 
         domain = []
 
-        if 'start' in kw:
-            if kw['start'] and kw['start'] != 'False' :
-                domain.append(('date','>=',kw['start']))
+        continue_report = True
 
-        if 'end' in kw:
-            if kw['end'] and kw['end'] != 'False' :
-                domain.append(('date','<=',kw['end']))
 
-        if sale:
-            domain.append(('order_id','=',order.id))
-            schedule_dues = self.env['schedule.dues.land'].search(domain)
-            self.get_report_xls_data_sale(workbook, sheet,sale,schedule_dues)
-        else:
-            domain += [('order_id.company_id','=',company.id),('type_schedule','=','dues')]
-            schedule_dues = self.env['schedule.dues.land'].search(domain)
-            self.get_report_xls_data(workbook, sheet,company,schedule_dues)
+        if 'byear' in kw:
+            if kw['byear'] == 'True':
+                continue_report = False
+
+                domain = [('state','=','sale')]
+
+                orders = self.env['sale.order'].search(domain)
+
+                self.get_report_xls_data_year(workbook, sheet,sale,orders)
+
+
+        if continue_report:
+            if 'start' in kw:
+                if kw['start'] and kw['start'] != 'False' :
+                    domain.append(('date','>=',kw['start']))
+
+            if 'end' in kw:
+                if kw['end'] and kw['end'] != 'False' :
+                    domain.append(('date','<=',kw['end']))
+
+            if sale:
+                domain.append(('order_id','=',order.id))
+                schedule_dues = self.env['schedule.dues.land'].search(domain)
+                self.get_report_xls_data_sale(workbook, sheet,sale,schedule_dues)
+            else:
+                domain += [('order_id.company_id','=',company.id),('type_schedule','=','dues')]
+                schedule_dues = self.env['schedule.dues.land'].search(domain)
+                self.get_report_xls_data(workbook, sheet,company,schedule_dues)
+
+
 
 
         workbook.close()
         excel_file = base64.encodebytes(fp.getvalue())
         fp.close()
         return excel_file
+
+    def get_report_xls_data_year(self,workbook, sheet,order,orders):
+        xc = 1
+        bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
+        format_body = workbook.add_format({
+            'bold': False, 'align': 'center', 'valign': 'vcenter',
+            'bottom': 2, 'top': 2, 'left': 2, 'right': 2}
+        )
+
+
+        sheet.write(xc, 1, 'EXPEDIENTE', bold)
+        sheet.set_column('B:B', 20)
+
+        sheet.write(xc, 2, 'MZ', bold)
+        sheet.write(xc, 3, 'LOTE', bold)
+        sheet.set_column('C:D', 15)
+
+
+        sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
+        sheet.set_column('E:E', 50)
+
+        for order in orders:
+            sheet.write(xc, 1, order.nro_internal_land, format_body)
+            sheet.write(xc, 2, order.mz_land, format_body)
+            sheet.write(xc, 3, order.lot_land, format_body)
+            sheet.write(xc, 4, order.partner_id.display_name, format_body)
+
 
     def get_report_xls_data_sale(self,workbook, sheet,order,schedule_dues):
 
