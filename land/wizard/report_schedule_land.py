@@ -112,11 +112,15 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
         sheet.set_column('E:E', 50)
 
+        xc += 1
+
         for order in orders:
             sheet.write(xc, 1, order.nro_internal_land, format_body)
             sheet.write(xc, 2, order.mz_land, format_body)
             sheet.write(xc, 3, order.lot_land, format_body)
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
+
+            xc += 1
 
 
     def get_report_xls_data_sale(self,workbook, sheet,order,schedule_dues):

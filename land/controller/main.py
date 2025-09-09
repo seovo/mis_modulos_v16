@@ -26,6 +26,12 @@ class Binary(http.Controller):
         excel_data = request.env['report.schedule.land'].get_report_xls(company,kw=kw)
 
         filename = f'Report_Cuotas_{company.name}.xlsx'
+
+        if 'byear' in kw:
+            if kw['byear']:
+                filename = f'Balance_Anual_{company.name}.xlsx'
+
+
         filecontent = base64.b64decode(excel_data or '')
         return request.make_response(filecontent, [
             ('Content-Type', 'application/vnd.ms-excel'),
