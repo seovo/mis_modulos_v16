@@ -223,8 +223,10 @@ class SaleOrder(models.Model):
                     #    record.paid_land_1 = sche.amount_due_land
 
                     if sche.amount_due_land > 0 :
-                        record[f'paid_land_{datex.month}'] = sche.amount_due_land
-                        payment_year_now += sche.amount_due_land
+
+                        pagadox = sche.amount_due_land + sche.get_value_adelantos()
+                        record[f'paid_land_{datex.month}'] = pagadox
+                        payment_year_now += pagadox
                     else:
                         record[f'paid_land_{datex.month}'] = -1 * sche.amount
                         saldo_year_now += sche.amount

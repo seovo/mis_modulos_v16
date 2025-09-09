@@ -44,7 +44,7 @@ class ReportScheduleLand(models.TransientModel):
     date_end    = fields.Date(string='Fecha Fin Cuota')
     balance_year = fields.Boolean(string='Balance Anual')
 
-    year   = fields.Integer(default=year_current)
+    year   = fields.Integer(default=year_current,string='Año')
 
     def print_report_schedule_excell(self,order):
         url = f'/web/binary/download_excell_report_schedule_land_order/{order.id}?start={self.date_start}&end={self.date_end}'
@@ -181,6 +181,11 @@ class ReportScheduleLand(models.TransientModel):
 
         for order in orders:
 
+            schedule_land_dues = order.get_schedule_x_year(year)
+
+            if not schedule_land_dues:
+                continue
+
             sheet.write(xc, 1, order.nro_internal_land, format_body)
             sheet.write(xc, 2, order.mz_land, format_body)
             sheet.write(xc, 3, order.lot_land, format_body)
@@ -198,7 +203,7 @@ class ReportScheduleLand(models.TransientModel):
 
             ##CUOTAS
 
-            schedule_land_dues = order.get_schedule_x_year(year)
+
 
 
             pagado = 0
