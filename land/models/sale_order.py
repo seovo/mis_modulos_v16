@@ -172,6 +172,23 @@ class SaleOrder(models.Model):
     payment_year_now = fields.Float(compute='get_amounts_paid_land', string='Aportado Anual')
     saldo_year_now = fields.Float(compute='get_amounts_paid_land', string='Saldo Anual')
 
+    def get_schedule_x_year(self,year):
+        start_date = date(year, 1, 1)
+        end_date = date(year, 12, 31)
+        # Filtrar los registros
+        schedule_land_dues = self.env['schedule.dues.land'].search([
+            ('type_schedule', '=', 'dues'),
+            ('order_id', '=', record.id),
+            ('date', '>=', start_date),
+            ('date', '<=', end_date),
+        ])
+
+        return schedule_land_dues
+
+
+
+
+
     @api.depends('schedule_land_ids')
     def get_amounts_paid_land(self):
         year = fields.Datetime.now().year
@@ -193,16 +210,15 @@ class SaleOrder(models.Model):
             payment_year_now = 0
             saldo_year_now = 0
 
-            schedule_land_dues = self.env['schedule.dues.land'].search([
-                ('type_schedule','=','dues'),('order_id','=',record.id)
-            ])
+
+            schedule_land_dues = self.get_schedule_x_year(year)
 
             for sche in schedule_land_dues:
                 datex = sche.date
 
                 if datex and datex.year == year:
-                    if datex.month == 1 :
-                        record.paid_land_1 = sche.amount_due_land
+                    #if datex.month == 1 :
+                    #    record.paid_land_1 = sche.amount_due_land
 
                     if sche.amount_due_land > 0 :
                         record[f'paid_land_{datex.month}'] = sche.amount_due_land

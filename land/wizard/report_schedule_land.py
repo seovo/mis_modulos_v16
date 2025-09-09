@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models , _
 import io
 try:
     import base64
@@ -17,6 +17,20 @@ except:
 
 import os
 
+stage_payment_lan = [
+    ('separation','Separado'),
+    ('initial','Inicial Incompletada'),
+    ('dues','Cuotas Pendientes'),
+    ('payment', 'Pagando Cuotas'),
+    ('completed','Cuotas Completada')
+]
+
+stage_land   = [
+  ('signed',_('Firmado'))  ,
+  ('preaviso',_('Carta Preaviso')),
+  ('cancel',_('Resuelto')),
+  ('regularizado','Regularizado'),
+]
 
 
 class ReportScheduleLand(models.TransientModel):
@@ -63,7 +77,7 @@ class ReportScheduleLand(models.TransientModel):
 
                 orders = self.env['sale.order'].search(domain)
 
-                self.get_report_xls_data_year(workbook, sheet,orders)
+                self.get_report_xls_data_year(workbook, sheet,orders,2025)
 
 
         if continue_report:
@@ -92,7 +106,7 @@ class ReportScheduleLand(models.TransientModel):
         fp.close()
         return excel_file
 
-    def get_report_xls_data_year(self,workbook, sheet,orders):
+    def get_report_xls_data_year(self,workbook, sheet,orders,year):
         xc = 1
         bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
         format_body = workbook.add_format({
@@ -129,7 +143,7 @@ class ReportScheduleLand(models.TransientModel):
         sheet.write(xc, 8, 'MESES PAGADOS', bg_azul_text_white)
         sheet.set_column('I:I', 15)
 
-        sheet.write(xc, 8, 'CREDITO ANUAL', bg_azul_text_white)
+        sheet.write(xc, 9, 'CREDITO ANUAL', bg_azul_text_white)
         sheet.set_column('J:J', 20)
 
         meses = ["Enero","Febrero","Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
@@ -137,18 +151,37 @@ class ReportScheduleLand(models.TransientModel):
         c = 0
         for mes in meses:
             c += 1
-            sheet.write(xc, 8 + c, mes, bg_azul_text_white)
+            sheet.write(xc, 9 + c, mes, bg_azul_text_white)
 
         sheet.set_column('K:W', 20)
+
+
 
 
         xc += 1
 
         for order in orders:
+
             sheet.write(xc, 1, order.nro_internal_land, format_body)
             sheet.write(xc, 2, order.mz_land, format_body)
             sheet.write(xc, 3, order.lot_land, format_body)
             sheet.write(xc, 4, order.partner_id.display_name, format_body)
+            sheet.write(xc, 5, stage_land(order.stage_land), format_body)
+            sheet.write(xc, 6, stage_payment_lan(order.stage_payment_lan), format_body)
+
+            #7 MESES A PAGAR
+            #8 MESES PAGADOS
+            #9 CREDITO ANUAL
+
+            ##CUOTAS
+
+            schedule_land_dues = order.get_schedule_x_year(year)
+
+            c = 0
+            for sche in schedule_land_dues:
+                c += 1
+                if sche.amount_due_land > 0 :
+                    sheet.write(xc, 10 + c, sche.amount_due_land , format_body)
 
             xc += 1
 
