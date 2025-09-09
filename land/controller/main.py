@@ -29,7 +29,7 @@ class Binary(http.Controller):
 
         if 'byear' in kw:
             if kw['byear']:
-                filename = f'Balance_Anual_{company.name}.xlsx'
+                filename = f'''Balance_Anual_{kw.get('year')}_{company.name}.xlsx'''
 
 
         filecontent = base64.b64decode(excel_data or '')
