@@ -150,12 +150,12 @@ class ReportScheduleLand(models.TransientModel):
         sheet.set_column('I:I', 15)
 
         sheet.write(xc, 9, 'CUOTA', bg_azul_text_white)
-        sheet.set_column('I:I', 15)
+        sheet.set_column('J:J', 15)
 
         n_start = 10
 
         sheet.write(xc, n_start, 'CREDITO ANUAL', bg_azul_text_white)
-        sheet.set_column('J:J', 20)
+
 
         meses = ["Enero","Febrero","Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
 
@@ -164,7 +164,11 @@ class ReportScheduleLand(models.TransientModel):
             c += 1
             sheet.write(xc, n_start + c, mes, bg_azul_text_white)
 
-        sheet.set_column('K:W', 20)
+        sheet.set_column('K:W', 15)
+
+        sheet.write(xc, n_start + 13, 'APORTADO', bg_azul_text_white)
+        sheet.write(xc, n_start + 14, 'SALDO', bg_azul_text_white)
+
 
 
 
@@ -193,12 +197,14 @@ class ReportScheduleLand(models.TransientModel):
             schedule_land_dues = order.get_schedule_x_year(year)
 
 
-
+            pagado = 0
             for sche in schedule_land_dues:
                 sh_month = sche.date.month
 
                 if sche.amount_due_land > 0 :
-                    sheet.write(xc, n_start + sh_month, sche.amount_due_land , green_format)
+                    pagadox =  sche.amount_due_land
+                    pagado += pagadox
+                    sheet.write(xc, n_start + sh_month, pagadox, green_format)
                     m_pgados += 1
                 else:
                     sheet.write(xc, n_start + sh_month, sche.amount , red_format)
@@ -210,7 +216,10 @@ class ReportScheduleLand(models.TransientModel):
             sheet.write(xc, 8, m_pgados, format_body)
             #9 CREDITO ANUAL
             credito = m_pgados * order.value_due_land
-            sheet.write(xc, 9, credito, format_body)
+            sheet.write(xc, 10, credito, format_body)
+
+            sheet.write(xc, n_start + 13, pagado, format_body)
+            sheet.write(xc, n_start + 14, credito - pagado, format_body)
 
 
             xc += 1
