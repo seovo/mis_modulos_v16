@@ -2,7 +2,7 @@
 from odoo import fields, models
 
 
-class L10nLatamIdentificatioType(models.Model):
+class L10nLatamIdentificationType(models.Model):
 
     _inherit = 'l10n_latam.identification.type'
     doc_code_prefix = fields.Char()

@@ -101,7 +101,8 @@ class ReportScheduleLand(models.TransientModel):
             else:
                 domain += [('order_id.company_id','=',company.id),('type_schedule','=','dues')]
                 schedule_dues = self.env['schedule.dues.land'].search(domain)
-                self.get_report_xls_data(workbook, sheet,company,schedule_dues)
+                #self.get_report_xls_data(workbook, sheet,company,schedule_dues)
+                self.get_report_xls_data_optimizado(workbook, sheet,company,schedule_dues)
 
 
 
@@ -440,5 +441,63 @@ class ReportScheduleLand(models.TransientModel):
 
 
 
+    def get_report_xls_data_optimizado(self, workbook, sheet, company, schedule_dues):
+        xc = 1
+        bold = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter'})
+        format_body = workbook.add_format({'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
+        format_red = workbook.add_format({'bg_color': '#FFCCCC', 'font_color': '#000000', 'bold': True, 'align': 'center', 'valign': 'vcenter'})
 
+        headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY', 'DIAS VENCIDOS', 'N° CUOTA', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
+        sheet.write_row(xc, 1, headers, bold)
 
+        # Ajustar columnas
+        sheet.set_column('B:B', 20)
+        sheet.set_column('C:D', 15)
+        sheet.set_column('E:E', 50)
+        sheet.set_column('F:F', 15)
+        sheet.set_column('G:H', 20)
+        sheet.set_column('I:L', 15)
+        sheet.set_column('M:M', 50)
+        sheet.set_column('N:N', 25)
+        sheet.set_column('O:O', 20)
+        sheet.set_column('P:P', 15)
+
+        xc += 1
+
+        data_to_write = []
+
+        for schedule_due in schedule_dues:
+            order = schedule_due.order_id
+            invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
+            dias_vencidos = (invoice_pagada - schedule_due.date).days
+
+            row_data = [
+                schedule_due.order_id.nro_internal_land,
+                order.mz_land,
+                order.lot_land,
+                order.partner_id.display_name,
+                order.m2_land,
+                str(schedule_due.date),
+                str(invoice_pagada),
+                dias_vencidos,
+                schedule_due.number_due,
+                schedule_due.amount_due_land,
+                order.sector_land,
+                order.company_id.display_name,
+                schedule_due.move_id.display_name,
+                str(schedule_due.invoice_date or ''),
+                'CANCELADO' if schedule_due.is_paid else 'PENDIENTE'
+            ]
+
+            data_to_write.append(row_data)
+
+        # Escribir todas las filas de datos a la vez
+        sheet.write_row(xc, 1, [data for data in data_to_write], format_body)
+
+        for idx, row in enumerate(data_to_write):
+            if row[-1] == 'CANCELADO':
+                sheet.write(xc + idx, 15, row[-1], format_red)
+            else:
+                sheet.write(xc + idx, 15, row[-1], format_body)
+
+        xc += len(data_to_write)
