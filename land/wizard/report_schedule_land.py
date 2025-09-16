@@ -82,7 +82,8 @@ class ReportScheduleLand(models.TransientModel):
 
                 orders = self.env['sale.order'].search(domain)
 
-                self.get_report_xls_data_year(workbook, sheet,orders,int(kw['year']))
+                #self.get_report_xls_data_year(workbook, sheet,orders,int(kw['year']))
+                self.get_report_xls_data_year_optimizado(workbook, sheet,orders,int(kw['year']))
 
 
         if continue_report:
@@ -238,6 +239,82 @@ class ReportScheduleLand(models.TransientModel):
 
 
             xc += 1
+
+
+    def get_report_xls_data_year_optimizado(self, workbook, sheet, orders, year):
+        xc = 1
+        bold = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter'})
+        format_body = workbook.add_format({'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
+
+        bg_azul_text_white = workbook.add_format({'bg_color': '#003366', 'border': 1, 'bold': True, 'align': 'center', 'valign': 'vcenter', 'color': 'white'})
+        green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
+        red_format = workbook.add_format({'bg_color': '#FFCCCB', 'border': 1})
+        gray_format = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1, 'align': 'center', 'valign': 'vcenter'})
+
+        headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'ESTADO', 'ESTADO PAGO', 'MESES A PAGAR', 'MESES PAGADOS', 'CUOTA', 'CREDITO ANUAL'] + \
+              ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] + \
+              ['APORTADO', 'SALDO']
+
+        sheet.write_row(xc, 1, headers, bg_azul_text_white)
+        sheet.set_column('B:B', 20)
+        sheet.set_column('C:D', 10)
+        sheet.set_column('E:E', 50)
+        sheet.set_column('F:G', 20)
+        sheet.set_column('H:I', 15)
+        sheet.set_column('J:J', 15)
+        sheet.set_column('K:W', 15)
+        sheet.set_column('X:Y', 20)
+
+        xc += 1
+
+        for order in orders:
+
+            schedule_land_dues = order.get_schedule_x_year(year)
+            if not schedule_land_dues:
+                continue
+
+            format_bodyx = gray_format if order.stage_land == 'cancel' else format_body
+
+            row_data = [
+                order.nro_internal_land,
+                order.mz_land,
+                order.lot_land,
+                order.partner_id.display_name,
+                stage_land.get(order.stage_land, ''),
+                stage_payment_lan.get(order.stage_payment_lan, ''),
+                0,  # MESES A PAGAR
+                0,  # MESES PAGADOS
+                order.value_due_land,  # CUOTA
+                0   # CREDITO ANUAL (se calculará después)
+            ]
+
+            pagado = 0
+            m_a_pgar = 0
+            m_pgados = 0
+
+            for sche in schedule_land_dues:
+                sh_month = sche.date.month
+                if sche.amount_due_land > 0:
+                    pagadox = sche.amount_due_land + sche.get_value_adelantos()
+                    pagado += pagadox
+                    row_data[n_start + sh_month] = pagadox  # Coloca el valor en la fila correspondiente
+                    m_pgados += 1
+                else:
+                    row_data[n_start + sh_month] = sche.amount  # Maneja el caso de saldo negativo
+                m_a_pgar += 1
+
+            # Actualiza los valores de MESES A PAGAR y MESES PAGADOS
+            row_data[6] = m_a_pgar
+            row_data[7] = m_pgados
+            row_data[9] = m_a_pgar * order.value_due_land  # CREDITO ANUAL
+
+            # Escribir la fila
+            sheet.write_row(xc, 1, row_data, format_bodyx)
+            sheet.write(xc, n_start + 13, pagado, format_bodyx)
+            sheet.write(xc, n_start + 14, row_data[9] - pagado, format_bodyx)
+
+            xc += 1
+
 
 
     def get_report_xls_data_sale(self,workbook, sheet,order,schedule_dues):
