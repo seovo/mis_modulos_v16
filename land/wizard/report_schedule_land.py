@@ -96,7 +96,7 @@ class ReportScheduleLand(models.TransientModel):
                     domain.append(('date','<=',kw['end']))
 
             if sale:
-                domain.append(('order_id','=',order.id))
+                domain.append(('order_id','=',sale.id))
                 schedule_dues = self.env['schedule.dues.land'].search(domain)
                 self.get_report_xls_data_sale(workbook, sheet,sale,schedule_dues)
             else:
@@ -353,11 +353,6 @@ class ReportScheduleLand(models.TransientModel):
                         sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month] , gray_format)
                     else:
                         sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month] , red_format)
-
-
-
-
-
 
 
 
