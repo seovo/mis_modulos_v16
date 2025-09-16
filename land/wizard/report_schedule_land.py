@@ -288,18 +288,18 @@ class ReportScheduleLand(models.TransientModel):
                 0,  # MESES PAGADOS
                 order.value_due_land,  # CUOTA
                 0 ,   # CREDITO ANUAL (se calculará después)
-                0 , #   ENERO
-                0 , #FEBRERO
-                0 , #MARZO
-                0 , #ABRIL
-                0 , #MAYO
-                0 , #JUNIO
-                0 ,  #JULIO
-                0 , #AGOSTO
-                0 , #SETIEMBRE
-                0 , #OCTUBRE
-                0 , #NOV
-                0 , #DIC
+                '' , #   ENERO
+                '' , #FEBRERO
+                '' , #MARZO
+                '' , #ABRIL
+                '' , #MAYO
+                '' , #JUNIO
+                '' ,  #JULIO
+                '' , #AGOSTO
+                '' , #SETIEMBRE
+                '' , #OCTUBRE
+                '' , #NOV
+                '' , #DIC
                 0 , #APORTADO
                 0 , #SALDO
             ]
@@ -315,8 +315,13 @@ class ReportScheduleLand(models.TransientModel):
                     pagado += pagadox
                     row_data[n_start + sh_month] = pagadox  # Coloca el valor en la fila correspondiente
                     m_pgados += 1
+
+                    sheet.write(xc, n_start + sh_month, pagadox, green_format)
+
                 else:
                     row_data[n_start + sh_month] = sche.amount  # Maneja el caso de saldo negativo
+                    sheet.write(xc, n_start + sh_month, sche.amount , red_format)
+
                 m_a_pgar += 1
 
 
