@@ -452,6 +452,7 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
         green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
+        gray_format = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1 , 'align': 'center', 'valign': 'vcenter'})
 
         headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
                    'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
@@ -523,7 +524,12 @@ class ReportScheduleLand(models.TransientModel):
             if schedule_due.is_paid:
                 sheet.write(xc, 15, 'PAGADO', green_format)
             else:
-                sheet.write(xc, 15, 'PENDIENTE', format_red)
+
+                #si ya la venta esta cancelada / resolucion
+                if order.stage_land == 'cancel' :
+                    sheet.write(xc, 15, 'RESOLUCION', gray_format)
+                else:
+                    sheet.write(xc, 15, 'PENDIENTE', format_red)
 
             xc += 1
 
