@@ -319,6 +319,7 @@ class ReportScheduleLand(models.TransientModel):
                     row_data[n_start + sh_month] = sche.amount  # Maneja el caso de saldo negativo
                 m_a_pgar += 1
 
+
             # Actualiza los valores de MESES A PAGAR y MESES PAGADOS
             row_data[6] = m_a_pgar
             row_data[7] = m_pgados
