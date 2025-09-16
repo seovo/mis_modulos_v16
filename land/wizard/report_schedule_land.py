@@ -491,13 +491,14 @@ class ReportScheduleLand(models.TransientModel):
 
             data_to_write.append(row_data)
 
-        # Escribir todas las filas de datos a la vez
-        sheet.write_row(xc, 1, [data for data in data_to_write], format_body)
+            # Escribir la fila de datos
+            sheet.write_row(xc, 1, row_data, format_body)
 
-        for idx, row in enumerate(data_to_write):
-            if row[-1] == 'CANCELADO':
-                sheet.write(xc + idx, 15, row[-1], format_red)
+            # Aplicar formato al estado
+            if schedule_due.is_paid:
+                sheet.write(xc, 15, 'CANCELADO', format_red)
             else:
-                sheet.write(xc + idx, 15, row[-1], format_body)
+                sheet.write(xc, 15, 'PENDIENTE', format_body)
 
-        xc += len(data_to_write)
+            xc += 1
+
