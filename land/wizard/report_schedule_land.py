@@ -451,7 +451,6 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
 
-
         headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY', 'DIAS VENCIDOS', 'N° CUOTA', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
         sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
