@@ -446,9 +446,14 @@ class ReportScheduleLand(models.TransientModel):
         bold = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter'})
         format_body = workbook.add_format({'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
         format_red = workbook.add_format({'bg_color': '#FFCCCC', 'font_color': '#000000', 'bold': True, 'align': 'center', 'valign': 'vcenter'})
+        bg_azul_text_white = workbook.add_format({
+            'bg_color': '#003366', 'border': 1 , 'bold': True ,
+            'align': 'center', 'valign': 'vcenter' , 'color': 'white'
+        })
+
 
         headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY', 'DIAS VENCIDOS', 'N° CUOTA', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
-        sheet.write_row(xc, 1, headers, bold)
+        sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
         # Ajustar columnas
         sheet.set_column('B:B', 20)
