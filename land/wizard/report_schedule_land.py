@@ -451,14 +451,15 @@ class ReportScheduleLand(models.TransientModel):
             'bg_color': '#003366', 'border': 1 , 'bold': True ,
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
+        green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
 
         headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
                    'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
         sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
         # Ajustar columnas
-        sheet.set_column('B:B', 20)
-        sheet.set_column('C:D', 15)
+        sheet.set_column('B:B', 10)
+        sheet.set_column('C:D', 10)
         sheet.set_column('E:E', 50)
         sheet.set_column('F:F', 15)
         sheet.set_column('G:H', 20)
@@ -477,6 +478,8 @@ class ReportScheduleLand(models.TransientModel):
             invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
             dias_vencidos = (invoice_pagada - schedule_due.date).days if schedule_due.date else ''
 
+
+
             descripcion = ''
 
             if schedule_due.type_schedule == 'dues':
@@ -486,7 +489,7 @@ class ReportScheduleLand(models.TransientModel):
                 descripcion = "INICIAL"
 
             if schedule_due.type_schedule == 'advances':
-                descripcion = f"Adelanto CUOTA {schedule_due.number_due}"
+                descripcion = f"ADELANTO CUOTA{schedule_due.number_due}"
 
             if schedule_due.type_schedule == 'independence':
                 descripcion = "Independizacion"
@@ -506,7 +509,7 @@ class ReportScheduleLand(models.TransientModel):
                 schedule_due.amount_due_land,
                 order.sector_land,
                 order.company_id.display_name,
-                schedule_due.move_id.display_name,
+                schedule_due.move_id.display_name if schedule_due.move_id else  '',
                 str(schedule_due.invoice_date or ''),
                 'CANCELADO' if schedule_due.is_paid else 'PENDIENTE'
             ]
@@ -518,9 +521,9 @@ class ReportScheduleLand(models.TransientModel):
 
             # Aplicar formato al estado
             if schedule_due.is_paid:
-                sheet.write(xc, 15, 'CANCELADO', format_red)
+                sheet.write(xc, 15, 'PAGADO', green_format)
             else:
-                sheet.write(xc, 15, 'PENDIENTE', format_body)
+                sheet.write(xc, 15, 'PENDIENTE', format_red)
 
             xc += 1
 

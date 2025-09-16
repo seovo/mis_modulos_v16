@@ -881,6 +881,19 @@ class SaleOrder(models.Model):
 
                             record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
 
+                #ELIMINAR INICIALES
+
+                domainx = [
+                    ('type_schedule','=','initial'),('order_id','=',record.id),
+                    ('line_move_id', '=', False)
+                ]
+
+                #eliminar los adelantos sin factura relacionada
+                unlink_empty_iniciales = self.env['schedule.dues.land'].search(domainx)
+
+                if unlink_empty_iniciales:
+                    unlink_empty_iniciales.unlink()
+
 
 
                 #####lo antiguo
