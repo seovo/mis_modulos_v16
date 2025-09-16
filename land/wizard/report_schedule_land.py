@@ -287,7 +287,21 @@ class ReportScheduleLand(models.TransientModel):
                 0,  # MESES A PAGAR
                 0,  # MESES PAGADOS
                 order.value_due_land,  # CUOTA
-                0   # CREDITO ANUAL (se calculará después)
+                0 ,   # CREDITO ANUAL (se calculará después)
+                0 , #   ENERO
+                0 , #FEBRERO
+                0 , #MARZO
+                0 , #ABRIL
+                0 , #MAYO
+                0 , #JUNIO
+                0 ,  #JULIO
+                0 , #AGOSTO
+                0 , #SETIEMBRE
+                0 , #OCTUBRE
+                0 , #NOV
+                0 , #DIC
+                0 , #APORTADO
+                0 , #SALDO
             ]
 
             pagado = 0
