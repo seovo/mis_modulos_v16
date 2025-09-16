@@ -455,7 +455,7 @@ class ReportScheduleLand(models.TransientModel):
         gray_format  = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1 , 'bold': True, 'align': 'center', 'valign': 'vcenter'})
 
         headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
-                   'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
+                   'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'PROVEEDOR' ,'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
         sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
         # Ajustar columnas
@@ -465,10 +465,11 @@ class ReportScheduleLand(models.TransientModel):
         sheet.set_column('F:F', 15)
         sheet.set_column('G:H', 20)
         sheet.set_column('I:L', 15)
-        sheet.set_column('M:M', 50)
-        sheet.set_column('N:N', 25)
-        sheet.set_column('O:O', 20)
-        sheet.set_column('P:P', 15)
+        sheet.set_column('M:M', 15)
+        sheet.set_column('N:N', 50)
+        sheet.set_column('O:O', 25)
+        sheet.set_column('P:P', 20)
+        sheet.set_column('Q:Q', 15)
 
         xc += 1
 
@@ -477,7 +478,10 @@ class ReportScheduleLand(models.TransientModel):
         for schedule_due in schedule_dues:
             order = schedule_due.order_id
             invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
-            dias_vencidos = (invoice_pagada - schedule_due.date).days if schedule_due.date else ''
+            dias_vencidos = (invoice_pagada - schedule_due.date).days if schedule_due.date else 0
+
+            if dias_vencidos < 0 :
+                dias_vencidos = 0
 
 
 
@@ -509,6 +513,7 @@ class ReportScheduleLand(models.TransientModel):
                 #schedule_due.number_due, #DESCRIPCION
                 schedule_due.amount_due_land,
                 order.sector_land,
+                order.seller_land_id.display_name or '' ,
                 order.company_id.display_name,
                 schedule_due.move_id.display_name if schedule_due.move_id else  '',
                 str(schedule_due.invoice_date or ''),
