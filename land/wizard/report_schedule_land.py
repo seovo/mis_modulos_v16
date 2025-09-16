@@ -475,7 +475,7 @@ class ReportScheduleLand(models.TransientModel):
         for schedule_due in schedule_dues:
             order = schedule_due.order_id
             invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
-            dias_vencidos = (invoice_pagada - schedule_due.date).days
+            dias_vencidos = (invoice_pagada - schedule_due.date).days if schedule_due.date else ''
 
             descripcion = ''
 
