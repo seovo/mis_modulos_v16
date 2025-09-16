@@ -28,7 +28,7 @@ class Binary(http.Controller):
         filename = f'Report_Cuotas_{company.name}.xlsx'
 
         if 'byear' in kw:
-            if kw['byear']:
+            if kw['byear'] and str(kw['byear']) != 'False' :
                 filename = f'''Balance_Anual_{kw.get('year')}_{company.name}.xlsx'''
 
 
