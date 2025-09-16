@@ -25,7 +25,7 @@ class Binary(http.Controller):
 
         excel_data = request.env['report.schedule.land'].get_report_xls(company,kw=kw)
 
-        filename = f'Report_Cuotas_{company.name}.xlsx'
+        filename = f'REPORTE_CUOTAS_{company.name}.xlsx'
 
         if 'byear' in kw:
             if kw['byear'] and str(kw['byear']) != 'False' :
