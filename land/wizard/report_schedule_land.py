@@ -99,7 +99,8 @@ class ReportScheduleLand(models.TransientModel):
                 schedule_dues = self.env['schedule.dues.land'].search(domain)
                 self.get_report_xls_data_sale(workbook, sheet,sale,schedule_dues)
             else:
-                domain += [('order_id.company_id','=',company.id),('type_schedule','=','dues')]
+                domain += [('order_id.company_id','=',company.id)]
+                #,('type_schedule','=','dues')
                 schedule_dues = self.env['schedule.dues.land'].search(domain)
                 #self.get_report_xls_data(workbook, sheet,company,schedule_dues)
                 self.get_report_xls_data_optimizado(workbook, sheet,company,schedule_dues)
@@ -451,7 +452,8 @@ class ReportScheduleLand(models.TransientModel):
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
 
-        headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY', 'DIAS VENCIDOS', 'N° CUOTA', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
+        headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
+                   'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
         sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
         # Ajustar columnas
@@ -475,6 +477,21 @@ class ReportScheduleLand(models.TransientModel):
             invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
             dias_vencidos = (invoice_pagada - schedule_due.date).days
 
+            descripcion = ''
+
+            if schedule_due.type_schedule == 'dues':
+                descripcion = f"CUOTA N° {schedule_due.number_due}"
+
+            if schedule_due.type_schedule == 'initial':
+                descripcion = "INICIAL"
+
+            if schedule_due.type_schedule == 'advances':
+                descripcion = f"Adelanto CUOTA {schedule_due.number_due}"
+
+            if schedule_due.type_schedule == 'independence':
+                descripcion = "Independizacion"
+
+
             row_data = [
                 schedule_due.order_id.nro_internal_land,
                 order.mz_land,
@@ -484,7 +501,8 @@ class ReportScheduleLand(models.TransientModel):
                 str(schedule_due.date),
                 str(invoice_pagada),
                 dias_vencidos,
-                schedule_due.number_due,
+                descripcion ,
+                #schedule_due.number_due, #DESCRIPCION
                 schedule_due.amount_due_land,
                 order.sector_land,
                 order.company_id.display_name,
