@@ -340,16 +340,16 @@ class ReportScheduleLand(models.TransientModel):
             for sche in schedule_land_dues:
                 sh_month = sche.date.month
                 if sche.amount_due_land > 0:
-                    pagadox = sche.amount_due_land + sche.get_value_adelantos()
+                    #pagadox = sche.amount_due_land + sche.get_value_adelantos()
                     #pagado += pagadox
                     #row_data[n_start + sh_month] = pagadox  # Coloca el valor en la fila correspondiente
                     #m_pgados += 1
 
-                    sheet.write(xc, n_start + sh_month, pagadox, green_format)
+                    sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month], green_format)
 
                 else:
                     #row_data[n_start + sh_month] = sche.amount  # Maneja el caso de saldo negativo
-                    sheet.write(xc, n_start + sh_month, sche.amount , red_format)
+                    sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month] , red_format)
 
 
 
