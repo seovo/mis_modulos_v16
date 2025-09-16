@@ -451,8 +451,8 @@ class ReportScheduleLand(models.TransientModel):
             'bg_color': '#003366', 'border': 1 , 'bold': True ,
             'align': 'center', 'valign': 'vcenter' , 'color': 'white'
         })
-        green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1})
-        gray_format = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1 , 'align': 'center', 'valign': 'vcenter'})
+        green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1 , 'bold': True, 'align': 'center', 'valign': 'vcenter'})
+        gray_format  = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1 , 'bold': True, 'align': 'center', 'valign': 'vcenter'})
 
         headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
                    'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
