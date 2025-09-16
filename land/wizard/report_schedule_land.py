@@ -265,6 +265,8 @@ class ReportScheduleLand(models.TransientModel):
         sheet.set_column('K:W', 15)
         sheet.set_column('X:Y', 20)
 
+        n_start = 10
+
         xc += 1
 
         for order in orders:
