@@ -349,7 +349,13 @@ class ReportScheduleLand(models.TransientModel):
 
                 else:
                     #row_data[n_start + sh_month] = sche.amount  # Maneja el caso de saldo negativo
-                    sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month] , red_format)
+                    if order.stage_land == 'cancel':
+                        sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month] , gray_format)
+                    else:
+                        sheet.write(xc, n_start + sh_month, row_data[n_start + sh_month] , red_format)
+
+
+
 
 
 
