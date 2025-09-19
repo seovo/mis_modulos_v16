@@ -181,7 +181,11 @@ class AccountMove(models.Model):
         #except:
         #    folio = '85114ba1-aa08-43f2-b8d4-e6ae87f5b513'
         # Texto de entrada
-        texto = self.folio_fiscal
+
+        if not self.folio_fiscal:
+            raise UserError('No se Indico Folio Fiscal')
+
+        texto = self.name
 
         # Extraer el primer número como serie
         serie = texto[1]  # El primer carácter después de 'F'
@@ -208,8 +212,8 @@ class AccountMove(models.Model):
             <areaEmpresarial>{areaempresarial}</areaEmpresarial>
             <oListaFacturas>
                 <item>
-                    <UUID>{folio}</UUID>
-                    <folioFactura>{self.name}</folioFactura>
+                    <UUID>{self.folio_fiscal}</UUID>
+                    <folioFactura>{folio}</folioFactura>
                     <serie>{serie}</serie>
                     <fechaFactura>{str(self.date)}</fechaFactura>
                     <tipoComprobante>I</tipoComprobante>
