@@ -176,12 +176,22 @@ class AccountMove(models.Model):
             #<ordenCompra></ordenCompra>
             #<codigoProductoDT>{line_av.product_id.default_code}</codigoProductoDT>
 
-        try:
-            folio =  self.folio_fiscal
-        except:
-            folio = '85114ba1-aa08-43f2-b8d4-e6ae87f5b513'
+        #try:
+        #    folio =  self.folio_fiscal
+        #except:
+        #    folio = '85114ba1-aa08-43f2-b8d4-e6ae87f5b513'
+        # Texto de entrada
+        texto = self.folio_fiscal
 
-        serie = 'F'
+        # Extraer el primer número como serie
+        serie = texto[1]  # El primer carácter después de 'F'
+
+        # Extraer el resto como folio
+        folio = texto[1:]  # Desde el primer carácter hasta el final
+
+        # Imprimir resultados
+        print(f"Serie: {serie}")
+        print(f"Folio: {folio}")
 
 
         item = f'''

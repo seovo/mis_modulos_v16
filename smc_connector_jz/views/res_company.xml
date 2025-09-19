@@ -15,7 +15,7 @@
                            <field name="smc_name_dt" />
 
                            <field name="smc_category_ids"  widget="many2many_tags"  />
-                           <field name="smc_excluded_partner_ids"  widget="many2many_tags"  />
+                           <field name="smc_excluded_partner_ids"  widget="many2many_tags"   domain="[('ref_company_ids','!=',False)]"  />
                        </group>
                    </page>
                </xpath>
