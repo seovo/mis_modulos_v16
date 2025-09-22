@@ -160,8 +160,6 @@ class AccountMove(models.Model):
         moves[11000:12000].get_proveedores_land()
 
 
-
-
     @api.onchange('mz_land_separation_id', 'lot_land_separation_id')
     def get_report_lot_land_line_id(self, product_tmp=None):
         for record in self:
@@ -268,8 +266,6 @@ class AccountMove(models.Model):
 
                 order.update_credit_saldo()
 
-
-
     @api.model
     def create(self,vals):
         res = super(AccountMove, self).create(vals)
@@ -328,8 +324,6 @@ class AccountMove(models.Model):
 
         return res
 
-
-
     def action_post(self):
         res = super().action_post()
         self.get_narration_dx()
@@ -341,7 +335,6 @@ class AccountMove(models.Model):
         res = super().button_cancel()
         self.update_order_jz()
         return res
-
 
     @api.depends('narration_text','bank_origin_ids','bank_origin_ids.bank_id',
                  'bank_origin_ids.operation_number','bank_origin_ids.date')
@@ -507,6 +500,9 @@ class AccountMove(models.Model):
                 move.invoice_payments_widget = payments_widget_vals
             else:
                 move.invoice_payments_widget = False
+
+    def add_adelanto_land(self):
+        return
 
 class BankOrigin(models.Model):
     _name = 'bank.origin'
