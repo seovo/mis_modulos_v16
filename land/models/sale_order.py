@@ -881,6 +881,10 @@ class SaleOrder(models.Model):
 
                             record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
 
+                        else:
+                            if exist_line.line_move_id:
+                                exist_line.date = exist_line.line_move_id.move_id.date
+
                 #ELIMINAR INICIALES
 
                 domainx = [
@@ -893,134 +897,6 @@ class SaleOrder(models.Model):
 
                 if unlink_empty_iniciales:
                     unlink_empty_iniciales.unlink()
-
-
-
-                #####lo antiguo
-                continue
-
-
-
-                if not schedule_land_dues :
-
-
-                    if qty_dues > 0:
-                        datex = record.date_first_due_land
-                        for i in range(int(qty_dues)):
-                            dx = {
-                                'number_due' : i + 1 ,
-                                'date': datex ,
-                                'balan': total_dues - (i*price_unit) ,
-                                'amount': price_unit ,
-                                'is_paid' : True if (i + 1) <= qty_invoiced else False
-                            }
-
-                            #predecir la fecha futura
-
-                            datex = datex +  relativedelta(months=1)
-
-                            if datex.day > 24:
-                                datex = datetime(year=datex.year, month=datex.month, day=1, hour=10) +  relativedelta(months=1)
-                                datex = datex - timedelta(days=1)
-
-                            try:
-                                record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
-                            except:
-                                raise ValueError(dx)
-
-
-                schedule_land_dues = self.env['schedule.dues.land'].search([
-                    ('number_due','>',0),('order_id','=',record.id)
-                ])
-
-                if schedule_land_dues :
-
-                    #invoices = self.env['account.move'].search([
-                    #    ('id', 'in', record.invoice_ids.ids),
-                    #    ('is_initial_land', '=', False),
-                    #], order='invoice_date asc')
-
-                    invoicesx = []
-                    for linv in invoice_lines:
-                        #if inv.is_initial_land:
-                        #    continue
-
-                        if linv.move_id.move_type in ['out_refund']:
-                            continue
-
-                        if linv.move_id.state == 'cancel':
-                            continue
-
-                        invoicesx.append(linv)
-
-                        #for i in range(int(inv.qty_due_land)) :
-                        #    invoicesx.append(inv)
-
-
-                    i = 0
-                    for linex in record.schedule_land_ids :
-                        if linex.line_move_id.number_advance_land > 0 :
-                            continue
-                        linex.update({
-                            'is_paid' : True if (i + 1) <= qty_invoiced else False ,
-
-                        })
-                        try:
-                            linex.update({
-                                'line_move_id': invoicesx[i].id
-                            })
-                            #total_payment += invoicesx[i].amount_due_land
-
-                        except:
-                            linex.update({
-                                'line_move_id': False
-                            })
-                        i += 1
-
-
-                #añadir adelantos
-                factura_line_idsx = []
-
-                for factura in record.invoice_ids:
-                    for factura_line in factura.invoice_line_ids:
-                        if not factura_line.sale_line_ids and factura_line.number_advance_land > 0:
-                            factura_line_idsx.append(factura_line)
-
-                if factura_line_idsx:
-                    for factura_linex in factura_line_idsx:
-                        df = [
-                            '|', ('line_move_id', '=', factura_linex.id), ('line_move_id', '=', factura_linex._origin.id)
-                        ]
-                        #df = [('order_id','=',record.id),
-                        #      ('number_due', '=', factura_linex.number_advance_land),
-                        #
-                        #      ]
-
-                        df = [('order_id','=',record.id),('id_line_move_id', '=', factura_linex.id)]
-                        exist_line = self.env['schedule.dues.land'].search(df)
-
-
-
-                        dx = {
-                            'number_due': factura_linex.number_advance_land,
-                            'date': factura_linex.move_id.invoice_date,
-                            'balan': 0,
-                            'amount': factura_linex.price_unit,
-                            'is_paid': True,
-                            'line_move_id': factura_linex.id,
-                            'order_id': record.id ,
-                            'id_line_move_id': factura_linex.id
-                        }
-
-                        if not exist_line:
-                            # raise ValueError([dx,exist_line])
-
-                            record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
-                        # else:
-                        #    exist_line.write(dx)
-
-
-
 
 
 
