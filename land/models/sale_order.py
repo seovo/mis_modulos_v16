@@ -779,8 +779,8 @@ class SaleOrder(models.Model):
 
                 for inv_line in invoice_lines_indepen:
 
-                    #if c + 1 > len(schedule_land_indepen):
-                    #    continue
+                    if c + 1 > len(schedule_land_indepen):
+                        continue
 
                     schedule_land_indepen[c].write({
                         'is_paid': True ,
