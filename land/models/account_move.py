@@ -341,7 +341,7 @@ class AccountMove(models.Model):
                     'price_unit': 0 , #line.price_unit
                     'tax_id': [(6,0,line.tax_ids.ids)] ,
                     'customer_lead': 1 ,
-                    'product_uom_qty': 0 ,
+                    'product_uom_qty': 1 ,
                     'number_advance_land': line.number_advance_land
                 })
 
