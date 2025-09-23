@@ -66,6 +66,9 @@ class ScheduleDuesLand(models.Model):
             if record.type_schedule  == 'advances':
                 description = f'ADELANTO CUOTA #{record.number_due}'
 
+            if record.type_schedule  == 'independence':
+                description = f'INDEPENCIACION #{record.number_due}'
+
             record.description = description
 
             record.order_identificador = f" {record.order_id.nro_internal_land}  - {record.order_id.name}"
