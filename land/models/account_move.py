@@ -268,6 +268,9 @@ class AccountMove(models.Model):
 
     @api.model
     def create(self,vals):
+
+        raise ValueError(vals)
+
         res = super(AccountMove, self).create(vals)
 
 
