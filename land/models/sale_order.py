@@ -796,7 +796,7 @@ class SaleOrder(models.Model):
                 if schedule_land_indepen and datex_indepen:
                     i = 0
 
-                    for sche in schedule_land_dues:
+                    for sche in schedule_land_indepen:
 
                         if sche.date:
                             continue
