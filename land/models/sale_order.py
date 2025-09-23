@@ -778,6 +778,10 @@ class SaleOrder(models.Model):
                 datex_indepen = record.date_first_due_land
 
                 for inv_line in invoice_lines_indepen:
+
+                    if c + 1 > len(schedule_land_indepen):
+                        continue
+
                     schedule_land_indepen[c].write({
                         'is_paid': True ,
                         'line_move_id': inv_line.id ,
