@@ -266,6 +266,12 @@ class AccountMove(models.Model):
 
                 order.update_credit_saldo()
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        raise ValueError(vals_list)
+        res = super(AccountMove, self).create(vals_list)
+        return res
+
     @api.model
     def create(self,vals):
 
