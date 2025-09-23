@@ -663,7 +663,7 @@ class SaleOrder(models.Model):
         invoice_lines_indepen = []
 
 
-        qty_indepenced = 0
+        amount_indepenced = 0
         qty_to_indepenced = 0
 
         for line in self.order_line:
@@ -671,6 +671,7 @@ class SaleOrder(models.Model):
             #para independizacion
             if line.product_id.is_independence:
                 qty_to_indepenced += line.product_uom_qty
+                amount_indepenced += line.price_unit
 
             for line_inv in line.invoice_lines:
 
@@ -710,7 +711,7 @@ class SaleOrder(models.Model):
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
-        return invoice_lines_dues , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen
+        return invoice_lines_dues , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen , amount_indepenced
 
 
 
@@ -727,7 +728,7 @@ class SaleOrder(models.Model):
                 qty_dues = record.dues_land
                 total_dues = record.price_credit_land
                 #price_unit = record.value_due_land
-                invoice_lines , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen = record.invoice_lines_available_land()
+                invoice_lines , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen , amount_indepenced = record.invoice_lines_available_land()
 
                 #PARA INDEPENDIZACION
                 schedule_land_indepen = self.env['schedule.dues.land'].search([
@@ -741,7 +742,7 @@ class SaleOrder(models.Model):
                             'number_due' : c + 1 ,
                             'date': None ,
                             'balan': 0 ,
-                            'amount': 0 ,
+                            'amount': amount_indepenced ,
                             'is_paid' : False ,
                             'line_move_id': False ,
                             'invoice_date': False ,
@@ -760,7 +761,7 @@ class SaleOrder(models.Model):
                             dx = {
                                 'number_due' : i + 1 ,
                                 'type_schedule': 'independence',
-                                'amount': 0 ,
+                                'amount': amount_indepenced ,
                                 'sequence': 0
                             }
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
