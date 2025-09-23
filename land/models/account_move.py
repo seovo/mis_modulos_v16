@@ -339,7 +339,7 @@ class AccountMove(models.Model):
                     'order_id': line.order_advance_land.id ,
                     'price_unit': line.price_unit ,
                     'tax_id': [(6,0,line.tax_ids.ids)] ,
-                    'customer_lead': 0 ,
+                    'customer_lead': 1 ,
                     'product_uom_qty': 0 ,
                 })
 
