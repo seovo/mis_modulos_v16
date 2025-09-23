@@ -335,6 +335,7 @@ class AccountMove(models.Model):
             if line.order_advance_land:
 
                 order_line = self.env['sale.order.line'].create({
+                    'product_id': line.product_id.id ,
                     'name': line.name ,
                     'order_id': line.order_advance_land.id ,
                     'price_unit': line.price_unit ,
