@@ -511,7 +511,13 @@ class AccountMove(models.Model):
             #"res_id": self.id,
             "target": "new",
             "context": {
-                'default_move_id': self.id
+                'default_move_id': self.id ,
+                'default_move_type': self.move_type.id ,
+                'default_journal_id': self.journal_id.id ,
+                'default_partner_id': self.commercial_partner_id.id,
+                'default_currency_id': self.currency_id.id ,
+                'default_display_type': 'product' ,
+                #'quick_encoding_vals': quick_encoding_vals,
             }
 
         }
