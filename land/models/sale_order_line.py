@@ -126,6 +126,7 @@ class SaleOrderLine(models.Model):
         #amount_advance_land = fields.Float(string='Monto Adelanto')
 
         if self.number_advance_land > 0 :
+            raise ValueError('kaa')
             res.update({
                 'number_advance_land': self.number_advance_land ,
                 'price_unit': self.amount_advance_land ,
