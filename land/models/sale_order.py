@@ -839,6 +839,11 @@ class SaleOrder(models.Model):
                             # raise ValueError([dx,exist_line])
 
                             record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
+
+                        else:
+                            if exist_line.line_move_id:
+                                exist_line.date = exist_line.line_move_id.move_id.date
+
                         # else:
                         #    exist_line.write(dx)
 
@@ -881,9 +886,7 @@ class SaleOrder(models.Model):
 
                             record.schedule_land_ids += self.env['schedule.dues.land'].create(dx)
 
-                        else:
-                            if exist_line.line_move_id:
-                                exist_line.date = exist_line.line_move_id.move_id.date
+
 
                 #ELIMINAR INICIALES
 
