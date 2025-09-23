@@ -760,7 +760,7 @@ class SaleOrder(models.Model):
                             dx = {
                                 'number_due' : i + 1 ,
                                 'type_schedule': 'independence',
-                                'amount': record.value_due_land ,
+                                'amount': 0 ,
                                 'sequence': 0
                             }
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
