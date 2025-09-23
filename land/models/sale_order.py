@@ -711,6 +711,9 @@ class SaleOrder(models.Model):
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
+        if invoice_lines_indepen:
+            invoice_lines_indepen.reverse()
+
         return invoice_lines_dues , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen , amount_indepenced
 
 
