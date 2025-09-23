@@ -330,6 +330,20 @@ class AccountMove(models.Model):
         return res
 
     def action_post(self):
+
+        for line in self.invoice_line_ids:
+            if line.order_advance_land:
+
+                order_line = self.env['sale.order.line'].create({
+                    'order_id': line.order_advance_land.id ,
+                    'price_unit': line.price_unit ,
+                    'tax_id': [(6,0,line.tax_ids.ids)]
+                })
+
+                line.sale_line_ids = [(6,0,[order_line.id])]
+
+
+
         res = super().action_post()
         self.get_narration_dx()
         self.update_order_jz()
