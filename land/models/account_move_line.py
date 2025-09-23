@@ -1,5 +1,6 @@
 from odoo import api, fields, models , _
 from datetime import datetime, timedelta
+from odoo.exceptions import ValidationError
 
 class AccountMoveLine(models.Model):
     _inherit   = 'account.move.line'
@@ -25,6 +26,14 @@ class AccountMoveLine(models.Model):
     def create(self,vals):
         #raise ValueError(vals)
         res = super(AccountMoveLine, self).create(vals)
+
+        for re in res:
+            if re.order_advance_land:
+                if re.number_advance_land <= 0:
+                    raise  ValidationError('NUMERO DE ADELANTO INCORRECTO')
+
+                if re.price_unit <= 0:
+                    raise  ValidationError('PRECIO INCORRECTO')
 
         return res
 
