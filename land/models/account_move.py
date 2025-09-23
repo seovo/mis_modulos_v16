@@ -332,7 +332,7 @@ class AccountMove(models.Model):
     def action_post(self):
 
         for line in self.invoice_line_ids:
-            if line.order_advance_land:
+            if line.order_advance_land and not line.sale_line_ids :
 
                 order_line = self.env['sale.order.line'].create({
                     'product_id': line.product_id.id ,
@@ -344,7 +344,9 @@ class AccountMove(models.Model):
                     'product_uom_qty': 0 ,
                 })
 
-                line.sale_line_ids = [(6,0,[order_line.id])]
+                order_line.invoice_lines = [(6,0,[line.id])]
+
+                #line.sale_line_ids = [(6,0,[order_line.id])]
 
 
 
