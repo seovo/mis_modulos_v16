@@ -614,10 +614,10 @@ class ReportScheduleLand(models.TransientModel):
                 descripcion = "INICIAL"
 
             if schedule_due.type_schedule == 'advances':
-                descripcion = f"ADELANTO CUOTA{schedule_due.number_due}"
+                descripcion = f"ADELANTO CUOTA {schedule_due.number_due}"
 
             if schedule_due.type_schedule == 'independence':
-                descripcion = "Independizacion"
+                descripcion = f"INDEPENDIZACION {schedule_due.number_due}"
 
 
             row_data = [
