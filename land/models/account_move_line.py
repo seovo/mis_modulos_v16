@@ -6,6 +6,19 @@ class AccountMoveLine(models.Model):
     partner_commision_id = fields.Many2one('res.partner',string='Comissión')
     number_advance_land = fields.Integer(string='N° Cuota Adelanto')
     order_advance_land = fields.Many2one('sale.order',string='Venta Adelanto')
+    sale_available_ids = fields.Many2many('sale.order',compute='get_sale_available_ids')
+
+    @api.depends('move_id')
+    def get_sale_available_ids(self):
+        for record in self:
+            sale_available_ids = []
+            for line in record.move_id.invoice_line_ids:
+                if line.sale_line_ids:
+                    for lin in line.sale_line_ids:
+                        if lin.order_id:
+                            sale_available_ids.append(lin.order_id.id)
+
+            record.sale_available_ids = sale_available_ids if sale_available_ids else  False
 
 
     @api.model

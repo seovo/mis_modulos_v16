@@ -76,9 +76,10 @@
                    <sheet>
                        <group>
                            <field name="product_id" optional="show" widget="many2one_barcode"
-                                   domain="  [('name','ilike','ADELANTO')] "
+                                  domain="  [('name','ilike','ADELANTO')] "
+                                  required="True"
                            />
-                           <field name="name" widget="section_and_note_text" optional="show"/>
+                           <field name="name" widget="section_and_note_text" optional="show" required="True" />
                            <field name="account_id" groups="account.group_account_readonly"
                                   options="{'no_quick_create': True}"
                                   invisible="True"
@@ -108,8 +109,12 @@
                            <field name="company_currency_id" invisible="True" />
                            <field name="display_type" force_save="1" invisible="True" />
                            <field name="move_id" invisible="True" force_save="1" />
-                           <field name="number_advance_land"  />
-                           <field name="order_advance_land"  />
+                           <field name="number_advance_land" required="True" />
+                           <field name="sale_available_ids"  invisible="True" />
+                           <field name="order_advance_land" required="True"  invisible="sale_available_ids" />
+                           <field name="order_advance_land" required="True"  domain="[('id','in',sale_available_ids)]"
+                                  invisible="not sale_available_ids" />
+
                        </group>
                    </sheet>
                </form>
