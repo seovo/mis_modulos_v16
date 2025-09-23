@@ -775,6 +775,7 @@ class SaleOrder(models.Model):
                 ])
 
                 c = 0
+                datex_indepen = record.date_first_due_land
 
                 for inv_line in invoice_lines_indepen:
                     schedule_land_indepen[c].write({
@@ -782,8 +783,37 @@ class SaleOrder(models.Model):
                         'line_move_id': inv_line.id ,
                         'date': inv_line.move_id.date ,
                     })
+                    datex_indepen = inv_line.move_id.date
+
 
                     c += 1
+
+
+                schedule_land_indepen = self.env['schedule.dues.land'].search([
+                    ('type_schedule','=','independence'),('order_id','=',record.id)
+                ])
+
+                if schedule_land_indepen and datex_indepen:
+                    i = 0
+
+                    for sche in schedule_land_dues:
+
+                        if sche.date:
+                            continue
+
+                        sche.write({
+                            'date': datex_indepen ,
+                            'balan': total_dues - (i*record.value_due_land) ,
+                            'amount': record.value_due_land
+                        })
+                        i += 1
+
+                        #predecir la siguiente fecha futura
+                        datex_indepen = datex_indepen +  relativedelta(months=1)
+                        if datex_indepen.day > 24:
+                            datex_indepen = datetime(year=datex_indepen.year, month=datex_indepen.month, day=1, hour=10) +  relativedelta(months=1)
+                            datex_indepen = datex_indepen - timedelta(days=1)
+
 
 
 
