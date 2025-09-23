@@ -338,10 +338,11 @@ class AccountMove(models.Model):
                     'product_id': line.product_id.id ,
                     'name': line.name ,
                     'order_id': line.order_advance_land.id ,
-                    'price_unit': line.price_unit ,
+                    'price_unit': 0 , #line.price_unit
                     'tax_id': [(6,0,line.tax_ids.ids)] ,
                     'customer_lead': 1 ,
                     'product_uom_qty': 0 ,
+                    'number_advance_land': line.number_advance_land
                 })
 
                 order_line.invoice_lines = [(6,0,[line.id])]
