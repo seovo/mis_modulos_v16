@@ -68,6 +68,44 @@
            </field>
     </record>
 
+    <record id="form_account_move_line" model="ir.ui.view">
+           <field name="name">Account.Move.Line.Form</field>
+           <field name="model">account.move.line</field>
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                           <field name="product_id" optional="show" widget="many2one_barcode"
+                                  domain="  context.get('default_move_type') in ('out_invoice', 'out_refund', 'out_receipt')
+                                   and [('sale_ok', '=', True)]        or [('purchase_ok', '=', True)]   "
+                           />
+                           <field name="name" widget="section_and_note_text" optional="show"/>
+                           <field name="account_id" context="{'partner_id': partner_id, 'move_type': parent.move_type}" groups="account.group_account_readonly" options="{'no_quick_create': True}" domain="[('deprecated', '=', False), ('account_type', 'not in', ('asset_receivable', 'liability_payable', 'off_balance')), ('company_id', 'parent_of', parent.company_id)]" required="display_type not in ('line_note', 'line_section')"/>
+                           <field name="analytic_distribution" widget="analytic_distribution" groups="analytic.group_analytic_accounting" optional="show" options="{'product_field': 'product_id', 'account_field': 'account_id', 'amount_field': 'price_subtotal'}" business_domain_compute="parent.move_type in ['out_invoice', 'out_refund', 'out_receipt'] and 'invoice' or parent.move_type in ['in_invoice', 'in_refund', 'in_receipt'] and 'bill' or 'general'"/>
+                           <field name="quantity" optional="show"/>
+                           <field name="product_uom_category_id" column_invisible="True"/>
+                           <field name="product_uom_id" string="UoM" groups="uom.group_uom" optional="show"/>
+                           <!-- /l10n_in_edi.test_edi_json -->
+                           <!-- required for @api.onchange('product_id') -->
+                           <field name="product_uom_id" column_invisible="True"/>
+                           <field name="price_unit" string="Price"/>
+                           <field name="discount" string="Disc.%" optional="hide"/>
+                           <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use', '=?', parent.invoice_filter_type_domain), ('company_id', 'parent_of', parent.company_id), ('country_id', '=', parent.tax_country_id)]" context="{'append_type_to_tax_name': not parent.invoice_filter_type_domain, 'active_test': True}" options="{'no_create': True}" optional="show"/>
+                           <field name="price_subtotal" string="Tax excl."/>
+                           <field name="price_total" string="Tax incl." column_invisible="parent.tax_calculation_rounding_method == 'round_globally'" optional="hide"/>
+
+                           <!-- Others fields -->
+                           <field name="partner_id" column_invisible="True"/>
+                           <field name="currency_id" column_invisible="True"/>
+                           <field name="company_id" column_invisible="True"/>
+                           <field name="company_currency_id" column_invisible="True"/>
+                           <field name="display_type" force_save="1" column_invisible="True"/>
+                       </group>
+                   </sheet>
+               </form>
+           </field>
+    </record>
+
 
 
     <record id="view_account_invoice_filter" model="ir.ui.view">

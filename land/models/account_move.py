@@ -506,7 +506,7 @@ class AccountMove(models.Model):
             "name": f"AGREGAR ADELANTO",
             "type": "ir.actions.act_window",
             "view_mode": "form",
-            #"view_id": self.env.ref('land.add_terreno_sale').id,
+            "view_id": self.env.ref('land.form_account_move_line').id,
             "res_model": "account.move.line",
             #"res_id": self.id,
             "target": "new",
