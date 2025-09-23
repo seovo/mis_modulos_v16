@@ -660,10 +660,17 @@ class SaleOrder(models.Model):
     def invoice_lines_available_land(self):
         invoice_lines_dues = []
         invoice_lines_initial = []
+        invoice_lines_indepen = []
 
-        qty_invoiced = 0
+
+        qty_indepenced = 0
+        qty_to_indepenced = 0
 
         for line in self.order_line:
+
+            #para independizacion
+            if line.product_id.is_independence:
+                qty_to_indepenced += line.product_uom_qty
 
             for line_inv in line.invoice_lines:
 
@@ -680,7 +687,7 @@ class SaleOrder(models.Model):
 
                 #para cuotas
                 if line.product_id.payment_land_dues and not line.product_id.is_independence:
-                    qty_invoiced += line_inv.quantity
+
                     x = range(int(line_inv.quantity))
 
                     for n in x:
@@ -690,14 +697,20 @@ class SaleOrder(models.Model):
                 if line.product_id.is_advanced_land or line.product_id.is_separation_land:
                     invoice_lines_initial.append(line_inv)
 
-                #para adelanto de cuotas
+
+
+
+                #para independicacion
+                if line.product_id.is_independence:
+                    invoice_lines_indepen.append(line_inv)
+
 
 
 
         if invoice_lines_dues:
             invoice_lines_dues.reverse()
 
-        return qty_invoiced , invoice_lines_dues , invoice_lines_initial
+        return invoice_lines_dues , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen
 
 
 
@@ -714,7 +727,47 @@ class SaleOrder(models.Model):
                 qty_dues = record.dues_land
                 total_dues = record.price_credit_land
                 #price_unit = record.value_due_land
-                qty_invoiced , invoice_lines , invoice_lines_initial  = record.invoice_lines_available_land()
+                invoice_lines , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen = record.invoice_lines_available_land()
+
+                #PARA INDEPENDIZACION
+                schedule_land_indepen = self.env['schedule.dues.land'].search([
+                    ('type_schedule','=','independence'),('order_id','=',record.id)
+                ])
+
+                if schedule_land_indepen:
+                    c = 0
+                    for sche in schedule_land_indepen:
+                        dx = {
+                            'number_due' : c + 1 ,
+                            'date': None ,
+                            'balan': 0 ,
+                            'amount': 0 ,
+                            'is_paid' : False ,
+                            'line_move_id': False ,
+                            'invoice_date': False ,
+                            'nro_internal_land': False ,
+                            'type_schedule': 'independence' ,
+                            'sequence': 0
+                        }
+                        sche.write(dx)
+                        c += 1
+
+                else:
+                    #crear
+                    if qty_to_indepenced > 0:
+
+                        for i in range(int(qty_to_indepenced)):
+                            dx = {
+                                'number_due' : i + 1 ,
+                                'type_schedule': 'independence',
+                                'amount': record.value_due_land ,
+                                'sequence': 0
+                            }
+                            record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
+
+
+                #########
+
 
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
@@ -900,6 +953,8 @@ class SaleOrder(models.Model):
 
                 if unlink_empty_iniciales:
                     unlink_empty_iniciales.unlink()
+
+
 
 
 

@@ -32,6 +32,10 @@ class ScheduleDuesLand(models.Model):
         ('independence','Independizacion')
     ],string="Tipo de Schedule")
 
+    sequence = fields.Integer(default=1)
+
+    _order = 'order_id asc , sequence asc , number_due asc ,  invoice_date asc '
+
 
     def get_value_adelantos(self):
         adelantos = self.env['schedule.dues.land'].search([
@@ -68,7 +72,7 @@ class ScheduleDuesLand(models.Model):
 
 
 
-    _order = 'order_id asc , number_due asc ,  invoice_date asc '
+
 
     def invoice_here_land(self):
         pass
