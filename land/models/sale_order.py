@@ -767,6 +767,22 @@ class SaleOrder(models.Model):
                             record.schedule_land_ids += self.env['schedule.dues.land'].new(dx)
 
 
+                schedule_land_indepen = self.env['schedule.dues.land'].search([
+                    ('type_schedule','=','independence'),('order_id','=',record.id)
+                ])
+
+                c = 0
+
+                for inv_line in invoice_lines_indepen:
+                    invoice_lines_indepen[c].write({
+                        'is_paid': True ,
+                        'line_move_id': inv_line.id
+                    })
+
+                    c += 1
+
+
+
                 #########
 
 
@@ -829,9 +845,9 @@ class SaleOrder(models.Model):
                         datex = datetime(year=datex.year, month=datex.month, day=1, hour=10) +  relativedelta(months=1)
                         datex = datex - timedelta(days=1)
 
-                schedule_land_dues = self.env['schedule.dues.land'].search([
-                    ('type_schedule','=','dues'),('order_id','=',record.id)
-                ])
+                #schedule_land_dues = self.env['schedule.dues.land'].search([
+                #    ('type_schedule','=','dues'),('order_id','=',record.id)
+                #])
 
                 #rellenar las facturas secuencialmente
 
