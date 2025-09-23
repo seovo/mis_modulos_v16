@@ -774,7 +774,7 @@ class SaleOrder(models.Model):
                 c = 0
 
                 for inv_line in invoice_lines_indepen:
-                    invoice_lines_indepen[c].write({
+                    schedule_land_indepen[c].write({
                         'is_paid': True ,
                         'line_move_id': inv_line.id
                     })
