@@ -7,6 +7,19 @@ class AccountMoveLine(models.Model):
     number_advance_land = fields.Integer(string='N° Cuota Adelanto')
     order_advance_land = fields.Many2one('sale.order',string='Venta Adelanto')
 
+
+    @api.model
+    def create(self,vals):
+        res = super(AccountMoveLine, self).create(vals)
+
+        return res
+
+    #@api.model_create_multi
+    #def create(self, vals_list):
+    #    raise ValueError(vals_list)
+    #    res = super(AccountMove, self).create(vals_list)
+    #    return res
+
     def unlink(self):
 
         sales = []
