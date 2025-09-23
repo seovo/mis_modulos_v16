@@ -338,7 +338,9 @@ class AccountMove(models.Model):
                     'name': line.name ,
                     'order_id': line.order_advance_land.id ,
                     'price_unit': line.price_unit ,
-                    'tax_id': [(6,0,line.tax_ids.ids)]
+                    'tax_id': [(6,0,line.tax_ids.ids)] ,
+                    'customer_lead': 0 ,
+                    'product_uom_qty': 0 ,
                 })
 
                 line.sale_line_ids = [(6,0,[order_line.id])]
