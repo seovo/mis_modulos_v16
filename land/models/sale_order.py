@@ -801,6 +801,12 @@ class SaleOrder(models.Model):
                         if sche.date:
                             continue
 
+                        #predecir la siguiente fecha futura
+                        datex_indepen = datex_indepen +  relativedelta(months=1)
+                        if datex_indepen.day > 24:
+                            datex_indepen = datetime(year=datex_indepen.year, month=datex_indepen.month, day=1, hour=10) +  relativedelta(months=1)
+                            datex_indepen = datex_indepen - timedelta(days=1)
+
                         sche.write({
                             'date': datex_indepen ,
                             #'balan': total_dues - (i*record.value_due_land) ,
@@ -808,11 +814,7 @@ class SaleOrder(models.Model):
                         })
                         i += 1
 
-                        #predecir la siguiente fecha futura
-                        datex_indepen = datex_indepen +  relativedelta(months=1)
-                        if datex_indepen.day > 24:
-                            datex_indepen = datetime(year=datex_indepen.year, month=datex_indepen.month, day=1, hour=10) +  relativedelta(months=1)
-                            datex_indepen = datex_indepen - timedelta(days=1)
+
 
 
 
