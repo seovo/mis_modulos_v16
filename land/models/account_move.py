@@ -502,7 +502,19 @@ class AccountMove(models.Model):
                 move.invoice_payments_widget = False
 
     def add_adelanto_land(self):
-        return
+        return {
+            "name": f"AGREGAR ADELANTO",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            #"view_id": self.env.ref('land.add_terreno_sale').id,
+            "res_model": "account.move.line",
+            "res_id": self.id,
+            "target": "new",
+            "context": {
+                'default_move_id': self.id
+            }
+
+        }
 
 class BankOrigin(models.Model):
     _name = 'bank.origin'
