@@ -88,7 +88,7 @@
                                   widget="analytic_distribution" groups="analytic.group_analytic_accounting" optional="show" options="{'product_field': 'product_id', 'account_field': 'account_id', 'amount_field': 'price_subtotal'}" business_domain_compute="parent.move_type in ['out_invoice', 'out_refund', 'out_receipt'] and 'invoice' or parent.move_type in ['in_invoice', 'in_refund', 'in_receipt'] and 'bill' or 'general'"/>
                            <field name="quantity" />
                            <field name="product_uom_category_id" invisible="True"/>
-                           <field name="product_uom_id" string="UoM" groups="uom.group_uom" optional="show"/>
+                           <field name="product_uom_id" string="UoM" groups="uom.group_uom" optional="show" invisible="True" />
                            <!-- /l10n_in_edi.test_edi_json -->
                            <!-- required for @api.onchange('product_id') -->
                            <field name="product_uom_id" invisible="True"/>
@@ -98,7 +98,7 @@
                                   invisible="True"
                                   domain="[('type_tax_use', '=?', parent.invoice_filter_type_domain), ('company_id', 'parent_of', parent.company_id), ('country_id', '=', parent.tax_country_id)]"
                                   options="{'no_create': True}" optional="show"/>
-                           <field name="price_subtotal" string="Tax excl."/>
+                           <field name="price_subtotal" string="Tax excl." invisible="True" />
                            <field name="price_total" string="Tax incl." invisible="True" optional="hide"/>
 
                            <!-- Others fields -->
@@ -107,7 +107,7 @@
                            <field name="company_id" invisible="True" />
                            <field name="company_currency_id" invisible="True" />
                            <field name="display_type" force_save="1" invisible="True" />
-                           <field name="move_id" invisible="True" />
+                           <field name="move_id" invisible="True" force_save="1" />
                        </group>
                    </sheet>
                </form>

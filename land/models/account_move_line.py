@@ -10,7 +10,7 @@ class AccountMoveLine(models.Model):
 
     @api.model
     def create(self,vals):
-        raise ValueError(vals)
+        #raise ValueError(vals)
         res = super(AccountMoveLine, self).create(vals)
 
         return res
