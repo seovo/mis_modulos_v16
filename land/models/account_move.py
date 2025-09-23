@@ -508,7 +508,7 @@ class AccountMove(models.Model):
             "view_mode": "form",
             #"view_id": self.env.ref('land.add_terreno_sale').id,
             "res_model": "account.move.line",
-            "res_id": self.id,
+            #"res_id": self.id,
             "target": "new",
             "context": {
                 'default_move_id': self.id
