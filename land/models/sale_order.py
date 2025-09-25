@@ -244,7 +244,6 @@ class SaleOrder(models.Model):
         # Crear un objeto Document a partir del contenido
         doc = Document(BytesIO(file_content))
 
-
         # Reemplazar variables en el documento
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name,negrita=True)
         #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat,negrita=True)
