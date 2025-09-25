@@ -99,18 +99,20 @@ class AccountMove(models.Model):
 
         #raise ValueError(soap_body)
 
+        soap_body = soap_body.encode('utf-8')
 
-        response = requests.post(url, data=soap_body.encode('utf-8'), headers=headers)
+
+        response = requests.post(url, data=soap_body, headers=headers)
         xml_data = response.text
         # Mostrar la respuesta
 
         xml_dict = xmltodict.parse(xml_data)
-        json_responsex = str(json.dumps(xml_dict, indent=4))
+        json_responsex = str(json.dumps(xml_dict.encode('utf-8'), indent=4))
 
         record.log_smc = json_responsex
 
 
-        xml_dict_send = xmltodict.parse(soap_body.encode('utf-8'))
+        xml_dict_send = xmltodict.parse(soap_body)
         record.xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
 
 
@@ -167,10 +169,10 @@ class AccountMove(models.Model):
                <cantidad>{int(line_av.quantity)}</cantidad>
                
                <precioLista>{line_av.product_id.standard_price}</precioLista>
-               <precioVenta>{line_av.price_subtotal}</precioVenta>
+               <precioVenta>{line_av.price_unit}</precioVenta>
                <montoUnitarioFlete>{line_av.price_unit}</montoUnitarioFlete>
                <descuentoPorPartida>0</descuentoPorPartida>
-               <lineaFactura>{int(line_av.id)}</lineaFactura>
+               <lineaFactura>{int(line_av.sequence)}</lineaFactura>
             </item>
             '''
             #<ordenCompra></ordenCompra>
@@ -188,7 +190,7 @@ class AccountMove(models.Model):
         texto = self.name
 
         # Extraer el primer número como serie
-        serie = texto[1]  # El primer carácter después de 'F'
+        serie = texto[0]  # El primer carácter después de 'F'
 
         # Extraer el resto como folio
         folio = texto[1:]  # Desde el primer carácter hasta el final
