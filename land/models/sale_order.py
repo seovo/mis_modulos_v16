@@ -197,9 +197,9 @@ class SaleOrder(models.Model):
 
                 # Agregar el texto reemplazado con formato
                 run = parrafo.add_run(reemplazar)
-                if negrita:
-                    run.bold = True
-                    raise ValueError('BOLD')
+
+                run.bold = negrita
+                #raise ValueError('BOLD')
 
                 # Agregar texto posterior si existe
                 if len(partes) > 1 and partes[1]:
