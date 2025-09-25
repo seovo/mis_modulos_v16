@@ -214,9 +214,15 @@ class SaleOrder(models.Model):
         doc = Document(BytesIO(file_content))
 
         # Reemplazar variables en el documento
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', 'Juan Pérez')
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name)
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.fuction)
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.fuction)
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
+
         self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
         self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
+        #{{CLIENTE_DIRECCION}}
 
         # Guardar el nuevo documento en un BytesIO
         output = BytesIO()
