@@ -479,7 +479,8 @@ class ReportScheduleLand(models.TransientModel):
         headers = [
             'EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
             'DIAS VENCIDOS', 'DESCRIPCION',
-            'MONTO', 'ETAPA', 'PROVEEDOR' ,'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
+            'CUOTA A PAGAR','MONTO PAGADO', 'ETAPA', 'PROVEEDOR' ,'EMPRESA', 'COMPROBANTE DE CUOTA',
+            'FECHA DE EMISION', 'ESTADO']
         sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
         # Ajustar columnas
