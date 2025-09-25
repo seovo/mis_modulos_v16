@@ -178,6 +178,16 @@ class SaleOrder(models.Model):
     name_contrato_generado_land = fields.Char()
 
     def generar_contrato(self):
+
+        try:
+            from docx import Document
+        except:
+            install('python-docx')
+
+        try:
+            import base64
+        except:
+            install('base64')
         return
 
 

@@ -278,6 +278,9 @@
                            <field name="contrato_generado_land" filename="name_contrato_generado_land" widget="binary"/>
                            <field name="name_contrato_generado_land" invisible="1"/>
                        </group>
+                       <group>
+                           <button name="generar_contrato" string="Generar Contrato" type="object"  />
+                       </group>
 
                    </page>
 
