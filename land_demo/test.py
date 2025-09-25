@@ -11,37 +11,7 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
-    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar, negrita=False):
-        raise ValueError(negrita)
-        for parrafo in doc.paragraphs:
-            if buscar in parrafo.text:
 
-                if not negrita:
-                    parrafo.text = parrafo.text.replace(buscar, reemplazar)
-                    continue
-
-                # Dividir el texto en partes
-                partes = parrafo.text.split(buscar)
-                raise ValueError(partes)
-
-
-                # Limpiar el párrafo
-                parrafo.clear()
-
-
-
-                # Agregar texto anterior
-                if partes[0]:
-                    parrafo.add_run(partes[0])
-
-                # Agregar el texto reemplazado con formato
-                run = parrafo.add_run(reemplazar)
-                if negrita:
-                    run.bold = True
-
-                # Agregar texto posterior si existe
-                if len(partes) > 1 and partes[1]:
-                    parrafo.add_run(partes[1])
 
 
 
