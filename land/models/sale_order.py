@@ -177,30 +177,10 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
-    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar, negrita=False):
-        for parrafo in doc.paragraphs:
-            if buscar in parrafo.text:
-                # Limpiar el párrafo
-                parrafo.clear()  # Eliminar el texto existente
-
-                # Dividir el texto en partes
-                partes = parrafo.text.split(buscar)
-                # Agregar texto anterior
-                if partes[0]:
-                    parrafo.add_run(partes[0])
-
-                # Agregar el texto reemplazado con formato
-                run = parrafo.add_run(reemplazar)
-                if negrita:
-                    run.bold = True
-
-                # Agregar texto posterior si existe
-                if len(partes) > 1 and partes[1]:
-                    parrafo.add_run(partes[1])
 
 
 
-    def reemplazar_texto_plantilla_land_old(self, doc, buscar, reemplazar):
+    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar):
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
                 parrafo.text = parrafo.text.replace(buscar, reemplazar)
@@ -238,14 +218,14 @@ class SaleOrder(models.Model):
 
 
         # Reemplazar variables en el documento
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name,negrita=True)
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.function)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
 
-        self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
-        self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
+        #self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
+        #self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
         #{{CLIENTE_DIRECCION}}
 
         # Guardar el nuevo documento en un BytesIO
