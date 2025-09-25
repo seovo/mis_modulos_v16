@@ -179,6 +179,9 @@ class SaleOrder(models.Model):
 
     def generar_contrato(self):
 
+        if not self.documents_document_land_id:
+            return
+
         import subprocess
         import sys
 
@@ -194,7 +197,28 @@ class SaleOrder(models.Model):
             import base64
         except:
             install('base64')
-        return
+
+        attachment = self.documents_document_land_id.attachment_id
+        if not attachment:
+            raise ValueError("Attachment no encontrado")
+
+        file_content = base64.b64decode(attachment.datas)
+
+        # Crear un objeto Document a partir del contenido
+        doc = Document(BytesIO(file_content))
+
+        # Reemplazar variables en el documento
+        self.reemplazar_texto(doc, '{{NOMBRE}}', 'Juan Pérez')
+        self.reemplazar_texto(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
+        self.reemplazar_texto(doc, '{{FECHA}}', '25 de septiembre de 2025')
+
+        # Guardar el nuevo documento en un BytesIO
+        output = BytesIO()
+        doc.save(output)
+        output.seek(0)
+
+        self.contrato_generado_land = base64.b64encode(output.read())
+        self.name_contrato_generado_land = 'contrato_generado.docx'
 
 
 
