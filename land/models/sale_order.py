@@ -183,20 +183,22 @@ class SaleOrder(models.Model):
                 # Limpiar el párrafo
                 parrafo.clear()  # Eliminar el texto existente
 
-                # Añadir texto antes del texto que vamos a reemplazar
-                texto_anterior = parrafo.text.split(buscar)[0]
-                if texto_anterior:
-                    parrafo.add_run(texto_anterior)
+                # Dividir el texto en partes
+                partes = parrafo.text.split(buscar)
+                # Agregar texto anterior
+                if partes[0]:
+                    parrafo.add_run(partes[0])
 
-                # Añadir el texto reemplazado con formato
+                # Agregar el texto reemplazado con formato
                 run = parrafo.add_run(reemplazar)
                 if negrita:
                     run.bold = True
 
-                # Añadir texto después del texto que hemos reemplazado
-                texto_posterior = parrafo.text.split(buscar)[1]
-                if texto_posterior:
-                    parrafo.add_run(texto_posterior)
+                # Agregar texto posterior si existe
+                if len(partes) > 1 and partes[1]:
+                    parrafo.add_run(partes[1])
+
+
 
     def reemplazar_texto_plantilla_land_old(self, doc, buscar, reemplazar):
         for parrafo in doc.paragraphs:
