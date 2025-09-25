@@ -186,7 +186,7 @@ class SaleOrder(models.Model):
                 partes = parrafo.text.split(buscar)
 
 
-                raise ValueError(partes)
+                #raise ValueError(partes)
 
                 # Limpiar el párrafo
                 parrafo.clear()
