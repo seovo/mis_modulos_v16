@@ -186,6 +186,7 @@ class SaleOrder(models.Model):
                 # Dividir el texto en partes
                 partes = parrafo.text.split(buscar)
 
+
                 raise ValueError(partes)
 
                 # Agregar texto anterior
