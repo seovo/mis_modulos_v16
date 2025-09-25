@@ -177,6 +177,27 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
+    def reemplazar_texto_plantilla_land_bold(self, doc, buscar, reemplazar, negrita=False):
+        for parrafo in doc.paragraphs:
+            if buscar in parrafo.text:
+                # Limpiar el párrafo
+                parrafo.clear()  # Eliminar el texto existente
+
+                # Añadir texto antes del texto que vamos a reemplazar
+                texto_anterior = parrafo.text.split(buscar)[0]
+                if texto_anterior:
+                    parrafo.add_run(texto_anterior)
+
+                # Añadir el texto reemplazado con formato
+                run = parrafo.add_run(reemplazar)
+                if negrita:
+                    run.bold = True
+
+                # Añadir texto después del texto que hemos reemplazado
+                texto_posterior = parrafo.text.split(buscar)[1]
+                if texto_posterior:
+                    parrafo.add_run(texto_posterior)
+
     def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar):
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
@@ -215,7 +236,7 @@ class SaleOrder(models.Model):
 
 
         # Reemplazar variables en el documento
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name)
+        self.reemplazar_texto_plantilla_land_bold(doc, '{{CLIENTE}}', self.partner_id.display_name)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.function)
