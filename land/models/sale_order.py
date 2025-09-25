@@ -214,7 +214,7 @@ class SaleOrder(models.Model):
         doc = Document(BytesIO(file_content))
 
         # Reemplazar variables en el documento
-        self.reemplazar_texto_plantilla_land(doc, '{{NOMBRE}}', 'Juan Pérez')
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', 'Juan Pérez')
         self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
         self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
 
