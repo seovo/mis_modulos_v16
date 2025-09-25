@@ -14,11 +14,20 @@ class SaleOrder(models.Model):
     def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar, negrita=False):
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
-                # Limpiar el párrafo
-                parrafo.clear()
+
+                if not negrita:
+                    parrafo.text = parrafo.text.replace(buscar, reemplazar)
+                    continue
 
                 # Dividir el texto en partes
                 partes = parrafo.text.split(buscar)
+                raise ValueError(partes)
+
+
+                # Limpiar el párrafo
+                parrafo.clear()
+
+
 
                 # Agregar texto anterior
                 if partes[0]:
