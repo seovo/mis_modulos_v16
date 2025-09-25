@@ -184,6 +184,7 @@ class SaleOrder(models.Model):
 
         import subprocess
         import sys
+        from io import BytesIO
 
         def install(package):
             subprocess.check_call([sys.executable, "-m", "pip", "install", package])
