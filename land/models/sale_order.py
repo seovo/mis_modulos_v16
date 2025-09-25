@@ -189,7 +189,7 @@ class SaleOrder(models.Model):
                 #raise ValueError(partes)
 
                 # Limpiar el párrafo
-                parrafo.clear()
+                #parrafo.clear()
 
                 # Agregar texto anterior
                 if partes[0]:
