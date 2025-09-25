@@ -179,6 +179,12 @@ class SaleOrder(models.Model):
 
     def generar_contrato(self):
 
+        import subprocess
+        import sys
+
+        def install(package):
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
         try:
             from docx import Document
         except:
