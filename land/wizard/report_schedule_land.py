@@ -464,104 +464,6 @@ class ReportScheduleLand(models.TransientModel):
 
 
 
-    def get_report_xls_data(self,workbook, sheet,company,schedule_dues):
-
-
-
-
-        xc = 1
-
-        bold = workbook.add_format({'bold': True , 'align': 'center', 'valign': 'vcenter' })
-        format_body = workbook.add_format(
-            {'bold': False, 'align': 'center', 'valign': 'vcenter', 'bottom': 2, 'top': 2, 'left': 2, 'right': 2})
-
-        # Definir el formato para las celdas coloreadas
-        format_red = workbook.add_format({
-          'bg_color': '#FFCCCC',  # Color de fondo (rojo claro)
-          'font_color': '#000000',  # Color de texto (negro)
-          'bold': True ,  # Opcional: texto en negrita ,
-          'align': 'center', 'valign': 'vcenter'
-        })
-
-
-
-
-        sheet.write(xc, 1, 'EXPEDIENTE', bold)
-        sheet.set_column('B:B', 20)
-
-        sheet.write(xc, 2, 'MZ', bold)
-        sheet.write(xc, 3, 'LOTE', bold)
-        sheet.set_column('C:D', 15)
-
-
-        sheet.write(xc, 4, 'NOMBRE DE CLIENTE', bold)
-        sheet.set_column('E:E', 50)
-
-        sheet.write(xc, 5, 'METRAJE', bold)
-        sheet.set_column('F:F', 15)
-
-        sheet.write(xc, 6, 'FECHA DE COBRANZA', bold)
-        sheet.set_column('G:G', 20)
-
-        sheet.write(xc, 7, 'FECHA PAGADA / HOY', bold)
-        sheet.set_column('H:H', 20)
-
-        sheet.write(xc, 8, 'DIAS VENCIDOS', bold)
-        sheet.write(xc, 9, 'N° CUOTA', bold)
-        sheet.write(xc, 10, 'MONTO', bold)
-        sheet.write(xc, 11, 'ETAPA', bold)
-        sheet.set_column('I:L', 15)
-
-        sheet.write(xc, 12, 'EMPRESA', bold)
-        sheet.set_column('M:M', 50)
-
-        sheet.write(xc, 13, 'COMPROBANTE DE CUOTA', bold)
-        sheet.set_column('N:N', 25)
-
-        sheet.write(xc, 14, 'FECHA DE EMISION', bold)
-        sheet.set_column('O:O', 20)
-
-        sheet.write(xc, 15, 'ESTADO', bold)
-        sheet.set_column('P:P', 15)
-
-
-        xc += 1
-
-
-
-
-        #raise ValueError(len(schedule_dues))
-
-        for schedule_due in schedule_dues:
-
-            order = schedule_due.order_id
-
-            invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
-
-            sheet.write(xc, 1, schedule_due.order_id.nro_internal_land, format_body)
-            sheet.write(xc, 2, order.mz_land, format_body)
-            sheet.write(xc, 3, order.lot_land, format_body)
-            sheet.write(xc, 4, order.partner_id.display_name, format_body)
-            sheet.write(xc, 5, order.m2_land, format_body)
-            sheet.write(xc, 6, str(schedule_due.date), format_body)
-            sheet.write(xc, 7, str(invoice_pagada) , format_body)
-            sheet.write(xc, 8, (invoice_pagada - schedule_due.date ).days , format_body)
-            sheet.write(xc, 9, schedule_due.number_due, format_body)
-            sheet.write(xc, 10, schedule_due.amount_due_land , format_body)
-            sheet.write(xc, 11, order.sector_land, format_body)
-            sheet.write(xc, 12, order.company_id.display_name, format_body)
-            sheet.write(xc, 13, schedule_due.move_id.display_name, format_body)
-            sheet.write(xc, 14, str(schedule_due.invoice_date or '') , format_body)
-
-            if schedule_due.is_paid:
-                sheet.write(xc, 15, 'CANCELADO', format_red)
-            else:
-                sheet.write(xc, 15, 'PENDIENTE', format_body)
-
-            xc +=  1
-
-
-
     def get_report_xls_data_optimizado(self, workbook, sheet, company, schedule_dues):
         xc = 1
         bold = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter'})
@@ -574,22 +476,24 @@ class ReportScheduleLand(models.TransientModel):
         green_format = workbook.add_format({'bg_color': '#90EE90', 'border': 1 , 'bold': True, 'align': 'center', 'valign': 'vcenter'})
         gray_format  = workbook.add_format({'bg_color': '#A9A9A9', 'border': 1 , 'bold': True, 'align': 'center', 'valign': 'vcenter'})
 
-        headers = ['EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
-                   'DIAS VENCIDOS', 'DESCRIPCION', 'MONTO', 'ETAPA', 'PROVEEDOR' ,'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
+        headers = [
+            'EXPEDIENTE', 'MZ', 'LOTE', 'NOMBRE DE CLIENTE', 'METRAJE', 'FECHA DE COBRANZA', 'FECHA PAGADA / HOY',
+            'DIAS VENCIDOS', 'DESCRIPCION',
+            'MONTO', 'ETAPA', 'PROVEEDOR' ,'EMPRESA', 'COMPROBANTE DE CUOTA', 'FECHA DE EMISION', 'ESTADO']
         sheet.write_row(xc, 1, headers, bg_azul_text_white)
 
         # Ajustar columnas
-        sheet.set_column('B:B', 10)
-        sheet.set_column('C:D', 10)
+        sheet.set_column('B:D', 10)
         sheet.set_column('E:E', 50)
         sheet.set_column('F:F', 15)
         sheet.set_column('G:H', 20)
-        sheet.set_column('I:L', 15)
-        sheet.set_column('M:M', 20)
-        sheet.set_column('N:N', 50)
-        sheet.set_column('O:O', 25)
-        sheet.set_column('P:P', 20)
-        sheet.set_column('Q:Q', 15)
+
+        sheet.set_column('I:M', 15)
+        sheet.set_column('N:N', 20)
+        sheet.set_column('O:O', 50)
+        sheet.set_column('P:P', 25)
+        sheet.set_column('Q:Q', 20)
+        sheet.set_column('R:R', 15)
 
         xc += 1
 
@@ -630,7 +534,7 @@ class ReportScheduleLand(models.TransientModel):
                 str(invoice_pagada),
                 dias_vencidos,
                 descripcion ,
-                #schedule_due.number_due, #DESCRIPCION
+                schedule_due.amount, #DESCRIPCION
                 schedule_due.amount_due_land,
                 order.sector_land,
                 order.seller_land_id.display_name or '' ,
