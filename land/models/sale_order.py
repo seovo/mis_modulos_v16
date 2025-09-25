@@ -177,6 +177,11 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
+    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar):
+        for parrafo in doc.paragraphs:
+            if buscar in parrafo.text:
+                parrafo.text = parrafo.text.replace(buscar, reemplazar)
+
     def generar_contrato(self):
 
         if not self.documents_document_land_id:
@@ -209,9 +214,9 @@ class SaleOrder(models.Model):
         doc = Document(BytesIO(file_content))
 
         # Reemplazar variables en el documento
-        self.reemplazar_texto(doc, '{{NOMBRE}}', 'Juan Pérez')
-        self.reemplazar_texto(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
-        self.reemplazar_texto(doc, '{{FECHA}}', '25 de septiembre de 2025')
+        self.reemplazar_texto_plantilla_land(doc, '{{NOMBRE}}', 'Juan Pérez')
+        self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
+        self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
 
         # Guardar el nuevo documento en un BytesIO
         output = BytesIO()
