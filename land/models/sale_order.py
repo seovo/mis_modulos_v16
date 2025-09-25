@@ -216,7 +216,7 @@ class SaleOrder(models.Model):
         # Reemplazar variables en el documento
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.fuction)
+        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.fuction)
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
 
