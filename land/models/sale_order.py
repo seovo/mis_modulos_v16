@@ -247,10 +247,10 @@ class SaleOrder(models.Model):
 
         # Reemplazar variables en el documento
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name,negrita=True)
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat,negrita=True)
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.function)
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
+        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat,negrita=True)
+        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
+        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.function)
+        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
 
         #self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
         #self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
