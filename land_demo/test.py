@@ -35,7 +35,6 @@ class SaleOrder(models.Model):
 
 
 
-
     def reemplazar_texto_plantilla_land_old(self, doc, buscar, reemplazar):
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
