@@ -271,6 +271,16 @@
 
                    </page>
 
+                   <page string="Contrato" >
+                       <group>
+                           <field name="documents_document_land_id"  />
+
+                           <field name="contrato_generado_land" filename="name_contrato_generado_land" widget="binary"/>
+                           <field name="name_contrato_generado_land" invisible="1"/>
+                       </group>
+
+                   </page>
+
                </xpath>
 
                <xpath expr="//field[@name='partner_shipping_id']" position="after" >

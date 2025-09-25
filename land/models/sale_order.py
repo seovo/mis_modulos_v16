@@ -172,6 +172,16 @@ class SaleOrder(models.Model):
     payment_year_now = fields.Float(compute='get_amounts_paid_land', string='Aportado Anual')
     saldo_year_now = fields.Float(compute='get_amounts_paid_land', string='Saldo Anual')
 
+
+    documents_document_land_id = fields.Many2one('documents.document',string="Contrato Plantilla")
+    contrato_generado_land = fields.Binary(string='Contrato Generado')
+    name_contrato_generado_land = fields.Char()
+
+    def generar_contrato(self):
+        return
+
+
+
     def get_schedule_x_year(self,year):
         start_date = date(year, 1, 1)
         end_date = date(year, 12, 31)

@@ -6,7 +6,7 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["sale_management","l10n_pe_edi_odoofact"],
+    "depends": ["sale_management","l10n_pe_edi_odoofact","documents"],
     "data": [
         "security/group.xml",
         "security/ir.model.access.csv",
