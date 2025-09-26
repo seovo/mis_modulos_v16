@@ -184,8 +184,11 @@ class SaleOrder(models.Model):
         for parrafo in doc.paragraphs:
 
             if any(key in parrafo.text for key in reemplazar_dict.keys()):
-                raise ValueError(parrafo.text)
-                pass
+
+                for run in parrafo.runs:
+                    for buscar, item in reemplazar_dict.items():
+                        if buscar in run.text and item['value']:
+                            run.text = run.text.replace(buscar, item['value'])
 
 
     def reemplazar_texto_plantilla_land_old2(self, doc, buscar, reemplazar, negrita=False):
@@ -208,7 +211,6 @@ class SaleOrder(models.Model):
 
                 # Agregar el texto reemplazado con formato
                 run = parrafo.add_run(reemplazar)
-
                 run.bold = negrita
                 #raise ValueError('BOLD')
 
