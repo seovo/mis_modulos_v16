@@ -177,7 +177,7 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
-    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar_dict):
+    def reemplazar_texto_plantilla_land(self, doc, reemplazar_dict):
 
         dicts_keys = reemplazar_dict.keys()
 
@@ -267,8 +267,8 @@ class SaleOrder(models.Model):
         }
 
         # Reemplazar variables en el documento
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name)
-        self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
+        self.reemplazar_texto_plantilla_land(doc, values_reemplace)
+        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
         #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
         #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.function)
         #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
