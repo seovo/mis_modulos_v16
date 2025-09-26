@@ -263,12 +263,12 @@ class SaleOrder(models.Model):
                decimal_part = int(str(num).split(".")[1])
                entero_str = num2words(entero_part, lang='es')
                if not decimal_part:
-                   return f'''{entero_str} Soles'''
+                   return f'''{entero_str} soles'''
 
                decimal_str = num2words(decimal_part, lang='es')
                return f"{entero_str} Soles con {decimal_str} centimos"
            else:
-               return f'''{num2words(num, lang='es')} Soles'''
+               return f'''{num2words(num, lang='es')} soles'''
 
 
 
@@ -300,9 +300,11 @@ class SaleOrder(models.Model):
             '{{CUOTA_INICIAL_EN_LETRAS}}':  {'value': str(numero_a_letras(self.price_initial_land))} ,
             '{{SALDO_EN_NUMEROS}}':         {'value': str(self.price_credit_land)} ,
             '{{SALDO_EN_LETRAS}}':          {'value': str(numero_a_letras(self.price_credit_land))} ,
-            '{{PLAZO_EN_NUMEROS}}':         {'value': str(self.dues_land)} ,
+            '{{PLAZO_EN_NUMEROS}}':         {'value': str(int(self.dues_land))} ,
             '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(self.dues_land))} ,
-            #{{SALDO_EN_NUMEROS}}
+            '{{CUOTA_MENSUAL_EN_NUMEROS}}': {'value': str(self.value_due_land)} ,
+            '{{CUOTA_MENSUAL_EN_LETRAS}}':  {'value': str(numero_a_letras(self.value_due_land))} ,
+            #
         }
 
         # Reemplazar variables en el documento
