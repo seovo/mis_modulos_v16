@@ -263,7 +263,7 @@ class SaleOrder(models.Model):
             '{{CLIENTE}}' : {'value': self.partner_id.display_name } ,
             '{{CLIENTE_DNI}}': {'value': self.partner_id.vat } ,
             '{{CLIENTE_OCUPACION}}': {'value': self.partner_id.function} ,
-            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.get_values_marital(marital) if marital else None } ,
+            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.get_values_marital()[marital] if marital else None } ,
             '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline} ,
             '{{CLIENTE_DISTRITO}}': {'value': self.partner_id.l10n_pe_district_name}
         }
