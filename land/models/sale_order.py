@@ -177,7 +177,18 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
-    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar, negrita=False):
+    def reemplazar_texto_plantilla_land(self, doc, buscar, reemplazar_dict):
+
+        dicts_keys = reemplazar_dict.keys()
+
+        for parrafo in doc.paragraphs:
+
+            if any(key in parrafo.text for key in reemplazar_dict.keys()):
+                raise ValueError(parrafo.text)
+                pass
+
+
+    def reemplazar_texto_plantilla_land_old2(self, doc, buscar, reemplazar, negrita=False):
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
 
@@ -209,6 +220,11 @@ class SaleOrder(models.Model):
 
 
     def reemplazar_texto_plantilla_land_old(self, doc, buscar, reemplazar):
+
+
+
+
+
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
                 parrafo.text = parrafo.text.replace(buscar, reemplazar)
@@ -243,6 +259,12 @@ class SaleOrder(models.Model):
 
         # Crear un objeto Document a partir del contenido
         doc = Document(BytesIO(file_content))
+
+
+        values_reemplace = {
+            '{{CLIENTE}}' : {'value': self.partner_id.display_name , 'negrita': True} ,
+            '{{CLIENTE_DNI}}': {'value': self.partner_id.vat or None , 'negrita': True}
+        }
 
         # Reemplazar variables en el documento
         self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE}}', self.partner_id.display_name,negrita=True)
