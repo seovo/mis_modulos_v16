@@ -261,14 +261,12 @@ class SaleOrder(models.Model):
             '{{CLIENTE}}' : {'value': self.partner_id.display_name } ,
             '{{CLIENTE_DNI}}': {'value': self.partner_id.vat } ,
             '{{CLIENTE_OCUPACION}}': {'value': self.partner_id.function} ,
-            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.function} ,
+            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.marital} ,
+            '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline}
         }
 
         # Reemplazar variables en el documento
         self.reemplazar_texto_plantilla_land(doc, values_reemplace)
-        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
-
-        #self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
         #self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
         #{{CLIENTE_DIRECCION}}
 

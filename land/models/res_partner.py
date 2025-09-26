@@ -13,7 +13,7 @@ class ResPartner(models.Model):
 
 
 
-    marital = fields.Selection(list(dx.items()), string='Marital Status',  tracking=True)
+    marital = fields.Selection(list(dx.items()), string='Estado Civil',  tracking=True )
 
     def get_values_marital(self):
         return dx
