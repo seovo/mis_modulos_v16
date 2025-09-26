@@ -262,10 +262,13 @@ class SaleOrder(models.Model):
                entero_part = int(num)
                decimal_part = int(str(num).split(".")[1])
                entero_str = num2words(entero_part, lang='es')
+               if not decimal_part:
+                   return f'''{entero_str} Soles'''
+
                decimal_str = num2words(decimal_part, lang='es')
-               return f"{entero_str} punto {decimal_str}"
+               return f"{entero_str} Soles con {decimal_str} centimos"
            else:
-               return num2words(num, lang='es')
+               return f'''{num2words(num, lang='es')} Soles'''
 
 
 
