@@ -177,7 +177,8 @@ class SaleOrder(models.Model):
     saldo_year_now = fields.Float(compute='get_amounts_paid_land', string='Saldo Anual')
 
 
-    documents_document_land_id = fields.Many2one('documents.document',string="Contrato Plantilla")
+    documents_document_land_id = fields.Many2one('documents.document',string="Contrato Plantilla",
+                                                 domain="[('mimetype','ilike','word')]")
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
@@ -266,7 +267,7 @@ class SaleOrder(models.Model):
                    return f'''{entero_str} soles'''
 
                decimal_str = num2words(decimal_part, lang='es')
-               return f"{entero_str} Soles con {decimal_str} centimos"
+               return f"{entero_str} soles con {decimal_str} centimos"
            else:
                return f'''{num2words(num, lang='es')} soles'''
 
