@@ -285,18 +285,24 @@ class SaleOrder(models.Model):
 
 
         values_reemplace = {
-            '{{CLIENTE}}' : {'value': self.partner_id.display_name } ,
-            '{{CLIENTE_DNI}}': {'value': self.partner_id.vat } ,
-            '{{CLIENTE_OCUPACION}}': {'value': self.partner_id.function} ,
-            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.get_values_marital()[marital] if marital else None } ,
-            '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline} ,
-            '{{CLIENTE_DISTRITO}}': {'value': self.partner_id.l10n_pe_district_name} ,
-            '{{NUMERO_DE_LOTE}}': {'value': str(self.lot_land)} ,
-            '{{LETRA_DE_MANZANA}}': {'value': self.mz_land} ,
-            '{{METRAJE}}': {'value': str(round(self.area_lot_related,2)) } ,
-            '{{PRECIO_EN_NUMEROS}}': {'value': str(self.price_total_land)} ,
-            '{{PRECIO_EN_LETRAS}}': {'value': str(numero_a_letras(self.price_total_land))} ,
-            #{{PRECIO_EN_NUMEROS}} numero_a_letras(numero)
+            '{{CLIENTE}}' :                 {'value': self.partner_id.display_name } ,
+            '{{CLIENTE_DNI}}':              {'value': self.partner_id.vat } ,
+            '{{CLIENTE_OCUPACION}}':        {'value': self.partner_id.function} ,
+            '{{CLIENTE_ESTADO_CIVIL}}':     {'value': self.partner_id.get_values_marital()[marital] if marital else None } ,
+            '{{CLIENTE_DIRECCION}}':        {'value': self.partner_id.contact_address_inline} ,
+            '{{CLIENTE_DISTRITO}}':         {'value': self.partner_id.l10n_pe_district_name} ,
+            '{{NUMERO_DE_LOTE}}':           {'value': str(self.lot_land)} ,
+            '{{LETRA_DE_MANZANA}}':         {'value': self.mz_land} ,
+            '{{METRAJE}}':                  {'value': str(round(self.area_lot_related,2)) } ,
+            '{{PRECIO_EN_NUMEROS}}':        {'value': str(self.price_total_land)} ,
+            '{{PRECIO_EN_LETRAS}}':         {'value': str(numero_a_letras(self.price_total_land))} ,
+            '{{CUOTA_INICIAL_EN_NUMEROS}}': {'value': str(self.price_initial_land)} ,
+            '{{CUOTA_INICIAL_EN_LETRAS}}':  {'value': str(numero_a_letras(self.price_initial_land))} ,
+            '{{SALDO_EN_NUMEROS}}':         {'value': str(self.price_credit_land)} ,
+            '{{SALDO_EN_LETRAS}}':          {'value': str(numero_a_letras(self.price_credit_land))} ,
+            '{{PLAZO_EN_NUMEROS}}':         {'value': str(self.dues_land)} ,
+            '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(self.dues_land))} ,
+            #{{SALDO_EN_NUMEROS}}
         }
 
         # Reemplazar variables en el documento
