@@ -13,13 +13,13 @@ class ResPartner(models.Model):
 
 
 
-    marital = fields.Selection(dx.items(), string='Marital Status',  tracking=True)
+    marital = fields.Selection(list(dx.items()), string='Marital Status',  tracking=True)
 
     def get_values_marital(self):
         return dx
 
     def get_array_marital(self):
-        return self.get_values_marital().items()
+        return list(self.get_values_marital().items())
 
 
 
