@@ -266,10 +266,10 @@ class SaleOrder(models.Model):
             '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.get_values_marital()[marital] if marital else None } ,
             '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline} ,
             '{{CLIENTE_DISTRITO}}': {'value': self.partner_id.l10n_pe_district_name} ,
-            '{{NUMERO_DE_LOTE}}': {'value': self.lot_land} ,
+            '{{NUMERO_DE_LOTE}}': {'value': str(self.lot_land)} ,
             '{{LETRA_DE_MANZANA}}': {'value': self.mz_lot} ,
-            '{{METRAJE}}': {'value': round(self.area_lot_related,2) } ,
-            '{{PRECIO_EN_NUMEROS}}': {'value': self.price_total_land} ,
+            '{{METRAJE}}': {'value': str(round(self.area_lot_related,2)) } ,
+            '{{PRECIO_EN_NUMEROS}}': {'value': str(self.price_total_land)} ,
             #{{PRECIO_EN_NUMEROS}}
         }
 
