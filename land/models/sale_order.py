@@ -4,6 +4,57 @@ from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta , date
 from odoo.exceptions import ValidationError
 
+def numero_a_letras(num):
+    # Definición de las partes
+    unidades = [
+        "", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez",
+        "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve"
+    ]
+    decenas = [
+        "", "", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"
+    ]
+    centenas = [
+        "", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos",
+        "setecientos", "ochocientos", "novecientos"
+    ]
+
+    def convertir_entero(n):
+        if n == 0:
+            return "cero"
+        elif n < 20:
+            return unidades[n]
+        elif n < 100:
+            d = n // 10
+            u = n % 10
+            if u == 0:
+                return decenas[d]
+            elif d == 2 and u == 1:
+                return "veintiuno"
+            elif d == 2:
+                return "veinti" + unidades[u]
+            else:
+                return decenas[d] + " y " + unidades[u]
+        elif n < 1000:
+            c = n // 100
+            rest = n % 100
+            if rest == 0:
+                return centenas[c]
+            else:
+                return centenas[c] + " " + convertir_entero(rest)
+
+    # Convertir número entero y decimal
+    if isinstance(num, float):
+        entero_part, decimal_part = str(num).split(".")
+        entero_part = int(entero_part)
+        decimal_part = int(decimal_part)
+        entero_str = convertir_entero(entero_part)
+        decimal_str = convertir_entero(decimal_part)
+        return f"{entero_str} punto {decimal_str}"
+    else:
+        return convertir_entero(num)
+
+
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -267,10 +318,11 @@ class SaleOrder(models.Model):
             '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline} ,
             '{{CLIENTE_DISTRITO}}': {'value': self.partner_id.l10n_pe_district_name} ,
             '{{NUMERO_DE_LOTE}}': {'value': str(self.lot_land)} ,
-            '{{LETRA_DE_MANZANA}}': {'value': self.mz_lot} ,
+            '{{LETRA_DE_MANZANA}}': {'value': self.mz_land} ,
             '{{METRAJE}}': {'value': str(round(self.area_lot_related,2)) } ,
             '{{PRECIO_EN_NUMEROS}}': {'value': str(self.price_total_land)} ,
-            #{{PRECIO_EN_NUMEROS}}
+            '{{PRECIO_EN_LETRAS}}': {'value': str(numero_a_letras(self.price_total_land))} ,
+            #{{PRECIO_EN_NUMEROS}} numero_a_letras(numero)
         }
 
         # Reemplazar variables en el documento
