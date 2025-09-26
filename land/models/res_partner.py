@@ -1,7 +1,28 @@
 from odoo import api, fields, models , _
 
+dx = {
+    'single': 'Soltero' ,
+    'married' : 'Casado' ,
+    'cohabitant' : 'Conviviente Legal' ,
+    'widower' : 'Viudo' ,
+    'divorced' : 'Divorciado'
+}
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+
+
+    marital = fields.Selection(dx.items(), string='Marital Status',  tracking=True)
+
+    def get_values_marital(self):
+        return dx
+
+    def get_array_marital(self):
+        return self.get_values_marital().items()
+
+
+
     '''
 
     @api.model

@@ -220,13 +220,7 @@ class SaleOrder(models.Model):
 
 
 
-
     def reemplazar_texto_plantilla_land_old(self, doc, buscar, reemplazar):
-
-
-
-
-
         for parrafo in doc.paragraphs:
             if buscar in parrafo.text:
                 parrafo.text = parrafo.text.replace(buscar, reemplazar)
@@ -264,15 +258,14 @@ class SaleOrder(models.Model):
 
 
         values_reemplace = {
-            '{{CLIENTE}}' : {'value': self.partner_id.display_name , 'negrita': True} ,
-            '{{CLIENTE_DNI}}': {'value': self.partner_id.vat or None , 'negrita': True}
+            '{{CLIENTE}}' : {'value': self.partner_id.display_name } ,
+            '{{CLIENTE_DNI}}': {'value': self.partner_id.vat } ,
+            '{{CLIENTE_OCUPACION}}': {'value': self.partner_id.function} ,
+            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.function} ,
         }
 
         # Reemplazar variables en el documento
         self.reemplazar_texto_plantilla_land(doc, values_reemplace)
-        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DNI}}', self.partner_id.vat)
-        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_OCUPACION}}', self.partner_id.function)
-        #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_ESTADO_CIVIL}}', self.partner_id.function)
         #self.reemplazar_texto_plantilla_land(doc, '{{CLIENTE_DIRECCION}}', self.partner_id.contact_address_inline)
 
         #self.reemplazar_texto_plantilla_land(doc, '{{DIRECCION}}', 'Av. Siempre Viva 123')
