@@ -256,13 +256,16 @@ class SaleOrder(models.Model):
         # Crear un objeto Document a partir del contenido
         doc = Document(BytesIO(file_content))
 
+        marital = self.partner_id.marital
+
 
         values_reemplace = {
             '{{CLIENTE}}' : {'value': self.partner_id.display_name } ,
             '{{CLIENTE_DNI}}': {'value': self.partner_id.vat } ,
             '{{CLIENTE_OCUPACION}}': {'value': self.partner_id.function} ,
-            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.marital} ,
-            '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline}
+            '{{CLIENTE_ESTADO_CIVIL}}' : {'value': self.partner_id.get_values_marital(marital) if marital else None } ,
+            '{{CLIENTE_DIRECCION}}': {'value': self.partner_id.contact_address_inline} ,
+            '{{CLIENTE_DISTRITO}}': {'value': self.partner_id.l10n_pe_district_name}
         }
 
         # Reemplazar variables en el documento
