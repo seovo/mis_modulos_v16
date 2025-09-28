@@ -12,7 +12,7 @@
     "data": [
 
         #"security/ir.model.access.csv",
-        #'views/templates.xml',
+        'views/templates.xml',
         'views/res_currency.xml'
     ],
     "application": False,

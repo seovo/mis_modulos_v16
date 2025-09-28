@@ -196,40 +196,6 @@ class SaleOrder(models.Model):
                             run.text = run.text.replace(buscar, item['value'])
 
 
-    def reemplazar_texto_plantilla_land_old2(self, doc, buscar, reemplazar, negrita=False):
-        for parrafo in doc.paragraphs:
-            if buscar in parrafo.text:
-
-
-                # Dividir el texto en partes
-                partes = parrafo.text.split(buscar)
-
-
-                #raise ValueError(partes)
-
-                # Limpiar el párrafo
-                parrafo.clear()
-
-                # Agregar texto anterior
-                if partes[0]:
-                    parrafo.add_run(partes[0])
-
-                # Agregar el texto reemplazado con formato
-                run = parrafo.add_run(reemplazar)
-                run.bold = negrita
-                #raise ValueError('BOLD')
-
-                # Agregar texto posterior si existe
-                if len(partes) > 1 and partes[1]:
-                    parrafo.add_run(partes[1])
-
-
-
-    def reemplazar_texto_plantilla_land_old(self, doc, buscar, reemplazar):
-        for parrafo in doc.paragraphs:
-            if buscar in parrafo.text:
-                parrafo.text = parrafo.text.replace(buscar, reemplazar)
-
     def generar_contrato(self):
 
         if not self.documents_document_land_id:
@@ -284,6 +250,14 @@ class SaleOrder(models.Model):
 
         marital = self.partner_id.marital
 
+        initial_val = round(self.price_initial_land,2)
+        credit_val = round(self.price_credit_land,2)
+
+        area_val = round(self.price_credit_land,2)
+        price_total_val = round(self.price_total_land,2)
+        cuota_men_val = round(self.value_due_land,2)
+        num_cuotas = int(self.dues_land)
+
 
         values_reemplace = {
             '{{CLIENTE}}' :                 {'value': self.partner_id.display_name } ,
@@ -294,17 +268,17 @@ class SaleOrder(models.Model):
             '{{CLIENTE_DISTRITO}}':         {'value': self.partner_id.l10n_pe_district_name} ,
             '{{NUMERO_DE_LOTE}}':           {'value': str(self.lot_land)} ,
             '{{LETRA_DE_MANZANA}}':         {'value': self.mz_land} ,
-            '{{METRAJE}}':                  {'value': str(round(self.area_lot_related,2)) } ,
-            '{{PRECIO_EN_NUMEROS}}':        {'value': str(self.price_total_land)} ,
-            '{{PRECIO_EN_LETRAS}}':         {'value': str(numero_a_letras(self.price_total_land))} ,
-            '{{CUOTA_INICIAL_EN_NUMEROS}}': {'value': str(self.price_initial_land)} ,
-            '{{CUOTA_INICIAL_EN_LETRAS}}':  {'value': str(numero_a_letras(self.price_initial_land))} ,
-            '{{SALDO_EN_NUMEROS}}':         {'value': str(self.price_credit_land)} ,
-            '{{SALDO_EN_LETRAS}}':          {'value': str(numero_a_letras(self.price_credit_land))} ,
-            '{{PLAZO_EN_NUMEROS}}':         {'value': str(int(self.dues_land))} ,
-            '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(self.dues_land))} ,
-            '{{CUOTA_MENSUAL_EN_NUMEROS}}': {'value': str(self.value_due_land)} ,
-            '{{CUOTA_MENSUAL_EN_LETRAS}}':  {'value': str(numero_a_letras(self.value_due_land))} ,
+            '{{METRAJE}}':                  {'value': str(area_val) } ,
+            '{{PRECIO_EN_NUMEROS}}':        {'value': str(price_total_val)} ,
+            '{{PRECIO_EN_LETRAS}}':         {'value': str(numero_a_letras(price_total_val))} ,
+            '{{CUOTA_INICIAL_EN_NUMEROS}}': {'value': str(initial_val)} ,
+            '{{CUOTA_INICIAL_EN_LETRAS}}':  {'value': str(numero_a_letras(initial_val))} ,
+            '{{SALDO_EN_NUMEROS}}':         {'value': str(credit_val)} ,
+            '{{SALDO_EN_LETRAS}}':          {'value': str(numero_a_letras(credit_val))} ,
+            '{{PLAZO_EN_NUMEROS}}':         {'value': str(num_cuotas)} ,
+            '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(num_cuotas))} ,
+            '{{CUOTA_MENSUAL_EN_NUMEROS}}': {'value': str(cuota_men_val)} ,
+            '{{CUOTA_MENSUAL_EN_LETRAS}}':  {'value': str(numero_a_letras(cuota_men_val))} ,
             #
         }
 

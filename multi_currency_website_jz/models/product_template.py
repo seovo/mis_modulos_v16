@@ -19,6 +19,7 @@ class ProductTemplate(models.Model):
         
 '''
 
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
