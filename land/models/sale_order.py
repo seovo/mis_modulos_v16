@@ -182,11 +182,37 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
+    def reemplazar_parrafo(self, parrafo, reemplazar_dict):
+        if any(key in parrafo.text for key in reemplazar_dict.keys()):
+            for run in parrafo.runs:
+                for buscar, item in reemplazar_dict.items():
+                    if buscar in run.text and item['value']:
+                        run.text = run.text.replace(buscar, item['value'])
+
+
+
+
     def reemplazar_texto_plantilla_land(self, doc, reemplazar_dict):
 
-        dicts_keys = reemplazar_dict.keys()
+
+        # Reemplazar en cuadros de texto
+        for shape in doc.inline_shapes:
+            for parrafo in shape.text_frame.paragraphs:
+                self.reemplazar_parrafo(parrafo,reemplazar_dict)
+
+        # Reemplazar en encabezados
+        #for footer in section.footer.paragraphs:
+        for section in doc.sections:
+            for header in section.header.paragraphs:
+                self.reemplazar_parrafo(header,reemplazar_dict)
+
+
 
         for parrafo in doc.paragraphs:
+
+            self.reemplazar_parrafo(parrafo,reemplazar_dict)
+
+            '''
 
             if any(key in parrafo.text for key in reemplazar_dict.keys()):
 
@@ -194,6 +220,8 @@ class SaleOrder(models.Model):
                     for buscar, item in reemplazar_dict.items():
                         if buscar in run.text and item['value']:
                             run.text = run.text.replace(buscar, item['value'])
+                            
+            '''
 
 
     def generar_contrato(self):
