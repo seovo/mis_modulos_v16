@@ -279,6 +279,7 @@ class SaleOrder(models.Model):
             '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(num_cuotas))} ,
             '{{CUOTA_MENSUAL_EN_NUMEROS}}': {'value': str(cuota_men_val)} ,
             '{{CUOTA_MENSUAL_EN_LETRAS}}':  {'value': str(numero_a_letras(cuota_men_val))} ,
+            '{{EXP}}'                    :  {'value': self.nro_internal_land} ,
             #
         }
 
