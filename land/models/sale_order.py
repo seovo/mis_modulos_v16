@@ -194,6 +194,11 @@ class SaleOrder(models.Model):
 
     def reemplazar_texto_plantilla_land(self, doc, reemplazar_dict):
 
+        for shape in doc.inline_shapes:
+            if shape.type == 3:
+                for parrafo in shape.text_frame.paragraphs:
+                    self.reemplazar_parrafo(parrafo,reemplazar_dict)
+
 
         # Reemplazar en cuadros de texto
         for shape in doc.inline_shapes:
