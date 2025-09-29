@@ -319,7 +319,7 @@ class MigrateModelJz(models.Model):
                 string_sql += f'  where {self.where_set} ;'
 
 
-        #raise ValueError(string_sql)
+        raise ValueError(string_sql)
 
         cursor.execute(string_sql)
 
