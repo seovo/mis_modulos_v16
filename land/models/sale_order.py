@@ -327,7 +327,7 @@ class SaleOrder(models.Model):
         output.seek(0)
 
         self.contrato_generado_land = base64.b64encode(output.read())
-        self.name_contrato_generado_land = 'contrato_generado.docx'
+        self.name_contrato_generado_land = f'''CONTRATO_{str(self.nro_internal_land)}_{self.partner_id.name}.docx'''
 
 
 
