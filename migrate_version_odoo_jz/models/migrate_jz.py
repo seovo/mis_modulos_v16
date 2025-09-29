@@ -451,7 +451,7 @@ END $$;
 
 
 
-            raise ValueError([SQL_INSERT])
+            raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
 
 
