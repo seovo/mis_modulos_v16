@@ -273,7 +273,13 @@ class MigrateModelJz(models.Model):
             column_names.append(namm)
 
             if colx.type_field in ['text_jsonb']:
-                namm += '::jsonb'
+                #namm += '::jsonb'
+                namm = f'''
+                jsonb_build_object(
+                    'en_US', {colx.name},
+                    'es_PE', {colx.name}
+                ) AS {namm}
+                '''
 
 
             if colx.type_field in ['jsonb_text']:
