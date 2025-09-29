@@ -462,8 +462,8 @@ END $$;
                     END $$; '''
 
 
-
-            raise ValueError([SQL_INSERT,fila])
+            '''
+            #raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
 
 
@@ -478,7 +478,7 @@ END $$;
                 result = self.env.cr.fetchall()
                 raise ValueError(result)
                 raise ValueError([SQL_INSERT,fila,result])
-            '''
+
 
 
 
