@@ -291,6 +291,18 @@ class SaleOrder(models.Model):
         cuota_men_val = round(self.value_due_land,2)
         num_cuotas = int(self.dues_land)
 
+        if not  self.partner_id.function:
+            raise ValidationError('INDIQUE UNA OCUPACION EN EL CLIENTE')
+
+        if not  self.partner_id.marital:
+            raise ValidationError('INDIQUE UN ESTADO CIVIL EN EL CLIENTE')
+
+        if not self.partner_id.contact_address_inline:
+            raise ValidationError('INDIQUE UNA DIRECCION EN EL CLIENTE')
+
+        if not self.partner_id.l10n_pe_district_name:
+            raise ValidationError('INDIQUE UN DISTRITO EN EL CLIENTE')
+
 
         values_reemplace = {
             '{{CLIENTE}}' :                 {'value': self.partner_id.display_name } ,
