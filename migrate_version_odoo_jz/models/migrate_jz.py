@@ -278,7 +278,7 @@ class MigrateModelJz(models.Model):
                 jsonb_build_object(
                     'en_US', {colx.name},
                     'es_PE', {colx.name}
-                ) AS {namm}
+                )::text AS {namm}
                 '''
 
 
