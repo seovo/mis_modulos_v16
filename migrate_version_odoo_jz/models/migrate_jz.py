@@ -170,7 +170,9 @@ class MigrateModelColumnsJz(models.Model):
     _name  = 'migrate.model.columns.jz'
     name             = fields.Char(required=True)
     ignore           = fields.Boolean(string="Ignorar")
-    type_field       = fields.Selection([('jsonb','jsonb')])
+    type_field       = fields.Selection([
+        ('jsonb_text','jsonb a Texto'),
+        ('text_jsonb','Texto a jsonb')],string='Convertir a')
     migrate_model_id = fields.Many2one('migrate.model.jz')
     value_set        = fields.Text()
     is_field         = fields.Boolean(string="Es un Campo Odoo")
@@ -223,7 +225,7 @@ class MigrateModelJz(models.Model):
                 'name': desc[0]
             }
             if desc[1] == 3802 :
-                dx.update({'type_field':'jsonb'})
+                dx.update({'type_field':'jsonb_text'})
 
             #para version16 a version 17
             if table in ['product_template']:
@@ -270,7 +272,11 @@ class MigrateModelJz(models.Model):
 
             column_names.append(namm)
 
-            if colx.type_field in ['jsonb']:
+            if colx.type_field in ['text_jsonb']:
+                namm += '::jsonb'
+
+
+            if colx.type_field in ['jsonb_text']:
                 namm += '::text'
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
             if colx.value_set :
