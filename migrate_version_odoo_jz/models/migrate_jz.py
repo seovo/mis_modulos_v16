@@ -319,7 +319,7 @@ class MigrateModelJz(models.Model):
                 string_sql += f'  where {self.where_set} ;'
 
 
-        raise ValueError(string_sql)
+        #raise ValueError(string_sql)
 
         cursor.execute(string_sql)
 
@@ -329,7 +329,7 @@ class MigrateModelJz(models.Model):
         #    raise ValueError(string_sql)
 
 
-        if self.table == 'product_attribute_value_product_product_rel' and self.migrate_id.from_version <= 12:
+        if self.table == 'product_attribute_value_product_product_rel' and self.migrate_id.from_version == 12:
 
             self.insert_product_variant_combination( cursor, table, column_names)
 
@@ -451,7 +451,7 @@ END $$;
 
 
 
-            #raise ValueError([SQL_INSERT])
+            raise ValueError([SQL_INSERT])
             self.env.cr.execute(SQL_INSERT, fila)
 
 
