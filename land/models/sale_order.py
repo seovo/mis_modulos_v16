@@ -266,12 +266,12 @@ class SaleOrder(models.Model):
                entero_str = entero_str.upper()
                if not decimal_part:
                    if formateo:
-                       return f'''{entero_str} {LABEL_CURRENCY} CON 00/100'''
+                       return f'''{entero_str} CON 00/100 {LABEL_CURRENCY}'''
                    return entero_str
 
                if formateo:
                    decimal_part = decimal_part
-                   return f'''{entero_str} {LABEL_CURRENCY} CON {decimal_part}/100'''
+                   return f'''{entero_str} CON {decimal_part}/100 {LABEL_CURRENCY}'''
 
                #decimal_str = num2words(decimal_part, lang='es')
                return entero_str
@@ -280,7 +280,7 @@ class SaleOrder(models.Model):
                entero_str = entero_str.upper()
 
                if formateo:
-                   return f'''{entero_str} {LABEL_CURRENCY} CON 00/100'''
+                   return f'''{entero_str} CON 00/100 {LABEL_CURRENCY}'''
 
                return entero_str
 
