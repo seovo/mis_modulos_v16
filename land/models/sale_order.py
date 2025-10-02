@@ -284,7 +284,6 @@ class SaleOrder(models.Model):
 
                return entero_str
 
-
         def format_text_currency_contrato(number):
             tformat = "{:,.2f}".format(initial_val)
             return f'''{self.currency_id.symbol} {tformat}'''
