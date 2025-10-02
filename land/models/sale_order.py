@@ -257,7 +257,7 @@ class SaleOrder(models.Model):
             install('num2words')
 
         def numero_a_letras(num,formateo=True):
-           LABEL_CURRENCY = self.currency_id.currency_subunit_label.upper()
+           LABEL_CURRENCY = self.currency_id.currency_unit_label.upper()
            # Convertir el número a letras en español
            if isinstance(num, float):
                entero_part = int(num)
