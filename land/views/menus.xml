@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <menuitem name="Terrenos" id="menu_terrenos" />
+    <menuitem name="Terrenos"
+              web_icon="land,static/description/icon.png"
+              id="menu_terrenos" />
 
        <menuitem action="action_sale_dues_incomplete"
                  id="menu_sale_dues_incomplete_terreno"
