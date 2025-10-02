@@ -271,6 +271,9 @@ class SaleOrder(models.Model):
                return f'''{num2words(num, lang='es')} soles'''
 
 
+        def format_text_currency_contrato(number):
+            tformat = "{:,.2f}".format(initial_val)
+            return f'''{self.currency_id.symbol} {tformat}'''
 
         attachment = self.documents_document_land_id.attachment_id
         if not attachment:
@@ -284,19 +287,19 @@ class SaleOrder(models.Model):
         marital = self.partner_id.marital
 
         initial_val = round(self.price_initial_land,2)
-        initial_val_format = "{:,.2f}".format(initial_val)
+        initial_val_format = format_text_currency_contrato(initial_val)
 
         credit_val = round(self.price_credit_land,2)
-        credit_val_format = "{:,.2f}".format(credit_val)
+        credit_val_format = format_text_currency_contrato(credit_val)
 
         area_val = round(self.price_credit_land,2)
-        area_val_format = "{:,.2f}".format(area_val)
+        area_val_format = format_text_currency_contrato(area_val)
 
         price_total_val = round(self.price_total_land,2)
-        price_total_val_format = "{:,.2f}".format(price_total_val)
+        price_total_val_format = format_text_currency_contrato(price_total_val)
 
         cuota_men_val = round(self.value_due_land,2)
-        cuota_men_val_format = "{:,.2f}".format(cuota_men_val)
+        cuota_men_val_format = format_text_currency_contrato(cuota_men_val)
 
         num_cuotas = int(self.dues_land)
 
