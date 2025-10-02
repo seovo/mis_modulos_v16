@@ -256,19 +256,33 @@ class SaleOrder(models.Model):
         except:
             install('num2words')
 
-        def numero_a_letras(num):
+        def numero_a_letras(num,formateo=True):
+           LABEL_CURRENCY = self.currency_id.currency_subunit_label.upper()
            # Convertir el número a letras en español
            if isinstance(num, float):
                entero_part = int(num)
                decimal_part = int(str(num).split(".")[1])
                entero_str = num2words(entero_part, lang='es')
+               entero_str = entero_str.upper()
                if not decimal_part:
-                   return f'''{entero_str} soles'''
+                   if formateo:
+                       return f'''{entero_str} {LABEL_CURRENCY} CON 00/100'''
+                   return entero_str
 
-               decimal_str = num2words(decimal_part, lang='es')
-               return f"{entero_str} soles con {decimal_str} centimos"
+               if formateo:
+                   decimal_part = decimal_part
+                   return f'''{entero_str} {LABEL_CURRENCY} CON {decimal_part}/100'''
+
+               #decimal_str = num2words(decimal_part, lang='es')
+               return entero_str
            else:
-               return f'''{num2words(num, lang='es')} soles'''
+               entero_str = num2words(num, lang='es')
+               entero_str = entero_str.upper()
+
+               if formateo:
+                   return f'''{entero_str} {LABEL_CURRENCY} CON 00/100'''
+
+               return entero_str
 
 
         def format_text_currency_contrato(number):
