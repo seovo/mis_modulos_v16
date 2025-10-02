@@ -284,11 +284,20 @@ class SaleOrder(models.Model):
         marital = self.partner_id.marital
 
         initial_val = round(self.price_initial_land,2)
+        initial_val = "{:,.2f}".format(initial_val)
+
         credit_val = round(self.price_credit_land,2)
+        credit_val = "{:,.2f}".format(credit_val)
 
         area_val = round(self.price_credit_land,2)
+        area_val = "{:,.2f}".format(area_val)
+
         price_total_val = round(self.price_total_land,2)
+        price_total_val = "{:,.2f}".format(price_total_val)
+
         cuota_men_val = round(self.value_due_land,2)
+        cuota_men_val = "{:,.2f}".format(cuota_men_val)
+
         num_cuotas = int(self.dues_land)
 
         if not  self.partner_id.function:
