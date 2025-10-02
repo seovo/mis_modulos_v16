@@ -1,11 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_edit_contrato" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="priority">1000</field>
+
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                           <group>
+                               <field name="mz_lot"  readonly="1" />
+                               <field name="partner_id" readonly="1"  />
+                               <field name="company_id"  readonly="1" />
+                               <field name="nro_internal_land"  />
+                               <field name="amount_total" readonly="1" />
+                               <field name="price_initial_land" string="Inicial"  readonly="1" />
+                           </group>
+                           <group>
+                               <field name="price_credit_land" string="Credito" readonly="1" />
+                               <field name="total_payment_land" string="Abonado" readonly="1" invisible="1" />
+                               <field name="saldo_payment_land"  string="Saldo" readonly="1" />
+
+                           </group>
+
+
+                       </group>
+                       <notebook>
+                           <page string="Contrato" >
+                               <group>
+                           <field name="documents_document_land_id"  />
+
+                           <field name="contrato_generado_land" filename="name_contrato_generado_land" widget="binary"/>
+                           <field name="name_contrato_generado_land" invisible="1"/>
+                       </group>
+                               <group>
+                           <button name="generar_contrato" string="Generar Contrato" type="object"  />
+                       </group>
+
+                          </page>
+                       </notebook>
+                   </sheet>
+               </form>
+
+           </field>
+    </record>
+
+    <record id="action_expedientes" model="ir.actions.act_window">
+        <field name="name">Expedientes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ('stage_payment_lan','in',['payment','dues']),('state','in',['sale','done']) ,
+            ('stage_land','!=','cancel')
+
+            ]
+        </field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.sale_order_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('land.view_edit_contrato')})]"
+        />
+
+        <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
+        <field name="context">{}</field>
+    </record>
+
     <menuitem name="Terrenos"
               web_icon="land,static/description/icon.png"
               id="menu_terrenos" />
 
-       <menuitem action="action_sale_dues_incomplete"
+       <menuitem action="action_expedientes"
                  id="menu_sale_dues_incomplete_terreno"
                  parent="menu_terrenos"
        />
