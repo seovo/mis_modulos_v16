@@ -33,7 +33,8 @@
         'views/account_journal.xml',
         "report/report_sale.xml",
         'views/schedule_dues_land.xml' ,
-        'views/res_partner.xml'
+        'views/res_partner.xml',
+        'views/menus.xml',
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
