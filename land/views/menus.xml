@@ -14,14 +14,21 @@
                                <field name="mz_lot"  readonly="1" />
                                <field name="partner_id" readonly="1"  />
                                <field name="company_id"  readonly="1" />
-                               <field name="nro_internal_land"  />
-                               <field name="amount_total" readonly="1" />
-                               <field name="price_initial_land" string="Inicial"  readonly="1" />
+                               <field name="stage_payment_lan"  readonly="1"  />
+
+                               <field
+                                       name="nro_internal_land"
+                                       readonly="stage_payment_lan in ['payment','completed']  "
+                               />
+
+
                            </group>
                            <group>
                                <field name="price_credit_land" string="Credito" readonly="1" />
                                <field name="total_payment_land" string="Abonado" readonly="1" invisible="1" />
                                <field name="saldo_payment_land"  string="Saldo" readonly="1" />
+                               <field name="price_initial_land" string="Inicial"  readonly="1" />
+                               <field name="amount_total" readonly="1" />
 
                            </group>
 
