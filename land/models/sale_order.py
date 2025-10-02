@@ -348,7 +348,7 @@ class SaleOrder(models.Model):
             '{{SALDO_EN_NUMEROS}}':         {'value': str(credit_val_format)} ,
             '{{SALDO_EN_LETRAS}}':          {'value': str(numero_a_letras(credit_val))} ,
             '{{PLAZO_EN_NUMEROS}}':         {'value': str(num_cuotas)} ,
-            '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(num_cuotas))} ,
+            '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(num_cuotas,formateo=False))} ,
             '{{CUOTA_MENSUAL_EN_NUMEROS}}': {'value': str(cuota_men_val_format)} ,
             '{{CUOTA_MENSUAL_EN_LETRAS}}':  {'value': str(numero_a_letras(cuota_men_val))} ,
             '{{EXP}}'                    :  {'value': self.nro_internal_land} ,
