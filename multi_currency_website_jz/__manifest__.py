@@ -19,9 +19,9 @@
     "installable": True,
     "auto_install": False,
     'assets': {
-        #'web.assets_frontend': [
-        #    'stock_multi_location_website_jz/static/src/js/website_sale.js',
-        #],
+        'web.assets_frontend': [
+            'multi_currency_website_jz/static/src/js/website_sale.js',
+        ],
 
 
      },
