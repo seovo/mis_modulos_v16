@@ -4,27 +4,34 @@ from odoo import api, fields, models
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
-    supplier_disc = fields.Float(string="Descuento Proveedor",related='product_id.categ_id.supplier_disc')
-    standard_price = fields.Float(string="Costo",related='product_id.standard_price')
-    acquisition_cost = fields.Float(string="Costo de adquisición", related='product_id.acquisition_cost')
-    categ_id = fields.Many2one('product.category', string="Categoria", related='product_id.categ_id')
+    supplier_disc            = fields.Float(string="Descuento Proveedor",related='product_id.categ_id.supplier_disc')
+    standard_price           = fields.Float(string="Costo",related='product_id.standard_price')
+    acquisition_cost         = fields.Float(string="Costo de adquisición", related='product_id.acquisition_cost')
+    categ_id                 = fields.Many2one('product.category', string="Categoria", related='product_id.categ_id')
 
-    margin_cost_usd_jz = fields.Float(string="Precio costo USD",compute='get_margin_jz',help=" precio unitario de la ultima factura de compra , si es MX  /tipo cambio")
-    margin_suggested_usd_jz = fields.Float(string="Precio sugerido de Venta", compute='get_margin_jz',help="precio costo USD / escala")
-    margin_priceunit_usd_jz = fields.Float(string="Precio unitario venta USD", compute='get_margin_jz',help="precio unitario / tipo de cambio  , si es US es el mismo precio unitario")
-    margin_margin_usd_jz = fields.Float(string="Margen Unitario", compute='get_margin_jz',help="(P.Unitario  USD - precio costo USD) / P.Unitario  USD")
-    pricelist_id_jz = fields.Many2one('product.pricelist',string="Tarifa", compute='get_margin_jz')
+    margin_cost_usd_jz       = fields.Float(string="Precio costo USD",compute='get_margin_jz',help=" precio unitario de la ultima factura de compra , si es MX  /tipo cambio")
+    margin_suggested_usd_jz  = fields.Float(string="Precio sugerido de Venta", compute='get_margin_jz',help="precio costo USD / escala")
+    margin_priceunit_usd_jz  = fields.Float(string="Precio unitario venta USD", compute='get_margin_jz',help="precio unitario / tipo de cambio  , si es US es el mismo precio unitario")
+    margin_margin_usd_jz     = fields.Float(string="Margen Unitario", compute='get_margin_jz',help="(P.Unitario  USD - precio costo USD) / P.Unitario  USD")
+    pricelist_id_jz          = fields.Many2one('product.pricelist',string="Tarifa", compute='get_margin_jz')
     last_purchase_move_id_jz = fields.Many2one('account.move',string="Ultima Factura Proveedor", compute='get_margin_jz')
-    last_purchase_jz = fields.Char(string="Ultima Compra Proveedor",compute='get_margin_jz')
+    last_purchase_jz         = fields.Char(string="Ultima Compra Proveedor",compute='get_margin_jz')
     last_purchase_partner_jz = fields.Many2one('res.partner',string="Ultimo Proveedor", compute='get_margin_jz')
+    last_purchase_paqueteria    = fields.Char(string="Paqueteria", compute='get_margin_jz')
+    last_purchase_guia_envio    = fields.Char(string="Guia de Envio", compute='get_margin_jz')
 
 
 
     def get_margin_jz(self):
+
+
+
         for record in self:
             purchase_name = None
             purchase_move_id = None
             last_purchase_partner_jz = None
+            purchase_paqueteria = ''
+            purchase_guia_envio = ''
 
             pricelist_id = None
 
@@ -84,6 +91,12 @@ class AccountMoveLine(models.Model):
 
                     margin_cost_usd_jz = ultima_compra.price_unit if ultima_compra.move_id.currency_id == self.env.ref('base.USD') else ultima_compra.price_unit / rate_sell
 
+                    if 'x_studio_x_paqueteria' in ultima_compra:
+                        purchase_paqueteria = ultima_compra.x_studio_x_paqueteria
+
+                    if 'x_studio_x_guia_envio' in ultima_compra:
+                        purchase_guia_envio = ultima_compra.x_studio_x_guia_envio
+
 
             #COSTO USD = costo * descuento , descuento= 1 - (descuento / 1000) , costo =  costo_producto /19 o costo adquision
             record.margin_cost_usd_jz = margin_cost_usd_jz
@@ -108,4 +121,7 @@ class AccountMoveLine(models.Model):
 
             record.last_purchase_jz = purchase_name
             record.last_purchase_partner_jz = last_purchase_partner_jz
+
+            record.last_purchase_paqueteria    = purchase_paqueteria
+            record.last_purchase_guia_envio    = purchase_guia_envio
 

@@ -23,6 +23,8 @@
                 <field name="last_purchase_move_id_jz" optional="hidden" />
                 <field name="last_purchase_jz" optional="hidden" />
                 <field name="last_purchase_partner_jz" optional="hidden" />
+                <field name="last_purchase_paqueteria" optional="hidden" />
+                <field name="last_purchase_guia_envio" optional="hidden" />
                 <field name="margin_cost_usd_jz" optional="show"  />
                 <field name="margin_suggested_usd_jz" optional="show"  />
                 <field name="margin_priceunit_usd_jz" optional="show"  />
