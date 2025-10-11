@@ -116,8 +116,8 @@ class AccountMove(models.Model):
             c = 0
             for bank in record.bank_origin_ids:
                 bank_name.append(bank.bank_id.name)
-                bank_operation.append(bank.operation_number)
-                bank_date.append(bank.date)
+                bank_operation.append(str(bank.operation_number))
+                bank_date.append(str(bank.date))
                 if c == 0 :
                     texts += f''' {bank.bank_id.name} - {bank.operation_number} - {bank.date} '''
                 else:
