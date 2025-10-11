@@ -78,10 +78,6 @@ class ProductTemplate(models.Model):
         res.update({
             'prices': prices ,
             'html_prices': html_prices if prices else ''
-            #'data': 'ok',
-            #'pricelist': pricelist ,
-            #'currency': currency,  # displayed currency
-            #'pricelists': pricelists
         })
 
         return res

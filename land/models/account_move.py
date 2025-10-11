@@ -109,20 +109,24 @@ class AccountMove(models.Model):
     bank_date = fields.Date(compute="get_banks_str", string='Fecha Operación')
     def get_banks_str(self):
         for record in self:
-            record.bank_name = False
-            record.bank_operation = False
-            record.bank_date = False
+            bank_name = []
+            bank_operation = []
+            bank_date = []
             texts = ''
             c = 0
             for bank in record.bank_origin_ids:
-                record.bank_name = bank.bank_id.name
-                record.bank_operation = bank.operation_number
-                record.bank_date = bank.date
+                bank_name.append(bank.bank_id.name)
+                bank_operation.append(bank.operation_number)
+                bank_date.append(bank.date)
                 if c == 0 :
                     texts += f''' {bank.bank_id.name} - {bank.operation_number} - {bank.date} '''
                 else:
                     texts += f'''\n {bank.bank_id.name} - {bank.operation_number} - {bank.date} '''
                 c += 1
+
+            record.bank_name = '\n'.join(bank_name) if bank_name else ''
+            record.bank_operation = '\n'.join(bank_operation) if bank_operation else ''
+            record.bank_date = '\n'.join(bank_date) if bank_date else ''
 
 
             record.banks_str = texts
