@@ -345,7 +345,7 @@ class AccountMove(models.Model):
                     'price_unit': 0 , #line.price_unit
                     'tax_id': [(6,0,line.tax_ids.ids)] ,
                     'customer_lead': 1 ,
-                    'product_uom_qty': 1 ,
+                    'product_uom_qty': line.quantity ,
                     'number_advance_land': line.number_advance_land
                 })
 
@@ -544,7 +544,7 @@ class AccountMove(models.Model):
                 'default_move_id': self.id ,
                 'default_move_type': self.move_type ,
                 'default_journal_id': self.journal_id.id ,
-                'default_partner_id': self.commercial_partner_id.id,
+                'default_partner_id': self.partner_id.id,
                 'default_currency_id': self.currency_id.id ,
                 'default_display_type': 'product' ,
                 #'quick_encoding_vals': quick_encoding_vals,
