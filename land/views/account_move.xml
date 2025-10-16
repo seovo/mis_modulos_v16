@@ -87,7 +87,7 @@
                            <field name="analytic_distribution"
                                   invisible="True"
                                   widget="analytic_distribution" groups="analytic.group_analytic_accounting" optional="show" options="{'product_field': 'product_id', 'account_field': 'account_id', 'amount_field': 'price_subtotal'}" business_domain_compute="parent.move_type in ['out_invoice', 'out_refund', 'out_receipt'] and 'invoice' or parent.move_type in ['in_invoice', 'in_refund', 'in_receipt'] and 'bill' or 'general'"/>
-                           <field name="quantity" />
+                           <field name="quantity" invisible="True" />
                            <field name="product_uom_category_id" invisible="True"/>
                            <field name="product_uom_id" string="UoM" groups="uom.group_uom" optional="show" invisible="True" />
                            <!-- /l10n_in_edi.test_edi_json -->
