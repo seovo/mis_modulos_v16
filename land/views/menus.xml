@@ -60,7 +60,7 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[
-            ('stage_payment_lan','in',['payment','dues']),('state','in',['sale','done']) ,
+           ('state','in',['sale','done']) ,
             ('stage_land','!=','cancel')
 
             ]
