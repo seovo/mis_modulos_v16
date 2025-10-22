@@ -20,6 +20,11 @@ class AccountMoveLine(models.Model):
     last_purchase_paqueteria    = fields.Char(string="Paqueteria", compute='get_margin_jz')
     last_purchase_guia_envio    = fields.Char(string="Guia de Envio", compute='get_margin_jz')
 
+    #last_purchase_paqueteria_store    = fields.Char(string="Paqueteria")
+    #last_purchase_guia_envio_store    = fields.Char(string="Guia de Envio")
+
+
+
 
 
     def get_margin_jz(self):
@@ -91,11 +96,11 @@ class AccountMoveLine(models.Model):
 
                     margin_cost_usd_jz = ultima_compra.price_unit if ultima_compra.move_id.currency_id == self.env.ref('base.USD') else ultima_compra.price_unit / rate_sell
 
-                    if 'x_studio_x_paqueteria' in ultima_compra:
-                        purchase_paqueteria = ultima_compra.x_studio_x_paqueteria
+                    if 'x_studio_x_paqueteria' in ultima_compra.purchase_line_id:
+                        purchase_paqueteria = ultima_compra.purchase_line_id.x_studio_x_paqueteria
 
-                    if 'x_studio_x_guia_envio' in ultima_compra:
-                        purchase_guia_envio = ultima_compra.x_studio_x_guia_envio
+                    if 'x_studio_x_guia_envio' in ultima_compra.purchase_line_id:
+                        purchase_guia_envio = ultima_compra.purchase_line_id.x_studio_x_guia_envio
 
 
             #COSTO USD = costo * descuento , descuento= 1 - (descuento / 1000) , costo =  costo_producto /19 o costo adquision

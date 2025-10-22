@@ -31,6 +31,8 @@
                 <field name="purchase_currency_id"  optional="show" readonly="1"  />
                 <field name="purchase_qty_received"  optional="show" readonly="1"  />
                 <field name="purchase_product_uom_qty"  optional="show" readonly="1"  />
+                <field name="purchase_paqueteria"  optional="show" readonly="1"  />
+                <field name="purchase_guia_envio"  optional="show" readonly="1"  />
                 <field name="company_id" optional="show"  readonly="1"/>
 
 

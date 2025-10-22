@@ -17,10 +17,8 @@ class SaleOrderLine(models.Model):
     purchase_date_planned = fields.Datetime(compute='get_data_report_time', string="Fecha Prevista")
     purchase_partner_id = fields.Many2one('res.partner', compute='get_data_report_time', string="Proveedor")
     purchase_currency_id = fields.Many2one('res.currency', compute='get_data_report_time', string="Compra Moneda")
-
-
-
-
+    purchase_paqueteria    = fields.Char(string="Paqueteria", compute='get_data_report_time')
+    purchase_guia_envio    = fields.Char(string="Guia de Envio", compute='get_data_report_time')
 
     def get_data_report_time(self):
         for record in self:
@@ -40,3 +38,5 @@ class SaleOrderLine(models.Model):
             record.purchase_date_planned = purchase_line.date_planned if purchase_line else None
             record.purchase_price_unit = purchase_line.price_unit if purchase_line else None
             record.purchase_currency_id = purchase_line.currency_id.id if purchase_line else None
+            record.purchase_paqueteria = purchase_line.x_studio_x_paqueteria  if purchase_line else None
+            record.purchase_guia_envio = purchase_line.x_studio_x_guia_envio  if purchase_line else None
