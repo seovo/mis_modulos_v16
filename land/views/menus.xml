@@ -61,9 +61,7 @@
         <field name="view_mode">tree,form</field>
         <field name="domain">[
            ('state','in',['sale','done']) ,
-            ('stage_land','!=','cancel')
-
-            ]
+            ('stage_land','!=','cancel')]
         </field>
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.view_order_tree')}),
