@@ -31,11 +31,18 @@ import json  # Asegúrate de importar el módulo json
 
 class ApiClinicos(http.Controller):
 
+    @http.route(['/api/v1/detect/example'], type='json', auth="public", methods=['POST'],
+                website=True, csrf=False)
+    def apicamara_conectsen(self, **post):
+        data = http.request.httprequest.get_json()
+
+        return data
+
 
 
     @http.route(['/api/v1/detect/binarys'], type='json', auth="public", methods=['POST'],
                 website=True, csrf=False)
-    def apiclinicos_signup(self, **post):
+    def apicamara_conectsen(self, **post):
         data = http.request.httprequest.get_json()
 
         # Configura los encabezados CORS
