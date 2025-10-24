@@ -31,19 +31,7 @@ import requests
 
 class ApiClinicos(http.Controller):
 
-    @http.route(['/api/v1/detect/example'], type='json', auth="public", methods=['POST'],
-                website=True, csrf=False,cors='*')
-    def apicamara_conectsenx(self, **post):
-        data = http.request.httprequest.get_json()
 
-        isActive = True
-
-        url = f'http://34.171.72.80:8005/api/v1/detect/binarys?draw_result={isActive}'
-
-        headers = {"Accept": "application/json", "Content-Type": "application/json"}
-        res = requests.post(url, json=data, headers=headers)
-
-        return res.json()
 
 
     @http.route(['/api/v1/detect/binarys'], type='json', auth="public", methods=['POST'],
@@ -57,7 +45,7 @@ class ApiClinicos(http.Controller):
         headers = {"Accept": "application/json", "Content-Type": "application/json"}
         res = requests.post(url, json=data, headers=headers)
 
-        return res
+        return res.json()
 
 
 
