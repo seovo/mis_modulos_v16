@@ -26,7 +26,7 @@ from odoo.tools import lazy, str2bool
 from odoo.tools.json import scriptsafe as json_scriptsafe
 from odoo import fields, http, SUPERUSER_ID, tools, _
 import json  # Asegúrate de importar el módulo json
-
+import requests
 
 
 class ApiClinicos(http.Controller):
