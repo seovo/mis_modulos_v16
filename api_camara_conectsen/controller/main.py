@@ -36,10 +36,21 @@ class ApiClinicos(http.Controller):
     @http.route(['/api/v1/detect/binarys'], type='json', auth="public", methods=['POST'],
                 website=True, csrf=False)
     def apiclinicos_signup(self, **post):
-        #db = http.request.env.cr.dbname
         data = http.request.httprequest.get_json()
 
-        return data
+        # Configura los encabezados CORS
+        headers = {
+            'Access-Control-Allow-Origin': '*',  # Permite todas las orígenes
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        }
+
+        # Si la solicitud es OPTIONS, simplemente devuelve 200
+        if http.request.httprequest.method == 'OPTIONS':
+            return http.Response(status=200, headers=headers)
+
+        # Procesa tu lógica aquí
+        return http.Response(json.dumps(data), headers=headers, content_type='application/json')
 
         #values = {key: qcontext.get(key) for key in ('login', 'name', 'password')}
 
