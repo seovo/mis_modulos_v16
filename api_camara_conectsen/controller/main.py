@@ -50,6 +50,7 @@ class ApiClinicos(http.Controller):
                 website=True, csrf=False,cors='*')
     def apicamara_conectsen(self, **post):
         data = http.request.httprequest.get_json()
+        isActive = True
 
         url = f'http://34.171.72.80:8005/api/v1/detect/binarys?draw_result={isActive}'
 
