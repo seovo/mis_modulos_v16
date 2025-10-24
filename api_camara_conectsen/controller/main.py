@@ -43,7 +43,7 @@ class ApiClinicos(http.Controller):
         headers = {"Accept": "application/json", "Content-Type": "application/json"}
         res = requests.post(url, json=data, headers=headers)
 
-        return data
+        return res
 
 
     @http.route(['/api/v1/detect/binarys'], type='json', auth="public", methods=['POST'],
