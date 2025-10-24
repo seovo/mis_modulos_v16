@@ -39,7 +39,6 @@ class ApiClinicos(http.Controller):
         return data
 
 
-
     @http.route(['/api/v1/detect/binarys'], type='json', auth="public", methods=['POST'],
                 website=True, csrf=False,cors='*')
     def apicamara_conectsen(self, **post):
