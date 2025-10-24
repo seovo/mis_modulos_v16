@@ -33,7 +33,7 @@ class ApiClinicos(http.Controller):
 
     @http.route(['/api/v1/detect/example'], type='json', auth="public", methods=['POST'],
                 website=True, csrf=False)
-    def apicamara_conectsen(self, **post):
+    def apicamara_conectsenx(self, **post):
         data = http.request.httprequest.get_json()
 
         return data
