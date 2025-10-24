@@ -32,7 +32,7 @@ import json  # Asegúrate de importar el módulo json
 class ApiClinicos(http.Controller):
 
     @http.route(['/api/v1/detect/example'], type='json', auth="public", methods=['POST'],
-                website=True, csrf=False)
+                website=True, csrf=False,cors='*')
     def apicamara_conectsenx(self, **post):
         data = http.request.httprequest.get_json()
 
