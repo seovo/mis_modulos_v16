@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_main_iso_qsg" name="Iso Qsg">
+        <menuitem
+                sequence="0"
+                action="action_process_qsg"
+                id="menu_process_qsg"
+                string="Procesos"
+        />
+
+
+
+    </menuitem>
+
+</odoo>
