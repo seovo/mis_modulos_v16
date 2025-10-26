@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="action_process_qsg" model="ir.actions.act_window">
-		<field name="name">Process Qsg</field>
+		<field name="name">Procesos</field>
 		<field name="type">ir.actions.act_window</field>
 		<field name="res_model">process.qsg</field>
 		<field name="view_mode">tree,form</field>
