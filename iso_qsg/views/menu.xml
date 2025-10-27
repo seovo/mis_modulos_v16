@@ -22,6 +22,20 @@
 
         />
 
+        <menuitem
+                sequence="3"
+                action="action_monitoring_qsg"
+                id="menu_monitoring_qsg"
+
+        />
+
+        <menuitem
+                sequence="4"
+                action="action_action_qsg"
+                id="menu_action_qsg"
+
+        />
+
     </menuitem>
 
 </odoo>

@@ -19,6 +19,8 @@
         'views/process_qsg.xml',
         'views/control_operation_qsg.xml',
         'views/ro_qsg.xml',
+        'views/monitoring_qsg.xml',
+        'views/action_qsg.xml',
         'views/menu.xml'
 
     ],
