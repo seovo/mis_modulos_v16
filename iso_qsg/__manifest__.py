@@ -17,6 +17,8 @@
     # always loaded
     "data": [
         'views/process_qsg.xml',
+        'views/control_operation_qsg.xml',
+        'views/ro_qsg.xml',
         'views/menu.xml'
 
     ],
