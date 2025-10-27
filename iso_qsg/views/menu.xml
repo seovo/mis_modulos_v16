@@ -18,12 +18,9 @@
         <menuitem
                 sequence="2"
                 action="action_control_operation_qsg"
-                id="menu_ro_qsg"
+                id="menu_control_operation_qsg"
 
         />
-
-
-
 
     </menuitem>
 
