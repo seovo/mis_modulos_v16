@@ -10,7 +10,7 @@
 
         <menuitem
                 sequence="1"
-                action="action_ro_qs"
+                action="action_ro_qsg"
                 id="menu_ro_qsg"
 
         />
