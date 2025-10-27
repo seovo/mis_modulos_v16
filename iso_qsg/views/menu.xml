@@ -8,6 +8,22 @@
 
         />
 
+        <menuitem
+                sequence="1"
+                action="action_ro_qs"
+                id="menu_ro_qsg"
+
+        />
+
+        <menuitem
+                sequence="2"
+                action="action_control_operation_qsg"
+                id="menu_ro_qsg"
+
+        />
+
+
+
 
     </menuitem>
 

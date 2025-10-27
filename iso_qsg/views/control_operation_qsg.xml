@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_control_operation_qsg" model="ir.actions.act_window">
+		<field name="name">Control de Operaciones</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">control.operation.qsg</field>
+		<field name="view_mode">list,form</field>
+		<!--<field name="domain">[('instance.conector','=', 'sodimac')]</field> -->
+		<!--<field name="context">{'default_conector':'sodimac'}</field> -->
+	</record>
+</odoo>
