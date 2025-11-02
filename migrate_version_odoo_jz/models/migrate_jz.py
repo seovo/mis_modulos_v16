@@ -71,7 +71,7 @@ class MigrateJz(models.Model):
             if not table_object:
                 table_object = self.env['migrate.model.jz'].create({
                     'migrate_id': self.id ,
-                    'table': 'res_partner'
+                    'table': table
                 })
                 table_object.change_table()
 
