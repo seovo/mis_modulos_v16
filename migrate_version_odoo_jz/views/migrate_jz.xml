@@ -9,7 +9,7 @@
                 <header>
 
                      <button name="migrate_table" string="Sincronizar" type="object" />
-                     <button name="add_modelos_usuales" string="Modelos Usuales" type="object" />
+
 
 
                 </header>
@@ -78,6 +78,7 @@
                      <button name="conect_postgres"
                              string="Test Conexion" type="object"
                            />
+                    <button name="add_modelos_usuales" string="Modelos Usuales" type="object" />
 
 
 
