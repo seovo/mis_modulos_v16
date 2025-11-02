@@ -8,9 +8,8 @@
             <form string="Migracion">
                 <header>
 
-                     <button name="migrate_table"
-                             string="Sincronizar" type="object"
-                           />
+                     <button name="migrate_table" string="Sincronizar" type="object" />
+                     <button name="add_modelos_usuales" string="Modelos Usuales" type="object" />
 
 
                 </header>
