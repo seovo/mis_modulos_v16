@@ -72,6 +72,8 @@ class MigrateJz(models.Model):
                 'table': 'res_partner'
             })
 
+            raise ValidationError(str(partner_object))
+
             partner_object.change_table()
 
         #product_template
