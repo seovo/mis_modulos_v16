@@ -63,16 +63,15 @@ class MigrateJz(models.Model):
 
 
         partner_object = self.env['migrate.model.jz'].search([
-            ('model_id','=', self.id),('table','=','res_partner')
+            ('migrate_id','=', self.id),('table','=','res_partner')
         ])
 
         if not partner_object:
             partner_object = self.env['migrate.model.jz'].create({
-                'model_id': self.id ,
+                'migrate_id': self.id ,
                 'table': 'res_partner'
             })
 
-            raise ValidationError(str(partner_object))
 
             partner_object.change_table()
 
