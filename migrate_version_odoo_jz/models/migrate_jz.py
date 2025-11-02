@@ -63,7 +63,7 @@ class MigrateJz(models.Model):
     def add_modelos_usuales(self):
 
 
-        tablas = ['res_partner','res_users']
+        tablas = ['res_partner','res_users','product_template']
 
         for table in tablas:
             table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])
