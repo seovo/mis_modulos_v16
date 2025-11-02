@@ -10,6 +10,7 @@ from psycopg2 import sql
 
 class MigrateJz(models.Model):
     _name = 'migrate.jz'
+    #_rec_name =
     host = fields.Char(string="IP del Servidor Postgres",required=True)
     port = fields.Integer(string="Puerto Postgres",default=5432)
     dbname = fields.Char(string="Base de Datos Postgres",required=True)
@@ -62,18 +63,20 @@ class MigrateJz(models.Model):
     def add_modelos_usuales(self):
 
 
-        partner_object = self.env['migrate.model.jz'].search([
-            ('migrate_id','=', self.id),('table','=','res_partner')
-        ])
+        tablas = ['res_partner','res_users']
 
-        if not partner_object:
-            partner_object = self.env['migrate.model.jz'].create({
-                'migrate_id': self.id ,
-                'table': 'res_partner'
-            })
+        for table in tablas:
+            table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])
+
+            if not table_object:
+                table_object = self.env['migrate.model.jz'].create({
+                    'migrate_id': self.id ,
+                    'table': 'res_partner'
+                })
+                table_object.change_table()
 
 
-            partner_object.change_table()
+
 
         #product_template
         #product_category
