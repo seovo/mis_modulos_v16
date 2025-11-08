@@ -6,7 +6,7 @@
     "author": "Jzolutions",
     "category": "Uncategorized",
     "version": "17.0",
-    "depends": ["base"],
+    "depends": ["base",'account'],
     "data": [
 
         'security/ir.model.access.csv',

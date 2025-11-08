@@ -167,12 +167,11 @@ class MigrateModelJz(models.Model):
         #except:
         #    raise ValueError(string_sql)
 
+        #version 12
 
-        if self.table == 'product_attribute_value_product_product_rel' and self.migrate_id.from_version == 12:
-
-            self.insert_product_variant_combination( cursor, table, column_names)
-
-
+        if self.migrate_id.from_version == 12:
+            if self.table == 'product_attribute_value_product_product_rel':
+                self.insert_product_variant_combination( cursor, table, column_names)
         else:
             self.insert_record_migrate(cursor, table, column_names)
 
@@ -229,6 +228,22 @@ class MigrateModelJz(models.Model):
         #column_names = [f'"{element}"' for element in column_names]
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
+
+        if self.table == 'account_journal':
+
+            if not self.migrate_id.journal_migration_ids:
+                for journal in resultados:
+                    raise ValueError(journal)
+                    self.env['journal.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': '',
+                        'id_sql': 1
+                        #'journal_id':
+                    })
+            #raise ValidationError('Contabilidad')
+
+            return
+
         #raise ValueError(resultados)
 
         #raise ValueError(column_names)
