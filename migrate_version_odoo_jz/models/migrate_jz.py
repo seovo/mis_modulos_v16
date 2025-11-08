@@ -18,6 +18,8 @@ class MigrateJz(models.Model):
     password = fields.Char(string="Contraseña Postgres",required=True)
     model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
     field_ids = fields.One2many('migrate.ir.model.fields','migrate_id',string="Modelos")
+    journal_migration_ids = fields.One2many('journal.migration.jz','migrate_id')
+    text_journal = fields.Text()
 
     log = fields.Text()
     from_version = fields.Integer()
@@ -63,7 +65,8 @@ class MigrateJz(models.Model):
     def add_modelos_usuales(self):
 
 
-        tablas = ['res_partner','res_users','product_category','product_template','product_product']
+        tablas = ['res_partner','res_users','product_category','product_template','product_product',
+                  'account_journal']
 
         for table in tablas:
             table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])

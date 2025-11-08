@@ -3,3 +3,4 @@ migratejz,migratejz,model_migrate_jz,,1,1,1,1
 model,model,model_migrate_model_jz,,1,1,1,1
 columns,columns,model_migrate_model_columns_jz,,1,1,1,1
 fields,fields,model_migrate_ir_model_fields,,1,1,1,1
+jmigra,jmigra,model_journal_migration_jz,,1,1,1,1

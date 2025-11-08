@@ -139,6 +139,18 @@
                                 </list>
                             </field>
                         </page>
+
+
+                        <page string="Diarios" name="diarios">
+                            <field name="journal_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="journal_id" />
+                                </list>
+                            </field>
+                        </page>
+
                     </notebook>
 
                 </sheet>
