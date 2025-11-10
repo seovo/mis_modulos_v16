@@ -29,7 +29,7 @@ class AccountMove(models.Model):
 
     def action_retry_edi_documents_error(self):
 
-        self.validate_cpe(self)
+        self.validate_cpe()
 
         res = super(AccountMove, self).action_retry_edi_documents_error()
         return res
