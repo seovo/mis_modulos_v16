@@ -1,5 +1,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+import requests
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -12,7 +13,6 @@ class AccountMove(models.Model):
 
                 if diff.days > 5 :
                     raise ValidationError('SOLO SE PERMITE COLOCAR FECHAS HASTA 5 DIAS ATRAS')
-
 
 
 
@@ -33,8 +33,46 @@ class AccountMove(models.Model):
 
 
 
+    def validate_cpe(self):
+        for record in self:
+            if record.edit_state == 'to_send':
+               # URL del formulario
+               url = "https://ww1.sunat.gob.pe/ol-ti-itconsultaunificadalibre/consultaUnificadaLibre/consultaIndividual"
+
+               name = record.name.replace(' ','')
+
+               # Datos a enviar en formato form-data
+               data = {
+                   "numRuc": record.company_id.vat ,  # RUC del emisor
+                   "codComp": record.l10n_latam_document_type_id.code ,          # Código del comprobante
+                   "numeroSerie": name[0] ,    # Número de serie
+                   "numero": name[1] ,      # Número del comprobante
+                   "codDocRecep": record.partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code  ,       # Código del documento del receptor
+                   "numDocRecep": record.partner_id.vat , # Número del documento del receptor
+                   "fechaEmision": str(record.invoice_date) , # Fecha de emisión
+                   "monto": record.amount_total ,        # Importe total
+                   "token": "zty5wf3e1alzc1le1ee8cpg5jnnazqj55w7bv5du8p6681pby0jw"  # Token
+               }
+
+               # Realizar la solicitud POST
+               response = requests.post(url, data=data)
+               # Verificar la respuesta
+               if response.status_code == 200:
+                   #print("Solicitud exitosa.")
+                   print(response.text)  # Imprimir la respuesta del servidor
+                   raise ValidationError(str(response.text))
+               else:
+                   print(f"Error en la solicitud: {response.status_code}")
+
+
 
     def button_process_edi_web_services(self):
+
+        #if len(self) == 1:
+        #    if self.edit_state == 'to_send':
+        #        self.validate_cpe()
+
+
         if len(self) == 1:
             note = self.narration
             self.narration = None
