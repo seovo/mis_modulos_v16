@@ -42,6 +42,7 @@ class AccountMove(models.Model):
 
                name = record.name.replace(' ','')
                split_name = name.split('-')
+               fecha_formateada = fecha_objeto.strftime("%d/%m/%Y")
 
                # Datos a enviar en formato form-data
                data = {
@@ -51,7 +52,7 @@ class AccountMove(models.Model):
                    "numero": split_name[1] ,      # Número del comprobante
                    "codDocRecep": record.partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code  ,       # Código del documento del receptor
                    "numDocRecep": record.partner_id.vat , # Número del documento del receptor
-                   "fechaEmision": str(record.invoice_date) , # Fecha de emisión
+                   "fechaEmision": fecha_formateada  , # Fecha de emisión
                    "monto": record.amount_total ,        # Importe total
                    "token": "zty5wf3e1alzc1le1ee8cpg5jnnazqj55w7bv5du8p6681pby0jw"  # Token
                }
