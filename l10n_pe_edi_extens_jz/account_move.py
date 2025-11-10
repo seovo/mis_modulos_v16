@@ -35,7 +35,7 @@ class AccountMove(models.Model):
 
     def validate_cpe(self):
         for record in self:
-            if record.edit_state == 'to_send':
+            if record.edi_state == 'to_send':
                # URL del formulario
                url = "https://ww1.sunat.gob.pe/ol-ti-itconsultaunificadalibre/consultaUnificadaLibre/consultaIndividual"
 
