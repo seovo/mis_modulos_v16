@@ -27,7 +27,12 @@ class AccountMove(models.Model):
 
 
 
-    #def action_retry_edi_documents_error(self):
+    def action_retry_edi_documents_error(self):
+
+        record.validate_cpe(self)
+
+        res = super(AccountMove, self).action_retry_edi_documents_error()
+        return res
     #    for record in self:
     #        record.edi_document_ids.unlink()
     #        record.button_process_edi_web_services()
@@ -73,7 +78,7 @@ class AccountMove(models.Model):
                            edi.state = 'sent'
                            edi.blocking_level = False
 
-                           return True
+
 
                    #raise ValueError([data,objeto_json,estado_cp])
 
@@ -85,10 +90,6 @@ class AccountMove(models.Model):
 
     def button_process_edi_web_services(self):
 
-        if len(self) == 1:
-            if self.edit_state == 'to_send':
-                if self.validate_cpe():
-                    return
 
 
         if len(self) == 1:
