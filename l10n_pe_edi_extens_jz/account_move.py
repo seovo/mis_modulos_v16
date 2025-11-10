@@ -62,7 +62,7 @@ class AccountMove(models.Model):
                    data = response.json()
 
                    #print(response.text)  # Imprimir la respuesta del servidor
-                   raise ValidationError(data['estadoCp'])
+                   raise ValidationError(data['data']['estadoCp'])
                else:
                    print(f"Error en la solicitud: {response.status_code}")
 
