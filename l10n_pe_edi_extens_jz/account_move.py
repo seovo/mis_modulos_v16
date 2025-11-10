@@ -61,6 +61,8 @@ class AccountMove(models.Model):
                    #print("Solicitud exitosa.")
                    data = response.json()
 
+                   raise ValidationError(str(data))
+
                    #print(response.text)  # Imprimir la respuesta del servidor
                    raise ValidationError(data['data']['estadoCp'])
                else:
