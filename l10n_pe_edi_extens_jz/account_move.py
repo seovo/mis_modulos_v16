@@ -1,6 +1,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 import requests
+import json
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -61,10 +62,12 @@ class AccountMove(models.Model):
                    #print("Solicitud exitosa.")
                    data = response.json()
 
-                   raise ValidationError(str(data))
+                   objeto_json = json.loads(data)
 
-                   #print(response.text)  # Imprimir la respuesta del servidor
-                   raise ValidationError(data['data']['estadoCp'])
+                   estado_cp = int(data['data']['estadoCp'])
+                   raise ValidationError(estado_cp)
+
+
                else:
                    print(f"Error en la solicitud: {response.status_code}")
 
