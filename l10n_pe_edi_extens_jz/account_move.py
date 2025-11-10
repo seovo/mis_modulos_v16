@@ -65,7 +65,7 @@ class AccountMove(models.Model):
                    objeto_json = json.loads(data)
 
                    estado_cp = objeto_json['data']['estadoCp']
-                   raise ValidationError(estado_cp)
+                   raise ValueError([data,objeto_json,estado_cp])
 
 
                else:
