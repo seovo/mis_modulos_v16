@@ -67,7 +67,13 @@ class AccountMove(models.Model):
                    objeto_json = json.loads(data)
 
                    estado_cp = objeto_json['data']['estadoCp']
-                   raise ValueError([data,objeto_json,estado_cp])
+
+                   if estado_cp == '1':
+                       for edi in record.edi_document_ids:
+                           edi.state = 'sent'
+                           edi.blocking_level = False
+
+                   #raise ValueError([data,objeto_json,estado_cp])
 
 
                else:
