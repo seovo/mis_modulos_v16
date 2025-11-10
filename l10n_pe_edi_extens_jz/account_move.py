@@ -41,13 +41,14 @@ class AccountMove(models.Model):
                url = "https://ww1.sunat.gob.pe/ol-ti-itconsultaunificadalibre/consultaUnificadaLibre/consultaIndividual"
 
                name = record.name.replace(' ','')
+               split_name = name.split('-')
 
                # Datos a enviar en formato form-data
                data = {
                    "numRuc": record.company_id.vat ,  # RUC del emisor
                    "codComp": record.l10n_latam_document_type_id.code ,          # Código del comprobante
-                   "numeroSerie": name[0] ,    # Número de serie
-                   "numero": name[1] ,      # Número del comprobante
+                   "numeroSerie": split_name[0] ,    # Número de serie
+                   "numero": split_name[1] ,      # Número del comprobante
                    "codDocRecep": record.partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code  ,       # Código del documento del receptor
                    "numDocRecep": record.partner_id.vat , # Número del documento del receptor
                    "fechaEmision": str(record.invoice_date) , # Fecha de emisión
