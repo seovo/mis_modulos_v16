@@ -64,7 +64,7 @@ class AccountMove(models.Model):
 
                    objeto_json = json.loads(data)
 
-                   estado_cp = int(objeto_json['data']['estadoCp'])
+                   estado_cp = objeto_json['data']['estadoCp']
                    raise ValidationError(estado_cp)
 
 
