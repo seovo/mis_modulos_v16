@@ -73,6 +73,8 @@ class AccountMove(models.Model):
                            edi.state = 'sent'
                            edi.blocking_level = False
 
+                           return True
+
                    #raise ValueError([data,objeto_json,estado_cp])
 
 
@@ -83,9 +85,10 @@ class AccountMove(models.Model):
 
     def button_process_edi_web_services(self):
 
-        #if len(self) == 1:
-        #    if self.edit_state == 'to_send':
-        #        self.validate_cpe()
+        if len(self) == 1:
+            if self.edit_state == 'to_send':
+                if self.validate_cpe():
+                    return
 
 
         if len(self) == 1:
