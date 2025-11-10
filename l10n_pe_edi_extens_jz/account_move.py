@@ -54,19 +54,15 @@ class AccountMove(models.Model):
                    "token": "zty5wf3e1alzc1le1ee8cpg5jnnazqj55w7bv5du8p6681pby0jw"  # Token
                }
 
-               headers = {
-                   "Accept": "application/json",
-                   "Content-Type": "application/json",
-               }
-
-
                # Realizar la solicitud POST
-               response = requests.post(url, data=data, headers=headers)
+               response = requests.post(url, data=data)
                # Verificar la respuesta
                if response.status_code == 200:
                    #print("Solicitud exitosa.")
-                   print(response.text)  # Imprimir la respuesta del servidor
-                   raise ValidationError(str(response.text))
+                   data = response.json()
+
+                   #print(response.text)  # Imprimir la respuesta del servidor
+                   raise ValidationError(data['estadoCp'])
                else:
                    print(f"Error en la solicitud: {response.status_code}")
 
