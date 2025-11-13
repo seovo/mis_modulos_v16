@@ -307,7 +307,7 @@ class SaleOrder(models.Model):
         credit_val = round(self.price_credit_land,2)
         credit_val_format = format_text_currency_contrato(credit_val)
 
-        area_val = round(self.price_credit_land,2)
+        area_val = round(self.m2_land,2)
         area_val_format = format_text_currency_contrato(area_val)
 
         price_total_val = round(self.price_total_land,2)
