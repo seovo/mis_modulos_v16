@@ -824,7 +824,23 @@ class SaleOrder(models.Model):
             total_payment = 0
 
             for line in record.order_line:
-                if line.product_id.payment_land_dues:
+
+                is_valid_product = True
+
+                if line.product_id.is_separation_land:
+                    is_valid_product = False
+
+                if line.product_id.is_independence:
+                    is_valid_product = False
+
+                if line.product_id.is_advanced_land:
+                    is_valid_product = False
+
+
+
+
+                if is_valid_product:
+                    #if line.product_id.payment_land_dues:
                     for line_invoice in line.invoice_lines:
                         if line_invoice.move_id.l10n_pe_edi_reversal_type_id:
                             continue
