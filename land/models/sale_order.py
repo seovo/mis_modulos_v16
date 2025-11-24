@@ -827,11 +827,7 @@ class SaleOrder(models.Model):
 
 
                 if line.type_schedule in ['dues','advances']:
-                    for line_invoice in line.invoice_lines:
-                        if line_invoice.move_id.l10n_pe_edi_reversal_type_id:
-                            continue
-                        if line_invoice.move_id.state != 'cancel' and line_invoice.move_id.payment_state != 'reversed':
-                            total_payment += line_invoice.price_total
+                    total_payment += line.amount_due_land
 
             record.total_payment_land = round(total_payment, 2)
             record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
