@@ -74,6 +74,7 @@ class ProductTemplate(models.Model):
             "context": {
                 'search_default_gr_ettapa': 1,
                 'search_default_manzanaf' : 1 ,
+                'default_product_tmp_id': self.id
 
 
             }
