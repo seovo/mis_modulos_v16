@@ -823,24 +823,10 @@ class SaleOrder(models.Model):
         for record in self:
             total_payment = 0
 
-            for line in record.order_line:
-
-                is_valid_product = True
-
-                if line.product_id.is_separation_land:
-                    is_valid_product = False
-
-                if line.product_id.is_independence:
-                    is_valid_product = False
-
-                if line.product_id.is_advanced_land:
-                    is_valid_product = False
+            for line in record.schedule_land_ids:
 
 
-
-
-                if is_valid_product:
-                    #if line.product_id.payment_land_dues:
+                if line.type_schedule in ['dues','advances']:
                     for line_invoice in line.invoice_lines:
                         if line_invoice.move_id.l10n_pe_edi_reversal_type_id:
                             continue
