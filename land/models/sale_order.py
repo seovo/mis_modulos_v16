@@ -824,8 +824,6 @@ class SaleOrder(models.Model):
             total_payment = 0
 
             for line in record.schedule_land_ids:
-
-
                 if line.type_schedule in ['dues','advances']:
                     total_payment += line.amount_due_land
 
