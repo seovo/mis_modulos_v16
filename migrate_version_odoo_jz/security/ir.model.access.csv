@@ -4,3 +4,7 @@ model,model,model_migrate_model_jz,,1,1,1,1
 columns,columns,model_migrate_model_columns_jz,,1,1,1,1
 fields,fields,model_migrate_ir_model_fields,,1,1,1,1
 jmigra,jmigra,model_journal_migration_jz,,1,1,1,1
+curre,curren,model_currency_migration_jz,,1,1,1,1
+acc,acc,model_account_migration_jz,,1,1,1,1
+tax,tax,model_tax_migration_jz,,1,1,1,1
+location,location,model_location_migration_jz,,1,1,1,1

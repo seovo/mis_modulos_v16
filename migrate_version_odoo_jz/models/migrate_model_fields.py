@@ -37,3 +37,5 @@ class MigrateModelColumnsJz(models.Model):
     is_field         = fields.Boolean(string="Es un Campo Odoo")
 
     #insert_as_jsonb   = fields.Boolean()
+
+

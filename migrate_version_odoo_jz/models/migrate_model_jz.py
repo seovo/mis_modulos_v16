@@ -20,6 +20,7 @@ class MigrateModelJz(models.Model):
     ignorar_if_error = fields.Boolean(string="Ignorar si Error")
     no_existe_id = fields.Boolean()
     where_set = fields.Text()
+    identificador = fields.Char(default='id')
 
 
     @api.onchange('model_id')
@@ -73,6 +74,10 @@ class MigrateModelJz(models.Model):
                 if desc[0] == 'message_main_attachment_id':
                     dx.update({'ignore': True})
 
+            if table in ['account_invoice_line']:
+
+                dx.update({'ignore': True})
+
 
             self.columns += self.env['migrate.model.columns.jz'].new(dx)
 
@@ -83,6 +88,23 @@ class MigrateModelJz(models.Model):
 
 
         cursor = self.migrate_id.conect_postgres()
+
+
+
+        if ',' in self.identificador :
+
+            table = self.new_table or self.table
+            name_constraint = 'TEMPORAL_'+table
+
+            queryy = f"""
+                ALTER TABLE {table} DROP CONSTRAINT IF EXISTS {name_constraint};
+                ALTER TABLE  {table}
+                ADD CONSTRAINT {name_constraint}
+                UNIQUE  ({self.identificador});
+            """
+            #self.env.cr.execute(queryy)
+            
+
 
         select_columnsx = []
         column_names = []
@@ -140,6 +162,17 @@ class MigrateModelJz(models.Model):
         #raise ValueError(select_columnsx)
 
         self._migrate_table(cursor, select_columnsx,column_names)
+
+
+
+        if ',' in self.identificador:
+            queryy += f"""
+                alter table {table}
+                drop constraint {name_constraint};
+            """
+            #self.env.cr.execute(queryy)
+            
+
 
 
 
@@ -229,15 +262,86 @@ class MigrateModelJz(models.Model):
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
 
+        #raise ValueError(resultados)
+
+
+
         if self.table == 'account_journal':
 
             if not self.migrate_id.journal_migration_ids:
                 for journal in resultados:
-                    raise ValueError(journal)
+                    #raise ValueError(journal)
                     self.env['journal.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
-                        'name': '',
-                        'id_sql': 1
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0])
+                        #'journal_id':
+                    })
+            #raise ValidationError('Contabilidad')
+
+            return
+
+        if self.table == 'res_currency':
+
+            if not self.migrate_id.currency_migration_ids:
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['currency.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0])
+                        #'journal_id':
+                    })
+            #raise ValidationError('Contabilidad')
+
+            return
+
+
+        if self.table == 'account_tax':
+
+            if not self.migrate_id.tax_migration_ids:
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['tax.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0])
+                        #'journal_id':
+                    })
+            #raise ValidationError('Contabilidad')
+
+            return
+
+
+
+        if self.table == 'account_account':
+
+            if not self.migrate_id.account_migration_ids:
+                #raise ValidationError(str(resultados))
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['account.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0]) ,
+                        'code': str(journal[3]) ,
+                        #'journal_id':
+                    })
+            #raise ValidationError('Contabilidad')
+
+            return
+
+        if self.table == 'stock_location':
+
+            if not self.migrate_id.location_migration_ids:
+                #raise ValidationError(str(resultados))
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['location.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0]) ,
+                        #'code': str(journal[3]) ,
                         #'journal_id':
                     })
             #raise ValidationError('Contabilidad')
@@ -251,12 +355,34 @@ class MigrateModelJz(models.Model):
         n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
         corchetes_n = ','.join('%s' for _ in range(n))
 
+        identificador = self.identificador
+
         # Generar la instrucción INSERT
-        #raise ValueError(resultados)
+
         for fila in resultados:
             val1 = ','.join(column_names)
             val2 = corchetes_n
-            # raise ValueError(val3)
+            # raise ValueError(val3) account_invoice_payment_rel
+
+
+
+
+            if self.table == 'account_invoice':
+
+                valores = []
+                id_update = 0
+
+                for coln in column_names:
+                    pass
+
+
+                SQL_INSERT = f"UPDATE account_move SET x_invoice_id = %s WHERE id = %s";
+                self.env.cr.execute(SQL_INSERT, fila)
+
+                #raise ValueError([fila,column_names])
+
+                continue
+
 
             if self.no_existe_id:
                 if self.ignorar_if_error:
@@ -278,16 +404,93 @@ END $$;
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
 
+                    if self.table == 'account_invoice_payment_rel':
+                        #SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
+
+                        #f"INSERT INTO account_move__account_payment (payment_id,invoice_id) VALUES (4 , SELECT id FROM  account_move WHERE x_invoice_id = 5 ) ;"
+
+                        SQL_INSERT = f'''
+                    DO $$
+BEGIN
+    INSERT INTO account_move__account_payment  (payment_id,invoice_id)  
+    SELECT {fila[0]}, id  FROM account_move WHERE x_invoice_id = {fila[1]} ;
+    
+EXCEPTION
+    WHEN foreign_key_violation THEN
+        RAISE NOTICE 'Error: El registro de invoice_line_id no existe. Ignorando...';
+    WHEN others THEN
+        RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
+        
+END $$;
+                        '''
+
             else:
                 if self.update_if_exist:
-                    val3 = ','.join(
-                        "{} = EXCLUDED.{}".format(col, col) for col in column_names
-                        if col != 'id'
-                    )
 
-                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO UPDATE SET {val3}"
+                    if ',' in identificador:
+
+                        #identicators = identificador.split(',')
+                        #identificadors = []
+
+                        #for line in identicators:
+                        #    identificadors.append(line.strip())
+                        #raise ValueError([identificadors,column_names])
+
+
+                        if table == 'account_move_line' and self.table ==  'account_invoice_line':
+                            SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
+
+                            self.env.cr.execute(SQL_CONSULTA,[fila[0],fila[1]])
+                            result = self.env.cr.fetchall()
+
+                            #raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
+
+
+
+                            if not result or len(result) > 1:
+                                continue
+                            #raise ValueError([result])
+
+
+                            SQL_INSERT = f'''
+
+                            UPDATE {table}
+                            SET  price_unit = %s
+                            WHERE  x_invoice_id = %s AND name = %s
+                            
+                            '''
+
+
+
+                            #raise ValidationError(SQL_INSERT)
+                            self.env.cr.execute(SQL_INSERT,[fila[2],fila[0],fila[1]])
+                            #cursor.execute(SQL_INSERT, [fila[2],fila[0],fila[1]])
+                            continue
+
+                        else:
+                        #if 1 == 1:
+                            val3 = ','.join(
+                               "{} = EXCLUDED.{}".format(col, col) for col in column_names if col.replace('"','') not in identificador
+                            )
+                            SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT ({identificador}) DO UPDATE SET {val3}"
+
+
+
+
+
+                    else:
+                        val3 = ','.join(
+                           "{} = EXCLUDED.{}".format(col, col) for col in column_names if col != f'"{identificador}"'
+                        )
+                        SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT ({identificador}) DO UPDATE SET {val3}"
+
+                    #raise ValueError(val3)
+
+
+
+
                 else:
-                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT (id) DO NOTHING"
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT ({identificador}) DO NOTHING"
 
                 if self.ignorar_if_error:
                     SQL_INSERT = f'''
@@ -332,6 +535,9 @@ END $$;
             # Ejecutar la instrucción
             # raise ValueError(SQL_INSERT)
             # cursor.execute(SQL_INSERT, fila)
+
+        if self.table == 'account_invoice':
+            return
 
 
 

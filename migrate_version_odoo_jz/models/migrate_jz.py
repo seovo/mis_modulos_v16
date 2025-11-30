@@ -20,6 +20,14 @@ class MigrateJz(models.Model):
     field_ids = fields.One2many('migrate.ir.model.fields','migrate_id',string="Modelos")
     journal_migration_ids = fields.One2many('journal.migration.jz','migrate_id')
     text_journal = fields.Text()
+    currency_migration_ids = fields.One2many('currency.migration.jz','migrate_id')
+    text_currency = fields.Text()
+    account_migration_ids = fields.One2many('account.migration.jz','migrate_id')
+    text_account = fields.Text()
+    tax_migration_ids = fields.One2many('tax.migration.jz','migrate_id')
+    text_tax = fields.Text()
+    location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
+    text_location = fields.Text()
 
     log = fields.Text()
     from_version = fields.Integer()
@@ -61,12 +69,120 @@ class MigrateJz(models.Model):
 
                 #raise ValueError(resultados)
 
+    def generate_text_journal(self):
+
+        if self.currency_migration_ids:
+
+            id_journal = ''
+
+            for migrat in self.currency_migration_ids:
+                if not migrat.currency_id:
+                    continue
+                id_journal += f''' WHEN currency_id = {migrat.id_sql} THEN {migrat.currency_id.id } \n'''
+
+            textx = f'''
+            CASE
+               {id_journal}
+            ELSE   currency_id
+            END AS currency_id
+            '''
+
+            self.text_currency = textx
+
+        if self.journal_migration_ids:
+
+            id_journal = ''
+
+            for migrat in self.journal_migration_ids:
+                if not migrat.journal_id:
+                    continue
+                id_journal += f''' WHEN journal_id = {migrat.id_sql} THEN {migrat.journal_id.id } \n'''
+
+            textx = f'''
+            CASE
+               {id_journal}
+            ELSE   journal_id
+            END AS journal_id
+            '''
+
+            self.text_journal =textx
+
+        if self.account_migration_ids:
+
+            id_journal = ''
+
+            for migrat in self.account_migration_ids:
+                if not migrat.account_id:
+                    continue
+                id_journal += f''' WHEN account_id = {migrat.id_sql} THEN {migrat.account_id.id } \n'''
+
+            textx = f'''
+            CASE
+               {id_journal}
+            ELSE   account_id
+            END AS account_id
+            '''
+
+            self.text_account =textx
+
+        if self.tax_migration_ids:
+
+            id_journal = ''
+
+            for migrat in self.tax_migration_ids:
+                if not migrat.tax_id:
+                    continue
+                id_journal += f''' WHEN account_tax_id = {migrat.id_sql} THEN {migrat.tax_id.id } \n'''
+
+            textx = f'''
+            CASE
+               {id_journal}
+            ELSE   account_tax_id
+            END AS account_tax_id
+            '''
+
+            self.text_tax =textx
+
+        if self.location_migration_ids:
+
+            id_journal = ''
+
+            for migrat in self.location_migration_ids:
+                if not migrat.location_id:
+                    continue
+                id_journal += f''' WHEN location_id = {migrat.id_sql} THEN {migrat.location_id.id } \n'''
+
+            textx = f'''
+            CASE
+               {id_journal}
+            ELSE   location_id
+            END AS location_id
+            '''
+
+            self.text_location =textx
 
     def add_modelos_usuales(self):
 
 
+        #self.env.cr.execute("TRUNCATE TABLE account_tax_purchase_order_line_rel ;")
+
+        self.generate_text_journal()
+
+
         tablas = ['res_partner','res_users','product_category','product_template','product_product',
-                  'account_journal']
+                  'account_journal','res_currency','account_account','account_move','account_move_line',
+                  'account_move_line_account_tax_rel',
+                  'account_payment','sale_order','sale_order_line','purchase_order','purchase_order_line',
+                  'account_tax','account_tax_purchase_order_line_rel','stock_location',
+                  'stock_picking','stock_move','stock_move_line','stock_quant']
+
+        if self.from_version == 11:
+            tablas.append("account_invoice")
+            tablas.append("account_invoice_line")
+            tablas.append("account_invoice_payment_rel")
+
+
+
 
         for table in tablas:
             table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])
@@ -76,7 +192,50 @@ class MigrateJz(models.Model):
                     'migrate_id': self.id ,
                     'table': table
                 })
+
+                if table == 'account_invoice_line':
+                    table_object.identificador = 'name , invoice_id'
+                    table_object.update_if_exist = True
+                    table_object.new_table = 'account_invoice_line'
+
+                if table == 'account_account':
+                    table_object.where_set = '''
+                    
+                    id IN (  SELECT DISTINCT aml.account_id  FROM account_move_line aml )
+                    
+                    '''
+
                 table_object.change_table()
+
+
+        #para los campos que son journal_id
+        jurnal_fields= self.env['migrate.model.columns.jz'].search([('name','=','journal_id')])
+
+        for jfiels in jurnal_fields:
+            jfiels.value_set = self.text_journal
+
+        currency_fields= self.env['migrate.model.columns.jz'].search([('name','=','currency_id')])
+
+        for jfiels in currency_fields:
+            jfiels.value_set = self.text_currency
+
+
+        account_fields = self.env['migrate.model.columns.jz'].search([('name','=','account_id')])
+
+        for jfiels in account_fields:
+            jfiels.value_set = self.text_account
+
+        tax_fields = self.env['migrate.model.columns.jz'].search([('name','=','account_tax_id')])
+
+        for jfiels in tax_fields:
+            jfiels.value_set = self.text_tax
+
+        location_fields = self.env['migrate.model.columns.jz'].search([('name','=','location_id')])
+
+        for jfiels in location_fields:
+            jfiels.value_set = self.text_location
+
+        #location_id
 
 
 
