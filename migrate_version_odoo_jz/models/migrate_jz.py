@@ -168,8 +168,8 @@ class MigrateJz(models.Model):
 
 
 
-        self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
-        self.env.cr.execute("TRUNCATE TABLE product_supplier_taxes_rel ;")
+        #self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
+        #self.env.cr.execute("TRUNCATE TABLE product_supplier_taxes_rel ;")
 
         self.generate_text_journal()
 
