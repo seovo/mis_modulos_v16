@@ -368,7 +368,7 @@ class MigrateModelJz(models.Model):
 
 
 
-
+            '''
             if self.table == 'account_invoice':
 
                 valores = []
@@ -384,6 +384,8 @@ class MigrateModelJz(models.Model):
                 #raise ValueError([fila,column_names])
 
                 continue
+                
+            '''
 
 
             if self.no_existe_id:
@@ -510,7 +512,7 @@ END $$;
 
 
 
-            #raise ValueError([SQL_INSERT,fila])
+            raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
 
 
