@@ -169,12 +169,19 @@ class MigrateJz(models.Model):
         self.generate_text_journal()
 
 
-        tablas = ['res_partner','res_users','product_category','product_template','product_product',
-                  'account_journal','res_currency','account_account','account_move','account_move_line',
-                  'account_move_line_account_tax_rel',
-                  'account_payment','sale_order','sale_order_line','purchase_order','purchase_order_line',
-                  'account_tax','account_tax_purchase_order_line_rel','stock_location',
-                  'stock_picking','stock_move','stock_move_line','stock_quant']
+        tablas = [
+            'res_partner','res_users','product_category',
+
+            'product_template','product_product','product_taxes_rel','product_supplier_taxes_rel',
+                  
+            'account_journal','res_currency','account_account','account_move','account_move_line',
+            'account_move_line_account_tax_rel',
+            'account_payment','sale_order','sale_order_line','purchase_order','purchase_order_line',
+            'account_tax','account_tax_purchase_order_line_rel','stock_location',
+            'stock_picking','stock_move','stock_move_line','stock_quant',
+
+            'product_supplierinfo'
+        ]
 
         if self.from_version == 11:
             tablas.append("account_invoice")
@@ -229,6 +236,16 @@ class MigrateJz(models.Model):
 
         for jfiels in tax_fields:
             jfiels.value_set = self.text_tax
+
+        tax_fields2 = self.env['migrate.model.columns.jz'].search([('name', '=', 'tax_id')])
+
+        for jfiels2 in tax_fields2:
+
+            text_tax = self.text_tax
+
+            text_tax = text_tax.replace('account_tax_id','tax_id')
+
+            jfiels2.value_set = text_tax
 
         location_fields = self.env['migrate.model.columns.jz'].search([('name','=','location_id')])
 

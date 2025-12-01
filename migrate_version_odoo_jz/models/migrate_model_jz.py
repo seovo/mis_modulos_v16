@@ -46,6 +46,10 @@ class MigrateModelJz(models.Model):
             return
 
         self.columns = None
+
+        if  '_rel' in self.table:
+            self.no_existe_id = True
+
         for desc in cursor.description:
             #if desc[0] == 'name':
             #    raise ValueError(desc[1])
@@ -172,8 +176,6 @@ class MigrateModelJz(models.Model):
             """
             #self.env.cr.execute(queryy)
             
-
-
 
 
     def _migrate_table(self,cursor,select_columns,column_names):
