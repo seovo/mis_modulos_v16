@@ -11,7 +11,7 @@
 
         'security/ir.model.access.csv',
         'views/migrate_jz.xml',
-        #'data/cron.xml'
+        'data/cron.xml'
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

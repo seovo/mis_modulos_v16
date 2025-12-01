@@ -350,6 +350,14 @@ class MigrateJz(models.Model):
 
         return cursor
 
+    def update_computes_funciones_migraciones(self):
+        moves_without_partner = self.env['account.move'].search([
+            ('partner_id','!=',False),
+            ('invoice_partner_display_name','=',False)],limit=200)
+
+        if moves_without_partner:
+            moves_without_partner._compute_invoice_partner_display_info()
+            return
 
 
 
