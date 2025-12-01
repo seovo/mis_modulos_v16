@@ -356,6 +356,13 @@ class MigrateJz(models.Model):
         return cursor
 
     def update_computes_funciones_migraciones(self):
+
+        cron_models = self.env['migrate.model.jz'].search([('is_part_cron','=',True)],limit=1)
+
+        if cron_models:
+            cron_models.migrate_table()
+            return
+
         moves_without_partner = self.env['account.move'].search([
             ('partner_id','!=',False),
             ('invoice_partner_display_name','=',False)],limit=1000)
