@@ -27,7 +27,7 @@
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
 
-        <field eval="False" name="doall"/>
+
         <field name="active">False</field>
         </record>
     </data>
