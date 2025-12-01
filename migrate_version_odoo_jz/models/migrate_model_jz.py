@@ -198,10 +198,10 @@ class MigrateModelJz(models.Model):
                 where_set = self.where_set
 
                 if '%LAST' in where_set:
-                    where_set = where_set.replace('%LAST',self.last_value)
+                    where_set = where_set.replace('%LAST',str(self.last_value))
 
                 if '%NUM_RECORDS' in where_set:
-                    where_set = where_set.replace('%NUM_RECORDS',self.records_value)
+                    where_set = where_set.replace('%NUM_RECORDS',str(self.records_value))
 
                 string_sql += f'  where {where_set} ;'
 
