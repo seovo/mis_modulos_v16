@@ -223,7 +223,7 @@ class MigrateModelJz(models.Model):
         else:
             self.insert_record_migrate(cursor, table, column_names)
 
-        if '%LAST' in where_set:
+        if  self.where_set and '%LAST' in self.where_set:
             self.last_value = self.last_value + self.records_value
 
 
