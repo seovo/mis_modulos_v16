@@ -58,6 +58,15 @@
                             </group>
                         </page>
 
+                        <page string="Configuraciones">
+                             <group>
+                                 <field name="is_part_cron" />
+                                 <field name="last_value" />
+                                 <field name="records_value" />
+                             </group>
+
+                        </page>
+
 
                     </notebook>
 

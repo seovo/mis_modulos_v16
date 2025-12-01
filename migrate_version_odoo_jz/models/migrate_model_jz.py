@@ -22,6 +22,10 @@ class MigrateModelJz(models.Model):
     where_set = fields.Text()
     identificador = fields.Char(default='id')
 
+    is_part_cron = fields.Boolean(string='Ejecutar por Lotes Cron')
+    last_value = fields.Integer(string='Ultimo Registro Ejecutado %LAST')
+    records_value = fields.Integer(string="Numero de Registros %NUM_RECORDS ",default=200)
+
 
     @api.onchange('model_id')
     def change_model(self):
@@ -94,7 +98,7 @@ class MigrateModelJz(models.Model):
         cursor = self.migrate_id.conect_postgres()
 
 
-
+        #ESTO NO SE ESTA USANDO
         if ',' in self.identificador :
 
             table = self.new_table or self.table
@@ -168,7 +172,7 @@ class MigrateModelJz(models.Model):
         self._migrate_table(cursor, select_columnsx,column_names)
 
 
-
+        #ESTO NO SE ESTA USANDO
         if ',' in self.identificador:
             queryy += f"""
                 alter table {table}
@@ -190,7 +194,16 @@ class MigrateModelJz(models.Model):
             string_sql += f'  where id != {self.env.user.id} {add_where} ;'
         else:
             if self.where_set:
-                string_sql += f'  where {self.where_set} ;'
+
+                where_set = self.where_set
+
+                if '%LAST' in where_set:
+                    where_set = where_set.replace('%LAST',self.last_value)
+
+                if '%NUM_RECORDS' in where_set:
+                    where_set = where_set.replace('%NUM_RECORDS',self.records_value)
+
+                string_sql += f'  where {where_set} ;'
 
 
         #raise ValueError(string_sql)
@@ -209,6 +222,9 @@ class MigrateModelJz(models.Model):
                 self.insert_product_variant_combination( cursor, table, column_names)
         else:
             self.insert_record_migrate(cursor, table, column_names)
+
+        if '%LAST' in where_set:
+            self.last_value = self.last_value + self.records_value
 
 
 

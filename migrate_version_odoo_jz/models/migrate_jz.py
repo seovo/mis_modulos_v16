@@ -17,6 +17,12 @@ class MigrateJz(models.Model):
     user   = fields.Char(string="Usuario Postgres",required=True)
     password = fields.Char(string="Contraseña Postgres",required=True)
     model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
+    log = fields.Text()
+    from_version = fields.Integer()
+
+
+
+
     field_ids = fields.One2many('migrate.ir.model.fields','migrate_id',string="Modelos")
     journal_migration_ids = fields.One2many('journal.migration.jz','migrate_id')
     text_journal = fields.Text()
@@ -29,8 +35,7 @@ class MigrateJz(models.Model):
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
     text_location = fields.Text()
 
-    log = fields.Text()
-    from_version = fields.Integer()
+
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
     #                             default=lambda self: self.env.company)
 
