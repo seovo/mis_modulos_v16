@@ -20,7 +20,7 @@
 
     <data noupdate="1" >
         <record id="vex_soluciones_ir_cron_automatico_meli_sale" model="ir.cron">
-        <field name="name">UPDATE IMAGES</field>
+        <field name="name">ACTUALIZAR MODELOS MIGRACION</field>
         <field name="model_id" ref="model_migrate_jz"/>
         <field name="state">code</field>
         <field name="code">model.update_computes_funciones_migraciones()</field>
