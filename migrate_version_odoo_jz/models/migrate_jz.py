@@ -378,6 +378,7 @@ class MigrateJz(models.Model):
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
+
                 try:
                     mvl._compute_totals()
                 except:
