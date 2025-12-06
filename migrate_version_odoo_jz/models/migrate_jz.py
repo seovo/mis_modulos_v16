@@ -373,11 +373,13 @@ class MigrateJz(models.Model):
 
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
-            ('invoice_line_ids', '!=', False)], limit=1)
+            ('invoice_line_ids', '!=', False)], limit=100)
 
         if moves_without_amount:
+            for mw in moves_without_amount:
+                mw._compute_amount()
 
-            moves_without_amount._compute_amount()
+
             return
 
 
