@@ -376,7 +376,7 @@ class MigrateJz(models.Model):
             ('move_id.move_type', '!=', 'entry')
         ], limit=500)
 
-        raise ValidationError(moveslines_without_amount)
+        #raise ValidationError(moveslines_without_amount)
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
@@ -384,7 +384,7 @@ class MigrateJz(models.Model):
                 try:
                     mvl._compute_totals()
                 except:
-                    #raise ValidationError(mvl.move_id)
+                    raise ValidationError(mvl.move_id)
                     continue
 
             return
