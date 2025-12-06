@@ -376,6 +376,8 @@ class MigrateJz(models.Model):
             ('move_id.move_type', '!=', 'entry')
         ], limit=500)
 
+        raise ValidationError(moveslines_without_amount)
+
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
 
@@ -388,7 +390,7 @@ class MigrateJz(models.Model):
             return
 
 
-        '''
+
 
 
         moves_without_amount = self.env['account.move'].search([
@@ -414,7 +416,7 @@ class MigrateJz(models.Model):
 
             return
             
-        '''
+
 
 
 
