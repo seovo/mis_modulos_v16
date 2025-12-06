@@ -373,7 +373,9 @@ class MigrateJz(models.Model):
 
         moveslines_without_amount = self.env['account.move.line'].search([
             ('price_subtotal', '=', 0),
-            ('move_id.move_type', '!=', 'entry')
+            ('move_id.move_type', '!=', 'entry'),
+            ('display_type','=','product'),
+            ('price_unit','!=',0)
         ], limit=500)
 
         #raise ValidationError(moveslines_without_amount)
