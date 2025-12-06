@@ -387,7 +387,7 @@ class MigrateJz(models.Model):
                     mvl._compute_totals()
                 except:
                     raise ValidationError(mvl.move_id)
-                    continue
+                    #continue
 
             return
 
