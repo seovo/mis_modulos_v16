@@ -376,8 +376,10 @@ class MigrateJz(models.Model):
             ('move_id.move_type', '!=', 'entry')
         ], limit=500)
 
-        for mvl in moveslines_without_amount:
-            mvl._compute_totals()
+        if moveslines_without_amount:
+            for mvl in moveslines_without_amount:
+                mvl._compute_totals()
+            return
 
 
         moves_without_amount = self.env['account.move'].search([
