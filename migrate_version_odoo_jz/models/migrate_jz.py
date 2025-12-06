@@ -371,6 +371,15 @@ class MigrateJz(models.Model):
             moves_without_partner._compute_invoice_partner_display_info()
             return
 
+        moveslines_without_amount = self.env['account.move.line'].search([
+            ('price_subtotal', '=', 0),
+            ('move_id.move_type', '!=', 'entry')
+        ], limit=500)
+
+        for mvl in moveslines_without_amount:
+            mvl._compute_totals()
+
+
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
             ('move_type','!=','entry'),
