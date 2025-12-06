@@ -378,10 +378,11 @@ class MigrateJz(models.Model):
         if moves_without_amount:
             for mw in moves_without_amount:
                 try:
-                    mw._compute_amount()
+                    mw._inverse_amount_total()
+                    #mw._compute_amount()
                 except:
-                    continue
-                    #raise ValidationError(mw)
+                    #continue
+                    raise ValidationError(mw)
 
 
 
