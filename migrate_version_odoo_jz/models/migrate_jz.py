@@ -382,6 +382,9 @@ class MigrateJz(models.Model):
             return
 
 
+        '''
+
+
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
             ('move_type','!=','entry'),
@@ -389,7 +392,7 @@ class MigrateJz(models.Model):
 
         #raise ValidationError(moves_without_amount)
 
-        if moves_without_amount:
+        if moves_without_amount :
             for mw in moves_without_amount:
 
                 try:
@@ -404,6 +407,8 @@ class MigrateJz(models.Model):
 
 
             return
+            
+        '''
 
 
 
