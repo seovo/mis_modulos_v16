@@ -376,8 +376,11 @@ class MigrateJz(models.Model):
             ('move_type','!=','entry'),
             ('invoice_line_ids', '!=', False)], limit=500)
 
+        raise ValidationError(moves_without_amount)
+
         if moves_without_amount:
             for mw in moves_without_amount:
+
                 try:
                     mw._inverse_amount_total()
                     #mw._compute_amount()
