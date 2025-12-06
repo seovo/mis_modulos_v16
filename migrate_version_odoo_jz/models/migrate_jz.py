@@ -382,8 +382,10 @@ class MigrateJz(models.Model):
             for mw in moves_without_amount:
 
                 try:
+
                     mw._inverse_amount_total()
-                    #mw._compute_amount()
+                    mw._compute_amount()
+
                 except:
                     #continue
                     raise ValidationError(mw)
