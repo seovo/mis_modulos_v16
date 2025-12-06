@@ -380,7 +380,8 @@ class MigrateJz(models.Model):
                 try:
                     mw._compute_amount()
                 except:
-                    raise ValidationError(mw)
+                    continue
+                    #raise ValidationError(mw)
 
 
 
