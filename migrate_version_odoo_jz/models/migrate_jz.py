@@ -373,6 +373,7 @@ class MigrateJz(models.Model):
 
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
+            ('move_type','!=','entry'),
             ('invoice_line_ids', '!=', False)], limit=500)
 
         if moves_without_amount:
