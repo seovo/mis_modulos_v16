@@ -375,7 +375,8 @@ class MigrateJz(models.Model):
             ('price_subtotal', '=', 0),
             ('move_id.move_type', '!=', 'entry'),
             ('display_type','=','product'),
-            ('price_unit','!=',0)
+            ('price_unit','!=',0),
+            ('account_type','=','income')
         ], limit=500)
 
         #raise ValidationError(moveslines_without_amount)
