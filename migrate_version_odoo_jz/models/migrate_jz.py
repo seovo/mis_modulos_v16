@@ -379,7 +379,7 @@ class MigrateJz(models.Model):
             ('account_id.account_type','!=','off_balance')
         ], limit=1)
 
-        raise ValidationError(moveslines_without_amount)
+        #raise ValidationError(moveslines_without_amount)
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
