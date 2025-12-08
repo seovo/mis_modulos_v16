@@ -172,6 +172,24 @@ class MigrateJz(models.Model):
 
             self.text_location =textx
 
+        if self.country_migration_ids and not self.text_country:
+
+            id_countrys = ''
+
+            for migrat in self.country_migration_ids:
+                if not migrat.country_id:
+                    continue
+                id_countrys  += f''' WHEN country_id = {migrat.id_sql} THEN {migrat.country_id.id } \n'''
+
+            textx = f'''
+                CASE
+                    {id_countrys}
+                ELSE  country_id
+                END AS country_id
+            '''
+
+            self.text_country = textx
+
 
 
     def add_modelos_usuales(self):
