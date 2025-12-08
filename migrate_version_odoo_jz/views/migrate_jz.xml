@@ -218,6 +218,45 @@
                             </group>
                         </page>
 
+                        <page string="Paises" name="Paises">
+                            <field name="country_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="country_id" />
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_country" />
+                            </group>
+                        </page>
+
+                        <page string="Estados" name="Estados">
+                            <field name="state_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="state_id" />
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_state" />
+                            </group>
+                        </page>
+
+                        <page string="City" name="City">
+                            <field name="city_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="city_id" />
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_city" />
+                            </group>
+                        </page>
+
 
                     </notebook>
 
