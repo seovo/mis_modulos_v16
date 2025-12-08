@@ -196,7 +196,9 @@ class MigrateJz(models.Model):
             'account_tax','account_tax_purchase_order_line_rel','stock_location',
             'stock_picking','stock_move','stock_move_line','stock_quant',
 
-            'product_supplierinfo'
+            'product_supplierinfo',
+
+            'res_country','res_country_state','res_city'
         ]
 
         if self.from_version == 11:
