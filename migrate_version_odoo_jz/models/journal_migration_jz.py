@@ -40,3 +40,26 @@ class LocationMigrationJz(models.Model):
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
     location_id = fields.Many2one('stock.location')
+
+
+class CountryMigrationJz(models.Model):
+    _name  = 'country.migration.jz'
+    name = fields.Char(required=True)
+    id_sql = fields.Integer(required=True)
+    migrate_id = fields.Many2one('migrate.jz',required=True)
+    country_id = fields.Many2one('res.country')
+
+
+class StateMigrationJz(models.Model):
+    _name  = 'state.migration.jz'
+    name = fields.Char(required=True)
+    id_sql = fields.Integer(required=True)
+    migrate_id = fields.Many2one('migrate.jz',required=True)
+    state_id = fields.Many2one('res.country.state')
+
+class CityMigrationJz(models.Model):
+    _name  = 'city.migration.jz'
+    name = fields.Char(required=True)
+    id_sql = fields.Integer(required=True)
+    migrate_id = fields.Many2one('migrate.jz',required=True)
+    state_id = fields.Integer()

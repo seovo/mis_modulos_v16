@@ -34,6 +34,12 @@ class MigrateJz(models.Model):
     text_tax = fields.Text()
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
     text_location = fields.Text()
+    country_migration_ids = fields.One2many('country.migration.jz', 'migrate_id')
+    text_country = fields.Text()
+    state_migration_ids = fields.One2many('state.migration.jz', 'migrate_id')
+    text_state = fields.Text()
+    city_migration_ids = fields.One2many('city.migration.jz', 'migrate_id')
+    text_city = fields.Text()
 
 
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
@@ -376,7 +382,8 @@ class MigrateJz(models.Model):
             ('move_id.move_type', '!=', 'entry'),
             ('display_type','=','product'),
             ('price_unit','!=',0),
-            ('account_id.account_type','!=','off_balance')
+            ('account_id.account_type','!=','off_balance'),
+            ('move_id', '!=', False),
         ], limit=500)
 
         #raise ValidationError(moveslines_without_amount)
@@ -402,6 +409,7 @@ class MigrateJz(models.Model):
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
             ('move_type','!=','entry'),
+
             ('invoice_line_ids', '!=', False)], limit=500)
 
         #raise ValidationError(moves_without_amount)
