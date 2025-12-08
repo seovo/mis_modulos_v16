@@ -62,4 +62,4 @@ class CityMigrationJz(models.Model):
     name = fields.Char(required=True)
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
-    state_id = fields.Integer()
+    city_id = fields.Integer()
