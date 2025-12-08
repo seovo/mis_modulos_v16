@@ -372,7 +372,7 @@ class MigrateModelJz(models.Model):
                 #raise ValidationError(str(resultados))
                 for journal in resultados:
                     #raise ValueError(journal)
-                    self.env['location.migration.jz'].create({
+                    self.env['country.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
                         'id_sql': int(journal[0]),
                         'name': str(journal[1]) ,
