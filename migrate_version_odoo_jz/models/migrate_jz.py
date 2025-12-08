@@ -315,7 +315,12 @@ class MigrateJz(models.Model):
         country_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'country_id')])
 
         for jfiels in country_fields:
-            jfiels.value_set = self.text_location
+            jfiels.value_set = self.text_country
+
+        state_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'state_id')])
+
+        for jfiels in state_fields:
+            jfiels.value_set = self.text_state
 
         #location_id
 
