@@ -191,6 +191,28 @@ class MigrateJz(models.Model):
             self.text_country = textx
 
 
+        if self.state_migration_ids and not self.text_state:
+
+            id_countrys = ''
+
+            for migrat in self.state_migration_ids:
+                if not migrat.state_id:
+                    continue
+                id_countrys  += f''' WHEN state_id = {migrat.id_sql} THEN {migrat.state_id.id } \n'''
+
+            textx = f'''
+                CASE
+                    {id_countrys}
+                ELSE  state_id
+                END AS state_id
+            '''
+
+            self.text_state = textx
+
+
+
+
+
 
     def add_modelos_usuales(self):
 
@@ -288,6 +310,11 @@ class MigrateJz(models.Model):
         location_fields = self.env['migrate.model.columns.jz'].search([('name','=','location_id')])
 
         for jfiels in location_fields:
+            jfiels.value_set = self.text_location
+
+        country_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'country_id')])
+
+        for jfiels in country_fields:
             jfiels.value_set = self.text_location
 
         #location_id
