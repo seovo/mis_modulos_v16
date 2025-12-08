@@ -82,7 +82,7 @@ class MigrateJz(models.Model):
 
     def generate_text_journal(self):
 
-        if self.currency_migration_ids:
+        if self.currency_migration_ids and not self.text_currency:
 
             id_journal = ''
 
@@ -100,7 +100,7 @@ class MigrateJz(models.Model):
 
             self.text_currency = textx
 
-        if self.journal_migration_ids:
+        if self.journal_migration_ids and not self.text_journal:
 
             id_journal = ''
 
@@ -118,7 +118,7 @@ class MigrateJz(models.Model):
 
             self.text_journal =textx
 
-        if self.account_migration_ids:
+        if self.account_migration_ids and not self.text_account:
 
             id_journal = ''
 
@@ -136,7 +136,7 @@ class MigrateJz(models.Model):
 
             self.text_account =textx
 
-        if self.tax_migration_ids:
+        if self.tax_migration_ids and not self.text_tax:
 
             id_journal = ''
 
@@ -154,7 +154,7 @@ class MigrateJz(models.Model):
 
             self.text_tax =textx
 
-        if self.location_migration_ids:
+        if self.location_migration_ids and not self.text_location:
 
             id_journal = ''
 
@@ -171,6 +171,8 @@ class MigrateJz(models.Model):
             '''
 
             self.text_location =textx
+
+
 
     def add_modelos_usuales(self):
 
