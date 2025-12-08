@@ -366,6 +366,26 @@ class MigrateModelJz(models.Model):
 
             return
 
+        if self.table == 'res_country':
+
+            if not self.migrate_id.country_migration_ids:
+                #raise ValidationError(str(resultados))
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['location.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'id_sql': int(journal[0]),
+                        'name': str(journal[1]) ,
+
+                        #'code': str(journal[3]) ,
+                        #'journal_id':
+                    })
+            #raise ValidationError('Contabilidad')
+
+            return
+
+
+
         #raise ValueError(resultados)
 
         #raise ValueError(column_names)
