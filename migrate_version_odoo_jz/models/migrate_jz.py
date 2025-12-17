@@ -234,7 +234,10 @@ class MigrateJz(models.Model):
                   
             'account_journal','res_currency','account_account','account_move','account_move_line',
             'account_move_line_account_tax_rel',
-            'account_payment','sale_order','sale_order_line','purchase_order','purchase_order_line',
+            'account_payment','sale_order','sale_order_line',
+
+            'purchase_order','purchase_order_line','purchase_order_stock_picking_rel',
+
             'account_tax','account_tax_purchase_order_line_rel','stock_location',
             'stock_picking','stock_move','stock_move_line','stock_quant',
 
