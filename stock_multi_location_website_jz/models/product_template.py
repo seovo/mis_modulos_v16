@@ -14,9 +14,14 @@ class ProductTemplate(models.Model):
         )
 
         if combination:
+            product_idx = res['product_id']
+        else:
+            product_idx = self.product_variant_ids[0].id
+
+        if product_id:
             domain = [("location_id.usage", "in", ["internal", "transit"]),
                       ("location_id.warehouse_id.show_stock_website_jz", "=", True),
-                      ('product_id', '=', res['product_id'])]
+                      ('product_id', '=', product_idx)]
 
             quants = self.env["stock.quant"].sudo().search(domain)
 
@@ -86,10 +91,6 @@ class ProductTemplate(models.Model):
                 'html_warehouses' : html
             })
 
-        else:
-            res.update({
-                'html_warehouses': str([self, combination, product_id, add_qty,parent_combination, only_template])
-            })
 
 
         return res
