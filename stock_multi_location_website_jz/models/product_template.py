@@ -86,4 +86,10 @@ class ProductTemplate(models.Model):
                 'html_warehouses' : html
             })
 
+        else:
+            res.update({
+                'html_warehouses': str([self, combination, product_id, add_qty,parent_combination, only_template])
+            })
+
+
         return res
