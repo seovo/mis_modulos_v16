@@ -18,6 +18,8 @@ class ProductTemplate(models.Model):
         else:
             product_idx = self.product_variant_ids[0].id
 
+        product = self.env['product.product'].search([('id','=',product_idx)])
+
         if product_id:
             domain = [("location_id.usage", "in", ["internal", "transit"]),
                       ("location_id.warehouse_id.show_stock_website_jz", "=", True),
@@ -32,11 +34,21 @@ class ProductTemplate(models.Model):
             if quants:
                 for quant in quants:
 
+                    stock = quant.quantity
+
+                    dictx = dict(location=quant.location_id.id,warehouse_id=quant.location_id.warehouse_id.id)
+
+                    stock = product.with_context(dictx).virtual_available
+
                     if quant.location_id.warehouse_id.id in stock_locations:
+
+
+                        stock_new = stock_locations[quant.location_id.warehouse_id.id]['stock'] + stock
+
                         stock_locations.update({
                             quant.location_id.warehouse_id.id: {
                                 'warehouse': quant.location_id.warehouse_id.display_name,
-                                'stock': quant.quantity + stock_locations[quant.location_id.warehouse_id.id]['stock']
+                                'stock': stock_new
                             }
                         })
                     else:
@@ -44,7 +56,7 @@ class ProductTemplate(models.Model):
                             quant.location_id.warehouse_id.id: {
 
                                 'warehouse': quant.location_id.warehouse_id.display_name,
-                                'stock': quant.quantity
+                                'stock': stock
                             }
                         })
 
