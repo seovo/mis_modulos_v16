@@ -18,6 +18,7 @@
            <field name="arch" type="xml">
                <xpath expr="//field[@name='company_id']" position="after" >
                    <field name="show_stock_website_jz"  />
+                   <field name="type_show_website_jz"  />
                </xpath>
            </field>
     </record>

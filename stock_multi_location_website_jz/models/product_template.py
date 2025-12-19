@@ -36,9 +36,17 @@ class ProductTemplate(models.Model):
 
                     stock = quant.quantity
 
-                    dictx = dict(location=quant.location_id.id,warehouse_id=quant.location_id.warehouse_id.id)
+                    typex  = quant.location_id.warehouse_id.type_show_website_jz
 
-                    stock = product.with_context(dictx).virtual_available
+                    dictx = dict(location=quant.location_id.id, warehouse_id=quant.location_id.warehouse_id.id)
+
+
+                    if typex == 'forecast':
+                        stock = product.with_context(dictx).virtual_available
+
+                    if typex == 'hand':
+                        stock = product.with_context(dictx).qty_available
+
 
                     if quant.location_id.warehouse_id.id in stock_locations:
 
