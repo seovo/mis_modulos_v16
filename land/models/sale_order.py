@@ -190,8 +190,6 @@ class SaleOrder(models.Model):
                         run.text = run.text.replace(buscar, item['value'])
 
 
-
-
     def reemplazar_texto_plantilla_land(self, doc, reemplazar_dict):
 
         for shape in doc.inline_shapes:
@@ -384,8 +382,6 @@ class SaleOrder(models.Model):
 
 
         return schedule_land_dues
-
-
 
 
 
@@ -740,7 +736,6 @@ class SaleOrder(models.Model):
         }
 
 
-
     def update_all_seller_lot(self):
         for record in self:
             if record.id in [760 ,  804]  or record._origin.id in [760 ,  804] :
@@ -1018,8 +1013,7 @@ class SaleOrder(models.Model):
 
 
                 #########
-
-
+                #CUOTAS
 
                 schedule_land_dues = self.env['schedule.dues.land'].search([
                     ('type_schedule','=','dues'),('order_id','=',record.id)
