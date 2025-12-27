@@ -435,7 +435,7 @@ class MigrateJz(models.Model):
             return
 
         moveslines_without_amount = self.env['account.move.line'].search([
-           ('amount_currency', '=',0),
+           #('amount_currency', '=',0),
             ('move_id.move_type', '!=', 'entry'),
             ('display_type', '=', 'product'),
             ('account_id.account_type', '!=', 'off_balance'),
@@ -459,9 +459,9 @@ class MigrateJz(models.Model):
 
                     tt = line.currency_id.round(line.balance * line.currency_rate)
 
-                    raise ValidationError(tt)
+                    #raise ValidationError(tt)
 
-                    line.amount_currency = line.currency_id.round(line.balance * line.currency_rate)
+                    line.amount_currency = tt
 
                 if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
                     #raise ValidationError('KKKK')
