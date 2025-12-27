@@ -496,13 +496,13 @@ END $$;
 
 
                         if table == 'account_move_line' and self.table ==  'account_invoice_line':
-                            SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
+                            SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND price_unit != 0"
 
                             self.env.cr.execute(SQL_CONSULTA,[fila[0],fila[1]])
                             result = self.env.cr.fetchall()
 
                             if not result:
-                                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0"
+                                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0  AND price_unit != 0 "
                                 self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1][:20]])
                                 result = self.env.cr.fetchall()
 
