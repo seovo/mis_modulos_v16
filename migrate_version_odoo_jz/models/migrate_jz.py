@@ -438,7 +438,7 @@ class MigrateJz(models.Model):
         moves_without_payment = self.env['account.move'].search([
             ('status_in_payment', '=', 'not_paid'),
             ('state', '=', 'posted'),
-            ('move_type', '!=', 'entry')], limit=50)
+            ('move_type', '!=', 'entry')], limit=10)
 
         if moves_without_payment:
             for paymentm in moves_without_payment:
@@ -446,8 +446,8 @@ class MigrateJz(models.Model):
                 try:
                     paymentm._compute_payment_state()
                 except:
-                    #raise ValidationError(mvl.move_id)
-                    continue
+                    raise ValidationError(paymentm)
+                    # continue
 
 
 
