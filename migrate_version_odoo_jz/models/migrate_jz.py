@@ -440,10 +440,11 @@ class MigrateJz(models.Model):
             ('status_in_payment', '!=', 'paid'),
             ('state', '=', 'posted'),
             ('move_type', 'in', ['out_invoice', 'out_refund']),
+            [("matched_payment_ids", "!=", False)]
             ('move_type', '!=', 'entry')], limit=30)
 
 
-        raise ValidationError(moves_without_payment)
+        #raise ValidationError(moves_without_payment)
 
         if moves_without_payment:
             for paymentm in moves_without_payment:
