@@ -435,6 +435,29 @@ class MigrateJz(models.Model):
             return
 
         moveslines_without_amount = self.env['account.move.line'].search([
+            ('amount_total_in_currency_signed', '=', 0),
+            ('move_id.move_type', '!=', 'entry'),
+            ('display_type', '=', 'product'),
+            ('account_id.account_type', '!=', 'off_balance'),
+            ('move_id', '!=', False),
+            ('amount_currency','=',self.env.ref('base.PEN').id)
+        ], limit=500)
+
+        if moveslines_without_amount:
+            for mvl in moveslines_without_amount:
+
+                # raise ValidationError(mvl.move_id)
+
+
+                try:
+                    mvl._compute_amount_currency()
+                except:
+                    #raise ValidationError(mvl.move_id)
+                    continue
+
+            return
+
+        moveslines_without_amount = self.env['account.move.line'].search([
             ('price_subtotal', '=', 0),
             ('move_id.move_type', '!=', 'entry'),
             ('display_type','=','product'),
