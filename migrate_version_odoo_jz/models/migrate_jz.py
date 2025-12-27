@@ -473,7 +473,15 @@ class MigrateJz(models.Model):
             ('currency_id','=',self.env.ref('base.PEN').id) ,], limit=1000)
 
         if moves:
-            moves._compute_amount()
+
+            for mv in moves:
+                try:
+                    mv._compute_amount()
+                except:
+                    #raise ValidationError(mvl.move_id)
+                    continue
+
+
             return
 
         moveslines_without_amount = self.env['account.move.line'].search([
