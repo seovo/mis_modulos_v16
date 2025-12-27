@@ -438,7 +438,7 @@ class MigrateJz(models.Model):
         moves_without_payment = self.env['account.move'].search([
             ('status_in_payment', '=', 'not_paid'),
             ('state', '=', 'posted'),
-            ('move_type', '!=', 'entry')], limit=10)
+            ('move_type', '!=', 'entry')], limit=100)
 
         if moves_without_payment:
             for paymentm in moves_without_payment:
