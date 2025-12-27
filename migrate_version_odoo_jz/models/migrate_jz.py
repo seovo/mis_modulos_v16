@@ -451,8 +451,8 @@ class MigrateJz(models.Model):
                 try:
                     paymentm._compute_payment_state()
                 except:
-                    raise ValidationError(paymentm)
-                    # continue
+                    #raise ValidationError(paymentm)
+                    continue
 
 
 
