@@ -460,12 +460,13 @@ class MigrateJz(models.Model):
                     tt = line.currency_id.round(line.balance * line.currency_rate)
 
                     #raise ValidationError(tt)
-
-                    line.amount_currency = tt
+                    sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
+                    self.env.cr.execute(sql,[tt,line.id])
+                    #line.amount_currency = tt
 
                 if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
                     #raise ValidationError('KKKK')
-                    sql = f'''UPDATE account_move_line SET amount_currency =   WHERE id = {line.id}'''
+
                     line.amount_currency = line.balance
 
                 #raise ValidationError(mvl.move_id)
