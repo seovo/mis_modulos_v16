@@ -455,7 +455,7 @@ class MigrateJz(models.Model):
 
                 #raise ValidationError(str([line.currency_id,line.company_id.currency_id,line.move_id.is_invoice(True)]))
 
-                if line.amount_currency is False:
+                if line.amount_currency == 0:
 
                     tt = line.currency_id.round(line.balance * line.currency_rate)
 
