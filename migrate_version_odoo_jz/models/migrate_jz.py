@@ -444,7 +444,7 @@ class MigrateJz(models.Model):
             #('move_id','=',59)
         ], limit=500)
 
-        #raise ValidationError(str(moveslines_without_amount))
+        raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
@@ -463,11 +463,6 @@ class MigrateJz(models.Model):
                     sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
                     self.env.cr.execute(sql,[tt,line.id])
                     #line.amount_currency = tt
-
-                if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
-                    #raise ValidationError('KKKK')
-
-                    line.amount_currency = line.balance
 
 
             return
