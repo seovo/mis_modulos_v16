@@ -444,12 +444,16 @@ class MigrateJz(models.Model):
             ('move_id','=',59)
         ], limit=500)
 
-        raise ValidationError(str(moveslines_without_amount))
+        #raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
 
-                # raise ValidationError(mvl.move_id)
+                if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
+                    raise ValidationError('KKKK')
+                    line.amount_currency = line.balance
+
+                raise ValidationError(mvl.move_id)
 
 
                 try:
