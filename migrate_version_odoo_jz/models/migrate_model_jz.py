@@ -513,21 +513,21 @@ END $$;
 
                             if not result or len(result) > 1:
                                 continue
-                            raise ValueError([result])
+                            #raise ValueError([result])
 
 
                             SQL_INSERT = f'''
 
                             UPDATE {table}
                             SET  price_unit = %s
-                            WHERE  x_invoice_id = %s AND name = %s
+                            WHERE  id = %s 
                             
                             '''
 
 
 
 
-                            self.env.cr.execute(SQL_INSERT,[fila[2],fila[0],fila[1]])
+                            self.env.cr.execute(SQL_INSERT,[fila[2],result[0]])
                             #cursor.execute(SQL_INSERT, [fila[2],fila[0],fila[1]])
                             continue
 
