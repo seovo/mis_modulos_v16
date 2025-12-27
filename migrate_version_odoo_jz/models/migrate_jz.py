@@ -440,7 +440,8 @@ class MigrateJz(models.Model):
             ('display_type', '=', 'product'),
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
-            ('currency_id','=',self.env.ref('base.PEN').id)
+            ('currency_id','=',self.env.ref('base.PEN').id) ,
+            ('move_id','=',59)
         ], limit=500)
 
         #raise ValidationError(str(moveslines_without_amount))
