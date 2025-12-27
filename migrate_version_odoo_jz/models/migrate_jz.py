@@ -449,6 +449,7 @@ class MigrateJz(models.Model):
             for paymentm in moves_without_payment:
 
                 try:
+                    paymentm._compute_amount()
                     paymentm._compute_payment_state()
                 except:
                     #raise ValidationError(paymentm)
