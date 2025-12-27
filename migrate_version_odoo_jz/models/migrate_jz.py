@@ -444,7 +444,7 @@ class MigrateJz(models.Model):
             #('move_id','=',59)
         ])
 
-        raise ValidationError(str(moveslines_without_amount))
+        #raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
@@ -465,6 +465,15 @@ class MigrateJz(models.Model):
                     #line.amount_currency = tt
 
 
+            return
+
+        moves = self.env['account.move'].search([
+            ('amount_total_in_currency_signed', '=', 0),
+            ('move_type', '!=', 'entry'),
+            ('currency_id','=',self.env.ref('base.PEN').id) ,], limit=1000)
+
+        if moves:
+            moves._compute_amount()
             return
 
         moveslines_without_amount = self.env['account.move.line'].search([
