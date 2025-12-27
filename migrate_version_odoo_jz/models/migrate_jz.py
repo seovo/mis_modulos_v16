@@ -470,7 +470,8 @@ class MigrateJz(models.Model):
         moves = self.env['account.move'].search([
             ('amount_total_in_currency_signed', '=', 0),
             ('move_type', '!=', 'entry'),
-            ('currency_id','=',self.env.ref('base.PEN').id) ,], limit=1000)
+            ('state','=','posted'),
+            ('currency_id','=',self.env.ref('base.PEN').id) ,], limit=200)
 
         if moves:
 
