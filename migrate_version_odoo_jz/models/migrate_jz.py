@@ -443,7 +443,7 @@ class MigrateJz(models.Model):
             ("matched_payment_ids", "!=", False)], limit=1)
 
 
-        #raise ValidationError(moves_without_payment)
+        raise ValidationError(moves_without_payment)
 
         if moves_without_payment:
             for paymentm in moves_without_payment:
