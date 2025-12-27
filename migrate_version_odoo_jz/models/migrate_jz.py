@@ -435,13 +435,13 @@ class MigrateJz(models.Model):
             return
 
         moveslines_without_amount = self.env['account.move.line'].search([
-           #('amount_currency', '=',0),
+           ('amount_currency', '=',0),
             ('move_id.move_type', '!=', 'entry'),
             ('display_type', '=', 'product'),
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('currency_id','=',self.env.ref('base.PEN').id) ,
-            ('move_id','=',59)
+            #('move_id','=',59)
         ], limit=500)
 
         #raise ValidationError(str(moveslines_without_amount))
@@ -469,18 +469,6 @@ class MigrateJz(models.Model):
 
                     line.amount_currency = line.balance
 
-                #raise ValidationError(mvl.move_id)
-
-                mvl._compute_amount_currency()
-
-                continue
-
-
-                try:
-                    mvl._compute_amount_currency()
-                except:
-                    raise ValidationError(mvl.move_id)
-                    continue
 
             return
 
