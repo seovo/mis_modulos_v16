@@ -443,7 +443,7 @@ class MigrateJz(models.Model):
             ('currency_id','=',self.env.ref('base.PEN').id)
         ], limit=500)
 
-        raise ValidationError(str(moveslines_without_amount))
+        #raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
@@ -454,7 +454,7 @@ class MigrateJz(models.Model):
                 try:
                     mvl._compute_amount_currency()
                 except:
-                    #raise ValidationError(mvl.move_id)
+                    raise ValidationError(mvl.move_id)
                     continue
 
             return
