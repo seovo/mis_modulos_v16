@@ -428,6 +428,7 @@ class MigrateJz(models.Model):
 
         moves_without_partner = self.env['account.move'].search([
             ('partner_id','!=',False),
+
             ('invoice_partner_display_name','=',False)],limit=1000)
 
         if moves_without_partner:
@@ -436,6 +437,7 @@ class MigrateJz(models.Model):
 
         moves_without_payment = self.env['account.move'].search([
             ('status_in_payment', '=', 'not_paid'),
+            ('state', '=', 'posted'),
             ('move_type', '!=', 'entry')], limit=500)
 
         if moves_without_payment:
