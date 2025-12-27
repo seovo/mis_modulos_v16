@@ -440,6 +440,8 @@ class MigrateJz(models.Model):
             ('state', '=', 'posted'),
             ('move_type', '!=', 'entry')], limit=10)
 
+        raise ValidationError(moves_without_payment)
+
         if moves_without_payment:
             for paymentm in moves_without_payment:
 
