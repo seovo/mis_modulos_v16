@@ -451,6 +451,8 @@ class MigrateJz(models.Model):
 
                 line = mvl
 
+                raise ValidationError(str([line.move_id.move_type,self.get_sale_types(True)]))
+
                 raise ValidationError(str([line.currency_id,line.company_id.currency_id,line.move_id.is_invoice(True)]))
 
                 if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
