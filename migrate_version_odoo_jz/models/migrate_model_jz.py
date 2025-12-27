@@ -513,7 +513,7 @@ END $$;
 
                             if not result or len(result) > 1:
                                 continue
-                            #raise ValueError([result])
+                            raise ValueError([result])
 
 
                             SQL_INSERT = f'''
@@ -526,7 +526,7 @@ END $$;
 
 
 
-                            #raise ValidationError(SQL_INSERT)
+
                             self.env.cr.execute(SQL_INSERT,[fila[2],fila[0],fila[1]])
                             #cursor.execute(SQL_INSERT, [fila[2],fila[0],fila[1]])
                             continue
