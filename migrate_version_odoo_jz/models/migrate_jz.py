@@ -434,6 +434,14 @@ class MigrateJz(models.Model):
             moves_without_partner._compute_invoice_partner_display_info()
             return
 
+        moves_without_payment = self.env['account.move'].search([
+            ('status_in_payment', '=', 'not_paid'),
+            ('move_type', '!=', 'entry')], limit=500)
+
+        if moves_without_payment:
+            moves_without_payment._compute_payment_state()
+            return
+
         moveslines_without_amount = self.env['account.move.line'].search([
            ('amount_currency', '=',0),
             ('move_id.move_type', '!=', 'entry'),
