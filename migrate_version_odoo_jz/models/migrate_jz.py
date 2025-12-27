@@ -449,6 +449,8 @@ class MigrateJz(models.Model):
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
 
+                line = mvl
+
                 if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
                     raise ValidationError('KKKK')
                     line.amount_currency = line.balance
