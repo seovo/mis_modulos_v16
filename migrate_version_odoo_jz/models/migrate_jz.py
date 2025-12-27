@@ -451,12 +451,20 @@ class MigrateJz(models.Model):
 
                 line = mvl
 
-                raise ValidationError(str([line.move_id.is_invoice(True),line.move_id.move_type,line.move_id.get_sale_types(True)]))
+                #raise ValidationError(str([line.move_id.is_invoice(True),line.move_id.move_type,line.move_id.get_sale_types(True)]))
 
-                raise ValidationError(str([line.currency_id,line.company_id.currency_id,line.move_id.is_invoice(True)]))
+                #raise ValidationError(str([line.currency_id,line.company_id.currency_id,line.move_id.is_invoice(True)]))
+
+                if line.amount_currency is False:
+
+                    tt = line.currency_id.round(line.balance * line.currency_rate)
+
+                    raise ValidationError(tt)
+
+                    line.amount_currency = line.currency_id.round(line.balance * line.currency_rate)
 
                 if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
-                    raise ValidationError('KKKK')
+                    #raise ValidationError('KKKK')
                     line.amount_currency = line.balance
 
                 raise ValidationError(mvl.move_id)
