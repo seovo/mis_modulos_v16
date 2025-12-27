@@ -501,7 +501,7 @@ END $$;
                             self.env.cr.execute(SQL_CONSULTA,[fila[0],fila[1]])
                             result = self.env.cr.fetchall()
 
-                            #raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
+                            raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
 
 
 
