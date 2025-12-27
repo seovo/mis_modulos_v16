@@ -442,6 +442,8 @@ class MigrateJz(models.Model):
             ('amount_currency','=',self.env.ref('base.PEN').id)
         ], limit=500)
 
+        raise ValidationError(str(moveslines_without_amount))
+
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
 
