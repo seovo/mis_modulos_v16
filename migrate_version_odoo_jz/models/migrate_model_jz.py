@@ -503,7 +503,7 @@ END $$;
 
                             if not result:
                                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0"
-                                self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1]])
+                                self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1][:20]])
                                 result = self.env.cr.fetchall()
 
 
