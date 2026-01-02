@@ -12,7 +12,7 @@ class AccountMove(models.Model):
             return {}
 
 
-        raise ValueError(str(reconciled_lines))
+
 
         self.env['account.partial.reconcile'].flush_model([
             'credit_amount_currency', 'credit_move_id', 'debit_amount_currency',
@@ -41,7 +41,12 @@ class AccountMove(models.Model):
         partial_values_list = []
         counterpart_line_ids = set()
         exchange_move_ids = set()
-        for values in self.env.execute_query_dict(sql):
+
+        resulttt = self.env.execute_query_dict(sql)
+
+        raise ValidationError(str(resulttt))
+
+        for values in resulttt:
             partial_values_list.append({
                 'aml_id': values['counterpart_line_id'],
                 'partial_id': values['id'],
