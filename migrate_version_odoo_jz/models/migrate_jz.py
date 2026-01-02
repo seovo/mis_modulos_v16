@@ -243,7 +243,10 @@ class MigrateJz(models.Model):
 
             'product_supplierinfo',
 
-            'res_country','res_country_state','res_city'
+            'res_country','res_country_state','res_city' ,
+
+            'account_partial_reconcile',
+
         ]
 
         if self.from_version == 11:
