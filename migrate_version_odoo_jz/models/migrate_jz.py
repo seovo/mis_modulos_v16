@@ -426,6 +426,23 @@ class MigrateJz(models.Model):
             cron_models.migrate_table()
             return
 
+        moves_without_binary = self.env['account.move'].search([
+            ('invoice_payments_widget', '=', False),
+            ('move_type', '!=', 'entry'),
+            ('invoice_line_ids', '!=', False)], limit=500)
+        if moves_without_amount:
+            for mw in moves_without_binary:
+
+                try:
+
+                    mw._compute_payments_widget_reconciled_info()
+
+                except:
+                    continue
+                    raise ValidationError(mw)
+
+            return
+
         moves_without_partner = self.env['account.move'].search([
             ('partner_id','!=',False),
 
@@ -561,7 +578,6 @@ class MigrateJz(models.Model):
 
 
             return
-            
 
 
 
