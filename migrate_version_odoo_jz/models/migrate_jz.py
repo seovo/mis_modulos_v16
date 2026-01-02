@@ -429,7 +429,7 @@ class MigrateJz(models.Model):
         moves_without_binary = self.env['account.move'].search([
             ('invoice_payments_widget', '=', False),
             ('move_type', '!=', 'entry'),
-            ('invoice_line_ids', '!=', False)], limit=500)
+            ('invoice_line_ids', '!=', False)], limit=1500)
         if moves_without_binary:
             for mw in moves_without_binary:
 
