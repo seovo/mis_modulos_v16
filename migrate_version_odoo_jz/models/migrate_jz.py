@@ -245,7 +245,7 @@ class MigrateJz(models.Model):
 
             'res_country','res_country_state','res_city' ,
 
-            'account_partial_reconcile',
+            'account_full_reconcile','account_partial_reconcile',
 
         ]
 
