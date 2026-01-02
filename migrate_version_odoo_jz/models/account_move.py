@@ -12,7 +12,7 @@ class AccountMove(models.Model):
 
                 reconciled_vals = []
                 reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
-                raise ValidationError(reconciled_partials)
+                raise ValidationError(str(reconciled_partials))
                 for reconciled_partial in reconciled_partials:
                     counterpart_line = reconciled_partial['aml']
                     if counterpart_line.move_id.ref:
