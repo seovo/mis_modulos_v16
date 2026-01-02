@@ -9,9 +9,10 @@ class AccountMove(models.Model):
             payments_widget_vals = {'title': _('Less Payment'), 'outstanding': False, 'content': []}
 
             if move.state == 'posted' and move.is_invoice(include_receipts=True):
-                raise ValidationError('A')
+
                 reconciled_vals = []
                 reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
+                raise ValidationError(reconciled_partials)
                 for reconciled_partial in reconciled_partials:
                     counterpart_line = reconciled_partial['aml']
                     if counterpart_line.move_id.ref:
