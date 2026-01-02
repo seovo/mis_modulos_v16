@@ -47,9 +47,12 @@ class AccountMove(models.Model):
                     })
                 payments_widget_vals['content'] = reconciled_vals
 
+
             if payments_widget_vals['content']:
                 raise ValidationError('B')
                 move.invoice_payments_widget = payments_widget_vals
             else:
                 raise ValidationError('C')
                 move.invoice_payments_widget = False
+
+
