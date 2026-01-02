@@ -430,7 +430,7 @@ class MigrateJz(models.Model):
             ('invoice_payments_widget', '=', False),
             ('move_type', '!=', 'entry'),
             ('invoice_line_ids', '!=', False)], limit=500)
-        if moves_without_amount:
+        if moves_without_binary:
             for mw in moves_without_binary:
 
                 try:
