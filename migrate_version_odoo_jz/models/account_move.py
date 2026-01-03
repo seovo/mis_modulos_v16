@@ -23,15 +23,15 @@ class AccountPartialReconcile(models.Model):
 
     @api.constrains('debit_currency_id', 'credit_currency_id')
     def _check_required_computed_currencies(self):
-        return
+        #return
         bad_partials = self.filtered(lambda partial: not partial.debit_currency_id or not partial.credit_currency_id)
         if bad_partials:
             for partial in bad_partials:
                 partial.debit_currency_id = partial.debit_move_id.currency_id
-                partiali.credit_currency_id = partial.credit_move_id.currency_id
+                partial.credit_currency_id = partial.credit_move_id.currency_id
 
-                partial.debit_amount_currency_id = debit_move_id.amount_currency
-                partial.credit_amount_currency_id = credit_move_id.amount_currency
+                partial.debit_amount_currency = partial.debit_move_id.amount_currency
+                partial.credit_amount_currency = partial.credit_move_id.amount_currency
 
         bad_partials = self.filtered(lambda partial: not partial.debit_currency_id or not partial.credit_currency_id)
 
