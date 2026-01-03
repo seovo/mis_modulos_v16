@@ -521,7 +521,7 @@ class MigrateJz(models.Model):
 
 
 
-
+        raise ValidationError('BBB')
 
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
