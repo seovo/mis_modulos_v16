@@ -517,7 +517,7 @@ END $$;
 
 
 
-                            raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
+                            #raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
 
 
 
