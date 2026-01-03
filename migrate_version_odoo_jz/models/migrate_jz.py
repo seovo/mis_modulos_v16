@@ -475,7 +475,7 @@ class MigrateJz(models.Model):
 
             return
 
-        raise ValidationError('AA')
+
 
         moves = self.env['account.move'].search([
             ('amount_total_in_currency_signed', '=', 0),
@@ -552,7 +552,7 @@ class MigrateJz(models.Model):
             # ('status_in_payment', '!=', 'paid'),
             ('state', '=', 'posted'),
             # ('move_type', 'in', ['out_invoice', 'out_refund']),
-            ("matched_payment_ids", "!=", False)], limit=50)
+            ("matched_payment_ids", "!=", False)], limit=10)
 
         # raise ValidationError(moves_without_payment)
 
