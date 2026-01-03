@@ -502,7 +502,7 @@ class MigrateJz(models.Model):
             ('price_unit','!=',0),
             ('account_id.account_type','!=','off_balance'),
             ('move_id', '!=', False),
-        ], limit=10)
+        ], limit=1)
 
         #raise ValidationError(moveslines_without_amount)
 
