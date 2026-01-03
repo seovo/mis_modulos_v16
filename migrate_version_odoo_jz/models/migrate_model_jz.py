@@ -280,7 +280,7 @@ class MigrateModelJz(models.Model):
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
 
-        #raise ValueError(resultados)
+        raise ValueError(resultados)
 
 
 
