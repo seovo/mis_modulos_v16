@@ -492,6 +492,7 @@ class MigrateJz(models.Model):
 
             return
 
+        raise ValidationError('CCC')
 
 
 
