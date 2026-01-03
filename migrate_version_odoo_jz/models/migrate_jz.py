@@ -475,6 +475,8 @@ class MigrateJz(models.Model):
 
             return
 
+        raise ValidationError('AA')
+
         moves = self.env['account.move'].search([
             ('amount_total_in_currency_signed', '=', 0),
             ('move_type', '!=', 'entry'),
