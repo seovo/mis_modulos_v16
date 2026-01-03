@@ -440,29 +440,7 @@ class MigrateJz(models.Model):
             moves_without_partner._compute_invoice_partner_display_info()
             return
 
-        moves_without_payment = self.env['account.move'].search([
-            ('payment_state', '=', 'not_paid'),
-            #('status_in_payment', '!=', 'paid'),
-            ('state', '=', 'posted'),
-            #('move_type', 'in', ['out_invoice', 'out_refund']),
-            ("matched_payment_ids", "!=", False)], limit=200)
 
-
-        #raise ValidationError(moves_without_payment)
-
-        if moves_without_payment:
-            for paymentm in moves_without_payment:
-
-                try:
-                    #paymentm._compute_amount()
-                    paymentm._compute_payment_state()
-                except:
-                    #raise ValidationError(paymentm)
-                    continue
-
-
-
-            return
 
         moveslines_without_amount = self.env['account.move.line'].search([
            ('amount_currency', '=',0),
@@ -564,6 +542,27 @@ class MigrateJz(models.Model):
                     raise ValidationError(mw)
 
 
+
+            return
+
+        moves_without_payment = self.env['account.move'].search([
+            ('payment_state', '=', 'not_paid'),
+            # ('status_in_payment', '!=', 'paid'),
+            ('state', '=', 'posted'),
+            # ('move_type', 'in', ['out_invoice', 'out_refund']),
+            ("matched_payment_ids", "!=", False)], limit=50)
+
+        # raise ValidationError(moves_without_payment)
+
+        if moves_without_payment:
+            for paymentm in moves_without_payment:
+
+                try:
+                    # paymentm._compute_amount()
+                    paymentm._compute_payment_state()
+                except:
+                    # raise ValidationError(paymentm)
+                    continue
 
             return
 
