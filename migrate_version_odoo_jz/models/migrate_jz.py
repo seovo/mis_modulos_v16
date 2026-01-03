@@ -484,7 +484,7 @@ class MigrateJz(models.Model):
                 #partial._check_required_computed_currencies()
                 #continue
                 partial.debit_currency_id = partial.debit_move_id.currency_id
-                partiali.credit_currency_id = partial.credit_move_id.currency_id
+                partial.credit_currency_id = partial.credit_move_id.currency_id
 
                 partial.debit_amount_currency_id = debit_move_id.amount_currency
                 partial.credit_amount_currency_id = credit_move_id.amount_currency
