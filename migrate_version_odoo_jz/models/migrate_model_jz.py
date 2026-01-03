@@ -525,8 +525,8 @@ END $$;
                                 self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[3]])
                                 result = self.env.cr.fetchall()
 
-                                if result and len(result) > 1:
-                                    result = result[0]
+                                #if result and len(result) > 1:
+                                #    result = result[0]
 
 
 
@@ -534,21 +534,21 @@ END $$;
                                 continue
                             #raise ValueError([result])
 
+                            for rr in result:
+                                SQL_INSERT = f'''
 
-                            SQL_INSERT = f'''
+                                                            UPDATE {table}
+                                                            SET  price_unit = %s
+                                                            WHERE  id = %s 
 
-                            UPDATE {table}
-                            SET  price_unit = %s
-                            WHERE  id = %s 
-                            
-                            '''
+                                                            '''
 
-
-
-
-                            self.env.cr.execute(SQL_INSERT,[fila[2],result[0]])
-                            #cursor.execute(SQL_INSERT, [fila[2],fila[0],fila[1]])
+                                self.env.cr.execute(SQL_INSERT, [fila[2], rr])
+                                # cursor.execute(SQL_INSERT, [fila[2],fila[0],fila[1]])
                             continue
+
+
+
 
                         else:
                         #if 1 == 1:
