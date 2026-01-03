@@ -475,6 +475,23 @@ class MigrateJz(models.Model):
 
             return
 
+        partials = self.env['account.partial.reconcile'].search([
+            '|',('debit_currency_id', '=', False),('credt_currency_id', '=', False)
+            ], limit=200)
+
+        if partials:
+            for partial in partials:
+                partial.debit_currency_id = partial.debit_move_id.currency_id
+                partiali.credt_currency_id = partial.credit_move_id.currency_id
+
+                partial.debit_amount_currency_id = debit_move_id.amount_currency
+                partial.credit_amount_currency_id = credit_move_id.amount_currency
+
+            return
+
+
+
+
 
 
         moves = self.env['account.move'].search([
