@@ -403,7 +403,6 @@ class MigrateModelJz(models.Model):
             return
 
 
-
         raise ValueError(resultados)
 
         #raise ValueError(column_names)
