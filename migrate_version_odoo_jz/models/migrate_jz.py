@@ -476,7 +476,7 @@ class MigrateJz(models.Model):
             return
 
         partials = self.env['account.partial.reconcile'].search([
-            '|',('debit_currency_id', '=', False),('credt_currency_id', '=', False)
+            '|',('debit_currency_id', '=', False),('credit_currency_id', '=', False)
             ], limit=200)
 
         if partials:
