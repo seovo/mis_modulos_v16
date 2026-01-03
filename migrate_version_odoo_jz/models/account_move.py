@@ -22,9 +22,10 @@ class AccountPartialReconcile(models.Model):
     _inherit = "account.partial.reconcile"
 
     @api.constrains('debit_currency_id', 'credit_currency_id')
-    def _check_required_computed_currencies(self,no_valid=False):
+    def _check_required_computed_currencies(self):
 
-        #return
+        return
+
         bad_partials = self.filtered(lambda partial: not partial.debit_currency_id or not partial.credit_currency_id)
         if bad_partials:
             for partial in bad_partials:
@@ -34,12 +35,11 @@ class AccountPartialReconcile(models.Model):
                 partial.debit_amount_currency = partial.debit_move_id.amount_currency
                 partial.credit_amount_currency = partial.credit_move_id.amount_currency
 
-            if not no_valid:
-                return
 
         bad_partials = self.filtered(lambda partial: not partial.debit_currency_id or not partial.credit_currency_id)
 
         if bad_partials:
+
             raise ValidationError(_("Missing foreign currencies on partials having ids: %s", bad_partials.ids))
 
 
