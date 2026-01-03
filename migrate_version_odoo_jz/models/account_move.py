@@ -21,8 +21,8 @@ from odoo.tools import (
 class AccountPartialReconcile(models.Model):
     _inherit = "account.partial.reconcile"
 
-    @api.constrains('debit_currency_id', 'credit_currency_id')
-    def _check_required_computed_currencies(self):
+    #@api.constrains('debit_currency_id', 'credit_currency_id')
+    def check_required_computed_currencies_update_force(self):
         #return
         bad_partials = self.filtered(lambda partial: not partial.debit_currency_id or not partial.credit_currency_id)
         if bad_partials:
@@ -33,10 +33,7 @@ class AccountPartialReconcile(models.Model):
                 partial.debit_amount_currency = partial.debit_move_id.amount_currency
                 partial.credit_amount_currency = partial.credit_move_id.amount_currency
 
-        bad_partials = self.filtered(lambda partial: not partial.debit_currency_id or not partial.credit_currency_id)
 
-        if bad_partials:
-            raise ValidationError(_("Missing foreign currencies on partials having ids: %s", bad_partials.ids))
 
 
 class AccountMove(models.Model):

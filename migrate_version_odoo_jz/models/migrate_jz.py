@@ -481,7 +481,7 @@ class MigrateJz(models.Model):
 
         if partials:
             for partial in partials:
-                partial._check_required_computed_currencies()
+                partial.check_required_computed_currencies_update_force()
                 continue
                 partial.debit_currency_id = partial.debit_move_id.currency_id
                 partial.credit_currency_id = partial.credit_move_id.currency_id
