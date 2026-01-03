@@ -492,9 +492,31 @@ class MigrateJz(models.Model):
 
             return
 
-        raise ValidationError('CCC')
+        moveslines_without_amount = self.env['account.move.line'].search([
+            ('price_subtotal', '=', 0),
+            ('move_id.move_type', '!=', 'entry'),
+            ('display_type', '=', 'product'),
+            ('price_unit', '!=', 0),
+            ('account_id.account_type', '!=', 'off_balance'),
+            ('move_id', '!=', False),
+        ], limit=500)
 
+        # raise ValidationError(moveslines_without_amount.move_id)
 
+        if moveslines_without_amount:
+            for mvl in moveslines_without_amount:
+                mvl._compute_totals()
+                continue
+
+                # raise ValidationError(mvl.move_id)
+
+                try:
+                    mvl._compute_totals()
+                except:
+                    # raise ValidationError(mvl.move_id)
+                    continue
+
+            return
 
 
 
@@ -507,6 +529,8 @@ class MigrateJz(models.Model):
         if moves:
 
             for mv in moves:
+                mv._compute_amount()
+                continue
                 try:
                     mv._compute_amount()
                 except:
@@ -516,29 +540,7 @@ class MigrateJz(models.Model):
 
             return
 
-        moveslines_without_amount = self.env['account.move.line'].search([
-            ('price_subtotal', '=', 0),
-            ('move_id.move_type', '!=', 'entry'),
-            ('display_type','=','product'),
-            ('price_unit','!=',0),
-            ('account_id.account_type','!=','off_balance'),
-            ('move_id', '!=', False),
-        ], limit=1)
 
-        #raise ValidationError(moveslines_without_amount.move_id)
-
-        if moveslines_without_amount:
-            for mvl in moveslines_without_amount:
-
-                # raise ValidationError(mvl.move_id)
-
-                try:
-                    mvl._compute_totals()
-                except:
-                    #raise ValidationError(mvl.move_id)
-                    continue
-
-            return
 
 
 
