@@ -578,6 +578,8 @@ class MigrateJz(models.Model):
 
         if moves:
 
+            raise ValidationError(moves)
+
             for mv in moves:
                 #mv._compute_amount()
                 #continue
