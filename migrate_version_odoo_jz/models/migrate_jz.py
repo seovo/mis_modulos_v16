@@ -578,6 +578,8 @@ class MigrateJz(models.Model):
             for move in moves_stock:
                 move._compute_quantity()
 
+            return
+
 
 
         moves_without_payment = self.env['account.move'].search([
