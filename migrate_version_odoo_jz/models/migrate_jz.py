@@ -571,7 +571,7 @@ class MigrateJz(models.Model):
             ('amount_total_in_currency_signed', '=', 0),
             ('move_type', '!=', 'entry'),
             ('state','=','posted'),
-            ('payment_state','!=','reversed')
+            ('payment_state','!=','reversed'),
             ('currency_id','=',self.env.ref('base.PEN').id) ,], limit=200)
 
         if moves:
