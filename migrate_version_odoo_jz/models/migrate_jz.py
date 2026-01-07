@@ -543,7 +543,11 @@ class MigrateJz(models.Model):
 
                     AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
 
-                    line.price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
+                    price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
+
+                    raise ValidationError(price_subtotal)
+
+                    line.price_subtotal = price_subtotal
                     line.price_total = base_line['tax_details']['raw_total_included_currency']
 
                     if line.price_subtotal  == 0:
