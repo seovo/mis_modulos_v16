@@ -525,20 +525,29 @@ class MigrateJz(models.Model):
 
                 # raise ValidationError(mvl.move_id)
 
-                line = mvl
 
-                base_line = line.move_id._prepare_product_base_line_for_taxes_computation(line)
-
-                AccountTax = self.env['account.tax']
-
-                AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
 
                 raise ValueError(base_line)
 
                 try:
                     mvl._compute_totals()
                 except:
-                    raise ValidationError([mvl.move_id,mvl.id])
+
+                    #version 18
+
+                    line = mvl
+
+                    base_line = line.move_id._prepare_product_base_line_for_taxes_computation(line)
+
+                    AccountTax = self.env['account.tax']
+
+                    AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
+
+                    line.price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
+                    line.price_total = base_line['tax_details']['raw_total_included_currency']
+
+
+                    #raise ValidationError([mvl.move_id,mvl.id])
                     #continue
 
             return
