@@ -418,7 +418,7 @@ class MigrateModelJz(models.Model):
         for fila in resultados:
             val1 = ','.join(column_names)
             val2 = corchetes_n
-            # raise ValueError(val3) account_invoice_payment_rel
+
 
 
 
@@ -462,25 +462,7 @@ END $$;
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
 
-                    if self.table == 'account_invoice_payment_rel':
-                        #SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
 
-                        #f"INSERT INTO account_move__account_payment (payment_id,invoice_id) VALUES (4 , SELECT id FROM  account_move WHERE x_invoice_id = 5 ) ;"
-
-                        SQL_INSERT = f'''
-                    DO $$
-BEGIN
-    INSERT INTO account_move__account_payment  (payment_id,invoice_id)  
-    SELECT {fila[0]}, id  FROM account_move WHERE x_invoice_id = {fila[1]} ;
-    
-EXCEPTION
-    WHEN foreign_key_violation THEN
-        RAISE NOTICE 'Error: El registro de invoice_line_id no existe. Ignorando...';
-    WHEN others THEN
-        RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
-        
-END $$;
-                        '''
 
             else:
                 if self.update_if_exist:
@@ -589,6 +571,28 @@ END $$;
                             RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
 
                     END $$; '''
+
+            if self.table == 'account_invoice_payment_rel':
+
+                # SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
+
+                # f"INSERT INTO account_move__account_payment (payment_id,invoice_id) VALUES (4 , SELECT id FROM  account_move WHERE x_invoice_id = 5 ) ;"
+
+                SQL_INSERT = f'''
+                                DO $$
+            BEGIN
+                INSERT INTO account_move__account_payment  (payment_id,invoice_id)  
+                SELECT {fila[0]}, id  FROM account_move WHERE x_invoice_id = {fila[1]} ;
+
+            EXCEPTION
+                WHEN foreign_key_violation THEN
+                    RAISE NOTICE 'Error: El registro de invoice_line_id no existe. Ignorando...';
+                WHEN others THEN
+                    RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
+
+            END $$;
+                                    '''
+
 
             if self.show_data:
                 raise ValueError([SQL_INSERT,fila])
