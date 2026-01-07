@@ -520,6 +520,11 @@ END $$;
                                     if self.show_data:
                                         raise ValueError([result, SQL_CONSULTA, [fila[0], fila[3], fila]])
                                 else:
+
+                                    lines = self.env['account.move.line'].search([('x_invoice_id','=',fila[0]),('name','ilike',fila[1])])
+
+                                    raise ValidationError(lines)
+
                                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s"
 
                                     self.env.cr.execute(SQL_CONSULTA, [fila[0]])
