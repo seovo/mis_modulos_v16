@@ -282,8 +282,8 @@ class MigrateModelJz(models.Model):
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
 
-        if self.show_data:
-            raise ValueError(resultados)
+        #if self.show_data:
+        #    raise ValueError(resultados)
 
         if self.table == 'account_journal':
 
@@ -590,7 +590,8 @@ END $$;
 
                     END $$; '''
 
-
+            if self.show_data:
+                raise ValueError([SQL_INSERT,fila])
 
             #raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
