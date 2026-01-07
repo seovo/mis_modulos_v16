@@ -510,11 +510,13 @@ END $$;
                                 self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[3]])
                                 result = self.env.cr.fetchall()
 
+                                if self.show_data:
+                                    raise ValueError([result, SQL_CONSULTA, [fila[0], fila[3]]])
+
                                 #if result and len(result) > 1:
                                 #    result = result[0]
 
-                            if self.show_data:
-                                raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
+
 
 
 
