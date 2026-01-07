@@ -21,6 +21,7 @@ class MigrateModelJz(models.Model):
     no_existe_id = fields.Boolean()
     where_set = fields.Text()
     identificador = fields.Char(default='id')
+    sequence = fields.Integer(string="Sequence", default=10)
 
     is_part_cron = fields.Boolean(string='Ejecutar por Lotes Cron')
     last_value = fields.Integer(string='Ultimo Registro Ejecutado %LAST')

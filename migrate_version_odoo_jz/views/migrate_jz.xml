@@ -1,5 +1,18 @@
 <odoo>
 
+    <record model="ir.ui.view" id="migrate_model_jz_tree" >
+        <field name="name">migrate.model.jz.tree</field>
+        <field name="model">migrate.model.jz</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="table" />
+
+            </list>
+
+        </field>
+    </record>
+
 
     <record model="ir.ui.view" id="migrate_model_jz_form" >
         <field name="name">migrate.model.jz.form</field>
@@ -77,6 +90,19 @@
         </field>
     </record>
 
+
+    <record model="ir.ui.view" id="migrate_jz_tree" >
+        <field name="name">migrate.jz.tree</field>
+        <field name="model">migrate.jz</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="host" />
+                <field name="version" />
+
+            </list>
+
+        </field>
+    </record>
 
     <record model="ir.ui.view" id="migrate_jz_form" >
         <field name="name">migrate.jz.form</field>
