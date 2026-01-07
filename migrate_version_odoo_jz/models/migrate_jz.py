@@ -421,6 +421,25 @@ class MigrateJz(models.Model):
 
         return cursor
 
+    def update_currency_migrate_jz(self):
+        for mvl in moveslines_without_amount:
+
+            line = mvl
+
+            # raise ValidationError(str([line.move_id.is_invoice(True),line.move_id.move_type,line.move_id.get_sale_types(True)]))
+
+            # raise ValidationError(str([line.currency_id,line.company_id.currency_id,line.move_id.is_invoice(True)]))
+
+            if line.amount_currency == 0:
+                tt = line.currency_id.round(line.balance * line.currency_rate)
+
+                # raise ValidationError(tt)
+                sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
+                # raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
+                self.env.cr.execute(sql, [tt, line.id])
+                # line.amount_currency = tt
+
+
     def update_computes_funciones_migraciones(self):
 
         cron_models = self.env['migrate.model.jz'].search([('is_part_cron','=',True)],limit=1)
@@ -457,27 +476,10 @@ class MigrateJz(models.Model):
         #raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
-            for mvl in moveslines_without_amount:
+            self.update_currency_migrate_jz(moveslines_without_amount)
 
 
-
-                line = mvl
-
-                #raise ValidationError(str([line.move_id.is_invoice(True),line.move_id.move_type,line.move_id.get_sale_types(True)]))
-
-                #raise ValidationError(str([line.currency_id,line.company_id.currency_id,line.move_id.is_invoice(True)]))
-
-                if line.amount_currency == 0:
-
-                    tt = line.currency_id.round(line.balance * line.currency_rate)
-
-                    #raise ValidationError(tt)
-                    sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
-                    #raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
-                    self.env.cr.execute(sql,[tt,line.id])
-                    #line.amount_currency = tt
-
-                raise ValidationError([mvl.move_id,line.amount_currency])
+                #raise ValidationError([mvl.move_id,line.amount_currency])
 
 
             return
@@ -582,8 +584,11 @@ class MigrateJz(models.Model):
                 try:
                     mv._compute_amount()
                 except:
-                    raise ValidationError(mv)
-                    continue
+
+                    self.update_currency_migrate_jz(mv.invoice_line_ids)
+
+                    #raise ValidationError(mv)
+                    #continue
 
 
             return
