@@ -486,9 +486,9 @@ class MigrateJz(models.Model):
 
         partials = self.env['account.partial.reconcile'].search([
             '|',('debit_currency_id', '=', False),('credit_currency_id', '=', False)
-            ], limit=1)
+            ], limit=1000)
 
-        raise ValidationError(partials)
+        #raise ValidationError(partials)
 
         if partials:
             for partial in partials:
@@ -511,6 +511,8 @@ class MigrateJz(models.Model):
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
         ], limit=500)
+
+        raise ValidationError(moveslines_without_amount)
 
         # raise ValidationError(moveslines_without_amount.move_id)
 
