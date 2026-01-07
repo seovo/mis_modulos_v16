@@ -525,6 +525,12 @@ class MigrateJz(models.Model):
 
                 # raise ValidationError(mvl.move_id)
 
+                line = mvl
+
+                base_line = line.move_id._prepare_product_base_line_for_taxes_computation(line)
+
+                raise ValueError(base_line)
+
                 try:
                     mvl._compute_totals()
                 except:
