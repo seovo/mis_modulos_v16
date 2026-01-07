@@ -520,16 +520,16 @@ class MigrateJz(models.Model):
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
-                mvl._compute_totals()
-                continue
+                #mvl._compute_totals()
+                #continue
 
                 # raise ValidationError(mvl.move_id)
 
                 try:
                     mvl._compute_totals()
                 except:
-                    # raise ValidationError(mvl.move_id)
-                    continue
+                    raise ValidationError(mvl.move_id)
+                    #continue
 
             return
 
