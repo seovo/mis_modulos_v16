@@ -522,10 +522,11 @@ END $$;
                                 else:
 
                                     lines = self.env['account.move.line'].search([('x_invoice_id','=',fila[0]),('name','ilike',fila[1])])
-
+                                    result = []
                                     if lines:
                                         for ln in lines:
-                                            ln.price_unit = fila[2]
+                                            result.append(ln.id)
+                                            #ln.price_unit = fila[2]
 
                                     #raise ValidationError(lines)
 
