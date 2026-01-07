@@ -580,7 +580,7 @@ class MigrateJz(models.Model):
 
 
 
-        moves_without_payment = self.env['account.move'].search([
+        moves_without_payment = self.env['stock.move'].search([
             ('payment_state', '=', 'not_paid'),
             # ('status_in_payment', '!=', 'paid'),
             ('state', '=', 'posted'),
