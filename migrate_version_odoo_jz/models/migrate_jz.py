@@ -546,7 +546,7 @@ class MigrateJz(models.Model):
                     price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
                     price_total = base_line['tax_details']['raw_total_included_currency']
 
-                    sql = f''' UPDATE account_move_line SET subtotal = %s ,  price_total = %s  WHERE id = {line.id} '''
+                    sql = f''' UPDATE account_move_line SET price_subtotal = %s ,  price_total = %s  WHERE id = {line.id} '''
 
                     self.env.cr.execute(sql, [price_subtotal,price_total])
 
