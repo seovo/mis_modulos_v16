@@ -567,6 +567,26 @@ class MigrateJz(models.Model):
 
             return
 
+        moves_without_payment = self.env['account.move'].search([
+            ('payment_state', '=', 'not_paid'),
+            # ('status_in_payment', '!=', 'paid'),
+            ('state', '=', 'posted'),
+            # ('move_type', 'in', ['out_invoice', 'out_refund']),
+            ("matched_payment_ids", "!=", False)], limit=10)
+
+        # raise ValidationError(moves_without_payment)
+
+        if moves_without_payment:
+            for paymentm in moves_without_payment:
+
+                try:
+                    # paymentm._compute_amount()
+                    paymentm._compute_payment_state()
+                except:
+                    # raise ValidationError(paymentm)
+                    continue
+
+            return
 
 
         moves = self.env['account.move'].search([
@@ -578,7 +598,7 @@ class MigrateJz(models.Model):
 
         if moves:
 
-            raise ValidationError(moves)
+            #raise ValidationError(moves)
 
             for mv in moves:
                 #mv._compute_amount()
@@ -599,7 +619,7 @@ class MigrateJz(models.Model):
 
 
 
-        raise ValidationError('BBB')
+        #raise ValidationError('BBB')
 
         moves_without_amount = self.env['account.move'].search([
             ('amount_total', '=', 0),
@@ -625,26 +645,7 @@ class MigrateJz(models.Model):
 
             return
 
-        moves_without_payment = self.env['account.move'].search([
-            ('payment_state', '=', 'not_paid'),
-            # ('status_in_payment', '!=', 'paid'),
-            ('state', '=', 'posted'),
-            # ('move_type', 'in', ['out_invoice', 'out_refund']),
-            ("matched_payment_ids", "!=", False)], limit=10)
 
-        # raise ValidationError(moves_without_payment)
-
-        if moves_without_payment:
-            for paymentm in moves_without_payment:
-
-                try:
-                    # paymentm._compute_amount()
-                    paymentm._compute_payment_state()
-                except:
-                    # raise ValidationError(paymentm)
-                    continue
-
-            return
 
 
 
