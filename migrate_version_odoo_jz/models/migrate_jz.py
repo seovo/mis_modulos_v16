@@ -450,6 +450,7 @@ class MigrateJz(models.Model):
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('currency_id','=',self.env.ref('base.PEN').id) ,
+            ('balance','!=',0)
             #('move_id','=',59)
         ])
 
@@ -472,7 +473,7 @@ class MigrateJz(models.Model):
 
                     #raise ValidationError(tt)
                     sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
-                    raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
+                    #raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
                     self.env.cr.execute(sql,[tt,line.id])
                     #line.amount_currency = tt
 
