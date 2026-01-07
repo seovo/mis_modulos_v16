@@ -421,7 +421,7 @@ class MigrateJz(models.Model):
 
         return cursor
 
-    def update_currency_migrate_jz(self):
+    def update_currency_migrate_jz(self,moveslines_without_amount):
         for mvl in moveslines_without_amount:
 
             line = mvl
