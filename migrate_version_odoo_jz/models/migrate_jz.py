@@ -580,7 +580,7 @@ class MigrateJz(models.Model):
                 try:
                     mv._compute_amount()
                 except:
-                    #raise ValidationError(mvl.move_id)
+                    raise ValidationError(mvl.move_id)
                     continue
 
 
