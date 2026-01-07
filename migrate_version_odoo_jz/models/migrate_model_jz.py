@@ -22,6 +22,7 @@ class MigrateModelJz(models.Model):
     where_set = fields.Text()
     identificador = fields.Char(default='id')
     sequence = fields.Integer(string="Sequence", default=10)
+    show_data = fields.Boolean(string='Mostrar Data')
 
     is_part_cron = fields.Boolean(string='Ejecutar por Lotes Cron')
     last_value = fields.Integer(string='Ultimo Registro Ejecutado %LAST')
@@ -281,9 +282,8 @@ class MigrateModelJz(models.Model):
 
         resultados = cursor.fetchall()  # Obtener todos los resultados
 
-        #raise ValueError(resultados)
-
-
+        if self.show_data:
+            raise ValueError(resultados)
 
         if self.table == 'account_journal':
 

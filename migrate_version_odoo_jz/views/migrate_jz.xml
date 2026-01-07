@@ -45,6 +45,7 @@
                             <field name="identificador" />
                             <field name="new_table" />
                             <field name="no_existe_id" />
+                            <field name="show_data" />
                         </group>
 
 
