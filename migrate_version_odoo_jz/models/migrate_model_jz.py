@@ -489,15 +489,15 @@ END $$;
 
                             #raise ValueError(result)
 
-                            if not result:
-                                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0  AND price_unit != 0 "
-                                self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1][:20]])
-                                result = self.env.cr.fetchall()
+                            #if not result:
+                            #    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0  AND price_unit != 0 "
+                            #    self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1][:20]])
+                            #    result = self.env.cr.fetchall()
 
-                            if not result:
-                                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0  AND price_unit != 0 "
-                                self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1][5:25]])
-                                result = self.env.cr.fetchall()
+                            #if not result:
+                            #    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND POSITION(%s IN name) > 0  AND price_unit != 0 "
+                            #    self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[1][5:25]])
+                            #    result = self.env.cr.fetchall()
 
 
                             #if not result:
@@ -510,13 +510,24 @@ END $$;
                             #raise ValueError([result,SQL_CONSULTA,[fila[0],fila[1]]])
 
                             if not result or len(result) > 1:
-                                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND product_id = %s "
 
-                                self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[3]])
-                                result = self.env.cr.fetchall()
+                                if fila[3]:
+                                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND product_id = %s "
 
-                                if self.show_data:
-                                    raise ValueError([result, SQL_CONSULTA, [fila[0], fila[3],fila]])
+                                    self.env.cr.execute(SQL_CONSULTA, [fila[0], fila[3]])
+                                    result = self.env.cr.fetchall()
+
+                                    if self.show_data:
+                                        raise ValueError([result, SQL_CONSULTA, [fila[0], fila[3], fila]])
+                                else:
+                                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s"
+
+                                    self.env.cr.execute(SQL_CONSULTA, [fila[0]])
+                                    result = self.env.cr.fetchall()
+                                    raise ValidationError(str[result,fila[1]])
+
+
+
 
                                 #if result and len(result) > 1:
                                 #    result = result[0]
