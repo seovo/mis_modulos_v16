@@ -529,6 +529,10 @@ class MigrateJz(models.Model):
 
                 base_line = line.move_id._prepare_product_base_line_for_taxes_computation(line)
 
+                AccountTax = self.env['account.tax']
+
+                AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
+
                 raise ValueError(base_line)
 
                 try:
