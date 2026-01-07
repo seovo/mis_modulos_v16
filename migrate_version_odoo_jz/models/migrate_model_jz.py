@@ -482,6 +482,9 @@ END $$;
 
                             SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
 
+                            if self.show_data:
+                                raise ValueError([SQL_CONSULTA,[fila[0],fila[1]]])
+
                             self.env.cr.execute(SQL_CONSULTA,[fila[0],fila[1]])
                             result = self.env.cr.fetchall()
 
