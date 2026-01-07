@@ -523,13 +523,17 @@ END $$;
 
                                     lines = self.env['account.move.line'].search([('x_invoice_id','=',fila[0]),('name','ilike',fila[1])])
 
-                                    raise ValidationError(lines)
+                                    if lines:
+                                        for ln in lines:
+                                            ln.price_unit = fila[2]
 
-                                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s"
+                                    #raise ValidationError(lines)
 
-                                    self.env.cr.execute(SQL_CONSULTA, [fila[0]])
-                                    result = self.env.cr.fetchall()
-                                    raise ValidationError(str([result,fila[1]]))
+                                    #SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s"
+
+                                    #self.env.cr.execute(SQL_CONSULTA, [fila[0]])
+                                    #result = self.env.cr.fetchall()
+                                    #raise ValidationError(str([result,fila[1]]))
 
 
 
