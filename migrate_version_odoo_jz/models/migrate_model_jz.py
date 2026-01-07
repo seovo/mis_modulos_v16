@@ -524,7 +524,7 @@ END $$;
 
                                     self.env.cr.execute(SQL_CONSULTA, [fila[0]])
                                     result = self.env.cr.fetchall()
-                                    raise ValidationError(str[result,fila[1]])
+                                    raise ValidationError(str([result,fila[1]]))
 
 
 
