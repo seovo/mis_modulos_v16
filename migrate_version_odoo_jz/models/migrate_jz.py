@@ -567,6 +567,19 @@ class MigrateJz(models.Model):
 
             return
 
+
+
+
+        #cantidades de inventario
+
+        moves_stock = self.env['stock.move'].search([('quantity','=',False),('move_lines_ids','!=',False)],limit=2000)
+
+        if moves_stock:
+            for move in moves_stock:
+                move._compute_quantity()
+
+
+
         moves_without_payment = self.env['account.move'].search([
             ('payment_state', '=', 'not_paid'),
             # ('status_in_payment', '!=', 'paid'),
