@@ -458,7 +458,7 @@ class MigrateJz(models.Model):
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
 
-                raise ValidationError(mvl.move_id)
+
 
                 line = mvl
 
@@ -472,8 +472,11 @@ class MigrateJz(models.Model):
 
                     #raise ValidationError(tt)
                     sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
+                    raise  ValidationError(sql)
                     self.env.cr.execute(sql,[tt,line.id])
                     #line.amount_currency = tt
+
+                raise ValidationError([mvl.move_id,line.amount_currency])
 
 
             return
