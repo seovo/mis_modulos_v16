@@ -527,7 +527,7 @@ class MigrateJz(models.Model):
 
 
 
-                raise ValueError(base_line)
+                #raise ValueError(base_line)
 
                 try:
                     mvl._compute_totals()
@@ -545,6 +545,9 @@ class MigrateJz(models.Model):
 
                     line.price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
                     line.price_total = base_line['tax_details']['raw_total_included_currency']
+
+                    if line.price_subtotal  == 0:
+                        raise ValidationError([mvl.move_id, mvl.id])
 
 
                     #raise ValidationError([mvl.move_id,mvl.id])
