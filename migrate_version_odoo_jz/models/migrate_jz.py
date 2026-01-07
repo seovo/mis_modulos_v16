@@ -544,13 +544,18 @@ class MigrateJz(models.Model):
                     AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
 
                     price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
+                    price_total = base_line['tax_details']['raw_total_included_currency']
 
-                    raise ValidationError(price_subtotal)
+                    sql = f''' UPDATE account_move_line SET subtotal = %s ,  price_total = %s  WHERE id = {line.id} '''
 
-                    line.price_subtotal = price_subtotal
-                    line.price_total = base_line['tax_details']['raw_total_included_currency']
+                    self.env.cr.execute(sql, [price_subtotal,price_total])
 
-                    if line.price_subtotal  == 0:
+                    #raise ValidationError(price_subtotal)
+
+                    #line.price_subtotal = price_subtotal
+                    #line.price_total = base_line['tax_details']['raw_total_included_currency']
+
+                    if price_subtotal  == 0:
                         raise ValidationError([mvl.move_id, mvl.id])
 
 
