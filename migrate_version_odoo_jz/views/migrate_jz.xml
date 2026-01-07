@@ -97,7 +97,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="host" />
-                <field name="version" />
+                <field name="from_version" />
 
             </list>
 
