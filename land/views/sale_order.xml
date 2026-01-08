@@ -644,11 +644,19 @@
                    <field name="stage_land" widget="badge" optional="show" />
                    <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'" optional="show" />
                    <field name="state" optional="hidden" />
+
+
                    <field name="dues_land" optional="show" />
                    <field name="qty_dues_payment" optional="show" />
+
+                   <field name="total_dues_independence"  optional="show" />
+                   <field name="qty_dues_independence_payment"  optional="show" />
+
                    <field name="value_due_land" optional="show" />
                    <field name="credit_year_now"  optional="hidden"  />
                    <button name="show_dues_land" string="Pagos" type="object" />
+
+
                    <field name="paid_land_1" optional="hidden"  decoration-success="paid_land_1 > 0"  decoration-danger="paid_land_1 * -1 > 0" />
                    <field name="paid_land_2" optional="hidden"  decoration-success="paid_land_2 > 0"  decoration-danger="paid_land_3 * -1 > 0" />
                    <field name="paid_land_3" optional="hidden"  decoration-success="paid_land_3 > 0"  decoration-danger="paid_land_3 * -1 > 0" />
@@ -662,6 +670,8 @@
                    <field name="paid_land_11" optional="hidden"  decoration-success="paid_land_11 > 0"  decoration-danger="paid_land_11 * -1 > 0"  />
                    <field name="paid_land_12" optional="hidden"  decoration-success="paid_land_12 > 0"  decoration-danger="paid_land_12 * -1 > 0"  />
                    <field name="amount_total"  optional="hidden" />
+
+
                    <field name="price_initial_land" string="Inicial"  optional="hidden" />
                    <field name="price_credit_land" string="Credito" optional="show"  />
                    <field name="total_payment_land" string="Abonado" optional="show"  />

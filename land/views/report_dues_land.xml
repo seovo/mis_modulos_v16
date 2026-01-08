@@ -79,12 +79,12 @@
                                     <field name="state" optional="hidden" />
 
 
-                                    <field name="dues_land" />
-                                    <field name="qty_dues_payment" />
+                                    <field name="dues_land" optional="show" />
+                                    <field name="qty_dues_payment" optional="show" />
 
 
-                                    <field name="amount_payment_month_land"  optional="show" />
-                                    <field name="amount_total_payment_month_land"  optional="show" />
+                                    <field name="total_dues_independence"  optional="show" />
+                                    <field name="qty_dues_independence_payment"  optional="show" />
 
 
 
