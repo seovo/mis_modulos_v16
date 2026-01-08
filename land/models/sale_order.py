@@ -34,6 +34,7 @@ class SaleOrder(models.Model):
 
     total_dues_independence = fields.Integer(compute='get_qty_dues_payment', string="Total Independización",store=True)
     qty_dues_independence_payment = fields.Integer(compute='get_qty_dues_payment', string="N° Independización Pagadas",store=True)
+    diff_dues_independence = fields.Integer(compute='get_qty_dues_payment', string="N° Independización Pendientes",store=True)
 
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)

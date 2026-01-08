@@ -37,6 +37,7 @@
                             <field name="name" />
                             <field name="seller_land_id"  widget="many2many_tags"  />
                             <field name="is_independence" />
+                            <field name="diff_dues_independence" invisible="not is_independence" />
                         </group>
                         <group>
                             <field name="type_periodo_invoiced"  />

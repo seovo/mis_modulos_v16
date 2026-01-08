@@ -44,6 +44,8 @@ class CommissionRiman(models.Model):
     ], string='Etapa Pago  Terreno')
 
     is_independence = fields.Boolean(string='Es Independización')
+    diff_dues_independence = fields.Integer(string="N° Independización >=")
+
 
     def update_data_cronograma(self):
         self.env['sale.order'].update_schedule_all()
@@ -104,7 +106,8 @@ class CommissionRiman(models.Model):
             ]
 
             if record.is_independence:
-                domain.append(('total_dues_independence','>',0))
+                domain.append(('total_dues_independence','>',0),('diff_dues_independence','>=',record.diff_dues_independence))
+
 
             if record.mounth_expired:
                 domain.append(('mounth_expired_land','>=',record.mounth_expired))
