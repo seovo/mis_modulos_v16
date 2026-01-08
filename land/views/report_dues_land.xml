@@ -36,6 +36,7 @@
                         <group>
                             <field name="name" />
                             <field name="seller_land_id"  widget="many2many_tags"  />
+                            <field name="is_independence" />
                         </group>
                         <group>
                             <field name="type_periodo_invoiced"  />
