@@ -27,8 +27,14 @@ class SaleOrder(models.Model):
         ('cancel',_('Resuelto')),
         ('regularizado','Regularizado'),
     ],string="Estado Terreno",copy=False)
+
     dues_land            = fields.Float(string="Cuotas",copy=False)
+    qty_dues_payment     = fields.Integer(compute='get_qty_dues_payment', string="Cuotas Pagadas")
     value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='get_amount_prices_land',digits=(12, 3))
+
+    total_dues_independence = fields.Integer(compute='get_qty_dues_payment', string="Total Independización",store=True)
+    qty_dues_independence_payment = fields.Integer(compute='get_qty_dues_payment', string="N° Independización Pagadas",store=True)
+
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
     value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
@@ -59,6 +65,8 @@ class SaleOrder(models.Model):
     price_initial_land = fields.Float(string="Inicial del Terreno",compute="get_amount_prices_land",store=True,copy=False)
     price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True,copy=False)
     price_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True,copy=False)
+
+
 
     @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty','repeat_mz_lot')
     @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty','repeat_mz_lot')
@@ -131,7 +139,7 @@ class SaleOrder(models.Model):
     m2_land = fields.Char(string="AREA (m2)")
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
-    qty_dues_payment   = fields.Integer(compute='get_qty_dues_payment',string="Cuotas Pagadas")
+
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
 
@@ -676,28 +684,45 @@ class SaleOrder(models.Model):
 
         }
 
+    @api.depends('order_line', 'order_line.price_unit', 'order_line.product_uom_qty', 'invoice_lines','invoice_lines.quantity')
     def get_qty_dues_payment(self):
 
         for record in self:
             cantidad_facturada = 0
+            total_dues_independence = 0
+            qty_dues_independence_payment = 0
             for line in record.order_line:
-                if line.product_id.payment_land_dues:
 
-                    for line_inv in line.invoice_lines:
+                for line_inv in line.invoice_lines:
 
-                        if line_inv.move_id.state == 'cancel':
-                            continue
+                    if line_inv.move_id.state == 'cancel':
+                        continue
 
-                        if line_inv.move_id.l10n_pe_edi_reversal_type_id:
-                            continue
+                    if line_inv.move_id.l10n_pe_edi_reversal_type_id:
+                        continue
 
-                        if line_inv.move_id.payment_state ==  'reversed':
-                            continue
+                    if line_inv.move_id.payment_state == 'reversed':
+                        continue
 
-                        if not line_inv.move_id.debit_origin_id:
+                    if not line_inv.move_id.debit_origin_id:
+
+                        if line.product_id.is_independence:
+                            total_dues_independence += line.product_uom_qty
+                            qty_dues_independence_payment += line.qty_invoiced
+
+                        if line.product_id.payment_land_dues:
                             cantidad_facturada += line_inv.quantity
-                    #qty += line.qty_invoiced
+
+                        # qty += line.qty_invoiced
+
+
+
+
+
             record.qty_dues_payment = cantidad_facturada
+
+            record.total_dues_independence = total_dues_independence
+            record.qty_dues_independence_payment = qty_dues_independence_payment
 
     @api.onchange('date_sign_land','type_periodo_invoiced')
     @api.depends('date_sign_land', 'type_periodo_invoiced')
@@ -1363,9 +1388,6 @@ class SaleOrder(models.Model):
                     stage = 'completed'
 
             record.stage_payment_lan = stage
-
-
-
 
     def _recalcule_price_land(self):
         for record in self:

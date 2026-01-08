@@ -13,6 +13,9 @@ class AccountPaymentRegister(models.TransientModel):
         if self.partner_bank_id.bank_id:
             move = self.line_ids.move_id
 
+            #state = move.edi_state
+            #if state
+
             self.env['bank.origin'].create({
                 'move_id': move.id,
                 'date': self.payment_date,

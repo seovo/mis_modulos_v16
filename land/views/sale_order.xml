@@ -230,6 +230,9 @@
                                <field name="dues_land" readonly="1" />
                                <field name="qty_dues_payment" readonly="1" />
 
+                               <field name="total_dues_independence" readonly="1" />
+                               <field name="qty_dues_independence_payment" readonly="1" />
+
                            </group>
 
 
