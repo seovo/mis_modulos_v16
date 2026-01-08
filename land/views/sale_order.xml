@@ -64,6 +64,7 @@
                            <page string="Mora" >
                        <group>
                            <group>
+
                                <field name="partner_id" readonly="1"  />
                                <field name="mz_lot"  readonly="1" />
                                <field name="value_due_land" readonly="1"  />
