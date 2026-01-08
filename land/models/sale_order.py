@@ -728,8 +728,8 @@ class SaleOrder(models.Model):
             record.qty_dues_payment = cantidad_facturada
 
             record.total_dues_independence = total_dues_independence
-            record.qty_dues_independence_payment = qty_dues_independence_paymen
-            record.diff_dues_independence = total_dues_independence - qty_dues_independence_paymen
+            record.qty_dues_independence_payment = qty_dues_independence_payment
+            record.diff_dues_independence = total_dues_independence - qty_dues_independence_payment
 
     @api.onchange('date_sign_land','type_periodo_invoiced')
     @api.depends('date_sign_land', 'type_periodo_invoiced')
