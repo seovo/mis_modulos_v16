@@ -684,7 +684,8 @@ class SaleOrder(models.Model):
 
         }
 
-    @api.depends('order_line', 'order_line.price_unit', 'order_line.product_uom_qty', 'invoice_lines','invoice_lines.quantity')
+    @api.depends('order_line', 'order_line.price_unit', 'order_line.product_uom_qty',
+                 'order_line.invoice_lines','order_line.invoice_lines.quantity')
     def get_qty_dues_payment(self):
 
         for record in self:
