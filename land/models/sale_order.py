@@ -708,13 +708,11 @@ class SaleOrder(models.Model):
                     if line_inv.move_id.payment_state == 'reversed':
                         continue
 
-                    total_dues_independence += line.product_uom_qty
-
                     if not line_inv.move_id.debit_origin_id:
 
                         if line.product_id.is_independence:
 
-                            qty_dues_independence_payment +=line_inv.quantity
+                            qty_dues_independence_payment += line_inv.quantity
                             #line.qty_invoiced
 
                         if line.product_id.payment_land_dues:
