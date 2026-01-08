@@ -43,6 +43,8 @@ class CommissionRiman(models.Model):
         ('completed', 'Cuotas Completada')
     ], string='Etapa Pago  Terreno')
 
+    is_independence = fields.Boolean(string='Es Independización')
+
     def update_data_cronograma(self):
         self.env['sale.order'].update_schedule_all()
 
@@ -95,11 +97,18 @@ class CommissionRiman(models.Model):
 
         for record in self:
             record.order_ids = False
-            domain = [('nro_internal_land','!=',False),
-                      ('seller_land_id','in',record.seller_land_id.ids),
-                      ('mounth_expired_land','>=',record.mounth_expired),
-                      #('days_expired_land','>=',record.days_expired)
-                      ]
+
+            domain = [
+                ('nro_internal_land','!=',False),
+                ('seller_land_id','in',record.seller_land_id.ids)
+            ]
+
+            if record.is_independence:
+                domain.append(('total_dues_independence','>',0))
+
+            if record.mounth_expired:
+                domain.append(('mounth_expired_land','>=',record.mounth_expired))
+
             if record.type_periodo_invoiced != 'half_month_end_month':
                 domain.append(('type_periodo_invoiced','=',record.type_periodo_invoiced))
 
