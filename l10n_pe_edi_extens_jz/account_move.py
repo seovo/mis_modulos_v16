@@ -17,7 +17,7 @@ class AccountMove(models.Model):
 
                 day_min = 5
 
-                if self.l10n_latam_document_type_id.code:
+                if self.l10n_latam_document_type_id.code == 3:
                     day_min = 3
 
 
