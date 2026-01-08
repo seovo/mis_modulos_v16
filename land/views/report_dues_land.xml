@@ -82,6 +82,7 @@
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
 
+
                                     <field name="amount_payment_month_land"  optional="show" />
                                     <field name="amount_total_payment_month_land"  optional="show" />
 
