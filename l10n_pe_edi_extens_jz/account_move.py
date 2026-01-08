@@ -12,8 +12,17 @@ class AccountMove(models.Model):
             if record.invoice_date and record.state == 'draft' :
                 diff = fields.Datetime.now().date() - record.invoice_date
 
-                if diff.days > 5 :
-                    raise ValidationError('SOLO SE PERMITE COLOCAR FECHAS HASTA 5 DIAS ATRAS')
+
+                #para facturas
+
+                day_min = 5
+
+                if self.l10n_latam_document_type_id.code:
+                    day_min = 3
+
+
+                if diff.days > day_min :
+                    raise ValidationError(f'SOLO SE PERMITE COLOCAR FECHAS HASTA {day_min} DIAS ATRAS')
 
 
 
