@@ -107,7 +107,8 @@ class CommissionRiman(models.Model):
             ]
 
             if record.is_independence:
-                domain.append(('total_dues_independence','>',0),('diff_dues_independence','>=',record.diff_dues_independence))
+                domain.append(('total_dues_independence','>',0))
+                domain.append(('diff_dues_independence', '>=', record.diff_dues_independence))
 
 
             if record.mounth_expired:
