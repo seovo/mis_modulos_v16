@@ -44,7 +44,7 @@ class CommissionRiman(models.Model):
     ], string='Etapa Pago  Terreno')
 
     is_independence = fields.Boolean(string='Es Independización')
-    diff_dues_independence = fields.Integer(string="N° Independización >=")
+    diff_dues_independence = fields.Integer(string="N° Independización Pendientes >=")
 
 
     def update_data_cronograma(self):
@@ -94,7 +94,8 @@ class CommissionRiman(models.Model):
             record.dues_payment_max  = count_payment_max
             record.dues_max = dues_max
 
-    @api.onchange('type_periodo_invoiced','seller_land_id','mounth_expired','days_expired','stage_payment_lan')
+    @api.onchange('type_periodo_invoiced','seller_land_id','mounth_expired','days_expired','stage_payment_lan',
+                  'diff_dues_independence','is_independence')
     def update_data(self):
 
         for record in self:

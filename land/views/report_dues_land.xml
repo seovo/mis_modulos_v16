@@ -77,8 +77,16 @@
                                     <field name="stage_land" widget="badge" />
                                     <field name="stage_payment_lan" widget="badge" decoration-success="stage_payment_lan == 'payment'" />
                                     <field name="state" optional="hidden" />
+
+
                                     <field name="dues_land" />
                                     <field name="qty_dues_payment" />
+
+                                    <field name="amount_payment_month_land"  optional="show" />
+                                    <field name="amount_total_payment_month_land"  optional="show" />
+
+
+
                                     <field name="value_due_land" optional="hidden" />
                                     <button name="show_dues_land" string="Pagos" type="object" />
                                     <field name="amount_total"  optional="hidden" />
