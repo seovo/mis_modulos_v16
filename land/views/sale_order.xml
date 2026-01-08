@@ -58,35 +58,8 @@
                        </group>
                        <notebook>
                            <page string="Cronograma" name="cronograma">
-                       <field name="schedule_land_ids"
-
-
-                            >
-                                <tree string="Sales"
-                                      decoration-danger="is_paid == False"
-                                      decoration-success="is_paid == True"
-                                      create="false"
-                                      delete="false"
-                                      readonly="1" >
-                                    <field name="is_paid" readonly="1"   />
-                                    <field name="number_due" readonly="1"  />
-                                    <field name="date" readonly="1" />
-                                    <field name="invoice_date" />
-                                    <field name="balan" readonly="1" optional="hide" />
-                                    <field name="amount" readonly="1"   />
-
-
-
-                                    <field name="amount_due_land"  />
-                                    <field name="amount_mora_land"  />
-
-                                </tree>
-                       </field>
-
-
-
-
-                   </page>
+                               <field name="schedule_land_ids" readonly="1" />
+                           </page>
 
                            <page string="Mora" >
                        <group>
@@ -99,6 +72,8 @@
                                <field name="days_tolerance_land" readonly="1" />
                                <field name="dues_land" readonly="1" />
                                <field name="qty_dues_payment" readonly="1" />
+                               <field name="total_dues_independence" readonly="1" />
+                               <field name="qty_dues_independence_payment" readonly="1" />
 
                            </group>
 
