@@ -694,6 +694,9 @@ class SaleOrder(models.Model):
             qty_dues_independence_payment = 0
             for line in record.order_line:
 
+                if line.product_id.is_independence:
+                    total_dues_independence += line.product_uom_qty
+
                 for line_inv in line.invoice_lines:
 
                     if line_inv.move_id.state == 'cancel':
@@ -705,11 +708,14 @@ class SaleOrder(models.Model):
                     if line_inv.move_id.payment_state == 'reversed':
                         continue
 
+                    total_dues_independence += line.product_uom_qty
+
                     if not line_inv.move_id.debit_origin_id:
 
                         if line.product_id.is_independence:
-                            total_dues_independence += line.product_uom_qty
-                            qty_dues_independence_payment += line.qty_invoiced
+
+                            qty_dues_independence_payment +=line_inv.quantity
+                            #line.qty_invoiced
 
                         if line.product_id.payment_land_dues:
                             cantidad_facturada += line_inv.quantity
