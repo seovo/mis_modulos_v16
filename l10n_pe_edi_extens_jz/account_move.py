@@ -6,7 +6,7 @@ import json
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    @api.onchange('invoice_date')
+    @api.onchange('invoice_date','l10n_latam_document_type_id.code')
     def change_date_jz_jz(self):
         for record in self:
             if record.invoice_date and record.state == 'draft' :
@@ -17,7 +17,7 @@ class AccountMove(models.Model):
 
                 day_min = 5
 
-                if self.l10n_latam_document_type_id.code == '01':
+                if record.l10n_latam_document_type_id.code == '01':
                     day_min = 3
 
 
