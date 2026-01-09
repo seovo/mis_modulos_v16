@@ -47,6 +47,7 @@ class AccountMove(models.Model):
 
     def action_retry_edi_documents_error_all(self):
         moves = self.env['account.move'].search([('edi_state','=','to_send'),
+                                                 ('journal_id.edi_format_ids','!=',False),
                                                  ('state','=','posted'),
                                                  ('attempts_validate_sunat_jz','=',0)],limit=1)
 
