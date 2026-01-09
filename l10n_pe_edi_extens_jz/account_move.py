@@ -47,11 +47,17 @@ class AccountMove(models.Model):
 
     def action_retry_edi_documents_error_all(self):
         moves = self.env['account.move'].search([('edi_state','=','to_send'),
-                                                 ('attempts_validate_sunat_jz','=',0)],limit=1)
+                                                 ('attempts_validate_sunat_jz','=',0)],limit=2)
 
         #raise ValidationError(moves)
 
-        moves.action_retry_edi_documents_error()
+        for move in moves:
+            moves.action_retry_edi_documents_error()
+
+            if move.edi_state != 'sent':
+                break
+
+
 
 
     def action_retry_edi_documents_error(self):
