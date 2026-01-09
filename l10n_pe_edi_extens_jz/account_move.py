@@ -58,7 +58,7 @@ class AccountMove(models.Model):
         self.validate_cpe()
 
         if len(self) == 1:
-            if self.edi_state == 'to_send' and self.attempts_validate_sunat_jz == 0:
+            if self.edi_state == 'to_send' :
 
                 move = self
 
