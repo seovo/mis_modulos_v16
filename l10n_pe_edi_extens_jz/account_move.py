@@ -41,6 +41,7 @@ class AccountMove(models.Model):
 
     def action_retry_edi_documents_error(self):
 
+        raise ValidationError('HOLA')
         #self.validate_cpe()
 
         if len(self) == 1:
