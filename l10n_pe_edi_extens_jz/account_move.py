@@ -28,7 +28,7 @@ class AccountMove(models.Model):
     def concilied_invoiced_jz(self):
         move = self
         reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
-        #raise ValidationError(str(reconciled_partials))
+        raise ValidationError(str(reconciled_partials))
 
         self.js_assign_outstanding_line(75383)
 
@@ -40,9 +40,6 @@ class AccountMove(models.Model):
             if self.edi_document_ids:
                 self.button_process_edi_web_services()
         return res
-
-
-
 
 
 
