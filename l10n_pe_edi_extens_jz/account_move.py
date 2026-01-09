@@ -28,8 +28,9 @@ class AccountMove(models.Model):
     def concilied_invoiced_jz(self):
         move = self
         reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
-        raise ValidationError(str(reconciled_partials))
+        #raise ValidationError(str(reconciled_partials))
 
+        self.js_assign_outstanding_line(self, 75383)
 
 
     def action_post(self):
