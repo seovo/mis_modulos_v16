@@ -41,14 +41,16 @@ class AccountMove(models.Model):
 
     def action_retry_edi_documents_error(self):
 
-        raise ValidationError('HOLA')
+        #raise ValidationError('HOLA')
         #self.validate_cpe()
 
         if len(self) == 1:
-            if self.state == 'to_send':
-                record.button_draft()
+            if self.edi_state == 'to_send':
+                self.button_draft()
+                #return
+                self.action_post()
+
                 return
-                # record.action_post()
 
 
 
