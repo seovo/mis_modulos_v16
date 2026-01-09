@@ -9,6 +9,7 @@
     "depends": ["l10n_pe_edi"],
     "data": [
         "views/account_move.xml",
+        "views/cron.xml",
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},

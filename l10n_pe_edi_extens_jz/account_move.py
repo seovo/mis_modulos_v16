@@ -5,6 +5,7 @@ import json
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
+    attempts_validate_sunat_jz = fields.Integer(string="N° Intentos Validar Sunat",default=0)
 
     @api.onchange('invoice_date','l10n_latam_document_type_id.code')
     def change_date_jz_jz(self):
@@ -44,6 +45,11 @@ class AccountMove(models.Model):
                 self.button_process_edi_web_services()
         return res
 
+    def action_retry_edi_documents_error_all(self):
+        moves = self.env['account.move'].search([('edi_state','=','to_send'),
+                                                 ('attempts_validate_sunat_jz','=',0)],limit=1)
+
+        moves.action_retry_edi_documents_error()
 
 
     def action_retry_edi_documents_error(self):
@@ -52,7 +58,7 @@ class AccountMove(models.Model):
         self.validate_cpe()
 
         if len(self) == 1:
-            if self.edi_state == 'to_send':
+            if self.edi_state == 'to_send' and self.attempts_validate_sunat_jz == 0:
 
                 move = self
 
@@ -61,6 +67,8 @@ class AccountMove(models.Model):
                 self.button_draft()
                 #return
                 self.action_post()
+
+                self.attempts_validate_sunat_jz = 1
 
                 try:
                     for rline in reconciled_partials:
