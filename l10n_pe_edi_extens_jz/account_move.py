@@ -52,7 +52,7 @@ class AccountMove(models.Model):
         #raise ValidationError(moves)
 
         for move in moves:
-            moves.action_retry_edi_documents_error()
+            move.action_retry_edi_documents_error()
 
             if move.edi_state != 'sent':
                 break
