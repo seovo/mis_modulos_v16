@@ -50,7 +50,7 @@ class AccountMove(models.Model):
                                                  ('state','=','posted'),
                                                  ('attempts_validate_sunat_jz','=',0)],limit=1)
 
-        #raise ValidationError(moves)
+        raise ValidationError(moves)
 
         if not moves:
             moves = self.env['account.move'].search([('edi_state', '=', 'to_send'),
