@@ -53,14 +53,23 @@ class AccountMove(models.Model):
 
         if len(self) == 1:
             if self.edi_state == 'to_send':
+
+                reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
+
                 self.button_draft()
                 #return
                 self.action_post()
 
+                try:
+                    for rline in reconciled_partials:
+                        self.js_assign_outstanding_line(rline['aml_id'])
+                        # raise ValidationError(rline['aml_id'])
+                except:
+                    pass
+
+
+
                 return
-
-
-
 
 
         res = super(AccountMove, self).action_retry_edi_documents_error()
