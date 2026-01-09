@@ -26,7 +26,7 @@ class AccountMove(models.Model):
 
 
     def concilied_invoiced_jz(self):
-        move = self
+
         reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
 
         for rline in reconciled_partials:
@@ -53,6 +53,8 @@ class AccountMove(models.Model):
 
         if len(self) == 1:
             if self.edi_state == 'to_send':
+
+                move = self
 
                 reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
 
