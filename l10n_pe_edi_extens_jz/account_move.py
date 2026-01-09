@@ -7,6 +7,8 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
     attempts_validate_sunat_jz = fields.Integer(string="N° Intentos Validar Sunat",default=0)
 
+
+
     @api.onchange('invoice_date','l10n_latam_document_type_id.code')
     def change_date_jz_jz(self):
         for record in self:
