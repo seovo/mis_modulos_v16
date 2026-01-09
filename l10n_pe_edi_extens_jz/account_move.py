@@ -25,6 +25,11 @@ class AccountMove(models.Model):
                     raise ValidationError(f'SOLO SE PERMITE COLOCAR FECHAS HASTA {day_min} DIAS ATRAS')
 
 
+    def concilied_invoiced_jz(self):
+        reconciled_partials = move.sudo()._get_all_reconciled_invoice_partials()
+        raise ValidationError(reconciled_partials)
+
+
 
     def action_post(self):
         self.change_date_jz_jz()
