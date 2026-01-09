@@ -36,9 +36,17 @@ class AccountMove(models.Model):
 
 
 
+
+
+
     def action_retry_edi_documents_error(self):
 
         self.validate_cpe()
+
+        for record in self:
+            if record.state == 'to_send':
+                record.button_draft()
+                record.action_post()
 
         res = super(AccountMove, self).action_retry_edi_documents_error()
         return res
