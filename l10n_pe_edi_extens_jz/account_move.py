@@ -48,12 +48,15 @@ class AccountMove(models.Model):
         return res
 
     def action_retry_edi_documents_error_all(self):
+        #verificar si hay varias facturas que ya se enviaron esperar 2 horas para volver a enviar
+
+
         moves = self.env['account.move'].search([('edi_state','=','to_send'),
                                                  ('journal_id.edi_format_ids','!=',False),
                                                  ('state','=','posted'),
                                                  ('attempts_validate_sunat_jz','=',0)],limit=1)
 
-        #raise ValidationError(moves)
+        raise ValidationError(moves)
 
         if not moves:
             moves = self.env['account.move'].search([('edi_state', '=', 'to_send'),
