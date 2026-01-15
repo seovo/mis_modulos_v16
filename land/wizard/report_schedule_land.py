@@ -421,7 +421,9 @@ class ReportScheduleLand(models.TransientModel):
             OPS = []
 
             for pago in schedule_due.move_id.bank_origin_ids:
-                OPS.append(pago.operation_number)
+                if pago.operation_number:
+                    OPS.append(pago.operation_number)
+
 
             try:
                 OPS = ','.join(OPS) if OPS else ''
