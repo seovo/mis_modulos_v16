@@ -138,8 +138,29 @@ class SaleOrder(models.Model):
     lot_land = fields.Char(store=True,string="Lote Terreno")
     sector_land = fields.Char(store=True, string="Etapa Terreno")
     m2_land = fields.Char(string="AREA (m2)")
+
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
+    total_independence_land = fields.Float(string='Total Pagado Independencia')
+    saldo_independence_land = fields.Float(string='Saldo Independencia')
+
+    def update_credit_saldo(self):
+        for record in self:
+            total_payment = 0
+            total_independence = 0
+
+            for line in record.schedule_land_ids:
+                if line.type_schedule in ['dues','advances']:
+                    total_payment += line.amount_due_land
+
+                if line.type_schedule in ['independence']:
+                    total_independence += line.amount_due_land
+
+            record.total_payment_land = round(total_payment, 2)
+            record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
+
+            record.total_independence_land = round(total_independence, 2)
+            record.saldo_independence_land = round(record.price_independence_land - total_independence, 2)
 
     commision_lan     = fields.Float(string='Commision Terreno')
     commision_line_ids       = fields.One2many('commission.land.line','sale_id')
@@ -224,16 +245,7 @@ class SaleOrder(models.Model):
 
             self.reemplazar_parrafo(parrafo,reemplazar_dict)
 
-            '''
 
-            if any(key in parrafo.text for key in reemplazar_dict.keys()):
-
-                for run in parrafo.runs:
-                    for buscar, item in reemplazar_dict.items():
-                        if buscar in run.text and item['value']:
-                            run.text = run.text.replace(buscar, item['value'])
-                            
-            '''
 
 
     def generar_contrato(self):
@@ -845,18 +857,6 @@ class SaleOrder(models.Model):
 
             if m2:
                 record.m2_land = m2
-
-
-    def update_credit_saldo(self):
-        for record in self:
-            total_payment = 0
-
-            for line in record.schedule_land_ids:
-                if line.type_schedule in ['dues','advances']:
-                    total_payment += line.amount_due_land
-
-            record.total_payment_land = round(total_payment, 2)
-            record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
 
 
     def publish_invoice(self):
