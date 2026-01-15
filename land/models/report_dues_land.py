@@ -103,7 +103,8 @@ class CommissionRiman(models.Model):
 
             domain = [
                 ('nro_internal_land','!=',False),
-                ('seller_land_id','in',record.seller_land_id.ids)
+                ('seller_land_id','in',record.seller_land_id.ids),
+                ('state','=','sale')
             ]
 
             if record.is_independence:
