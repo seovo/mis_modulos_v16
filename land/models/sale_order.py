@@ -141,8 +141,8 @@ class SaleOrder(models.Model):
 
     total_payment_land = fields.Float(string='Total Pagado Cuotas')
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
-    total_independence_land = fields.Float(string='Total Pagado Independencia')
-    saldo_independence_land = fields.Float(string='Saldo Independencia')
+    total_independence_land = fields.Float(string='Total Pagado Independización')
+    saldo_independence_land = fields.Float(string='Saldo Independización')
 
     def update_credit_saldo(self):
         for record in self:
