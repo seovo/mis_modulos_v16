@@ -48,7 +48,7 @@ class CommissionRiman(models.Model):
 
 
     def update_data_cronograma(self):
-        self.env['sale.order'].update_schedule_all()
+        self.order_ids.update_schedule_all()
 
 
 
