@@ -95,6 +95,12 @@
                                     <field name="price_credit_land" string="Credito" />
                                     <field name="total_payment_land" string="Abonado" />
                                     <field name="saldo_payment_land"  string="Saldo" />
+
+                                    <field name="price_independence_land"   readonly="1" force_save="1"  optional="show" />
+                                    <field name="total_independence_land"   readonly="1" force_save="1"    optional="show"  />
+                                    <field name="saldo_independence_land"   readonly="1" force_save="1"   optional="show"  />
+
+
                                     <field name="state_lawyer_land"  optional="hidden" />
                                     <field name="obs_resolution"  optional="hidden" />
 
