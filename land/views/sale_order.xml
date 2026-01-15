@@ -41,7 +41,7 @@
                <form>
                    <sheet>
                        <group>
-                           <group>
+                           <group string="Info">
                                <field name="company_id"  invisible="1"/>
                                <field name="nro_internal_land"  readonly="1"/>
                                <field name="amount_total" readonly="1" />
@@ -53,7 +53,7 @@
                                <field name="saldo_payment_land"  string="Saldo" readonly="1" />
 
                            </group>
-                           <group string="Cuotas">
+                           <group string="Independencia">
                                <field name="price_independence_land"   readonly="1" force_save="1"  />
                                <field name="total_independence_land"   readonly="1" force_save="1"  />
                                <field name="saldo_independence_land"   readonly="1" force_save="1"  />
@@ -438,9 +438,7 @@
                                     <field name="total_payment_land" string="Abonado" />
                                     <field name="saldo_payment_land"  string="Saldo" />
 
-                                    <field name="price_independence_land"   readonly="1" force_save="1"  optional="show" />
-                                    <field name="total_independence_land"   readonly="1" force_save="1"    optional="show"  />
-                                    <field name="saldo_independence_land"   readonly="1" force_save="1"   optional="show"  />
+
 
                                     <field name="state_lawyer_land"  optional="hidden" />
                                     <field name="obs_resolution"  optional="hidden" />
@@ -669,6 +667,12 @@
                    <field name="price_credit_land" string="Credito" optional="show"  />
                    <field name="total_payment_land" string="Abonado" optional="show"  />
                    <field name="saldo_payment_land"  string="Saldo" optional="show"  />
+
+                   <field name="price_independence_land"   readonly="1" force_save="1"  optional="show" />
+                   <field name="total_independence_land"   readonly="1" force_save="1"    optional="show"  />
+                   <field name="saldo_independence_land"   readonly="1" force_save="1"   optional="show"  />
+
+
                    <field name="state_lawyer_land"  optional="hidden" />
                    <field name="obs_resolution"  optional="hidden" />
 
