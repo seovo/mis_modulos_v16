@@ -85,11 +85,26 @@ class ScheduleDuesLand(models.Model):
         #TRUNCATE TABLE schedule_dues_land RESTART IDENTITY;
 
         ventas = self.env['sale.order'].search([
+            ('schedule_land_ids', '!=', False),
+            ('saldo_independence_land', '=', 0)
+        ], limit=10)
+
+        # raise ValidationError(str(ventas))
+
+        if ventas:
+            ventas.update_schedule()
+            return
+
+
+
+
+        ventas = self.env['sale.order'].search([
             #('nro_internal_land','!=',False),
             #('stage_land','!=','cancel'),
             #('stage_land','!=',False),
             ('schedule_land_ids','=',False),
-            ('invoice_ids','!=',False)
+            ('invoice_ids','!=',False),
+            ('saldo_independence_land','=',0)
         ],limit=50)
 
         #raise ValidationError(str(ventas))
