@@ -86,8 +86,9 @@ class ScheduleDuesLand(models.Model):
 
         ventas = self.env['sale.order'].search([
             ('schedule_land_ids', '!=', False),
-            ('saldo_independence_land', '=', False)
-        ], limit=10)
+            ('saldo_independence_land', '=', False),
+            ('state','=','sale')
+        ], limit=15)
 
         # raise ValidationError(str(ventas))
 
