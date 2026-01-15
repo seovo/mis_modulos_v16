@@ -423,7 +423,12 @@ class ReportScheduleLand(models.TransientModel):
             for pago in schedule_due.move_id.bank_origin_ids:
                 OPS.append(pago.operation_number)
 
-            OPS = ','.join(OPS) if OPS else ''
+            try:
+                OPS = ','.join(OPS) if OPS else ''
+            except:
+                raise ValueError(OPS)
+
+            #peError: sequence item 0: expected str instance, bool found
 
             sheet.write(xc, 1, schedule_due.description, format_body)
             sheet.write(xc, 2, schedule_due.amount_due_land, format_body)
