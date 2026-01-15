@@ -961,6 +961,13 @@ class SaleOrder(models.Model):
                 ])
 
                 if schedule_land_indepen:
+                    if len(schedule_land_indepen) < qty_to_indepenced:
+                        for lineinde in schedule_land_indepen:
+                            lineinde.unlink()
+                        schedule_land_indepen = None
+
+
+                if schedule_land_indepen:
                     c = 0
                     for sche in schedule_land_indepen:
                         dx = {
