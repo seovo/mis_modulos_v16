@@ -1,0 +1,6 @@
+datawave.productos
+-product_sku	TEXTO	SKU
+-name	        TEXTO	Nombre
+-categ	        TEXTO	Categoría
+-uom	        TEXTO	Unidad
+-state   	    TEXTO	Estado
