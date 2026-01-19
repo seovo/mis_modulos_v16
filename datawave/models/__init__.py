@@ -1,3 +1,2 @@
-# -*- coding: utf-8 -*-
-
-from . import producto
+from . import inputs_transaccional
+#from . import inputs_cliente
