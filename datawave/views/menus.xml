@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_datawave_root" name="Datawave" sequence="10">
+        <menuitem id="menu_datawave_inputs_cliente" name="Inputs Cliente"  sequence="5">
+            <menuitem id="menu_datawave_producto" name="Productos"  action="action_datawave_producto" sequence="1"/>
+            <menuitem id="menu_datawave_tienda" name="Tiendas"  action="action_datawave_tienda" sequence="2"/>
+            <menuitem id="menu_datawave_cd" name="Centros de Distribución"  action="action_datawave_cd" sequence="3"/>
+            <menuitem id="menu_datawave_seller" name="Proveedores"  action="action_datawave_seller" sequence="4"/>
+            <menuitem id="menu_datawave_tienda_cd" name="Tiendas y CD"  action="action_datawave_tienda_cd" sequence="5"/>
+        </menuitem>
+
+    </menuitem>
+
+
+
+
+</odoo>

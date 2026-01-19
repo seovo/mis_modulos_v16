@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Producto -->
+    <record id="view_datawave_producto_tree" model="ir.ui.view">
+    <field name="name">datawave.producto.tree</field>
+    <field name="model">datawave.producto</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="sku"/>
+            <field name="name"/>
+            <field name="categ"/>
+            <field name="uom"/>
+            <field name="state"/>
+        </tree>
+    </field>
+</record>
+
+    <record id="view_datawave_producto_form" model="ir.ui.view">
+    <field name="name">datawave.producto.form</field>
+    <field name="model">datawave.producto</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="sku"/>
+                    <field name="name"/>
+                    <field name="categ"/>
+                    <field name="uom"/>
+                    <field name="state"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record id="action_datawave_producto" model="ir.actions.act_window">
+       <field name="name">Datawave Producto</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">datawave.producto</field>
+       <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- Tienda -->
+
+<record id="view_datawave_tienda_tree" model="ir.ui.view">
+    <field name="name">datawave.tienda.tree</field>
+    <field name="model">datawave.tienda</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="region"/>
+            <field name="type"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_tienda_form" model="ir.ui.view">
+    <field name="name">datawave.tienda.form</field>
+    <field name="model">datawave.tienda</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="region"/>
+                    <field name="type"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record id="action_datawave_tienda" model="ir.actions.act_window">
+    <field name="name">Datawave Tienda</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">datawave.tienda</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+    <!-- CD -->
+<record id="view_datawave_cd_tree" model="ir.ui.view">
+    <field name="name">datawave.cd.tree</field>
+    <field name="model">datawave.cd</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="region"/>
+            <field name="type"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_cd_form" model="ir.ui.view">
+    <field name="name">datawave.cd.form</field>
+    <field name="model">datawave.cd</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="region"/>
+                    <field name="type"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record id="action_datawave_cd" model="ir.actions.act_window">
+    <field name="name">Datawave CD</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">datawave.cd</field>
+    <field name="view_mode">list,form</field>
+</record>
+<!-- Seller -->
+
+<record id="view_datawave_seller_tree" model="ir.ui.view">
+    <field name="name">datawave.seller.tree</field>
+    <field name="model">datawave.seller</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="load_time"/>
+            <field name="frequency"/>
+            <field name="cost_sale"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_seller_form" model="ir.ui.view">
+    <field name="name">datawave.seller.form</field>
+    <field name="model">datawave.seller</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="load_time"/>
+                    <field name="frequency"/>
+                    <field name="cost_sale"/>
+                    <field name="cost_keep"/>
+                    <field name="review_cycle"/>
+                    <field name="frequency_fixed"/>
+                    <field name="moq_default"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record id="action_datawave_seller" model="ir.actions.act_window">
+    <field name="name">Datawave Seller</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">datawave.seller</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<!-- TIENDA CD -->
+
+<record id="view_datawave_tienda_cd_tree" model="ir.ui.view">
+    <field name="name">datawave.tienda.cd.tree</field>
+    <field name="model">datawave.tienda.cd</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="code_tienda"/>
+            <field name="code_cd"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_tienda_cd_form" model="ir.ui.view">
+    <field name="name">datawave.tienda.cd.form</field>
+    <field name="model">datawave.tienda.cd</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="code_tienda"/>
+                    <field name="code_cd"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+    <record id="action_datawave_tienda_cd" model="ir.actions.act_window">
+    <field name="name">Datawave Tienda CD</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">datawave.tienda.cd</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+
+
+
+
+</odoo>

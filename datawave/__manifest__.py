@@ -19,6 +19,8 @@
 
     'data': [
         "security/ir.model.access.csv",
+        "views/input_cliente.xml",
+        "views/menus.xml",
     ],
     'demo': [],
 }
