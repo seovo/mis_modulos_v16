@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "Datawave",
+
+    'summary': """
+        Módulo para gestionar productos de Datawave.""",
+
+    'description': """
+        Este módulo permite la gestión de productos, incluyendo SKU, nombre, categoría, unidad de medida y estado.
+    """,
+
+    'author': "Jules",
+    'website': "http://www.yourappi.com",
+
+    'category': 'Uncategorized',
+    'version': '0.1',
+
+    'depends': ['base'],
+
+    'data': [],
+    'demo': [],
+}
