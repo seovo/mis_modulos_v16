@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<!-- Vistas Combinadas -->
+<record id="view_datawave_stock_tienda" model="ir.ui.view">
+    <field name="name">datawave.stock.tienda.view</field>
+    <field name="model">datawave.stock.tienda</field>
+    <field name="arch" type="xml">
+        <form string="Stock Tienda">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="code_tienda"/>
+                    <field name="stock"/>
+                    <field name="date"/>
+                </group>
+            </sheet>
+        </form>
+        <tree string="Lista de Stock Tienda">
+            <field name="name"/>
+            <field name="sku"/>
+            <field name="code_tienda"/>
+            <field name="stock"/>
+            <field name="date"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_stock_cd" model="ir.ui.view">
+    <field name="name">datawave.stock.cd.view</field>
+    <field name="model">datawave.stock.cd</field>
+    <field name="arch" type="xml">
+        <form string="Stock CD">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="code_cd"/>
+                    <field name="stock"/>
+                    <field name="date"/>
+                    <field name="code_seller"/>
+                </group>
+            </sheet>
+        </form>
+        <tree string="Lista de Stock CD">
+            <field name="name"/>
+            <field name="sku"/>
+            <field name="code_cd"/>
+            <field name="stock"/>
+            <field name="date"/>
+            <field name="code_seller"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_sale" model="ir.ui.view">
+    <field name="name">datawave.sale.view</field>
+    <field name="model">datawave.sale</field>
+    <field name="arch" type="xml">
+        <form string="Ventas Históricas">
+            <sheet>
+                <group>
+                    <field name="date"/>
+                    <field name="code_tienda"/>
+                    <field name="sku"/>
+                    <field name="quantity"/>
+                </group>
+            </sheet>
+        </form>
+        <tree string="Lista de Ventas Históricas">
+            <field name="date"/>
+            <field name="code_tienda"/>
+            <field name="sku"/>
+            <field name="quantity"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_order_cd" model="ir.ui.view">
+    <field name="name">datawave.order.cd.view</field>
+    <field name="model">datawave.order.cd</field>
+    <field name="arch" type="xml">
+        <form string="Órdenes Transito CD">
+            <sheet>
+                <group>
+                    <field name="sku"/>
+                    <field name="code_cd"/>
+                    <field name="code_oc"/>
+                    <field name="quantity"/>
+                    <field name="quantity_waiting"/>
+                    <field name="date"/>
+                    <field name="date_arrival"/>
+                    <field name="load_time"/>
+                    <field name="code_seller"/>
+                </group>
+            </sheet>
+        </form>
+        <tree string="Lista de Órdenes Transito CD">
+            <field name="sku"/>
+            <field name="code_cd"/>
+            <field name="code_oc"/>
+            <field name="quantity"/>
+            <field name="quantity_waiting"/>
+            <field name="date"/>
+            <field name="date_arrival"/>
+            <field name="load_time"/>
+            <field name="code_seller"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_datawave_transit_cd_resume" model="ir.ui.view">
+    <field name="name">datawave.transit.cd.resume.view</field>
+    <field name="model">datawave.transit.cd.resume</field>
+    <field name="arch" type="xml">
+        <form string="Transito CD Resumen">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="code_cd"/>
+                    <field name="stock"/>
+                </group>
+            </sheet>
+        </form>
+        <tree string="Lista de Transito CD Resumen">
+            <field name="name"/>
+            <field name="sku"/>
+            <field name="code_cd"/>
+            <field name="stock"/>
+        </tree>
+    </field>
+</record>
+
+
+
+
+
+<!-- Acciones -->
+<record id="action_datawave_stock_tienda" model="ir.actions.act_window">
+    <field name="name">Stock Tienda</field>
+    <field name="res_model">datawave.stock.tienda</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<record id="action_datawave_stock_cd" model="ir.actions.act_window">
+    <field name="name">Stock CD</field>
+    <field name="res_model">datawave.stock.cd</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<record id="action_datawave_sale" model="ir.actions.act_window">
+    <field name="name">Ventas Históricas</field>
+    <field name="res_model">datawave.sale</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<record id="action_datawave_order_cd" model="ir.actions.act_window">
+    <field name="name">Órdenes Transito CD</field>
+    <field name="res_model">datawave.order.cd</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<record id="action_datawave_transit_cd_resume" model="ir.actions.act_window">
+    <field name="name">Transito CD Resumen</field>
+    <field name="res_model">datawave.transit.cd.resume</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<!-- Menú -->
+
+
+</odoo>

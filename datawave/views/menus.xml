@@ -10,9 +10,14 @@
             <menuitem id="menu_datawave_tienda_cd" name="Tiendas y CD"  action="action_datawave_tienda_cd" sequence="5"/>
         </menuitem>
 
+        <menuitem id="menu_input_transaccional" name="Input Transaccional" sequence="5">
+           <menuitem id="menu_datawave_stock_tienda" name="Stock Tienda" action="action_datawave_stock_tienda" sequence="1"/>
+           <menuitem id="menu_datawave_stock_cd" name="Stock CD" action="action_datawave_stock_cd" sequence="2"/>
+           <menuitem id="menu_datawave_sale" name="Ventas Históricas" action="action_datawave_sale" sequence="3"/>
+           <menuitem id="menu_datawave_order_cd" name="Órdenes Transito CD" action="action_datawave_order_cd" sequence="4"/>
+           <menuitem id="menu_datawave_transit_cd_resume" name="Transito CD Resumen" action="action_datawave_transit_cd_resume" sequence="5"/>
+        </menuitem>
+
     </menuitem>
-
-
-
 
 </odoo>
