@@ -175,25 +175,25 @@
 <record id="action_datawave_sigma_cd" model="ir.actions.act_window">
     <field name="name">Sigma CD</field>
     <field name="res_model">datawave.sigma.cd</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 <record id="action_datawave_sigma_tienda" model="ir.actions.act_window">
     <field name="name">Sigma Tienda</field>
     <field name="res_model">datawave.sigma.tienda</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 <record id="action_datawave_intermedio_tienda" model="ir.actions.act_window">
     <field name="name">Intermedio Tienda</field>
     <field name="res_model">datawave.intermedio.tienda</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 <record id="action_datawave_intermedio_cd" model="ir.actions.act_window">
     <field name="name">Intermedio CD</field>
     <field name="res_model">datawave.intermedio.cd</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 <!-- Menús -->

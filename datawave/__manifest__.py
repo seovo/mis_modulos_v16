@@ -23,6 +23,7 @@
         "views/inputs_transaccional.xml",
         "views/input_others.xml",
         "views/intermedios.xml",
+        "views/output.xml",
         "views/menus.xml",
     ],
     'demo': [],

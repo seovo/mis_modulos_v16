@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Vistas para datawave.replanish.tienda -->
+<record id="view_datawave_replanish_tienda_list" model="ir.ui.view">
+    <field name="name">datawave.replanish.tienda.list</field>
+    <field name="model">datawave.replanish.tienda</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+            <field name="sku"/>
+            <field name="code_tienda"/>
+            <field name="quantity_round"/>
+            <field name="note"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_replanish_tienda_form" model="ir.ui.view">
+    <field name="name">datawave.replanish.tienda.form</field>
+    <field name="model">datawave.replanish.tienda</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="code_tienda"/>
+                    <field name="quantity_round"/>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- Vistas para datawave.replanish.cd -->
+<record id="view_datawave_replanish_cd_list" model="ir.ui.view">
+    <field name="name">datawave.replanish.cd.list</field>
+    <field name="model">datawave.replanish.cd</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="sku"/>
+            <field name="code_cd"/>
+            <field name="code_seller"/>
+            <field name="quantity_round"/>
+            <field name="note"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_replanish_cd_form" model="ir.ui.view">
+    <field name="name">datawave.replanish.cd.form</field>
+    <field name="model">datawave.replanish.cd</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="sku"/>
+                    <field name="code_cd"/>
+                    <field name="code_seller"/>
+                    <field name="quantity_round"/>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- Vistas para datawave.alert.stock -->
+<record id="view_datawave_alert_stock_list" model="ir.ui.view">
+    <field name="name">datawave.alert.stock.list</field>
+    <field name="model">datawave.alert.stock</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="sku"/>
+            <field name="ubicacion"/>
+            <field name="type_ubicacion"/>
+            <field name="code_seller"/>
+            <field name="stock"/>
+            <field name="ss"/>
+            <field name="rop"/>
+            <field name="max"/>
+            <field name="risk"/>
+            <field name="risk_severity"/>
+            <field name="over_stock"/>
+            <field name="over_stock_severity"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_alert_stock_form" model="ir.ui.view">
+    <field name="name">datawave.alert.stock.form</field>
+    <field name="model">datawave.alert.stock</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="sku"/>
+                    <field name="ubicacion"/>
+                    <field name="type_ubicacion"/>
+                    <field name="code_seller"/>
+                    <field name="stock"/>
+                    <field name="ss"/>
+                    <field name="rop"/>
+                    <field name="max"/>
+                    <field name="risk"/>
+                    <field name="risk_severity"/>
+                    <field name="over_stock"/>
+                    <field name="over_stock_severity"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+
+<record id="action_datawave_replanish_tienda" model="ir.actions.act_window">
+    <field name="name">Replenish Tienda</field>
+    <field name="res_model">datawave.replanish.tienda</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<record id="action_datawave_replanish_cd" model="ir.actions.act_window">
+    <field name="name">Replenish CD</field>
+    <field name="res_model">datawave.replanish.cd</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<record id="action_datawave_alert_stock" model="ir.actions.act_window">
+    <field name="name">Alert Stock</field>
+    <field name="res_model">datawave.alert.stock</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+</odoo>

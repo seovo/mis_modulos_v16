@@ -75,7 +75,7 @@
 <record id="action_datawave_forecast_cd" model="ir.actions.act_window">
     <field name="name">Forecast CD</field>
     <field name="res_model">datawave.forecast.cd</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 
