@@ -2,17 +2,17 @@
 <odoo>
 
     <!-- Producto -->
-    <record id="view_datawave_producto_tree" model="ir.ui.view">
-    <field name="name">datawave.producto.tree</field>
+    <record id="view_datawave_producto_list" model="ir.ui.view">
+    <field name="name">datawave.producto.list</field>
     <field name="model">datawave.producto</field>
     <field name="arch" type="xml">
-        <tree>
+        <list>
             <field name="sku"/>
             <field name="name"/>
             <field name="categ"/>
             <field name="uom"/>
             <field name="state"/>
-        </tree>
+        </list>
     </field>
 </record>
 
@@ -44,16 +44,16 @@
 
     <!-- Tienda -->
 
-<record id="view_datawave_tienda_tree" model="ir.ui.view">
-    <field name="name">datawave.tienda.tree</field>
+<record id="view_datawave_tienda_list" model="ir.ui.view">
+    <field name="name">datawave.tienda.list</field>
     <field name="model">datawave.tienda</field>
     <field name="arch" type="xml">
-        <tree>
+        <list>
             <field name="code"/>
             <field name="name"/>
             <field name="region"/>
             <field name="type"/>
-        </tree>
+        </list>
     </field>
 </record>
 
@@ -82,16 +82,16 @@
 </record>
 
     <!-- CD -->
-<record id="view_datawave_cd_tree" model="ir.ui.view">
-    <field name="name">datawave.cd.tree</field>
+<record id="view_datawave_cd_list" model="ir.ui.view">
+    <field name="name">datawave.cd.list</field>
     <field name="model">datawave.cd</field>
     <field name="arch" type="xml">
-        <tree>
+        <list>
             <field name="code"/>
             <field name="name"/>
             <field name="region"/>
             <field name="type"/>
-        </tree>
+        </list>
     </field>
 </record>
 
@@ -120,17 +120,17 @@
 </record>
 <!-- Seller -->
 
-<record id="view_datawave_seller_tree" model="ir.ui.view">
-    <field name="name">datawave.seller.tree</field>
+<record id="view_datawave_seller_list" model="ir.ui.view">
+    <field name="name">datawave.seller.list</field>
     <field name="model">datawave.seller</field>
     <field name="arch" type="xml">
-        <tree>
+        <list>
             <field name="code"/>
             <field name="name"/>
             <field name="load_time"/>
             <field name="frequency"/>
             <field name="cost_sale"/>
-        </tree>
+        </list>
     </field>
 </record>
 
@@ -165,14 +165,14 @@
 
 <!-- TIENDA CD -->
 
-<record id="view_datawave_tienda_cd_tree" model="ir.ui.view">
-    <field name="name">datawave.tienda.cd.tree</field>
+<record id="view_datawave_tienda_cd_list" model="ir.ui.view">
+    <field name="name">datawave.tienda.cd.list</field>
     <field name="model">datawave.tienda.cd</field>
     <field name="arch" type="xml">
-        <tree>
+        <list>
             <field name="code_tienda"/>
             <field name="code_cd"/>
-        </tree>
+        </list>
     </field>
 </record>
 
