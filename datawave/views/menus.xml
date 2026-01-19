@@ -24,6 +24,22 @@
 
         </menuitem>
 
+        <menuitem id="menu_calculos_intermedios" name="Cálculos Intermedios" sequence="5">
+
+            <menuitem id="menu_sigma" name="Sigma" parent="menu_calculos_intermedios" sequence="1">
+              <menuitem id="menu_sigma_cd" name="Sigma CD" action="action_datawave_sigma_cd" sequence="1"/>
+               <menuitem id="menu_sigma_tienda" name="Sigma Tienda" action="action_datawave_sigma_tienda" sequence="2"/>
+            </menuitem>
+
+
+<menuitem id="menu_intermedio" name="Intermedios" parent="menu_calculos_intermedios" sequence="2">
+    <menuitem id="menu_intermedio_tienda" name="Intermedio Tienda" action="action_datawave_intermedio_tienda" sequence="1"/>
+    <menuitem id="menu_intermedio_cd" name="Intermedio CD" action="action_datawave_intermedio_cd" sequence="2"/>
+</menuitem>
+
+
+        </menuitem>
+
 
     </menuitem>
 
