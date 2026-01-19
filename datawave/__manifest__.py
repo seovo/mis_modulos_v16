@@ -21,6 +21,7 @@
         "security/ir.model.access.csv",
         "views/input_cliente.xml",
         "views/inputs_transaccional.xml",
+"views/input_others.xml",
         "views/menus.xml",
     ],
     'demo': [],
