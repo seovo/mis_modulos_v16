@@ -18,6 +18,13 @@
            <menuitem id="menu_datawave_transit_cd_resume" name="Transito CD Resumen" action="action_datawave_transit_cd_resume" sequence="5"/>
         </menuitem>
 
+        <menuitem id="menu_forecast" name="Inputs Otros" sequence="6">
+            <menuitem id="menu_forecast_tienda" name="Forecast Tienda" action="action_datawave_forecast_tienda"  sequence="1"/>
+            <menuitem id="menu_forecast_cd" name="Forecast CD" action="action_datawave_forecast _cd"  sequence="2"/>
+
+        </menuitem>
+
+
     </menuitem>
 
 </odoo>

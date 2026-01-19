@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vistas para datawave.forecast.tienda -->
+<record id="view_datawave_forecast_tienda_list" model="ir.ui.view">
+    <field name="name">datawave.forecast.tienda.list</field>
+    <field name="model">datawave.forecast.tienda</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+            <field name="sku"/>
+            <field name="code_tienda"/>
+            <field name="code_cd"/>
+            <field name="forecast_day"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_forecast_tienda_form" model="ir.ui.view">
+    <field name="name">datawave.forecast.tienda.form</field>
+    <field name="model">datawave.forecast.tienda</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="code_tienda"/>
+                    <field name="code_cd"/>
+                    <field name="forecast_day"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- Vistas para datawave.forecast.cd -->
+<record id="view_datawave_forecast_cd_list" model="ir.ui.view">
+    <field name="name">datawave.forecast.cd.list</field>
+    <field name="model">datawave.forecast.cd</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+            <field name="sku"/>
+            <field name="code_cd"/>
+            <field name="forecast_day"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_forecast_cd_form" model="ir.ui.view">
+    <field name="name">datawave.forecast.cd.form</field>
+    <field name="model">datawave.forecast.cd</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="code_cd"/>
+                    <field name="forecast_day"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+<record id="action_datawave_forecast_tienda" model="ir.actions.act_window">
+    <field name="name">Forecast Tienda</field>
+    <field name="res_model">datawave.forecast.tienda</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<record id="action_datawave_forecast_cd" model="ir.actions.act_window">
+    <field name="name">Forecast CD</field>
+    <field name="res_model">datawave.forecast.cd</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+
+</odoo>
