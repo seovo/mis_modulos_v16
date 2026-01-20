@@ -4,8 +4,8 @@ class Producto(models.Model):
     _name = 'datawave.producto'
     _description = 'Productos de Datawave'
 
-    sku = fields.Char(string='SKU')
-    name = fields.Char(string='Nombre', required=True)
+    name = fields.Char(string='SKU')
+    description = fields.Char(string='Nombre', required=True)
     categ = fields.Char(string='Categoría')
     uom = fields.Char(string='Unidad de Medida')
     state = fields.Char(string='Estado')

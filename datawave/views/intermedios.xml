@@ -69,19 +69,20 @@
     <field name="model">datawave.intermedio.tienda</field>
     <field name="arch" type="xml">
         <list>
-            <field name="name"/>
-            <field name="sku"/>
-            <field name="code_tienda"/>
-            <field name="lt_days"/>
-            <field name="forecast_day"/>
-            <field name="sigma"/>
-            <field name="ss"/>
-            <field name="freq"/>
-            <field name="max"/>
-            <field name="rop"/>
-            <field name="stock"/>
-            <field name="quantity"/>
-            <field name="quantity_round"/>
+            <field name="date" />
+            <field name="name" />
+            <field name="sku" />
+            <field name="code_tienda" />
+            <field name="lt_days" />
+            <field name="forecast_day" />
+            <field name="sigma" />
+            <field name="ss" />
+            <field name="freq" />
+            <field name="max" />
+            <field name="rop" />
+            <field name="stock" />
+            <field name="quantity" />
+            <field name="quantity_round" />
         </list>
     </field>
 </record>

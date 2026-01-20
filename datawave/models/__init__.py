@@ -3,3 +3,4 @@ from . import inputs_transaccional
 from . import input_others
 from . import intermedios
 from . import output
+from . import config_tables
