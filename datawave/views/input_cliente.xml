@@ -23,8 +23,8 @@
         <form>
             <sheet>
                 <group>
-                    <field name="sku"/>
                     <field name="name"/>
+                    <field name="description" />
                     <field name="categ"/>
                     <field name="uom"/>
                     <field name="state"/>
