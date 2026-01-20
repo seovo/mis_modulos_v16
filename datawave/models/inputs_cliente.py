@@ -33,8 +33,8 @@ class Proveedores(models.Model):
     _name = 'datawave.seller'
     _description = 'Proveedores de Datawave'
 
-    code       = fields.Char(string='Proveedor_ID')
-    name       = fields.Char(string='Nombre', required=True)
+    name       = fields.Char(string='Proveedor_ID')
+    description       = fields.Char(string='Nombre', required=True)
     load_time  = fields.Float(string='LeadTime (días)')
     frequency  = fields.Float(string='Frecuencia empírica')
     cost_sale  = fields.Float(string='Costo pedido')
