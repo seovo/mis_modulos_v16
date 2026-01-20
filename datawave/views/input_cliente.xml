@@ -87,8 +87,8 @@
     <field name="model">datawave.cd</field>
     <field name="arch" type="xml">
         <list>
-            <field name="code"/>
             <field name="name"/>
+            <field name="description" />
             <field name="region"/>
             <field name="type"/>
         </list>
@@ -102,8 +102,8 @@
         <form>
             <sheet>
                 <group>
-                    <field name="code"/>
                     <field name="name"/>
+                    <field name="description" />
                     <field name="region"/>
                     <field name="type"/>
                 </group>
