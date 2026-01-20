@@ -14,8 +14,8 @@ class Tienda(models.Model):
     _name = 'datawave.tienda'
     _description = 'Tienda de Datawave'
 
-    code    = fields.Char(string='Tienda Id')
-    name    = fields.Char(string='Nombre', required=True)
+    name    = fields.Char(string='Tienda Id')
+    description    = fields.Char(string='Nombre', required=True)
     region  = fields.Char(string='Region')
     type    = fields.Char(string='Tipo')
 
@@ -23,8 +23,8 @@ class CentroDistribucion(models.Model):
     _name = 'datawave.cd'
     _description = 'CentroDistribucion de Datawave'
 
-    code    = fields.Char(string='CD_ID')
-    name    = fields.Char(string='Nombre', required=True)
+    name    = fields.Char(string='CD_ID')
+    description   = fields.Char(string='Nombre', required=True)
     region  = fields.Char(string='Region')
     type    = fields.Char(string='Tipo')
 
