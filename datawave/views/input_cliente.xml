@@ -125,8 +125,9 @@
     <field name="model">datawave.seller</field>
     <field name="arch" type="xml">
         <list>
-            <field name="code"/>
+
             <field name="name"/>
+            <field name="description" />
             <field name="load_time"/>
             <field name="frequency"/>
             <field name="cost_sale"/>
@@ -141,8 +142,9 @@
         <form>
             <sheet>
                 <group>
-                    <field name="code"/>
+
                     <field name="name"/>
+                    <field name="description" />
                     <field name="load_time"/>
                     <field name="frequency"/>
                     <field name="cost_sale"/>
