@@ -53,7 +53,7 @@ class IntermedioTienda(models.Model):
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
                 #("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today"),
                 ("date", ">=", limit_date), ("date", "<=", today),
-                ("date", ">=", "today -30d"), ("date", "<", "today")
+                #("date", ">=", "today -30d"), ("date", "<", "today")
 
             ]
 
@@ -65,6 +65,8 @@ class IntermedioTienda(models.Model):
                     datos.append(hist.quantity)
                 desviacion_estandar_poblacional = statistics.pstdev(datos)
                 record.sigma = desviacion_estandar_poblacional
+            else:
+                raise ValueError(domain)
 
 
 
