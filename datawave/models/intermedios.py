@@ -58,9 +58,15 @@ class IntermedioTienda(models.Model):
             ]
 
             historico = self.env['datawave.sale'].search(domain)
-            #
-
             if historico:
+                import statistics
+                datos = []
+                for hist in historico:
+                    datos.append(hist.quantity)
+                desviacion_estandar_poblacional = statistics.pstdev(datos)
+                record.sigma = desviacion_estandar_poblacional
+
+
 
 
 
