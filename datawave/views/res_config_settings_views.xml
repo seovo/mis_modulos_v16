@@ -19,7 +19,7 @@
                              >
                                 <div class="content-group">
                                     <div class="row mt16">
-                                        <label string="Días usados para Sigma tienda" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
+                                        <label string="Días usados para Sigma Tienda" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_sigma_days" />
                                     </div>
                                     <!--

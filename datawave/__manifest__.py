@@ -26,6 +26,7 @@
         "views/output.xml",
         "views/config_tablas.xml",
         "views/menus.xml",
+        "views/res_config_settings_views.xml"
     ],
     'demo': [],
 }
