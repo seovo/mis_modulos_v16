@@ -46,15 +46,19 @@ class IntermedioTienda(models.Model):
 
             sigma_dias = int(sigma_dias) if sigma_dias else 0
 
-            historico = self.env['datawave.sale'].search([
+            domain = [
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
                 ("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today")
 
-            ])
+            ]
+
+            historico = self.env['datawave.sale'].search(domain)
             #
 
             if historico:
                 raise ValueError(historico)
+            else:
+                raise ValueError(domain)
 
 
 
