@@ -1,6 +1,7 @@
 from odoo import models, fields , api
 
 
+
 class IntermedioTienda(models.Model):
     _name = 'datawave.intermedio.tienda'
     _description = 'IntermedioTienda de Datawave'
