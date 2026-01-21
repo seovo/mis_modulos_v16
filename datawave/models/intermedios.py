@@ -25,7 +25,7 @@ class IntermedioTienda(models.Model):
         for record in self:
             record.lt_days = 0
 
-            raise ValueError('HOLA')
+
 
             if record.product_id or record.tienda_id:
                 continue
@@ -33,6 +33,8 @@ class IntermedioTienda(models.Model):
             config = self.env['datawave.config.tienda.product'].search([
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id)
             ])
+
+            raise ValueError(config)
 
 
 
