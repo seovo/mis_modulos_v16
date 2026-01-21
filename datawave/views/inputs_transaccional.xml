@@ -83,6 +83,7 @@
     </field>
 </record>
 
+
 <record id="view_datawave_sale_form" model="ir.ui.view">
     <field name="name">datawave.sale.form</field>
     <field name="model">datawave.sale</field>
