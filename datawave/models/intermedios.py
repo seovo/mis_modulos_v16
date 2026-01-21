@@ -52,6 +52,9 @@ class IntermedioTienda(models.Model):
             today = record.date
             limit_date = today - timedelta(days=sigma_dias)
 
+
+            #DIAS LOBORALES
+
             domain = [
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
                 #("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today"),
@@ -67,6 +70,7 @@ class IntermedioTienda(models.Model):
                 datos = []
                 for hist in historico:
                     datos.append(hist.quantity)
+                raise ValueError(datos)
                 desviacion_estandar_poblacional = statistics.pstdev(datos)
                 #raise ValueError(desviacion_estandar_poblacional)
                 record.sigma = desviacion_estandar_poblacional
