@@ -27,14 +27,14 @@ class IntermedioTienda(models.Model):
 
 
 
-            if record.product_id or record.tienda_id:
+            if not record.product_id or not record.tienda_id:
                 continue
 
             config = self.env['datawave.config.tienda.product'].search([
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id)
             ])
 
-            raise ValueError(config)
+            #raise ValueError(config)
 
 
 
