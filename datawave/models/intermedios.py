@@ -1,5 +1,5 @@
 from odoo import models, fields , api
-
+from datetime import date , datetime , timedelta
 
 
 class IntermedioTienda(models.Model):
@@ -46,9 +46,14 @@ class IntermedioTienda(models.Model):
 
             sigma_dias = int(sigma_dias) if sigma_dias else 0
 
+            today = record.date
+            limit_date = today - timedelta(days=5)
+
             domain = [
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
-                ("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today")
+                #("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today"),
+                ("date", ">=", limit_date), ("date", "<=", today),
+                ("date", ">=", "today -30d"), ("date", "<", "today")
 
             ]
 
@@ -56,9 +61,6 @@ class IntermedioTienda(models.Model):
             #
 
             if historico:
-                raise ValueError(historico)
-            else:
-                raise ValueError(domain)
 
 
 
