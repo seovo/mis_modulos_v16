@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.account</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+
+                    <app data-string="Invoicing" string="Invoicing" name="datawave" >
+
+
+
+
+                        <block title="Taxes" name="default_taxes_setting_container">
+                            <setting id="datawave_config" string="Datawave Config"
+                                     help="Datawave Config"
+                             >
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label string="Días usados para Sigma tienda" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_sigma_days" />
+                                    </div>
+                                    <!--
+                                    <div class="row">
+                                        <label string="Purchase Tax" for="purchase_tax_id" class="col-lg-3 o_light_label"/>
+                                        <field name="purchase_tax_id" domain="[('type_tax_use', 'in', ('purchase', 'all'))]"/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label string="Prices" for="account_price_include" class="o_light_label"/>
+                                            <div class="fa fa-question-circle" title="This setting locks once a journal entry is created."/>
+                                        </div>
+                                        <field name="account_price_include" readonly="has_accounting_entries"/>
+                                    </div>
+                                    -->
+                                </div>
+                            </setting>
+
+                        </block>
+
+
+
+
+
+                    </app>
+                </xpath>
+            </field>
+    </record>
+
+    <record id="action_datawave_config" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'module' : 'datawave', 'bin_size': False}</field>
+    </record>
+
+
+    <!--
+    <record id="res_config_settings_view_form_base_setup" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.base_setup</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(web.action_base_document_layout_configurator)d']" position="attributes">
+                    <attribute name="name">%(account.action_base_document_layout_configurator)d</attribute>
+                    <attribute name="context">{'default_from_invoice': True}</attribute>
+                </xpath>
+            </field>
+    </record>
+
+    -->
+
+</odoo>

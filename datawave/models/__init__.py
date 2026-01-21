@@ -4,3 +4,4 @@ from . import input_others
 from . import intermedios
 from . import output
 from . import config_tables
+from . import res_config_settings
