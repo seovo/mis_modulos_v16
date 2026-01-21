@@ -58,6 +58,7 @@ class IntermedioTienda(models.Model):
             ]
 
             historico = self.env['datawave.sale'].search(domain)
+            raise ValueError(historico)
             if historico:
                 import statistics
                 datos = []
