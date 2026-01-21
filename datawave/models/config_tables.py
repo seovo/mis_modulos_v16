@@ -7,5 +7,5 @@ class ConfigTiendaProducto(models.Model):
     tienda_id    = fields.Many2one('datawave.tienda',string='Tienda')
     days_target  = fields.Integer(string='Días objetivo')
     lt_days      = fields.Integer(string='LT')
-    z_tienda     = fields.Integer(string='Z')
-    round_tienda = fields.Integer(string='Redondeo min')
+    z_tienda     = fields.Float(string='Z')
+    round_tienda = fields.Float(string='Redondeo min')
