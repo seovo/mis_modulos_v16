@@ -4,9 +4,9 @@ from odoo import models, fields
 class IntermedioTienda(models.Model):
     _name = 'datawave.intermedio.tienda'
     _description = 'IntermedioTienda de Datawave'
-    name         = fields.Char(string='Clave')
-    sku            = fields.Char(string='Producto_ID')
-    code_tienda    = fields.Char(string='Tienda_ID')
+    #name         = fields.Char(string='Clave')
+    product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
+    tienda_id = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     lt_days        = fields.Integer(string='LT Dias')
     forecast_day   = fields.Integer(string='Forecast Diario')
     sigma          = fields.Float(string='Sigma')

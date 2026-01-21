@@ -70,9 +70,8 @@
     <field name="arch" type="xml">
         <list>
             <field name="date" />
-            <field name="name" />
-            <field name="sku" />
-            <field name="code_tienda" />
+            <field name="product_id" />
+            <field name="tienda_id" />
             <field name="lt_days" />
             <field name="forecast_day" />
             <field name="sigma" />
@@ -94,9 +93,9 @@
         <form>
             <sheet>
                 <group>
-                    <field name="name"/>
-                    <field name="sku"/>
-                    <field name="code_tienda"/>
+                    <field name="date"/>
+                    <field name="product_id" />
+                    <field name="tienda_id" />
                     <field name="lt_days"/>
                     <field name="forecast_day"/>
                     <field name="sigma"/>
