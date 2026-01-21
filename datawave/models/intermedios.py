@@ -55,7 +55,7 @@ class IntermedioTienda(models.Model):
             domain = [
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
                 #("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today"),
-                ("date", ">=", limit_date), ("date", "<=", today),
+                ("date", ">=", limit_date), ("date", "<", today),
                 #("date", ">=", "today -30d"), ("date", "<", "today")
 
             ]
