@@ -51,7 +51,10 @@ class IntermedioTienda(models.Model):
                 ("date", ">=", f"today -{sigma_dias}d"), ("date", "<", "today")
             ])
 
-            raise ValueError(historico)
+            if historico:
+                raise ValueError(historico)
+
+
 
 
 class IntermedioCD(models.Model):
