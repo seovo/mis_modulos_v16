@@ -46,11 +46,11 @@ class IntermedioTienda(models.Model):
 
             sigma_dias = int(sigma_dias) if sigma_dias else 0
 
-            record.sigma = sigma_dias
+
 
 
             today = record.date
-            limit_date = today - timedelta(days=5)
+            limit_date = today - timedelta(days=sigma_dias)
 
             domain = [
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
