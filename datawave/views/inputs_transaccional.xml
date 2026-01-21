@@ -76,8 +76,8 @@
     <field name="arch" type="xml">
         <list>
             <field name="date"/>
-            <field name="code_tienda"/>
-            <field name="sku"/>
+            <field name="product_id"/>
+            <field name="tienda_id"/>
             <field name="quantity"/>
         </list>
     </field>
@@ -91,8 +91,8 @@
             <sheet>
                 <group>
                     <field name="date"/>
-                    <field name="code_tienda"/>
-                    <field name="sku"/>
+                    <field name="product_id"/>
+                    <field name="tienda_id"/>
                     <field name="quantity"/>
                 </group>
             </sheet>

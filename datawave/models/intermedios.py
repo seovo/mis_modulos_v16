@@ -37,11 +37,12 @@ class IntermedioTienda(models.Model):
             #raise ValueError(config)
 
 
-
             if not config:
                 continue
 
             record.lt_days = config.lt_days
+
+            historico = self.env['']
 
 
 class IntermedioCD(models.Model):

@@ -23,9 +23,9 @@ class StockCD(models.Model):
 class VentasHistoricas(models.Model):
     _name = 'datawave.sale'
     _description = 'Ventas Historicas de Datawave'
-    date = fields.Date(string='Fecha')
-    code_tienda = fields.Char(string='Tienda_ID')
-    sku = fields.Char(string='Producto_ID')
+    date = fields.Date(string='Fecha', required=True)
+    product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
+    tienda_id = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     quantity = fields.Integer(string="Cantidad")
 
 class OrdenesTransitoCdDetalle(models.Model):
