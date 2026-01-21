@@ -8,12 +8,12 @@
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
 
-                    <app data-string="Datawave" string="Invoicing" name="datawave" >
+                    <app data-string="Datawave" string="Datawave" name="datawave" >
 
 
 
 
-                        <block title="Taxes" name="default_taxes_setting_container">
+                        <block title="Datawave" name="default_taxes_setting_container">
                             <setting id="datawave_config" string="Datawave Config"
                                      help="Datawave Config"
                              >
