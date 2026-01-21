@@ -70,7 +70,7 @@ class IntermedioTienda(models.Model):
                 datos = []
                 for hist in historico:
                     datos.append(hist.quantity)
-                raise ValueError(datos)
+                #raise ValueError(datos)
                 desviacion_estandar_poblacional = statistics.pstdev(datos)
                 #raise ValueError(desviacion_estandar_poblacional)
                 record.sigma = desviacion_estandar_poblacional
