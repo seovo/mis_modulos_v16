@@ -46,6 +46,9 @@ class IntermedioTienda(models.Model):
 
             sigma_dias = int(sigma_dias) if sigma_dias else 0
 
+            record.sigma = sigma_dias
+
+
             today = record.date
             limit_date = today - timedelta(days=5)
 
