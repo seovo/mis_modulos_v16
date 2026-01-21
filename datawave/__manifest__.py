@@ -24,6 +24,7 @@
         "views/input_others.xml",
         "views/intermedios.xml",
         "views/output.xml",
+        "views/config_tablas.xml",
         "views/menus.xml",
     ],
     'demo': [],

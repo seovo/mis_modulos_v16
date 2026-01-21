@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Vistas para datawave.config.tienda.product -->
+<record id="view_datawave_config_tienda_product_list" model="ir.ui.view">
+    <field name="name">datawave.config.tienda.product.list</field>
+    <field name="model">datawave.config.tienda.product</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="product_id"/>
+            <field name="tienda_id"/>
+            <field name="days_target"/>
+            <field name="lt_days"/>
+            <field name="z_tienda"/>
+            <field name="round_tienda"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_config_tienda_product_form" model="ir.ui.view">
+    <field name="name">datawave.config.tienda.product.form</field>
+    <field name="model">datawave.config.tienda.product</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="product_id"/>
+                    <field name="tienda_id"/>
+                    <field name="days_target"/>
+                    <field name="lt_days"/>
+                    <field name="z_tienda"/>
+                    <field name="round_tienda"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="action_datawave_config_tienda_product" model="ir.actions.act_window">
+    <field name="name">Config Tienda Producto</field>
+    <field name="res_model">datawave.config.tienda.product</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+</odoo>
