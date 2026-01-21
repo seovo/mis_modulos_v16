@@ -42,7 +42,16 @@ class IntermedioTienda(models.Model):
 
             record.lt_days = config.lt_days
 
-            historico = self.env['']
+            sigma_dias = self.env['ir.config_parameter'].sudo().get_param('datawave.ventana_sigma_dias')
+
+            sigma_dias = int(sigma_dias) if sigma_dias else 0
+
+            historico = self.env['datawave.sale'].search([
+                ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
+                ("date", ">=", f"today -{sigma_dias}d"), ("date", "<", "today")
+            ])
+
+            raise ValueError(historico)
 
 
 class IntermedioCD(models.Model):
