@@ -20,7 +20,7 @@ class IntermedioTienda(models.Model):
     quantity       = fields.Integer(string='Cantidad Sugerida',help='MAX(0,MAX-Stock)')
     quantity_round = fields.Integer(string='Cantidad Sugerida Redondeada')
 
-    @api.onchange('product_id','tienda_id')
+    @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
         for record in self:
             record.lt_days = 0
@@ -58,7 +58,7 @@ class IntermedioTienda(models.Model):
             ]
 
             historico = self.env['datawave.sale'].search(domain)
-            raise ValueError(historico)
+            #raise ValueError(historico)
             if historico:
                 import statistics
                 datos = []
