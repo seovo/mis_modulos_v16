@@ -12,14 +12,6 @@ class Producto(models.Model):
 
     #config_tienda_ids = fields.One2many('datawave.config.tienda.product','product_id')
 
-class Tienda(models.Model):
-    _name = 'datawave.tienda'
-    _description = 'Tienda de Datawave'
-
-    name    = fields.Char(string='Tienda Id')
-    description    = fields.Char(string='Nombre', required=True)
-    region  = fields.Char(string='Region')
-    type    = fields.Char(string='Tipo')
 
 class CentroDistribucion(models.Model):
     _name = 'datawave.cd'
@@ -29,6 +21,19 @@ class CentroDistribucion(models.Model):
     description   = fields.Char(string='Nombre', required=True)
     region  = fields.Char(string='Region')
     type    = fields.Char(string='Tipo')
+    tienda_ids = fields.One2many('datawave.tienda','cd_id')
+
+class Tienda(models.Model):
+    _name = 'datawave.tienda'
+    _description = 'Tienda de Datawave'
+
+    name    = fields.Char(string='Tienda Id')
+    description    = fields.Char(string='Nombre', required=True)
+    region  = fields.Char(string='Region')
+    type    = fields.Char(string='Tipo')
+    cd_id = fields.Many2one('datawave.cd', string='CD')
+
+
 
 
 class Proveedores(models.Model):
