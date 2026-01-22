@@ -19,6 +19,7 @@ class IntermedioTienda(models.Model):
     stock          = fields.Integer(string='Stock')
     quantity       = fields.Integer(string='Cantidad Sugerida',help='MAX(0,MAX-Stock)')
     quantity_round = fields.Integer(string='Cantidad Sugerida Redondeada')
+    datawave_sale_ids = fields.Many2many('datawave.sale',string='Ventas')
 
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
@@ -66,6 +67,9 @@ class IntermedioTienda(models.Model):
             historico = self.env['datawave.sale'].search(domain)
             #raise ValueError(historico)
             if historico:
+
+                record.datawave_sale_ids = [6,0,historico.ids]
+
                 import statistics
                 datos = []
                 for hist in historico:
@@ -75,7 +79,8 @@ class IntermedioTienda(models.Model):
                 #raise ValueError(desviacion_estandar_poblacional)
                 record.sigma = desviacion_estandar_poblacional
             else:
-                raise ValueError(domain)
+                record.datawave_sale_ids = False
+            #    raise ValueError(domain)
 
 
 
