@@ -10,7 +10,7 @@
 
             <field name="product_id"/>
             <field name="tienda_id"/>
-            <field name="code_cd"/>
+            <field name="cd_id"/>
             <field name="forecast_day"/>
         </list>
     </field>
