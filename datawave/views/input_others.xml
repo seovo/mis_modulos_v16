@@ -8,8 +8,8 @@
     <field name="arch" type="xml">
         <list>
 
-            <field name="sku"/>
-            <field name="code_tienda"/>
+            <field name="product_id"/>
+            <field name="tienda_id"/>
             <field name="code_cd"/>
             <field name="forecast_day"/>
         </list>
@@ -24,8 +24,8 @@
             <sheet>
                 <group>
 
-                    <field name="sku"/>
-                    <field name="code_tienda"/>
+                    <field name="product_id"/>
+                    <field name="tienda_id"/>
                     <field name="code_cd"/>
                     <field name="forecast_day"/>
                 </group>
