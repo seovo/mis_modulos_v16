@@ -108,6 +108,7 @@
                     <field name="description" />
                     <field name="region"/>
                     <field name="type"/>
+                    <field name="tienda_ids"/>
                 </group>
             </sheet>
         </form>
