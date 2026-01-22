@@ -69,7 +69,7 @@
 <record id="action_datawave_forecast_tienda" model="ir.actions.act_window">
     <field name="name">Forecast Tienda</field>
     <field name="res_model">datawave.forecast.tienda</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 <record id="action_datawave_forecast_cd" model="ir.actions.act_window">
