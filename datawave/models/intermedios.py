@@ -68,7 +68,7 @@ class IntermedioTienda(models.Model):
             #raise ValueError(historico)
             if historico:
 
-                record.datawave_sale_ids = [6,0,historico.ids]
+                record.datawave_sale_ids = [(6,0,historico.ids)]
 
                 import statistics
                 datos = []
