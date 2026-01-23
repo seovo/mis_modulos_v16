@@ -10,7 +10,7 @@ class IntermedioTienda(models.Model):
     product_id     = fields.Many2one('datawave.producto', string='Producto', required=True)
     tienda_id      = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     lt_days        = fields.Integer(string='LT Dias')
-    forecast_day   = fields.Integer(string='Forecast Diario')
+    forecast_day   = fields.Float(string='Forecast Diario')
     sigma          = fields.Float(string='Sigma')
     ss             = fields.Float(string='SS',help='Z*Sigma*SQRT(LT)')
     freq           = fields.Float(string='FREQ')
@@ -20,6 +20,7 @@ class IntermedioTienda(models.Model):
     quantity       = fields.Integer(string='Cantidad Sugerida',help='MAX(0,MAX-Stock)')
     quantity_round = fields.Integer(string='Cantidad Sugerida Redondeada')
     datawave_sale_ids = fields.Many2many('datawave.sale',string='Ventas')
+    forecast_tienda_id = fields.Many2one('datawave.forecast.tienda')
 
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
@@ -28,8 +29,25 @@ class IntermedioTienda(models.Model):
 
 
 
-            if not record.product_id or not record.tienda_id:
+            if not record.product_id or not record.tienda_id  or not record.date:
                 continue
+
+
+            forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
+                ('product_id','=', record.product_id.id ),('tienda_id','=',record.tienda_id.id)
+            ])
+
+            if forecast_tienda_day:
+                record.forecast_tienda_id = forecast_tienda_day.id
+                record.forecast_day = forecast_tienda_day.forecast_day
+            else:
+                record.forecast_tienda_id = None
+                record.forecast_day = None
+
+
+
+
+                
 
             config = self.env['datawave.config.tienda.product'].search([
                 ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id)
