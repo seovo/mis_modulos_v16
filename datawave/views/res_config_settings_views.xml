@@ -22,11 +22,12 @@
                                         <label string="Días usados para Sigma Tienda" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_sigma_days" />
                                     </div>
-                                    <!--
+
                                     <div class="row">
-                                        <label string="Purchase Tax" for="purchase_tax_id" class="col-lg-3 o_light_label"/>
-                                        <field name="purchase_tax_id" domain="[('type_tax_use', 'in', ('purchase', 'all'))]"/>
+                                        <label string="Z por tienda (fallback)" for="datawave_z_tienda" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_z_tienda" />
                                     </div>
+                                    <!--
                                     <div class="row">
                                         <div class="col-lg-3">
                                             <label string="Prices" for="account_price_include" class="o_light_label"/>

@@ -45,8 +45,6 @@ class IntermedioTienda(models.Model):
                 record.forecast_day = None
 
 
-
-
                 
 
             config = self.env['datawave.config.tienda.product'].search([
