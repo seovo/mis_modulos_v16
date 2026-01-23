@@ -22,81 +22,97 @@ class IntermedioTienda(models.Model):
     datawave_sale_ids = fields.Many2many('datawave.sale',string='Ventas')
     forecast_tienda_id = fields.Many2one('datawave.forecast.tienda')
 
+    def set_forecast_day(self):
+        record = self
+        forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
+            ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
+        ])
+
+        if forecast_tienda_day:
+            record.forecast_tienda_id = forecast_tienda_day.id
+            record.forecast_day = forecast_tienda_day.forecast_day
+        else:
+            record.forecast_tienda_id = None
+            record.forecast_day = None
+
+    def set_historico_sigma(self):
+
+        record = self
+
+        config = self.env['datawave.config.tienda.product'].search([
+            ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
+        ])
+
+        # raise ValueError(config)
+
+        if not config:
+            return
+
+        record.lt_days = config.lt_days
+        sigma_dias = self.env['ir.config_parameter'].sudo().get_param('datawave.ventana_sigma_dias')
+        sigma_dias = int(sigma_dias) if sigma_dias else 0
+
+        today = record.date
+        limit_date = today - timedelta(days=sigma_dias)
+
+        # DIAS LOBORALES
+
+        domain = [
+            ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id),
+            # ("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today"),
+            ("date", ">=", limit_date), ("date", "<", today),
+            # ("date", ">=", "today -30d"), ("date", "<", "today")
+
+        ]
+
+        historico = self.env['datawave.sale'].search(domain)
+        # raise ValueError(historico)
+        if historico:
+
+            record.datawave_sale_ids = [(6, 0, historico.ids)]
+
+            import statistics
+            datos = []
+            for hist in historico:
+                datos.append(hist.quantity)
+            # raise ValueError(datos)
+            desviacion_estandar_poblacional = statistics.pstdev(datos)
+            # raise ValueError(desviacion_estandar_poblacional)
+            record.sigma = desviacion_estandar_poblacional
+        else:
+            record.datawave_sale_ids = False
+        #    raise ValueError(domain)
+
+
+    def set_zz(self):
+        conf_zz = self.env['ir.config_parameter'].sudo().get_param('datawave.z_tienda')
+        conf_zz = float(conf_zz) if conf_zz else 0
+
+        if conf_zz == 1:
+            import math
+
+            # Calcular la raíz cuadrada
+            raiz_cuadrada = math.sqrt(self.lt_days)
+            zz = conf_zz * self.sigma * raiz_cuadrada
+            self.ss = zz
+        else:
+            self.ss = self.lt_days * self.forecast_day
+
+
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
         for record in self:
             record.lt_days = 0
-
-
+            record.datawave_sale_ids = False
 
             if not record.product_id or not record.tienda_id  or not record.date:
                 continue
 
-
-            forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
-                ('product_id','=', record.product_id.id ),('tienda_id','=',record.tienda_id.id)
-            ])
-
-            if forecast_tienda_day:
-                record.forecast_tienda_id = forecast_tienda_day.id
-                record.forecast_day = forecast_tienda_day.forecast_day
-            else:
-                record.forecast_tienda_id = None
-                record.forecast_day = None
-
-
-                
-
-            config = self.env['datawave.config.tienda.product'].search([
-                ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id)
-            ])
-
-            #raise ValueError(config)
-
-
-            if not config:
-                continue
-
-            record.lt_days = config.lt_days
-
-            sigma_dias = self.env['ir.config_parameter'].sudo().get_param('datawave.ventana_sigma_dias')
-
-            sigma_dias = int(sigma_dias) if sigma_dias else 0
+            record.set_forecast_day()
+            record.set_historico_sigma()
 
 
 
-
-            today = record.date
-            limit_date = today - timedelta(days=sigma_dias)
-
-
-            #DIAS LOBORALES
-
-            domain = [
-                ('product_id','=',record.product_id.id),('tienda_id','=',record.tienda_id.id),
-                #("date", ">=", f"today -{sigma_dias}d"), ("date", "<=", "today"),
-                ("date", ">=", limit_date), ("date", "<", today),
-                #("date", ">=", "today -30d"), ("date", "<", "today")
-
-            ]
-
-            historico = self.env['datawave.sale'].search(domain)
-            #raise ValueError(historico)
-            if historico:
-
-                record.datawave_sale_ids = [(6,0,historico.ids)]
-
-                import statistics
-                datos = []
-                for hist in historico:
-                    datos.append(hist.quantity)
-                #raise ValueError(datos)
-                desviacion_estandar_poblacional = statistics.pstdev(datos)
-                #raise ValueError(desviacion_estandar_poblacional)
-                record.sigma = desviacion_estandar_poblacional
-            else:
-                record.datawave_sale_ids = False
-            #    raise ValueError(domain)
 
 
 
