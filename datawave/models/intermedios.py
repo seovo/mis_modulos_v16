@@ -110,6 +110,7 @@ class IntermedioTienda(models.Model):
 
             record.set_forecast_day()
             record.set_historico_sigma()
+            record.set_zz()
 
 
 
