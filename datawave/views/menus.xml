@@ -9,7 +9,14 @@
                <menuitem id="menu_config_tienda_product" name="Config Tienda Producto"
                          sequence="1" action="action_datawave_config_tienda_product"/>
 
+               <menuitem id="menu_config_tienda" name="Config Tienda"
+                         sequence="2" action="action_datawave_config_tienda"/>
+
         </menuitem>
+
+
+
+
 
         <menuitem id="menu_datawave_inputs_cliente" name="Inputs Cliente"  sequence="5">
             <menuitem id="menu_datawave_producto" name="Productos"  action="action_datawave_producto" sequence="1"/>

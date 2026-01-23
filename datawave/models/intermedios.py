@@ -98,6 +98,20 @@ class IntermedioTienda(models.Model):
         else:
             self.ss = self.lt_days * self.forecast_day
 
+    def set_zz(self):
+        conf = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_frecuencia_tienda')
+        conf = float(conf) if conf else 0
+
+        self.freq = 0
+
+        #frecuencia fija
+        if conf == 1 :
+            self.freq = conf
+
+        if conf == 2:
+            self.freq = 0
+
+
 
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):

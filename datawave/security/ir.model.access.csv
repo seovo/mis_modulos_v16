@@ -27,3 +27,4 @@ replanish_cd,replanish_cd,model_datawave_replanish_cd,,1,1,1,1
 alert_stock,alert_stock,model_datawave_alert_stock,,1,1,1,1
 
 config_tienda_product,config_tienda_product,model_datawave_config_tienda_product,,1,1,1,1
+config_tienda,config_tienda,model_datawave_config_tienda,,1,1,1,1

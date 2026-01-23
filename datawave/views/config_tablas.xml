@@ -36,9 +36,50 @@
     </field>
 </record>
 
+
+<!-- Vistas para datawave.config.tienda -->
+<record id="view_datawave_config_tienda_list" model="ir.ui.view">
+    <field name="name">datawave.config.tienda.list</field>
+    <field name="model">datawave.config.tienda</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="tienda_id"/>
+            <field name="days_delta"/>
+            <field name="days_frequency"/>
+            <field name="z_tienda"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_config_tienda_form" model="ir.ui.view">
+    <field name="name">datawave.config.tienda.form</field>
+    <field name="model">datawave.config.tienda</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="tienda_id" required="1"/>
+                    <field name="days_delta"/>
+                    <field name="days_frequency"/>
+                    <field name="z_tienda"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+
 <record id="action_datawave_config_tienda_product" model="ir.actions.act_window">
     <field name="name">Config Tienda Producto</field>
     <field name="res_model">datawave.config.tienda.product</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+
+<record id="action_datawave_config_tienda" model="ir.actions.act_window">
+    <field name="name">Config Tienda</field>
+    <field name="res_model">datawave.config.tienda</field>
     <field name="view_mode">list,form</field>
 </record>
 
