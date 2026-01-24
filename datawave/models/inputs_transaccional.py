@@ -5,7 +5,7 @@ class StockTienda(models.Model):
     _description = 'StockTienda de Datawave'
     product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
     tienda_id = fields.Many2one('datawave.tienda', string='Tienda', required=True)
-    cd_id = fields.Many2one('datawave.cd', string='CD')
+
     stock = fields.Integer(string='Stock')
     date = fields.Date(string='Fecha')
 
@@ -15,10 +15,10 @@ class StockCD(models.Model):
     _description = 'StockCD de Datawave'
 
     product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
-    tienda_id = fields.Many2one('datawave.tienda', string='Tienda', required=True)
+    cd_id = fields.Many2one('datawave.cd', string='CD')
     stock = fields.Integer(string='Stock')
     date = fields.Date(string='Fecha')
-    code_seller = fields.Char(string='Proveedor ID')
+    seller_id = fields.Many2one('datawave.seller',string='Proveedor')
 
 class VentasHistoricas(models.Model):
     _name = 'datawave.sale'

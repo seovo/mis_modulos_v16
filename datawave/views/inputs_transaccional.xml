@@ -10,8 +10,7 @@
 
             <field name="product_id"/>
             <field name="tienda_id"/>
-            <field name="cd_id" />
-            <field name="stock"/>
+
             <field name="date"/>
         </list>
     </field>
@@ -27,7 +26,7 @@
 
                     <field name="product_id"/>
                     <field name="tienda_id"/>
-                    <field name="cd_id" />
+
                     <field name="stock"/>
                     <field name="date"/>
                 </group>
@@ -42,9 +41,9 @@
     <field name="model">datawave.stock.cd</field>
     <field name="arch" type="xml">
         <list>
-            <field name="name"/>
-            <field name="sku"/>
-            <field name="code_cd"/>
+
+            <field name="product_id"/>
+            <field name="cd_id" />
             <field name="stock"/>
             <field name="date"/>
             <field name="code_seller"/>
@@ -59,12 +58,12 @@
         <form>
             <sheet>
                 <group>
-                    <field name="name"/>
-                    <field name="sku"/>
-                    <field name="code_cd"/>
+
+                    <field name="product_id"/>
+                    <field name="cd_id" />
                     <field name="stock"/>
                     <field name="date"/>
-                    <field name="code_seller"/>
+                    <field name="seller_id"/>
                 </group>
             </sheet>
         </form>
@@ -81,6 +80,7 @@
             <field name="product_id"/>
             <field name="tienda_id"/>
             <field name="quantity"/>
+            <field name="seller_id" />
         </list>
     </field>
 </record>
