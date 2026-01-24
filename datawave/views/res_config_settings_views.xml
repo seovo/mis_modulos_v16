@@ -35,6 +35,16 @@
                                     </div>
                                 </div>
 
+                                <div class="row mt16">
+                                        <label string="Días usados para Sigma" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_sigma_days" />
+                                </div>
+
+                                <div class="row">
+                                        <label string="Z por tienda (fallback)" for="datawave_z_tienda" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_z_tienda" />
+                                </div>
+
 
 
                             </setting>
@@ -59,27 +69,20 @@
                                         <field name="datawave_frecuencia_tienda" />
                                     </div>
 
-                                </div>
-
-
-
-
-
-
-                                <div class="content-group">
                                     <div class="row mt16">
-                                        <label string="Días usados para Sigma Tienda" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
-                                        <field name="datawave_sigma_days" />
+                                        <label string="Días usados para Sigma" for="datawave_sigma_days_cd" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_sigma_days_cd" />
                                     </div>
 
                                     <div class="row">
                                         <label string="Z por tienda (fallback)" for="datawave_z_tienda" class="col-lg-3 o_light_label"/>
-                                        <field name="datawave_z_tienda" />
+                                        <field name="datawave_z_cd" />
                                     </div>
 
-
-
                                 </div>
+
+
+
                             </setting>
 
                         </block>

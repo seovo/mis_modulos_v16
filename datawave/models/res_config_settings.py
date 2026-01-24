@@ -12,6 +12,9 @@ class ResConfigSettings(models.TransientModel):
     datawave_frecuencia_tienda = fields.Selection([('1', 'Fija'), ('2', 'LT+Delta'), ('3', 'Días objetivo')],
                                                          default='1',
                                                          config_parameter='datawave.metodo_frecuencia_tienda')
+    datawave_sigma_days        = fields.Integer('Días usados para Sigma tienda',
+                                         config_parameter='datawave.ventana_sigma_dias')
+    datawave_z_tienda          = fields.Float('Z  (fallback)', config_parameter='datawave.z_tienda')
 
 
 
@@ -24,9 +27,7 @@ class ResConfigSettings(models.TransientModel):
     datawave_frecuencia_cd     = fields.Selection([('1', 'Empírica'), ('2', 'EOQ'), ('3', 'InvObj'),('4','LT+Delta'),('5','MOQ/Dem')],
                                                   default='1',
                                                   config_parameter='datawave.metodo_frecuencia_cd')
-
-
-
-    datawave_sigma_days = fields.Integer('Días usados para Sigma tienda',config_parameter='datawave.ventana_sigma_dias')
-    datawave_z_tienda   = fields.Float('Z por tienda (fallback)',config_parameter='datawave.z_tienda')
+    datawave_sigma_days_cd = fields.Integer('Días usados para Sigma tienda',
+                                         config_parameter='datawave.ventana_sigma_dias_cd')
+    datawave_z_cd   = fields.Float('Z (fallback)',config_parameter='datawave.z_cd')
 
