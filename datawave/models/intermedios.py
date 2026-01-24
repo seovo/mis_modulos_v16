@@ -147,6 +147,7 @@ class IntermedioTienda(models.Model):
             record.set_historico_sigma()
             record.set_zz()
             record.set_frecuency(forecast_tienda_day)
+            record.set_max()
 
 
 
