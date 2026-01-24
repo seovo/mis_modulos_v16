@@ -18,13 +18,20 @@
                         <block title="Datawave" name="default_taxes_setting_container">
 
 
-                            <setting id="datawave_config" string="Tienda"
+                            <setting id="datawave_config_tienda" string="Tienda"
                                      help="Configuraciones Tienda"
                             >
                                 <div class="content-group">
                                     <div class="row mt16">
-                                        <label string="Método stock de seguridad tienda" for="datawave_ss_tienda" class="col-lg-3 o_light_label"/>
+                                        <label string="Método stock de seguridad" for="datawave_ss_tienda" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_ss_tienda" />
+                                    </div>
+                                </div>
+
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label string="Método stock máximo" for="datawave_max_tienda" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_max_tienda" />
                                     </div>
                                 </div>
 
@@ -32,16 +39,30 @@
 
                             </setting>
 
-                            <setting id="datawave_config" string="Datawave Config"
-                                     help="Datawave Config"
+                            <setting id="datawave_config_cd" string="CD"
+                                         help="Configuraciones CD"
                              >
 
                                 <div class="content-group">
                                     <div class="row mt16">
-                                        <label string="Método stock de seguridad CD" for="datawave_ss_cd" class="col-lg-3 o_light_label"/>
+                                        <label string="Método stock de seguridad" for="datawave_ss_cd" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_ss_cd" />
                                     </div>
+
+                                    <div class="row mt16">
+                                        <label string="Método stock máximo" for="datawave_max_cd" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_max_cd" />
+                                    </div>
+
+                                    <div class="row">
+                                        <label string="Método frecuencia"  for="datawave_frecuencia_tienda" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_frecuencia_tienda" />
+                                    </div>
+
                                 </div>
+
+
+
 
 
 
@@ -56,10 +77,7 @@
                                         <field name="datawave_z_tienda" />
                                     </div>
 
-                                    <div class="row">
-                                        <label string="Método frecuencia tienda"  for="datawave_metodo_frecuencia_tienda" class="col-lg-3 o_light_label"/>
-                                        <field name="datawave_metodo_frecuencia_tienda" />
-                                    </div>
+
 
                                 </div>
                             </setting>
