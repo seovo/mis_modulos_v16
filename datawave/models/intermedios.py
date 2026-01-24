@@ -22,11 +22,9 @@ class IntermedioTienda(models.Model):
     datawave_sale_ids = fields.Many2many('datawave.sale',string='Ventas')
     forecast_tienda_id = fields.Many2one('datawave.forecast.tienda')
 
-    def set_forecast_day(self):
+    def set_forecast_day(self,forecast_tienda_day):
         record = self
-        forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
-            ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
-        ])
+
 
         if forecast_tienda_day:
             record.forecast_tienda_id = forecast_tienda_day.id
@@ -98,18 +96,37 @@ class IntermedioTienda(models.Model):
         else:
             self.ss = self.lt_days * self.forecast_day
 
-    def set_zz(self):
+    def set_frecuency(self,forecast_tienda_day):
         conf = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_frecuencia_tienda')
-        conf = float(conf) if conf else 0
+        conf = int(conf) if conf else 0
 
         self.freq = 0
 
+        config_tienda = self.env['datawave.config.tienda'].search([
+            ('tienda_id', '=', self.tienda_id.id)
+        ])
+
         #frecuencia fija
         if conf == 1 :
-            self.freq = conf
+            self.freq = config_tienda.days_frequency
 
         if conf == 2:
-            self.freq = 0
+            self.freq = self.lt_days + config_tienda.days_delta
+
+        if conf == 3:
+            self.freq = forecast_tienda_day.days_target
+
+    def set_max(self):
+        self.max = 0
+
+        conf = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_max_tienda')
+        conf = int(conf) if conf else 0
+
+        if conf == 1 :
+            self.max = ( ( self.lt_days + self.freq ) * self.freq ) + self.ss
+
+        if conf == 2:
+            self.max = (14 * self.forecast_day ) + self.ss
 
 
 
@@ -122,9 +139,14 @@ class IntermedioTienda(models.Model):
             if not record.product_id or not record.tienda_id  or not record.date:
                 continue
 
-            record.set_forecast_day()
+            forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
+                ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
+            ])
+
+            record.set_forecast_day(forecast_tienda_day)
             record.set_historico_sigma()
             record.set_zz()
+            record.set_frecuency(forecast_tienda_day)
 
 
 
