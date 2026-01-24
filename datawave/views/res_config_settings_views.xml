@@ -35,6 +35,11 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                        <label string="Método frecuencia"  for="datawave_frecuencia_tienda" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_frecuencia_tienda" />
+                                </div>
+
                                 <div class="row mt16">
                                         <label string="Días usados para Sigma" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_sigma_days" />
@@ -65,8 +70,8 @@
                                     </div>
 
                                     <div class="row">
-                                        <label string="Método frecuencia"  for="datawave_frecuencia_tienda" class="col-lg-3 o_light_label"/>
-                                        <field name="datawave_frecuencia_tienda" />
+                                        <label string="Método frecuencia"  for="datawave_frecuencia_cd" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_frecuencia_cd" />
                                     </div>
 
                                     <div class="row mt16">
@@ -75,7 +80,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <label string="Z por tienda (fallback)" for="datawave_z_tienda" class="col-lg-3 o_light_label"/>
+                                        <label string="Z por tienda (fallback)" for="datawave_z_cd" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_z_cd" />
                                     </div>
 
