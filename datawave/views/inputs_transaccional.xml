@@ -46,7 +46,7 @@
             <field name="cd_id" />
             <field name="stock"/>
             <field name="date"/>
-            <field name="code_seller"/>
+            <field name="seller_id"/>
         </list>
     </field>
 </record>
