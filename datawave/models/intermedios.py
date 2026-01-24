@@ -149,6 +149,8 @@ class IntermedioTienda(models.Model):
             record.set_frecuency(forecast_tienda_day)
             record.set_max()
 
+            record.rop = ( record.forecast_day * record.lt_days ) + record.ss
+
 
 
 
