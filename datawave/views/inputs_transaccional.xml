@@ -80,7 +80,7 @@
             <field name="product_id"/>
             <field name="tienda_id"/>
             <field name="quantity"/>
-            <field name="seller_id" />
+
         </list>
     </field>
 </record>
