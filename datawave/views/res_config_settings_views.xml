@@ -17,6 +17,14 @@
                             <setting id="datawave_config" string="Datawave Config"
                                      help="Datawave Config"
                              >
+
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label string="Método stock de seguridad tienda" for="datawave_ss_tienda" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_ss_tienda" />
+                                    </div>
+                                </div>
+
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label string="Días usados para Sigma Tienda" for="datawave_sigma_days" class="col-lg-3 o_light_label"/>
