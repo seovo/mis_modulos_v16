@@ -136,7 +136,6 @@ class IntermedioTienda(models.Model):
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
         for record in self:
-
             record.lt_days = 0
             record.datawave_sale_ids = False
 
@@ -157,7 +156,9 @@ class IntermedioTienda(models.Model):
 
             stock = 0
             stock_tienda = self.env['datawave.stock.tienda'].search([
-                ('tienda_id', '=', self.tienda_id.id)
+                ('tienda_id', '=', record.tienda_id.id),
+                ('product_id','=',record.product_id.id),
+                ('date','=',record.date)
             ])
 
             if stock_tienda:
