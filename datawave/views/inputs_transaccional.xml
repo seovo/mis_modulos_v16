@@ -7,11 +7,10 @@
     <field name="model">datawave.stock.tienda</field>
     <field name="arch" type="xml">
         <list>
-
             <field name="product_id"/>
             <field name="tienda_id"/>
-
             <field name="date"/>
+            <field name="stock"/>
         </list>
     </field>
 </record>
@@ -23,10 +22,8 @@
         <form>
             <sheet>
                 <group>
-
                     <field name="product_id"/>
                     <field name="tienda_id"/>
-
                     <field name="stock"/>
                     <field name="date"/>
                 </group>
@@ -44,9 +41,10 @@
 
             <field name="product_id"/>
             <field name="cd_id" />
-            <field name="stock"/>
+
             <field name="date"/>
             <field name="seller_id"/>
+            <field name="stock"/>
         </list>
     </field>
 </record>

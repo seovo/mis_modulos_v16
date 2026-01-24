@@ -106,6 +106,9 @@ class IntermedioTienda(models.Model):
             ('tienda_id', '=', self.tienda_id.id)
         ])
 
+        if not config_tienda:
+            return
+
         #frecuencia fija
         if conf == 1 :
             self.freq = config_tienda.days_frequency
@@ -150,6 +153,16 @@ class IntermedioTienda(models.Model):
             record.set_max()
 
             record.rop = ( record.forecast_day * record.lt_days ) + record.ss
+
+            stock = 0
+            stock_tienda = self.env['datawave.stock.tienda'].search([
+                ('tienda_id', '=', self.tienda_id.id)
+            ])
+
+            if stock_tienda:
+                stock = stock_tienda.stock
+
+            record.stock = stock
 
 
 
