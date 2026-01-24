@@ -161,6 +161,7 @@ class IntermedioTienda(models.Model):
                 ('date','=',record.date)
             ])
 
+
             if stock_tienda:
                 stock = stock_tienda.stock
 
