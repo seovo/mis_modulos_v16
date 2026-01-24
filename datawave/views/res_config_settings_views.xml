@@ -13,17 +13,37 @@
 
 
 
-                        <block title="Datawave" name="default_taxes_setting_container">
-                            <setting id="datawave_config" string="Datawave Config"
-                                     help="Datawave Config"
-                             >
 
+
+                        <block title="Datawave" name="default_taxes_setting_container">
+
+
+                            <setting id="datawave_config" string="Tienda"
+                                     help="Configuraciones Tienda"
+                            >
                                 <div class="content-group">
                                     <div class="row mt16">
                                         <label string="Método stock de seguridad tienda" for="datawave_ss_tienda" class="col-lg-3 o_light_label"/>
                                         <field name="datawave_ss_tienda" />
                                     </div>
                                 </div>
+
+
+
+                            </setting>
+
+                            <setting id="datawave_config" string="Datawave Config"
+                                     help="Datawave Config"
+                             >
+
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label string="Método stock de seguridad CD" for="datawave_ss_cd" class="col-lg-3 o_light_label"/>
+                                        <field name="datawave_ss_cd" />
+                                    </div>
+                                </div>
+
+
 
                                 <div class="content-group">
                                     <div class="row mt16">
