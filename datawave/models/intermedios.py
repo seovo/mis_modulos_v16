@@ -136,6 +136,7 @@ class IntermedioTienda(models.Model):
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
         for record in self:
+
             record.lt_days = 0
             record.datawave_sale_ids = False
 
