@@ -33,13 +33,11 @@ class IntermedioTienda(models.Model):
             record.forecast_tienda_id = None
             record.forecast_day = None
 
-    def set_historico_sigma(self):
+    def set_historico_sigma(self,config_tienda):
 
         record = self
 
-        config = self.env['datawave.config.tienda.product'].search([
-            ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
-        ])
+        config = config_tienda
 
         # raise ValueError(config)
 
@@ -142,12 +140,16 @@ class IntermedioTienda(models.Model):
             if not record.product_id or not record.tienda_id  or not record.date:
                 continue
 
+            config_tienda_p = self.env['datawave.config.tienda.product'].search([
+                ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
+            ])
+
             forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
                 ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
             ])
 
             record.set_forecast_day(forecast_tienda_day)
-            record.set_historico_sigma()
+            record.set_historico_sigma(config_tienda_p)
             record.set_zz()
             record.set_frecuency(forecast_tienda_day)
             record.set_max()
@@ -171,6 +173,16 @@ class IntermedioTienda(models.Model):
             record.stock = stock
 
             record.quantity = max(record.stock,record.max)
+
+            def multiplo_superior(numero, constante):
+                if constante <= 0:
+                    raise ValueError("La constante debe ser mayor que 0.")
+                return ((numero + constante - 1) // constante) * constante
+
+
+
+            resultado = multiplo_superior(record.quantity, config_tienda_p.round_tienda)
+            record.quantity_round = resultado
 
 
 
