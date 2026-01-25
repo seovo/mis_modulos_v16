@@ -36,6 +36,8 @@ class IntermedioCD(models.Model):
                 ('cd_id','=',record.cd_id.id)
             ])
 
+            raise ValueError(config_tienda_p)
+
             record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
 
 
