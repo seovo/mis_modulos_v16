@@ -187,19 +187,14 @@ class IntermedioTienda(models.Model):
 
 
 
-
-
-
-
-
 class IntermedioCD(models.Model):
     _name = 'datawave.intermedio.cd'
     _description = 'IntermedioCD de Datawave'
-    name         = fields.Char(string='Clave')
-    code         = fields.Char(string='Clave2')
-    sku          = fields.Char(string='Producto_ID')
-    code_cd      = fields.Char(string='CD_ID')
-    code_seller  = fields.Char(string='Proveedor ID')
+
+    date = fields.Date(string='Fecha', required=True)
+    product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
+    cd_id = fields.Many2one('datawave.cd', string='CD')
+    seller_id = fields.Many2one('datawave.seller',string='Proveedor')
     lt_days      = fields.Integer(string='LT Dias')
     forecast_day = fields.Integer(string='Forecast Diario')
     sigma        = fields.Float(string='Sigma')
