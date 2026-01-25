@@ -8,6 +8,7 @@ class StockTienda(models.Model):
 
     stock = fields.Integer(string='Stock')
     date = fields.Date(string='Fecha')
+
 '''
 
 class StockCD(models.Model):
