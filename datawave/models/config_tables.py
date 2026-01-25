@@ -20,3 +20,21 @@ class ConfigTienda(models.Model):
     days_delta          = fields.Integer(string='Delta Dias')
     days_frequency      = fields.Integer(string='Frecuencia fija')
     z_tienda            = fields.Float(string='Z')
+
+
+class ConfigProveedorProductoCD(models.Model):
+    _name = 'datawave.config.proveedor.cd'
+    _description = 'ConfigProveedorProductoCD de Datawave'
+
+    product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
+    seller_id = fields.Many2one('datawave.seller', string='Proveedor')
+    cd_id = fields.Many2one('datawave.cd', string='CD')
+    moq = fields.Float(string='Sigma',default='0')
+    lt_days = fields.Integer(string='LT')
+    z_tienda = fields.Float(string='Z')
+    cost_sale = fields.Float(string='Costo pedido')
+    cost_keep = fields.Float(string='Costo mantener')
+    frequency_empirical = fields.Float(string='Frecuencia Empirico')
+    days_objetive = fields.Integer(string='Dias Objetivos')
+    days_delta = fields.Integer(string='Dias Delta')
+    round_cd = fields.Float(string='Redondeo Min')

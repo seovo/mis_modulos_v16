@@ -187,27 +187,6 @@ class IntermedioTienda(models.Model):
 
 
 
-class IntermedioCD(models.Model):
-    _name = 'datawave.intermedio.cd'
-    _description = 'IntermedioCD de Datawave'
-
-    date = fields.Date(string='Fecha', required=True)
-    product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
-    cd_id = fields.Many2one('datawave.cd', string='CD')
-    seller_id = fields.Many2one('datawave.seller',string='Proveedor')
-    lt_days      = fields.Integer(string='LT Dias')
-    forecast_day = fields.Integer(string='Forecast Diario')
-    sigma        = fields.Float(string='Sigma')
-    moq          = fields.Float(string='Sigma')
-    stock        = fields.Integer(string='Stock')
-    stock_transit = fields.Integer(string='Stock Transito')
-    stock_forecast = fields.Integer(string='Stock Pronosticado')
-    ss = fields.Float(string='SS', help='Z*Sigma*SQRT(LT)')
-    freq = fields.Float(string='FREQ')
-    max = fields.Float(string='MAX', help='(LT+FREQ)*Forecast+SS')
-    rop = fields.Float(string='ROP', help='Forecast*LT+SS')
-    quantity = fields.Integer(string='Cantidad Sugerida', help='MAX(0,MAX-Stock)')
-    quantity_round = fields.Integer(string='Cantidad Sugerida Redondeada')
 
 
 

@@ -12,6 +12,10 @@
                <menuitem id="menu_config_tienda" name="Config Tienda"
                          sequence="2" action="action_datawave_config_tienda"/>
 
+
+               <menuitem id="menu_config_proveedor_cd" name="Config Proveedor CD"
+                         sequence="3" action="action_datawave_config_proveedor_cd"/>
+
         </menuitem>
 
 

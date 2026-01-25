@@ -69,6 +69,55 @@
 </record>
 
 
+<!-- Vistas para datawave.config.proveedor.cd -->
+<record id="view_datawave_config_proveedor_cd_list" model="ir.ui.view">
+    <field name="name">datawave.config.proveedor.cd.list</field>
+    <field name="model">datawave.config.proveedor.cd</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="product_id"/>
+            <field name="seller_id"/>
+            <field name="cd_id"/>
+            <field name="moq"/>
+            <field name="lt_days"/>
+            <field name="z_tienda"/>
+            <field name="cost_sale"/>
+            <field name="cost_keep"/>
+            <field name="frequency_empirical"/>
+            <field name="days_objetive"/>
+            <field name="days_delta"/>
+            <field name="round_cd"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_config_proveedor_cd_form" model="ir.ui.view">
+    <field name="name">datawave.config.proveedor.cd.form</field>
+    <field name="model">datawave.config.proveedor.cd</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="product_id" required="1"/>
+                    <field name="seller_id"/>
+                    <field name="cd_id"/>
+                    <field name="moq"/>
+                    <field name="lt_days"/>
+                    <field name="z_tienda"/>
+                    <field name="cost_sale"/>
+                    <field name="cost_keep"/>
+                    <field name="frequency_empirical"/>
+                    <field name="days_objetive"/>
+                    <field name="days_delta"/>
+                    <field name="round_cd"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+
 
 <record id="action_datawave_config_tienda_product" model="ir.actions.act_window">
     <field name="name">Config Tienda Producto</field>
@@ -82,6 +131,14 @@
     <field name="res_model">datawave.config.tienda</field>
     <field name="view_mode">list,form</field>
 </record>
+
+
+<record id="action_datawave_config_proveedor_cd" model="ir.actions.act_window">
+    <field name="name">Config Proveedor CD</field>
+    <field name="res_model">datawave.config.proveedor.cd</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
 
 
 </odoo>
