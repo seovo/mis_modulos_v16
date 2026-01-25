@@ -28,7 +28,9 @@ class IntermedioCD(models.Model):
         for record in self:
             record.lt_days = 0
 
-            if not record.product_id or not record.cd_id  or not record.date or record.seller_id:
+
+
+            if not record.product_id or not record.cd_id  or not record.date or not record.seller_id:
                 continue
 
             config_tienda_p = self.env['datawave.config.proveedor.cd'].search([
@@ -36,7 +38,7 @@ class IntermedioCD(models.Model):
                 ('cd_id','=',record.cd_id.id)
             ])
 
-            raise ValueError(config_tienda_p)
+            #raise ValueError(config_tienda_p)
 
             record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
 
