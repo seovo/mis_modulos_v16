@@ -119,11 +119,10 @@
     <field name="model">datawave.intermedio.cd</field>
     <field name="arch" type="xml">
         <list>
-            <field name="name"/>
-            <field name="code"/>
-            <field name="sku"/>
-            <field name="code_cd"/>
-            <field name="code_seller"/>
+            <field name="date"/>
+            <field name="product_id"/>
+            <field name="cd_id"/>
+            <field name="seller_id"/>
             <field name="lt_days"/>
             <field name="forecast_day"/>
             <field name="sigma"/>
