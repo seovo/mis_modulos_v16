@@ -8,7 +8,7 @@ class StockTienda(models.Model):
 
     stock = fields.Integer(string='Stock')
     date = fields.Date(string='Fecha')
-
+'''
 
 class StockCD(models.Model):
     _name = 'datawave.stock.cd'
@@ -19,6 +19,8 @@ class StockCD(models.Model):
     stock = fields.Integer(string='Stock')
     date = fields.Date(string='Fecha')
     seller_id = fields.Many2one('datawave.seller',string='Proveedor')
+    
+'''
 
 class VentasHistoricas(models.Model):
     _name = 'datawave.sale'
