@@ -11,7 +11,7 @@ class IntermedioTienda(models.Model):
     tienda_id      = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     lt_days        = fields.Integer(string='LT Dias')
     forecast_day   = fields.Float(string='Forecast Diario')
-    sigma          = fields.Float(string='Sigma', digits=(16, 4))
+    sigma          = fields.Float(string='Sigma')
     ss             = fields.Float(string='SS',help='Z*Sigma*SQRT(LT)')
     freq           = fields.Float(string='FREQ')
     max            = fields.Float(string='MAX',help='(LT+FREQ)*Forecast+SS')
