@@ -27,3 +27,18 @@ class IntermedioCD(models.Model):
     def change_product_tienda(self):
         for record in self:
             record.lt_days = 0
+
+            if not record.product_id or not record.cd_id  or not record.date or record.seller_id:
+                continue
+
+            config_tienda_p = self.env['datawave.config.proveedor.cd'].search([
+                ('product_id', '=', record.product_id.id), ('seller_id', '=', record.seller_id.id),
+                ('cd_id','=',record.cd_id.id)
+            ])
+
+            record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
+
+            forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
+                ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
+            ])
+
