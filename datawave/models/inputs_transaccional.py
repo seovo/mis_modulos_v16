@@ -9,7 +9,7 @@ class StockTienda(models.Model):
     stock = fields.Integer(string='Stock')
     date = fields.Date(string='Fecha')
 
-'''
+
 
 class StockCD(models.Model):
     _name = 'datawave.stock.cd'
@@ -21,7 +21,7 @@ class StockCD(models.Model):
     date = fields.Date(string='Fecha')
     seller_id = fields.Many2one('datawave.seller',string='Proveedor')
     
-'''
+
 
 class VentasHistoricas(models.Model):
     _name = 'datawave.sale'
@@ -31,14 +31,16 @@ class VentasHistoricas(models.Model):
     tienda_id = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     quantity = fields.Integer(string="Cantidad")
 
-
+'''
 class VentasHistoricasCD(models.Model):
-    _name = 'datawave.sale,cd'
+    _name = 'datawave.sale.cd'
     _description = 'Ventas Historicas de Datawave'
     date = fields.Date(string='Fecha', required=True)
     product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
     cd_id = fields.Many2one('datawave.cd', string='CD')
     quantity = fields.Integer(string="Cantidad")
+    
+'''
 
 class OrdenesTransitoCdDetalle(models.Model):
     _name = 'datawave.order.cd'
