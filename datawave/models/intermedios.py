@@ -155,17 +155,22 @@ class IntermedioTienda(models.Model):
             record.rop = ( record.forecast_day * record.lt_days ) + record.ss
 
             stock = 0
-            stock_tienda = self.env['datawave.stock.tienda'].search([
+            domain = [
                 ('tienda_id', '=', record.tienda_id.id),
                 ('product_id','=',record.product_id.id),
                 ('date','=',record.date)
-            ])
+            ]
+            stock_tienda = self.env['datawave.stock.tienda'].search(domain)
 
 
             if stock_tienda:
                 stock = stock_tienda.stock
+            else:
+                raise ValueError(domain)
 
             record.stock = stock
+
+            record.quantity = max(record.stock,record.max)
 
 
 
