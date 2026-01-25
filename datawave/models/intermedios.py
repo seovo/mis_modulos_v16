@@ -167,8 +167,8 @@ class IntermedioTienda(models.Model):
 
             if stock_tienda:
                 stock = stock_tienda.stock
-            else:
-                raise ValueError(domain)
+            #else:
+            #    raise ValueError(domain)
 
             record.stock = stock
 
