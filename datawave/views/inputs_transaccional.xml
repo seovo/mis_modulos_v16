@@ -109,7 +109,7 @@
         <list>
             <field name="date"/>
             <field name="product_id"/>
-            <field name="tienda_id"/>
+            <field name="cd_id"/>
             <field name="quantity"/>
 
         </list>
@@ -126,7 +126,7 @@
                 <group>
                     <field name="date"/>
                     <field name="product_id"/>
-                    <field name="tienda_id"/>
+                    <field name="cd_id"/>
                     <field name="quantity"/>
                 </group>
             </sheet>
