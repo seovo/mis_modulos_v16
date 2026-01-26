@@ -226,7 +226,7 @@
 </record>
 
 <record id="action_datawave_sale_cd" model="ir.actions.act_window">
-    <field name="name">Ventas Históricas</field>
+    <field name="name">Ventas Históricas CD</field>
     <field name="res_model">datawave.sale.cd</field>
     <field name="view_mode">list,form</field>
 </record>
