@@ -9,7 +9,7 @@ tiendacd,tiendacd,model_datawave_tienda_cd,,1,1,1,1
 stock_tienda,stock_tienda,model_datawave_stock_tienda,,1,1,1,1
 stock_cd,stock_cd,model_datawave_stock_cd,,1,1,1,1
 sale,sale,model_datawave_sale,,1,1,1,1
-sale,sale,model_datawave_sale_cd,,1,1,1,1
+salecd,salecd,model_datawave_sale_cd,,1,1,1,1
 order_cd,order_cd,model_datawave_order_cd,,1,1,1,1
 transit_cd_resume,transit_cd_resume,model_datawave_transit_cd_resume,,1,1,1,1
 
