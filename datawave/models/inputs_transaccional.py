@@ -31,7 +31,7 @@ class VentasHistoricas(models.Model):
     tienda_id = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     quantity = fields.Integer(string="Cantidad")
 
-'''
+
 class VentasHistoricasCD(models.Model):
     _name = 'datawave.sale.cd'
     _description = 'Ventas Historicas de Datawave'
@@ -40,7 +40,7 @@ class VentasHistoricasCD(models.Model):
     cd_id = fields.Many2one('datawave.cd', string='CD')
     quantity = fields.Integer(string="Cantidad")
     
-'''
+
 
 class OrdenesTransitoCdDetalle(models.Model):
     _name = 'datawave.order.cd'
