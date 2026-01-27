@@ -71,10 +71,11 @@ class IntermedioCD(models.Model):
 
     def set_stock(self):
         stock = 0
+
         domain = [
-            ('cd_id', '=', record.cd_id.id),
-            ('product_id', '=', record.product_id.id),
-            ('date', '=', record.date)
+            ('cd_id', '=', self.cd_id.id),
+            ('product_id', '=', self.product_id.id),
+            ('date', '=', self.date)
         ]
         stock_tienda = self.env['datawave.stock.cd'].search(domain)
 
