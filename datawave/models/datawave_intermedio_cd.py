@@ -24,6 +24,9 @@ class IntermedioCD(models.Model):
     quantity = fields.Integer(string='Cantidad Sugerida', help='MAX(0,MAX-Stock)')
     quantity_round = fields.Integer(string='Cantidad Sugerida Redondeada')
     datawave_sale_ids = fields.Many2many('datawave.sale.cd', string='Ventas')
+    riesgo = fields.Selection([
+        ('0', 'Sin Riesgo'), ('1', 'Riesgo 1'), ('2', 'Riesgo 2'), ('3', 'Riesgo 3')
+    ])
 
 
     def set_historico_sigma(self):

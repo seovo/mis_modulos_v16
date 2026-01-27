@@ -18,9 +18,12 @@ class IntermedioTienda(models.Model):
     rop            = fields.Float(string='ROP',help='Forecast*LT+SS')
     stock          = fields.Integer(string='Stock')
     quantity       = fields.Integer(string='Cantidad Sugerida',help='MAX(0,MAX-Stock)')
-    quantity_round = fields.Integer(string='Cantidad Sugerida Redondeada')
-    datawave_sale_ids = fields.Many2many('datawave.sale',string='Ventas')
+    quantity_round     = fields.Integer(string='Cantidad Sugerida Redondeada')
+    datawave_sale_ids  = fields.Many2many('datawave.sale',string='Ventas')
     forecast_tienda_id = fields.Many2one('datawave.forecast.tienda')
+    riesgo             = fields.Selection([
+        ('0','Sin Riesgo'),('1','Riesgo 1'),('2','Riesgo 2'),('3','Riesgo 3')
+    ])
 
     def set_forecast_day(self,forecast_tienda_day):
         record = self
