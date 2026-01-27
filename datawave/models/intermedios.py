@@ -130,6 +130,25 @@ class IntermedioTienda(models.Model):
             self.max = (14 * self.forecast_day ) + self.ss
 
 
+    def set_stock(self):
+        stock = 0
+        domain = [
+            ('tienda_id', '=', record.tienda_id.id),
+            ('product_id', '=', record.product_id.id),
+            ('date', '=', record.date)
+        ]
+        stock_tienda = self.env['datawave.stock.tienda'].search(domain)
+
+        if stock_tienda:
+            stock = stock_tienda.stock
+        # else:
+        #    raise ValueError(domain)
+
+        self.stock = stock
+        self.quantity = max(self.stock, self.max)
+
+
+
 
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
@@ -156,23 +175,10 @@ class IntermedioTienda(models.Model):
 
             record.rop = ( record.forecast_day * record.lt_days ) + record.ss
 
-            stock = 0
-            domain = [
-                ('tienda_id', '=', record.tienda_id.id),
-                ('product_id','=',record.product_id.id),
-                ('date','=',record.date)
-            ]
-            stock_tienda = self.env['datawave.stock.tienda'].search(domain)
+
+            record.set_stock()
 
 
-            if stock_tienda:
-                stock = stock_tienda.stock
-            #else:
-            #    raise ValueError(domain)
-
-            record.stock = stock
-
-            record.quantity = max(record.stock,record.max)
 
             def multiplo_superior(numero, constante):
                 if constante <= 0:

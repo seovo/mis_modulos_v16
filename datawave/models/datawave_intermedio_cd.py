@@ -67,10 +67,24 @@ class IntermedioCD(models.Model):
         if moq > 0 :
             self.moq = moq
         else:
-
-
-
             self.moq = self.seller_id.moq_default
+
+    def set_stock(self):
+        stock = 0
+        domain = [
+            ('cd_id', '=', record.cd_id.id),
+            ('product_id', '=', record.product_id.id),
+            ('date', '=', record.date)
+        ]
+        stock_tienda = self.env['datawave.stock.cd'].search(domain)
+
+        if stock_tienda:
+            stock = stock_tienda.stock
+        # else:
+        #    raise ValueError(domain)
+
+        self.stock = stock
+        #self.quantity = max(self.stock, self.max)
 
 
     @api.onchange('product_id', 'cd_id', 'date','seller_id')
@@ -101,4 +115,6 @@ class IntermedioCD(models.Model):
 
             record.set_historico_sigma()
             record.set_moq(config_tienda_p)
+            record.set_stock()
+
 
