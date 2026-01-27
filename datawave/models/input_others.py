@@ -15,4 +15,4 @@ class ForecastCD(models.Model):
 
     product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
     cd_id = fields.Many2one('datawave.cd', string='CD')
-    forecast_day = fields.Integer(string='Forecast Diario')
+    forecast_day = fields.Float(string='Forecast Diario')
