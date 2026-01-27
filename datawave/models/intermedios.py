@@ -165,6 +165,15 @@ class IntermedioTienda(models.Model):
             self.riesgo = '0'
 
 
+        if self.stock > self.max + self.ss :
+            self.sobreestock = '2'
+        else:
+            if self.stock > self.max :
+                self.sobreestock = '1'
+            else:
+                self.sobreestock = '0'
+
+
 
 
 

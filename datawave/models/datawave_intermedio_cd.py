@@ -120,6 +120,18 @@ class IntermedioCD(models.Model):
         if self.stock >= self.ss and self.stock >=  self.rop :
             self.riesgo = '0'
 
+
+        ###SOBRE STOCK
+        if self.stock > self.max + self.ss :
+            self.sobreestock = '2'
+        else:
+            if self.stock > self.max :
+                self.sobreestock = '1'
+            else:
+                self.sobreestock = '0'
+
+        ##
+
         domain = [
             ('cd_id', '=', self.cd_id.id),
             ('product_id', '=', self.product_id.id)
