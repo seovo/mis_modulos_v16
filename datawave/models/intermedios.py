@@ -133,9 +133,9 @@ class IntermedioTienda(models.Model):
     def set_stock(self):
         stock = 0
         domain = [
-            ('tienda_id', '=', record.tienda_id.id),
-            ('product_id', '=', record.product_id.id),
-            ('date', '=', record.date)
+            ('tienda_id', '=', self.tienda_id.id),
+            ('product_id', '=', self.product_id.id),
+            ('date', '=', self.date)
         ]
         stock_tienda = self.env['datawave.stock.tienda'].search(domain)
 
