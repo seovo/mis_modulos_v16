@@ -164,6 +164,7 @@
                     <field name="rop"/>
                     <field name="quantity"/>
                     <field name="quantity_round"/>
+                    <field name="datawave_sale_ids" />
                 </group>
             </sheet>
         </form>
