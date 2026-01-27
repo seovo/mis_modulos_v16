@@ -116,28 +116,30 @@ class IntermedioCD(models.Model):
         #self.quantity = max(self.stock, self.max)
 
 
-    def set_frecuency(self,forecast_tienda_day):
+    def set_frecuency(self,config_tienda):
+        #,forecast_tienda_day
         conf = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_frecuencia_cd')
         conf = int(conf) if conf else 0
 
         self.freq = 0
 
-        config_tienda = self.env['datawave.config.tienda'].search([
-            ('tienda_id', '=', self.tienda_id.id)
-        ])
 
         if not config_tienda:
             return
 
         #frecuencia fija
         if conf == 1 :
-            self.freq = config_tienda.days_frequency
+            self.freq = config_tienda.frecuency_empirical
 
         if conf == 2:
-            self.freq = self.lt_days + config_tienda.days_delta
+            if config_tienda.cost_keep  != 0:
+                base_raiz = (2 * self.forecast_day * 365 * config_tienda.cost_sale) / config_tienda.cost_keep
+                self.freq = math.sqrt(self.base_raiz)
+            else:
+                self.freq = 0
 
-        if conf == 3:
-            self.freq = forecast_tienda_day.days_target
+        #if conf == 3:
+        #    self.freq = forecast_tienda_day.days_target
 
 
     @api.onchange('product_id', 'cd_id', 'date','seller_id')
@@ -171,6 +173,7 @@ class IntermedioCD(models.Model):
             record.set_moq(config_tienda_p)
             record.set_stock()
             record.set_zz()
+            record.set_frecuency()
 
 
 
