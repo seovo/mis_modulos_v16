@@ -43,7 +43,9 @@ class IntermedioCD(models.Model):
             record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
 
 
-            #forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
-            #    ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
-            #])
+            forecast_day = self.env['datawave.forecast.cd'].search([
+                ('product_id', '=', record.product_id.id), ('cd_id', '=', record.cd_id.id)
+            ])
+
+            record.forecast_day = forecast_day.forecast_day
 
