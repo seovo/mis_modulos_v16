@@ -120,3 +120,4 @@ class IntermedioCD(models.Model):
             record.set_stock()
 
 
+

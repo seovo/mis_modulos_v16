@@ -181,9 +181,9 @@
     <field name="model">datawave.transit.cd.resume</field>
     <field name="arch" type="xml">
         <list>
-            <field name="name"/>
-            <field name="sku"/>
-            <field name="code_cd"/>
+
+            <field name="product_id"/>
+            <field name="cd_id"/>
             <field name="stock"/>
         </list>
     </field>
@@ -196,9 +196,8 @@
         <form>
             <sheet>
                 <group>
-                    <field name="name"/>
-                    <field name="sku"/>
-                    <field name="code_cd"/>
+                    <field name="product_id"/>
+                    <field name="cd_id"/>
                     <field name="stock"/>
                 </group>
             </sheet>

@@ -59,9 +59,9 @@ class OrdenesTransitoCdDetalle(models.Model):
 class TransitoCdResumen(models.Model):
     _name = 'datawave.transit.cd.resume'
     _description = 'TransitoCdResumen de Datawave'
-    name = fields.Char(string='Clave')
-    sku = fields.Char(string='Producto_ID')
-    code_cd = fields.Char(string='CD_ID')
+
+    product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
+    cd_id = fields.Many2one('datawave.cd', string='CD')
     stock = fields.Integer(string='Stock')
 
 
