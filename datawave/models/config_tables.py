@@ -1,5 +1,16 @@
 from odoo import models, fields
 
+class ConfigCD(models.Model):
+    _name = 'datawave.config.cd'
+    _description = 'ConfigCD de Datawave'
+
+    cd_id = fields.Many2one('datawave.cd', string='CD')
+    days_delta          = fields.Integer(string='Delta Dias')
+    fixed_frequency     = fields.Integer(string='Frecuencia fija')
+    z_cd                = fields.Float(string='Z')
+    days_target         = fields.Integer(string='Días objetivo')
+    cicle_review_day    = fields.Integer(string='Ciclo revisión')
+
 class ConfigTiendaProducto(models.Model):
     _name = 'datawave.config.tienda.product'
     _description = 'ConfigTiendaProducto de Datawave'
