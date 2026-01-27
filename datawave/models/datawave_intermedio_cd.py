@@ -138,8 +138,27 @@ class IntermedioCD(models.Model):
             else:
                 self.freq = 0
 
-        #if conf == 3:
-        #    self.freq = forecast_tienda_day.days_target
+        if conf == 3:
+            self.freq = config_tienda.days_target
+
+        if conf == 4:
+            self.freq = self.lt_days + config_tienda.days_delta
+
+        if conf == 5:
+            self.freq = self.forecast_day / self.moq if self.moq else 0
+
+    def set_max(self):
+        self.max = 0
+
+        conf = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_max_cd')
+        conf = int(conf) if conf else 0
+
+        if conf == 1 :
+            self.max = ( 2 * self.forecast_day * self.lt_days ) + (self.forecast_day + self.freq)
+
+
+        if conf == 2:
+            self.max = (self.lt_days * self.freq ) + self.ss
 
 
     @api.onchange('product_id', 'cd_id', 'date','seller_id')
@@ -174,6 +193,12 @@ class IntermedioCD(models.Model):
             record.set_stock()
             record.set_zz()
             record.set_frecuency(config_tienda_p)
+            record.set_frecuency(config_tienda_p)
+            record.set_max()
+
+            record.rop = record.forecast_day + record.lt_days + record.ss
+
+
 
 
 
