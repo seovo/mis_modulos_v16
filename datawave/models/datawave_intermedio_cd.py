@@ -16,6 +16,7 @@ class IntermedioCD(models.Model):
     stock        = fields.Integer(string='Stock')
     stock_transit = fields.Integer(string='Stock Transito')
     stock_forecast = fields.Integer(string='Stock Pronosticado')
+    stock_forecast_day = fields.Integer(string='Stock Pronosticado Dias')
     ss = fields.Float(string='SS', help='Z*Sigma*SQRT(LT)')
     freq = fields.Float(string='FREQ')
     max = fields.Float(string='MAX', help='(LT+FREQ)*Forecast+SS')
@@ -85,7 +86,21 @@ class IntermedioCD(models.Model):
         #    raise ValueError(domain)
 
         self.stock = stock
+
+        domain = [
+            ('cd_id', '=', self.cd_id.id),
+            ('product_id', '=', self.product_id.id)
+        ]
+
+        stock_resume = self.env['datawave.transit.cd.resume'].search(domain)
+
+        self.stock_transit = stock_resume.stock if stock_resume else 0
+        self.stock_forecast = self.stock + self.stock_transit
+        self.stock_forecast_day = self.self.stock_forecast / self.forecast_day if self.forecast_day != 0 else 0
+
         #self.quantity = max(self.stock, self.max)
+
+
 
 
     @api.onchange('product_id', 'cd_id', 'date','seller_id')

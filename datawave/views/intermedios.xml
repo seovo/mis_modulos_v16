@@ -158,6 +158,7 @@
                     <field name="stock"/>
                     <field name="stock_transit"/>
                     <field name="stock_forecast"/>
+                    <field name="stock_forecast_day"/>
                     <field name="ss"/>
                     <field name="freq"/>
                     <field name="max"/>
