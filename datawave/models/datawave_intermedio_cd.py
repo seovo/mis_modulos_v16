@@ -148,7 +148,7 @@ class IntermedioCD(models.Model):
             record.set_historico_sigma()
             record.set_moq(config_tienda_p)
             record.set_stock()
-            record.set_stock()
+            record.set_zz()
 
 
 
