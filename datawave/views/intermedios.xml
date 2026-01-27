@@ -83,6 +83,7 @@
             <field name="quantity" />
             <field name="quantity_round" />
             <field name="riesgo" />
+            <field name="sobreestock" />
         </list>
     </field>
 </record>
@@ -108,6 +109,7 @@
                     <field name="quantity"/>
                     <field name="quantity_round"/>
                     <field name="riesgo" />
+                    <field name="sobreestock" />
                     <field name="datawave_sale_ids" />
 
                 </group>
@@ -140,6 +142,7 @@
             <field name="quantity"/>
             <field name="quantity_round"/>
             <field name="riesgo" />
+            <field name="sobreestock" />
         </list>
     </field>
 </record>
@@ -170,6 +173,7 @@
                     <field name="quantity"/>
                     <field name="quantity_round"/>
                     <field name="riesgo" />
+                    <field name="sobreestock" />
                     <field name="datawave_sale_ids" />
                 </group>
             </sheet>

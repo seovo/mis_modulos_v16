@@ -24,6 +24,9 @@ class IntermedioTienda(models.Model):
     riesgo             = fields.Selection([
         ('0','Sin Riesgo'),('1','Riesgo 1'),('2','Riesgo 2'),('3','Riesgo 3')
     ])
+    sobreestock = fields.Selection([
+        ('0', 'Sin SobreStock'), ('1', 'SobreStocko 1'), ('2', 'SobreStock 2')
+    ])
 
     def set_forecast_day(self,forecast_tienda_day):
         record = self
