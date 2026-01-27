@@ -178,7 +178,7 @@
 <record id="action_datawave_config_cd" model="ir.actions.act_window">
     <field name="name">Config CD</field>
     <field name="res_model">datawave.config.cd</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
 </record>
 
 
