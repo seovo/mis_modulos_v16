@@ -88,3 +88,5 @@ class IntermedioCD(models.Model):
 
             record.forecast_day = forecast_day.forecast_day
 
+            record.set_historico_sigma()
+
