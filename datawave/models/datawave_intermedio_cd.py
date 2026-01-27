@@ -219,7 +219,7 @@ class IntermedioCD(models.Model):
 
             record.rop = record.forecast_day + record.lt_days + record.ss
             record.quantity = max(0,self.max-self.stock_forecast)
-            record.set_sugerido_redondeo()
+            record.set_sugerido_redondeo(config_tienda_p)
 
 
 
