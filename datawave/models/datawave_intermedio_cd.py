@@ -61,6 +61,17 @@ class IntermedioCD(models.Model):
             record.datawave_sale_ids = False
         #    raise ValueError(domain)
 
+    def set_moq(self,config_tienda_p):
+        moq = config_tienda_p.moq
+
+        if moq > 0 :
+            self.moq = moq
+        else:
+
+
+
+            self.moq = self.seller_id.moq_default
+
 
     @api.onchange('product_id', 'cd_id', 'date','seller_id')
     def change_product_tienda(self):
@@ -89,4 +100,5 @@ class IntermedioCD(models.Model):
             record.forecast_day = forecast_day.forecast_day
 
             record.set_historico_sigma()
+            record.set_moq(config_tienda_p)
 
