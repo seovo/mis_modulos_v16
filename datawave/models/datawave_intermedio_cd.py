@@ -70,6 +70,21 @@ class IntermedioCD(models.Model):
         else:
             self.moq = self.seller_id.moq_default
 
+
+    def set_zz(self):
+        conf_zz = self.env['ir.config_parameter'].sudo().get_param('datawave.z_cd')
+        conf_zz = float(conf_zz) if conf_zz else 0
+
+        if conf_zz == 1:
+            import math
+
+            # Calcular la raíz cuadrada
+            raiz_cuadrada = math.sqrt(self.lt_days)
+            zz = conf_zz * self.sigma * raiz_cuadrada
+            self.ss = zz
+        else:
+            self.ss = self.lt_days * self.forecast_day
+
     def set_stock(self):
         stock = 0
 
