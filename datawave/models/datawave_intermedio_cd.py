@@ -96,7 +96,7 @@ class IntermedioCD(models.Model):
 
         self.stock_transit = stock_resume.stock if stock_resume else 0
         self.stock_forecast = self.stock + self.stock_transit
-        self.stock_forecast_day = self.self.stock_forecast / self.forecast_day if self.forecast_day != 0 else 0
+        self.stock_forecast_day = self.stock_forecast / self.forecast_day if self.forecast_day != 0 else 0
 
         #self.quantity = max(self.stock, self.max)
 
