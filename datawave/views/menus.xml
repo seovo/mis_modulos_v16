@@ -16,6 +16,9 @@
                <menuitem id="menu_config_proveedor_cd" name="Config Proveedor CD"
                          sequence="3" action="action_datawave_config_proveedor_cd"/>
 
+               <menuitem id="menu_config_cd" name="Config CD"
+                         sequence="4" action="action_datawave_config_cd"/>
+
         </menuitem>
 
 

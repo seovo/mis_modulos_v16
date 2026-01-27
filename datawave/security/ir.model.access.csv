@@ -4,7 +4,7 @@ tienda,tienda,model_datawave_tienda,,1,1,1,1
 seller,seller,model_datawave_seller,,1,1,1,1
 cd,cd,model_datawave_cd,,1,1,1,1
 tiendacd,tiendacd,model_datawave_tienda_cd,,1,1,1,1
-
+config_cd,config_cd,model_datawave_config_cd,,1,1,1,1
 
 stock_tienda,stock_tienda,model_datawave_stock_tienda,,1,1,1,1
 stock_cd,stock_cd,model_datawave_stock_cd,,1,1,1,1

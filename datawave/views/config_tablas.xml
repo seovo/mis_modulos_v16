@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+
+<!-- Vistas para datawave.config.cd -->
+<record id="view_datawave_config_cd_list" model="ir.ui.view">
+    <field name="name">datawave.config.cd.list</field>
+    <field name="model">datawave.config.cd</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="cd_id"/>
+            <field name="days_delta"/>
+            <field name="fixed_frequency"/>
+            <field name="z_cd"/>
+            <field name="days_target"/>
+            <field name="cicle_review_day"/>
+        </list>
+    </field>
+</record>
+
+<record id="view_datawave_config_cd_form" model="ir.ui.view">
+    <field name="name">datawave.config.cd.form</field>
+    <field name="model">datawave.config.cd</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="cd_id"/>
+                    <field name="days_delta"/>
+                    <field name="fixed_frequency"/>
+                    <field name="z_cd"/>
+                    <field name="days_target"/>
+                    <field name="cicle_review_day"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
 <!-- Vistas para datawave.config.tienda.product -->
 <record id="view_datawave_config_tienda_product_list" model="ir.ui.view">
     <field name="name">datawave.config.tienda.product.list</field>
@@ -139,6 +175,11 @@
     <field name="view_mode">list,form</field>
 </record>
 
+<record id="action_datawave_config_cd" model="ir.actions.act_window">
+    <field name="name">Config CD</field>
+    <field name="res_model">datawave.config.cd</field>
+    <field name="view_mode">tree,form</field>
+</record>
 
 
 </odoo>
