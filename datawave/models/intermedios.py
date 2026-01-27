@@ -150,6 +150,17 @@ class IntermedioTienda(models.Model):
         self.stock = stock
         self.quantity = max(self.stock, self.max)
 
+        if self.stock <= 0:
+            self.riesgo = '3'
+
+        if self.stock > 0 and self.stock < self.ss:
+            self.riesgo = '2'
+
+        if self.stock >= self.ss and self.stock < self.rop:
+            self.riesgo = '1'
+        if self.stock >= self.ss and self.stock >=  self.rop :
+            self.riesgo = '0'
+
 
 
 
