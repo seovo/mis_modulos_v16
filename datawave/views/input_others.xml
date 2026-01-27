@@ -40,9 +40,9 @@
     <field name="model">datawave.forecast.cd</field>
     <field name="arch" type="xml">
         <list>
-            <field name="name"/>
-            <field name="sku"/>
-            <field name="code_cd"/>
+
+            <field name="product_id"/>
+            <field name="cd_id"/>
             <field name="forecast_day"/>
         </list>
     </field>
@@ -55,9 +55,9 @@
         <form>
             <sheet>
                 <group>
-                    <field name="name"/>
-                    <field name="sku"/>
-                    <field name="code_cd"/>
+
+                    <field name="product_id"/>
+                    <field name="cd_id"/>
                     <field name="forecast_day"/>
                 </group>
             </sheet>
