@@ -161,6 +161,27 @@ class IntermedioCD(models.Model):
             self.max = (self.lt_days * self.freq ) + self.ss
 
 
+    def set_sugerido_redondeo(self,config_tienda_p):
+        condicion = self.quantity
+
+        if condicion <= 0 :
+            self.quantity_round = 0
+
+        else:
+            if condicion <= self.moq :
+                self.quantity_round = self.moq
+            else:
+                def multiplo_superior(numero, constante):
+                    if constante <= 0:
+                        raise ValueError("La constante debe ser mayor que 0.")
+                    return ((numero + constante - 1) // constante) * constante
+
+                resultado = multiplo_superior(self.quantity, config_tienda_p.round_cd)
+                self.quantity_round = resultado
+
+
+
+
     @api.onchange('product_id', 'cd_id', 'date','seller_id')
     def change_product_tienda(self):
         for record in self:
@@ -197,6 +218,9 @@ class IntermedioCD(models.Model):
             record.set_max()
 
             record.rop = record.forecast_day + record.lt_days + record.ss
+            record.quantity = max(0,self.max-self.stock_forecast)
+            record.set_sugerido_redondeo()
+
 
 
 

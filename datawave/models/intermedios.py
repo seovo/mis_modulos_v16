@@ -150,6 +150,10 @@ class IntermedioTienda(models.Model):
 
 
 
+
+
+
+
     @api.onchange('product_id','tienda_id','date')
     def change_product_tienda(self):
         for record in self:
@@ -189,6 +193,8 @@ class IntermedioTienda(models.Model):
 
             resultado = multiplo_superior(record.quantity, config_tienda_p.round_tienda)
             record.quantity_round = resultado
+
+
 
 
 
