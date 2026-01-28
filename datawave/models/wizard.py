@@ -20,7 +20,7 @@ class IntermedioGenerador(models.TransientModel):
 
             tiendas = self.env['datawave.tienda'].search([])
 
-            raise ValueError([tiendas,productos])
+            #raise ValueError([tiendas,productos])
 
             for product in productos:
                 for tienda in tiendas:
