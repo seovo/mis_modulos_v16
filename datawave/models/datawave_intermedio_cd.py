@@ -7,6 +7,7 @@ class IntermedioCD(models.Model):
 
     date = fields.Date(string='Fecha', required=True)
     product_id = fields.Many2one('datawave.producto', string='Producto', required=True)
+    product_description = fields.Char(string='Descripción', related='product_id.description')
     cd_id = fields.Many2one('datawave.cd', string='CD')
     seller_id = fields.Many2one('datawave.seller',string='Proveedor')
     lt_days      = fields.Integer(string='LT Dias')
