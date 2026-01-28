@@ -133,26 +133,39 @@
     <field name="arch" type="xml">
         <list>
             <field name="date"/>
+            <field name="cd_id"/>
+            <field name="seller_id"/>
             <field name="product_id"/>
             <field name="product_description" />
             <field name="product_state" />
-            <field name="cd_id"/>
-            <field name="seller_id"/>
-            <field name="lt_days"/>
-            <field name="forecast_day"/>
-            <field name="sigma"/>
-            <field name="moq"/>
             <field name="stock"/>
             <field name="stock_transit"/>
             <field name="stock_forecast"/>
-            <field name="ss"/>
+            <field name="forecast_day"/>
+            <field name="quantity" optional="hidden" />
+            <field name="quantity_round" string="Cantidad a Reponer"/>
+            <field name="riesgo" string="Riesgo de Rotura" />
+            <field name="sobreestock" />
+            <field name="lt_days"/>
             <field name="freq"/>
             <field name="max"/>
             <field name="rop"/>
-            <field name="quantity"/>
-            <field name="quantity_round"/>
-            <field name="riesgo" />
-            <field name="sobreestock" />
+            <field name="ss" string="Stock Seguridad" />
+            <field name="moq"/>
+            <field name="sigma" optional="hidden" />
+
+
+
+
+
+
+
+
+
+
+
+
+
         </list>
     </field>
 </record>
