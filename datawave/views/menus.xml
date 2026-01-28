@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <menuitem id="menu_datawave_root" name="Datawave" sequence="10">
+    <menuitem id="menu_datawave_root" name="Datawave" sequence="10" />
+
+
+
+
+
+    <menuitem id="menu_inputs_root" name="Inputs" sequence="10" parent="menu_datawave_root">
 
         <menuitem id="menu_config" name="Configuraciones"  sequence="4">
 
@@ -20,10 +26,6 @@
                          sequence="4" action="action_datawave_config_cd"/>
 
         </menuitem>
-
-
-
-
 
         <menuitem id="menu_datawave_inputs_cliente" name="Inputs Cliente"  sequence="5">
             <menuitem id="menu_datawave_producto" name="Productos"  action="action_datawave_producto" sequence="1"/>
@@ -63,8 +65,6 @@
 
 
         </menuitem>
-
-
 
         <menuitem id="menu_calculos_output" name="Output" sequence="8">
             <menuitem id="menu_replanish_parent" name="Replenish"  sequence="1">
