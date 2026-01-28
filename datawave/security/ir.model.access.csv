@@ -32,4 +32,4 @@ config_tienda_product,config_tienda_product,model_datawave_config_tienda_product
 config_tienda,config_tienda,model_datawave_config_tienda,,1,1,1,1
 config_proveedor_cd,config_proveedor_cd,model_datawave_config_proveedor_cd,,1,1,1,1
 
-wizard,wizard,model_intermedio.generador,,1,1,1,1
+wizard,wizard,model_intermedio_generador,,1,1,1,1
