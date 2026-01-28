@@ -49,7 +49,7 @@ class IntermedioGenerador(models.TransientModel):
             return {
                 "name": ("DATA ACTULIZADA"),
                 "type": "ir.actions.act_window",
-                "view_mode": "tree,form",
+                "view_mode": "list,form",
                 "res_model": "datawave.intermedio.tienda",
                 "domain": [("date", "in", dates)],
                 "target": "current"
