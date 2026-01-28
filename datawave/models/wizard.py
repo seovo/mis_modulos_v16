@@ -12,6 +12,8 @@ class IntermedioGenerador(models.TransientModel):
 
     def generate_table(self):
 
+        raise ValueError('hola')
+
         productos = self.env['datawave.producto'].search([])
         dates = [self.date]
 
