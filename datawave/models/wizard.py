@@ -6,11 +6,42 @@ class IntermedioGenerador(models.TransientModel):
     date      = fields.Date(string='Fecha',required=True)
     date_end  = fields.Date(string='Fecha Fin')
     table      = fields.Selection([
-        ('intermedio_cd','Intemredio CD'),
+        ('intermedio_cd','Intermedio CD'),
         ('intermedio_tienda','Intermedio Tienda')
     ],string='Tabla',required=True)
 
     def generate_table(self):
+
+        productos = self.env['datawave.producto'].search([])
+        dates = [self.date]
+
+        if self.table == 'intermedio_cd':
+            tiendas = self.env['datawave.tienda'].search([])
+
+            for product in productos:
+                for tienda in tiendas:
+                    for datee in dates:
+                        exist = self.env['datawave.intermedio.tienda'].search(
+                            [
+                                ('product_id','=',product.id),
+                                ('tienda_id','=',tienda.id),
+                                ('date','=',datee)
+                            ]
+                        )
+
+                        if not exist:
+
+                            exist = self.env['datawave.intermedio.tienda'].create({
+                                'product_id': product.id ,
+                                'tienda_id': tienda.id ,
+                                'date': datee
+                            })
+
+                        exist.change_product_tienda()
+
+
+            pass
+
         if self.date_end:
             domain = [('')]
         else:
