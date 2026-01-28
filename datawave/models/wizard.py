@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 class IntermedioGenerador(models.TransientModel):
     _name = "intermedio.generador"
@@ -15,6 +16,13 @@ class IntermedioGenerador(models.TransientModel):
 
         productos = self.env['datawave.producto'].search([])
         dates = [self.date]
+
+        if self.date_end :
+            if self.date_end <= self.date :
+                raise UserError('LA FECHA FIN DEBE SER MAYOR A LA FECHA')
+
+            DIFF = self.date_end - self.date
+            raise UserError(DIFF.days)
 
         if self.table == 'intermedio_cd':
             cdis = self.env['datawave.cd'].search([])
