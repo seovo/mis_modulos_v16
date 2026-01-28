@@ -17,7 +17,9 @@ class IntermedioGenerador(models.TransientModel):
         dates = [self.date]
 
         if self.table == 'intermedio_cd':
+            pass
 
+        if self.table == 'intermedio_tienda':
             tiendas = self.env['datawave.tienda'].search([])
 
             #raise ValueError([tiendas,productos])
@@ -43,7 +45,7 @@ class IntermedioGenerador(models.TransientModel):
 
                         exist.change_product_tienda()
 
-            raise ValueError('HOLA')
+            #raise ValueError('HOLA')
             return {
                 "name": ("DATA ACTULIZADA"),
                 "type": "ir.actions.act_window",
