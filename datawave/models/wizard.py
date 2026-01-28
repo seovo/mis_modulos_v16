@@ -18,6 +18,8 @@ class IntermedioGenerador(models.TransientModel):
         if self.table == 'intermedio_cd':
             tiendas = self.env['datawave.tienda'].search([])
 
+            raise ValueError([tiendas,productos])
+
             for product in productos:
                 for tienda in tiendas:
                     for datee in dates:
