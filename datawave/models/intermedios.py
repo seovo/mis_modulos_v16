@@ -9,6 +9,7 @@ class IntermedioTienda(models.Model):
     date           = fields.Date(string='Fecha', required=True)
     product_id     = fields.Many2one('datawave.producto', string='Producto', required=True)
     product_description = fields.Char(string='Descripción', related='product_id.description')
+    product_state  = fields.Char(string='Estado',related='product_id.state')
     tienda_id      = fields.Many2one('datawave.tienda', string='Tienda', required=True)
     lt_days        = fields.Integer(string='LT Dias')
     forecast_day   = fields.Float(string='Forecast Diario')

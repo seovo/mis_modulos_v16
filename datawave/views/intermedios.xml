@@ -73,18 +73,23 @@
             <field name="tienda_id" string="Punto de Venta" />
             <field name="product_id" />
             <field name="product_description" />
+            <field name="product_state" />
+            <field name="stock" />
+            <field name="forecast_day" string="Forecast Diario Pdv" />
+            <field name="quantity_round" string="Cantidad a Reponer" />
+            <field name="riesgo" string="'Riesgo de Rotura" />
+            <field name="sobreestock" />
             <field name="lt_days" />
-            <field name="forecast_day" />
-            <field name="sigma" />
-            <field name="ss" />
             <field name="freq" />
             <field name="max" />
             <field name="rop" />
-            <field name="stock" />
-            <field name="quantity" />
-            <field name="quantity_round" />
-            <field name="riesgo" />
-            <field name="sobreestock" />
+            <field name="ss" string="Stock Seguridad"/>
+
+            <field name="sigma" optional="hidden" />
+            <field name="quantity"  optional="hidden" />
+
+
+
         </list>
     </field>
 </record>
@@ -99,6 +104,7 @@
                     <field name="date"/>
                     <field name="product_id" />
                     <field name="product_description" />
+                    <field name="product_state" />
                     <field name="tienda_id" />
                     <field name="lt_days"/>
                     <field name="forecast_day"/>
@@ -129,6 +135,7 @@
             <field name="date"/>
             <field name="product_id"/>
             <field name="product_description" />
+            <field name="product_state" />
             <field name="cd_id"/>
             <field name="seller_id"/>
             <field name="lt_days"/>
@@ -160,6 +167,7 @@
                     <field name="date"/>
                     <field name="product_id"/>
                     <field name="product_description" />
+                    <field name="product_state" />
                     <field name="cd_id"/>
                     <field name="seller_id"/>
                     <field name="lt_days"/>
