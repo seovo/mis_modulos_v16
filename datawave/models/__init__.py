@@ -6,3 +6,4 @@ from . import datawave_intermedio_cd
 from . import output
 from . import config_tables
 from . import res_config_settings
+from . import wizard

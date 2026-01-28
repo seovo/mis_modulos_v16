@@ -6,6 +6,7 @@
     <menuitem id="menu_abastecimiento" name="Abastecimiento" sequence="9" parent="menu_datawave_root">
         <menuitem id="menu_intermedio_tienda" name="Reposición CD a tiendas" action="action_datawave_intermedio_tienda" sequence="1"/>
         <menuitem id="menu_intermedio_cd" name="Reposición Proveedor a CD" action="action_datawave_intermedio_cd" sequence="2"/>
+        <menuitem id="menu_generar_intermedio" name="Generar Data" action="action_intermedio_generador" sequence="3"/>
     </menuitem>
 
 
@@ -58,9 +59,6 @@
                <menuitem id="menu_sigma_cd" name="Sigma CD" action="action_datawave_sigma_cd" sequence="1"/>
                <menuitem id="menu_sigma_tienda" name="Sigma Tienda" action="action_datawave_sigma_tienda" sequence="2"/>
             </menuitem>
-
-
-
 
 
         </menuitem>
