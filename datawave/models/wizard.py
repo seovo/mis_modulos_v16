@@ -43,8 +43,9 @@ class IntermedioGenerador(models.TransientModel):
 
                         exist.change_product_tienda()
 
+            raise ValueError('HOLA')
             return {
-                "name": ("Update"),
+                "name": ("DATA ACTULIZADA"),
                 "type": "ir.actions.act_window",
                 "view_mode": "tree,form",
                 "res_model": "datawave.intermedio.tienda",
