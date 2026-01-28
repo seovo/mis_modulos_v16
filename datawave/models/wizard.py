@@ -17,7 +17,39 @@ class IntermedioGenerador(models.TransientModel):
         dates = [self.date]
 
         if self.table == 'intermedio_cd':
-            pass
+            cdis = self.env['datawave.cd'].search([])
+
+            for product in productos:
+                for cdi in cdis:
+                    for datee in dates:
+                        exist = self.env['datawave.intermedio.cd'].search(
+                            [
+                                ('product_id','=',product.id),
+                                ('cd_id','=',cdi.id),
+                                ('date','=',datee)
+                            ]
+                        )
+
+                        if not exist:
+
+                            exist = self.env['datawave.intermedio.cd'].create({
+                                'product_id': product.id ,
+                                'cd_id': cdi.id ,
+                                'date': datee
+                            })
+
+                        exist.change_product_tienda()
+
+            #raise ValueError('HOLA')
+            return {
+                "name": ("DATA ACTULIZADA"),
+                "type": "ir.actions.act_window",
+                "view_mode": "list,form",
+                "res_model": "datawave.intermedio.cd",
+                "domain": [("date", "in", dates)],
+                "target": "current"
+            }
+
 
         if self.table == 'intermedio_tienda':
             tiendas = self.env['datawave.tienda'].search([])
