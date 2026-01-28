@@ -40,9 +40,5 @@ class IntermedioGenerador(models.TransientModel):
                         exist.change_product_tienda()
 
 
-            pass
 
-        if self.date_end:
-            domain = [('')]
-        else:
-            pass
+
