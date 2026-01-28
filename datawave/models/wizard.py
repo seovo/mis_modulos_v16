@@ -44,6 +44,13 @@ class IntermedioGenerador(models.TransientModel):
 
                         exist.change_product_tienda()
 
-
+            return {
+                "name": ("Update"),
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": "datawave.intermedio.tienda",
+                "domain": [("date", "in", dates)],
+                "target": "current"
+            }
 
 
