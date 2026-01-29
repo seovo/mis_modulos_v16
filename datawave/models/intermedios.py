@@ -230,27 +230,3 @@ class IntermedioTienda(models.Model):
 
 
 
-class SigmaCD(models.Model):
-    _name = 'datawave.sigma.cd'
-    _description = 'SigmaCD de Datawave'
-    name = fields.Char(string='Clave')
-    sku = fields.Char(string='Producto_ID')
-    code_cd = fields.Char(string='CD_ID')
-    sigma  = fields.Float(string='Sigma')
-
-class SigmaTienda(models.Model):
-    _name = 'datawave.sigma.tienda'
-    _description = 'SigmaTienda de Datawave'
-    name = fields.Char(string='Clave')
-    sku = fields.Char(string='Producto_ID')
-    code_tienda = fields.Char(string='Tienda_ID')
-    sigma = fields.Float(string='Sigma')
-
-
-
-
-
-
-
-
-

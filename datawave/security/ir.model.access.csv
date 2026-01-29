@@ -17,8 +17,6 @@ transit_cd_resume,transit_cd_resume,model_datawave_transit_cd_resume,,1,1,1,1
 forecast_tienda,forecast_tienda,model_datawave_forecast_tienda,,1,1,1,1
 forecast_cd,forecast_cd,model_datawave_forecast_cd,,1,1,1,1
 
-sigma_cd,sigma_cd,model_datawave_sigma_cd,,1,1,1,1
-sigma_tienda,sigma_tienda,model_datawave_sigma_tienda,,1,1,1,1
 intermedio_tienda,intermedio_tienda,model_datawave_intermedio_tienda,,1,1,1,1
 intermedio_cd,intermedio_cd,model_datawave_intermedio_cd,,1,1,1,1
 

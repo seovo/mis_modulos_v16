@@ -165,6 +165,7 @@ class IntermedioCD(models.Model):
 
         if conf == 2:
             if config_tienda.cost_keep  != 0:
+                #EOQ
                 base_raiz = (2 * self.forecast_day * 365 * config_tienda.cost_sale) / config_tienda.cost_keep
                 self.freq = math.sqrt(base_raiz)
             else:

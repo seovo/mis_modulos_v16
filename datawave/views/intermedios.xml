@@ -1,67 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
- <!-- Vistas para datawave.sigma.cd -->
-<record id="view_datawave_sigma_cd_list" model="ir.ui.view">
-    <field name="name">datawave.sigma.cd.list</field>
-    <field name="model">datawave.sigma.cd</field>
-    <field name="arch" type="xml">
-        <list>
-            <field name="name"/>
-            <field name="sku"/>
-            <field name="code_cd"/>
-            <field name="sigma"/>
-        </list>
-    </field>
-</record>
-
-<record id="view_datawave_sigma_cd_form" model="ir.ui.view">
-    <field name="name">datawave.sigma.cd.form</field>
-    <field name="model">datawave.sigma.cd</field>
-    <field name="arch" type="xml">
-        <form>
-            <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="sku"/>
-                    <field name="code_cd"/>
-                    <field name="sigma"/>
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
-
-<!-- Vistas para datawave.sigma.tienda -->
-<record id="view_datawave_sigma_tienda_list" model="ir.ui.view">
-    <field name="name">datawave.sigma.tienda.list</field>
-    <field name="model">datawave.sigma.tienda</field>
-    <field name="arch" type="xml">
-        <list>
-            <field name="name"/>
-            <field name="sku"/>
-            <field name="code_tienda"/>
-            <field name="sigma"/>
-        </list>
-    </field>
-</record>
-
-<record id="view_datawave_sigma_tienda_form" model="ir.ui.view">
-    <field name="name">datawave.sigma.tienda.form</field>
-    <field name="model">datawave.sigma.tienda</field>
-    <field name="arch" type="xml">
-        <form>
-            <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="sku"/>
-                    <field name="code_tienda"/>
-                    <field name="sigma"/>
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
 
 <!-- Vistas para datawave.intermedio.tienda -->
 <record id="view_datawave_intermedio_tienda_list" model="ir.ui.view">
@@ -158,14 +97,6 @@
 
 
 
-
-
-
-
-
-
-
-
         </list>
     </field>
 </record>
@@ -207,17 +138,7 @@
 </record>
 
 <!-- Acciones -->
-<record id="action_datawave_sigma_cd" model="ir.actions.act_window">
-    <field name="name">Sigma CD</field>
-    <field name="res_model">datawave.sigma.cd</field>
-    <field name="view_mode">list,form</field>
-</record>
 
-<record id="action_datawave_sigma_tienda" model="ir.actions.act_window">
-    <field name="name">Sigma Tienda</field>
-    <field name="res_model">datawave.sigma.tienda</field>
-    <field name="view_mode">list,form</field>
-</record>
 
 <record id="action_datawave_intermedio_tienda" model="ir.actions.act_window">
     <field name="name">Intermedio Tienda</field>
