@@ -8,21 +8,21 @@
     <field name="model">datawave.intermedio.tienda</field>
     <field name="arch" type="xml">
         <list>
-            <field name="date" />
-            <field name="tienda_id" string="Punto de Venta" />
-            <field name="product_id" />
-            <field name="product_description" />
-            <field name="product_state" />
-            <field name="stock" />
-            <field name="forecast_day" string="Forecast Diario Pdv" />
-            <field name="quantity_round" string="Cantidad a Reponer" />
-            <field name="riesgo" string="'Riesgo de Rotura" />
-            <field name="sobreestock" />
-            <field name="lt_days" />
-            <field name="freq" />
-            <field name="max" />
-            <field name="rop" />
-            <field name="ss" string="Stock Seguridad"/>
+            <field name="date"  optional="show" />
+            <field name="tienda_id" string="Punto de Venta"  optional="show" />
+            <field name="product_id"  optional="show" />
+            <field name="product_description"  optional="show" />
+            <field name="product_state"  optional="show" />
+            <field name="stock"  optional="show" />
+            <field name="forecast_day" string="Forecast Diario Pdv"  optional="show" />
+            <field name="quantity_round" string="Cantidad a Reponer"  optional="show" />
+            <field name="riesgo" string="Riesgo de Rotura"  optional="show" />
+            <field name="sobreestock"  optional="show" />
+            <field name="lt_days"  optional="show" />
+            <field name="freq"  optional="show" />
+            <field name="max"  optional="show" />
+            <field name="rop"  optional="show" />
+            <field name="ss" string="Stock Seguridad" optional="show" />
 
             <field name="sigma" optional="hidden" />
             <field name="quantity"  optional="hidden" />
@@ -40,7 +40,7 @@
         <form>
             <sheet>
                 <group>
-                    <field name="date"/>
+                    <field name="date" />
                     <field name="product_id" />
                     <field name="product_description" />
                     <field name="product_state" />
@@ -71,26 +71,26 @@
     <field name="model">datawave.intermedio.cd</field>
     <field name="arch" type="xml">
         <list>
-            <field name="date"/>
-            <field name="cd_id"/>
-            <field name="seller_id"/>
-            <field name="product_id"/>
-            <field name="product_description" />
-            <field name="product_state" />
-            <field name="stock"/>
-            <field name="stock_transit"/>
-            <field name="stock_forecast"/>
-            <field name="forecast_day"/>
+            <field name="date" optional="show" />
+            <field name="cd_id" optional="show" />
+            <field name="seller_id" optional="show" />
+            <field name="product_id" optional="show" />
+            <field name="product_description" optional="show"  />
+            <field name="product_state" optional="show"  />
+            <field name="stock" optional="show" />
+            <field name="stock_transit" optional="show" />
+            <field name="stock_forecast" optional="show" />
+            <field name="forecast_day" optional="show" />
             <field name="quantity" optional="hidden" />
-            <field name="quantity_round" string="Cantidad a Reponer"/>
-            <field name="riesgo" string="Riesgo de Rotura" />
-            <field name="sobreestock" />
-            <field name="lt_days"/>
-            <field name="freq"/>
-            <field name="max"/>
-            <field name="rop"/>
-            <field name="ss" string="Stock Seguridad" />
-            <field name="moq"/>
+            <field name="quantity_round" string="Cantidad a Reponer" optional="show" />
+            <field name="riesgo" string="Riesgo de Rotura"  optional="show" />
+            <field name="sobreestock"  optional="show" />
+            <field name="lt_days" optional="show" />
+            <field name="freq" optional="show" />
+            <field name="max" optional="show" />
+            <field name="rop" optional="show" />
+            <field name="ss" string="Stock Seguridad"  optional="show" />
+            <field name="moq" optional="show" />
             <field name="sigma" optional="hidden" />
 
 

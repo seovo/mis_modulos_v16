@@ -34,13 +34,10 @@ class IntermedioCD(models.Model):
     ])
 
 
-    def set_historico_sigma(self):
+    def set_historico_sigma(self,sigma_dias):
 
         record = self
 
-
-        sigma_dias = self.env['ir.config_parameter'].sudo().get_param('datawave.ventana_sigma_dias_cd')
-        sigma_dias = int(sigma_dias) if sigma_dias else 0
 
         today = record.date
         limit_date = today - timedelta(days=sigma_dias)
@@ -66,9 +63,6 @@ class IntermedioCD(models.Model):
             desviacion_estandar_poblacional = statistics.pstdev(datos)
             # raise ValueError(desviacion_estandar_poblacional)
             record.sigma = desviacion_estandar_poblacional
-        else:
-            record.datawave_sale_ids = False
-        #    raise ValueError(domain)
 
     def set_moq(self,config_tienda_p):
         moq = config_tienda_p.moq
@@ -79,34 +73,24 @@ class IntermedioCD(models.Model):
             self.moq = self.seller_id.moq_default
 
 
-    def set_zz(self):
-        conf_zz = self.env['ir.config_parameter'].sudo().get_param('datawave.z_cd')
-        conf_zz = float(conf_zz) if conf_zz else 0
+    def set_stock_seguridad(self,conf_ss):
 
-        if conf_zz == 1:
+        if conf_ss == 1:
             import math
 
             # Calcular la raíz cuadrada
             raiz_cuadrada = math.sqrt(self.lt_days)
-            zz = conf_zz * self.sigma * raiz_cuadrada
-            self.ss = zz
+            self.ss = conf_ss * self.sigma * raiz_cuadrada
         else:
             self.ss = self.lt_days * self.forecast_day
 
-    def set_stock(self):
+    def set_stock_riesgo_sobrestock(self,stock_tienda):
         stock = 0
 
-        domain = [
-            ('cd_id', '=', self.cd_id.id),
-            ('product_id', '=', self.product_id.id),
-            ('date', '=', self.date)
-        ]
-        stock_tienda = self.env['datawave.stock.cd'].search(domain)
+
 
         if stock_tienda:
             stock = stock_tienda.stock
-        # else:
-        #    raise ValueError(domain)
 
         self.stock = stock
 
@@ -148,14 +132,9 @@ class IntermedioCD(models.Model):
         #self.quantity = max(self.stock, self.max)
 
 
-    def set_frecuency(self,config_tienda):
+    def set_frecuency(self,conf_frecuencia,config_tienda):
         #,forecast_tienda_day
-        conf = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_frecuencia_cd')
-        conf = int(conf) if conf else 0
-
-        self.freq = 0
-
-
+        conf = conf_frecuencia
         if not config_tienda:
             return
 
@@ -217,8 +196,32 @@ class IntermedioCD(models.Model):
 
     @api.onchange('product_id', 'cd_id', 'date','seller_id')
     def change_product_tienda(self):
+
+        sigma_dias = self.env['ir.config_parameter'].sudo().get_param('datawave.ventana_sigma_dias_cd')
+        sigma_dias = int(sigma_dias) if sigma_dias else 0
+
+        conf_ss = self.env['ir.config_parameter'].sudo().get_param('datawave.z_cd')
+        conf_ss = float(conf_ss) if conf_ss else 0
+
+        conf_frecuencia = self.env['ir.config_parameter'].sudo().get_param('datawave.metodo_frecuencia_cd')
+        conf_frecuencia = int(conf_frecuencia) if conf_frecuencia else 0
+
+
+
         for record in self:
             record.lt_days = 0
+            record.datawave_sale_ids = False
+            record.sigma = 0
+            record.forecast_day = 0
+            record.moq = 0
+            record.ss = 0
+            record.stock = 0
+            record.sobreestock = 0
+            record.riesgo = 0
+            record.stock_transit = 0
+            record.stock_forecast = 0
+            record.stock_forecast_day = 0
+            record.freq = 0
 
 
 
@@ -230,24 +233,26 @@ class IntermedioCD(models.Model):
                 ('cd_id','=',record.cd_id.id)
             ])
 
-            #raise ValueError(config_tienda_p)
-
-            record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
-
-
             forecast_day = self.env['datawave.forecast.cd'].search([
                 ('product_id', '=', record.product_id.id), ('cd_id', '=', record.cd_id.id)
             ])
 
-            record.forecast_day = forecast_day.forecast_day
+            domain = [
+                ('cd_id', '=', record.cd_id.id),
+                ('product_id', '=', record.product_id.id),
+                ('date', '=', record.date)
+            ]
+            stock_tienda = self.env['datawave.stock.cd'].search(domain)
+
+            record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
+            record.forecast_day = forecast_day.forecast_day if forecast_day else 0
 
 
-            record.set_historico_sigma()
+            record.set_historico_sigma(sigma_dias)
             record.set_moq(config_tienda_p)
-            record.set_stock()
-            record.set_zz()
-            record.set_frecuency(config_tienda_p)
-            record.set_frecuency(config_tienda_p)
+            record.set_stock_riesgo_sobrestock(stock_tienda)
+            record.set_stock_seguridad(conf_ss)
+            record.set_frecuency(conf_frecuencia,config_tienda_p)
             record.set_max()
 
             record.rop = record.forecast_day + record.lt_days + record.ss

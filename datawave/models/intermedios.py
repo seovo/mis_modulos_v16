@@ -106,11 +106,7 @@ class IntermedioTienda(models.Model):
             self.ss = self.lt_days * self.forecast_day
 
     #FUNCION FRECUENCIA
-    def set_frecuency(self,conf,forecast_tienda_day):
-
-        config_tienda = self.env['datawave.config.tienda'].search([
-            ('tienda_id', '=', self.tienda_id.id)
-        ])
+    def set_frecuency(self,conf,forecast_tienda_day,config_tienda):
 
         if not config_tienda:
             return
@@ -205,7 +201,6 @@ class IntermedioTienda(models.Model):
                 ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
             ])
 
-
             #OBTENER EL FORECAST
             forecast_tienda_day = self.env['datawave.forecast.tienda'].search([
                 ('product_id', '=', record.product_id.id), ('tienda_id', '=', record.tienda_id.id)
@@ -219,11 +214,15 @@ class IntermedioTienda(models.Model):
             ]
             stock_tienda = self.env['datawave.stock.tienda'].search(domain)
 
+            config_tienda = self.env['datawave.config.tienda'].search([
+                ('tienda_id', '=', self.tienda_id.id)
+            ])
+
             record.lt_days = config_tienda_p.lt_days if config_tienda_p else 0
             record.set_forecast_day(forecast_tienda_day)
             record.set_historico_sigma()
             record.set_stock_seguridad()
-            record.set_frecuency(conf_frecuencia_tienda,forecast_tienda_day)
+            record.set_frecuency(conf_frecuencia_tienda,forecast_tienda_day,config_tienda)
             record.set_max(conf_max)
             record.rop = ( record.forecast_day * record.lt_days ) + record.ss
             record.set_stock_riesgo_sobrestock(stock_tienda)
