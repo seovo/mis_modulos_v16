@@ -10,7 +10,18 @@
     </menuitem>
 
 
-    <menuitem id="menu_inputs_root" name="Inputs" sequence="10" parent="menu_datawave_root">
+
+    <menuitem id="menu_finance_configuration" name="Configuracion" sequence="35" parent="menu_datawave_root" >
+        <!-- groups="account.group_account_manager" -->
+        <menuitem id="menu_datawave_config" name="Ajustes" action="action_datawave_config"
+                  groups="base.group_system" sequence="0"/>
+
+
+
+    </menuitem>
+
+
+    <menuitem id="menu_inputs_root" name="Inputs" sequence="10"  parent="menu_finance_configuration" >
 
         <menuitem id="menu_config" name="Configuraciones"  sequence="4">
 
@@ -54,5 +65,10 @@
         </menuitem>
 
     </menuitem>
+
+
+
+
+
 
 </odoo>
