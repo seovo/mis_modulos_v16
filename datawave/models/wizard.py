@@ -56,9 +56,10 @@ class IntermedioGenerador(models.TransientModel):
                                     'seller_id': seller.id
                                 })
 
+                            exist.change_product_tienda()
 
 
-                        exist.change_product_tienda()
+
 
             #raise ValueError('HOLA')
             return {
