@@ -33,6 +33,14 @@ class IntermedioCD(models.Model):
         ('0', 'Sin SobreStock'), ('1', 'SobreStocko 1'), ('2', 'SobreStock 2')
     ])
 
+    _sql_constraints = [
+        (
+            "unique_intermedio_cd",
+            "unique(date, product_id , cd_id , seller_id)",
+            "NO PUEDE HABER REGISTROS DUPLICADOS",
+        )
+    ]
+
 
     def set_historico_sigma(self,sigma_dias):
 
@@ -167,8 +175,6 @@ class IntermedioCD(models.Model):
 
         if conf == 1 :
             self.max = ( 2 * self.forecast_day * self.lt_days ) + (self.forecast_day + self.freq)
-
-
         if conf == 2:
             self.max = (self.lt_days * self.freq ) + self.ss
 

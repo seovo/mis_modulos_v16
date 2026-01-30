@@ -51,10 +51,6 @@ class IntermedioTienda(models.Model):
     def set_historico_sigma(self):
 
         record = self
-
-
-
-
         sigma_dias = self.env['ir.config_parameter'].sudo().get_param('datawave.ventana_sigma_dias')
         sigma_dias = int(sigma_dias) if sigma_dias else 0
 

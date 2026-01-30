@@ -1,11 +1,9 @@
 from odoo import fields, models
-
-
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     datawave_ss_tienda        = fields.Selection([('1','Z*Sigma*SQRT(LT)'),('2','0.5*Forecast*LT')],'Método stock de seguridad tienda',
-                                         config_parameter='datawave.metodo_ss_tienda',default='1')
+                                    config_parameter='datawave.metodo_ss_tienda',default='1')
     datawave_max_tienda       = fields.Selection([('1', '(LT+FREQ)*Forecast+SS'), ('2', '14*Forecast+SS')],
                                           'Método stock máximo Tienda',
                                           config_parameter='datawave.metodo_max_tienda', default='1')
@@ -15,7 +13,6 @@ class ResConfigSettings(models.TransientModel):
     datawave_sigma_days        = fields.Integer('Días usados para Sigma tienda',
                                          config_parameter='datawave.ventana_sigma_dias')
     datawave_z_tienda          = fields.Float('Z  (fallback)', config_parameter='datawave.z_tienda')
-
 
 
 

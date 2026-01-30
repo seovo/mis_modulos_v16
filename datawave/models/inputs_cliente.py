@@ -10,9 +10,6 @@ class Producto(models.Model):
     uom = fields.Char(string='Unidad de Medida')
     state = fields.Char(string='Estado')
 
-    #config_tienda_ids = fields.One2many('datawave.config.tienda.product','product_id')
-
-
 class CentroDistribucion(models.Model):
     _name = 'datawave.cd'
     _description = 'CentroDistribucion de Datawave'
