@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_account_payment_form" model="ir.ui.view">
+            <field name="name">view.account.payment.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <field name="is_detraction_pay"/>
+                    <field name="detraction_operation_number" invisible="is_detraction_pay == False" required="is_detraction_pay == True"/>
+                    <field name="detraction_operation_date" invisible="is_detraction_pay == False" required="is_detraction_pay == True"/>
+                    <field name="move_detraction_id" options="{'no_create': True}" invisible="is_detraction_pay == False" required="is_detraction_pay == True"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

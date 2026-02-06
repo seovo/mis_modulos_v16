@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_ple__13_1" model="ir.actions.report">
+            <field name="name">Report Excel</field>
+            <field name="model">kardex.electronico.sunat</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">kardex.electronico.sunat</field>
+            <field name="report_file">kardex.electronico.sunat</field>
+            <field name="binding_model_id" ref="l10n_pe_ple_13_1.model_kardex_electronico_sunat"></field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

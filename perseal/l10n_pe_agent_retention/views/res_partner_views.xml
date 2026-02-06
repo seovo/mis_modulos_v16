@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_partner_property_form_inherit_l10n_pe_agent_retention" model="ir.ui.view">
+        <field name="name">view.partner.property.form.inherit.l10n.pe.agent.retention</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_account_position_id']" position="after">
+                <field name="agent_retention"/>
+                <field name="percent_retention" invisible="agent_retention == False"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

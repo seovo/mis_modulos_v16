@@ -1,0 +1,2053 @@
+id,table_id:id,name,description,percent,from_date,to_date,doc_number_lenght,doc_number_lenght_fixed,doc_serie_lenght,doc_serie_lenght_fixed,active
+1,sunat_table_efact_01,00,Otros,,,,0,False,0,False,True
+2,sunat_table_efact_01,01,Factura,,,,8,False,4,True,True
+3,sunat_table_efact_01,02,Recibo por Honorarios,,,,0,False,0,False,True
+4,sunat_table_efact_01,03,Boleta de venta,,,,8,False,4,True,True
+5,sunat_table_efact_01,04,Liquidación de Compra,,,,8,False,4,True,True
+6,sunat_table_efact_01,05,Boletos de Transporte Aéreo Comercial por transporte aéreo regular de pasajeros,,,,11,False,1,True,True
+7,sunat_table_efact_01,06,Carta de porte aéreo por el servicio de transporte de carga aérea.,,,,8,False,4,True,True
+8,sunat_table_efact_01,07,Nota de Crédito,,,,8,False,4,True,True
+9,sunat_table_efact_01,08,Nota de Débito,,,,8,False,4,True,True
+10,sunat_table_efact_01,09,Guía de remisión remitente,,,,0,False,0,False,True
+11,sunat_table_efact_01,10,Recibo por Arrendamiento.,,,,0,False,0,False,True
+12,sunat_table_efact_01,11,"Póliza emitida por las Bolsas de Valores, Bolsas de Productos o Agentes de Intermediación",,,,15,True,20,False,True
+13,sunat_table_efact_01,12,Ticket de máquina registradora,,,,20,False,20,False,True
+14,sunat_table_efact_01,13,Documento emitido por bancos  instituciones financieras crediticias y de seguros que se encuentren bajo el control de la Superintendencia de Banca y Seguros,,,,20,False,20,False,True
+15,sunat_table_efact_01,14,Recibo servicios públicos,,,,20,False,20,False,True
+16,sunat_table_efact_01,15,Boletos emitidos por el servicio de transporte terrestre regular urbano de pasajeros y el ferroviario público de pasajeros prestado en vía férrea local,,,,20,False,20,False,True
+17,sunat_table_efact_01,16,Boleto de viaje emitido por las empresas de transporte público interprovincial de pasajeros,,,,20,False,20,False,True
+18,sunat_table_efact_01,17,Documento emitido por la Iglesia Católica por el arrendamiento de bienes inmuebles.,,,,20,False,20,False,True
+19,sunat_table_efact_01,18,Documentos emitidos por las AFP,,,,20,False,20,False,True
+20,sunat_table_efact_01,19,Boleto o entrada por atracciones y espectáculos públicos.,,,,20,False,20,False,True
+21,sunat_table_efact_01,20,Comprobante de retención,,,,0,False,0,False,True
+22,sunat_table_efact_01,21,Conocimiento de embarque por el servicio de transporte de carga marítima,,,,20,False,20,False,True
+23,sunat_table_efact_01,22,Comprobante por Operaciones No Habituales.,,,,0,False,0,False,True
+24,sunat_table_efact_01,23,"Pólizas de Adjudicación emitidas con ocasión del remate o adjudicación de bienes por venta forzada, por los martilleros",,,,7,False,4,False,True
+25,sunat_table_efact_01,24,Certificado de pago de regalías emitidas por PERUPETRO S.A.,,,,20,False,20,False,True
+26,sunat_table_efact_01,25,Documento de Atribución,,,,7,False,4,False,True
+27,sunat_table_efact_01,26,Recibo por el Pago de la Tarifa por Uso de Agua Superficial con fines agrarios,,,,20,False,20,False,True
+28,sunat_table_efact_01,27,Seguro Complementario de Trabajo de Riesgo.,,,,20,False,20,False,True
+29,sunat_table_efact_01,28,Etiquetas autoadhesivas  emitidas por el pago de la Tarifa Unificada de Uso de Aeropuerto (TUUA),,,,20,False,20,False,True
+30,sunat_table_efact_01,29,"Documentos emitidos por la COFOPRI en calidad de oferta de venta de terrenos, los correspondientes a las subastas públicas",,,,20,False,20,False,True
+31,sunat_table_efact_01,30,Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito,,,,20,False,20,False,True
+32,sunat_table_efact_01,31,Guía de remisión transportista,,,,0,False,0,False,True
+33,sunat_table_efact_01,32,Documentos emitidos por las empresas recaudadoras de la denominada Garantía de Red Principal Ley de Promoción Gas Natural.,,,,20,False,20,False,True
+34,sunat_table_efact_01,33,Manifiesto de Pasajeros.,,,,0,False,0,False,True
+35,sunat_table_efact_01,34,Documento del Operador.,,,,7,False,4,True,True
+36,sunat_table_efact_01,35,Documento del Partícipe.,,,,7,False,4,True,True
+37,sunat_table_efact_01,36,Recibo de Distribución de Gas Natural.,,,,8,False,4,True,True
+38,sunat_table_efact_01,37,Documentos que emitan los concesionarios del servicio de revisiones técnicas,,,,20,False,20,False,True
+39,sunat_table_efact_01,40,Comprobante de Percepción,,,,0,False,0,False,True
+40,sunat_table_efact_01,41,Comprobante de Percepción – Venta interna ( físico - formato impreso),,,,0,False,0,False,True
+41,sunat_table_efact_01,42,Documentos emitidos por las empresas que desempeñan el rol adquiriente en los sistemas de pago mediante tarjetas de crédito emitidas por ellas mismas.,,,,20,False,20,False,True
+42,sunat_table_efact_01,43,Boleto de compañías de aviación transporte aéreo no regular,,,,20,False,20,False,True
+43,sunat_table_efact_01,44,"Billetes de lotería, rifas y apuestas. ",,,,20,False,20,False,True
+44,sunat_table_efact_01,45,Documentos emitidos por centros educativos y culturales  universidades asociaciones y fundaciones,,,,20,False,20,False,True
+45,sunat_table_efact_01,46,Formulario de Declaración - Pago o Boleta de Pago de Tributos Internos – SUNAT.,,,,0,False,0,False,True
+46,sunat_table_efact_01,49,Constancia de Depósito - IVAP (Ley 28211).,,,,20,False,20,False,True
+47,sunat_table_efact_01,50,Declaración Única de Aduanas - DUA/ Declaración Aduanera de Mercancías - DAM.,,,,0,False,0,False,True
+48,sunat_table_efact_01,51,Póliza o DUI Fraccionada.,,,,0,False,0,False,True
+49,sunat_table_efact_01,52,Despacho Simplificado - Importación Simplificada.,,,,0,False,0,False,True
+50,sunat_table_efact_01,53,Declaración de Mensajería o Courier.,,,,0,False,0,False,True
+51,sunat_table_efact_01,54,Liquidación de Cobranza.,,,,0,False,0,False,True
+52,sunat_table_efact_01,55,BVME para transporte ferroviario de pasajeros.,,,,11,False,1,True,True
+53,sunat_table_efact_01,56,Comprobante de pago SEAE,,,,11,False,4,True,True
+54,sunat_table_efact_01,71,Guía de remisión remitente complementaria,,,,0,False,0,False,True
+55,sunat_table_efact_01,72,Guía de remisión transportista complementaria,,,,0,False,0,False,True
+56,sunat_table_efact_01,87,Nota de Crédito Especial - Documentos Autorizados.,,,,20,False,20,False,True
+57,sunat_table_efact_01,88,Nota de Débito Especial - Documentos Autorizados.,,,,20,False,20,False,True
+58,sunat_table_efact_01,91,Comprobante de No Domiciliado.,,,,0,False,0,False,True
+59,sunat_table_efact_01,96,Exceso de crédito fiscal por retiro de bienes.,,,,0,False,0,False,True
+60,sunat_table_efact_01,97,Nota de Crédito - No Domiciliado.,,,,0,False,0,False,True
+61,sunat_table_efact_01,98,Nota de Débito - No Domiciliado.,,,,0,False,0,False,True
+62,sunat_table_efact_02,AFN,Afghani,,,,,,,,True
+63,sunat_table_efact_02,EUR,,,,,,,,,True
+64,sunat_table_efact_02,ALL,Lek,,,,,,,,True
+65,sunat_table_efact_02,DZD,Algerian Dinar,,,,,,,,True
+66,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+67,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+68,sunat_table_efact_02,AOA,Kwanza,,,,,,,,True
+69,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+70,sunat_table_efact_02,---,No universal currency,,,,,,,,True
+71,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+72,sunat_table_efact_02,ARS,Argentine Peso,,,,,,,,True
+73,sunat_table_efact_02,AMD,Armenian Dram,,,,,,,,True
+74,sunat_table_efact_02,AWG,Aruban Florin,,,,,,,,True
+75,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+76,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+77,sunat_table_efact_02,AZN,Azerbaijan Manat,,,,,,,,True
+78,sunat_table_efact_02,BSD,Bahamian Dollar,,,,,,,,True
+79,sunat_table_efact_02,BHD,Bahraini Dinar,,,,,,,,True
+80,sunat_table_efact_02,BDT,Taka,,,,,,,,True
+81,sunat_table_efact_02,BBD,Barbados Dollar,,,,,,,,True
+82,sunat_table_efact_02,BYN,Belarusian Ruble,,,,,,,,True
+83,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+84,sunat_table_efact_02,BZD,Belize Dollar,,,,,,,,True
+85,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+86,sunat_table_efact_02,BMD,Bermudian Dollar,,,,,,,,True
+87,sunat_table_efact_02,INR,Indian Rupee,,,,,,,,True
+88,sunat_table_efact_02,BTN,Ngultrum,,,,,,,,True
+89,sunat_table_efact_02,BOB,Boliviano,,,,,,,,True
+90,sunat_table_efact_02,BOV,Mvdol,,,,,,,,True
+91,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+92,sunat_table_efact_02,BAM,Convertible Mark,,,,,,,,True
+93,sunat_table_efact_02,BWP,Pula,,,,,,,,True
+94,sunat_table_efact_02,NOK,Norwegian Krone,,,,,,,,True
+95,sunat_table_efact_02,BRL,Brazilian Real,,,,,,,,True
+96,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+97,sunat_table_efact_02,BND,Brunei Dollar,,,,,,,,True
+98,sunat_table_efact_02,BGN,Bulgarian Lev,,,,,,,,True
+99,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+100,sunat_table_efact_02,BIF,Burundi Franc,,,,,,,,True
+101,sunat_table_efact_02,CVE,Cabo Verde Escudo,,,,,,,,True
+102,sunat_table_efact_02,KHR,Riel,,,,,,,,True
+103,sunat_table_efact_02,XAF,CFA Franc BEAC,,,,,,,,True
+104,sunat_table_efact_02,CAD,Canadian Dollar,,,,,,,,True
+105,sunat_table_efact_02,KYD,Cayman Islands Dollar,,,,,,,,True
+106,sunat_table_efact_02,XAF,CFA Franc BEAC,,,,,,,,True
+107,sunat_table_efact_02,XAF,CFA Franc BEAC,,,,,,,,True
+108,sunat_table_efact_02,CLP,Chilean Peso,,,,,,,,True
+109,sunat_table_efact_02,CLF,Unidad de Fomento,,,,,,,,True
+110,sunat_table_efact_02,CNY,Yuan Renminbi,,,,,,,,True
+111,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+112,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+113,sunat_table_efact_02,COP,Colombian Peso,,,,,,,,True
+114,sunat_table_efact_02,COU,Unidad de Valor Real,,,,,,,,True
+115,sunat_table_efact_02,KMF,Comorian Franc,,,,,,,,True
+116,sunat_table_efact_02,CDF,Congolese Franc,,,,,,,,True
+117,sunat_table_efact_02,XAF,CFA Franc BEAC,,,,,,,,True
+118,sunat_table_efact_02,NZD,New Zealand Dollar,,,,,,,,True
+119,sunat_table_efact_02,CRC,Costa Rican Colon,,,,,,,,True
+120,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+121,sunat_table_efact_02,HRK,Kuna,,,,,,,,True
+122,sunat_table_efact_02,CUP,Cuban Peso,,,,,,,,True
+123,sunat_table_efact_02,CUC,Peso Convertible,,,,,,,,True
+124,sunat_table_efact_02,ANG,Netherlands Antillean Guilder,,,,,,,,True
+125,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+126,sunat_table_efact_02,CZK,Czech Koruna,,,,,,,,True
+127,sunat_table_efact_02,DKK,Danish Krone,,,,,,,,True
+128,sunat_table_efact_02,DJF,Djibouti Franc,,,,,,,,True
+129,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+130,sunat_table_efact_02,DOP,Dominican Peso,,,,,,,,True
+131,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+132,sunat_table_efact_02,EGP,Egyptian Pound,,,,,,,,True
+133,sunat_table_efact_02,SVC,El Salvador Colon,,,,,,,,True
+134,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+135,sunat_table_efact_02,XAF,CFA Franc BEAC,,,,,,,,True
+136,sunat_table_efact_02,ERN,Nakfa,,,,,,,,True
+137,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+138,sunat_table_efact_02,ETB,Ethiopian Birr,,,,,,,,True
+139,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+140,sunat_table_efact_02,FKP,Falkland Islands Pound,,,,,,,,True
+141,sunat_table_efact_02,DKK,Danish Krone,,,,,,,,True
+142,sunat_table_efact_02,FJD,Fiji Dollar,,,,,,,,True
+143,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+144,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+145,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+146,sunat_table_efact_02,XPF,CFP Franc,,,,,,,,True
+147,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+148,sunat_table_efact_02,XAF,CFA Franc BEAC,,,,,,,,True
+149,sunat_table_efact_02,GMD,Dalasi,,,,,,,,True
+150,sunat_table_efact_02,GEL,Lari,,,,,,,,True
+151,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+152,sunat_table_efact_02,GHS,Ghana Cedi,,,,,,,,True
+153,sunat_table_efact_02,GIP,Gibraltar Pound,,,,,,,,True
+154,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+155,sunat_table_efact_02,DKK,Danish Krone,,,,,,,,True
+156,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+157,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+158,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+159,sunat_table_efact_02,GTQ,Quetzal,,,,,,,,True
+160,sunat_table_efact_02,GBP,Pound Sterling,,,,,,,,True
+161,sunat_table_efact_02,GNF,Guinean Franc,,,,,,,,True
+162,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+163,sunat_table_efact_02,GYD,Guyana Dollar,,,,,,,,True
+164,sunat_table_efact_02,HTG,Gourde,,,,,,,,True
+165,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+166,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+167,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+168,sunat_table_efact_02,HNL,Lempira,,,,,,,,True
+169,sunat_table_efact_02,HKD,Hong Kong Dollar,,,,,,,,True
+170,sunat_table_efact_02,HUF,Forint,,,,,,,,True
+171,sunat_table_efact_02,ISK,Iceland Krona,,,,,,,,True
+172,sunat_table_efact_02,INR,Indian Rupee,,,,,,,,True
+173,sunat_table_efact_02,IDR,Rupiah,,,,,,,,True
+174,sunat_table_efact_02,XDR,SDR (Special Drawing Right),,,,,,,,True
+175,sunat_table_efact_02,IRR,Iranian Rial,,,,,,,,True
+176,sunat_table_efact_02,IQD,Iraqi Dinar,,,,,,,,True
+177,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+178,sunat_table_efact_02,GBP,Pound Sterling,,,,,,,,True
+179,sunat_table_efact_02,ILS,New Israeli Sheqel,,,,,,,,True
+180,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+181,sunat_table_efact_02,JMD,Jamaican Dollar,,,,,,,,True
+182,sunat_table_efact_02,JPY,Yen,,,,,,,,True
+183,sunat_table_efact_02,GBP,Pound Sterling,,,,,,,,True
+184,sunat_table_efact_02,JOD,Jordanian Dinar,,,,,,,,True
+185,sunat_table_efact_02,KZT,Tenge,,,,,,,,True
+186,sunat_table_efact_02,KES,Kenyan Shilling,,,,,,,,True
+187,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+188,sunat_table_efact_02,KPW,North Korean Won,,,,,,,,True
+189,sunat_table_efact_02,KRW,Won,,,,,,,,True
+190,sunat_table_efact_02,KWD,Kuwaiti Dinar,,,,,,,,True
+191,sunat_table_efact_02,KGS,Som,,,,,,,,True
+192,sunat_table_efact_02,LAK,Lao Kip,,,,,,,,True
+193,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+194,sunat_table_efact_02,LBP,Lebanese Pound,,,,,,,,True
+195,sunat_table_efact_02,LSL,Loti,,,,,,,,True
+196,sunat_table_efact_02,ZAR,Rand,,,,,,,,True
+197,sunat_table_efact_02,LRD,Liberian Dollar,,,,,,,,True
+198,sunat_table_efact_02,LYD,Libyan Dinar,,,,,,,,True
+199,sunat_table_efact_02,CHF,Swiss Franc,,,,,,,,True
+200,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+201,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+202,sunat_table_efact_02,MOP,Pataca,,,,,,,,True
+203,sunat_table_efact_02,MKD,Denar,,,,,,,,True
+204,sunat_table_efact_02,MGA,Malagasy Ariary,,,,,,,,True
+205,sunat_table_efact_02,MWK,Malawi Kwacha,,,,,,,,True
+206,sunat_table_efact_02,MYR,Malaysian Ringgit,,,,,,,,True
+207,sunat_table_efact_02,MVR,Rufiyaa,,,,,,,,True
+208,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+209,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+210,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+211,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+212,sunat_table_efact_02,MRU,Ouguiya,,,,,,,,True
+213,sunat_table_efact_02,MUR,Mauritius Rupee,,,,,,,,True
+214,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+215,sunat_table_efact_02,XUA,ADB Unit of Account,,,,,,,,True
+216,sunat_table_efact_02,MXN,Mexican Peso,,,,,,,,True
+217,sunat_table_efact_02,MXV,Mexican Unidad de Inversion (UDI),,,,,,,,True
+218,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+219,sunat_table_efact_02,MDL,Moldovan Leu,,,,,,,,True
+220,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+221,sunat_table_efact_02,MNT,Tugrik,,,,,,,,True
+222,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+223,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+224,sunat_table_efact_02,MAD,Moroccan Dirham,,,,,,,,True
+225,sunat_table_efact_02,MZN,Mozambique Metical,,,,,,,,True
+226,sunat_table_efact_02,MMK,Kyat,,,,,,,,True
+227,sunat_table_efact_02,NAD,Namibia Dollar,,,,,,,,True
+228,sunat_table_efact_02,ZAR,Rand,,,,,,,,True
+229,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+230,sunat_table_efact_02,NPR,Nepalese Rupee,,,,,,,,True
+231,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+232,sunat_table_efact_02,XPF,CFP Franc,,,,,,,,True
+233,sunat_table_efact_02,NZD,New Zealand Dollar,,,,,,,,True
+234,sunat_table_efact_02,NIO,Cordoba Oro,,,,,,,,True
+235,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+236,sunat_table_efact_02,NGN,Naira,,,,,,,,True
+237,sunat_table_efact_02,NZD,New Zealand Dollar,,,,,,,,True
+238,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+239,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+240,sunat_table_efact_02,NOK,Norwegian Krone,,,,,,,,True
+241,sunat_table_efact_02,OMR,Rial Omani,,,,,,,,True
+242,sunat_table_efact_02,PKR,Pakistan Rupee,,,,,,,,True
+243,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+244,sunat_table_efact_02,--,No universal currency,,,,,,,,True
+245,sunat_table_efact_02,PAB,Balboa,,,,,,,,True
+246,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+247,sunat_table_efact_02,PGK,Kina,,,,,,,,True
+248,sunat_table_efact_02,PYG,Guarani,,,,,,,,True
+249,sunat_table_efact_02,PEN,Sol,,,,,,,,True
+250,sunat_table_efact_02,PHP,Philippine Piso,,,,,,,,True
+251,sunat_table_efact_02,NZD,New Zealand Dollar,,,,,,,,True
+252,sunat_table_efact_02,PLN,Zloty,,,,,,,,True
+253,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+254,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+255,sunat_table_efact_02,QAR,Qatari Rial,,,,,,,,True
+256,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+257,sunat_table_efact_02,RON,Romanian Leu,,,,,,,,True
+258,sunat_table_efact_02,RUB,Russian Ruble,,,,,,,,True
+259,sunat_table_efact_02,RWF,Rwanda Franc,,,,,,,,True
+260,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+261,sunat_table_efact_02,SHP,Saint Helena Pound,,,,,,,,True
+262,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+263,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+264,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+265,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+266,sunat_table_efact_02,XCD,East Caribbean Dollar,,,,,,,,True
+267,sunat_table_efact_02,WST,Tala,,,,,,,,True
+268,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+269,sunat_table_efact_02,STN,Dobra,,,,,,,,True
+270,sunat_table_efact_02,SAR,Saudi Riyal,,,,,,,,True
+271,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+272,sunat_table_efact_02,RSD,Serbian Dinar,,,,,,,,True
+273,sunat_table_efact_02,SCR,Seychelles Rupee,,,,,,,,True
+274,sunat_table_efact_02,SLL,Leone,,,,,,,,True
+275,sunat_table_efact_02,SGD,Singapore Dollar,,,,,,,,True
+276,sunat_table_efact_02,ANG,Netherlands Antillean Guilder,,,,,,,,True
+277,sunat_table_efact_02,XSU,Sucre,,,,,,,,True
+278,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+279,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+280,sunat_table_efact_02,SBD,Solomon Islands Dollar,,,,,,,,True
+281,sunat_table_efact_02,SOS,Somali Shilling,,,,,,,,True
+282,sunat_table_efact_02,ZAR,Rand,,,,,,,,True
+283,sunat_table_efact_02,--,No universal currency,,,,,,,,True
+284,sunat_table_efact_02,SSP,South Sudanese Pound,,,,,,,,True
+285,sunat_table_efact_02,EUR,Euro,,,,,,,,True
+286,sunat_table_efact_02,LKR,Sri Lanka Rupee,,,,,,,,True
+287,sunat_table_efact_02,SDG,Sudanese Pound,,,,,,,,True
+288,sunat_table_efact_02,SRD,Surinam Dollar,,,,,,,,True
+289,sunat_table_efact_02,NOK,Norwegian Krone,,,,,,,,True
+290,sunat_table_efact_02,SZL,Lilangeni,,,,,,,,True
+291,sunat_table_efact_02,SEK,Swedish Krona,,,,,,,,True
+292,sunat_table_efact_02,CHF,Swiss Franc,,,,,,,,True
+293,sunat_table_efact_02,CHE,WIR Euro,,,,,,,,True
+294,sunat_table_efact_02,CHW,WIR Franc,,,,,,,,True
+295,sunat_table_efact_02,SYP,Syrian Pound,,,,,,,,True
+296,sunat_table_efact_02,TWD,New Taiwan Dollar,,,,,,,,True
+297,sunat_table_efact_02,TJS,Somoni,,,,,,,,True
+298,sunat_table_efact_02,TZS,Tanzanian Shilling,,,,,,,,True
+299,sunat_table_efact_02,THB,Baht,,,,,,,,True
+300,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+301,sunat_table_efact_02,XOF,CFA Franc BCEAO,,,,,,,,True
+302,sunat_table_efact_02,NZD,New Zealand Dollar,,,,,,,,True
+303,sunat_table_efact_02,TOP,Pa’anga,,,,,,,,True
+304,sunat_table_efact_02,TTD,Trinidad and Tobago Dollar,,,,,,,,True
+305,sunat_table_efact_02,TND,Tunisian Dinar,,,,,,,,True
+306,sunat_table_efact_02,TRY,Turkish Lira,,,,,,,,True
+307,sunat_table_efact_02,TMT,Turkmenistan New Manat,,,,,,,,True
+308,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+309,sunat_table_efact_02,AUD,Australian Dollar,,,,,,,,True
+310,sunat_table_efact_02,UGX,Uganda Shilling,,,,,,,,True
+311,sunat_table_efact_02,UAH,Hryvnia,,,,,,,,True
+312,sunat_table_efact_02,AED,UAE Dirham,,,,,,,,True
+313,sunat_table_efact_02,GBP,Pound Sterling,,,,,,,,True
+314,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+315,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+316,sunat_table_efact_02,USN,US Dollar (Next day),,,,,,,,True
+317,sunat_table_efact_02,UYU,Peso Uruguayo,,,,,,,,True
+318,sunat_table_efact_02,UYI,Uruguay Peso en Unidades Indexadas (URUIURUI),,,,,,,,True
+319,sunat_table_efact_02,UZS,Uzbekistan Sum,,,,,,,,True
+320,sunat_table_efact_02,VUV,Vatu,,,,,,,,True
+321,sunat_table_efact_02,VEF,Bolívar,,,,,,,,True
+322,sunat_table_efact_02,VND,Dong,,,,,,,,True
+323,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+324,sunat_table_efact_02,USD,US Dollar,,,,,,,,True
+325,sunat_table_efact_02,XPF,CFP Franc,,,,,,,,True
+326,sunat_table_efact_02,MAD,Moroccan Dirham,,,,,,,,True
+327,sunat_table_efact_02,YER,Yemeni Rial,,,,,,,,True
+328,sunat_table_efact_02,ZMW,Zambian Kwacha,,,,,,,,True
+329,sunat_table_efact_02,ZWL,Zimbabwe Dollar,,,,,,,,True
+330,sunat_table_efact_02,XBA,Bond Markets Unit European Composite Unit (EURCO),,,,,,,,True
+331,sunat_table_efact_02,XBB,Bond Markets Unit European Monetary Unit (E.M.U.-6),,,,,,,,True
+332,sunat_table_efact_02,XBC,Bond Markets Unit European Unit of Account 9 (E.U.A.-9),,,,,,,,True
+333,sunat_table_efact_02,XBD,Bond Markets Unit European Unit of Account 17 (E.U.A.-17),,,,,,,,True
+334,sunat_table_efact_02,XTS,Codes specifically reserved for testing purposes,,,,,,,,True
+335,sunat_table_efact_02,XXX,The codes assigned for transactions where no currency is involved,,,,,,,,True
+336,sunat_table_efact_02,XAU,Gold,,,,,,,,True
+337,sunat_table_efact_02,XPD,Palladium,,,,,,,,True
+338,sunat_table_efact_02,XPT,Platinum,,,,,,,,True
+339,sunat_table_efact_02,XAG,Silver,,,,,,,,True
+340,sunat_table_efact_03,999,Empty,,,,,,,,True
+341,sunat_table_efact_04,AX,AALAND ISLANDS,,,,,,,,True
+342,sunat_table_efact_04,AF,AFGHANISTAN,,,,,,,,True
+343,sunat_table_efact_04,AL,ALBANIA,,,,,,,,True
+344,sunat_table_efact_04,DZ,ALGERIA,,,,,,,,True
+345,sunat_table_efact_04,AS,AMERICAN SAMOA,,,,,,,,True
+346,sunat_table_efact_04,AD,ANDORRA,,,,,,,,True
+347,sunat_table_efact_04,AO,ANGOLA,,,,,,,,True
+348,sunat_table_efact_04,AI,ANGUILLA,,,,,,,,True
+349,sunat_table_efact_04,AQ,ANTARCTICA,,,,,,,,True
+350,sunat_table_efact_04,AG,ANTIGUA AND BARBUDA,,,,,,,,True
+351,sunat_table_efact_04,AR,ARGENTINA,,,,,,,,True
+352,sunat_table_efact_04,AM,ARMENIA,,,,,,,,True
+353,sunat_table_efact_04,AW,ARUBA,,,,,,,,True
+354,sunat_table_efact_04,AU,AUSTRALIA,,,,,,,,True
+355,sunat_table_efact_04,AT,AUSTRIA,,,,,,,,True
+356,sunat_table_efact_04,AZ,AZERBAIJAN,,,,,,,,True
+357,sunat_table_efact_04,BS,BAHAMAS,,,,,,,,True
+358,sunat_table_efact_04,BH,BAHRAIN,,,,,,,,True
+359,sunat_table_efact_04,BD,BANGLADESH,,,,,,,,True
+360,sunat_table_efact_04,BB,BARBADOS,,,,,,,,True
+361,sunat_table_efact_04,BY,BELARUS,,,,,,,,True
+362,sunat_table_efact_04,BE,BELGIUM,,,,,,,,True
+363,sunat_table_efact_04,BZ,BELIZE,,,,,,,,True
+364,sunat_table_efact_04,BJ,BENIN,,,,,,,,True
+365,sunat_table_efact_04,BM,BERMUDA,,,,,,,,True
+366,sunat_table_efact_04,BT,BHUTAN,,,,,,,,True
+367,sunat_table_efact_04,BO,BOLIVIA,,,,,,,,True
+368,sunat_table_efact_04,BA,BOSNIA AND HERZEGOWINA,,,,,,,,True
+369,sunat_table_efact_04,BW,BOTSWANA,,,,,,,,True
+370,sunat_table_efact_04,BV,BOUVET ISLAND,,,,,,,,True
+371,sunat_table_efact_04,BR,BRAZIL,,,,,,,,True
+372,sunat_table_efact_04,IO,BRITISH INDIAN OCEAN TERRITORY,,,,,,,,True
+373,sunat_table_efact_04,BN,BRUNEI DARUSSALAM,,,,,,,,True
+374,sunat_table_efact_04,BG,BULGARIA,,,,,,,,True
+375,sunat_table_efact_04,BF,BURKINA FASO,,,,,,,,True
+376,sunat_table_efact_04,BI,BURUNDI,,,,,,,,True
+377,sunat_table_efact_04,KH,CAMBODIA,,,,,,,,True
+378,sunat_table_efact_04,CM,CAMEROON,,,,,,,,True
+379,sunat_table_efact_04,CA,CANADA,,,,,,,,True
+380,sunat_table_efact_04,CV,CAPE VERDE,,,,,,,,True
+381,sunat_table_efact_04,KY,CAYMAN ISLANDS,,,,,,,,True
+382,sunat_table_efact_04,CF,CENTRAL AFRICAN REPUBLIC,,,,,,,,True
+383,sunat_table_efact_04,TD,CHAD,,,,,,,,True
+384,sunat_table_efact_04,CL,CHILE,,,,,,,,True
+385,sunat_table_efact_04,CN,CHINA,,,,,,,,True
+386,sunat_table_efact_04,CX,CHRISTMAS ISLAND,,,,,,,,True
+387,sunat_table_efact_04,CC,COCOS (KEELING) ISLANDS,,,,,,,,True
+388,sunat_table_efact_04,CO,COLOMBIA,,,,,,,,True
+389,sunat_table_efact_04,KM,COMOROS,,,,,,,,True
+390,sunat_table_efact_04,CD,CONGO  Democratic Republic of (was Zaire),,,,,,,,True
+391,sunat_table_efact_04,CG,CONGO  Republic of,,,,,,,,True
+392,sunat_table_efact_04,CK,COOK ISLANDS,,,,,,,,True
+393,sunat_table_efact_04,CR,COSTA RICA,,,,,,,,True
+394,sunat_table_efact_04,CI,COTE D'IVOIRE,,,,,,,,True
+395,sunat_table_efact_04,HR,CROATIA (local name: Hrvatska),,,,,,,,True
+396,sunat_table_efact_04,CU,CUBA,,,,,,,,True
+397,sunat_table_efact_04,CY,CYPRUS,,,,,,,,True
+398,sunat_table_efact_04,CZ,CZECH REPUBLIC,,,,,,,,True
+399,sunat_table_efact_04,DK,DENMARK,,,,,,,,True
+400,sunat_table_efact_04,DJ,DJIBOUTI,,,,,,,,True
+401,sunat_table_efact_04,DM,DOMINICA,,,,,,,,True
+402,sunat_table_efact_04,DO,DOMINICAN REPUBLIC,,,,,,,,True
+403,sunat_table_efact_04,EC,ECUADOR,,,,,,,,True
+404,sunat_table_efact_04,EG,EGYPT,,,,,,,,True
+405,sunat_table_efact_04,SV,EL SALVADOR,,,,,,,,True
+406,sunat_table_efact_04,GQ,EQUATORIAL GUINEA,,,,,,,,True
+407,sunat_table_efact_04,ER,ERITREA,,,,,,,,True
+408,sunat_table_efact_04,EE,ESTONIA,,,,,,,,True
+409,sunat_table_efact_04,ET,ETHIOPIA,,,,,,,,True
+410,sunat_table_efact_04,FK,FALKLAND ISLANDS (MALVINAS),,,,,,,,True
+411,sunat_table_efact_04,FO,FAROE ISLANDS,,,,,,,,True
+412,sunat_table_efact_04,FJ,FIJI,,,,,,,,True
+413,sunat_table_efact_04,FI,FINLAND,,,,,,,,True
+414,sunat_table_efact_04,FR,FRANCE,,,,,,,,True
+415,sunat_table_efact_04,GF,FRENCH GUIANA,,,,,,,,True
+416,sunat_table_efact_04,PF,FRENCH POLYNESIA,,,,,,,,True
+417,sunat_table_efact_04,TF,FRENCH SOUTHERN TERRITORIES,,,,,,,,True
+418,sunat_table_efact_04,GA,GABON,,,,,,,,True
+419,sunat_table_efact_04,GM,GAMBIA,,,,,,,,True
+420,sunat_table_efact_04,GE,GEORGIA,,,,,,,,True
+421,sunat_table_efact_04,DE,GERMANY,,,,,,,,True
+422,sunat_table_efact_04,GH,GHANA,,,,,,,,True
+423,sunat_table_efact_04,GI,GIBRALTAR,,,,,,,,True
+424,sunat_table_efact_04,GR,GREECE,,,,,,,,True
+425,sunat_table_efact_04,GL,GREENLAND,,,,,,,,True
+426,sunat_table_efact_04,GD,GRENADA,,,,,,,,True
+427,sunat_table_efact_04,GP,GUADELOUPE,,,,,,,,True
+428,sunat_table_efact_04,GU,GUAM,,,,,,,,True
+429,sunat_table_efact_04,GT,GUATEMALA,,,,,,,,True
+430,sunat_table_efact_04,GN,GUINEA,,,,,,,,True
+431,sunat_table_efact_04,GW,GUINEA-BISSAU,,,,,,,,True
+432,sunat_table_efact_04,GY,GUYANA,,,,,,,,True
+433,sunat_table_efact_04,HT,HAITI,,,,,,,,True
+434,sunat_table_efact_04,HM,HEARD AND MC DONALD ISLANDS,,,,,,,,True
+435,sunat_table_efact_04,HN,HONDURAS,,,,,,,,True
+436,sunat_table_efact_04,HK,HONG KONG,,,,,,,,True
+437,sunat_table_efact_04,HU,HUNGARY,,,,,,,,True
+438,sunat_table_efact_04,IS,ICELAND,,,,,,,,True
+439,sunat_table_efact_04,IN,INDIA,,,,,,,,True
+440,sunat_table_efact_04,ID,INDONESIA,,,,,,,,True
+441,sunat_table_efact_04,IR,IRAN (ISLAMIC REPUBLIC OF),,,,,,,,True
+442,sunat_table_efact_04,IQ,IRAQ,,,,,,,,True
+443,sunat_table_efact_04,IE,IRELAND,,,,,,,,True
+444,sunat_table_efact_04,IL,ISRAEL,,,,,,,,True
+445,sunat_table_efact_04,IT,ITALY,,,,,,,,True
+446,sunat_table_efact_04,JM,JAMAICA,,,,,,,,True
+447,sunat_table_efact_04,JP,JAPAN,,,,,,,,True
+448,sunat_table_efact_04,JO,JORDAN,,,,,,,,True
+449,sunat_table_efact_04,KZ,KAZAKHSTAN,,,,,,,,True
+450,sunat_table_efact_04,KE,KENYA,,,,,,,,True
+451,sunat_table_efact_04,KI,KIRIBATI,,,,,,,,True
+452,sunat_table_efact_04,KP,KOREA DEMOCRATIC PEOPLE'S REPUBLIC OF,,,,,,,,True
+453,sunat_table_efact_04,KR,KOREA  REPUBLIC OF,,,,,,,,True
+454,sunat_table_efact_04,KW,KUWAIT,,,,,,,,True
+455,sunat_table_efact_04,KG,KYRGYZSTAN,,,,,,,,True
+456,sunat_table_efact_04,LA,LAO PEOPLE'S DEMOCRATIC REPUBLIC,,,,,,,,True
+457,sunat_table_efact_04,LV,LATVIA,,,,,,,,True
+458,sunat_table_efact_04,LB,LEBANON,,,,,,,,True
+459,sunat_table_efact_04,LS,LESOTHO,,,,,,,,True
+460,sunat_table_efact_04,LR,LIBERIA,,,,,,,,True
+461,sunat_table_efact_04,LY,LIBYAN ARAB JAMAHIRIYA,,,,,,,,True
+462,sunat_table_efact_04,LI,LIECHTENSTEIN,,,,,,,,True
+463,sunat_table_efact_04,LT,LITHUANIA,,,,,,,,True
+464,sunat_table_efact_04,LU,LUXEMBOURG,,,,,,,,True
+465,sunat_table_efact_04,MO,MACAU,,,,,,,,True
+466,sunat_table_efact_04,MK,MACEDONIA  THE FORMER YUGOSLAV REPUBLIC OF,,,,,,,,True
+467,sunat_table_efact_04,MG,MADAGASCAR,,,,,,,,True
+468,sunat_table_efact_04,MW,MALAWI,,,,,,,,True
+469,sunat_table_efact_04,MY,MALAYSIA,,,,,,,,True
+470,sunat_table_efact_04,MV,MALDIVES,,,,,,,,True
+471,sunat_table_efact_04,ML,MALI,,,,,,,,True
+472,sunat_table_efact_04,MT,MALTA,,,,,,,,True
+473,sunat_table_efact_04,MH,MARSHALL ISLANDS,,,,,,,,True
+474,sunat_table_efact_04,MQ,MARTINIQUE,,,,,,,,True
+475,sunat_table_efact_04,MR,MAURITANIA,,,,,,,,True
+476,sunat_table_efact_04,MU,MAURITIUS,,,,,,,,True
+477,sunat_table_efact_04,YT,MAYOTTE,,,,,,,,True
+478,sunat_table_efact_04,MX,MEXICO,,,,,,,,True
+479,sunat_table_efact_04,FM,MICRONESIA  FEDERATED STATES OF,,,,,,,,True
+480,sunat_table_efact_04,MD,MOLDOVA  REPUBLIC OF,,,,,,,,True
+481,sunat_table_efact_04,MC,MONACO,,,,,,,,True
+482,sunat_table_efact_04,MN,MONGOLIA,,,,,,,,True
+483,sunat_table_efact_04,MS,MONTSERRAT,,,,,,,,True
+484,sunat_table_efact_04,MA,MOROCCO,,,,,,,,True
+485,sunat_table_efact_04,MZ,MOZAMBIQUE,,,,,,,,True
+486,sunat_table_efact_04,MM,MYANMAR,,,,,,,,True
+487,sunat_table_efact_04,NA,NAMIBIA,,,,,,,,True
+488,sunat_table_efact_04,NR,NAURU,,,,,,,,True
+489,sunat_table_efact_04,NP,NEPAL,,,,,,,,True
+490,sunat_table_efact_04,NL,NETHERLANDS,,,,,,,,True
+491,sunat_table_efact_04,AN,NETHERLANDS ANTILLES,,,,,,,,True
+492,sunat_table_efact_04,NC,NEW CALEDONIA,,,,,,,,True
+493,sunat_table_efact_04,NZ,NEW ZEALAND,,,,,,,,True
+494,sunat_table_efact_04,NI,NICARAGUA,,,,,,,,True
+495,sunat_table_efact_04,NE,NIGER,,,,,,,,True
+496,sunat_table_efact_04,NG,NIGERIA,,,,,,,,True
+497,sunat_table_efact_04,NU,NIUE,,,,,,,,True
+498,sunat_table_efact_04,NF,NORFOLK ISLAND,,,,,,,,True
+499,sunat_table_efact_04,MP,NORTHERN MARIANA ISLANDS,,,,,,,,True
+500,sunat_table_efact_04,NO,NORWAY,,,,,,,,True
+501,sunat_table_efact_04,OM,OMAN,,,,,,,,True
+502,sunat_table_efact_04,PK,PAKISTAN,,,,,,,,True
+503,sunat_table_efact_04,PW,PALAU,,,,,,,,True
+504,sunat_table_efact_04,PS,PALESTINIAN TERRITORY  Occupied,,,,,,,,True
+505,sunat_table_efact_04,PA,PANAMA,,,,,,,,True
+506,sunat_table_efact_04,PG,PAPUA NEW GUINEA,,,,,,,,True
+507,sunat_table_efact_04,PY,PARAGUAY,,,,,,,,True
+508,sunat_table_efact_04,PE,PERU,,,,,,,,True
+509,sunat_table_efact_04,PH,PHILIPPINES,,,,,,,,True
+510,sunat_table_efact_04,PN,PITCAIRN,,,,,,,,True
+511,sunat_table_efact_04,PL,POLAND,,,,,,,,True
+512,sunat_table_efact_04,PT,PORTUGAL,,,,,,,,True
+513,sunat_table_efact_04,PR,PUERTO RICO,,,,,,,,True
+514,sunat_table_efact_04,QA,QATAR,,,,,,,,True
+515,sunat_table_efact_04,RE,REUNION,,,,,,,,True
+516,sunat_table_efact_04,RO,ROMANIA,,,,,,,,True
+517,sunat_table_efact_04,RU,RUSSIAN FEDERATION,,,,,,,,True
+518,sunat_table_efact_04,RW,RWANDA,,,,,,,,True
+519,sunat_table_efact_04,SH,SAINT HELENA,,,,,,,,True
+520,sunat_table_efact_04,KN,SAINT KITTS AND NEVIS,,,,,,,,True
+521,sunat_table_efact_04,LC,SAINT LUCIA,,,,,,,,True
+522,sunat_table_efact_04,PM,SAINT PIERRE AND MIQUELON,,,,,,,,True
+523,sunat_table_efact_04,VC,SAINT VINCENT AND THE GRENADINES,,,,,,,,True
+524,sunat_table_efact_04,WS,SAMOA,,,,,,,,True
+525,sunat_table_efact_04,SM,SAN MARINO,,,,,,,,True
+526,sunat_table_efact_04,ST,SAO TOME AND PRINCIPE,,,,,,,,True
+527,sunat_table_efact_04,SA,SAUDI ARABIA,,,,,,,,True
+528,sunat_table_efact_04,SN,SENEGAL,,,,,,,,True
+529,sunat_table_efact_04,CS,SERBIA AND MONTENEGRO,,,,,,,,True
+530,sunat_table_efact_04,SC,SEYCHELLES,,,,,,,,True
+531,sunat_table_efact_04,SL,SIERRA LEONE,,,,,,,,True
+532,sunat_table_efact_04,SG,SINGAPORE,,,,,,,,True
+533,sunat_table_efact_04,SK,SLOVAKIA,,,,,,,,True
+534,sunat_table_efact_04,SI,SLOVENIA,,,,,,,,True
+535,sunat_table_efact_04,SB,SOLOMON ISLANDS,,,,,,,,True
+536,sunat_table_efact_04,SO,SOMALIA,,,,,,,,True
+537,sunat_table_efact_04,ZA,SOUTH AFRICA,,,,,,,,True
+538,sunat_table_efact_04,GS,SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS,,,,,,,,True
+539,sunat_table_efact_04,ES,SPAIN,,,,,,,,True
+540,sunat_table_efact_04,LK,SRI LANKA,,,,,,,,True
+541,sunat_table_efact_04,SD,SUDAN,,,,,,,,True
+542,sunat_table_efact_04,SR,SURINAME,,,,,,,,True
+543,sunat_table_efact_04,SJ,SVALBARD AND JAN MAYEN ISLANDS,,,,,,,,True
+544,sunat_table_efact_04,SZ,SWAZILAND,,,,,,,,True
+545,sunat_table_efact_04,SE,SWEDEN,,,,,,,,True
+546,sunat_table_efact_04,CH,SWITZERLAND,,,,,,,,True
+547,sunat_table_efact_04,SY,SYRIAN ARAB REPUBLIC,,,,,,,,True
+548,sunat_table_efact_04,TW,TAIWAN,,,,,,,,True
+549,sunat_table_efact_04,TJ,TAJIKISTAN,,,,,,,,True
+550,sunat_table_efact_04,TZ,TANZANIA  UNITED REPUBLIC OF,,,,,,,,True
+551,sunat_table_efact_04,TH,THAILAND,,,,,,,,True
+552,sunat_table_efact_04,TL,TIMOR-LESTE,,,,,,,,True
+553,sunat_table_efact_04,TG,TOGO,,,,,,,,True
+554,sunat_table_efact_04,TK,TOKELAU,,,,,,,,True
+555,sunat_table_efact_04,TO,TONGA,,,,,,,,True
+556,sunat_table_efact_04,TT,TRINIDAD AND TOBAGO,,,,,,,,True
+557,sunat_table_efact_04,TN,TUNISIA,,,,,,,,True
+558,sunat_table_efact_04,TR,TURKEY,,,,,,,,True
+559,sunat_table_efact_04,TM,TURKMENISTAN,,,,,,,,True
+560,sunat_table_efact_04,TC,TURKS AND CAICOS ISLANDS,,,,,,,,True
+561,sunat_table_efact_04,TV,TUVALU,,,,,,,,True
+562,sunat_table_efact_04,UG,UGANDA,,,,,,,,True
+563,sunat_table_efact_04,UA,UKRAINE,,,,,,,,True
+564,sunat_table_efact_04,AE,UNITED ARAB EMIRATES,,,,,,,,True
+565,sunat_table_efact_04,GB,UNITED KINGDOM,,,,,,,,True
+566,sunat_table_efact_04,US,UNITED STATES,,,,,,,,True
+567,sunat_table_efact_04,UM,UNITED STATES MINOR OUTLYING ISLANDS,,,,,,,,True
+568,sunat_table_efact_04,UY,URUGUAY,,,,,,,,True
+569,sunat_table_efact_04,UZ,UZBEKISTAN,,,,,,,,True
+570,sunat_table_efact_04,VU,VANUATU,,,,,,,,True
+571,sunat_table_efact_04,VA,VATICAN CITY STATE (HOLY SEE),,,,,,,,True
+572,sunat_table_efact_04,VE,VENEZUELA,,,,,,,,True
+573,sunat_table_efact_04,VN,VIET NAM,,,,,,,,True
+574,sunat_table_efact_04,VG,VIRGIN ISLANDS (BRITISH),,,,,,,,True
+575,sunat_table_efact_04,VI,VIRGIN ISLANDS (U.S.),,,,,,,,True
+576,sunat_table_efact_04,WF,WALLIS AND FUTUNA ISLANDS,,,,,,,,True
+577,sunat_table_efact_04,EH,WESTERN SAHARA,,,,,,,,True
+578,sunat_table_efact_04,YE,YEMEN,,,,,,,,True
+579,sunat_table_efact_04,ZM,ZAMBIA,,,,,,,,True
+580,sunat_table_efact_04,ZW,ZIMBABWE,,,,,,,,True
+581,sunat_table_efact_05,1000,IGV Impuesto General a las Ventas,,,,,,,,True
+582,sunat_table_efact_05,1016,Impuesto a la Venta Arroz Pilado,,,,,,,,True
+583,sunat_table_efact_05,2000,ISC Impuesto Selectivo al Consumo,,,,,,,,True
+584,sunat_table_efact_05,9995,Exportación,,,,,,,,True
+585,sunat_table_efact_05,9996,Gratuito,,,,,,,,True
+586,sunat_table_efact_05,9997,Exonerado,,,,,,,,True
+587,sunat_table_efact_05,9998,Inafecto,,,,,,,,True
+588,sunat_table_efact_05,9999,Otros tributos,,,,,,,,True
+589,sunat_table_efact_06,0,DOC.TRIB.NO.DOM.SIN.RUC,,,,,,,,True
+590,sunat_table_efact_06,1,Documento Nacional de Identidad,,,,,,,,True
+591,sunat_table_efact_06,4,Carnet de extranjería,,,,,,,,True
+592,sunat_table_efact_06,6,Registro Unico de Contributentes,,,,,,,,True
+593,sunat_table_efact_06,7,Pasaporte,,,,,,,,True
+594,sunat_table_efact_06,A,Cédula Diplomática de identidad,,,,,,,,True
+595,sunat_table_efact_06,B,DOC.IDENT.PAIS.RESIDENCIA-NO.D,,,,,,,,True
+596,sunat_table_efact_06,C,Tax Identification Number - TIN – Doc Trib PP.NN,,,,,,,,True
+597,sunat_table_efact_06,D,Identification Number - IN – Doc Trib PP. JJ,,,,,,,,True
+598,sunat_table_efact_06,E,TAM- Tarjeta Andina de Migración,,,,,,,,True
+2003,sunat_table_efact_06,F,Permiso Temporal de Permanencia - PTP,,,,,,,,True
+599,sunat_table_efact_07,10,Gravado - Operación Onerosa,,,,,,,,True
+600,sunat_table_efact_07,11,Gravado – Retiro por premio,,,,,,,,True
+601,sunat_table_efact_07,12,Gravado – Retiro por donación,,,,,,,,True
+602,sunat_table_efact_07,13,Gravado – Retiro,,,,,,,,True
+603,sunat_table_efact_07,14,Gravado – Retiro por publicidad,,,,,,,,True
+604,sunat_table_efact_07,15,Gravado – Bonificaciones,,,,,,,,True
+605,sunat_table_efact_07,16,Gravado – Retiro por entrega a trabajadores,,,,,,,,True
+606,sunat_table_efact_07,17,Gravado - IVAP,,,,,,,,True
+607,sunat_table_efact_07,20,Exonerado - Operación Onerosa,,,,,,,,True
+608,sunat_table_efact_07,21,Exonerado - Transferencia gratuita,,,,,,,,True
+609,sunat_table_efact_07,30,Inafecto - Operación Onerosa,,,,,,,,True
+610,sunat_table_efact_07,31,Inafecto – Retiro por Bonificación,,,,,,,,True
+611,sunat_table_efact_07,32,Inafecto – Retiro,,,,,,,,True
+612,sunat_table_efact_07,33,Inafecto – Retiro por Muestras Médicas,,,,,,,,True
+613,sunat_table_efact_07,34,Inafecto - Retiro por Convenio Colectivo,,,,,,,,True
+614,sunat_table_efact_07,35,Inafecto – Retiro por premio,,,,,,,,True
+615,sunat_table_efact_07,36,Inafecto - Retiro por publicidad,,,,,,,,True
+616,sunat_table_efact_07,37,Inafecto - Transferencia gratuita,,,,,,,,True
+617,sunat_table_efact_07,40,Exportación de Bienes o Servicios,,,,,,,,True
+618,sunat_table_efact_08,01,"Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC)",,,,,,,,True
+619,sunat_table_efact_08,02,"Aplicación del Monto Fijo (Apéndice IV, lit. B – T.U.O IGV e ISC)",,,,,,,,True
+620,sunat_table_efact_08,03,"Sistema de Precios de Venta al Público (Apéndice IV, lit. C – T.U.O IGV e ISC)",,,,,,,,True
+621,sunat_table_efact_09,01,Anulación de la operación,,,,,,,,True
+622,sunat_table_efact_09,02,Anulación por error en el RUC,,,,,,,,True
+623,sunat_table_efact_09,03,Corrección por error en la descripción,,,,,,,,True
+624,sunat_table_efact_09,04,Descuento global,,,,,,,,True
+625,sunat_table_efact_09,05,Descuento por ítem,,,,,,,,True
+626,sunat_table_efact_09,06,Devolución total,,,,,,,,True
+627,sunat_table_efact_09,07,Devolución por ítem,,,,,,,,True
+628,sunat_table_efact_09,08,Bonificación,,,,,,,,True
+629,sunat_table_efact_09,09,Disminución en el valor,,,,,,,,True
+630,sunat_table_efact_09,10,Otros Conceptos,,,,,,,,True
+631,sunat_table_efact_09,11,Ajustes de operaciones de exportación,,,,,,,,True
+632,sunat_table_efact_09,12,Ajustes afectos al IVAP,,,,,,,,True
+633,sunat_table_efact_10,01,Intereses por mora,,,,,,,,True
+634,sunat_table_efact_10,02,Aumento en el valor,,,,,,,,True
+635,sunat_table_efact_10,03,Penalidades/ otros conceptos,,,,,,,,True
+636,sunat_table_efact_10,11,Ajustes de operaciones de exportación,,,,,,,,True
+637,sunat_table_efact_10,12,Ajustes afectos al IVAP,,,,,,,,True
+638,sunat_table_efact_11,01,Gravado,,,,,,,,True
+639,sunat_table_efact_11,02,Exonerado,,,,,,,,True
+640,sunat_table_efact_11,03,Inafecto,,,,,,,,True
+641,sunat_table_efact_11,04,Exportación,,,,,,,,True
+642,sunat_table_efact_11,05,Gratuitas,,,,,,,,True
+643,sunat_table_efact_12,01,Factura – emitida para corregir error en el RUC,,,,,,,,True
+644,sunat_table_efact_12,02,Factura – emitida por anticipos,,,,,,,,True
+645,sunat_table_efact_12,03,Boleta de Venta – emitida por anticipos,,,,,,,,True
+646,sunat_table_efact_12,04,Ticket de Salida - ENAPU,,,,,,,,True
+647,sunat_table_efact_12,05,Código SCOP,,,,,,,,True
+648,sunat_table_efact_12,99,Otros,,,,,,,,True
+649,sunat_table_efact_13,999,Empty,,,,,,,,True
+650,sunat_table_efact_14,1000,Total valor de venta - operaciones exportadas,,,,,,,,True
+651,sunat_table_efact_14,1001,Total valor de venta - operaciones gravadas,,,,,,,,True
+652,sunat_table_efact_14,1002,Total valor de venta - operaciones inafectas,,,,,,,,True
+653,sunat_table_efact_14,1003,Total valor de venta - operaciones exoneradas,,,,,,,,True
+654,sunat_table_efact_14,1004,Total valor de venta – Operaciones gratuitas,,,,,,,,True
+655,sunat_table_efact_14,1005,Sub total de venta,,,,,,,,True
+656,sunat_table_efact_14,2001,Percepciones,,,,,,,,True
+657,sunat_table_efact_14,2002,Retenciones,,,,,,,,True
+658,sunat_table_efact_14,2003,Detracciones,,,,,,,,True
+659,sunat_table_efact_14,2004,Bonificaciones,,,,,,,,True
+660,sunat_table_efact_14,2005,Total descuentos,,,,,,,,True
+661,sunat_table_efact_14,3001,FISE (Ley 29852) Fondo Inclusión Social Energético,,,,,,,,True
+662,sunat_table_efact_15,1000,Monto en Letras,,,,,,,,True
+663,sunat_table_efact_15,1002,Leyenda TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE,,,,,,,,True
+664,sunat_table_efact_15,2000,Leyenda COMPROBANTE DE PERCEPCIÓN,,,,,,,,True
+665,sunat_table_efact_15,2001,Leyenda BIENES TRANSFERIDOS EN LA AMAZONÍA REGIÓN SELVAPARA SER CONSUMIDOS EN LA MISMA,,,,,,,,True
+666,sunat_table_efact_15,2002,Leyenda SERVICIOS PRESTADOS EN LA AMAZONÍA  REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA,,,,,,,,True
+667,sunat_table_efact_15,2003,Leyenda CONTRATOS DE CONSTRUCCIÓN EJECUTADOS  EN LA AMAZONÍA REGIÓN SELVA,,,,,,,,True
+668,sunat_table_efact_15,2004,Leyenda Agencia de Viaje - Paquete turístico,,,,,,,,True
+669,sunat_table_efact_15,2005,Leyenda Venta realizada por emisor itinerante,,,,,,,,True
+670,sunat_table_efact_15,2006,Leyenda: Operación sujeta a detracción,,,,,,,,True
+671,sunat_table_efact_15,2007,Leyenda: Operación sujeta a IVAP,,,,,,,,True
+672,sunat_table_efact_15,3000,Detracciones: CODIGO DE BB Y SS SUJETOS A DETRACCION,,,,,,,,True
+673,sunat_table_efact_15,3001,Detracciones: NUMERO DE CTA EN EL BN,,,,,,,,True
+674,sunat_table_efact_15,3002,Detracciones: Recursos Hidrobiológicos-Nombre y matrícula de la embarcación,,,,,,,,True
+675,sunat_table_efact_15,3003,Detracciones: Recursos Hidrobiológicos-Tipo y cantidad de especie vendida,,,,,,,,True
+676,sunat_table_efact_15,3004,Detracciones: Recursos Hidrobiológicos -Lugar de descarga,,,,,,,,True
+677,sunat_table_efact_15,3005,Detracciones: Recursos Hidrobiológicos -Fecha de descarga,,,,,,,,True
+678,sunat_table_efact_15,3006,Detracciones: Transporte Bienes vía terrestre – Numero Registro MTC,,,,,,,,True
+679,sunat_table_efact_15,3007,Detracciones: Transporte Bienes vía terrestre – configuración vehicular,,,,,,,,True
+680,sunat_table_efact_15,3008,Detracciones: Transporte Bienes vía terrestre – punto de origen,,,,,,,,True
+681,sunat_table_efact_15,3009,Detracciones: Transporte Bienes vía terrestre – punto destino,,,,,,,,True
+682,sunat_table_efact_15,3010,Detracciones: Transporte Bienes vía terrestre – valor referencial preliminar,,,,,,,,True
+683,sunat_table_efact_15,4000,Beneficio hospedajes: Código País de emisión del pasaporte,,,,,,,,True
+684,sunat_table_efact_15,4001,Beneficio hospedajes: Código País de residencia del sujeto no domiciliado,,,,,,,,True
+685,sunat_table_efact_15,4002,Beneficio Hospedajes: Fecha de ingreso al país,,,,,,,,True
+686,sunat_table_efact_15,4003,Beneficio Hospedajes: Fecha de ingreso al establecimiento,,,,,,,,True
+687,sunat_table_efact_15,4004,Beneficio Hospedajes: Fecha de salida del establecimiento,,,,,,,,True
+688,sunat_table_efact_15,4005,Beneficio Hospedajes: Número de días de permanencia,,,,,,,,True
+689,sunat_table_efact_15,4006,Beneficio Hospedajes: Fecha de consumo,,,,,,,,True
+690,sunat_table_efact_15,4007,Beneficio Hospedajes: Paquete turístico - Nombres y Apellidos del Huésped,,,,,,,,True
+691,sunat_table_efact_15,4008,Beneficio Hospedajes: Paquete turístico – Tipo documento identidad del huésped,,,,,,,,True
+692,sunat_table_efact_15,4009,Beneficio Hospedajes: Paquete turístico – Numero de documento identidad de huésped,,,,,,,,True
+693,sunat_table_efact_15,5000,Proveedores Estado: Número de Expediente,,,,,,,,True
+694,sunat_table_efact_15,5001,Proveedores Estado : Código de unidad ejecutora,,,,,,,,True
+695,sunat_table_efact_15,5002,Proveedores Estado : N° de proceso de selección,,,,,,,,True
+696,sunat_table_efact_15,5003,Proveedores Estado : N° de contrato,,,,,,,,True
+697,sunat_table_efact_15,6000,Comercialización de Oro :  Código Unico Concesión Minera,,,,,,,,True
+698,sunat_table_efact_15,6001,Comercialización de Oro :  N° declaración compromiso,,,,,,,,True
+699,sunat_table_efact_15,6002,Comercialización de Oro :  N° Reg. Especial .Comerci. Oro,,,,,,,,True
+700,sunat_table_efact_15,6003,Comercialización de Oro :  N° Resolución que autoriza Planta de Beneficio,,,,,,,,True
+701,sunat_table_efact_15,6004,Comercialización de Oro : Ley Mineral (% concent. oro),,,,,,,,True
+702,sunat_table_efact_15,7000,Primera venta de mercancia identificable entre usuarios de la zona comercial,,,,,,,,True
+703,sunat_table_efact_15,7001,Venta exonerada del IGV-ISC-IPM. Prohibida la venta fuera de la zona comercial de Tacna,,,,,,,,True
+704,sunat_table_efact_16,01,Precio unitario (incluye el IGV),,,,,,,,True
+705,sunat_table_efact_16,02,Valor referencial unitario en operaciones no onerosas (Gratuitas),,,,,,,,True
+706,sunat_table_efact_17,01,Venta lnterna,,,,,,,,True
+707,sunat_table_efact_17,02,Exportación de bienes,,,,,,,,True
+708,sunat_table_efact_17,03,No Domiciliados,,,,,,,,True
+709,sunat_table_efact_17,04,Venta Interna – Anticipos,,,,,,,,True
+710,sunat_table_efact_17,05,Venta Itinerante,,,,,,,,True
+711,sunat_table_efact_17,06,Factura Guía,,,,,,,,True
+712,sunat_table_efact_17,07,Venta Arroz Pilado,,,,,,,,True
+713,sunat_table_efact_17,08,Factura - Comprobante de Percepción,,,,,,,,True
+714,sunat_table_efact_17,10,Factura - Guía remitente,,,,,,,,True
+715,sunat_table_efact_17,11,Factura - Guía transportista,,,,,,,,True
+716,sunat_table_efact_17,12,Boleta de venta – Comprobante de Percepción.,,,,,,,,True
+717,sunat_table_efact_17,13,Gasto Deducible Persona Natural,,,,,,,,True
+718,sunat_table_efact_17,14,Exportación de servicios – prestación de servicios de hospedaje No Dom,,,,,,,,True
+719,sunat_table_efact_17,15,Exportación de servicios – Transporte de navieras,,,,,,,,True
+720,sunat_table_efact_17,16,Exportación de servicios – servicios  a naves y aeronaves de bandera extranjera,,,,,,,,True
+721,sunat_table_efact_17,17,Exportación de servicios – RES,,,,,,,,True
+722,sunat_table_efact_17,18,Exportación de servicios  - Servicios que conformen un Paquete Turístico,,,,,,,,True
+723,sunat_table_efact_17,19,Exportación de servicios – Servicios complementarios al transporte de carga,,,,,,,,True
+724,sunat_table_efact_17,20,Exportación de servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED,,,,,,,,True
+725,sunat_table_efact_17,21,Exportación de servicios – Prestación servicios realizados parcialmente en el extranjero,,,,,,,,True
+726,sunat_table_efact_25,10000000,"Material Vivo Vegetal y Animal, Accesorios y Suministros",,,,,,,,True
+727,sunat_table_efact_25,10100000,Animales vivos,,,,,,,,True
+728,sunat_table_efact_25,10200000,Rosales vivos,,,,,,,,True
+729,sunat_table_efact_25,10300000,Rosas frescas cortadas,,,,,,,,True
+730,sunat_table_efact_25,10400000,Rosas cortadas secas,,,,,,,,True
+731,sunat_table_efact_25,10500000,Follaje cortado fresco,,,,,,,,True
+732,sunat_table_efact_25,11000000,"Material Mineral, Textil y Vegetal y Animal No Comestible",,,,,,,,True
+733,sunat_table_efact_25,11100000,"Minerales, minerales metálicos y metales",,,,,,,,True
+734,sunat_table_efact_25,12000000,Material Químico incluyendo Bioquímicos y Materiales de Gas,,,,,,,,True
+735,sunat_table_efact_25,13000000,"Materiales de Resina, Colofonia, Caucho, Espuma, Película y Elastómericos",,,,,,,,True
+736,sunat_table_efact_25,13100000,Caucho y elastómeros,,,,,,,,True
+737,sunat_table_efact_25,14000000,Materiales y Productos de Papel,,,,,,,,True
+738,sunat_table_efact_25,14100000,Materiales de papel,,,,,,,,True
+739,sunat_table_efact_25,15000000,"Materiales Combustibles, Aditivos para Combustibles, Lubricantes y Anticorrosivos",,,,,,,,True
+740,sunat_table_efact_25,15100000,Combustibles,,,,,,,,True
+741,sunat_table_efact_25,20000000,Maquinaria y Accesorios de Minería y Perforación de Pozos,,,,,,,,True
+742,sunat_table_efact_25,20100000,Maquinaria y equipo de minería y explotación de canteras,,,,,,,,True
+743,sunat_table_efact_25,21000000,"Maquinaria y Accesorios para Agricultura, Pesca, Silvicultura y Fauna",,,,,,,,True
+744,sunat_table_efact_25,21100000,"Maquinaria y equipo para agricultura, silvicultura y paisajismo",,,,,,,,True
+745,sunat_table_efact_25,22000000,Maquinaria y Accesorios para Construcción y Edificación,,,,,,,,True
+746,sunat_table_efact_25,22100000,Maquinaria y equipo pesado de construcción,,,,,,,,True
+747,sunat_table_efact_25,23000000,Maquinaria y Accesorios para Manufactura y Procesamiento Industrial,,,,,,,,True
+748,sunat_table_efact_25,23100000,Maquinaria para el procesamiento de materias primas,,,,,,,,True
+749,sunat_table_efact_25,23200000,Equipamiento para transferencia de masa,,,,,,,,True
+750,sunat_table_efact_25,23300000,Maquinaria y equipo para cable,,,,,,,,True
+751,sunat_table_efact_25,24000000,"Maquinaria, Accesorios y Suministros para Manejo, Acondicionamiento y Almacenamiento de Materiales",,,,,,,,True
+752,sunat_table_efact_25,24100000,Maquinaria y equipo para manejo de materiales,,,,,,,,True
+753,sunat_table_efact_25,25000000,"Vehículos Comerciales, Militares y Particulares, Accesorios y Componentes",,,,,,,,True
+754,sunat_table_efact_25,25100000,Vehículos de motor,,,,,,,,True
+755,sunat_table_efact_25,25200000,Sistemas y componentes y equipos aeroespaciales,,,,,,,,True
+756,sunat_table_efact_25,26000000,Maquinaria y Accesorios para Generación y Distribución de Energía,,,,,,,,True
+757,sunat_table_efact_25,26100000,Fuentes de energía,,,,,,,,True
+758,sunat_table_efact_25,27000000,Herramientas y Maquinaria General,,,,,,,,True
+759,sunat_table_efact_25,30000000,"Componentes y Suministros para Estructuras, Edificación, Construcción y Obras Civiles",,,,,,,,True
+760,sunat_table_efact_25,30100000,Componentes estructurales y formas básicas,,,,,,,,True
+761,sunat_table_efact_25,31000000,Componentes y Suministros de Manufactura,,,,,,,,True
+762,sunat_table_efact_25,31100000,Piezas de fundición y ensambles de piezas de fundición,,,,,,,,True
+763,sunat_table_efact_25,31200000,Adhesivos y selladores,,,,,,,,True
+764,sunat_table_efact_25,31300000,Forjas labradas,,,,,,,,True
+765,sunat_table_efact_25,31400000,Empaques,,,,,,,,True
+766,sunat_table_efact_25,32000000,Componentes y Suministros Electrónicos,,,,,,,,True
+767,sunat_table_efact_25,32100000,"Circuitos impresos, circuitos integrados y micro ensamblajes",,,,,,,,True
+768,sunat_table_efact_25,39000000,"Componentes, Accesorios y Suministros de Sistemas Eléctricos e Iluminación",,,,,,,,True
+769,sunat_table_efact_25,39100000,Lámparas y bombillas y componentes para lámparas,,,,,,,,True
+770,sunat_table_efact_25,40000000,Componentes y Equipos para Distribución y Sistemas de Acondicionamiento,,,,,,,,True
+771,sunat_table_efact_25,40100000,"Calefacción, ventilación y circulación del aire",,,,,,,,True
+772,sunat_table_efact_25,41000000,"Equipos y Suministros de Laboratorio, de Medición, de Observación y de Pruebas",,,,,,,,True
+773,sunat_table_efact_25,41100000,Equipo de laboratorio y científico,,,,,,,,True
+774,sunat_table_efact_25,42000000,"Equipo Médico, Accesorios y Suministros",,,,,,,,True
+775,sunat_table_efact_25,42200000,Productos de hacer imágenes diagnósticas médicas y de medicina nuclear,,,,,,,,True
+776,sunat_table_efact_25,42300000,Suministros para formación y estudios de medicina,,,,,,,,True
+777,sunat_table_efact_25,43000000,Difusión de Tecnologías de Información y Telecomunicaciones,,,,,,,,True
+778,sunat_table_efact_25,43200000,"Componentes para tecnología de la información, difusión o telecomunicaciones",,,,,,,,True
+779,sunat_table_efact_25,44000000,"Equipos de Oficina, Accesorios y Suministros",,,,,,,,True
+780,sunat_table_efact_25,44100000,"Maquinaria, suministros y accesorios de oficina",,,,,,,,True
+781,sunat_table_efact_25,45000000,"Equipos y Suministros para Impresión, Fotografia y Audiovisuales",,,,,,,,True
+782,sunat_table_efact_25,45100000,Equipo de imprenta y publicación,,,,,,,,True
+783,sunat_table_efact_25,46000000,"Equipos y Suministros de Defensa, Orden Publico, Proteccion, Vigilancia y Seguridad",,,,,,,,True
+784,sunat_table_efact_25,46100000,Armas ligeras y munición,,,,,,,,True
+785,sunat_table_efact_25,46200000,"Equipo de entrenamiento de seguridad física e industrial, defensa y orden público",,,,,,,,True
+786,sunat_table_efact_25,47000000,Equipos de Limpieza y Suministros,,,,,,,,True
+787,sunat_table_efact_25,47100000,"Tratamiento, suministros y eliminación de agua y aguas residuales",,,,,,,,True
+788,sunat_table_efact_25,48000000,"Maquinaria, Equipo y Suministros para la Industria de Servicios",,,,,,,,True
+789,sunat_table_efact_25,48100000,Equipos de servicios de alimentación para instituciones,,,,,,,,True
+790,sunat_table_efact_25,49000000,"Equipos, Suministros y Accesorios para Deportes y Recreación",,,,,,,,True
+791,sunat_table_efact_25,49100000,Coleccionables y condecoraciones,,,,,,,,True
+792,sunat_table_efact_25,49200000,Equipo para entrenamiento físico,,,,,,,,True
+793,sunat_table_efact_25,50000000,"Alimentos, Bebidas y Tabaco",,,,,,,,True
+794,sunat_table_efact_25,50100000,Frutos secos,,,,,,,,True
+795,sunat_table_efact_25,50200000,Bebidas,,,,,,,,True
+796,sunat_table_efact_25,50300000,Fruta fresca,,,,,,,,True
+797,sunat_table_efact_25,50400000,Vegetales frescos,,,,,,,,True
+798,sunat_table_efact_25,51000000,Medicamentos y Productos Farmacéuticos,,,,,,,,True
+799,sunat_table_efact_25,51100000,Medicamentos antiinfecciosos,,,,,,,,True
+800,sunat_table_efact_25,51200000,Medicamentos inmunomoduladores,,,,,,,,True
+801,sunat_table_efact_25,52000000,"Artículos Domésticos, Suministros y Productos Electrónicos de Consumo",,,,,,,,True
+802,sunat_table_efact_25,52100000,Revestimientos de suelos,,,,,,,,True
+803,sunat_table_efact_25,53000000,"Ropa, Maletas y Productos de Aseo Personal",,,,,,,,True
+804,sunat_table_efact_25,53100000,Ropa,,,,,,,,True
+805,sunat_table_efact_25,54000000,"Productos para Relojería, Joyería y Piedras Preciosas",,,,,,,,True
+806,sunat_table_efact_25,54100000,Joyería,,,,,,,,True
+807,sunat_table_efact_25,55000000,"Publicaciones Impresas, Publicaciones Electrónicas y Accesorios",,,,,,,,True
+808,sunat_table_efact_25,55100000,Medios impresos,,,,,,,,True
+809,sunat_table_efact_25,56000000,"Muebles, Mobiliario y Decoración",,,,,,,,True
+810,sunat_table_efact_25,56100000,Muebles de alojamiento,,,,,,,,True
+811,sunat_table_efact_25,60000000,"Instrumentos Musicales, Juegos, Juguetes, Artes, Artesanías y Equipo educativo, Materiales, Accesorios y Suministros",,,,,,,,True
+812,sunat_table_efact_25,60100000,Materiales didácticos profesionales y de desarrollo y accesorios y suministros,,,,,,,,True
+813,sunat_table_efact_25,70000000,"Servicios de Contratacion Agrícola, Pesquera, Forestal y de Fauna",,,,,,,,True
+814,sunat_table_efact_25,70000000,"Servicios de Contratación Agrícola, Pesquera, Forestal y de Fauna",,,,,,,,True
+815,sunat_table_efact_25,70100000,Pesquerías y acuicultura,,,,,,,,True
+816,sunat_table_efact_25,71000000,"Servicios de Minería, Petróleo y Gas",,,,,,,,True
+817,sunat_table_efact_25,71100000,Servicios de minería,,,,,,,,True
+818,sunat_table_efact_25,72000000,"Servicios de Edificación, Construcción de Instalaciones y Mantenimiento",,,,,,,,True
+819,sunat_table_efact_25,72100000,Servicios de mantenimiento y reparaciones de construcciones e instalaciones,,,,,,,,True
+820,sunat_table_efact_25,73000000,Servicios de Producción Industrial y Manufactura,,,,,,,,True
+821,sunat_table_efact_25,73100000,Industrias de plásticos y productos químicos,,,,,,,,True
+822,sunat_table_efact_25,76000000,"Servicios de Limpieza, Descontaminación y Tratamiento de Residuos",,,,,,,,True
+823,sunat_table_efact_25,76100000,Servicios de descontaminación,,,,,,,,True
+824,sunat_table_efact_25,77000000,Servicios Medioambientales,,,,,,,,True
+825,sunat_table_efact_25,77100000,Gestión medioambiental,,,,,,,,True
+826,sunat_table_efact_25,78000000,"Servicios de Transporte, Almacenaje y Correo",,,,,,,,True
+827,sunat_table_efact_25,78100000,Transporte de correo y carga,,,,,,,,True
+828,sunat_table_efact_25,80000000,"Servicios de Gestión, Servicios Profesionales de Empresa y Servicios Administrativos",,,,,,,,True
+829,sunat_table_efact_25,80100000,Servicios de asesoría de gestión,,,,,,,,True
+830,sunat_table_efact_25,81000000,"Servicios Basados en Ingeniería, Investigación y Tecnología",,,,,,,,True
+831,sunat_table_efact_25,81100000,Servicios profesionales de ingeniería,,,,,,,,True
+832,sunat_table_efact_25,82000000,"Servicios Editoriales, de Diseño, de Artes Graficas y Bellas Artes",,,,,,,,True
+833,sunat_table_efact_25,82100000,Publicidad,,,,,,,,True
+834,sunat_table_efact_25,83000000,Servicios Públicos y Servicios Relacionados con el Sector Público,,,,,,,,True
+835,sunat_table_efact_25,83100000,Servicios públicos,,,,,,,,True
+836,sunat_table_efact_25,84000000,Servicios Financieros y de Seguros,,,,,,,,True
+837,sunat_table_efact_25,84100000,Finanzas de desarrollo,,,,,,,,True
+838,sunat_table_efact_25,85000000,Servicios de Salud,,,,,,,,True
+839,sunat_table_efact_25,85100000,Servicios integrales de salud,,,,,,,,True
+840,sunat_table_efact_25,86000000,Servicios Educativos y de Formación,,,,,,,,True
+841,sunat_table_efact_25,86100000,Formación profesional,,,,,,,,True
+842,sunat_table_efact_25,90000000,"Servicios de Viajes, Alimentación, Alojamiento y Entretenimiento",,,,,,,,True
+843,sunat_table_efact_25,90100000,Restaurantes y catering (servicios de comidas y bebidas),,,,,,,,True
+844,sunat_table_efact_25,91000000,Servicios Personales y Domésticos,,,,,,,,True
+845,sunat_table_efact_25,91100000,Aspecto personal,,,,,,,,True
+846,sunat_table_efact_25,92000000,"Servicios de Defensa Nacional, Orden Publico, Seguridad y Vigilancia",,,,,,,,True
+847,sunat_table_efact_25,92100000,Orden público y seguridad,,,,,,,,True
+848,sunat_table_efact_25,93000000,Servicios Políticos y de Asuntos Cívicos,,,,,,,,True
+849,sunat_table_efact_25,93100000,Sistemas e instituciones políticas,,,,,,,,True
+850,sunat_table_efact_25,94000000,Organizaciones y Clubes,,,,,,,,True
+851,sunat_table_efact_25,94100000,Organizaciones laborales,,,,,,,,True
+852,sunat_table_efact_25,95000000,"Terrenos, Edificios, Estructuras y Vías",,,,,,,,True
+853,sunat_table_efact_25,95100000,Parcelas de tierra,,,,,,,,True
+854,sunat_table_efact_26,0,Sin información,,,,,,,,True
+855,sunat_table_efact_26,1,Si es construcción /adquisición,,,,,,,,True
+856,sunat_table_efact_26,2,"Si es para refacción, remodelación, ampliación, mejoramiento o subdivisión de vivienda propia",,,,,,,,True
+857,sunat_table_efact_27,0,Sin indicador,,,,,,,,True
+858,sunat_table_efact_27,1,Calificado para crédito Mi Vivienda / Techo Propio,,,,,,,,True
+859,sunat_table_efact_27,2,Libre disposición de la AFP,,,,,,,,True
+860,sunat_table_efact_27,3,Calificado como primera vivienda de acuerdo a la información proporcionada por el cliente (para créditos otorgados a partir del 01.01.2013),,,,,,,,True
+861,sunat_table_efact_57,1,Servicios Portadores,,,,,,,,True
+862,sunat_table_efact_57,2,Teleservicios o Servicios Finales,,,,,,,,True
+863,sunat_table_efact_57,3,Servicios de Difusión,,,,,,,,True
+864,sunat_table_efact_57,4,Servicios de valor añadido,,,,,,,,True
+865,sunat_table_efact_51,0101,Venta interna,,,,,,,,True
+866,sunat_table_efact_51,0102,Venta Interna – Anticipos,,,,,,,,True
+867,sunat_table_efact_51,0103,Venta Interna – Deducción de Anticipos,,,,,,,,True
+868,sunat_table_efact_51,0104,Venta interna - Itinerante,,,,,,,,True
+869,sunat_table_efact_51,0110,Venta Interna - Sustenta Traslado de Mercadería - Remitente,,,,,,,,True
+870,sunat_table_efact_51,0111,Venta Interna - Sustenta Traslado de Mercadería - Transportista,,,,,,,,True
+871,sunat_table_efact_51,0112,Venta Interna - Sustenta Gastos Deducibles Persona Natural,,,,,,,,True
+872,sunat_table_efact_51,0113,Venta Interna-NRUS,,,,,,,,True
+873,sunat_table_efact_51,0120,Venta Interna - Sujeta al IVAP,,,,,,,,True
+874,sunat_table_efact_51,0121,Venta Interna - Sujeta al FISE,,,,,,,,True
+875,sunat_table_efact_51,0122,Venta Interna - Sujeta a Otros Impuestos,,,,,,,,True
+876,sunat_table_efact_51,0130,Venta Interna - Realizadas al Estado,,,,,,,,True
+877,sunat_table_efact_51,0200,Exportación de Bienes,,,,,,,,True
+878,sunat_table_efact_51,0201,Exportación de Servicios – Prestación servicios realizados íntegramente en el país,,,,,,,,True
+879,sunat_table_efact_51,0202,Exportación de Servicios – Prestación de servicios de hospedaje No Domiciliado,,,,,,,,True
+880,sunat_table_efact_51,0203,Exportación de Servicios – Transporte de navieras,,,,,,,,True
+881,sunat_table_efact_51,0204,Exportación de Servicios – Servicios a naves y aeronaves de bandera extranjera,,,,,,,,True
+882,sunat_table_efact_51,0205,Exportación de Servicios - Servicios que conformen un Paquete Turístico,,,,,,,,True
+883,sunat_table_efact_51,0206,Exportación de Servicios – Servicios complementarios al transporte de carga,,,,,,,,True
+884,sunat_table_efact_51,0207,Exportación de Servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED,,,,,,,,True
+885,sunat_table_efact_51,0208,Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero,,,,,,,,True
+886,sunat_table_efact_51,0301,Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional),,,,,,,,True
+887,sunat_table_efact_51,0302,Operaciones de Transporte ferroviario de pasajeros,,,,,,,,True
+888,sunat_table_efact_51,0303,Operaciones de Pago de regalía petrolera,,,,,,,,True
+889,sunat_table_efact_51,0401,Ventas no domiciliados que no califican como exportación,,,,,,,,True
+890,sunat_table_efact_51,1001,Operación Sujeta a Detracción,,,,,,,,True
+891,sunat_table_efact_51,1002,Operación Sujeta a Detracción- Recursos Hidrobiológicos,,,,,,,,True
+892,sunat_table_efact_51,1003,Operación Sujeta a Detracción- Servicios de Transporte Pasajeros,,,,,,,,True
+893,sunat_table_efact_51,1004,Operación Sujeta a Detracción- Servicios de Transporte Carga,,,,,,,,True
+894,sunat_table_efact_51,2001,Operación Sujeta a Percepción,,,,,,,,True
+895,sunat_table_efact_52,1000,Monto en Letras,,,,,,,,True
+896,sunat_table_efact_52,1002,"Leyenda """"TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE""",,,,,,,,True
+897,sunat_table_efact_52,2000,Leyenda “COMPROBANTE DE PERCEPCIÓN”,,,,,,,,True
+898,sunat_table_efact_52,2001,"Leyenda “BIENES TRANSFERIDOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA""",,,,,,,,True
+899,sunat_table_efact_52,2002,Leyenda “SERVICIOS PRESTADOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA”,,,,,,,,True
+900,sunat_table_efact_52,2003,Leyenda “CONTRATOS DE CONSTRUCCIÓN EJECUTADOS EN LA AMAZONÍA REGIÓN SELVA”,,,,,,,,True
+901,sunat_table_efact_52,2004,Leyenda “Agencia de Viaje - Paquete turístico”,,,,,,,,True
+902,sunat_table_efact_52,2005,Leyenda “Venta realizada por emisor itinerante”,,,,,,,,True
+903,sunat_table_efact_52,2006,"Leyenda ""Operación sujeta a detracción""",,,,,,,,True
+904,sunat_table_efact_52,2007,"Leyenda ""Operación sujeta al IVAP""",,,,,,,,True
+905,sunat_table_efact_52,2008,Leyenda: “VENTA EXONERADA DEL IGV-ISC-IPM. PROHIBIDA LA VENTA FUERA DE LA ZONA COMERCIAL DE TACNA”,,,,,,,,True
+906,sunat_table_efact_52,2009,Leyenda: “PRIMERA VENTA DE MERCANCÍA IDENTIFICABLE ENTRE USUARIOS DE LA ZONA COMERCIAL”,,,,,,,,True
+907,sunat_table_efact_52,2010,Restitucion Simplificado de Derechos Arancelarios,,,,,,,,True
+908,sunat_table_efact_53,00,Descuentos que afectan la base imponible del IGV/IVAP,,,,,,,,True
+909,sunat_table_efact_53,01,Descuentos que no afectan la base imponible del IGV/IVAP,,,,,,,,True
+910,sunat_table_efact_53,02,Descuentos globales que afectan la base imponible del IGV/IVAP,,,,,,,,True
+911,sunat_table_efact_53,03,Descuentos globales que no afectan la base imponible del IGV/IVAP,,,,,,,,True
+912,sunat_table_efact_53,04,Descuentos globales por anticipos gravados que afectan la base imponible del IGV/IVAP,,,,,,,,True
+913,sunat_table_efact_53,05,Descuentos globales por anticipos exonerados,,,,,,,,True
+914,sunat_table_efact_53,06,Descuentos globales por anticipos inafectos,,,,,,,,True
+915,sunat_table_efact_53,45,FISE,,,,,,,,True
+916,sunat_table_efact_53,46,Recargo al consumo y/o propinas,,,,,,,,True
+917,sunat_table_efact_53,47,Cargos que afectan la base imponible del IGV/IVAP,,,,,,,,True
+918,sunat_table_efact_53,48,Cargos que no afectan la base imponible del IGV/IVAP,,,,,,,,True
+919,sunat_table_efact_53,49,Cargos globales que afectan la base imponible del IGV/IVAP,,,,,,,,True
+920,sunat_table_efact_53,50,Cargos globales que no afectan la base imponible del IGV/IVAP,,,,,,,,True
+921,sunat_table_efact_53,51,Percepción venta interna,,,,,,,,True
+922,sunat_table_efact_53,52,Percepción a la adquisición de combustible,,,,,,,,True
+923,sunat_table_efact_53,53,Percepción realizada al agente de percepción con tasa especial,,,,,,,,True
+924,sunat_table_efact_54,001,Azúcar y melaza de caña,,,,,,,,True
+925,sunat_table_efact_54,002,Arroz,,,,,,,,True
+926,sunat_table_efact_54,003,Alcohol etílico,,,,,,,,True
+927,sunat_table_efact_54,004,Recursos hidrobiológicos,,,,,,,,True
+928,sunat_table_efact_54,005,Maíz amarillo duro,,,,,,,,True
+929,sunat_table_efact_54,007,Caña de azúcar,,,,,,,,True
+930,sunat_table_efact_54,008,Madera,,,,,,,,True
+931,sunat_table_efact_54,009,Arena y piedra.,,,,,,,,True
+932,sunat_table_efact_54,010,"Residuos, subproductos, desechos, recortes y desperdicios",,,,,,,,True
+933,sunat_table_efact_54,011,"Bienes gravados con el IGV, o renuncia a la exoneración",,,,,,,,True
+934,sunat_table_efact_54,012,Intermediación laboral y tercerización,,,,,,,,True
+935,sunat_table_efact_54,013,Animales vivos,,,,,,,,True
+936,sunat_table_efact_54,014,Carnes y despojos comestibles,,,,,,,,True
+937,sunat_table_efact_54,015,"Abonos, cueros y pieles de origen animal",,,,,,,,True
+938,sunat_table_efact_54,016,Aceite de pescado,,,,,,,,True
+939,sunat_table_efact_54,017,"Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados acuáticos",,,,,,,,True
+940,sunat_table_efact_54,019,Arrendamiento de bienes muebles,,,,,,,,True
+941,sunat_table_efact_54,020,Mantenimiento y reparación de bienes muebles,,,,,,,,True
+942,sunat_table_efact_54,021,Movimiento de carga,,,,,,,,True
+943,sunat_table_efact_54,022,Otros servicios empresariales,,,,,,,,True
+944,sunat_table_efact_54,024,Comisión mercantil,,,,,,,,True
+945,sunat_table_efact_54,025,Fabricación de bienes por encargo,,,,,,,,True
+946,sunat_table_efact_54,026,Servicio de transporte de personas,,,,,,,,True
+947,sunat_table_efact_54,027,Servicio de transporte de carga,,,,,,,,True
+948,sunat_table_efact_54,028,Transporte de pasajeros,,,,,,,,True
+949,sunat_table_efact_54,030,Contratos de construcción,,,,,,,,True
+950,sunat_table_efact_54,031,Oro gravado con el IGV,,,,,,,,True
+951,sunat_table_efact_54,034,Minerales metálicos no auríferos,,,,,,,,True
+952,sunat_table_efact_54,035,Bienes exonerados del IGV,,,,,,,,True
+953,sunat_table_efact_54,036,Oro y demás minerales metálicos exonerados del IGV,,,,,,,,True
+954,sunat_table_efact_54,037,Demás servicios gravados con el IGV,,,,,,,,True
+955,sunat_table_efact_54,039,Minerales no metálicos,,,,,,,,True
+956,sunat_table_efact_54,040,Bien inmueble gravado con IGV,,,,,,,,True
+957,sunat_table_efact_55,3001,Detracciones: Recursos Hidrobiológicos-Matrícula de la embarcación,,,,,,,,True
+958,sunat_table_efact_55,3002,Detracciones: Recursos Hidrobiológicos-Nombre de la embarcación,,,,,,,,True
+959,sunat_table_efact_55,3003,Detracciones: Recursos Hidrobiológicos-Tipo de especie vendida,,,,,,,,True
+960,sunat_table_efact_55,3004,Detracciones: Recursos Hidrobiológicos-Lugar de descarga,,,,,,,,True
+961,sunat_table_efact_55,3005,Detracciones: Recursos Hidrobiológicos-Fecha de descarga,,,,,,,,True
+962,sunat_table_efact_55,3006,Detracciones: Recursos Hidrobiológicos-Cantidad de especie vendida,,,,,,,,True
+963,sunat_table_efact_55,3050,Transportre Terreste - Número de asiento,,,,,,,,True
+964,sunat_table_efact_55,3051,Transporte Terrestre - Información de manifiesto de pasajeros,,,,,,,,True
+965,sunat_table_efact_55,3052,Transporte Terrestre - Número de documento de identidad del pasajero,,,,,,,,True
+966,sunat_table_efact_55,3053,Transporte Terrestre - Tipo de documento de identidad del pasajero,,,,,,,,True
+967,sunat_table_efact_55,3054,Transporte Terrestre - Nombres y apellidos del pasajero,,,,,,,,True
+968,sunat_table_efact_55,3055,Transporte Terrestre - Ciudad o lugar de destino - Ubigeo,,,,,,,,True
+969,sunat_table_efact_55,3056,Transporte Terrestre - Ciudad o lugar de destino - Dirección detallada,,,,,,,,True
+970,sunat_table_efact_55,3057,Transporte Terrestre - Ciudad o lugar de origen - Ubigeo,,,,,,,,True
+971,sunat_table_efact_55,3058,Transporte Terrestre - Ciudad o lugar de origen - Dirección detallada,,,,,,,,True
+972,sunat_table_efact_55,3059,Transporte Terrestre - Fecha de inicio programado,,,,,,,,True
+973,sunat_table_efact_55,3060,Transporte Terrestre - Hora de inicio programado,,,,,,,,True
+974,sunat_table_efact_55,4000,Beneficio Hospedajes-Paquete turístico: Código de país de emisión del pasaporte,,,,,,,,True
+975,sunat_table_efact_55,4001,Beneficio Hospedajes: Código de país de residencia del sujeto no domiciliado,,,,,,,,True
+976,sunat_table_efact_55,4002,Beneficio Hospedajes: Fecha de ingreso al país,,,,,,,,True
+977,sunat_table_efact_55,4003,Beneficio Hospedajes: Fecha de Ingreso al Establecimiento,,,,,,,,True
+978,sunat_table_efact_55,4004,Beneficio Hospedajes: Fecha de Salida del Establecimiento,,,,,,,,True
+979,sunat_table_efact_55,4005,Beneficio Hospedajes: Número de Días de Permanencia,,,,,,,,True
+980,sunat_table_efact_55,4006,Beneficio Hospedajes: Fecha de Consumo,,,,,,,,True
+981,sunat_table_efact_55,4007,Beneficio Hospedajes-Paquete turístico: Nombres y apellidos del huesped,,,,,,,,True
+982,sunat_table_efact_55,4008,Beneficio Hospedajes-Paquete turístico: Tipo de documento de identidad del huesped,,,,,,,,True
+983,sunat_table_efact_55,4009,Beneficio Hospedajes-Paquete turístico: Número de documento de identidad del huesped,,,,,,,,True
+984,sunat_table_efact_55,4030,Carta Porte Aéreo: Lugar de origen - Código de ubigeo,,,,,,,,True
+985,sunat_table_efact_55,4031,Carta Porte Aéreo: Lugar de origen - Dirección detallada,,,,,,,,True
+986,sunat_table_efact_55,4032,Carta Porte Aéreo: Lugar de destino - Código de ubigeo,,,,,,,,True
+987,sunat_table_efact_55,4033,Carta Porte Aéreo: Lugar de destino - Dirección detallada,,,,,,,,True
+988,sunat_table_efact_55,4040,BVME transporte ferroviario: Pasajero - Apellidos y Nombres,,,,,,,,True
+989,sunat_table_efact_55,4041,BVME transporte ferroviario: Pasajero - Tipo de documento de identidad,,,,,,,,True
+990,sunat_table_efact_55,4042,BVME transporte ferroviario: Servicio transporte: Ciudad o lugar de origen - Código de ubigeo,,,,,,,,True
+991,sunat_table_efact_55,4043,BVME transporte ferroviario: Servicio transporte: Ciudad o lugar de origen - Dirección detallada,,,,,,,,True
+992,sunat_table_efact_55,4044,BVME transporte ferroviario: Servicio transporte: Ciudad o lugar de destino - Código de ubigeo,,,,,,,,True
+993,sunat_table_efact_55,4045,BVME transporte ferroviario: Servicio transporte: Ciudad o lugar de destino - Dirección detallada,,,,,,,,True
+994,sunat_table_efact_55,4046,BVME transporte ferroviario: Servicio transporte:Número de asiento,,,,,,,,True
+995,sunat_table_efact_55,4047,BVME transporte ferroviario: Servicio transporte: Hora programada de inicio de viaje,,,,,,,,True
+996,sunat_table_efact_55,4048,BVME transporte ferroviario: Servicio transporte: Fecha programada de inicio de viaje,,,,,,,,True
+997,sunat_table_efact_55,4049,BVME transporte ferroviario: Pasajero - Número de documento de identidad,,,,,,,,True
+998,sunat_table_efact_55,4060,Regalía Petrolera: Decreto Supremo de aprobación del contrato,,,,,,,,True
+999,sunat_table_efact_55,4061,Regalía Petrolera: Area de contrato (Lote),,,,,,,,True
+1000,sunat_table_efact_55,4062,Regalía Petrolera: Periodo de pago - Fecha de inicio,,,,,,,,True
+1001,sunat_table_efact_55,4063,Regalía Petrolera: Periodo de pago - Fecha de fin,,,,,,,,True
+1002,sunat_table_efact_55,4064,Regalía Petrolera: Fecha de Pago,,,,,,,,True
+1003,sunat_table_efact_55,5000,Proveedores Estado: Número de Expediente,,,,,,,,True
+1004,sunat_table_efact_55,5001,Proveedores Estado: Código de Unidad Ejecutora,,,,,,,,True
+1005,sunat_table_efact_55,5002,Proveedores Estado: N° de Proceso de Selección,,,,,,,,True
+1006,sunat_table_efact_55,5003,Proveedores Estado: N° de Contrato,,,,,,,,True
+1007,sunat_table_efact_55,5010,Numero de Placa,,,,,,,,True
+1008,sunat_table_efact_55,5011,Categoria,,,,,,,,True
+1009,sunat_table_efact_55,5012,Marca,,,,,,,,True
+1010,sunat_table_efact_55,5013,Modelo,,,,,,,,True
+1011,sunat_table_efact_55,5014,Color,,,,,,,,True
+1012,sunat_table_efact_55,5015,Motor,,,,,,,,True
+1013,sunat_table_efact_55,5016,Combustible,,,,,,,,True
+1014,sunat_table_efact_55,5017,Form. Rodante,,,,,,,,True
+1015,sunat_table_efact_55,5018,VIN,,,,,,,,True
+1016,sunat_table_efact_55,5019,Serie/Chasis,,,,,,,,True
+1017,sunat_table_efact_55,5020,Año fabricacion,,,,,,,,True
+1018,sunat_table_efact_55,5021,Año modelo,,,,,,,,True
+1019,sunat_table_efact_55,5022,Version,,,,,,,,True
+1020,sunat_table_efact_55,5023,Ejes,,,,,,,,True
+1021,sunat_table_efact_55,5024,Asientos,,,,,,,,True
+1022,sunat_table_efact_55,5025,Pasajeros,,,,,,,,True
+1023,sunat_table_efact_55,5026,Ruedas,,,,,,,,True
+1024,sunat_table_efact_55,5027,Carroceria,,,,,,,,True
+1025,sunat_table_efact_55,5028,Potencia,,,,,,,,True
+1026,sunat_table_efact_55,5029,Cilindros,,,,,,,,True
+1027,sunat_table_efact_55,5030,Ciliindrada,,,,,,,,True
+1028,sunat_table_efact_55,5031,Peso Bruto,,,,,,,,True
+1029,sunat_table_efact_55,5032,Peso Neto,,,,,,,,True
+1030,sunat_table_efact_55,5033,Carga Util,,,,,,,,True
+1031,sunat_table_efact_55,5034,Longitud,,,,,,,,True
+1032,sunat_table_efact_55,5035,Altura,,,,,,,,True
+1033,sunat_table_efact_55,5036,Ancho,,,,,,,,True
+1034,sunat_table_efact_55,6000,Comercialización de Oro: Código Unico Concesión Minera,,,,,,,,True
+1035,sunat_table_efact_55,6001,Comercialización de Oro: N° declaración compromiso,,,,,,,,True
+1036,sunat_table_efact_55,6002,Comercialización de Oro: N° Reg. Especial .Comerci. Oro,,,,,,,,True
+1037,sunat_table_efact_55,6003,Comercialización de Oro: N° Resolución que autoriza Planta de Beneficio,,,,,,,,True
+1038,sunat_table_efact_55,6004,Comercialización de Oro: Ley Mineral (% concent. oro),,,,,,,,True
+1039,sunat_table_efact_55,7000,Gastos Art. 37 Renta: Número de Placa,,,,,,,,True
+1040,sunat_table_efact_55,7001,Créditos Hipotecarios: Tipo de préstamo,,,,,,,,True
+1041,sunat_table_efact_55,7002,Créditos Hipotecarios: Indicador de Primera Vivienda,,,,,,,,True
+1042,sunat_table_efact_55,7003,Créditos Hipotecarios: Partida Registral,,,,,,,,True
+1043,sunat_table_efact_55,7004,Créditos Hipotecarios: Número de contrato,,,,,,,,True
+1044,sunat_table_efact_55,7005,Créditos Hipotecarios: Fecha de otorgamiento del crédito,,,,,,,,True
+1045,sunat_table_efact_55,7006,Créditos Hipotecarios: Dirección del predio - Código de ubigeo,,,,,,,,True
+1046,sunat_table_efact_55,7007,Créditos Hipotecarios: Dirección del predio - Dirección completa,,,,,,,,True
+1047,sunat_table_efact_55,7008,Créditos Hipotecarios: Dirección del predio - Urbanización,,,,,,,,True
+1048,sunat_table_efact_55,7009,Créditos Hipotecarios: Dirección del predio - Provincia,,,,,,,,True
+1049,sunat_table_efact_55,7010,Créditos Hipotecarios: Dirección del predio - Distrito,,,,,,,,True
+1050,sunat_table_efact_55,7011,Créditos Hipotecarios: Dirección del predio - Departamento,,,,,,,,True
+1051,sunat_table_efact_55,7020,Partida Arancelaria,,,,,,,,True
+1052,pe_vars,LIVING.WAGE,Living Wage 2012(1),,,,,,,,True
+1053,pe_vars,LIVING.WAGE.WORKER,Living Wage Workers 2012(1),,,,,,,,True
+1054,pe_vars,UIT,UIT 2013,,,,,,,,True
+1055,pe_vars,UIT,UIT 2014,,,,,,,,True
+1056,sunat_table_general_01,0,DOC.TRIB.NO.DOM.SIN.RUC,,,,,,,,True
+1057,sunat_table_general_01,1,DOC. NACIONAL DE IDENTIDAD,,,,,,,,True
+1058,sunat_table_general_01,4,CARNET DE EXTRANJERIA,,,,,,,,True
+1059,sunat_table_general_01,6,REG. UNICO DE CONTRIBUYENTES,,,,,,,,True
+1060,sunat_table_general_01,7,PASAPORTE,,,,,,,,True
+1061,sunat_table_general_01,A,CED. DIPLOMATICA DE IDENTIDAD,,,,,,,,True
+1062,sunat_table_detraction,001,Azúcar y melaza de caña,10.00,2017-10-16,2099-12-31,,,,,True
+1063,sunat_table_detraction,003,Alcohol etílico,10.00,2017-10-16,2099-12-31,,,,,True
+1064,sunat_table_detraction,006,Algodón,9.00,2015-01-01,2099-12-31,,,,,True
+1065,sunat_table_detraction,004,Recursos hidrobiológicos,4.00,2015-01-01,2099-12-31,,,,,True
+1066,sunat_table_detraction,005,Maíz amarillo duro,4.00,2015-01-01,2099-12-31,,,,,True
+1067,sunat_table_detraction,007,Caña de azúcar,10.00,2017-10-16,2099-12-31,,,,,True
+1068,sunat_table_detraction,008,Madera,4.00,2015-01-01,2099-12-31,,,,,True
+1069,sunat_table_detraction,009,Arena y piedra,10.00,2015-01-01,2099-12-31,,,,,True
+1070,sunat_table_detraction,010,"Residuos, subproductos, desechos, recortes, desperdicios y formas primarias derivadas de los mismos",15.00,2015-01-01,2099-12-31,,,,,True
+1071,sunat_table_detraction,013,Carnes y despojos comestibles,4.00,2015-01-01,2099-12-31,,,,,True
+1072,sunat_table_detraction,011,Bienes gravados con el IGV por renuncia a la exoneración,10.00,2018-04-01,2099-12-31,,,,,True
+1073,sunat_table_detraction,016,Aceite de Pescado,4.00,2018-04-01,2099-12-31,,,,,True
+1074,sunat_table_detraction,017,"Harina, polvo y 'pellets' de pescado, crustáceos, moluscos y demás invertebrados acuáticos",4.00,2015-01-01,2099-12-31,,,,,True
+1075,sunat_table_detraction,018,Embarcaciones pesqueras,9.00,2015-01-01,2099-12-31,,,,,True
+1076,sunat_table_detraction,023,Leche,4.00,2018-06-16,2099-12-31,,,,,True
+1077,sunat_table_detraction,031,Oro gravado con el IGV,10.00,2015-01-01,2099-12-31,,,,,True
+1078,sunat_table_detraction,034,Minerales metálicos no auríferos,10.00,2015-01-01,2099-12-31,,,,,True
+1079,sunat_table_detraction,035,Bienes exonerados del IGV,1.50,2015-01-01,2099-12-31,,,,,True
+1080,sunat_table_detraction,036,Oro y demás minerales metálicos exonerados del IGV,1.50,2015-01-01,2099-12-31,,,,,True
+1081,sunat_table_detraction,039,Minerales no metálicos,10.00,2015-01-01,2099-12-31,,,,,True
+1082,sunat_table_detraction,012,Intermediación laboral y tercerización,12.00,2018-04-01,2099-12-31,,,,,True
+1083,sunat_table_detraction,019,Arrendamiento de bienes,10.00,2015-01-01,2099-12-31,,,,,True
+1084,sunat_table_detraction,020,Mantenimiento y reparación de bienes muebles,12.00,2018-04-01,2099-12-31,,,,,True
+1085,sunat_table_detraction,021,Movimiento de carga,10.00,2015-01-01,2099-12-31,,,,,True
+1086,sunat_table_detraction,022,Otros Servicios Empresariales,12.00,2018-04-01,2099-12-31,,,,,True
+1087,sunat_table_detraction,024,Comisión mercantil,10.00,2015-01-01,2099-12-31,,,,,True
+1088,sunat_table_detraction,025,Fabricación de bienes por encargo,10.00,2015-01-01,2099-12-31,,,,,True
+1089,sunat_table_detraction,026,Servicio de transporte de personas,10.00,2015-01-01,2099-12-31,,,,,True
+1090,sunat_table_detraction,030,Contratos de Construcción,4.00,2015-01-01,2099-12-31,,,,,True
+1091,sunat_table_detraction,037,Demás servicios gravados con el IGV,12.00,2018-04-01,2099-12-31,,,,,True
+1092,pe_sunat_ple_table01,001,DEPÓSITO EN CUENTA,,,,,,,,True
+1093,pe_sunat_ple_table01,002,GIRO,,,,,,,,True
+1094,pe_sunat_ple_table01,003,TRANSFERENCIA DE FONDOS,,,,,,,,True
+1095,pe_sunat_ple_table01,004,ORDEN DE PAGO,,,,,,,,True
+1096,pe_sunat_ple_table01,005,TARJETA DE DÉBITO,,,,,,,,True
+1097,pe_sunat_ple_table01,006,TARJETA DE CRÉDITO EMITIDA EN EL PAÍS POR UNA EMPRESA DEL SISTEMA FINANCIERO,,,,,,,,True
+1098,pe_sunat_ple_table01,007,"CHEQUES CON LA CLÁUSULA DE 'NO NEGOCIABLE', 'INTRANSFERIBLES', 'NO A LA ORDEN' U OTRA EQUIVALENTE, A QUE SE REFIERE EL INCISO G) DEL ARTICULO 5° DE LA LEY",,,,,,,,True
+1099,pe_sunat_ple_table01,008,"EFECTIVO, POR OPERACIONES EN LAS QUE NO EXISTE OBLIGACIÓN DE UTILIZAR MEDIO DE PAGO",,,,,,,,True
+1100,pe_sunat_ple_table01,009,"EFECTIVO, EN LOS DEMÁS CASOS",,,,,,,,True
+1101,pe_sunat_ple_table01,010,MEDIOS DE PAGO USADOS EN COMERCIO EXTERIOR,,,,,,,,True
+1102,pe_sunat_ple_table01,011,DOCUMENTOS EMITIDOS POR LAS EDPYMES Y LAS COOPERATIVAS DE AHORRO Y CRÉDITO NO AUTORIZADAS A CAPTAR DEPÓSITOS DEL PÚBLICO,,,,,,,,True
+1103,pe_sunat_ple_table01,012,"TARJETA DE CRÉDITO EMITIDA EN EL PAÍS O EN EL EXTERIOR POR UNA EMPRESA NO PERTENECIENTE AL SISTEMA FINANCIERO, CUYO OBJETO PRINCIPAL SEA LA EMISIÓN Y ADMINISTRACIÓN DE TARJETAS DE CRÉDITO",,,,,,,,True
+1104,pe_sunat_ple_table01,013,TARJETAS DE CRÉDITO EMITIDAS EN EL EXTERIOR POR EMPRESAS BANCARIAS O FINANCIERAS NO DOMICILIADAS,,,,,,,,True
+1105,pe_sunat_ple_table01,101,TRANSFERENCIAS - COMERCIO EXTERIOR,,,,,,,,True
+1106,pe_sunat_ple_table01,102,CHEQUES BANCARIOS  - COMERCIO EXTERIOR,,,,,,,,True
+1107,pe_sunat_ple_table01,103,ORDEN DE PAGO SIMPLE  - COMERCIO EXTERIOR,,,,,,,,True
+1108,pe_sunat_ple_table01,104,ORDEN DE PAGO DOCUMENTARIO  - COMERCIO EXTERIOR,,,,,,,,True
+1109,pe_sunat_ple_table01,105,REMESA SIMPLE  - COMERCIO EXTERIOR,,,,,,,,True
+1110,pe_sunat_ple_table01,106,REMESA DOCUMENTARIA  - COMERCIO EXTERIOR,,,,,,,,True
+1111,pe_sunat_ple_table01,107,CARTA DE CRÉDITO SIMPLE  - COMERCIO EXTERIOR,,,,,,,,True
+1112,pe_sunat_ple_table01,108,CARTA DE CRÉDITO DOCUMENTARIO  - COMERCIO EXTERIOR,,,,,,,,True
+1113,pe_sunat_ple_table01,999,OTROS MEDIOS DE PAGO,,,,,,,,True
+1114,pe_sunat_ple_table02,0,OTROS TIPOS DE DOCUMENTOS,,,,,,,,True
+1115,pe_sunat_ple_table02,1,DOCUMENTO NACIONAL DE IDENTIDAD (DNI),,,,,,,,True
+1116,pe_sunat_ple_table02,4,CARNET DE EXTRANJERIA,,,,,,,,True
+1117,pe_sunat_ple_table02,6,REGISTRO ÚNICO DE CONTRIBUYENTES,,,,,,,,True
+1118,pe_sunat_ple_table02,7,PASAPORTE,,,,,,,,True
+1119,pe_sunat_ple_table02,A,CÉDULA DIPLOMÁTICA DE IDENTIDAD,,,,,,,,True
+1120,pe_sunat_ple_table03,01,CENTRAL RESERVA DEL PERU,,,,,,,,True
+1121,pe_sunat_ple_table03,02,DE CREDITO DEL PERU,,,,,,,,True
+1122,pe_sunat_ple_table03,03,INTERNACIONAL DEL PERU,,,,,,,,True
+1123,pe_sunat_ple_table03,05,LATINO,,,,,,,,True
+1124,pe_sunat_ple_table03,07,CITIBANK DEL PERU S.A.,,,,,,,,True
+1125,pe_sunat_ple_table03,08,STANDARD CHARTERED,,,,,,,,True
+1126,pe_sunat_ple_table03,09,SCOTIABANK PERU,,,,,,,,True
+1127,pe_sunat_ple_table03,11,CONTINENTAL,,,,,,,,True
+1128,pe_sunat_ple_table03,12,DE LIMA,,,,,,,,True
+1129,pe_sunat_ple_table03,16,MERCANTIL,,,,,,,,True
+1130,pe_sunat_ple_table03,18,NACION,,,,,,,,True
+1131,pe_sunat_ple_table03,22,SANTANDER CENTRAL HISPANO,,,,,,,,True
+1132,pe_sunat_ple_table03,23,DE COMERCIO,,,,,,,,True
+1133,pe_sunat_ple_table03,25,REPUBLICA,,,,,,,,True
+1134,pe_sunat_ple_table03,26,NBK BANK,,,,,,,,True
+1135,pe_sunat_ple_table03,29,BANCOSUR,,,,,,,,True
+1136,pe_sunat_ple_table03,35,FINANCIERO DEL PERU,,,,,,,,True
+1137,pe_sunat_ple_table03,37,DEL PROGRESO,,,,,,,,True
+1138,pe_sunat_ple_table03,38,INTERAMERICANO FINANZAS,,,,,,,,True
+1139,pe_sunat_ple_table03,39,BANEX,,,,,,,,True
+1140,pe_sunat_ple_table03,40,NUEVO MUNDO,,,,,,,,True
+1141,pe_sunat_ple_table03,41,SUDAMERICANO,,,,,,,,True
+1142,pe_sunat_ple_table03,42,DEL LIBERTADOR,,,,,,,,True
+1143,pe_sunat_ple_table03,43,DEL TRABAJO,,,,,,,,True
+1144,pe_sunat_ple_table03,44,SOLVENTA,,,,,,,,True
+1145,pe_sunat_ple_table03,45,SERBANCO SA.,,,,,,,,True
+1146,pe_sunat_ple_table03,46,BANK OF BOSTON,,,,,,,,True
+1147,pe_sunat_ple_table03,47,ORION,,,,,,,,True
+1148,pe_sunat_ple_table03,48,DEL PAIS,,,,,,,,True
+1149,pe_sunat_ple_table03,49,MI BANCO,,,,,,,,True
+1150,pe_sunat_ple_table03,50,BNP PARIBAS,,,,,,,,True
+1151,pe_sunat_ple_table03,51,AGROBANCO,,,,,,,,True
+1152,pe_sunat_ple_table03,53,HSBC BANK PERU S.A.,,,,,,,,True
+1153,pe_sunat_ple_table03,54,BANCO FALABELLA S.A.,,,,,,,,True
+1154,pe_sunat_ple_table03,55,BANCO RIPLEY,,,,,,,,True
+1155,pe_sunat_ple_table03,56,BANCO SANTANDER PERU S.A.,,,,,,,,True
+1156,pe_sunat_ple_table03,58,BANCO AZTECA DEL PERU,,,,,,,,True
+1157,pe_sunat_ple_table03,99,OTROS,,,,,,,,True
+1158,pe_sunat_ple_table04,AED,UAE Dirham / Emiratos Árabes Unidos,,,,,,,,True
+1159,pe_sunat_ple_table04,AFN,Afghani / Afganistán,,,,,,,,True
+1160,pe_sunat_ple_table04,ALL,Lek / Albania,,,,,,,,True
+1161,pe_sunat_ple_table04,AMD,Armenian Dram / Armenia,,,,,,,,True
+1162,pe_sunat_ple_table04,ANG,Netherlands Antillian Guilder / Antillas Holandesas,,,,,,,,True
+1163,pe_sunat_ple_table04,AOA,Kwanza / Angola,,,,,,,,True
+1164,pe_sunat_ple_table04,ARS,Argentine Peso / Argentina,,,,,,,,True
+1165,pe_sunat_ple_table04,AUD,Australian Dollar / Australia,,,,,,,,True
+1166,pe_sunat_ple_table04,AWG,Aruban Guilder / Aruba,,,,,,,,True
+1167,pe_sunat_ple_table04,AZN,Azerbaijanian Manat / Azerbaiyán,,,,,,,,True
+1168,pe_sunat_ple_table04,BAM,Convertible Marks / Bosnia y Herzegovina,,,,,,,,True
+1169,pe_sunat_ple_table04,BBD,Barbados Dollar / Barbados,,,,,,,,True
+1170,pe_sunat_ple_table04,BDT,Taka / Bangladesh,,,,,,,,True
+1171,pe_sunat_ple_table04,BGN,Bulgarian Lev / Bulgaria,,,,,,,,True
+1172,pe_sunat_ple_table04,BHD,Bahraini Dinar / Bahréin,,,,,,,,True
+1173,pe_sunat_ple_table04,BIF,Burundi Franc / Burundi,,,,,,,,True
+1174,pe_sunat_ple_table04,BMD,Bermudian Dollar (customarily known as Bermuda Dollar) / Bermudas,,,,,,,,True
+1175,pe_sunat_ple_table04,BND,Brunei Dollar / Brunéi Darussalam,,,,,,,,True
+1176,pe_sunat_ple_table04,BOB,Boliviano / Bolivia,,,,,,,,True
+1177,pe_sunat_ple_table04,BOV,Mvdol / Bolivia,,,,,,,,True
+1178,pe_sunat_ple_table04,BRL,Brazilian Real / Brasil,,,,,,,,True
+1179,pe_sunat_ple_table04,BSD,Bahamian Dollar / Bahamas,,,,,,,,True
+1180,pe_sunat_ple_table04,BTN,Ngultrum / Bután,,,,,,,,True
+1181,pe_sunat_ple_table04,BWP,Pula / Botsuana,,,,,,,,True
+1182,pe_sunat_ple_table04,BYR,Belarussian Ruble / Bielorrusia,,,,,,,,True
+1183,pe_sunat_ple_table04,BZD,Belize Dollar / Belice,,,,,,,,True
+1184,pe_sunat_ple_table04,CAD,Canadian Dollar / Canadá,,,,,,,,True
+1185,pe_sunat_ple_table04,CDF,Congolese Franc / República Democrática del Congo,,,,,,,,True
+1186,pe_sunat_ple_table04,CHE,WIR Euro / Suiza,,,,,,,,True
+1187,pe_sunat_ple_table04,CHF,Swiss Franc / Suiza,,,,,,,,True
+1188,pe_sunat_ple_table04,CHW,WIR Franc / Suiza,,,,,,,,True
+1189,pe_sunat_ple_table04,CLF,Unidades de fomento / Chile,,,,,,,,True
+1190,pe_sunat_ple_table04,CLP,Chilean Peso / Chile,,,,,,,,True
+1191,pe_sunat_ple_table04,CNY,Yuan Renminbi / China (República Popular),,,,,,,,True
+1192,pe_sunat_ple_table04,COP,Colombian Peso / Colombia,,,,,,,,True
+1193,pe_sunat_ple_table04,COU,Unidad de Valor Real / Colombia,,,,,,,,True
+1194,pe_sunat_ple_table04,CRC,Costa Rican Colon / Costa Rica,,,,,,,,True
+1195,pe_sunat_ple_table04,CUC,Peso Convertible / Cuba,,,,,,,,True
+1196,pe_sunat_ple_table04,CUP,Cuban Peso / Cuba,,,,,,,,True
+1197,pe_sunat_ple_table04,CVE,Cape Verde Escudo / Cabo Verde,,,,,,,,True
+1198,pe_sunat_ple_table04,CZK,Czech Koruna / República Checa,,,,,,,,True
+1199,pe_sunat_ple_table04,DJF,Djibouti Franc / Yibuti,,,,,,,,True
+1200,pe_sunat_ple_table04,DKK,Danish Krone / Dinamarca,,,,,,,,True
+1201,pe_sunat_ple_table04,DOP,Dominican Peso / República Dominicana,,,,,,,,True
+1202,pe_sunat_ple_table04,DZD,Algerian Dinar / Argelia,,,,,,,,True
+1203,pe_sunat_ple_table04,EEK,Kroon / Estonia,,,,,,,,True
+1204,pe_sunat_ple_table04,EGP,Egyptian Pound / Egipto,,,,,,,,True
+1205,pe_sunat_ple_table04,ERN,Nakfa / Eritrea,,,,,,,,True
+1206,pe_sunat_ple_table04,ETB,Ethiopian Birr / Etiopía,,,,,,,,True
+1207,pe_sunat_ple_table04,EUR,Euro / Unión Europea,,,,,,,,True
+1208,pe_sunat_ple_table04,FJD,Fiji Dollar / Fiyi,,,,,,,,True
+1209,pe_sunat_ple_table04,FKP,Falkland Islands Pound / Islas Malvinas,,,,,,,,True
+1210,pe_sunat_ple_table04,GBP,Pound Sterling / Reino Unido,,,,,,,,True
+1211,pe_sunat_ple_table04,GEL,Lari / Georgia,,,,,,,,True
+1212,pe_sunat_ple_table04,GHS,Cedi / Ghana,,,,,,,,True
+1213,pe_sunat_ple_table04,GIP,Gibraltar Pound / Gibraltar,,,,,,,,True
+1214,pe_sunat_ple_table04,GMD,Dalasi / Gambia,,,,,,,,True
+1215,pe_sunat_ple_table04,GNF,Guinea Franc / Guinea,,,,,,,,True
+1216,pe_sunat_ple_table04,GTQ,Quetzal / Guatemala,,,,,,,,True
+1217,pe_sunat_ple_table04,GYD,Guyana Dollar / Guyana,,,,,,,,True
+1218,pe_sunat_ple_table04,HKD,Hong Kong Dollar / Hong Kong,,,,,,,,True
+1219,pe_sunat_ple_table04,HNL,Lempira / Honduras,,,,,,,,True
+1220,pe_sunat_ple_table04,HRK,Croatian Kuna / Croacia,,,,,,,,True
+1221,pe_sunat_ple_table04,HTG,Gourde / Haití,,,,,,,,True
+1222,pe_sunat_ple_table04,HUF,Forint / Hungría,,,,,,,,True
+1223,pe_sunat_ple_table04,IDR,Rupiah / Indonesia,,,,,,,,True
+1224,pe_sunat_ple_table04,ILS,New Israeli Sheqel / Israel,,,,,,,,True
+1225,pe_sunat_ple_table04,INR,Indian Rupee / India,,,,,,,,True
+1226,pe_sunat_ple_table04,IQD,Iraqi Dinar / Iraq,,,,,,,,True
+1227,pe_sunat_ple_table04,IRR,Iranian Rial / Irán,,,,,,,,True
+1228,pe_sunat_ple_table04,ISK,Iceland Krona / Islandia,,,,,,,,True
+1229,pe_sunat_ple_table04,JMD,Jamaican Dollar / Jamaica,,,,,,,,True
+1230,pe_sunat_ple_table04,JOD,Jordanian Dinar / Jordania,,,,,,,,True
+1231,pe_sunat_ple_table04,JPY,Yen / Japón,,,,,,,,True
+1232,pe_sunat_ple_table04,KES,Kenyan Shilling / Kenia,,,,,,,,True
+1233,pe_sunat_ple_table04,KGS,Som / Kirguistán,,,,,,,,True
+1234,pe_sunat_ple_table04,KHR,Riel / Camboya,,,,,,,,True
+1235,pe_sunat_ple_table04,KMF,Comoro Franc / Comoras,,,,,,,,True
+1236,pe_sunat_ple_table04,KPW,North Korean Won / Corea (del Norte),,,,,,,,True
+1237,pe_sunat_ple_table04,KRW,Won / Corea (del Sur),,,,,,,,True
+1238,pe_sunat_ple_table04,KWD,Kuwaiti Dinar / Kuwait,,,,,,,,True
+1239,pe_sunat_ple_table04,KYD,Cayman Islands Dollar / Islas Caimán,,,,,,,,True
+1240,pe_sunat_ple_table04,KZT,Tenge / Kazajistán,,,,,,,,True
+1241,pe_sunat_ple_table04,LAK,Kip / Laos,,,,,,,,True
+1242,pe_sunat_ple_table04,LBP,Lebanese Pound / Líbano,,,,,,,,True
+1243,pe_sunat_ple_table04,LKR,Sri Lanka Rupee / Sri Lanka,,,,,,,,True
+1244,pe_sunat_ple_table04,LRD,Liberian Dollar / Liberia,,,,,,,,True
+1245,pe_sunat_ple_table04,LSL,Loti / Lesoto,,,,,,,,True
+1246,pe_sunat_ple_table04,LTL,Lithuanian Litas / Lituania,,,,,,,,True
+1247,pe_sunat_ple_table04,LVL,Latvian Lats / Letonia,,,,,,,,True
+1248,pe_sunat_ple_table04,LYD,Libyan Dinar / Libia,,,,,,,,True
+1249,pe_sunat_ple_table04,MAD,Moroccan Dirham / Marruecos,,,,,,,,True
+1250,pe_sunat_ple_table04,MDL,Moldovan Leu / Moldavia,,,,,,,,True
+1251,pe_sunat_ple_table04,MGA,Malagasy Ariary / Madagascar,,,,,,,,True
+1252,pe_sunat_ple_table04,MKD,Denar / Macedonia,,,,,,,,True
+1253,pe_sunat_ple_table04,MMK,Kyat / Myanmar (Birmania),,,,,,,,True
+1254,pe_sunat_ple_table04,MNT,Tugrik / Mongolia,,,,,,,,True
+1255,pe_sunat_ple_table04,MOP,Pataca / Macao,,,,,,,,True
+1256,pe_sunat_ple_table04,MRO,Ouguiya / Mauritania,,,,,,,,True
+1257,pe_sunat_ple_table04,MUR,Mauritius Rupee / Mauricio,,,,,,,,True
+1258,pe_sunat_ple_table04,MVR,Rufiyaa / Maldivas,,,,,,,,True
+1259,pe_sunat_ple_table04,MWK,Kwacha / Malaui,,,,,,,,True
+1260,pe_sunat_ple_table04,MXN,Mexican Peso / México,,,,,,,,True
+1261,pe_sunat_ple_table04,MXV,Mexican Unidad de Inversion (UDI) / México,,,,,,,,True
+1262,pe_sunat_ple_table04,MYR,Malaysian Ringgit / Malasia,,,,,,,,True
+1263,pe_sunat_ple_table04,MZN,Metical / Mozambique,,,,,,,,True
+1264,pe_sunat_ple_table04,NAD,Namibia Dollar / Namibia,,,,,,,,True
+1265,pe_sunat_ple_table04,NGN,Naira / Nigeria,,,,,,,,True
+1266,pe_sunat_ple_table04,NIO,Cordoba Oro / Nicaragua,,,,,,,,True
+1267,pe_sunat_ple_table04,NOK,Norwegian Krone / Noruega,,,,,,,,True
+1268,pe_sunat_ple_table04,NPR,Nepalese Rupee / Nepal,,,,,,,,True
+1269,pe_sunat_ple_table04,NZD,New Zealand Dollar / Nueva Zelanda,,,,,,,,True
+1270,pe_sunat_ple_table04,OMR,Rial Omani / Omán,,,,,,,,True
+1271,pe_sunat_ple_table04,PAB,Balboa / Panamá,,,,,,,,True
+1272,pe_sunat_ple_table04,PEN,Nuevo Sol o Sol / Perú,,,,,,,,True
+1273,pe_sunat_ple_table04,PGK,Kina / Papúa Nueva Guinea,,,,,,,,True
+1274,pe_sunat_ple_table04,PHP,Philippine Peso / Filipinas,,,,,,,,True
+1275,pe_sunat_ple_table04,PKR,Pakistan Rupee / Pakistán,,,,,,,,True
+1276,pe_sunat_ple_table04,PLN,Zloty / Polonia,,,,,,,,True
+1277,pe_sunat_ple_table04,PYG,Guarani / Paraguay,,,,,,,,True
+1278,pe_sunat_ple_table04,QAR,Qatari Rial / Qatar,,,,,,,,True
+1279,pe_sunat_ple_table04,RON,New Leu / Rumania,,,,,,,,True
+1280,pe_sunat_ple_table04,RSD,Serbian Dinar / Serbia,,,,,,,,True
+1281,pe_sunat_ple_table04,RUB,Russian Ruble / Rusia,,,,,,,,True
+1282,pe_sunat_ple_table04,RWF,Rwanda Franc / Ruanda,,,,,,,,True
+1283,pe_sunat_ple_table04,SAR,Saudi Riyal / Arabia Saudita,,,,,,,,True
+1284,pe_sunat_ple_table04,SBD,Solomon Islands Dollar / Islas Salomón,,,,,,,,True
+1285,pe_sunat_ple_table04,SCR,Seychelles Rupee / Seychelles,,,,,,,,True
+1286,pe_sunat_ple_table04,SDG,Sudanese Pound / Sudán,,,,,,,,True
+1287,pe_sunat_ple_table04,SEK,Swedish Krona / Suecia,,,,,,,,True
+1288,pe_sunat_ple_table04,SGD,Singapore Dollar / Singapur,,,,,,,,True
+1289,pe_sunat_ple_table04,SHP,Saint Helena Pound / Santa Helena,,,,,,,,True
+1290,pe_sunat_ple_table04,SLL,Leone / Sierra Leona,,,,,,,,True
+1291,pe_sunat_ple_table04,SOS,Somali Shilling / Somalia,,,,,,,,True
+1292,pe_sunat_ple_table04,SRD,Surinam Dollar / Surinam,,,,,,,,True
+1293,pe_sunat_ple_table04,STD,Dobra / Santo Tomé y Príncipe,,,,,,,,True
+1294,pe_sunat_ple_table04,SVC,El Salvador Colon / El Salvador,,,,,,,,True
+1295,pe_sunat_ple_table04,SYP,Syrian Pound / Siria,,,,,,,,True
+1296,pe_sunat_ple_table04,SZL,Lilangeni / Suazilandia,,,,,,,,True
+1297,pe_sunat_ple_table04,THB,Baht / Tailandia,,,,,,,,True
+1298,pe_sunat_ple_table04,TJS,Somoni / Tayikistán,,,,,,,,True
+1299,pe_sunat_ple_table04,TMT,Manat / Turkmenistán,,,,,,,,True
+1300,pe_sunat_ple_table04,TND,Tunisian Dinar / Túnez,,,,,,,,True
+1301,pe_sunat_ple_table04,TOP,Pa'anga / Tonga,,,,,,,,True
+1302,pe_sunat_ple_table04,TRY,Turkish Lira / Turquía,,,,,,,,True
+1303,pe_sunat_ple_table04,TTD,Trinidad and Tobago Dollar / Trinidad y Tobago,,,,,,,,True
+1304,pe_sunat_ple_table04,TWD,New Taiwan Dollar / Taiwán,,,,,,,,True
+1305,pe_sunat_ple_table04,TZS,Tanzanian Shilling / Tanzania,,,,,,,,True
+1306,pe_sunat_ple_table04,UAH,Hryvnia / Ucrania,,,,,,,,True
+1307,pe_sunat_ple_table04,UGX,Uganda Shilling / Uganda,,,,,,,,True
+1308,pe_sunat_ple_table04,USD,US Dollar / Estados Unidos (EEUU),,,,,,,,True
+1309,pe_sunat_ple_table04,USN,US Dollar (Next day) / Estados Unidos (EEUU),,,,,,,,True
+1310,pe_sunat_ple_table04,USS,US Dollar (Same day) / Estados Unidos (EEUU),,,,,,,,True
+1311,pe_sunat_ple_table04,UYI,Uruguay Peso en Unidades Indexadas / Uruguay,,,,,,,,True
+1312,pe_sunat_ple_table04,UYU,Peso Uruguayo / Uruguay,,,,,,,,True
+1313,pe_sunat_ple_table04,UZS,Uzbekistan Sum / Uzbekistán,,,,,,,,True
+1314,pe_sunat_ple_table04,VEF,Bolivar Fuerte / Venezuela,,,,,,,,True
+1315,pe_sunat_ple_table04,VND,Dong / Vietnam,,,,,,,,True
+1316,pe_sunat_ple_table04,VUV,Vatu / Vanuatu,,,,,,,,True
+1317,pe_sunat_ple_table04,WST,Tala / Samoa del Oeste,,,,,,,,True
+1318,pe_sunat_ple_table04,XAF,CFA Franc BEAC ‡ / -,,,,,,,,True
+1319,pe_sunat_ple_table04,XAG,Silver / -,,,,,,,,True
+1320,pe_sunat_ple_table04,XAU,Gold / -,,,,,,,,True
+1321,pe_sunat_ple_table04,XBA,Bond Markets Units European Composite Unit (EURCO) / -,,,,,,,,True
+1322,pe_sunat_ple_table04,XBB,European Monetary Unit (E.M.U.-6) / -,,,,,,,,True
+1323,pe_sunat_ple_table04,XBC,European Unit of Account 9(E.U.A.-9) / -,,,,,,,,True
+1324,pe_sunat_ple_table04,XBD,European Unit of Account 17(E.U.A.-17) / -,,,,,,,,True
+1325,pe_sunat_ple_table04,XCD,East Caribbean Dollar / -,,,,,,,,True
+1326,pe_sunat_ple_table04,XDR,SDR / -,,,,,,,,True
+1327,pe_sunat_ple_table04,XFU,UIC-Franc / -,,,,,,,,True
+1328,pe_sunat_ple_table04,XOF,CFA Franc BCEAO † / -,,,,,,,,True
+1329,pe_sunat_ple_table04,XPD,Palladium / -,,,,,,,,True
+1330,pe_sunat_ple_table04,XPF,CFP Franc / -,,,,,,,,True
+1331,pe_sunat_ple_table04,XPT,Platinum / -,,,,,,,,True
+1332,pe_sunat_ple_table04,YER,Yemeni Rial / Yemen,,,,,,,,True
+1333,pe_sunat_ple_table04,ZAR,Rand / Sudáfrica,,,,,,,,True
+1334,pe_sunat_ple_table04,ZMK,Zambian Kwacha / Zambia,,,,,,,,True
+1335,pe_sunat_ple_table04,ZWL,Zimbabwe Dollar / Zimbabue,,,,,,,,True
+1336,pe_sunat_ple_table05,01,MERCADERÍAS,,,,,,,,True
+1337,pe_sunat_ple_table05,02,PRODUCTOS TERMINADOS,,,,,,,,True
+1338,pe_sunat_ple_table05,03,MATERIAS PRIMAS,,,,,,,,True
+1339,pe_sunat_ple_table05,04,ENVASES,,,,,,,,True
+1340,pe_sunat_ple_table05,05,MATERIALES AUXILIARES,,,,,,,,True
+1341,pe_sunat_ple_table05,06,SUMINISTROS,,,,,,,,True
+1342,pe_sunat_ple_table05,07,REPUESTOS,,,,,,,,True
+1343,pe_sunat_ple_table05,08,EMBALAJES,,,,,,,,True
+1344,pe_sunat_ple_table05,09,SUBPRODUCTOS,,,,,,,,True
+1345,pe_sunat_ple_table05,10,DESECHOS Y DESPERDICIOS,,,,,,,,True
+1346,pe_sunat_ple_table05,91,OTROS 1,,,,,,,,True
+1347,pe_sunat_ple_table05,92,OTROS 2,,,,,,,,True
+1348,pe_sunat_ple_table05,93,OTROS 3,,,,,,,,True
+1349,pe_sunat_ple_table05,94,OTROS 4,,,,,,,,True
+1350,pe_sunat_ple_table05,95,OTROS 5,,,,,,,,True
+1351,pe_sunat_ple_table05,96,OTROS 6,,,,,,,,True
+1352,pe_sunat_ple_table05,97,OTROS 7,,,,,,,,True
+1353,pe_sunat_ple_table05,98,OTROS 8,,,,,,,,True
+1354,pe_sunat_ple_table05,99,OTROS,,,,,,,,True
+1355,pe_sunat_ple_table06,4A,BOBINAS,,,,,,,,True
+1356,pe_sunat_ple_table06,BJ,BALDE,,,,,,,,True
+1357,pe_sunat_ple_table06,BLL,BARRILES,,,,,,,,True
+1358,pe_sunat_ple_table06,BG,BOLSA,,,,,,,,True
+1359,pe_sunat_ple_table06,BO,BOTELLAS,,,,,,,,True
+1360,pe_sunat_ple_table06,BX,CAJA,,,,,,,,True
+1361,pe_sunat_ple_table06,CT,CARTONES,,,,,,,,True
+1362,pe_sunat_ple_table06,CMK,CENTIMETRO CUADRADO,,,,,,,,True
+1363,pe_sunat_ple_table06,CMQ,CENTIMETRO CUBICO,,,,,,,,True
+1364,pe_sunat_ple_table06,CMT,CENTIMETRO LINEAL,,,,,,,,True
+1365,pe_sunat_ple_table06,CEN,CIENTO DE UNIDADES,,,,,,,,True
+1366,pe_sunat_ple_table06,CY,CILINDRO,,,,,,,,True
+1367,pe_sunat_ple_table06,CJ,CONOS,,,,,,,,True
+1368,pe_sunat_ple_table06,DZN,DOCENA,,,,,,,,True
+1369,pe_sunat_ple_table06,DZP,DOCENA POR 10**6,,,,,,,,True
+1370,pe_sunat_ple_table06,BE,FARDO,,,,,,,,True
+1371,pe_sunat_ple_table06,GLI,"GALON INGLES (4,545956L)",,,,,,,,True
+1372,pe_sunat_ple_table06,GRM,GRAMO,,,,,,,,True
+1373,pe_sunat_ple_table06,GRO,GRUESA,,,,,,,,True
+1374,pe_sunat_ple_table06,HLT,HECTOLITRO,,,,,,,,True
+1375,pe_sunat_ple_table06,LEF,HOJA,,,,,,,,True
+1376,pe_sunat_ple_table06,SET,JUEGO,,,,,,,,True
+1377,pe_sunat_ple_table06,KGM,KILOGRAMO,,,,,,,,True
+1378,pe_sunat_ple_table06,KTM,KILOMETRO,,,,,,,,True
+1379,pe_sunat_ple_table06,KWH,KILOVATIO HORA,,,,,,,,True
+1380,pe_sunat_ple_table06,KT,KIT,,,,,,,,True
+1381,pe_sunat_ple_table06,CA,LATAS,,,,,,,,True
+1382,pe_sunat_ple_table06,LBR,LIBRAS,,,,,,,,True
+1383,pe_sunat_ple_table06,LTR,LITRO,,,,,,,,True
+1384,pe_sunat_ple_table06,MWH,MEGAWATT HORA,,,,,,,,True
+1385,pe_sunat_ple_table06,MTR,METRO,,,,,,,,True
+1386,pe_sunat_ple_table06,MTK,METRO CUADRADO,,,,,,,,True
+1387,pe_sunat_ple_table06,MTQ,METRO CUBICO,,,,,,,,True
+1388,pe_sunat_ple_table06,MGM,MILIGRAMOS,,,,,,,,True
+1389,pe_sunat_ple_table06,MLT,MILILITRO,,,,,,,,True
+1390,pe_sunat_ple_table06,MMT,MILIMETRO,,,,,,,,True
+1391,pe_sunat_ple_table06,MMK,MILIMETRO CUADRADO,,,,,,,,True
+1392,pe_sunat_ple_table06,MMQ,MILIMETRO CUBICO,,,,,,,,True
+1393,pe_sunat_ple_table06,MLL,MILLARES,,,,,,,,True
+1394,pe_sunat_ple_table06,UM,MILLON DE UNIDADES,,,,,,,,True
+1395,pe_sunat_ple_table06,ONZ,ONZAS,,,,,,,,True
+1396,pe_sunat_ple_table06,PF,PALETAS,,,,,,,,True
+1397,pe_sunat_ple_table06,PK,PAQUETE,,,,,,,,True
+1398,pe_sunat_ple_table06,PR,PAR,,,,,,,,True
+1399,pe_sunat_ple_table06,FOT,PIES,,,,,,,,True
+1400,pe_sunat_ple_table06,FTK,PIES CUADRADOS,,,,,,,,True
+1401,pe_sunat_ple_table06,FTQ,PIES CUBICOS,,,,,,,,True
+1402,pe_sunat_ple_table06,C62,PIEZAS,,,,,,,,True
+1403,pe_sunat_ple_table06,PG,PLACAS,,,,,,,,True
+1404,pe_sunat_ple_table06,ST,PLIEGO,,,,,,,,True
+1405,pe_sunat_ple_table06,INH,PULGADAS,,,,,,,,True
+1406,pe_sunat_ple_table06,RM,RESMA,,,,,,,,True
+1407,pe_sunat_ple_table06,DR,TAMBOR,,,,,,,,True
+1408,pe_sunat_ple_table06,STN,TONELADA CORTA,,,,,,,,True
+1409,pe_sunat_ple_table06,LTN,TONELADA LARGA,,,,,,,,True
+1410,pe_sunat_ple_table06,TNE,TONELADAS,,,,,,,,True
+1411,pe_sunat_ple_table06,TU,TUBOS,,,,,,,,True
+1412,pe_sunat_ple_table06,NIU,UNIDAD (BIENES),,,,,,,,True
+1413,pe_sunat_ple_table06,ZZ,UNIDAD (SERVICIOS),,,,,,,,True
+1414,pe_sunat_ple_table06,GLL,"US GALON (3,7843 L)",,,,,,,,True
+1415,pe_sunat_ple_table06,YRD,YARDA,,,,,,,,True
+1416,pe_sunat_ple_table06,YDK,YARDA CUADRADA,,,,,,,,True
+1417,pe_sunat_ple_table10,00,Otros,,,,,,,,True
+1418,pe_sunat_ple_table10,01,Factura,,,,,,,,True
+1419,pe_sunat_ple_table10,02,Recibo por Honorarios,,,,,,,,True
+1420,pe_sunat_ple_table10,03,Boleta de Venta,,,,,,,,True
+1421,pe_sunat_ple_table10,04,Liquidación de compra,,,,,,,,True
+1422,pe_sunat_ple_table10,05,"Boletos de Transporte Aéreo que emiten las Compañías de Aviación Comercial por el servicio de transporte aéreo regular de pasajeros, emitido de manera manual, mecanizada o por medios electrónicos (BME)",,,,,,,,True
+1423,pe_sunat_ple_table10,06,Carta de porte aéreo por el servicio de transporte de carga aérea,,,,,,,,True
+1424,pe_sunat_ple_table10,07,Nota de crédito,,,,,,,,True
+1425,pe_sunat_ple_table10,08,Nota de débito,,,,,,,,True
+1426,pe_sunat_ple_table10,09,Guía de remisión - Remitente,,,,,,,,True
+1427,pe_sunat_ple_table10,10,Recibo por Arrendamiento,,,,,,,,True
+1428,pe_sunat_ple_table10,11,"Póliza emitida por las Bolsas de Valores, Bolsas de Productos o Agentes de Intermediación por operaciones realizadas en las Bolsas de Valores o Productos o fuera de las mismas, autorizadas por SMV",,,,,,,,True
+1429,pe_sunat_ple_table10,12,Ticket o cinta emitido por máquina registradora,,,,,,,,True
+1430,pe_sunat_ple_table10,13,"Documentos emitidos por las empresas del sistema financiero y de seguros, y por las cooperativas de ahorro y crédito no autorizadas a captar recursos del público, que se encuentren bajo el control de la Superintendencia de Banca, Seguros y AFP.",,,,,,,,True
+1431,pe_sunat_ple_table10,14,"Recibo por servicios públicos de suministro de energía eléctrica, agua, teléfono, telex y telegráficos y otros servicios complementarios que se incluyan en el recibo de servicio público",,,,,,,,True
+1432,pe_sunat_ple_table10,15,Boletos emitidos por el servicio de transporte terrestre regular urbano de pasajeros y el ferroviario público de pasajeros prestado en vía férrea local.,,,,,,,,True
+1433,pe_sunat_ple_table10,16,"Boletos de viaje emitidos por las empresas de transporte nacional de pasajeros, siempre que cuenten con la autorización de la autoridad competente, en las rutas autorizadas. Vía terrestre o ferroviario público no emitido por medios electrónicos (BVME)",,,,,,,,True
+1434,pe_sunat_ple_table10,17,Documento emitido por la Iglesia Católica por el arrendamiento de bienes inmuebles,,,,,,,,True
+1435,pe_sunat_ple_table10,18,"Documento emitido por las Administradoras Privadas de Fondo de Pensiones que se encuentran bajo la supervisión de la Superintendencia de Banca, Seguros y AFP",,,,,,,,True
+1436,pe_sunat_ple_table10,19,Boleto o entrada por atracciones y espectáculos públicos,,,,,,,,True
+1437,pe_sunat_ple_table10,20,Comprobante de Retención,,,,,,,,True
+1438,pe_sunat_ple_table10,21,Conocimiento de embarque por el servicio de transporte de carga marítima,,,,,,,,True
+1439,pe_sunat_ple_table10,22,Comprobante por Operaciones No Habituales,,,,,,,,True
+1440,pe_sunat_ple_table10,23,"Pólizas de Adjudicación emitidas con ocasión del remate o adjudicación de bienes por venta forzada, por los martilleros o las entidades que rematen o subasten bienes por cuenta de terceros",,,,,,,,True
+1441,pe_sunat_ple_table10,24,Certificado de pago de regalías emitidas por PERUPETRO S.A,,,,,,,,True
+1442,pe_sunat_ple_table10,25,"Documento de Atribución (Ley del Impuesto General a las Ventas e Impuesto Selectivo al Consumo, Art. 19º, último párrafo, R.S. N° 022-98-SUNAT).",,,,,,,,True
+1443,pe_sunat_ple_table10,26,"Recibo por el Pago de la Tarifa por Uso de Agua Superficial con fines agrarios y por el pago de la Cuota para la ejecución de una determinada obra o actividad acordada por la Asamblea General de la Comisión de Regantes o Resolución expedida por el Jefe de la Unidad de Aguas y de Riego (Decreto Supremo N° 003-90-AG, Arts. 28 y 48)",,,,,,,,True
+1444,pe_sunat_ple_table10,27,Seguro Complementario de Trabajo de Riesgo,,,,,,,,True
+1445,pe_sunat_ple_table10,28,"Documentos emitidos por los servicios aeroportuarios prestados a favor de los pasajeros, mediante mecanismo de etiquetas autoadhesivas.",,,,,,,,True
+1446,pe_sunat_ple_table10,29,"Documentos emitidos por la COFOPRI en calidad de oferta de venta de terrenos, los correspondientes a las subastas públicas y a la retribución de los servicios que presta",,,,,,,,True
+1447,pe_sunat_ple_table10,30,"Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito, emitidas por bancos e instituciones financieras o crediticias, domiciliados o no en el país.",,,,,,,,True
+1448,pe_sunat_ple_table10,31,Guía de Remisión - Transportista,,,,,,,,True
+1449,pe_sunat_ple_table10,32,Documentos emitidos por las empresas recaudadoras de la denominada Garantía de Red Principal a la que hace referencia el numeral 7.6 del artículo 7° de la Ley N° 27133 – Ley de Promoción del Desarrollo de la Industria del Gas Natural,,,,,,,,True
+1450,pe_sunat_ple_table10,33,Manifiesto de Pasajeros,,,,,,,,True
+1451,pe_sunat_ple_table10,34,Documento del Operador,,,,,,,,True
+1452,pe_sunat_ple_table10,35,Documento del Partícipe,,,,,,,,True
+1453,pe_sunat_ple_table10,36,Recibo de Distribución de Gas Natural,,,,,,,,True
+1454,pe_sunat_ple_table10,37,"Documentos que emitan los concesionarios del servicio de revisiones técnicas vehiculares, por la prestación de dicho servicio",,,,,,,,True
+1455,pe_sunat_ple_table10,40,Comprobante de Percepción,,,,,,,,True
+1456,pe_sunat_ple_table10,41,Comprobante de Percepción - Venta interna,,,,,,,,True
+1457,pe_sunat_ple_table10,42,Documentos emitidos por las empresas que desempeñan el rol adquiriente en los sistemas de pago mediante tarjetas de crédito emitidas por ellas mismas,,,,,,,,True
+1458,pe_sunat_ple_table10,43,Boletos emitidos por las Compañías de Aviación Comercial que prestan servicios de transporte aéreo no regular de pasajeros y transporte aéreo especial de pasajeros.,,,,,,,,True
+1459,pe_sunat_ple_table10,44,"Billetes de lotería, rifas y apuestas.",,,,,,,,True
+1460,pe_sunat_ple_table10,45,"Documentos emitidos por centros educativos y culturales, universidades, asociaciones y fundaciones, en lo referente a actividades no gravadas con tributos administrados por la SUNAT.",,,,,,,,True
+1461,pe_sunat_ple_table10,46,Formulario de Declaración - pago o Boleta de pago de tributos Internos,,,,,,,,True
+1462,pe_sunat_ple_table10,48,Comprobante de Operaciones - Ley N° 29972,,,,,,,,True
+1463,pe_sunat_ple_table10,49,Constancia de Depósito - IVAP (Ley 28211),,,,,,,,True
+1464,pe_sunat_ple_table10,50,Declaración Única de Aduanas - Importación definitiva,,,,,,,,True
+1465,pe_sunat_ple_table10,51,Póliza o DUI Fraccionada,,,,,,,,True
+1466,pe_sunat_ple_table10,52,Despacho Simplificado - Importación Simplificada,,,,,,,,True
+1467,pe_sunat_ple_table10,53,Declaración de Mensajería o Courier,,,,,,,,True
+1468,pe_sunat_ple_table10,54,Liquidación de Cobranza,,,,,,,,True
+1469,pe_sunat_ple_table10,55,BVME para transporte ferroviario de pasajeros,,,,,,,,True
+1470,pe_sunat_ple_table10,56,Comprobante de pago SEAE,,,,,,,,True
+1471,pe_sunat_ple_table10,87,Nota de Crédito Especial,,,,,,,,True
+1472,pe_sunat_ple_table10,88,Nota de Débito Especial,,,,,,,,True
+1473,pe_sunat_ple_table10,89,Nota de Ajuste de Operaciones - Ley N° 29972,,,,,,,,True
+1474,pe_sunat_ple_table10,91,Comprobante de No Domiciliado,,,,,,,,True
+1475,pe_sunat_ple_table10,96,Exceso de crédito fiscal por retiro de bienes,,,,,,,,True
+1476,pe_sunat_ple_table10,97,Nota de Crédito - No Domiciliado,,,,,,,,True
+1477,pe_sunat_ple_table10,98,Nota de Débito - No Domiciliado,,,,,,,,True
+1478,pe_sunat_ple_table11,019,TUMBES,,,,,,,,True
+1479,pe_sunat_ple_table11,028,TALARA,,,,,,,,True
+1480,pe_sunat_ple_table11,046,PAITA,,,,,,,,True
+1481,pe_sunat_ple_table11,055,CHICLAYO,,,,,,,,True
+1482,pe_sunat_ple_table11,082,SALAVERRY,,,,,,,,True
+1483,pe_sunat_ple_table11,091,CHIMBOTE,,,,,,,,True
+1484,pe_sunat_ple_table11,118,MARÍTIMA DEL CALLAO,,,,,,,,True
+1485,pe_sunat_ple_table11,127,PISCO,,,,,,,,True
+1486,pe_sunat_ple_table11,145,MOLLENDO MATARANI,,,,,,,,True
+1487,pe_sunat_ple_table11,154,AREQUIPA,,,,,,,,True
+1488,pe_sunat_ple_table11,163,ILO,,,,,,,,True
+1489,pe_sunat_ple_table11,172,TACNA,,,,,,,,True
+1490,pe_sunat_ple_table11,181,PUNO,,,,,,,,True
+1491,pe_sunat_ple_table11,190,CUZCO,,,,,,,,True
+1492,pe_sunat_ple_table11,217,PUCALLPA,,,,,,,,True
+1493,pe_sunat_ple_table11,226,IQUITOS,,,,,,,,True
+1494,pe_sunat_ple_table11,235,AÉREA DEL CALLAO,,,,,,,,True
+1495,pe_sunat_ple_table11,244,POSTAL DE LIMA,,,,,,,,True
+1496,pe_sunat_ple_table11,262,DESAGUADERO,,,,,,,,True
+1497,pe_sunat_ple_table11,271,TARAPOTO,,,,,,,,True
+1498,pe_sunat_ple_table11,280,PUERTO MALDONADO,,,,,,,,True
+1499,pe_sunat_ple_table11,299,LA TINA,,,,,,,,True
+1500,pe_sunat_ple_table11,884,DEPENDENCIA FERROVIARIA TACNA,,,,,,,,True
+1501,pe_sunat_ple_table11,893,DEPENDENCIA POSTAL TACNA,,,,,,,,True
+1502,pe_sunat_ple_table11,910,DEPENDENCIA POSTAL AREQUIPA,,,,,,,,True
+1503,pe_sunat_ple_table11,929,COMPLEJO FRONTERIZO STA ROSA TACNA,,,,,,,,True
+1504,pe_sunat_ple_table11,938,TERMINAL TERRESTRE TACNA,,,,,,,,True
+1505,pe_sunat_ple_table11,947,AEROPUERTO TACNA,,,,,,,,True
+1506,pe_sunat_ple_table11,956,CETICOS TACNA,,,,,,,,True
+1507,pe_sunat_ple_table11,965,DEPENDENCIA POSTAL DE SALAVERRY,,,,,,,,True
+1508,pe_sunat_ple_table12,01,VENTA NACIONAL,,,,,,,,True
+1509,pe_sunat_ple_table12,02,COMPRA NACIONAL,,,,,,,,True
+1510,pe_sunat_ple_table12,03,CONSIGNACIÓN RECIBIDA,,,,,,,,True
+1511,pe_sunat_ple_table12,04,CONSIGNACIÓN ENTREGADA,,,,,,,,True
+1512,pe_sunat_ple_table12,05,DEVOLUCIÓN RECIBIDA,,,,,,,,True
+1513,pe_sunat_ple_table12,06,DEVOLUCIÓN ENTREGADA,,,,,,,,True
+1514,pe_sunat_ple_table12,07,BONIFICACIÓN,,,,,,,,True
+1515,pe_sunat_ple_table12,08,PREMIO,,,,,,,,True
+1516,pe_sunat_ple_table12,09,DONACIÓN,,,,,,,,True
+1517,pe_sunat_ple_table12,10,SALIDA A PRODUCCIÓN,,,,,,,,True
+1518,pe_sunat_ple_table12,11,SALIDA POR TRANSFERENCIA ENTRE ALMACENES,,,,,,,,True
+1519,pe_sunat_ple_table12,12,RETIRO,,,,,,,,True
+1520,pe_sunat_ple_table12,13,MERMAS,,,,,,,,True
+1521,pe_sunat_ple_table12,14,DESMEDROS,,,,,,,,True
+1522,pe_sunat_ple_table12,15,DESTRUCCIÓN,,,,,,,,True
+1523,pe_sunat_ple_table12,16,SALDO INICIAL,,,,,,,,True
+1524,pe_sunat_ple_table12,17,EXPORTACIÓN,,,,,,,,True
+1525,pe_sunat_ple_table12,18,IMPORTACIÓN,,,,,,,,True
+1526,pe_sunat_ple_table12,19,ENTRADA DE PRODUCCIÓN,,,,,,,,True
+1527,pe_sunat_ple_table12,20,ENTRADA POR DEVOLUCIÓN DE PRODUCCIÓN,,,,,,,,True
+1528,pe_sunat_ple_table12,21,ENTRADA POR TRANSFERENCIA ENTRE ALMACENES,,,,,,,,True
+1529,pe_sunat_ple_table12,22,ENTRADA POR IDENTIFICACIÓN ERRONEA,,,,,,,,True
+1530,pe_sunat_ple_table12,23,SALIDA POR IDENTIFICACIÓN ERRONEA,,,,,,,,True
+1531,pe_sunat_ple_table12,24,ENTRADA POR DEVOLUCIÓN DEL CLIENTE,,,,,,,,True
+1532,pe_sunat_ple_table12,25,SALIDA POR DEVOLUCIÓN AL PROVEEDOR,,,,,,,,True
+1533,pe_sunat_ple_table12,26,ENTRADA PARA SERVICIO DE PRODUCCIÓN,,,,,,,,True
+1534,pe_sunat_ple_table12,27,SALIDA POR SERVICIO DE PRODUCCIÓN,,,,,,,,True
+1535,pe_sunat_ple_table12,28,AJUSTE POR DIFERENCIA DE INVENTARIO,,,,,,,,True
+1536,pe_sunat_ple_table12,29,ENTRADA DE BIENES EN PRÉSTAMO,,,,,,,,True
+1537,pe_sunat_ple_table12,30,SALIDA DE BIENES EN PRÉSTAMO,,,,,,,,True
+1538,pe_sunat_ple_table12,31,ENTRADA DE BIENES EN CUSTODIA,,,,,,,,True
+1539,pe_sunat_ple_table12,32,SALIDA DE BIENES EN CUSTODIA,,,,,,,,True
+1540,pe_sunat_ple_table12,33,MUESTRAS MÉDICAS,,,,,,,,True
+1541,pe_sunat_ple_table12,34,PUBLICIDAD,,,,,,,,True
+1542,pe_sunat_ple_table12,35,GASTOS DE REPRESENTACIÓN,,,,,,,,True
+1543,pe_sunat_ple_table12,36,RETIRO PARA ENTREGA A TRABAJADORES,,,,,,,,True
+1544,pe_sunat_ple_table12,37,RETIRO POR CONVENIO COLECTIVO,,,,,,,,True
+1545,pe_sunat_ple_table12,38,RETIRO POR SUSTITUCIÓN DE BIEN SINIESTRADO,,,,,,,,True
+1546,pe_sunat_ple_table12,91,OTROS 1,,,,,,,,True
+1547,pe_sunat_ple_table12,92,OTROS 2,,,,,,,,True
+1548,pe_sunat_ple_table12,93,OTROS 3,,,,,,,,True
+1549,pe_sunat_ple_table12,94,OTROS 4,,,,,,,,True
+1550,pe_sunat_ple_table12,95,OTROS 5,,,,,,,,True
+1551,pe_sunat_ple_table12,96,OTROS 6,,,,,,,,True
+1552,pe_sunat_ple_table12,97,OTROS 7,,,,,,,,True
+1553,pe_sunat_ple_table12,98,OTROS 8,,,,,,,,True
+1554,pe_sunat_ple_table12,99,OTROS,,,,,,,,True
+1555,pe_sunat_ple_table13,1,NACIONES UNIDAS,,,,,,,,True
+1556,pe_sunat_ple_table13,3,GS1 (EAN-UCC),,,,,,,,True
+1557,pe_sunat_ple_table13,9,OTROS,,,,,,,,True
+1558,pe_sunat_ple_table14,1,PROMEDIO PONDERADO,,,,,,,,True
+1559,pe_sunat_ple_table14,2,"PRIMERAS ENTRADAS, PRIMERAS SALIDAS",,,,,,,,True
+1560,pe_sunat_ple_table14,3,EXISTENCIAS BÁSICAS,,,,,,,,True
+1561,pe_sunat_ple_table14,4,DETALLISTA,,,,,,,,True
+1562,pe_sunat_ple_table14,5,IDENTIFICACIÓN ESPECÍFICA,,,,,,,,True
+1563,pe_sunat_ple_table14,9,OTROS,,,,,,,,True
+1564,pe_sunat_ple_table15,01,VALORES EMITIDOS O GARANTIZADOS POR EL ESTADO,,,,,,,,True
+1565,pe_sunat_ple_table15,02,VALORES EMITIDOS O GARANTIZADOS POR EL SISTEMA FINANCIERO,,,,,,,,True
+1566,pe_sunat_ple_table15,03,VALORES EMITIDOS POR LA EMPRESA,,,,,,,,True
+1567,pe_sunat_ple_table15,04,OTROS INSTRUMENTOS FINANCIEROS REPRESENTATIVOS DE DEUDA,,,,,,,,True
+1568,pe_sunat_ple_table15,05,CERTIFICADOS DE SUSCRIPCIÓN PREFERENTE,,,,,,,,True
+1569,pe_sunat_ple_table15,06,ACCIONES REPRESENTATIVAS DE CAPITAL SOCIAL,,,,,,,,True
+1570,pe_sunat_ple_table15,07,ACCIONES DE INVERSIÓN,,,,,,,,True
+1571,pe_sunat_ple_table15,08,CERTIFICADO DE PARTICIPACIÓN DE FONDOS,,,,,,,,True
+1572,pe_sunat_ple_table15,09,ASOCIACIONES EN PARTICIPACIÓN Y CONSORCIOS,,,,,,,,True
+1573,pe_sunat_ple_table15,10,OTROS INSTRUMENTOS FINANCIEROS REPRESENTATIVOS DE DERECHO PATRIMONIAL,,,,,,,,True
+1574,pe_sunat_ple_table15,99,OTROS TÍTULOS,,,,,,,,True
+1575,pe_sunat_ple_table16,01,ACCIONES CON DERECHO A VOTO,,,,,,,,True
+1576,pe_sunat_ple_table16,02,ACCIONES SIN DERECHO A VOTO,,,,,,,,True
+1577,pe_sunat_ple_table16,03,PARTICIPACIONES,,,,,,,,True
+1578,pe_sunat_ple_table16,04,OTROS,,,,,,,,True
+1579,pe_sunat_ple_table17,01,PLAN CONTABLE GENERAL EMPRESARIAL,,,,,,,,True
+1580,pe_sunat_ple_table17,02,PLAN CONTABLE GENERAL REVISADO,,,,,,,,True
+1581,pe_sunat_ple_table17,03,"PLAN DE CUENTAS PARA EMPRESAS DEL SISTEMA FINANCIERO, SUPERVISADAS POR SBS",,,,,,,,True
+1582,pe_sunat_ple_table17,04,"PLAN DE CUENTAS PARA ENTIDADES PRESTADORAS DE SALUD, SUPERVISADAS POR SBS",,,,,,,,True
+1583,pe_sunat_ple_table17,05,"PLAN DE CUENTAS PARA EMPRESAS DEL SISTEMA ASEGURADOR, SUPERVISADAS POR SBS",,,,,,,,True
+1584,pe_sunat_ple_table17,06,"PLAN DE CUENTAS DE LAS ADMINISTRADORAS PRIVADAS DE FONDOS DE PENSIONES, SUPERVISADAS POR SBS",,,,,,,,True
+1585,pe_sunat_ple_table17,07,PLAN CONTABLE GUBERNAMENTAL,,,,,,,,True
+1586,pe_sunat_ple_table17,99,OTROS,,,,,,,,True
+1587,pe_sunat_ple_table18,1,NO REVALUADO O REVALUADO SIN EFECTO TRIBUTARIO,,,,,,,,True
+1588,pe_sunat_ple_table18,2,REVALUADO CON EFECTO TRIBUTARIO,,,,,,,,True
+1589,pe_sunat_ple_table19,1,ACTIVOS EN DESUSO,,,,,,,,True
+1590,pe_sunat_ple_table19,2,ACTIVOS OBSOLETOS,,,,,,,,True
+1591,pe_sunat_ple_table19,9,RESTO DE ACTIVOS,,,,,,,,True
+1592,pe_sunat_ple_table20,1,LINEA RECTA,,,,,,,,True
+1593,pe_sunat_ple_table20,2,UNIDADES PRODUCIDAS,,,,,,,,True
+1594,pe_sunat_ple_table20,9,OTROS,,,,,,,,True
+1595,pe_sunat_ple_table21,1,PROCESO PRODUCTIVO,,,,,,,,True
+1596,pe_sunat_ple_table21,2,LÍNEA DE PRODUCCIÓN,,,,,,,,True
+1597,pe_sunat_ple_table21,3,PRODUCTO,,,,,,,,True
+1598,pe_sunat_ple_table21,4,PROYECTO,,,,,,,,True
+1599,pe_sunat_ple_table21,9,OTROS,,,,,,,,True
+1600,pe_sunat_ple_table22,01,SUPERINTENDENCIA DEL MERCADO DE VALORES - SECTOR DIVERSAS - INDIVIDUAL,,,,,,,,True
+1601,pe_sunat_ple_table22,02,SUPERINTENDENCIA DEL MERCADO DE VALORES - SECTOR SEGUROS - INDIVIDUAL,,,,,,,,True
+1602,pe_sunat_ple_table22,03,SUPERINTENDENCIA DEL MERCADO DE VALORES - SECTOR BANCOS Y FINANCIERAS - INDIVIDUAL,,,,,,,,True
+1603,pe_sunat_ple_table22,04,SUPERINTENDENCIA DEL MERCADO DE VALORES - ADMINISTRADORAS DE FONDOS DE PENSIONES (AFP),,,,,,,,True
+1604,pe_sunat_ple_table22,05,SUPERINTENDENCIA DEL MERCADO DE VALORES - AGENTES DE INTERMEDIACIÓN,,,,,,,,True
+1605,pe_sunat_ple_table22,06,SUPERINTENDENCIA DEL MERCADO DE VALORES - FONDOS DE INVERSIÓN,,,,,,,,True
+1606,pe_sunat_ple_table22,07,SUPERINTENDENCIA DEL MERCADO DE VALORES - PATRIMONIO EN FIDEICOMISOS,,,,,,,,True
+1607,pe_sunat_ple_table22,08,SUPERINTENDENCIA DEL MERCADO DE VALORES - ICLV,,,,,,,,True
+1608,pe_sunat_ple_table22,09,OTROS NO CONSIDERADOS EN LOS ANTERIORES,,,,,,,,True
+1609,pe_sunat_ple_table25,00,NINGUNO,,,,,,,,True
+1610,pe_sunat_ple_table25,01,CANADA,,,,,,,,True
+1611,pe_sunat_ple_table25,02,CHILE,,,,,,,,True
+1612,pe_sunat_ple_table25,03,COMUNIDAD ANDINA DE NACIONES (CAN),,,,,,,,True
+1613,pe_sunat_ple_table25,04,BRASIL,,,,,,,,True
+1614,pe_sunat_ple_table25,05,ESTADOS UNIDOS MEXICANOS,,,,,,,,True
+1615,pe_sunat_ple_table25,06,REPUBLICA DE COREA,,,,,,,,True
+1616,pe_sunat_ple_table25,07,CONFEDERACIÓN SUIZA,,,,,,,,True
+1617,pe_sunat_ple_table25,08,PORTUGAL,,,,,,,,True
+1618,pe_sunat_ple_table25,09,OTROS,,,,,,,,True
+1619,pe_sunat_ple_table27,00,Sin vinculación,,,,,,,,True
+1620,pe_sunat_ple_table27,01,"Una persona natural o jurídica posea más de treinta por ciento (30%) del capital de otra persona jurídica, directamente o por intermedio de un tercero",,,,,,,,True
+1621,pe_sunat_ple_table27,02,"Más del treinta por ciento (30%) del capital de dos (2) o más personas jurídicas pertenezca a una misma persona natural o jurídica, directamente o por intermedio de un tercero",,,,,,,,True
+1622,pe_sunat_ple_table27,03,"En cualesquiera de los casos anteriores, cuando la indicada proporción del capital pertenezca a cónyuges entre sí o a personas naturales vinculadas hasta el segundo grado de consanguinidad o afinidad",,,,,,,,True
+1623,pe_sunat_ple_table27,04,El capital de dos (2) o más personas jurídicas pertenezca en más del treinta por ciento (30%) a socios comunes a éstas,,,,,,,,True
+1624,pe_sunat_ple_table27,05,"Las personas jurídicas o entidades cuenten con una o más directores, gerentes, administradores u otros directivos comunes, que tengan poder de decisión en los acuerdos financieros, operativos y/o comerciales que se adopten",,,,,,,,True
+1625,pe_sunat_ple_table27,06,Dos o más personas naturales o jurídicas consoliden Estados Financieros,,,,,,,,True
+1626,pe_sunat_ple_table27,07,"Exista un contrato de colaboración empresarial con contabilidad independiente, en cuyo caso el contrato se considerará vinculado con aquellas partes contratantes que participen, directamente o por intermedio de un tercero, en mas del treinta por ciento (30%) en el patrimonio del contrato o cuando alguna de las partes contratantes tengan poder de decisión en los acuerdos financieros, comerciales u operativos que se adopten para el desarrollo del contrato, caso en el cual la parte contratante que ejerza el poder de decisión se encontrará vinculado con el contrato",,,,,,,,True
+1627,pe_sunat_ple_table27,08,"En el caso de un contrato de colaboración empresarial sin contabilidad independiente, la vinculación entre cada una de las partes integrantes del contrato y la contraparte deberá verificarse individualmente, aplicando algunos de los criterios de vinculación establecidos en este artículo (articulo 24° del reglamento del Impuesto a la Renta). Se entiende por contraparte a la persona natural o jurídica con las que las partes integrantes celebren alguna operación con el fin de alcanzar el objeto del contrato",,,,,,,,True
+1628,pe_sunat_ple_table27,09,"Exista un contrato de asociación en participación, en el que alguno de los asociados, directa o indirectamente, participe en mas del treinta por ciento (30%) en los resultados o en las utilidades de uno o varios negocios del asociante, en cuyo caso se considerará que existe vinculación entre el asociante y cada uno de sus asociados. También se considerará que existe vinculación cuando alguno de los asociados tenga poder de decisión en los aspectos financieros, comerciales u operativos en uno o varios negocios del asociante",,,,,,,,True
+1629,pe_sunat_ple_table27,10,"Una empresa no domiciliada tenga uno o mas establecimientos permanentes en el país, en cuyo caso existirá vinculación entre la empresa no domiciliada y cada uno de sus establecimientos permanentes y entre todos ellos entre si",,,,,,,,True
+1630,pe_sunat_ple_table27,11,"Una empresa domiciliada en territorio peruano tenga uno o mas establecimientos permanentes en el extranjero, en cuyo caso existirá vinculación entre la empresa domiciliada y cada uno de sus establecimientos permanentes",,,,,,,,True
+1631,pe_sunat_ple_table27,12,"Una persona natural o jurídica ejerza influencia dominante en las decisiones de los órganos de administración de una o mas personas jurídicas o entidades. En tal situación, se considerará que las personas jurídicas o entidades influidas están vinculadas entre si y con la persona natural o jurídica que ejerce dicha influencia. Se entiende que una persona natural o jurídica ejerce influencia  dominante cuando, en la adopción del acuerdo, ejerce o controla la mayoría absoluta de votos para la toma de decisiones en los órganos de administración de la persona jurídica o entidad. En el caso de decisiones relacionadas con los asuntos mencionados en el artículo 126° de la Ley General de Sociedades, existirá influencia dominante de la persona natural o jurídica que, participando en la adopción del acuerdo, por si misma o con la intervención de votos de terceros, tiene en el acto de votación el mayor número de acciones suscritas con derecho a voto, siempre y cuando cuente con, al menos, el diez por ciento (10%) de las acciones suscritas con derecho a voto. También se otorgará el tratamiento de partes vinculadas cuando una persona, empresa o entidad domiciliada en el país realice, en el ejercicio gravable anterior, el ochenta por ciento (80%) o mas de sus ventas de bienes, prestación de servicios u otro tipo de operaciones, con una persona, empresa o entidad domiciliada en el país o con personas, empresas o entidades vinculadas entre si, domiciliadas en el país, siempre que tales operaciones, a su vez, representen por lo menos el treinta por ciento (30%) de las compras o adquisiciones de la otra parte en el mismo período. Tratándose de empresas que tengan actividades por períodos mayores a tres ejercicios gravables, tales porcentajes se calcularán teniendo en cuenta el porcentaje promedio de ventas o compras, según sea el caso, realizadas en los tres ejercicios gravables inmediatos anteriores. Lo dispuesto en este párrafo no será de aplicación a las operaciones que realicen las empresas que conforman la Actividad Empresarial del Estado, en las cuales la participación del Estado sea mayor al cincuenta por ciento (50%) del capital. La vinculación, de acuerdo a alguno de los criterios establecidos en este artículo, también operará cuando la transacción sea realizada utilizando personas o entidades interpuestas, domiciliadas o no en el país con el propósito de encubrir una transacción entre partes vinculadas",,,,,,,,True
+1632,pe_sunat_ple_table28,501,50 CAPITAL / Capital social,,,,,,,,True
+1633,pe_sunat_ple_table28,5011,50 CAPITAL / Acciones,,,,,,,,True
+1634,pe_sunat_ple_table28,5012,50 CAPITAL / Participaciones,,,,,,,,True
+1635,pe_sunat_ple_table28,502,50 CAPITAL / Acciones en tesorería,,,,,,,,True
+1636,pe_sunat_ple_table28,511,51 ACCIONES DE INVERSIÓN / Acciones de inversión en tesorería,,,,,,,,True
+1637,pe_sunat_ple_table28,512,51 ACCIONES DE INVERSIÓN / 52 CAPITAL ADICIONAL,,,,,,,,True
+1638,pe_sunat_ple_table28,521,52 CAPITAL ADICIONAL / Primas (descuento) de acciones,,,,,,,,True
+1639,pe_sunat_ple_table28,522,52 CAPITAL ADICIONAL / Capitalizaciones en trámite,,,,,,,,True
+1640,pe_sunat_ple_table28,5221,52 CAPITAL ADICIONAL / Aportes,,,,,,,,True
+1641,pe_sunat_ple_table28,5222,52 CAPITAL ADICIONAL / Reservas,,,,,,,,True
+1642,pe_sunat_ple_table28,5223,52 CAPITAL ADICIONAL / Acreencias,,,,,,,,True
+1643,pe_sunat_ple_table28,5224,52 CAPITAL ADICIONAL / Utilidades,,,,,,,,True
+1644,pe_sunat_ple_table28,523,52 CAPITAL ADICIONAL / Reducciones de capital pendientes de formalización,,,,,,,,True
+1645,pe_sunat_ple_table28,561,56 RESULTADOS NO REALIZADOS / Diferencia en cambio de inversiones permanentes en entidades extranjeras,,,,,,,,True
+1646,pe_sunat_ple_table28,562,56 RESULTADOS NO REALIZADOS / Instrumentos financieros – Cobertura de flujo de efectivo,,,,,,,,True
+1647,pe_sunat_ple_table28,563,56 RESULTADOS NO REALIZADOS / Ganancia o pérdida en activos o pasivos financieros disponibles para la venta,,,,,,,,True
+1648,pe_sunat_ple_table28,5631,56 RESULTADOS NO REALIZADOS / Ganancia,,,,,,,,True
+1649,pe_sunat_ple_table28,5632,56 RESULTADOS NO REALIZADOS / Pérdida,,,,,,,,True
+1650,pe_sunat_ple_table28,564,56 RESULTADOS NO REALIZADOS / Ganancia o pérdida en activos o pasivos financieros disponibles para la venta – Compra o venta convencional fecha de liquidación,,,,,,,,True
+1651,pe_sunat_ple_table28,5641,56 RESULTADOS NO REALIZADOS / Ganancia,,,,,,,,True
+1652,pe_sunat_ple_table28,5642,56 RESULTADOS NO REALIZADOS / Pérdida,,,,,,,,True
+1653,pe_sunat_ple_table28,571,57 EXCEDENTE DE REVALUACIÓN / Excedente de revaluación,,,,,,,,True
+1654,pe_sunat_ple_table28,5711,57 EXCEDENTE DE REVALUACIÓN / Inversiones inmobiliarias,,,,,,,,True
+1655,pe_sunat_ple_table28,5712,"57 EXCEDENTE DE REVALUACIÓN / Inmuebles, maquinaria y equipos",,,,,,,,True
+1656,pe_sunat_ple_table28,5713,57 EXCEDENTE DE REVALUACIÓN / Intangibles,,,,,,,,True
+1657,pe_sunat_ple_table28,572,57 EXCEDENTE DE REVALUACIÓN / Excedente de revaluación – Acciones liberadas recibidas,,,,,,,,True
+1658,pe_sunat_ple_table28,573,57 EXCEDENTE DE REVALUACIÓN / Participación en excedente de revaluación – Inversiones en entidades relacionadas,,,,,,,,True
+1659,pe_sunat_ple_table28,581,58 RESERVAS / Reinversión,,,,,,,,True
+1660,pe_sunat_ple_table28,582,58 RESERVAS / Legal,,,,,,,,True
+1661,pe_sunat_ple_table28,583,58 RESERVAS / Contractuales,,,,,,,,True
+1662,pe_sunat_ple_table28,584,58 RESERVAS / Estatutarias,,,,,,,,True
+1663,pe_sunat_ple_table28,585,58 RESERVAS / Facultativas,,,,,,,,True
+1664,pe_sunat_ple_table28,589,58 RESERVAS / Otras reservas,,,,,,,,True
+1665,pe_sunat_ple_table28,591,59 RESULTADOS ACUMULADOS / Utilidades no distribuidas,,,,,,,,True
+1666,pe_sunat_ple_table28,5911,59 RESULTADOS ACUMULADOS / Utilidades acumuladas,,,,,,,,True
+1667,pe_sunat_ple_table28,5912,59 RESULTADOS ACUMULADOS / Ingresos de años anteriores,,,,,,,,True
+1668,pe_sunat_ple_table28,592,59 RESULTADOS ACUMULADOS / Pérdidas acumuladas,,,,,,,,True
+1669,pe_sunat_ple_table28,5921,59 RESULTADOS ACUMULADOS / Pérdidas acumuladas,,,,,,,,True
+1670,pe_sunat_ple_table28,5922,59 RESULTADOS ACUMULADOS / Gastos de años anteriores,,,,,,,,True
+1671,pe_sunat_ple_table30,1,"MERCADERIA, MATERIA PRIMA, SUMINISTRO, ENVASES Y EMBALAJES",,,,,,,,True
+1672,pe_sunat_ple_table30,2,ACTIVO FIJO,,,,,,,,True
+1673,pe_sunat_ple_table30,3,OTROS ACTIVOS NO CONSIDERADOS EN LOS NUMERALES 1 Y 2,,,,,,,,True
+1674,pe_sunat_ple_table30,4,"GASTOS DE EDUCACIÓN, RECREACIÓN, SALUD, CULTURALES. REPRESENTACIÓN, CAPACITACIÓN, DE VIAJE, MANTENIMIENTO DE VEHICULO Y  DE PREMIOS",,,,,,,,True
+1675,pe_sunat_ple_table30,5,OTROS GASTOS NO INCLUIDOS EN EL NUMERAL 4,,,,,,,,True
+1676,pe_sunat_ple_table31,00 ,OCDE- / Bienes,,,,,,,,True
+1677,pe_sunat_ple_table31,01,OCDE-06 / Arrendamiento de predios,,,,,,,,True
+1678,pe_sunat_ple_table31,02,OCDE-06 / Enajenación Inmuebles y derechos sobre inmuebles,,,,,,,,True
+1679,pe_sunat_ple_table31,03,"OCDE-12 / Rentas de bienes situados en el país o derechos utilizados en el país, incluye enajenación.",,,,,,,,True
+1680,pe_sunat_ple_table31,04,OCDE-12 / Regalias: Bienes o derechos por los que pagan son utilizados país.,,,,,,,,True
+1681,pe_sunat_ple_table31,05,OCDE-12 / Regalias: Pagador de las regalías es domiciliado.,,,,,,,,True
+1682,pe_sunat_ple_table31,06,"OCDE-11 / Por capitales,  intereses, comisiones, primas - operaciones financieras - capital utilizado en el país o el pagador sea un sujeto domiciliado. Originadas por fondos de cualquier tipo de entidad, por cesión a terceros de un capital, por operaciones de capitalización o por contratos de seguro de vida o invalidez que no tengan su origen en el trabajo personal.",,,,,,,,True
+1683,pe_sunat_ple_table31,07,"OCDE-10 / Dividendos y cualquier otra forma de distribución de utilidades, cuando la empresa que los distribuye, pague y acredite se encuentre domiciliada en el país, o cuando el fondo de inversión, patrimonio fideicometido o fiduciario banacario, fondo de pensiones, que lo distribuya, pague o acredite, se encuentre constituido o establecido en el país",,,,,,,,True
+1684,pe_sunat_ple_table31,08,OCDE-10 / Los rendimientos de los ADR y GDRs que tengan como subyacentes acciones emitidas por empresas no domiciliadas,,,,,,,,True
+1685,pe_sunat_ple_table31,09,"OCDE-21 / Originadas en actividades civiles, comerciales, empresariales o de cualquier índole, que se lleven a cabo en territorio nacional.",,,,,,,,True
+1686,pe_sunat_ple_table31,10,"OCDE-15 / Originadas en el trabajo personal que lleven a cabo en el territorio nacional No comprende cuando se ingresa al país  temporalmente a efectuar: actos previos a la realización de inversiones extranjeras; actos destinados a supervisar o controlar la inversión o el negocio, tales como los de recolección de datos o información o la realización de entrevistas; actos relacionados con la contratación de personal local; actos relacionados con la firma de convenios o actos similares.",,,,,,,,True
+1687,pe_sunat_ple_table31,11,"OCDE-18 / Rentas vitalicias y las pensiones que tengan su origen en el trabajo personal, pagadas por un sujeto domiciliada",,,,,,,,True
+1688,pe_sunat_ple_table31,12,"OCDE-13 / Las obtenidas por la enajenación de acciones y participaciones representativas del capital,  cuando las empresas, que los hayan emitido estén constituidos o establecidos en el Perú. Fuera de Bolsa",,,,,,,,True
+1689,pe_sunat_ple_table31,13,"OCDE-13 / Las obtenidas por la enajenación,  de  certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando los  Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú.  Fuera de Bolsa",,,,,,,,True
+1690,pe_sunat_ple_table31,14,"OCDE-13 / Las obtenidas por la redención o rescate de certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando los  Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú.  Fuera de Bolsa",,,,,,,,True
+1691,pe_sunat_ple_table31,15,"OCDE-13 / Las obtenidas por la enajenación de acciones y participaciones representativas del capital, acciones de inversión, certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando las empresas, sociedades, Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú.  Dentro de Bolsa",,,,,,,,True
+1692,pe_sunat_ple_table31,16,"OCDE-13 / Las obtenidas por la redención o rescate de  acciones de inversión, certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando las empresas, sociedades, Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú. Dentro de Bolsa",,,,,,,,True
+1693,pe_sunat_ple_table31,17,OCDE-13 / Enajenación de los ADR’s  y GDR’s  que tengan como subyacente acciones emitidas por empresas domiciliadas en el país.,,,,,,,,True
+1694,pe_sunat_ple_table31,18,"OCDE-21 / Las obtenidas por servicios digitales prestados a través del Internet o de cualquier adaptación o aplicación de los protocolos, plataformas o de la tecnología utilizada por Internet o cualquier otra red a través de la que se presten servicios equivalentes, cuando el servicio se utilice económicamente, use o consuma en el país",,,,,,,,True
+1695,pe_sunat_ple_table31,19,"OCDE-7 / La obtenida por asistencia técnica, cuando ésta se utilice económicamente en el país",,,,,,,,True
+1696,pe_sunat_ple_table31,20,"OCDE-11 / Los intereses de obligaciones, cuando la entidad emisora ha sido constituida en el país",,,,,,,,True
+1697,pe_sunat_ple_table31,21,OCDE-16 / Remuneracion pagada por Domiciliados; Sujeto miembro de un consejo directivo o adm.; Actuación en el Extranjero,,,,,,,,True
+1698,pe_sunat_ple_table31,22,OCDE-19 / Honorarios o remuneraciones del Sector Público Nacional por trabajos realizados en el exterior.,,,,,,,,True
+1699,pe_sunat_ple_table31,23,OCDE-7 / Resultados Proveniente de la contratación de IFD,,,,,,,,True
+1700,pe_sunat_ple_table31,24,OCDE-7 / Resultados  de IFD con cobertura destinados a la generación de RFP,,,,,,,,True
+1701,pe_sunat_ple_table31,25,OCDE-7 / Proveniente de la contratación de IFD sin cobertura destinados a la generación de RFP,,,,,,,,True
+1702,pe_sunat_ple_table31,26,"OCDE-7 / IFD donde Activo subyacente sea referido al Tipo de Cambio Moneda extranjera. 180 dias. (La Dom es la prestadora del IFD, la No Dom es la que obtiene el resultado)",,,,,,,,True
+1703,pe_sunat_ple_table31,27,"OCDE-13 / Las obtenidas por la enajenación indirecta de acciones y participaciones representativas del capital de personas jurídicas domiciliadas en el país, cuando la operación cumple las condiciones para ser gravadas en el Perú",,,,,,,,True
+1704,pe_sunat_ple_table31,28,OCDE-13 / Se incluye dentro de la enajenación de de empresas no domiciliadas en el país la enajenación de ADR´s (American Depositary Receipts) que tengan como subyacente a tales acciones.,,,,,,,,True
+1705,pe_sunat_ple_table31,29,"OCDE-10 / Sujeto es el No Dom que distribuye  por la reducción de capital dentro de los 12 meses anteriores cuando hubiera aumentado su capital como consecuencia de nuevos aportes, de capitalización de créditos o de una reorganización",,,,,,,,True
+1706,pe_sunat_ple_table31,30,OCDE-07 - 21 / Actividades de Seguros 7% sobre las primas. Comisiones por  Reaseguros sobre personas y/o bienes radicados en el país,,,,,,,,True
+1707,pe_sunat_ple_table31,31,"OCDE-8 / Alquiler de Naves, 8% sobre Ingresos Brutos que perciban por dicha actividad",,,,,,,,True
+1708,pe_sunat_ple_table31,32,"OCDE-8 / Alquiler de Aeronaves, 60% sobre Ingresos Brutos que perciban por dicha actividad",,,,,,,,True
+1709,pe_sunat_ple_table31,33,OCDE-8 / 1% por el ingresos brutos por el transporte aéreo.,,,,,,,,True
+1710,pe_sunat_ple_table31,34,OCDE-8 / Excepto Otros transportes no aereos o maritimos que van por los ingresos de la parte prestada en el país,,,,,,,,True
+1711,pe_sunat_ple_table31,35,OCDE-8 / 2% por el ingresos brutos por fletamiento o transporte marítimo.,,,,,,,,True
+1712,pe_sunat_ple_table31,36,OCDE-24 / Empresas por reciprocidad en lineas extranjeras con sedes en esos países,,,,,,,,True
+1713,pe_sunat_ple_table31,37,"OCDE-07 - 21 / Servicio portadores, teleservcios o finales, difusión y de valor añadido. Con excepcion de los Servicios Digitales según 4-A",,,,,,,,True
+1714,pe_sunat_ple_table31,38,"OCDE-07 - 21 / 10%. sobre las remuneraciones brutas que obtengan por el suministro de noticias y, en general material informativo o gráfico, a personas o entidades domiciliadas o que utilicen dicho material en el país.",,,,,,,,True
+1715,pe_sunat_ple_table31,39,"OCDE-07 - 21 / para su utilización por personas naturales o jurídicas domiciliadas: 20% sobre los ingresos brutos que perciban por el uso de películas cinematográficas o para televisión, 'video tape', radionovelas, discos fonográficos, historietas gráficas y cualquier otro medio similar de proyección, reproducción, transmisión o difusión de imágenes o sonidos.",,,,,,,,True
+1716,pe_sunat_ple_table31,40,OCDE-8 / en el país o desde el país al exterior y no presten el servicio de transporte 15% de los ingresos brutos que obtengan por dicho suministro.,,,,,,,,True
+1717,pe_sunat_ple_table31,41,OCDE-07 - 21 / 80% de los ingresos brutos que obtengan por el exceso de estadía de contenedores.,,,,,,,,True
+1718,pe_sunat_ple_table31,42,OCDE-07 - 21 / 20% de los ingresos brutos que obtengan los contribuyentes no domiciliados por la cesión de derechos para la retransmisión por televisión en el país de eventos en vivo realizados en el extranjero. ,,,,,,,,True
+1719,pe_sunat_ple_table31,43,OCDE-15 / Extranjeros que ingresan al país y cuentas con las siguientes calidades especificas a prestar servicios,,,,,,,,True
+1720,pe_sunat_ple_table32,1,SERVICIO PRESTADO INTEGRAMENTE EN EL PERÚ,,,,,,,,True
+1721,pe_sunat_ple_table32,2,SERVICIO PRESTADO PARTE EN EL PERÚ Y PARTE EN EL EXTRANJERO,,,,,,,,True
+1722,pe_sunat_ple_table32,3,SERVICIO PRESTADO EXCLUSIVAMENTE EN EL EXTRANJERO,,,,,,,,True
+1723,pe_sunat_ple_table33,1,Los intereses provenientes de créditos de fomento otorgados directamente o mediante proveedores o intermediarios financieros por organismos internacionales o instituciones gubernamentales extranjeras.,,,,,,,,True
+1724,pe_sunat_ple_table33,2,Las rentas de los inmuebles de propiedad de organismos internacionales que les sirvan de sede. ,,,,,,,,True
+1725,pe_sunat_ple_table33,3,"Las remuneraciones que perciban, por el ejercicio de su cargo en el país, los funcionarios y empleados considerados como tales dentro de la estructura organizacional de los gobiernos extranjeros, instituciones oficiales extranjeras y organismos internacionales, siempre que los convenios constitutivos así lo establezcan. ",,,,,,,,True
+1726,pe_sunat_ple_table33,4,Los ingresos brutos que perciben las representaciones deportivas nacionales de países extranjeros por sus actuaciones en el país.,,,,,,,,True
+1727,pe_sunat_ple_table33,5,"Las regalías por asesoramiento técnico, económico, financiero, o de otra índole, prestados desde el exterior por entidades estatales u organismos internacionales.",,,,,,,,True
+1728,pe_sunat_ple_table33,6,"Los ingresos extranjeros por los espectáculos en vivo de teatro, zarzuela, conciertos de música clásica, ópera, opereta, ballet y folclor, calificados como espectáculos públicos culturales por el Instituto Nacional de Cultura, realizados en el país. brutos que perciben las representaciones de países. ",,,,,,,,True
+1729,pe_sunat_ple_table34,xxx,'---',,,,,,,,True
+1730,pe_sunat_ple_table35,9001,BOUVET ISLAND,,,,,,,,True
+1731,pe_sunat_ple_table35,9002,COTE D'IVOIRE,,,,,,,,True
+1732,pe_sunat_ple_table35,9003,FALKLAND ISLANDS (MALVINAS),,,,,,,,True
+1733,pe_sunat_ple_table35,9004,"FRANCE, METROPOLITAN",,,,,,,,True
+1734,pe_sunat_ple_table35,9005,FRENCH SOUTHERN TERRITORIES,,,,,,,,True
+1735,pe_sunat_ple_table35,9006,HEARD AND MC DONALD ISLANDS,,,,,,,,True
+1736,pe_sunat_ple_table35,9007,MAYOTTE,,,,,,,,True
+1737,pe_sunat_ple_table35,9008,SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS,,,,,,,,True
+1738,pe_sunat_ple_table35,9009,SVALBARD AND JAN MAYEN ISLANDS,,,,,,,,True
+1739,pe_sunat_ple_table35,9010,UNITED STATES MINOR OUTLYING ISLANDS,,,,,,,,True
+1740,pe_sunat_ple_table35,9011,OTROS PAISES O LUGARES,,,,,,,,True
+1741,pe_sunat_ple_table35,9013,AFGANISTAN,,,,,,,,True
+1742,pe_sunat_ple_table35,9017,ALBANIA,,,,,,,,True
+1743,pe_sunat_ple_table35,9019,ALDERNEY,,,,,,,,True
+1744,pe_sunat_ple_table35,9023,ALEMANIA,,,,,,,,True
+1745,pe_sunat_ple_table35,9026,ARMENIA,,,,,,,,True
+1746,pe_sunat_ple_table35,9027,ARUBA,,,,,,,,True
+1747,pe_sunat_ple_table35,9028,ASCENCI?N,,,,,,,,True
+1748,pe_sunat_ple_table35,9029,BOSNIA-HERZEGOVINA,,,,,,,,True
+1749,pe_sunat_ple_table35,9031,BURKINA FASO,,,,,,,,True
+1750,pe_sunat_ple_table35,9037,ANDORRA,,,,,,,,True
+1751,pe_sunat_ple_table35,9040,ANGOLA,,,,,,,,True
+1752,pe_sunat_ple_table35,9041,ANGUILLA,,,,,,,,True
+1753,pe_sunat_ple_table35,9043,ANTIGUA Y BARBUDA,,,,,,,,True
+1754,pe_sunat_ple_table35,9047,ANTILLAS HOLANDESAS,,,,,,,,True
+1755,pe_sunat_ple_table35,9053,ARABIA SAUDITA,,,,,,,,True
+1756,pe_sunat_ple_table35,9059,ARGELIA,,,,,,,,True
+1757,pe_sunat_ple_table35,9063,ARGENTINA,,,,,,,,True
+1758,pe_sunat_ple_table35,9069,AUSTRALIA,,,,,,,,True
+1759,pe_sunat_ple_table35,9072,AUSTRIA,,,,,,,,True
+1760,pe_sunat_ple_table35,9074,AZERBAIJAN,,,,,,,,True
+1761,pe_sunat_ple_table35,9077,BAHAMAS,,,,,,,,True
+1762,pe_sunat_ple_table35,9080,BAHREIN,,,,,,,,True
+1763,pe_sunat_ple_table35,9081,BANGLADESH,,,,,,,,True
+1764,pe_sunat_ple_table35,9083,BARBADOS,,,,,,,,True
+1765,pe_sunat_ple_table35,9087,BELGICA,,,,,,,,True
+1766,pe_sunat_ple_table35,9088,BELICE,,,,,,,,True
+1767,pe_sunat_ple_table35,9090,BERMUDAS,,,,,,,,True
+1768,pe_sunat_ple_table35,9091,BELARUS,,,,,,,,True
+1769,pe_sunat_ple_table35,9093,MYANMAR,,,,,,,,True
+1770,pe_sunat_ple_table35,9097,BOLIVIA,,,,,,,,True
+1771,pe_sunat_ple_table35,9101,BOTSWANA,,,,,,,,True
+1772,pe_sunat_ple_table35,9105,BRASIL,,,,,,,,True
+1773,pe_sunat_ple_table35,9108,BRUNEI DARUSSALAM,,,,,,,,True
+1774,pe_sunat_ple_table35,9111,BULGARIA,,,,,,,,True
+1775,pe_sunat_ple_table35,9115,BURUNDI,,,,,,,,True
+1776,pe_sunat_ple_table35,9119,BUTAN,,,,,,,,True
+1777,pe_sunat_ple_table35,9127,CABO VERDE,,,,,,,,True
+1778,pe_sunat_ple_table35,9137,"CAIMAN,ISLAS",,,,,,,,True
+1779,pe_sunat_ple_table35,9141,CAMBOYA,,,,,,,,True
+1780,pe_sunat_ple_table35,9145,"CAMERUN,REPUBLICA UNIDA DEL",,,,,,,,True
+1781,pe_sunat_ple_table35,9147,CAMPIONE D?TALIA,,,,,,,,True
+1782,pe_sunat_ple_table35,9149,CANADA,,,,,,,,True
+1783,pe_sunat_ple_table35,9155,"CANAL (NORMANDAS), ISLAS",,,,,,,,True
+1784,pe_sunat_ple_table35,9157,CANTON Y ENDERBURRY,,,,,,,,True
+1785,pe_sunat_ple_table35,9159,SANTA SEDE,,,,,,,,True
+1786,pe_sunat_ple_table35,9165,"COCOS (KEELING),ISLAS",,,,,,,,True
+1787,pe_sunat_ple_table35,9169,COLOMBIA,,,,,,,,True
+1788,pe_sunat_ple_table35,9173,COMORAS,,,,,,,,True
+1789,pe_sunat_ple_table35,9177,CONGO,,,,,,,,True
+1790,pe_sunat_ple_table35,9183,"COOK, ISLAS",,,,,,,,True
+1791,pe_sunat_ple_table35,9187,"COREA (NORTE), REPUBLICA POPULAR DEMOCRATICA DE",,,,,,,,True
+1792,pe_sunat_ple_table35,9190,"COREA (SUR), REPUBLICA DE",,,,,,,,True
+1793,pe_sunat_ple_table35,9193,COSTA DE MARFIL,,,,,,,,True
+1794,pe_sunat_ple_table35,9196,COSTA RICA,,,,,,,,True
+1795,pe_sunat_ple_table35,9198,CROACIA,,,,,,,,True
+1796,pe_sunat_ple_table35,9199,CUBA,,,,,,,,True
+1797,pe_sunat_ple_table35,9203,CHAD,,,,,,,,True
+1798,pe_sunat_ple_table35,9207,CHECOSLOVAQUIA,,,,,,,,True
+1799,pe_sunat_ple_table35,9211,CHILE,,,,,,,,True
+1800,pe_sunat_ple_table35,9215,CHINA,,,,,,,,True
+1801,pe_sunat_ple_table35,9218,TAIWAN (FORMOSA),,,,,,,,True
+1802,pe_sunat_ple_table35,9221,CHIPRE,,,,,,,,True
+1803,pe_sunat_ple_table35,9229,BENIN,,,,,,,,True
+1804,pe_sunat_ple_table35,9232,DINAMARCA,,,,,,,,True
+1805,pe_sunat_ple_table35,9235,DOMINICA,,,,,,,,True
+1806,pe_sunat_ple_table35,9239,ECUADOR,,,,,,,,True
+1807,pe_sunat_ple_table35,9240,EGIPTO,,,,,,,,True
+1808,pe_sunat_ple_table35,9242,EL SALVADOR,,,,,,,,True
+1809,pe_sunat_ple_table35,9243,ERITREA,,,,,,,,True
+1810,pe_sunat_ple_table35,9244,EMIRATOS ARABES UNIDOS,,,,,,,,True
+1811,pe_sunat_ple_table35,9245,ESPA?A,,,,,,,,True
+1812,pe_sunat_ple_table35,9246,ESLOVAQUIA,,,,,,,,True
+1813,pe_sunat_ple_table35,9247,ESLOVENIA,,,,,,,,True
+1814,pe_sunat_ple_table35,9249,ESTADOS UNIDOS,,,,,,,,True
+1815,pe_sunat_ple_table35,9251,ESTONIA,,,,,,,,True
+1816,pe_sunat_ple_table35,9253,ETIOPIA,,,,,,,,True
+1817,pe_sunat_ple_table35,9259,"FEROE, ISLAS",,,,,,,,True
+1818,pe_sunat_ple_table35,9267,FILIPINAS,,,,,,,,True
+1819,pe_sunat_ple_table35,9271,FINLANDIA,,,,,,,,True
+1820,pe_sunat_ple_table35,9275,FRANCIA,,,,,,,,True
+1821,pe_sunat_ple_table35,9281,GABON,,,,,,,,True
+1822,pe_sunat_ple_table35,9285,GAMBIA,,,,,,,,True
+1823,pe_sunat_ple_table35,9286,GAZA Y JERICO,,,,,,,,True
+1824,pe_sunat_ple_table35,9287,GEORGIA,,,,,,,,True
+1825,pe_sunat_ple_table35,9289,GHANA,,,,,,,,True
+1826,pe_sunat_ple_table35,9293,GIBRALTAR,,,,,,,,True
+1827,pe_sunat_ple_table35,9297,GRANADA,,,,,,,,True
+1828,pe_sunat_ple_table35,9301,GRECIA,,,,,,,,True
+1829,pe_sunat_ple_table35,9305,GROENLANDIA,,,,,,,,True
+1830,pe_sunat_ple_table35,9309,GUADALUPE,,,,,,,,True
+1831,pe_sunat_ple_table35,9313,GUAM,,,,,,,,True
+1832,pe_sunat_ple_table35,9317,GUATEMALA,,,,,,,,True
+1833,pe_sunat_ple_table35,9325,GUAYANA FRANCESA,,,,,,,,True
+1834,pe_sunat_ple_table35,9327,GUERNSEY,,,,,,,,True
+1835,pe_sunat_ple_table35,9329,GUINEA,,,,,,,,True
+1836,pe_sunat_ple_table35,9331,GUINEA ECUATORIAL,,,,,,,,True
+1837,pe_sunat_ple_table35,9334,GUINEA-BISSAU,,,,,,,,True
+1838,pe_sunat_ple_table35,9337,GUYANA,,,,,,,,True
+1839,pe_sunat_ple_table35,9341,HAITI,,,,,,,,True
+1840,pe_sunat_ple_table35,9345,HONDURAS,,,,,,,,True
+1841,pe_sunat_ple_table35,9348,HONDURAS BRITANICAS,,,,,,,,True
+1842,pe_sunat_ple_table35,9351,HONG KONG,,,,,,,,True
+1843,pe_sunat_ple_table35,9355,HUNGRIA,,,,,,,,True
+1844,pe_sunat_ple_table35,9361,INDIA,,,,,,,,True
+1845,pe_sunat_ple_table35,9365,INDONESIA,,,,,,,,True
+1846,pe_sunat_ple_table35,9369,IRAK,,,,,,,,True
+1847,pe_sunat_ple_table35,9372,"IRAN, REPUBLICA ISLAMICA DEL",,,,,,,,True
+1848,pe_sunat_ple_table35,9375,IRLANDA (EIRE),,,,,,,,True
+1849,pe_sunat_ple_table35,9377,ISLA AZORES,,,,,,,,True
+1850,pe_sunat_ple_table35,9378,ISLA DEL MAN,,,,,,,,True
+1851,pe_sunat_ple_table35,9379,ISLANDIA,,,,,,,,True
+1852,pe_sunat_ple_table35,9380,ISLAS CANARIAS,,,,,,,,True
+1853,pe_sunat_ple_table35,9381,ISLAS DE CHRISTMAS,,,,,,,,True
+1854,pe_sunat_ple_table35,9382,ISLAS QESHM,,,,,,,,True
+1855,pe_sunat_ple_table35,9383,ISRAEL,,,,,,,,True
+1856,pe_sunat_ple_table35,9386,ITALIA,,,,,,,,True
+1857,pe_sunat_ple_table35,9391,JAMAICA,,,,,,,,True
+1858,pe_sunat_ple_table35,9395,"JONSTON, ISLAS",,,,,,,,True
+1859,pe_sunat_ple_table35,9399,JAPON,,,,,,,,True
+1860,pe_sunat_ple_table35,9401,JERSEY,,,,,,,,True
+1861,pe_sunat_ple_table35,9403,JORDANIA,,,,,,,,True
+1862,pe_sunat_ple_table35,9406,KAZAJSTAN,,,,,,,,True
+1863,pe_sunat_ple_table35,9410,KENIA,,,,,,,,True
+1864,pe_sunat_ple_table35,9411,KIRIBATI,,,,,,,,True
+1865,pe_sunat_ple_table35,9412,KIRGUIZISTAN,,,,,,,,True
+1866,pe_sunat_ple_table35,9413,KUWAIT,,,,,,,,True
+1867,pe_sunat_ple_table35,9418,LABUN,,,,,,,,True
+1868,pe_sunat_ple_table35,9420,"LAOS, REPUBLICA POPULAR DEMOCRATICA DE",,,,,,,,True
+1869,pe_sunat_ple_table35,9426,LESOTHO,,,,,,,,True
+1870,pe_sunat_ple_table35,9429,LETONIA,,,,,,,,True
+1871,pe_sunat_ple_table35,9431,LIBANO,,,,,,,,True
+1872,pe_sunat_ple_table35,9434,LIBERIA,,,,,,,,True
+1873,pe_sunat_ple_table35,9438,LIBIA,,,,,,,,True
+1874,pe_sunat_ple_table35,9440,LIECHTENSTEIN,,,,,,,,True
+1875,pe_sunat_ple_table35,9443,LITUANIA,,,,,,,,True
+1876,pe_sunat_ple_table35,9445,LUXEMBURGO,,,,,,,,True
+1877,pe_sunat_ple_table35,9447,MACAO,,,,,,,,True
+1878,pe_sunat_ple_table35,9448,MACEDONIA,,,,,,,,True
+1879,pe_sunat_ple_table35,9450,MADAGASCAR,,,,,,,,True
+1880,pe_sunat_ple_table35,9453,MADEIRA,,,,,,,,True
+1881,pe_sunat_ple_table35,9455,MALAYSIA,,,,,,,,True
+1882,pe_sunat_ple_table35,9458,MALAWI,,,,,,,,True
+1883,pe_sunat_ple_table35,9461,MALDIVAS,,,,,,,,True
+1884,pe_sunat_ple_table35,9464,MALI,,,,,,,,True
+1885,pe_sunat_ple_table35,9467,MALTA,,,,,,,,True
+1886,pe_sunat_ple_table35,9469,"MARIANAS DEL NORTE, ISLAS",,,,,,,,True
+1887,pe_sunat_ple_table35,9472,"MARSHALL, ISLAS",,,,,,,,True
+1888,pe_sunat_ple_table35,9474,MARRUECOS,,,,,,,,True
+1889,pe_sunat_ple_table35,9477,MARTINICA,,,,,,,,True
+1890,pe_sunat_ple_table35,9485,MAURICIO,,,,,,,,True
+1891,pe_sunat_ple_table35,9488,MAURITANIA,,,,,,,,True
+1892,pe_sunat_ple_table35,9493,MEXICO,,,,,,,,True
+1893,pe_sunat_ple_table35,9494,"MICRONESIA, ESTADOS FEDERADOS DE",,,,,,,,True
+1894,pe_sunat_ple_table35,9495,MIDWAY ISLAS,,,,,,,,True
+1895,pe_sunat_ple_table35,9496,MOLDAVIA,,,,,,,,True
+1896,pe_sunat_ple_table35,9497,MONGOLIA,,,,,,,,True
+1897,pe_sunat_ple_table35,9498,MONACO,,,,,,,,True
+1898,pe_sunat_ple_table35,9501,"MONTSERRAT, ISLA",,,,,,,,True
+1899,pe_sunat_ple_table35,9505,MOZAMBIQUE,,,,,,,,True
+1900,pe_sunat_ple_table35,9507,NAMIBIA,,,,,,,,True
+1901,pe_sunat_ple_table35,9508,NAURU,,,,,,,,True
+1902,pe_sunat_ple_table35,9511,"NAVIDAD (CHRISTMAS), ISLA",,,,,,,,True
+1903,pe_sunat_ple_table35,9517,NEPAL,,,,,,,,True
+1904,pe_sunat_ple_table35,9521,NICARAGUA,,,,,,,,True
+1905,pe_sunat_ple_table35,9525,NIGER,,,,,,,,True
+1906,pe_sunat_ple_table35,9528,NIGERIA,,,,,,,,True
+1907,pe_sunat_ple_table35,9531,"NIUE, ISLA",,,,,,,,True
+1908,pe_sunat_ple_table35,9535,"NORFOLK, ISLA",,,,,,,,True
+1909,pe_sunat_ple_table35,9538,NORUEGA,,,,,,,,True
+1910,pe_sunat_ple_table35,9542,NUEVA CALEDONIA,,,,,,,,True
+1911,pe_sunat_ple_table35,9545,PAPUASIA NUEVA GUINEA,,,,,,,,True
+1912,pe_sunat_ple_table35,9548,NUEVA ZELANDA,,,,,,,,True
+1913,pe_sunat_ple_table35,9551,VANUATU,,,,,,,,True
+1914,pe_sunat_ple_table35,9556,OMAN,,,,,,,,True
+1915,pe_sunat_ple_table35,9566,"PACIFICO, ISLAS DEL",,,,,,,,True
+1916,pe_sunat_ple_table35,9573,PAISES BAJOS,,,,,,,,True
+1917,pe_sunat_ple_table35,9576,PAKISTAN,,,,,,,,True
+1918,pe_sunat_ple_table35,9578,"PALAU, ISLAS",,,,,,,,True
+1919,pe_sunat_ple_table35,9579,TERRITORIO AUTONOMO DE PALESTINA.,,,,,,,,True
+1920,pe_sunat_ple_table35,9580,PANAMA,,,,,,,,True
+1921,pe_sunat_ple_table35,9586,PARAGUAY,,,,,,,,True
+1922,pe_sunat_ple_table35,9589,PERU,,,,,,,,True
+1923,pe_sunat_ple_table35,9593,"PITCAIRN, ISLA",,,,,,,,True
+1924,pe_sunat_ple_table35,9599,POLINESIA FRANCESA,,,,,,,,True
+1925,pe_sunat_ple_table35,9603,POLONIA,,,,,,,,True
+1926,pe_sunat_ple_table35,9607,PORTUGAL,,,,,,,,True
+1927,pe_sunat_ple_table35,9611,PUERTO RICO,,,,,,,,True
+1928,pe_sunat_ple_table35,9618,QATAR,,,,,,,,True
+1929,pe_sunat_ple_table35,9628,REINO UNIDO,,,,,,,,True
+1930,pe_sunat_ple_table35,9629,ESCOCIA,,,,,,,,True
+1931,pe_sunat_ple_table35,9633,REPUBLICA ARABE UNIDA,,,,,,,,True
+1932,pe_sunat_ple_table35,9640,REPUBLICA CENTROAFRICANA,,,,,,,,True
+1933,pe_sunat_ple_table35,9644,REPUBLICA CHECA,,,,,,,,True
+1934,pe_sunat_ple_table35,9645,REPUBLICA DE SWAZILANDIA,,,,,,,,True
+1935,pe_sunat_ple_table35,9646,REPUBLICA DE TUNEZ,,,,,,,,True
+1936,pe_sunat_ple_table35,9647,REPUBLICA DOMINICANA,,,,,,,,True
+1937,pe_sunat_ple_table35,9660,REUNION,,,,,,,,True
+1938,pe_sunat_ple_table35,9665,ZIMBABWE,,,,,,,,True
+1939,pe_sunat_ple_table35,9670,RUMANIA,,,,,,,,True
+1940,pe_sunat_ple_table35,9675,RUANDA,,,,,,,,True
+1941,pe_sunat_ple_table35,9676,RUSIA,,,,,,,,True
+1942,pe_sunat_ple_table35,9677,"SALOMON, ISLAS",,,,,,,,True
+1943,pe_sunat_ple_table35,9685,SAHARA OCCIDENTAL,,,,,,,,True
+1944,pe_sunat_ple_table35,9687,SAMOA OCCIDENTAL,,,,,,,,True
+1945,pe_sunat_ple_table35,9690,SAMOA NORTEAMERICANA,,,,,,,,True
+1946,pe_sunat_ple_table35,9695,SAN CRISTOBAL Y NIEVES,,,,,,,,True
+1947,pe_sunat_ple_table35,9697,SAN MARINO,,,,,,,,True
+1948,pe_sunat_ple_table35,9700,SAN PEDRO Y MIQUELON,,,,,,,,True
+1949,pe_sunat_ple_table35,9705,SAN VICENTE Y LAS GRANADINAS,,,,,,,,True
+1950,pe_sunat_ple_table35,9710,SANTA ELENA,,,,,,,,True
+1951,pe_sunat_ple_table35,9715,SANTA LUCIA,,,,,,,,True
+1952,pe_sunat_ple_table35,9720,SANTO TOME Y PRINCIPE,,,,,,,,True
+1953,pe_sunat_ple_table35,9728,SENEGAL,,,,,,,,True
+1954,pe_sunat_ple_table35,9731,SEYCHELLES,,,,,,,,True
+1955,pe_sunat_ple_table35,9735,SIERRA LEONA,,,,,,,,True
+1956,pe_sunat_ple_table35,9741,SINGAPUR,,,,,,,,True
+1957,pe_sunat_ple_table35,9744,"SIRIA, REPUBLICA ARABE DE",,,,,,,,True
+1958,pe_sunat_ple_table35,9748,SOMALIA,,,,,,,,True
+1959,pe_sunat_ple_table35,9750,SRI LANKA,,,,,,,,True
+1960,pe_sunat_ple_table35,9756,"SUDAFRICA, REPUBLICA DE",,,,,,,,True
+1961,pe_sunat_ple_table35,9759,SUDAN,,,,,,,,True
+1962,pe_sunat_ple_table35,9764,SUECIA,,,,,,,,True
+1963,pe_sunat_ple_table35,9767,SUIZA,,,,,,,,True
+1964,pe_sunat_ple_table35,9770,SURINAM,,,,,,,,True
+1965,pe_sunat_ple_table35,9773,SAWSILANDIA,,,,,,,,True
+1966,pe_sunat_ple_table35,9774,TADJIKISTAN,,,,,,,,True
+1967,pe_sunat_ple_table35,9776,TAILANDIA,,,,,,,,True
+1968,pe_sunat_ple_table35,9780,"TANZANIA, REPUBLICA UNIDA DE",,,,,,,,True
+1969,pe_sunat_ple_table35,9783,DJIBOUTI,,,,,,,,True
+1970,pe_sunat_ple_table35,9786,TERRITORIO ANTARTICO BRITANICO,,,,,,,,True
+1971,pe_sunat_ple_table35,9787,TERRITORIO BRITANICO DEL OCEANO INDICO,,,,,,,,True
+1972,pe_sunat_ple_table35,9788,TIMOR DEL ESTE,,,,,,,,True
+1973,pe_sunat_ple_table35,9800,TOGO,,,,,,,,True
+1974,pe_sunat_ple_table35,9805,TOKELAU,,,,,,,,True
+1975,pe_sunat_ple_table35,9810,TONGA,,,,,,,,True
+1976,pe_sunat_ple_table35,9815,TRINIDAD Y TOBAGO,,,,,,,,True
+1977,pe_sunat_ple_table35,9816,TRISTAN DA CUNHA,,,,,,,,True
+1978,pe_sunat_ple_table35,9820,TUNICIA,,,,,,,,True
+1979,pe_sunat_ple_table35,9823,"TURCAS Y CAICOS, ISLAS",,,,,,,,True
+1980,pe_sunat_ple_table35,9825,TURKMENISTAN,,,,,,,,True
+1981,pe_sunat_ple_table35,9827,TURQUIA,,,,,,,,True
+1982,pe_sunat_ple_table35,9828,TUVALU,,,,,,,,True
+1983,pe_sunat_ple_table35,9830,UCRANIA,,,,,,,,True
+1984,pe_sunat_ple_table35,9833,UGANDA,,,,,,,,True
+1985,pe_sunat_ple_table35,9840,URSS,,,,,,,,True
+1986,pe_sunat_ple_table35,9845,URUGUAY,,,,,,,,True
+1987,pe_sunat_ple_table35,9847,UZBEKISTAN,,,,,,,,True
+1988,pe_sunat_ple_table35,9850,VENEZUELA,,,,,,,,True
+1989,pe_sunat_ple_table35,9855,VIET NAM,,,,,,,,True
+1990,pe_sunat_ple_table35,9858,VIETNAM (DEL NORTE),,,,,,,,True
+1991,pe_sunat_ple_table35,9863,"VIRGENES, ISLAS (BRITANICAS)",,,,,,,,True
+1992,pe_sunat_ple_table35,9866,"VIRGENES, ISLAS (NORTEAMERICANAS)",,,,,,,,True
+1993,pe_sunat_ple_table35,9870,FIJI,,,,,,,,True
+1994,pe_sunat_ple_table35,9873,"WAKE, ISLA",,,,,,,,True
+1995,pe_sunat_ple_table35,9875,"WALLIS Y FORTUNA, ISLAS",,,,,,,,True
+1996,pe_sunat_ple_table35,9880,YEMEN,,,,,,,,True
+1997,pe_sunat_ple_table35,9885,YUGOSLAVIA,,,,,,,,True
+1998,pe_sunat_ple_table35,9888,ZAIRE,,,,,,,,True
+1999,pe_sunat_ple_table35,9890,ZAMBIA,,,,,,,,True
+2000,pe_sunat_ple_table35,9895,ZONA DEL CANAL DE PANAMA,,,,,,,,True
+2001,pe_sunat_ple_table35,9896,ZONA LIBRE OSTRAVA,,,,,,,,True
+2002,pe_sunat_ple_table35,9897,ZONA NEUTRAL (PALESTINA),,,,,,,,True
+2003,sunat_table_efact_09,13,Corrección del monto neto pendiente de pago y/o la(s) fechas(s) de vencimiento del pago único o de las cuotas y/o los montos correspondientes a cada cuota de ser el caso.,,,,,,,,True
+2501,l10n_pe_sunat_tables.pe_sunat_ple_table36,1.1,Libro Caja y Bancos - Detalle de Los Movimientos del Efectivo,,,,,,,,True
+2502,l10n_pe_sunat_tables.pe_sunat_ple_table36,1.2,Libro Caja y Bancos - Detalle de Los Movimientos de la Cuenta Corriente,,,,,,,,True
+2503,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.1,Libro de Inventarios y Balances - Estado de Situación Financiera,,,,,,,,True
+2504,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.2,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 10 Efectivo y Equivalentes de Efectivo (2),,,,,,,,True
+2505,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.3,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 12 Cuentas por Cobrar Comerciales – Terceros y 13 Cuentas por Cobrar Comerciales – Relacionadas,,,,,,,,True
+2506,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.4,"Libro de Inventarios y Balances - Detalle Del Saldo de la Cuenta 14 Cuentas por Cobrar al Personal, A Los Accionistas (Socios), Directores Y Gerentes (2)",,,,,,,,True
+2507,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.5,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 16 Cuentas por Cobrar Diversas - Terceros o Cuenta 17 - Cuentas por Cobrar Diversas - Relacionadas,,,,,,,,True
+2508,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.6,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 19 Estimación de Cuentas de Cobranza Dudosa,,,,,,,,True
+2509,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.7,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 20 - Mercaderias y la Cuenta 21 - Productos Terminados (2),,,,,,,,True
+2510,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.8,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 30 Inversiones Mobiliarias (2),,,,,,,,True
+2511,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.9,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 34 - Intangibles,,,,,,,,True
+2512,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.11,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 41 Remuneraciones y Participaciones por Pagar (2),,,,,,,,True
+2513,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.12,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 42 Cuentas por Pagar Comerciales – Terceros y la Cuenta 43 Cuentas por Pagar Comerciales – Relacionadas,,,,,,,,True
+2514,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.13,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 46 Cuentas por Pagar Diversas – Terceros y de la Cuenta 47 Cuentas por Pagar Diversas – Relacionadas,,,,,,,,True
+2515,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.14,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 47 - Beneficios Sociales de Los Trabajadores (Pcgr) - No Aplicable Para El Pcge (2),,,,,,,,True
+2516,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.15,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 37 Activo Diferido y de la Cuenta 49 Pasivo Diferido,,,,,,,,True
+2517,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.16,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 50 Capital,,,,,,,,True
+2518,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.16.1,Detalle del Saldo de la Cuenta 50 - Capital,,,,,,,,True
+2519,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.16.2,Estructura de la Participación Accionaria o de Participaciones Sociales,,,,,,,,True
+2520,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.17,Libro de Inventarios y Balances - Balance de Comprobación,,,,,,,,True
+2521,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.18,Libro de Inventarios y Balances - Estado de Flujos de Efectivo - Método Directo,,,,,,,,True
+2522,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.19,Libro de Inventarios y Balances - Estado de Cambios En El Patrimonio Neto,,,,,,,,True
+2523,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.2,Libro de Inventarios y Balances - Estado de Resultados,,,,,,,,True
+2524,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.23,Libro de Inventarios y Balances - Notas a Los Estados Financieros (3),,,,,,,,True
+2525,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.24,Libro de Inventarios y Balances - Estado de Resultados Integrales,,,,,,,,True
+2526,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.25,Libro de Inventarios y Balances - Estado de Flujos de Efectivo - Método Indirecto,,,,,,,,True
+2527,l10n_pe_sunat_tables.pe_sunat_ple_table36,4.1,Libro de Retenciones Inciso E) y F) del Art. 34° de la Ley del Impuesto a la Renta,,,,,,,,True
+2528,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.1,Libro Diario,,,,,,,,True
+2529,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.3,Libro Diario - Detalle del Plan Contable Utilizado,,,,,,,,True
+2530,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.2,Libro Diario de Formato Simplificado,,,,,,,,True
+2531,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.4,Libro Diario de Formato Simplificado - Detalle del Plan Contable Utilizado,,,,,,,,True
+2532,l10n_pe_sunat_tables.pe_sunat_ple_table36,6.1,Libro Mayor,,,,,,,,True
+2533,l10n_pe_sunat_tables.pe_sunat_ple_table36,7.1,Registro de Activos Fijos - Detalle de Los Activos Fijos Revaluados y No Revaluados,,,,,,,,True
+2534,l10n_pe_sunat_tables.pe_sunat_ple_table36,7.3,Registro de Activos Fijos - Detalle de la Diferencia de Cambio,,,,,,,,True
+2535,l10n_pe_sunat_tables.pe_sunat_ple_table36,7.4,Registro de Activos Fijos - Detalle de Los Activos Fijos Bajo la Modalidad de Arrendamiento Financiero Al 31.12,,,,,,,,True
+2536,l10n_pe_sunat_tables.pe_sunat_ple_table36,8.1,Registro de Compras,,,,,,,,True
+2537,l10n_pe_sunat_tables.pe_sunat_ple_table36,8.2,Registro de Compras - Información de Operaciones Con Sujetos No Domiciliados,,,,,,,,True
+2538,l10n_pe_sunat_tables.pe_sunat_ple_table36,8.3,Registro de Compras Simplificado,,,,,,,,True
+2539,l10n_pe_sunat_tables.pe_sunat_ple_table36,9.1,Registro de Consignaciones - Para El Consignador - Control de Bienes Entregados En Consignación,,,,,,,,True
+2540,l10n_pe_sunat_tables.pe_sunat_ple_table36,9.2,Registro de Consignaciones - Para El Consignatario - Control de Bienes Recibidos En Consignación,,,,,,,,True
+2541,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.1,Registro de Costos - Estado de Costo de Ventas Anual,,,,,,,,True
+2542,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.2,Registro de Costos - Elementos del Costo Mensual,,,,,,,,True
+2543,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.3,Registro de Costos - Estado de Costo de Produccion Valorizado Anual,,,,,,,,True
+2544,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.4,Registro de Costos - Centro de Costos,,,,,,,,True
+2545,l10n_pe_sunat_tables.pe_sunat_ple_table36,12.1,Registro del Inventario Permanente En Unidades Físicas - Detalle del Inventario Permanente En Unidades Físicas,,,,,,,,True
+2546,l10n_pe_sunat_tables.pe_sunat_ple_table36,13.1,Registro del Inventario Permanente Valorizado - Detalle del Inventario Valorizado,,,,,,,,True
+2547,l10n_pe_sunat_tables.pe_sunat_ple_table36,14.1,Registro de Ventas E Ingresos,,,,,,,,True
+2548,l10n_pe_sunat_tables.pe_sunat_ple_table36,14.2,Registro de Ventas E Ingresos Simplificado,,,,,,,,True

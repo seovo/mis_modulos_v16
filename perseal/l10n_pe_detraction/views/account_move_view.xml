@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_detraction" model="ir.ui.view">
+            <field name="name">account.move.form.detraction</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="narration" position="after">
+                    <field name="detraction_show" invisible="1"/>
+                    <label for="detraction_percentage" invisible="detraction_show == False"/>
+                    <div name="detraction_percentage" invisible="detraction_show == False">
+                        <field name="detraction_percentage" class="oe_inline" invisible="detraction_show == False" readonly="1" force_save="1"/> %
+                    </div>
+<!--                    <field name="detraction_percentage" attrs="{'invisible': [('detraction_show', '=', False)],'readonly': 1}"/><p>%</p>-->
+                    <field name="detraction_amount" invisible="detraction_show == False" readonly="1" force_save="1"/>
+                </field>
+
+                <xpath expr="//label[@for='l10n_pe_edi_operation_type']" position="attributes">
+                    <attribute name="invisible">move_type == 'entry'</attribute>
+                </xpath>
+
+                <field name="l10n_pe_edi_operation_type" position="attributes">
+                    <attribute name="invisible">move_type == 'entry'</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_move_form_field_detraction" model="ir.ui.view">
+            <field name="name">account.move.form.detraction</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="l10n_pe_reports.view_invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="l10n_pe_detraction_date" position="after">
+                    <field name="detraction_payment_id" readonly="1"/>
+                    <field name="detraction_move_id" readonly="1"/>
+                    <field name="detraction_operation_number" readonly="detraction_payment_id == False" force_save="1" invisible="True"/>
+                    <field name="detraction_operation_date" readonly="detraction_payment_id == False" force_save="1" invisible="True"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sdd_view_account_invoice_search" model="ir.ui.view">
+            <field name="name">sdd.account.invoice.search</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="l10n_pe_edi_operation_type"/>
+                    <field name="l10n_latam_document_type_id_code"/>
+                    <field name="detraction_payment_id"/>
+                    
+                </field>
+                 
+                <xpath expr="//filter[@name='cancel']" position="after">
+                    <separator/>
+                        <filter string="Detracciones pagadas" name="pay_detraction" domain="[('l10n_pe_edi_operation_type','in',['1001','1002','1003','1004']), ('detraction_payment_id', '!=', False)]"/>
+                        <filter string="Detracciones No pagadas" name="not_detraction" domain="[('l10n_pe_edi_operation_type','in',['1001','1002','1003','1004']), ('detraction_payment_id', '=', False)]"/>
+                </xpath>
+
+                <xpath expr="//group" position="inside">
+                     <filter string="Tipo de Operacion" name="l10n_pe_edi_operation_type" domain="" context="{'group_by':'l10n_pe_edi_operation_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+    </data>
+
+</odoo>

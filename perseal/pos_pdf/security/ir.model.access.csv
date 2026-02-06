@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_payment_method_pos_user1,account.payment.method.pos.user,account.model_account_payment_method,group_pos_cajero,1,1,1,0
+access_account_payment_pos_user1,account.payment.pos.user,account.model_account_payment,group_pos_cajero,1,1,1,0
+access_account_move_pos_user1,account.move.pos.user,account.model_account_move,group_pos_cajero,1,1,1,1
+access_account_move_line_pos_user1,account.move.line.pos.user,account.model_account_move_line,group_pos_cajero,1,1,1,1
+access_account_partial_reconcile_pos_user1,account.partial.reconcile.pos.user,account.model_account_partial_reconcile,group_pos_cajero,1,1,1,0
+access_account_full_reconcile_pos_user1,account.account.full.reconcile.pos.user,account.model_account_full_reconcile,group_pos_cajero,1,1,1,0
+access_ir_rule_pos_user1,ir.rule.pos.user,base.model_ir_rule,group_pos_cajero,1,1,0,0

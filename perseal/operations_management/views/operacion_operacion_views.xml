@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="operacion_operacion_tree_view" model="ir.ui.view">
+        <field name="name">operacion.operacion.tree.view</field>
+        <field name="model">operacion.operacion.stage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sequence"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="operacion_operacion_tree_view" model="ir.ui.view">
+        <field name="name">operacion.operacion.tree.view</field>
+        <field name="model">operacion.operacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="vendedor_id"/>
+                <field name="titular_id"/>
+                <field name="interes_simple"/>
+                <field name="company_id"/>
+                <field name="stage_id"/>
+                <field name="currency_id"/>
+                <field name="total"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="operacion_operacion_form_view" model="ir.ui.view">
+        <field name="name">operacion.operacion.form.view</field>
+        <field name="model">operacion.operacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="stage_name" invisible="1"/>
+                <field name="liquidation_count" invisible="1"/>
+                <header>
+                    <field name="state" widget="statusbar_duration"/>
+                    <button name="action_post" type="object" string="Confirmar" class="oe_highlight" invisible="1"/>
+                    <button name="action_vender" type="object" string="Vender" class="oe_highlight" invisible="state not in ['titularizada', 'propiedad', 'cobranza']"/>
+                    <button name="action_liquidate" type="object" string="Liquidar" class="oe_highlight" invisible="state != 'borrador' or liquidation_count > 0"/>
+                </header>
+                <sheet>
+                    <field name="move_ids" invisible="1"/>
+                    <field name="move_count" invisible="1"/>
+                    <field name="operacion_sold_id" invisible="1"/>
+
+                    <div class="oe_button_box" name="button_box">
+
+                        <button name="action_view_operacion_sold"
+                                type="object"
+                                class="oe_stat_button"
+                                invisible="operacion_sold_id == False"
+                                icon="fa-credit-card">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Venta</span>
+                            </div>
+                        </button>
+
+                        <button name="action_view_liquidation"
+                                type="object"
+                                class="oe_stat_button"
+                                invisible="liquidation_count == 0"
+                                icon="fa-pencil-square-o">
+                            <field name="liquidation_count" widget="statinfo" string="Liquidaciones"/>
+                        </button>
+                        <button name="button_open_journal_entry"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-bars"
+                                invisible="move_count == 0">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Asiento contable</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"
+                                   invisible="name == '/'"
+                                   force_save="1"
+                                   readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="contrato_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   domain="[('state', '=', 'aprobado')]"
+                                   required="1"/>
+                            <field name="sub_tipo"
+                                   invisible="not contrato_id"/>
+                            <field name="recurso_ids"
+                                   domain="[('type_tax_use', '=', 'sale')]"
+                                   options="{'no_create': True}"
+                                   widget="many2many_tags"
+                                   invisible="not contrato_id"/>
+                            <field name="vendedor_id"
+                                   invisible="not contrato_id"
+                                   context="{'show_tipo_vendedor': 1}"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="tipo_operacion_id"
+                                   invisible="not contrato_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="fecha" required="1"/>
+                            <field name="titular_id"
+                                   invisible="not contrato_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="comisionista_id"
+                                   invisible="not contrato_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="interes_simple"
+                                   invisible="not contrato_id"/>
+                            <field name="fondo_garantia"
+                                   invisible="not contrato_id"/>
+                            <field name="tem"
+                                   invisible="not contrato_id"/>
+                            <field name="company_id"
+                                   readonly="1"
+                                   options="{'no_open': True}"
+                                   force_save="1"/>
+                            <field name="additional_term_all"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="docuemnt" string="Documentos">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="seleccionar"/>
+                                    <field name="seleccionar_backup" column_invisible="1"/>
+                                    <field name="cedente_id"
+                                            options="{'no_open': True}" 
+                                            optional="hide"/>
+                                    <field name="deudor_id"
+                                            options="{'no_open': True}" 
+                                            optional="hide"/>
+                                    <field name="proveedor_id"
+                                            options="{'no_open': True}" 
+                                            optional="hide"/>
+                                    <field name="fch_desembolso" optional="hide"/>
+                                    <field name="fch_vencimiento" optional="hide"/>
+                                    <field name="currency_id" options="{'no_open': True}" optional="hide"/>
+                                    <field name="company_id" options="{'no_open': True}" optional="hide"/>
+                                    <field name="plazo_dias" readonly="1" force_save="1"/>
+                                    <field name="fondo_garantia" optional="hide"/>
+                                    <field name="monto_fondo_garantia" readonly="1" force_save="1"/>
+                                    <field name="tem" optional="hide"/>
+                                    <field name="monto_tem"/>
+                                    <field name="monto_neto"/>
+                                    <field name="monto"/>
+                                    <field name="monto_adelanto" string="Adelanto" optional="hide"/>
+                                    <field name="monto_adelanto_previo" optional="hide"/>
+                                    <field name="liquidacion_factor"/>
+                                    <field name="pago_factor" optional="hide"/>
+                                    <field name="documento_id"/>
+                                    <field name="liquidacion_id"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="plazo_dias"/>
+                                                <field name="fondo_garantia"/>
+                                                <field name="monto_fondo_garantia"/>
+                                                <field name="tem"/>
+                                                <field name="monto_tem"/>
+                                            </group>
+                                            <group>
+                                                <field name="pago_factor"/>
+                                                <field name="monto_neto"/>
+                                                <field name="monto_adelanto"/>
+                                                <field name="monto_adelanto_previo"/>
+                                                <field name="liquidacion_factor"/>
+                                                <field name="documento_id"/>
+                                                <field name="liquidacion_id"/>
+                                                <field name="company_id"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                            
+                        </page>
+                        <page name="garantia" string="Liquidación F.D.G.">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="documento_id"/>
+                                    <field name="due_date"/>
+                                    <field name="date_of_pay"/>
+                                    <field name="additional_term_all" optional="hide"/>
+                                    <field name="tem" optional="hide"/>
+                                    <field name="monetary_interest" optional="hide"/>
+                                    <field name="additional_interest"/>
+                                    <field name="default_interest"/>
+                                    <field name="return_guarantee"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="quick_operacion_operacion_form_view" model="ir.ui.view">
+            <field name="name">quick.operacion.operacion.form.view</field>
+            <field name="model">operacion.operacion</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="vendedor_id"/>
+                        <field name="contrato_id"/>
+                        <field name="sub_tipo"/>
+                        <field name="recurso_ids" widget="many2many_tags"/>
+                        <field name="tipo_operacion_id"/>
+                        <field name="fecha"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    <record id="operacion_operacion_kanban_view" model="ir.ui.view">
+        <field name="name">operacion.operacion.kanban.view</field>
+        <field name="model">operacion.operacion</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" on_create="quick_create" quick_create_view="operations_management.quick_operacion_operacion_form_view"
+                archivable="true" sample="3">
+                <field name="stage_id"/>
+                <templates>
+                    <t t-name="kanban-menu">
+                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+
+                        <a role="menuitem" class="dropdown-item" name="action_import_operation_document" type="object">Importar Documentos</a>
+                    </t>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click oe_kanban_card d-flex flex-column">
+                            <strong class="o_kanban_record_title"><field name="name"/></strong>
+                            <div class="custom-separator" style="border-top:1px solid #e2e2e2"></div>
+                            <strong><field name="vendedor_id"/></strong>
+
+                            <div class="mt-1">
+                                Contrato: <field name="contrato_id"/>
+                            </div>
+                            <div class="mt-1">
+                                Tipo operación: <field name="tipo_operacion_id"/>
+                            </div>
+
+                            <span class="oe_kanban_list_many2many">
+                                <field name="recurso_ids" widget="many2many_tags"/>
+                            </span>
+
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left text-muted">
+                                    <span>
+                                        <field name="sub_tipo"/>
+                                    </span>
+                                </div>
+                                <div class="oe_kanban_bottom_right text-muted">
+                                    <span>
+                                        <field name="fecha"/>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+
+    <record id="operacion_operacion_line_tree_view" model="ir.ui.view">
+        <field name="name">operacion.operacion.line.tree.view</field>
+        <field name="model">operacion.operacion.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false">
+                <field name="cedente_id" options="{'no_open': True}" optional="hide"/>
+                <field name="deudor_id" options="{'no_open': True}" optional="hide"/>
+                <field name="proveedor_id" options="{'no_open': True}" optional="hide"/>
+                <field name="fch_desembolso" optional="hide"/>
+                <field name="fch_vencimiento" optional="hide"/>
+                <field name="currency_id" options="{'no_open': True}" optional="hide"/>
+                <field name="company_id" options="{'no_open': True}" optional="hide"/>
+                <field name="plazo_dias" readonly="1" force_save="1"/>
+                <field name="fondo_garantia"/>
+                <field name="monto_fondo_garantia" readonly="1" force_save="1"/>
+                <field name="tem"/>
+                <field name="monto_tem"/>
+                <field name="monto_neto"/>
+                <field name="monto"/>
+                <field name="monto_adelanto" string="Adelanto"/>
+                <field name="monto_adelanto_previo"/>
+                <field name="liquidacion_factor"/>
+                <field name="pago_factor"/>
+                <field name="documento_id"/>
+                <field name="liquidacion_id"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

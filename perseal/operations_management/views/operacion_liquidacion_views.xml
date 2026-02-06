@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="operacion_liquidacion_tree_view" model="ir.ui.view">
+        <field name="name">operacion.liquidacion.tree.view</field>
+        <field name="model">operacion.liquidacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="contrato_id"/>
+                <field name="beneficiario_id"/>
+                <field name="valor"/>
+                <field name="operacion_id"/>
+                <field name="payment_state"/>
+                <field name="company_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="operacion_liquidacion_form_view" model="ir.ui.view">
+        <field name="name">operacion.liquidacion.form.view</field>
+        <field name="model">operacion.liquidacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button string="Imprimir Liquidación"
+                            name="action_print_liquidacion"
+                            type="object"
+                            invisible="state == 'borrador'"
+                            class="button btn-primary"/>
+                            
+                    <button string="Confirmar"
+                            name="action_post"
+                            invisible="state != 'borrador'"
+                            type="object"
+                            class="button btn-primary"/>
+
+                    <button string="Registrar pago"
+                            name="action_register_payment"
+                            invisible="amount_payment >= valor"
+                            type="object"
+                            class="button btn-primary"/>
+                             <!-- invisible="state in ['borrador', 'pagado']" -->
+                </header>
+                <sheet>
+                    <field name="move_id" invisible="1"/>
+                    <field name="operacion_id" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_view_operacion"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-bars"
+                                invisible="operacion_id == False">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Operacion</span>
+                            </div>
+                        </button>
+
+                        <button name="button_open_journal_entry"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-bars"
+                                invisible="move_id == False">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Asiento contable</span>
+                            </div>
+                        </button>
+                        <button name="button_open_account_payment"
+                                type="object"
+                                class="oe_stat_button"
+                                invisible="payment_count == 0"
+                                icon="fa-bars">
+                            <field string="Pagos" name="payment_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"
+                                   force_save="1"
+                                   placeholder="Nombre..."
+                                   readonly="state != 'borrador'"/>
+                        </h1>
+                    </div>
+                    <group string="Invisibles" invisible="1">
+                        <group>
+                            <field name="company_partner_category_beneficiario_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="beneficiario_id"
+                                   readonly="state != 'borrador'"
+                                   options="{'no_open': True, 'no_create': True}"/>
+<!--                                   domain="[('category_id', 'in', [company_partner_category_beneficiario_id])]"/>-->
+                            <field name="partner_bank_id"
+                                   readonly="state != 'borrador'"
+                                   options="{'no_open': True, 'no_create': True}"
+                                   domain="[('partner_id', '=', beneficiario_id)]"/>
+                            <field name="disbursement_date" readonly="state != 'borrador'"/>
+                        </group>
+                        <group>
+                            <field name="company_id"
+                                   options="{'no_open': True, 'no_create': True}"
+                                   readonly="1"
+                                   force_save="1"/>
+                            <field name="contrato_id"
+                                   readonly="state != 'borrador'"
+                                   options="{'no_create': True}"/>
+<!--                            <field name="currency_id"/>-->
+<!--                            <field name="valor" readonly="1"/>-->
+                            <label for="valor" />
+                            <div name="amount_div" class="o_row">
+                                <field name="valor" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="currency_id"
+
+                                       readonly="state != 'borrador'"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                            </div>
+                            <field name="amount_payment"/>
+                            <field name="payment_state" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" readonly="state != 'borrador'">
+                        <tree editable="bottom">
+                            <field name="cedente_id" options="{'no_open': True}" optional="hide"/>
+                            <field name="deudor_id" options="{'no_open': True}" optional="hide"/>
+                            <field name="proveedor_id" options="{'no_open': True}" optional="hide"/>
+                            <field name="fch_desembolso" optional="hide"/>
+                            <field name="fch_vencimiento" optional="hide"/>
+                            <field name="currency_id" options="{'no_open': True}" optional="hide"/>
+                            <field name="company_id" options="{'no_open': True}" optional="hide"/>
+                            <field name="plazo"/>
+                            <field name="contrato_id"/>
+                            <field name="por_fdg" optional="hide"/>
+                            <field name="monto_fdg" string="Monto fondo garantia"/>
+                            <field name="por_tem" optional="hide"/>
+                            <field name="monto_tem"/>
+                            <field name="net_amount_document"/>
+                            <field name="monto"/>
+                            <field name="monto_adelanto" optional="hide" string="Adelanto"/>
+                            <field name="monto_adelanto_previo" optional="hide"/>
+                            <field name="liquidacion_factor"/>
+                            <field name="pago_factor" optional="hide"/>
+                            <field name="documento_id"/>
+                            <field name="liquidacion_id"/>
+
+                        </tree>
+                    </field>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="operacion_liquidacion_search_view" model="ir.ui.view">
+        <field name="name">operacion.liquidacion.search.view</field>
+        <field name="model">operacion.liquidacion</field>
+        <field name="arch" type="xml">
+            <search string="Liquidaciones">
+                <field name="contrato_id"/>
+                <field name="beneficiario_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Operacion" name="group_operacion" context="{'group_by': 'operacion_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_invoice_credit_user,account_invoice_credit,model_account_invoice_credit,base.group_user,1,1,1,0
+access_account_invoice_credit_system,account_invoice_credit,model_account_invoice_credit,account.group_account_manager,1,1,1,1
+access_account_payment_term,account_payment_term,account.model_account_payment_term,base.group_system,1,1,1,1
+account.access_account_payment_term_manager,account.payment.term,account.model_account_payment_term,account.group_account_manager,1,0,0,0

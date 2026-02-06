@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="contrato_open_action" model="ir.actions.act_window">
+        <field name="name">Contratos</field>
+        <field name="res_model">operacion.contrato</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="documento_open_action" model="ir.actions.act_window">
+        <field name="name">Documentos</field>
+        <field name="res_model">operacion.documento</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="liquidacion_open_action" model="ir.actions.act_window">
+        <field name="name">Liquidaciones</field>
+        <field name="res_model">operacion.liquidacion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="tipo_operacion_open_action" model="ir.actions.act_window">
+        <field name="name">Tipos de operaciones</field>
+        <field name="res_model">operacion.tipo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="etapa_operacion_action" model="ir.actions.act_window">
+        <field name="name">Etapa de operaciones</field>
+        <field name="res_model">operacion.operacion.stage</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="operacion_operacion_open_action" model="ir.actions.act_window">
+        <field name="name">Operaciones</field>
+        <field name="res_model">operacion.operacion</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="operacion_line_operacion_open_action" model="ir.actions.act_window">
+        <field name="name">Líneas de operaciones</field>
+        <field name="res_model">operacion.operacion.line</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="operaciones_ajustes_open_action" model="ir.actions.act_window">
+        <field name="name">Ajustes</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="base_res_config_settings_view_form_inherit_anka_custom"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'operaciones', 'bin_size': False}</field>
+    </record>
+
+    <menuitem id="operaciones_menuitem"
+              name="Operaciones"
+              web_icon="operations_management,static/description/icon.png"
+              groups="usuario_operaciones_group"/>
+
+    <menuitem id="operaciones_operaciones_menuitem"
+              name="Operaciones"
+              sequence="1"
+              parent="operaciones_menuitem"/>
+
+    <menuitem id="contrato_menuitem"
+              name="Contratos"
+              sequence="5"
+              action="contrato_open_action"
+              parent="operaciones_operaciones_menuitem"/>
+
+    <menuitem id="documento_menuitem"
+              name="Documentos"
+              sequence="10"
+              action="documento_open_action"
+              parent="operaciones_operaciones_menuitem"/>
+
+    <menuitem id="liquidacion_menuitem"
+              name="Liquidaciones"
+              sequence="15"
+              action="liquidacion_open_action"
+              parent="operaciones_operaciones_menuitem"/>
+
+    <menuitem id="operacion_operacion_menuitem"
+              name="Operaciones"
+              sequence="20"
+              action="operacion_operacion_open_action"
+              parent="operaciones_operaciones_menuitem"/>
+
+    <menuitem id="operacion_operacion_line_menuitem"
+              name="Líneas de operaciones"
+              sequence="25"
+              action="operacion_line_operacion_open_action"
+              parent="operaciones_operaciones_menuitem"/>
+
+    <menuitem id="operaciones_cobranzas_menuitem"
+              name="Cobranzas"
+              sequence="60"
+              parent="operaciones_menuitem"/>
+
+    <menuitem id="operacion_documentos_pedientes_menuitem"
+              name="Documentos pendientes"
+              sequence="10"
+              action="operaciones_documentos_pendientes_action_server"
+              parent="operaciones_cobranzas_menuitem"/>
+
+    <menuitem id="operaciones_informes_menuitem"
+              name="Informes"
+              sequence="90"
+              parent="operaciones_menuitem"/>
+
+    <menuitem id="operaciones_seguimiento_menuitem"
+              name="Seguimiento"
+              sequence="5"
+              parent="operaciones_informes_menuitem"
+              action="operaciones_seguimiento_open_action_server"/>
+
+    <menuitem id="operaciones_configuracion_menuitem"
+              name="Configuración"
+              sequence="100"
+              parent="operaciones_menuitem"/>
+
+    <menuitem id="operaciones_ajustes_menuitem"
+              name="Ajustes"
+              sequence="5"
+              parent="operaciones_configuracion_menuitem"
+              action="operaciones_ajustes_open_action"
+              groups="base.group_system"/>
+
+    <menuitem id="tipo_operacion_menuitem"
+              name="Tipo de operación"
+              sequence="10"
+              action="tipo_operacion_open_action"
+              parent="operaciones_configuracion_menuitem"/>
+
+    <menuitem id="state_operacion_menuitem"
+              name="Etapa de operación"
+              sequence="20"
+              action="etapa_operacion_action"
+              parent="operaciones_configuracion_menuitem"/>
+
+</odoo>

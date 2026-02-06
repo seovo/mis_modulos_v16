@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>   
+        <record id="view_base_cost_config_form" model="ir.ui.view">
+                <field name="name">Form config cost annual</field>
+                <field name="model">config.cost.annual</field>
+                <field name="arch" type="xml" >
+                    <form>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+
+                        <notebook>
+                        <page string="Cos. Inv. inicial productos terminados">
+                            <group>
+                            <field name="cost_inv" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Cos. produccion productos terminados">
+                            <group>
+                            <field name="cost_production_prod" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Cos. produccion productos terminados">
+                            <group>
+                            <field name="cost_product_sale" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Cos. Inv final de productos terminados">
+                            <group>
+                            <field name="cost_inv_final_term" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Ajustes diversos">
+                            <group>
+                            <field name="ajust" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        </notebook>
+
+                    </form>
+                </field>
+        </record>
+
+        <record id="view_base_cost_config_tree" model="ir.ui.view">
+            <field name="name">Config cost annual</field>
+            <field name="model">config.cost.annual</field>
+            <field name="arch" type="xml" >
+                <tree>
+                        <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cost_annual_config_action" model="ir.actions.act_window">
+                <field name="name">Config cost annual</field>
+                <field name="res_model">config.cost.annual</field>
+                <field name="view_id" ref="view_base_cost_config_tree"/>
+                <field name="view_mode">tree,form</field>
+                <field name="help" type="html">
+                    <p>
+                        Add config...
+                    </p>
+                </field>
+        </record>
+
+        <menuitem id="menu_account_financial_cost_annual" name="Estado de costo ventas anual" parent="stock.menu_warehouse_report" action="cost_annual_config_action"/>
+
+
+        <record id="view_base_cost_config_mensual_form" model="ir.ui.view">
+                <field name="name">Form config cost mensual</field>
+                <field name="model">config.cost.mensual</field>
+                <field name="arch" type="xml" >
+                    <form>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+
+                        <notebook>
+                        <page string="Materiales y suministros directos">
+                            <group>
+                            <field name="materiales_direct" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Mano de obra directa">
+                            <group>
+                            <field name="mano_obra_direct" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Otros costos directos">
+                            <group>
+                            <field name="otros_costos" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Materiales y suministros indirectos">
+                            <group>
+                            <field name="materiales_indirect" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Mano de obra indirecta">
+                            <group>
+                            <field name="mano_obra_indirect" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        <page string="Otros gastos de produccion indirectos">
+                            <group>
+                            <field name="otros_gastos_indirect" widget="many2many">
+                               <tree>
+                                  <field name="code"/>
+                                  <field name="name"/>
+                               </tree>
+                            </field>
+                            </group>
+                        </page>
+
+                        </notebook>
+
+                    </form>
+                </field>
+        </record>
+
+        <record id="view_base_cost_mes_config_tree" model="ir.ui.view">
+            <field name="name">Config cost mensual</field>
+            <field name="model">config.cost.mensual</field>
+            <field name="arch" type="xml" >
+                <tree>
+                        <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cost_annual_config_mes_action" model="ir.actions.act_window">
+                <field name="name">Config cost mensual</field>
+                <field name="res_model">config.cost.mensual</field>
+                <field name="view_id" ref="view_base_cost_mes_config_tree"/>
+                <field name="view_mode">tree,form</field>
+                <field name="help" type="html">
+                    <p>
+                        Add config...
+                    </p>
+                </field>
+        </record>
+
+        <menuitem id="menu_account_financial_cost_mesual" name="Estado de costo ventas mensual" parent="stock.menu_warehouse_report" action="cost_annual_config_mes_action"/>
+
+    </data>
+</odoo>

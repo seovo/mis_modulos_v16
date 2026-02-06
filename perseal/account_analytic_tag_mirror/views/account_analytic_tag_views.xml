@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_account_analytic_account_form_mirror" model="ir.ui.view">
+            <field name="name">view.account.analytic.account.form.mirror</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='analytic_distribution_ids']" position="replace">
+                    <field name="analytic_distribution_ids" nolabel="1" widget="one2many"
+                           attrs="{'invisible': [('active_analytic_distribution', '=', False)]}"
+                           context="{'active_analytic_distribution': active_analytic_distribution}"
+                           groups="analytic.group_analytic_accounting">
+                        <tree string="Analytic Distribution" editable="bottom">
+                            <field name="account_id"/>
+                            <field name="percentage"/>
+                            <field name="account_debit_id" required="1"/>
+                            <field name="account_credit_id" required="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_document_type_tree" model="ir.ui.view">
+        <field name="name">l10n_latam.document.type.tree</field>
+        <field name="model">l10n_latam.document.type</field>
+        <field name="inherit_id" ref="l10n_latam_invoice_document.view_document_type_tree"/>
+        <field name="arch" type="xml">
+            <tree position="replace">
+               <tree string="Document Type" editable="top" decoration-muted="(not active)">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="doc_code_prefix"/>
+                    <field name='report_name'/>
+                    <field name='internal_type'/>
+                    <field name='country_id'/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

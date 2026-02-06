@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="operacion_tipo_tree_view" model="ir.ui.view">
+        <field name="name">operacion.tipo.tree.view</field>
+        <field name="model">operacion.tipo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="journal_id"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="operacion_tipo_form_view" model="ir.ui.view">
+        <field name="name">operacion.tipo.form.view</field>
+        <field name="model">operacion.tipo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"
+                                   required="1"
+                                   placeholder="Tipo de operación"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="journal_id"
+                                   required="1"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                            <field name="company_id" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                    <separator string="Distribución"/>
+                    <field name="distribucion_ids">
+                        <tree editable="bottom">
+                            <field name="porcentaje" required="1"/>
+                            <field name="concepto" required="1"/>
+                            <field name="debito_id"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                            <field name="credito_id"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                            <field name="etiqueta" required="1"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

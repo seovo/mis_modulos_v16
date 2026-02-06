@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_catalog_element_tree" model="ir.ui.view">
+        <field name="name">catalog.element.tree</field>
+        <field name="model">catalog.element</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="N°"/>
+                <field name="description" string="DESCRIPCIÓN"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_catalog_table_tree" model="ir.ui.view">
+        <field name="name">catalog.table.tree</field>
+        <field name="model">catalog.table</field>
+        <field name="arch" type="xml">
+            <tree string="Catalog Table">
+<!--                <field name="code"/>-->
+                <field name="number"/>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="parent_id"/>
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_catalog_table_form" model="ir.ui.view">
+        <field name="name">catalog.table.form</field>
+        <field name="model">catalog.table</field>
+        <field name="arch" type="xml">
+            <form string="Catalog Table">
+                <group>
+                    <group>
+                        <field name="description"/>
+                        <field name="name"/>
+                        <field name="parent_id"/>
+                    </group>
+                    <group colspan="2">
+                         <field name="code"/>
+                        <field name="type"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <notebook colspan="4">
+                    <page string="Child Tables" attrs="{'invisible':[('type','!=','view')]}">
+                        <field colspan="4" name="child_ids" nolabel="1"/>
+                    </page>
+                    <page string="Table Elements" attrs="{'invisible':[('type','=','view')]}">
+                        <field colspan="4" name="element_ids" nolabel="1"
+                               attrs="{'readonly':[('type','=','view')]}">
+                            <tree>
+                                <field name="name"/>
+                                <field name="description"/>
+                            </tree>
+                        </field>
+
+                    </page>
+<!--                    <page string="Description">-->
+<!--                        <field name="description" colspan="4" nolabel="1"/>-->
+<!--                    </page>-->
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_catalog_table" model="ir.actions.act_window">
+        <field name="name">Table Sunat</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">catalog.table</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Tablas sunat"
+              action="action_catalog_table"
+              id="menu_catalog_table"
+              parent="base.next_id_9"/>
+
+</odoo>

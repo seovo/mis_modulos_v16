@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_config:cost,access_config_cost,model_config_cost_annual,stock.group_stock_manager,1,1,1,1
+access_kardex_electronico_sunat,kardex.electronico.sunat,model_kardex_electronico_sunat,stock.group_stock_manager,1,1,1,1
+access_kardex_electronico_sunat_line,kardex.electronico.sunat.line,model_kardex_electronico_sunat_line,stock.group_stock_manager,1,1,1,1
+access_sale_config_mes:cost,access_config_cost_mes,model_config_cost_mensual,stock.group_stock_manager,1,1,1,1

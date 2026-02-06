@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_order_reference" model="ir.ui.view">
+            <field name="name">view.move.form.order.reference</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="l10n_pe_edi.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='l10n_pe_edi_electronic_info']" position="inside">
+                    <field name="number_order_reference"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

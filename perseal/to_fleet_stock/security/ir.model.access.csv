@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_to_fleet_vehicle_inventory_user,fleet.vehicle.inventory.user,fleet.model_fleet_vehicle,stock.group_stock_user,1,0,0,0
+access_to_fleet_service_type_inventory_user,fleet.service.type.inventory.user,fleet.model_fleet_service_type,stock.group_stock_user,1,0,0,0

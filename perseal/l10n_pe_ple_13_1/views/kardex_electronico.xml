@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ekardex_sunat_form" model="ir.ui.view">
+        <field name="name">view.ekardex.sunat.form</field>
+        <field name="model">kardex.electronico.sunat</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="fill_line_kardex" string="Generar" type="object" states="draft,validated"/>
+                    <button name="action_generate_ple" string="Declarar" type="object" states="validated"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group colspan="2" col="2">
+                        <group>
+                            <field name="company_id"/>
+                            <field name="txt_filename" invisible="1"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_generate"/>
+                            <label for="txt_binary" string="Archivo Txt"/>
+                            <div>
+                                <field name="txt_binary" filename="txt_filename" readonly="1" nolabel="1"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Movimientos">
+                            <field name="kardex_line_id" mode="tree" colspan="4" nolabel="1" >
+                                <tree string="Kardex Lines" editable="bottom">
+                                    <field name="sequence" widget="handle" invisible="1"/>
+                                    <field name="line" optional="hide"/>
+                                    <field name="period" optional="hide"/>
+                                    <field name="cuo" optional="hide"/>
+                                    <field name="number_correlative_cuo" optional="hide"/>
+                                    <field name="code_establishment" optional="hide"/>
+                                    <field name="code_table13" optional="hide"/>
+                                    <field name="type_exist" optional="hide"/>
+                                    <field name="code_exist" optional="hide"/>
+                                    <field name="code_exist_catg13" optional="hide"/>
+                                    <field name="code_exist_CUB" optional="show"/>
+                                    <field name="date_document_issue" optional="show"/>
+                                    <field name="type_document_transfer_intern" optional="show"/>
+                                    <field name="number_serie" optional="show"/>
+                                    <field name="number_document_transfer" optional="show"/>
+                                    <field name="type_operation" optional="show"/>
+                                    <field name="description_exist" optional="hide"/>
+                                    <field name="code_uom_sunat" optional="hide"/>
+                                    <field name="code_metod_valuation" optional="show"/>
+                                    <field name="stock_quantity_in" optional="show"/>
+                                    <field name="unit_cost_in" optional="show"/>
+                                    <field name="cost_total_in" optional="show"/>
+                                    <field name="stock_quantity_out" optional="show"/>
+                                    <field name="unit_cost_out" optional="show"/>
+                                    <field name="cost_total_out" optional="show"/>
+                                    <field name="unit_quantity_final" optional="show"/>
+                                    <field name="cost_unit_final" optional="show"/>
+                                    <field name="cost_total_final" optional="show"/>
+                                    <field name="state_operation" optional="hide"/>
+                                    <field name="other" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ekardex_sunat_tree" model="ir.ui.view">
+        <field name="name">Permanente Valorizado Electronico</field>
+        <field name="model">kardex.electronico.sunat</field>
+        <field name="arch" type="xml" >
+            <tree>
+                <field name="date_start"/>
+                <field name="date_end"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_window_ekardex_action">
+        <field name="name">Permanente Valorizado Electronico</field>
+        <field name="res_model">kardex.electronico.sunat</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

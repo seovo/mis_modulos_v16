@@ -1,0 +1,212 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_culqi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-12 04:55+0000\n"
+"PO-Revision-Date: 2020-06-12 00:59-0400\n"
+"Last-Translator: alecvinent <aleck.vinent@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_PE\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "&times;"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#: model_terms:ir.ui.view,arch_db:payment_culqi.culqui_s2s_form
+#, python-format
+msgid "CVC"
+msgstr "Código de Verificación de la Tarjeta (CVC)"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#: model_terms:ir.ui.view,arch_db:payment_culqi.culqui_s2s_form
+#, python-format
+msgid "Card number"
+msgstr "Número de tarjeta"
+
+#. module: payment_culqi
+#: model_terms:ir.ui.view,arch_db:payment_culqi.culqui_s2s_form
+msgid "Cardholder name"
+msgstr "Nombre del titular de la tarjeta"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: payment_culqi
+#: model:ir.model,name:payment_culqi.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: payment_culqi
+#: model:ir.model.fields.selection,name:payment_culqi.selection__payment_acquirer__provider__culqi
+#: model:payment.acquirer,name:payment_culqi.payment_acquirer_culqui
+msgid "Culqi"
+msgstr ""
+
+#. module: payment_culqi
+#: model:ir.model.fields,field_description:payment_culqi.field_payment_acquirer__culqi_publishable_key
+msgid "Culqi Publishable Key"
+msgstr "Clave pública de Culqui"
+
+#. module: payment_culqi
+#: model:ir.model.fields,field_description:payment_culqi.field_payment_acquirer__culqi_secret_key
+msgid "Culqi Secret Key"
+msgstr "Clave secreta de Culqi"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Datos de la tarjeta"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Expiración (MM/YYYY)"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#: model_terms:ir.ui.view,arch_db:payment_culqi.culqui_s2s_form
+#, python-format
+msgid "Expires (MM / YY)"
+msgstr "Vence (MM / YY)"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/js/culqi.js:0
+#: code:addons/payment_culqi/static/src/js/stripe.js:0
+#, python-format
+msgid "Just one more second, confirming your payment..."
+msgstr "Espere unos instantes, estamos confirmando su pago..."
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Nombre en la tarjeta"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Numero de tarjeta"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Pagar"
+msgstr ""
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/xml/culqi_templates.xml:0
+#: code:addons/payment_culqi/static/src/xml/stripe_templates.xml:0
+#, python-format
+msgid "Pay"
+msgstr "Pagar"
+
+#. module: payment_culqi
+#: model:ir.model,name:payment_culqi.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Método de pago"
+
+#. module: payment_culqi
+#: model:ir.model,name:payment_culqi.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transacción de pago"
+
+#. module: payment_culqi
+#. openerp-web
+#: code:addons/payment_culqi/static/src/js/culqi.js:0
+#: code:addons/payment_culqi/static/src/js/stripe.js:0
+#, python-format
+msgid "Payment error"
+msgstr "Error en el pago"
+
+#. module: payment_culqi
+#: model:ir.model.fields,field_description:payment_culqi.field_payment_acquirer__provider
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: payment_culqi
+#: model_terms:payment.acquirer,auth_msg:payment_culqi.payment_acquirer_culqui
+msgid "Se ha autorizado su pago."
+msgstr ""
+
+#. module: payment_culqi
+#: model_terms:payment.acquirer,cancel_msg:payment_culqi.payment_acquirer_culqui
+msgid "Su pago ha sido cancelado."
+msgstr ""
+
+#. module: payment_culqi
+#: model_terms:payment.acquirer,pending_msg:payment_culqi.payment_acquirer_culqui
+msgid "Su pago ha sido procesado con éxito pero está esperando su aprobación."
+msgstr ""
+
+#. module: payment_culqi
+#: model_terms:payment.acquirer,done_msg:payment_culqi.payment_acquirer_culqui
+msgid "Su pago ha sido procesado con éxito. ¡Gracias!"
+msgstr ""
+
+#. module: payment_culqi
+#: model_terms:ir.ui.view,arch_db:payment_culqi.view_partner_property_form
+msgid "Validate"
+msgstr "Validar"
+
+#. module: payment_culqi
+#: model_terms:payment.acquirer,pre_msg:payment_culqi.payment_acquirer_culqui
+msgid "You will be prompt with Culqui Payment page for payment information."
+msgstr ""

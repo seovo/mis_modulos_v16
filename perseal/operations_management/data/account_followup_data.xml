@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="0">
+        <record id="email_template_followup_anka" model="mail.template">
+            <field name="name">Payment Reminder ANKA</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="email_from">{{ object._get_followup_responsible().email_formatted }}</field>
+            <field name="partner_to">{{ object.id }}</field>
+            <field name="subject">{{ (object.company_id or object._get_followup_responsible().company_id).name }} Payment Reminder - {{ object.commercial_company_name }}</field>
+            <field name="body_html" type="html">
+                
+                <p style="margin:0px 0 16px 0;box-sizing:border-box;">Estimado/a <t t-esc="object.name or ''"></t></p>
+                <p style="margin:0px 0 16px 0;box-sizing:border-box;">Gusto en saludarte. Te recordamos que próximamente se vencen las siguientes facturas:</p>
+                    
+                    <t t-foreach="object.document_pending_ids" t-as="o">
+                        <ul style="padding:0 0 0 32px;margin:0px 0 16px 0;box-sizing:border-box;list-style-type:disc;">
+                            <li>
+                                Factura: <t t-out="o.name or 'Sin nombre'"/> | 
+                                Vencimiento: <t t-out="o.due_date or 'Sin fecha'"/> | 
+                                Monto: <t t-out="format_amount(o.net_amount_document, o.currency_id)"/>
+                            </li>
+                        </ul>
+                    </t>
+                    <p style="margin:0px 0 16px 0;box-sizing:border-box;">
+                        <strong style="box-sizing:border-box;font-weight:bolder;">Total a pagar:</strong> 
+                        <t t-esc="format_amount(object.total_pending_document, object.currency_id)"/>
+                    </p>
+                <p style="margin:0px 0 16px 0;box-sizing:border-box;">Agradeceremos se pueda realizar el pago en las fechas indicadas.</p>
+                <p style="margin:0px 0 16px 0;box-sizing:border-box;">Adjuntamos nuestras cuentas bancarias para su comodidad. Si lo prefieren, también pueden realizar el pago a las cuentas de Cavalique, que detallamos a continuación.</p>
+                <p style="margin:0px 0 16px 0;box-sizing:border-box;">Gracias por tu atención.</p>
+                <p style="margin:0px 0 16px 0;box-sizing:border-box;">Atentamente,</p>
+
+                <p><strong><t t-esc="object.company_id.name"/></strong></p>
+                
+                
+            </field>
+            <field name="lang">{{ object.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>

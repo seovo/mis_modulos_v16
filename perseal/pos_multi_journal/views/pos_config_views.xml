@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pos_config_base">
+            <field name="name">pos.config.base</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='restaurant_on_create']" position="after">
+
+                <setting title="Diarios"
+                         string="Diarios"
+                         help="Diarios disponibles en el punto de venta">
+                    <field name="invoice_journal_ids" domain="[('type', '=', 'sale'),('l10n_pe_document_type_id', '!=', False)]" widget="many2many_tags"/>
+
+                </setting>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

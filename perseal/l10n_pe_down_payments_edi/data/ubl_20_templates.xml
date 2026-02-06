@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ubl_20_AdditionalDocumentReference">
+        <t xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+           xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+           xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+            <cbc:ID t-esc="vals['invoice'].name"/>
+            <cbc:DocumentTypeCode listName="Documento Relacionado"
+                                  listAgencyName="PE:SUNAT"
+                                  listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo12"
+                                  t-esc="vals['document_type']"/>
+            <cbc:DocumentStatusCode listName="Anticipo"
+                                     listAgencyName="PE:SUNAT"
+                                     t-esc="vals['invoice'].name"/>
+            <cac:IssuerParty>
+                <cac:PartyIdentification>
+                    <cbc:ID t-att-schemeID="supplier.l10n_latam_identification_type_id.l10n_pe_vat_code"
+                            t-esc="supplier.vat"/>
+                </cac:PartyIdentification>
+            </cac:IssuerParty>
+        </t>
+    </template>
+    <template id="ubl_20_PrepaidPayment">
+        <t xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+           xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+           xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+             <cbc:ID schemeID="02"
+                     schemeName="Anticipo"
+                     schemeAgencyName="PE:SUNAT"
+                     t-esc="vals.get('invoice').name"/>
+             <cbc:PaidAmount t-att-currencyID="vals.get('invoice').currency_id.name"
+                            t-esc="format_float(vals.get('invoice').amount_total, vals.get('currency_dp'))"/>
+        </t>
+    </template>
+
+    <template id="ubl_21_InvoiceType_pe" inherit_id="account_edi_ubl_cii.ubl_21_InvoiceType" primary="True">
+
+            <xpath expr="//*[local-name()='Signature']" position="before">
+                <t xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+                    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+                    <cac:AdditionalDocumentReference t-foreach="vals.get('prepaid', [])" t-as="foreach_vals">
+                        <t t-call="{{AdditionalDocumentReference_template}}">
+                            <t t-set="vals" t-value="foreach_vals"/>
+                        </t>
+                    </cac:AdditionalDocumentReference>
+                </t>
+            </xpath>
+            <xpath expr="//*[local-name()='AllowanceCharge']" position="before">
+                <t xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+                    <cac:PrepaidPayment t-foreach="vals.get('prepaid', [])" t-as="foreach_vals">
+                        <t t-call="{{PrepaidPayment_template}}">
+                            <t t-set="vals" t-value="foreach_vals"/>
+                        </t>
+                    </cac:PrepaidPayment>
+                </t>
+            </xpath>
+        </template>
+
+</odoo>

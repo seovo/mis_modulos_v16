@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_edi_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="name">stock.picking.edi.form</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header//button[@name='action_send_delivery_guide']" position="replace">
+                <button name="action_send_delivery_guide" type="object"
+                        string="Genera Guía de Remisión"
+                        invisible="state != 'done' or country_code != 'PE' or picking_type_code not in ['outgoing','internal'] or l10n_pe_edi_status"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

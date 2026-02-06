@@ -1,0 +1,37 @@
+<odoo>
+
+    <template id="report_invoice_document_credit_payments"  inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='qrcode']" position="before">
+<!--        <xpath expr="//div[@class='clearfix']" position="inside">-->
+            <div class="clearfix">
+                <table t-if="o.invoice_cred" class="table text-left tbl_amount_detail">
+                        <th colspan="3">
+                            <strong>
+                                INFORMACIÓN DE CUOTAS
+                            </strong>
+                        </th>
+                        <tr>
+                            <td><strong>Nro Cuota</strong></td>
+                            <td><strong>Monto Cuota</strong></td>
+                            <td><strong>Fecha Vencimiento</strong></td>
+                        </tr>
+                        <tr t-foreach="o.invoice_cred" t-as="credit">
+                        <tr>
+                            <td>
+                                <span t-field="credit.number_due"/>
+                            </td>
+                            <td>
+                                <span t-field="credit.amount_due"/>
+                            </td>
+                            <td>
+                                <span t-if="credit.expiration_date"
+                                      t-esc="credit.expiration_date.strftime('%d/%m/%Y')"/>
+                            </td>
+                        </tr>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

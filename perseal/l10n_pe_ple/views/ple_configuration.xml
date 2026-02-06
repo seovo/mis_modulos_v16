@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+<!--        <menuitem id="menu_action_sunat" -->
+<!--                  name="SUNAT" -->
+<!--                  parent="account.menu_finance_reports" -->
+<!--                  sequence="10"-->
+<!--                  groups="account.group_account_invoice,l10n_pe_ple.ple_access_group"/>-->
+
+        <menuitem id="menu_action_sunat_ple"
+                  parent="account.menu_finance_reports"
+                  sequence="0"
+                  name="Programa de Libros Electrónicos"/>
+
+        <!-- SUNAT PLE CONFIGURATION -->
+        <record model="ir.ui.view" id="sunat_ple_configuration_tree_view">
+            <field name="name">SUNAT Configuration tree</field>
+            <field name="model">ple.configuration</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="SUNAT PLE Configuration">
+                    <field name="company_id"/>
+                    <field name="report_type" string="Book"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sunat_ple_configuration_form_view">
+            <field name="name">SUNAT Configuration form</field>
+            <field name="model">ple.configuration</field>
+            <field name="mode">primary</field>
+            <field eval="1" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="SUNAT PLE Configuration">
+                    <group name="FormHeader">
+                        <group>
+                            <field name="company_id"/>
+                            <field name="report_type"/>
+                            <field name="account_chart_code"
+                                   attrs="{'invisible': [('report_type', 'not in', ['5.3'])]}"/>
+                        </group>
+                    </group>
+                    <group id="journal_account_section">
+                        <group name="Journals"
+                               attrs="{'invisible': [('report_type', 'in', ['5.1','5.3','6.1','12.1','13.1'])]}">
+                            <separator string="Journals" colspan="2"/>
+                            <field name="journals_ids" colspan="2" nolabel="1"/>
+                        </group>
+                        <group name="Accounts"
+                               attrs="{'invisible': [('report_type', 'in', ['5.1','5.3','6.1','8.1','8.2','12.1','13.1','14.1'])]}">
+                            <separator string="Accounts" colspan="2"/>
+                            <field name="accounts_ids" colspan="2" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('report_type', 'not in', ['13.1',])]}">
+                        <field name="l10n_pe_standard_valuation_method"  />
+                        <field name="l10n_pe_fifo_valuation_method"  />
+                        <field name="l10n_pe_average_valuation_method"  />
+                    </group>
+                    <group id="purchase_section" colspan="4">
+                        <group>
+                            <separator string="Purchase VAT Codes Definition"
+                                       colspan="4"
+                                       attrs="{'invisible': [('report_type', 'not in', ['8.1','8.2'])]}"/>
+                            <group name="SUNAT_8_1"
+                                   attrs="{'invisible': [('report_type', 'not in', ['8.1',])]}">
+                                <field name="l10n_pe_txbl_txbl_vat" nolabel='0' widget="many2many_tags"
+                                       colspan='4'/>
+                                <field name="l10n_pe_txbl_txbl_notxbl_vat" widget="many2many_tags"
+                                       nolabel='0' colspan='4'/>
+                                <field name="l10n_pe_txbl_notxbl_vat" widget="many2many_tags"
+                                       nolabel='0' colspan='4'/>
+                            </group>
+                            <group name="SUNAT_8_1X"
+                                   attrs="{'invisible': [('report_type', 'not in', ['8.1',])]}"/>
+                            <group name="SUNAT_8_3"
+                                   attrs="{'invisible': [('report_type', 'not in', ['8.1','8.2'])]}">
+                                <field name="l10n_pe_notxbl_vat" nolabel='0' widget="many2many_tags"
+                                       colspan='4'/>
+                                <field name="l10n_pe_purchase_excise_tax" widget="many2many_tags"
+                                       nolabel='0' colspan='4'/>
+                                <field name="l10n_pe_purchase_other_tax" widget="many2many_tags"
+                                       nolabel='0' colspan='4'/>
+                                <separator string="Purchase Plastic Bag Tax" colspan="4"/>
+                                <field name="pastic_bag_purchase_tax" nolabel='0' colspan='4' widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group id="sales_section" colspan="4">
+                        <group name="SUNAT_14_1"
+                               attrs="{'invisible': [('report_type', '!=', '14.1')]}">
+                            <separator string="Sales VAT Codes Definition"
+                                       colspan="4"/>
+                            <field name="l10n_pe_exportation_vat" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <field name="l10n_pe_taxable_vat" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <field name="l10n_pe_exonerated_vat" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <field name="l10n_pe_not_affected_vat" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <field name="l10n_pe_piled_rise_tax" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <field name="l10n_pe_sales_excise_tax" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <field name="l10n_pe_sales_other_tax" nolabel='0' widget="many2many_tags"
+                                   colspan='4'/>
+                            <separator string="Sales Plastic Bag Tax" colspan="4"/>
+                            <field name="pastic_bag_sale_tax" nolabel='0' colspan='4' widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="sunat_ple_configuration_action" model="ir.actions.act_window">
+            <field name="name">SUNAT PLE Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ple.configuration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sunat_ple_configuration_tree_view"/>
+        </record>
+
+        <menuitem id="sunat_ple_configuration_menu"
+                  name="PLE Configuration"
+                  parent="menu_action_sunat_ple"
+                  action="sunat_ple_configuration_action"
+                  sequence="1"/>
+
+        <!-- SUNAT FILE SAVE -->
+
+<!--        <record id="save_file_form_view" model="ir.ui.view">-->
+<!--            <field name="name">SUNAT Export data view</field>-->
+<!--            <field name="model">sunat.file.save</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Export SUNAT Files" version="7.0">-->
+<!--                    <field name="output_name" invisible="1"/>-->
+<!--                    <div>-->
+<!--                        <h2>File Generated</h2>-->
+<!--                        <p>Click to Download The File: <field name="output_file" readonly="1"-->
+<!--                                                              filename="output_name"/></p>-->
+<!--                        <p>Fields separated by pipe "|" </p>-->
+<!--                    </div>-->
+<!--                    <footer>-->
+<!--                        <button string="Close" type="object" name="close_dialog" class="oe_highlight"/>-->
+<!--                    </footer>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

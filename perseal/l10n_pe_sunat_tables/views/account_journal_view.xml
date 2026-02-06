@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="name">view.account.journal.form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+               <field name="medium_payment" attrs="{'invisible': [('type', '!=', 'bank')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">view.account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_bank_id" position="after">
+                <field name="journal_type" invisible="1"/>
+                <field name="medium_payment" force_save='1' attrs="{'invisible': [('journal_type', '!=', 'bank')],'required':[('journal_type', '=', 'bank')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_form" model="ir.ui.view">
+        <field name="name">view.account.payment.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="journal_type" invisible="1"/>
+                <field name="medium_payment" attrs="{'invisible': [('journal_type', '!=', 'bank')],'required':[('journal_type', '=', 'bank')]}"/>
+            </field>
+        </field>
+    </record>
+    
+</odoo>

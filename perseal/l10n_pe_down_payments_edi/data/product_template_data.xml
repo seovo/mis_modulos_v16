@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_down_payment" model="product.template">
+            <field name="name">Payment Advance</field>
+            <field name="purchase_ok">False</field>
+            <field name="detailed_type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="taxes_id" eval="[]"/>
+            <field name="supplier_taxes_id" eval="[]"/>
+        </record>
+    </data>
+</odoo>

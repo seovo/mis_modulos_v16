@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="teletransfer_form_view" model="ir.ui.view">
+        <field name="name">teletransfer.form.view</field>
+        <field name="model">teletransfer</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Datos generales">
+                    <group>
+                        <field name="banco_id" required="1" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="cuenta_id" required="1" options="{'no_open': True, 'no_create': True}"
+                               domain="[('bank_id', '=', banco_id)]"/>
+                    </group>
+                    <group>
+                        <field name="tipo" required="1"/>
+                    </group>
+                </group>
+                <group string="Filtros">
+                    <group>
+                        <field name="cliente" required="1"/>
+                        <field name="partner_ids" widget="many2many_tags" options="{'no_create': True}"
+                               attrs="{'invisible': [('cliente', '=', 'T')], 'required': [('cliente', '=', 'E')]}"/>
+                        <field name="fecha" required="1"/>
+                        <label for="fecha_inicial" string="Rango de fechas" attrs="{'invisible': [('fecha', '=', 'T')]}"/>
+                        <div class="d-flex" attrs="{'invisible': [('fecha', '=', 'T')]}">
+                            <field name="fecha_inicial" placeholder="Fecha inicial" attrs="{'required': [('fecha', '=', 'E')]}"/>
+                            <span class="o_form_label mx-3"/>
+                            <field name="fecha_final" placeholder="Fecha final" attrs="{'required': [('fecha', '=', 'E')]}"/>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="tipo_doc" required="1"/>
+                        <field name="document_type_ids" widget="many2many_tags"
+                               domain="[('internal_type', '=', 'invoice')]" options="{'no_open': True, 'no_create': True}"
+                               attrs="{'invisible': [('tipo_doc', '=', 'T')], 'required': [('tipo_doc', '=', 'E')]}"/>
+                        <field name="currency_id" groups="base.group_multi_currency" required="1"/>
+                    </group>
+                    <div>
+                        <field name="sin_teletransfer"/>
+                        <span><strong>Comprobantes sin usar en teletransfer</strong></span>
+                    </div>
+                </group>
+                <field name="line_ids">
+                    <tree editable="bottom">
+                        <field name="move_id" required="1"
+                               domain="[('move_type', '=', 'out_invoice'), ('state', '=', 'posted'), ('edi_state', '=', 'sent'), ('currency_id', '=', parent.currency_id), ('payment_state', 'in', ['not_paid', 'in_payment', 'partial']), ('l10n_latam_document_type_id.internal_type', '=', 'invoice')]"/>
+                        <field name="invoice_partner_display_name"/>
+                        <field name="invoice_date"/>
+                        <field name="invoice_date_due" widget="remaining_days"/>
+                        <field name="amount_total_signed" sum="Total" required="1"/>
+                        <field name="tipo" attrs="{'column_invisible': [('parent.tipo', '=', 'R')]}" required="1"/>
+                        <field name="currency_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button string="Generar" class="btn-primary" type="object" name="generar_teletransfer"
+                            confirm="¿Está seguro que desea generar el Teletransfer?"/>
+                    <button string="Cargar comprobantes" class="btn-secondary" type="object" name="cargar_comprobantes"
+                            confirm="¿Está seguro que desea cargar los comprobantes de forma automática?"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

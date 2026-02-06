@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id='cargar_nota_debito_open_action' model='ir.actions.act_window'>
+        <field name="name">Cargar notas de débito</field>
+        <field name="res_model">carga.nota.debito</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="cargar_nota_debito_menuitem"
+              name="Cargar notas de débito"
+              parent="account.menu_finance_receivables"
+              groups="account.group_account_invoice"
+              action="cargar_nota_debito_open_action"
+              sequence="140"/>
+
+</odoo>

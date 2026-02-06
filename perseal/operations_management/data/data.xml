@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <record id="res_partner_category_TVF" model="res.partner.category">
+        <field name="name">TipoVendedor:Factor</field>
+    </record>
+
+    <record id="res_partner_category_TVC" model="res.partner.category">
+        <field name="name">TipoVendedor:Cedente</field>
+    </record>
+
+    <record id="res_partner_category_TROC" model="res.partner.category">
+        <field name="name">TipoRolOperacion:Cedente</field>
+    </record>
+
+    <record id="res_partner_category_TROD" model="res.partner.category">
+        <field name="name">TipoRolOperacion:Deudor</field>
+    </record>
+
+    <record id="res_partner_category_TROP" model="res.partner.category">
+        <field name="name">TipoRolOperacion:Proveedor</field>
+    </record>
+
+    <record id="res_partner_category_CED" model="res.partner.category">
+        <field name="name">Cedente</field>
+    </record>
+
+    <record id="res_partner_category_DEU" model="res.partner.category">
+        <field name="name">Deudor</field>
+    </record>
+
+    <record id="res_partner_category_PRO" model="res.partner.category">
+        <field name="name">Proveedor</field>
+    </record>
+
+    <record id="res_partner_category_BEN" model="res.partner.category">
+        <field name="name">Beneficiario</field>
+    </record>
+
+    <record id="res_partner_category_TIT" model="res.partner.category">
+        <field name="name">Titular</field>
+    </record>
+
+    <record id="operacion_operacion_stage_borrador" model="operacion.operacion.stage">
+        <field name="name">Borrador</field>
+        <field name="sequence">1</field>
+        <field name="fold" eval="False"/>
+    </record>
+    <record id="operacion_operacion_stage_titularizada" model="operacion.operacion.stage">
+        <field name="name">Titularizada</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="operacion_operacion_stage_propiedad" model="operacion.operacion.stage">
+        <field name="name">En propiedad</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="operacion_operacion_stage_cobranza" model="operacion.operacion.stage">
+        <field name="name">En cobranza</field>
+        <field name="sequence">4</field>
+    </record>
+    <record id="operacion_operacion_stage_completada" model="operacion.operacion.stage">
+        <field name="name">Completada</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="operacion_operacion_stage_cancelada" model="operacion.operacion.stage">
+        <field name="name">Cancelada</field>
+        <field name="sequence">6</field>
+    </record>
+
+     <record id="seq_operacion_liquidacion" model="ir.sequence">
+        <field name="name">Liquidacion</field>
+        <field name="code">operacion.liquidacion</field>
+        <field name="prefix">LIQ%(year)s%(month)s-</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="input_attachment_salary_he_25" model="hr.payslip.input.type">
+        <field name="name">Horas extra 25</field>
+        <field name="code">C_7066</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_salary_he_35" model="hr.payslip.input.type">
+        <field name="name">Horas extra 35</field>
+        <field name="code">C_7067</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_salary_he_100" model="hr.payslip.input.type">
+        <field name="name">Horas extra 100</field>
+        <field name="code">C_7068</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_salary_he_feriado" model="hr.payslip.input.type">
+        <field name="name">Horas extra feriado</field>
+        <field name="code">C_7069</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_mov_libre" model="hr.payslip.input.type">
+        <field name="name">Mov. libre</field>
+        <field name="code">C_1264</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_mov_sup" model="hr.payslip.input.type">
+        <field name="name">Mov. sup.</field>
+        <field name="code">C_1263</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_quinta" model="hr.payslip.input.type">
+        <field name="name">Quinta categoria</field>
+        <field name="code">C_3060</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_adelanto" model="hr.payslip.input.type">
+        <field name="name">Adelanto de quincena</field>
+        <field name="code">C1111</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_desc_eps" model="hr.payslip.input.type">
+        <field name="name">Descuento EPS</field>
+        <field name="code">C1112</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_desc_otro" model="hr.payslip.input.type">
+        <field name="name">Otros descuentos</field>
+        <field name="code">C1113</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="input_attachment_desc_prestamo" model="hr.payslip.input.type">
+        <field name="name">Descuento por préstamo</field>
+        <field name="code">C1114</field>
+        <field name="country_id" eval="False"/>
+    </record>
+
+    <record id="input_attachment_reintegro_feriado" model="hr.payslip.input.type">
+        <field name="name">Reintegro de Feriado</field>
+        <field name="code">REIN_FE</field>
+        <field name="country_id" eval="False"/>
+    </record>
+
+    <record id="hr_payslip_input_type_hhee" model="hr.payslip.input.type">
+        <field name="name">Promedio HHEE</field>
+        <field name="code">HHEE</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_hhdd" model="hr.payslip.input.type">
+        <field name="name">Promedio HHDD</field>
+        <field name="code">HHDD</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_pbhr" model="hr.payslip.input.type">
+        <field name="name">Promedio Bono Hr Rotativo</field>
+        <field name="code">PBHR</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_pbm" model="hr.payslip.input.type">
+        <field name="name">Promedio Bono Montacarga</field>
+        <field name="code">PBM</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_pmld" model="hr.payslip.input.type">
+        <field name="name">Promedio Movilidad Libre Disponible</field>
+        <field name="code">PMLD</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_pmsa" model="hr.payslip.input.type">
+        <field name="name">Promedio Movilidad Sup. Asistencia</field>
+        <field name="code">PMSA</field>
+        <field name="country_id" eval="False"/>
+    </record>
+
+     <record id="hr_payslip_input_type_pmsa" model="hr.payslip.input.type">
+        <field name="name">1/6 Última gratif.</field>
+        <field name="code">UG</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_gtfcc" model="hr.payslip.input.type">
+        <field name="name">Gratificacion</field>
+        <field name="code">GTFCC</field>
+        <field name="country_id" eval="False"/>
+    </record>
+
+    <record id="hr_payslip_input_type_gtfcc" model="hr.payslip.input.type">
+        <field name="name">Viaticos</field>
+        <field name="code">VIASUP1</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_comisiones" model="hr.payslip.input.type">
+        <field name="name">Comisiones</field>
+        <field name="code">COM1</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_alimentacion_sup" model="hr.payslip.input.type">
+        <field name="name">Alimentación Sup</field>
+        <field name="code">ALIM1</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_horario_nocturno" model="hr.payslip.input.type">
+        <field name="name">Horario Nocturno</field>
+        <field name="code">HORNOC</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_previous_income" model="hr.payslip.input.type">
+        <field name="name">Previo ingreso para proyeccion anual</field>
+        <field name="code">PRE-ING</field>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_payslip_input_type_previous_retention" model="hr.payslip.input.type">
+        <field name="name">Previo retencion para calculo mensual</field>
+        <field name="code">PRE-RET</field>
+        <field name="country_id" eval="False"/>
+    </record>
+
+    <record id="type_of_absences" model="hr.salary.rule.category">
+        <field name="name">Tipo de ausencias</field>
+        <field name="code">TU</field>
+    </record>
+    <record id="income" model="hr.salary.rule.category">
+        <field name="name">Ingresos</field>
+        <field name="code">IN</field>
+    </record>
+    <record id="income_no" model="hr.salary.rule.category">
+        <field name="name">Ingresos no afecto</field>
+        <field name="code">IN_NA</field>
+    </record>
+    <record id="base" model="hr.salary.rule.category">
+        <field name="name">Base</field>
+        <field name="code">BA</field>
+    </record>
+    <record id="input" model="hr.salary.rule.category">
+        <field name="name">Aporte</field>
+        <field name="code">INP</field>
+    </record>
+    <record id="extra_hours" model="hr.salary.rule.category">
+        <field name="name">Horas extra</field>
+        <field name="code">HE</field>
+    </record>
+    <record id="bond" model="hr.salary.rule.category">
+        <field name="name">Bonos</field>
+        <field name="code">BONO</field>
+    </record>
+    <record id="days" model="hr.salary.rule.category">
+        <field name="name">Dias</field>
+        <field name="code">DIAS</field>
+    </record>
+
+    <record id="RMT" model="hr.salary.rule.category">
+        <field name="name">RMT</field>
+        <field name="code">RMT</field>
+    </record>
+    <record id="NRMT" model="hr.salary.rule.category">
+        <field name="name">NRMT</field>
+        <field name="code">NRMT</field>
+    </record>
+
+    <record id="BASE_AFP" model="hr.salary.rule.category">
+        <field name="name">BASE_AFP</field>
+        <field name="code">BASE_AFP</field>
+    </record>
+    <record id="BASE_SNP" model="hr.salary.rule.category">
+        <field name="name">BASE_SNP</field>
+        <field name="code">BASE_SNP</field>
+    </record>
+    <record id="BASE_ESSALUD" model="hr.salary.rule.category">
+        <field name="name">BASE_ESSALUD</field>
+        <field name="code">BASE_ESSALUD</field>
+    </record>
+
+    <record id="TOTAL_INGRESOS" model="hr.salary.rule.category">
+        <field name="name">TotalIngresos</field>
+        <field name="code">TIN</field>
+    </record>
+
+    <record id="rule_parameter_rmv" model="hr.rule.parameter">
+        <field name="name">Remuneración Mínima Vital</field>
+        <field name="code">RMV</field>
+    </record>
+    <record id="rule_parameter_af" model="hr.rule.parameter">
+        <field name="name">Asignación familiar</field>
+        <field name="code">AF</field>
+    </record>
+
+</odoo>

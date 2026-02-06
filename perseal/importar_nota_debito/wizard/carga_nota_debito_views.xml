@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="carga_nota_debito_form_view" model="ir.ui.view">
+        <field name="name">carga.nota.debito.form.view</field>
+        <field name="model">carga.nota.debito</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="nombre_archivo" invisible="1"/>
+                        <field name="archivo" filename="nombre_archivo"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="cargar_archivo" string="Cargar Archivo" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

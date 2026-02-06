@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="location_fleet_consumption" model="stock.location">
+			<field name="name">Fleet Consumption</field>
+			<field name="location_id" ref="stock.stock_location_locations_virtual" />
+			<field name="usage">production</field>
+			<field name="company_id"></field>
+		</record>
+		<record id="seq_picking_type_fleet_consumption" model="ir.sequence">
+			<field name="name">Fleet Consumption</field>
+			<field name="prefix">FC</field>
+			<field name="padding">5</field>
+			<field name="company_id" eval="False" />
+		</record>
+
+		<record id="picking_type_fleet_consumption" model="stock.picking.type">
+			<field name="name">Fleet Consumption</field>
+			<field name="sequence_id" ref="seq_picking_type_fleet_consumption" />
+			<field name="default_location_src_id" ref="stock.stock_location_stock" />
+			<field name="default_location_dest_id" ref="location_fleet_consumption" />
+			<field name="warehouse_id" eval="False" />
+			<field name="code">internal</field>
+			<field name="sequence_code">FLEET</field>
+		</record>
+	</data>
+</odoo>

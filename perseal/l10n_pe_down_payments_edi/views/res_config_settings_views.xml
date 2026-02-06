@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_config_settings_view_form_down_payment">
+            <field name="name">Down payment manager</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <block id="analytic" position="after">
+                    <block title="Anticipos" id="account_reports_settings" groups="account.group_account_user">
+                        <setting help="Producto usado por defecto para anticipos">
+                            <field name="down_payment_product_id"/>
+                        </setting>
+                    </block>
+                </block>
+
+            </field>
+        </record>
+    </data>
+</odoo>

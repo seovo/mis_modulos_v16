@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="payment_acquirer_culqui" model="payment.acquirer">
+            <field name="name">Culqi</field>
+            <field name="image_128" type="base64" file="payment_culqi/static/src/img/culqui_logo.png"/>
+            <field name="provider">culqi</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="culqi_form"/>
+            <field name="registration_view_template_id" ref="culqui_s2s_form"/>
+            <field name="pre_msg"><![CDATA[
+<p>You will be prompt with Culqui Payment page for payment information.</p>]]></field>
+            <field name="culqi_secret_key">dummy</field>
+            <field name="culqi_publishable_key">dummy</field>
+            <field name="description" type="html">
+                <p>Tu socio en soluciones de pago.
+                    <a href="https://www.culqi.com/" target="_blank">https://www.culqi.com/</a>
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

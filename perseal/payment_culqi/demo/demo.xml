@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="payment_culqi.payment_acquirer_culqui" model="payment.acquirer">
+            <field name="culqi_secret_key">pk_test_iz3bVsLXnCQshaqQ</field>
+            <field name="culqi_publishable_key">pk_test_iz3bVsLXnCQshaqQ</field>
+        </record>
+    </data>
+</odoo>

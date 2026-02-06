@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+    <function name="action_create_ple_config" model="kardex.electronico.sunat"/>
+
+    <record model="ir.sequence" id="sequence_ple_report_kardex">
+        <field name="name">registro permanente valorizado</field>
+        <field name="code">report.ple.13</field>
+        <field name="prefix">KR-</field>
+        <field name="padding">6</field>
+    </record>
+    </data>
+</odoo>

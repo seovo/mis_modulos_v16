@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_sale">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <link rel="stylesheet" type="text/scss" href="/sale_order_pdf/static/src/css/style.css"/>
+
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-5">
+                    <img src="/sale_order_pdf/static/src/img/logo.jpg" style="max-height: 80px;" alt="Logo"/>
+                </div>
+                <div class="col-5 offset-2 text-right" style="font-family: 'Roboto'; color:#F25050">
+                    <p class="text-end"><strong>Cotización # <span t-field="o.name"/></strong></p>
+                </div>
+            </div>
+            <div class="row" style="font-family: 'Roboto'; color:#404040;font-size:16px">
+                <div class="col-5 mb4">
+                    <p style="line-height: 0.95"><strong>PERSEAL S.C.R.L.</strong><br/>
+                        RUC: 20509190560<br/>
+                        Cal. Garcilaso de la Vega Nro 2583<br/>
+                        Urb.Risso, Lima - Perú</p>
+                </div>
+                <div class="col-5 offset-2" style="margin=0px;padding:0px">
+                    <div>
+                        <p style="line-height: 0.9 !important">
+                            <strong><span t-out="o.partner_id.name"/></strong><br/>
+                            <span t-out="o.partner_id.l10n_latam_identification_type_id.name"/>:<span t-out="o.partner_id.vat"/><br/>
+                            <span t-out="o.partner_id.street"/><br/>
+                            <span t-out="o.partner_id.state_id.name"/> - <span t-out="o.partner_id.l10n_pe_district.name"/><br/>
+                            <span t-out="o.partner_id.city_id.name"/> - <span t-out="o.partner_id.country_id.name"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-5">
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-out="0"/>
+                <t t-call="sale_order_pdf.term_and_condition"/>
+        </div>
+
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <t t-set="page">
+                type(<span class="page"/>)
+            </t>
+            <t t-set="topage">
+                <span class="topage"/>
+            </t>
+            <div class="text-center" style="border-top: 1px solid #ed4e4a;font-size:14px;">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="/sale_order_pdf/static/src/img/PERUVIAN SEALS_PNG.png" style="max-height: 85px;margin-top:5px"/>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-6">
+                         <span style="color:#ed4e4a;font-size:16px"><strong>¿Tienes dudas?</strong></span><br/>
+                         <span><strong>E-mail:</strong> ventas@perseal.pe / ventas2@perseal.pe</span><br/>
+                         <span><strong>Telefono:</strong> +51 1 530 3787</span>
+                         <span><strong>Whastapp:</strong> +51 997 086 085 / 908 899 901</span>
+                        <div t-if="report_type == 'pdf'">
+                            Página: <span class="page"/> de <span class="topage"/>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <strong><span style="color:#ed4e4a;font-size:16px">Conoce más</span></strong>
+                        <img src="/sale_order_pdf/static/src/img/qr.jpg" style="max-height: 80px;margin-top:5px"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+    <template id="number_account_bank">
+        <table class="table" style="width:620px;margin-left:100px;font-size:13px">
+            <tr style="border:1px solid white">
+                <td colspan="4" class="text-center text-number-account"><span>Números de cuentas: </span> <span>Peruvian Seals SCRL</span></td>
+            </tr>
+            <tr class="table-blue text-bold">
+                <td>Banco</td>
+                <td>Moneda</td>
+                <td>N° Cuenta</td>
+                <td>CCI</td>
+            </tr>
+            <tr class="table-white-tr" >
+                <td class="text-bold">BCP</td>
+                <td class="text-bold">Soles</td>
+                <td>193-25758490-74</td>
+                <td>002-193-002575849074-19</td>
+            </tr>
+            <tr class="table-grey-tr" >
+                <td class="text-bold">BBVA</td>
+                <td class="text-bold">Soles</td>
+                <td>0011-03720100010287-09</td>
+                <td>011-372-000100010287-09</td>
+            </tr>
+            <tr class="table-white-tr" >
+                <td class="text-bold">BCP</td>
+                <td class="text-bold">Dolares</td>
+                <td>193-25938511-23</td>
+                <td>002-193002593851123-12</td>
+            </tr>
+            <tr class="table-grey-tr" >
+                <td class="text-bold">BBVA</td>
+                <td class="text-bold">Dolares</td>
+                <td>0011-03720100025268-02</td>
+                <td>011-372-000100025268-02</td>
+            </tr>
+        </table>
+    </template>
+
+    <template id="term_and_condition">
+        <div class="text-term" style="page-break-inside: avoid;">
+            <t t-set="term_and_condition" t-value="doc.note" />
+            <span t-out="term_and_condition" style="page-break-inside: avoid;"/>
+            <img src="/sale_order_pdf/static/src/img/pasion.png"
+                 style="max-height: 35px;margin-left:100px;margin-top:150px;"/>
+        </div>
+    </template>
+
+    <template id="report_sale_order_document">
+        <t t-call="sale_order_pdf.external_layout_sale">
+            <link rel="stylesheet" type="text/scss" href="/sale_order_pdf/static/src/css/style.css"/>
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+            <t t-set="forced_vat" t-value="doc.fiscal_position_id.foreign_vat"/>
+
+            <div class="page" style="padding:0px">
+
+                <table class="table" style="margin-top:0px; font-size:15px">
+
+                    <tr class="table-grey-new">
+                        <td>
+                            <strong>Comercial: </strong><span t-field="doc.user_id.name"/>
+                        </td>
+                        <td>
+                            <strong>Fecha de presupuesto: </strong><span t-field="doc.date_order" t-options='{"widget": "date"}'/><br/>
+                            <strong>Vencimiento: </strong><span t-field="doc.validity_date" t-options='{"widget": "date"}'/>
+                        </td>
+                        <td>
+                             <strong>Moneda: </strong><span t-out="doc.get_currency_name()"/>
+
+                            <br/>
+                            <strong>Formas de pago: </strong><span t-field="doc.payment_term_id.name"/><br/>
+                        </td>
+                    </tr>
+                </table>
+
+                <t t-set="display_discount" t-value="any(l.discount for l in doc.order_line)"/>
+                <t t-set="unidades" t-value="{'Unidades': 'U'}"/>
+                <t t-set="count_line" t-value="0"/>
+                <table class="table table-lm">
+                    <thead style="display: table-row-group">
+                        <tr id="table-grey-th-new" style="border:1px solid white;padding:0px;margin:0px">
+                            <th name="th_description" class="text-start" style="background-color: #ed4e4a;color:white;border-radius:20px 0px 0px 20px;" colspan="2">Descripción</th>
+                            <th name="th_quantity" class="text-center" style="background-color: #ed4e4a;color:white;">Cantidad</th>
+                            <th name="th_priceunit" class="text-center" style="color:#042d49;min-width:240px">Precio Unitario (Sin IGV)</th>
+                            <th name="th_subtotal" class="text-center" style="color:#042d49;border-radius:0px 20px 20px 0px">
+                                <span style="color:#042d49;">Importe</span>
+                            </th>
+                        </tr>
+<!--                        <tr class="table-grey-new" id="table-grey-th" style="font-size:10px;border: None !important">-->
+<!--                            <th name="th_description" class="text-start" style="background-color: #ed4e4a;color:white;border:none !important" colspan="2">Descripción</th>-->
+<!--                            <th name="th_quantity" class="text-center" style="background-color: #ed4e4a;color:white;border:none !important">Cantidad</th>-->
+<!--                            <th name="th_priceunit" class="text-center" style="color:#042d49;min-width:240px">Precio Unitario (Sin IGV)</th>-->
+<!--                            <th name="th_subtotal" class="text-center" style="color:#042d49">-->
+<!--                                <span style="color:#042d49">Importe</span>-->
+<!--                            </th>-->
+<!--                        </tr>-->
+
+                    </thead>
+                    <tbody class="sale_tbody" style="font-size:16px;border:none">
+
+                        <t t-set="current_subtotal" t-value="0"/>
+
+                        <t t-foreach="doc.order_line.filtered(lambda line: line.display_type == False)" t-as="line">
+
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                            <t t-set="count_line" t-value="count_line + 1"/>
+                            <t t-set="line_variant" t-value="'('+line.product_id.product_template_attribute_value_ids._get_combination_name()+')'"/>
+<!--                            <t t-set="line_description" t-value="line.name.replace(line_variant,'')"/>-->
+                            <t t-if="count_line % 2 == 0">
+                                <tr class="table-grey-new">
+                                    <t t-if="not line.display_type">
+                                        <td>
+                                             <div style="display:inline-block;vertical-align: top;margin-top:5px" t-if="line.product_id.image_128">
+                                                <img t-att-src="image_data_uri(line.product_id.image_128)" style="max-height:40px;max-width:40px; box-shadow: 0 0 0 1px black;border-radius:5px"/>
+                                            </div>
+                                        </td>
+                                        <td name="td_name">
+                                            <div style="display:inline-block;vertical-align: top">
+                                                 <strong><span t-field="line.name"/></strong><br/>
+<!--                                                 <span t-out="line_variant"/>-->
+                                            </div>
+                                        </td>
+                                        <td name="td_quantity" class="text-center">
+                                            <span t-field="line.product_uom_qty"/>
+                                            <span t-field="line.product_uom.name"/>
+                                        </td>
+                                        <td name="td_priceunit" class="text-center">
+                                            <span t-field="line.currency_id.symbol"/> <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td name="td_subtotal" class="text-end o_price_total">
+                                            <span t-field="line.price_subtotal"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="line.display_type == 'line_section'">
+                                        <td name="td_section_line" colspan="99">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <t t-set="current_section" t-value="line"/>
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                    </t>
+                                    <t t-if="line.display_type == 'line_note'">
+                                        <td name="td_note_line" colspan="99">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <t t-else="">
+                                <tr class="table-white-tr-new">
+                                    <t t-if="not line.display_type">
+                                        <td>
+                                             <div style="display:inline-block;vertical-align: top;margin-top:5px" t-if="line.product_id.image_128">
+                                                <img t-att-src="image_data_uri(line.product_id.image_128)" style="max-height:40px;max-width:40px; box-shadow: 0 0 0 1px black;border-radius:5px"/>
+                                            </div>
+                                        </td>
+                                        <td name="td_name">
+                                            <div style="display:inline-block;vertical-align: top">
+                                                 <strong><span t-field="line.name"/></strong><br/>
+<!--                                                 <span t-out="line_variant"/>-->
+                                            </div>
+                                        </td>
+                                        <td name="td_quantity" class="text-center">
+                                            <span t-field="line.product_uom_qty"/>
+                                            <span t-field="line.product_uom.name"/>
+                                        </td>
+                                        <td name="td_priceunit" class="text-center">
+                                            <span t-field="line.currency_id.symbol"/> <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td name="td_subtotal" class="text-end o_price_total">
+                                            <span t-field="line.price_subtotal"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="line.display_type == 'line_section'">
+                                        <td name="td_section_line" colspan="99">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <t t-set="current_section" t-value="line"/>
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                    </t>
+                                    <t t-if="line.display_type == 'line_note'">
+                                        <td name="td_note_line" colspan="99">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+
+                            <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                                <tr class="is-subtotal text-right">
+                                    <td name="td_section_subtotal" colspan="99">
+                                        <strong class="mr16">Subtotal</strong>
+                                        <span
+                                            t-esc="current_subtotal"
+                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+<!--                        <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>-->
+<!--                        <t t-foreach="tax_totals['subtotals']" t-as="subtotal">-->
+<!--                            <tr style="font-size:17px; font-weight: bold;padding-top:30px">-->
+<!--                                <td colspan="2" style="padding:0px; padding-top:20px;margin:0px"></td>-->
+<!--                                <td colspan="2" class="text-right" style="color:#ed4e4a;border: none !important;padding:0px; padding-top:20px;margin:0px"><span style="color:#ed4e4a;"><strong t-esc="subtotal['name']" style="color:#ed4e4a;" class="font-bold-2"/> :</span></td>-->
+<!--                                <td class="text-right" style="color:#042d49;padding:0px; padding-top:20px;margin:0px">-->
+<!--                                    <strong><span t-esc="subtotal['formatted_amount']" style="color:#042d49" class="font-bold-2"/></strong>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <t t-set="subtotal_to_show" t-value="subtotal['name']"/>-->
+<!--                            <t t-foreach="tax_totals['groups_by_subtotal'][subtotal_to_show]" t-as="amount_by_group">-->
+<!--                                <tr style="font-size:17px; font-weight: bold;padding-top:30px">-->
+<!--                                    <t t-if="len(tax_totals['groups_by_subtotal'][subtotal_to_show]) > 1 or (tax_totals['amount_untaxed'] != amount_by_group['tax_group_base_amount'])">-->
+<!--                                        <td colspan="2" style="padding:0px;margin:0px;padding-bottom:20px"></td>-->
+<!--                                        <td colspan="2" class="text-right" style="color:#042d49;border: none !important;padding:0px;margin:0px;padding-bottom:20px">-->
+<!--                                            <strong>-->
+<!--                                            <span t-esc="amount_by_group['tax_group_name']" style="color:#042d49"/>-->
+<!--                                            <span class="text-nowrap font-bold-2" style="color:#042d49">-->
+<!--                                            </span>:-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                        <td class="text-right o_price_total" style="padding:0px;margin:0px;padding-bottom:20px">-->
+<!--                                            <strong><span class="text-nowrap font-bold-2" t-esc="amount_by_group['formatted_tax_group_amount']" style="color:#042d49"/></strong>-->
+<!--                                        </td>-->
+<!--                                    </t>-->
+<!--                                    <t t-else="">-->
+<!--                                        <td colspan="2" style="padding:0px;margin:0px;padding-bottom:20px"></td>-->
+<!--                                        <td colspan="2" class="text-right" style="color:#042d49;border: none !important;padding:0px;margin:0px;padding-bottom:20px"><span class="text-nowrap font-bold-2" t-esc="amount_by_group['tax_group_name']" style="color:#042d49"/>: </td>-->
+<!--                                        <td class="text-right o_price_total" style="padding:0px;margin:0px;padding-bottom:20px">-->
+<!--                                            <span class="text-nowrap font-bold-2" t-esc="amount_by_group['formatted_tax_group_amount']" style="color:#042d49"/>-->
+<!--                                        </td>-->
+<!--                                    </t>-->
+<!--                                </tr>-->
+<!--                            </t>-->
+<!--                                <t t-set="currency_rate" t-value="1 / doc.currency_rate"/>-->
+<!--                                <t t-set="amount_total" t-value="currency_rate * doc.amount_total"/>-->
+
+<!--                            <tr class="table-total" style="padding:0px;visibility: hidden;padding:0px;font-size:0px">-->
+<!--                                <td colspan="3" style="background-color:white;" class="td_white"><span style="font-size:0px;padding:0px">Son: <t t-esc="doc._l10n_pe_edi_amount_to_text(doc.amount_total, doc.currency_id)"/></span></td>-->
+<!--                                <td class="text-left " style="background-color:#ed4e4a;color:white;padding:0px;font-size:0px;border:none !important">TOTAL: </td>-->
+<!--                                <td class="text-right " style="background-color:#D8DAD9;color:#ed4e4a;padding:0px"><span t-esc="tax_totals['formatted_amount_total']" style="color:#ed4e4a;font-size:0px"/></td>-->
+<!--                            </tr>-->
+
+<!--                            <tr class="table-total" style="padding:0px">-->
+<!--                                <td colspan="3" style="background-color:white;" class="td_white"><span style="font-size:12px;padding:0px">Son: <t t-esc="doc._l10n_pe_edi_amount_to_text(doc.amount_total, doc.currency_id)"/></span></td>-->
+<!--                                <td class="text-left font-bold-2" style="background-color:#ed4e4a;color:white;border:none !important">TOTAL: </td>-->
+<!--                                <td class="text-right font-bold-2" style="background-color:#D8DAD9;color:#ed4e4a;"><span t-esc="tax_totals['formatted_amount_total']" style="color:#ed4e4a;"/></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td colspan="4"></td>-->
+
+<!--                            </tr>-->
+<!--                             <tr class="table-total">-->
+<!--                                <td colspan="3" class="td_white"><span style="font-size:12px">Son: <t t-esc="doc._l10n_pe_edi_amount_to_text(amount_total, doc.company_id.currency_id)"/></span></td>-->
+<!--                                <td class="text-left font-bold-2" style="background-color:#052d48;color:white">T/C = <span t-esc="round(currency_rate,2)" style="color:white"/></td>-->
+<!--                                <td class="text-right font-bold-2" style="background-color:#D8DAD9;color:#ed4e4a;">S/<span t-esc="round(amount_total,2)" style="color:#ed4e4a"/></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td colspan="4" class="text-right" style="font-size:13px">-->
+<!--                                    <span>Valor referencial en moneda nacional sujeto a variación T/C</span>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </t>-->
+                        <t t-set="currency_rate" t-value="1 / doc.currency_rate"/>
+                        <t t-set="inf_tax_totals" t-value="doc.get_info_tax_totals(doc.tax_totals)"/>
+                        <tr class="tax-white">
+                            <td colspan="3"/>
+                            <td class="text-end" style="border:none;color:#ed4e4a">Base imponible:</td>
+                            <td class="text-end" style="color:#052d48"><t t-esc="inf_tax_totals['formatted_amount_untaxed']"/></td>
+                        </tr>
+                        <tr class="tax-white">
+                            <td colspan="3"/>
+                            <td class="text-end" style="border:none;color:#052d48">IGV:</td>
+                            <td class="text-end" style="color:#052d48"><t t-out="inf_tax_totals['formatted_tax_group_amount']"/></td>
+                        </tr>
+                        <tr class="tax-white">
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr class="tax-tr">
+                            <td colspan="3" style="background-color:white;font-size:12px">Son: <t t-esc="doc._l10n_pe_edi_amount_to_text(doc.tax_totals['amount_total'], doc.currency_id)"/></td>
+                            <td style="background-color:#ed4e4a;color:white;border:none !important;box-shadow:none;padding-left:25px;">TOTAL:</td>
+                            <td style="color:#ed4e4a" class="text-end"><t t-out="inf_tax_totals['formatted_amount_total']"/></td>
+                        </tr>
+                        <tr class="tax-white">
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr class="tax-tr">
+                            <td colspan="3" style="background-color:white;font-size:12px">Son: <t t-esc="doc._l10n_pe_edi_amount_to_text(inf_tax_totals['amount_total'], doc.company_id.currency_id)"/></td>
+                            <td style="background-color:#052d48;color:white;border:none !important;box-shadow:none;padding-left:25px;"><t t-out="inf_tax_totals['rate']"/></td>
+                            <td style="color:#ed4e4a" class="text-end"><t t-out="inf_tax_totals['amount_total_str']"/></td>
+                        </tr>
+                        <tr class="text-end" style="border:none;color:#052d48">
+                            <td colspan="4" class="text-right" style="font-size:13px">
+                                <span>Valor referencial en moneda nacional sujeto a variación T/C</span>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+
+                <t t-call="sale_order_pdf.number_account_bank"/>
+
+
+            </div>
+        </t>
+    </template>
+
+    <template id="template_sale_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale_order_pdf.report_sale_order_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,195 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.radius{
+    border-radius: 12px;
+    border: 1px solid #333333;
+}
+.logo {
+    max-width:150px;
+}
+.title{
+    margin-top:30px;
+}
+.div_header{
+   height: 120px;
+}
+.div_header > img{
+    max-height: 120px;
+
+}
+
+.div_header > table{
+    width: 83%;
+    float: right;
+}
+.div_header > div{
+    height: 120px;
+    display: inline-block;
+}
+
+.div_info {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+    font-size:13px;
+}
+.div_info > div {
+    display: inline-block;
+    margin: 1px auto;
+    padding: 10px;
+    height: 100%;
+}
+
+.div_info > div > div:nth-child(2){
+    float: right;
+}
+.div_info > div:nth-child(1){
+    width: 75%;
+}
+.div_info > div:nth-child(2){
+    float: right;
+    width: 24%;
+}
+
+.div_info_1 {
+    text-align: center;
+    height: 100%;
+    min-height: 100%;
+}
+############################ DETAIL
+.detail_guide{
+    border:1px solid red;
+    margin-top:45px;
+}
+.detail_guide > table{
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border: 1px solid #333333;
+}
+.detail_tr > td{
+    height: 30px;
+    width: 25%;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+.detail_tr2 > td{
+    height: 30px;
+    width: 25%;
+    border-right: 1px solid #333333;
+}
+.detail_tr2 > td:last-child{
+    border-right: none !important;
+}
+.detail_tr > td:last-child{
+    border-right: none !important;
+}
+.detail_tr > th{
+    height: 30px;
+    width: 25%;
+    border-right: 1px solid #333333;
+
+}
+.detail_tr > th:last-child{
+    border-right: none !important;
+}
+
+.detail_tr3 > th{
+    height: 30px;
+    border-right: 1px solid #333333;
+}
+.detail_tr3 > th:last-child{
+    border-right: none !important;
+}
+.detail_tr3 > td{
+    height: 30px;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+.detail_tr3 > td:last-child{
+    border-right: none !important;
+}
+
+.detail_tr4 > td{
+    height: 30px;
+}
+.detail_tr4 > td:first-child{
+    border-right: 1px solid #333333;
+}
+
+
+/*
+.detail_guide > table th:last-child, td:last-child{
+    border-right: none !important;
+}
+.detail_tr td{
+    border-bottom:1px solid #333333;
+}*/
+
+############################# POINTS
+
+.div_point {
+    margin-top:5px;
+    border: 1px solid red;
+}
+.div_point > div {
+    display: inline-block;
+    width: 49%;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+.div_point > div:last-child{
+    float:right;
+}
+.point_inf{
+    text-align:center;
+    height: 70px;
+}
+.title{
+    margin-top:35px;
+    font-size:14px;
+}
+
+################################## ITEMS
+
+.div_items{
+    width: 100%;
+    margin-top: 10px;
+    font-size:13px;
+}
+
+.div_items table{
+    width: 100%;
+}
+
+.div_items_table > th {
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #333333;
+  height: 30px;
+  padding-top: 12px;
+  text-align: center;
+  color: white;
+  background-color: #A1A3AF;
+}
+
+.div_items_table > th:last-child{
+  border-right: 1px solid #333333;
+}
+
+.div_items_table > td {
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #333333;
+  height: 30px;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.div_items_table > td:last-child{
+  border-right: 1px solid #333333;
+}

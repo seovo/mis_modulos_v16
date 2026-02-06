@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="operacion_contrato_tree_view" model="ir.ui.view">
+        <field name="name">operacion.contrato.tree.view</field>
+        <field name="model">operacion.contrato</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="vendedor_id"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="operacion_contrato_form_view" model="ir.ui.view">
+        <field name="name">operacion.contrato.form.view</field>
+        <field name="model">operacion.contrato</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="aprobar" type="object" string="Aprobar" class="oe_highlight" invisible="state != 'borrador'"/>
+                    <button name="cancelar" type="object" string="Cancelar" invisible="state != 'borrador'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="borrador,aprobado"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"
+                                   force_save="1"
+                                   readonly="1"/>
+                        </h1>
+                    </div>
+                    <group string="Invisibles" invisible="1">
+                        <group>
+                            <field name="res_partner_category_TVF_id"/>
+                            <field name="res_partner_category_TVC"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="vendedor_id"
+                                   context="{'show_tipo_vendedor': 1}"
+                                   domain="[('category_id', 'in', [res_partner_category_TVF_id, res_partner_category_TVC])]"
+                                   required="1"/>
+                            <field name="recurso_ids"
+                                   domain="[('type_tax_use', '=', 'sale')]"
+                                   options="{'no_create': True}"
+                                   widget="many2many_tags"
+                                   required="1"/>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="company_id"
+                                   readonly="1"
+                                   options="{'no_open': True}"
+                                   force_save="1"/>
+                        </group>
+                    </group>
+                        <field name="line_ids">
+                            <tree editable="bottom">
+                                <field name="name" required="1"/>
+                                <field name="operador_logico" required="1"/>
+                                <field name="dias" required="1"/>
+                                <field name="tasa" required="1"/>
+                            </tree>
+                        </field>
+                    <div>
+                        <div>
+                            <field name="check_contrato"/>
+                            <span style="font-weight: 500;" invisible="check_contrato">
+                                Contrato
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_contrato">
+                                Contrato
+                            </span>
+                        </div>
+                        <div>
+                            <field name="check_ficha_ruc"/>
+                            <span style="font-weight: 500;" invisible="check_ficha_ruc">
+                                Ficha RUC
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_ficha_ruc">
+                                Ficha RUC
+                            </span>
+                        </div>
+                        <div>
+                            <field name="check_dni_rep"/>
+                            <span style="font-weight: 500;" invisible="check_dni_rep">
+                                DNI representantes
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_dni_rep">
+                                DNI representantes
+                            </span>
+                        </div>
+                        <div>
+                            <field name="check_vig_pod"/>
+                            <span style="font-weight: 500;" invisible="check_vig_pod">
+                                Vigencia de poder
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_vig_pod">
+                                Vigencia de poder
+                            </span>
+                        </div>
+                        <div>
+                            <field name="check_fich_cli"/>
+                            <span style="font-weight: 500;" invisible="check_fich_cli">
+                                Ficha de cliente
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_fich_cli">
+                                Ficha de cliente
+                            </span>
+                        </div>
+                        <div>
+                            <field name="check_copia_lit"/>
+                            <span style="font-weight: 500;" invisible="check_copia_lit">
+                                Copia literal (opcional)
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_copia_lit">
+                                Copia literal (opcional)
+                            </span>
+                        </div>
+                        <div>
+                            <field name="check_doc_adi"/>
+                            <span style="font-weight: 500;" invisible="check_doc_adi">
+                                Documentos adicionales (opcional)
+                            </span>
+                            <span style="font-weight: 500; text-decoration: line-through;" invisible="not check_doc_adi">
+                                Documentos adicionales (opcional)
+                            </span>
+                        </div>
+                    </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

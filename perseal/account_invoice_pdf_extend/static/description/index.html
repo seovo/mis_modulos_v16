@@ -1,0 +1,249 @@
+<!-- =========================
+     Sección: Descripción / Introducción
+     ========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Automatic Database Backup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- =========================
+        Sección 0: Banner / Descripción Introducción
+        ========================= -->
+    <section class="oe_container">
+        <div class="oe_row oe_spaced align-items-center" style="border-radius:10px;padding:15px 0px; background-color:#f4f4f4">
+
+           <!-- <div class="oe_span6 text-center">
+              <img src="img/img1.png" alt="Imagen introductoria">
+           </div> -->
+           <div class="col-md-12 text-center">
+                <div class="d-inline-block p-3 shadow-sm"
+                        style="background-color:#fff; border-radius:10px">
+                    <img alt="" class="img-fluid"
+                            loading="lazy"
+                            src="img/banner.jpg"
+                            style="min-height: 1px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================
+        Sección 1: Características, Screenshots, FAQ (Pestañas)
+        ========================= -->
+    <section class="oe_container">
+        <div class="mb-4 bg-white" style="border: 1px solid #EBEEF2; border-radius: 6px; box-shadow: 0px 8px 20px -4px rgba(0, 0, 0, 0.10);"></div>
+           <ul class="nav nav-tabs justify-content-center bg-white py-2" id="mainTab" role="tablist" style="border-radius: 6px 6px 0 0;">
+              <li class="nav-item"></li>
+                 <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true" style="color:#121212; font-weight:500; font-size:16px">
+                    Overview Caracter&iacute;sticas - Features de la App
+                 </a>
+              </li>
+              <li class="nav-item"></li>
+                 <a class="nav-link" id="screenshots-tab" data-bs-toggle="tab" href="#screenshots" role="tab" aria-controls="screenshots" aria-selected="false" style="color:#121212; font-weight:500; font-size:16px">
+                    Pantallas / Screenshots de cambios
+                 </a>
+              </li>
+              <li class="nav-item"></li>
+                 <a class="nav-link" id="faq-tab" data-bs-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false" style="color:#121212; font-weight:500; font-size:16px">
+                    FAQ - Preguntas Frecuentes
+                 </a>
+              </li>
+           </ul>
+           <div class="tab-content p-md-5 p-2 py-3" style="background-color:#f4f4f4">
+              <!-- Overview -->
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <div class="d-flex justify-content-center gap-3 flex-wrap shadow" style="background-color:white; padding:20px 0px">
+                        <ul>
+                           <li>&#10004; Elimina el código del producto en el nombre al imprimir el PDF de la factura</li>
+                           <li>&#10004; Presenta únicamente el nombre del producto al cliente</li>
+                           <li>&#10004; Integración total con Odoo</li>
+                           <li>&#10004; Fácil instalación y uso</li>
+                        </ul>
+                    </div>
+                </div>
+              <!-- Screenshots -->
+                <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <img src="img/img1.png" alt="Pantalla 1" style="width:48%; height:auto; object-fit:cover; border:1px solid #ddd; border-radius:5px;">
+                        <img src="img/img2.png" alt="Pantalla 2" style="width:48%; height:auto; object-fit:cover; border:1px solid #ddd; border-radius:5px;">
+                    </div>
+                </div>
+              <!-- FAQ -->
+                <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                    <div class="d-flex justify-content-center gap-3 flex-wrap shadow" style="background-color:white; padding:20px 0px">
+                        <ul>
+                            <li><strong>¿Es compatible con Odoo EE?</strong> S&iacute;.</li>
+                            <li><strong>¿Se puede personalizar?</strong> S&iacute;, bajo solicitud.</li>
+                            <li><strong>¿Incluye soporte?</strong> Ver secci&oacute;n de soporte.</li>
+                        </ul>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+
+    <!-- =========================
+        Secci&oacute;n 2: Gu&iacute;a de Usuario, Setup, Soporte (Pestañas)
+        ========================= -->
+    <section class="oe_container">
+        <div class="mb-4 bg-white" style="border: 1px solid #EBEEF2; border-radius: 6px; box-shadow: 0px 8px 20px -4px rgba(0, 0, 0, 0.10);"></div>
+           <ul class="nav nav-tabs justify-content-center bg-white py-2" id="userTab" role="tablist" style="border-radius: 6px 6px 0 0;">
+              
+             <li class="nav-item"></li>
+                 <a class="nav-link active" id="setup-tab" data-bs-toggle="tab" href="#setup" role="tab" aria-controls="setup" aria-selected="true" style="color:#121212; font-weight:500; font-size:16px">
+                    Setup Paso a paso
+                 </a>
+              </li>
+
+             <li class="nav-item"></li>
+                 <a class="nav-link " id="guide-tab" data-bs-toggle="tab" href="#guide" role="tab" aria-controls="guide" aria-selected="false" style="color:#121212; font-weight:500; font-size:16px">
+                    Gu&iacute;a de Usuario / Tutoriales
+                 </a>
+              </li>
+              
+              <li class="nav-item"></li>
+                 <a class="nav-link" id="support-tab" data-bs-toggle="tab" href="#support" role="tab" aria-controls="support" aria-selected="false" style="color:#121212; font-weight:500; font-size:16px">
+                    Soporte T&eacute;cnico
+                 </a>
+              </li>
+           </ul>
+           <div class="tab-content p-md-5 p-2 py-3" id="userTabContent">
+                <!-- Setup -->
+              <div class="tab-pane fade show active" id="setup" role="tabpanel" aria-labelledby="setup-tab">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <p>
+                        No se requiere ninguna configuraci&oacute;n previa para utilizar este m&oacute;dulo.<br>
+                        Simplemente inst&aacute;lalo y estar&aacute; listo para funcionar autom&aacute;ticamente.
+                    </p>
+                </div>
+              </div>
+              <!-- Gu&iacute;a de Usuario -->
+
+                <div class="tab-pane fade" id="guide" role="tabpanel" aria-labelledby="guide-tab">
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <p>
+                            Este m&oacute;dulo no requiere una gu&iacute;a de usuario espec&iacute;fica, ya que funciona de manera autom&aacute;tica tras su instalaci&oacute;n.<br>
+                            Los usuarios del portal ver&aacute;n únicamente los pedidos de venta en estado 'Por Pagar' y las facturas asociadas, sin necesidad de configuraci&oacute;n adicional.
+                        </p>
+                    </div>
+                </div>
+
+              <!-- Soporte T&eacute;cnico -->
+              <div class="tab-pane fade" id="support" role="tabpanel" aria-labelledby="support-tab">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <p>Correo: <a href="mailto:support@odoo.oxe360.com">support@odoo.oxe360.com</a></p>
+                    <p>WhatsApp: <a href="https://wa.me/51936340318"> +51 936 340 318</a></p>
+                 </div>
+              </div>
+           </div>
+
+        </div>
+    </section>
+
+    <!-- =========================
+        Secci&oacute;n 3: Condiciones, Contacto, Log de Versiones (Pestañas)
+        ========================= -->
+    <section class="oe_container"></section>
+        <div class="mb-4 bg-white" style="border: 1px solid #EBEEF2; border-radius: 6px; box-shadow: 0px 8px 20px -4px rgba(0, 0, 0, 0.10);"></div>
+           <ul class="nav nav-tabs justify-content-center bg-white py-2" id="infoTab" role="tablist" style="border-radius: 6px 6px 0 0;">
+              <li class="nav-item"></li>
+                 <a class="nav-link active" id="terms-tab" data-bs-toggle="tab" href="#terms" role="tab" aria-controls="terms" aria-selected="true" style="color:#121212; font-weight:500; font-size:16px">
+                    Plazos y condiciones comerciales
+                 </a>
+              </li>
+              <li class="nav-item"></li>
+                 <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" style="color:#121212; font-weight:500; font-size:16px">
+                    Contacto
+                 </a>
+              </li>
+              <li class="nav-item"></li>
+                 <a class="nav-link" id="log-tab" data-bs-toggle="tab" href="#log" role="tab" aria-controls="log" aria-selected="false" style="color:#121212; font-weight:500; font-size:16px">
+                    Log de Versiones
+                 </a>
+              </li>
+           </ul>
+           <div class="tab-content p-md-5 p-2 py-3" id="infoTabContent">
+              <!-- Plazos y condiciones comerciales -->
+              <div class="tab-pane fade show active" id="terms" role="tabpanel" aria-labelledby="terms-tab">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <ul>
+                        <li>Soporte de instalaci&oacute;n incluido por 30 d&iacute;as</li>
+                        <li>Personalizaciones bajo presupuesto</li>
+                    </ul>
+                 </div>
+              </div>
+              <!-- Contacto -->
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <p>Correo: <a href="mailto:soporte@oxe360.com">support@odoo.oxe360.com</a></p><br />
+                    <p>WhatsApp: <a href="https://wa.me/59170000000"> +51 936 340 318</a></p>
+                </div>
+                 <!-- Aqu&iacute; puedes agregar QR si lo tienes disponible -->
+              </div>
+              <!-- Log de Versiones -->
+              <div class="tab-pane fade" id="log" role="tabpanel" aria-labelledby="log-tab">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <ul>
+                        <li><strong>v1.0.0</strong> - Lanzamiento inicial</li>
+                        <li><strong>v1.1.0</strong> - Mejoras de rendimiento</li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+    </section>
+
+    <!-- =========================
+        Secci&oacute;n 4: Sobre la empresa y productos relacionados
+        ========================= -->
+    <section class="oe_container oe_dark">
+        <div class="oe_row">
+           <div class="oe_span4">
+              <h3>Productos Sugeridos</h3>
+                <ul>
+                    <li><a href="#">M&oacute;dulo Relacionado 1</a></li>
+                    <li><a href="#">M&oacute;dulo Relacionado 2</a></li>
+                </ul>
+              <h3>Kits y Combos</h3>
+              <ul>
+                 <li><a href="#">Kit Gesti&oacute;n Comercial</a></li>
+                 <li><a href="#">Combo Retail + POS</a></li>
+              </ul>
+              <h3><a href="demo_url">Solicitar una Demo</a></h3>
+           </div>
+           <div class="oe_span4">
+              <h3>¿Por qu&eacute; Oxe360?</h3>
+              <p>Especialistas en soluciones empresariales Odoo con enfoque personalizado.</p>
+              <h3>Servicios Oxe360</h3>
+              <ul>
+                 <li>Consultor&iacute;a</li>
+                 <li>Soporte</li>
+                 <li>Capacitaci&oacute;n</li>
+              </ul>
+           </div>
+           <div class="oe_span4">
+              <h3>Reconocimientos y Clientes</h3>
+              <img src="img/logo.png" alt="Logos" style="width: 60px;">
+              <p>Empresas l&iacute;deres en LATAM confían en nosotros.</p>
+              <!-- Aquí puedes agregar certificaciones, premios, logos oficiales, etc. -->
+           </div>
+        </div>
+    </section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body> 
+</html>
+
+
+
+
+
+

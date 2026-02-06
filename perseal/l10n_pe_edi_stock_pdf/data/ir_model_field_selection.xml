@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_pe_edi_stock.selection__stock_picking__l10n_pe_edi_reason_for_transfer__05" model="ir.model.fields.selection">
+        <field name="name">Consignación</field>
+        <field name="sequence">3</field>
+    </record>
+
+
+</odoo>

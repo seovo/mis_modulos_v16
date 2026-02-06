@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_ruc_query.PartnerDetailsEdit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension">
+        <xpath expr="//input[@id='vat']" position="replace">
+            <input class="detail vat form-control"
+                   id="vat"
+                   name="vat"
+                   t-model="changes.vat"
+                   t-att="{'disabled': isFieldCommercialAndPartnerIsChild('vat')}"
+                   t-att-class="{'border-danger': missingFields.includes('vat')}"
+                   t-on-change="(ev) => this.onChangeVat(ev.target.value)"/>
+        </xpath>
+    </t>
+</templates>

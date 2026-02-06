@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_pdf" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.whatsapp.pos.pdf</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="95"/>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_bills_and_receipts_section']" position="inside">
+                <setting id="qr_code">
+                    <field name="include_qr_code"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</odoo>

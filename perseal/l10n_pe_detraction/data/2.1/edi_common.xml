@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<odoo>
+    <template id="pe_ubl_2_1_common_detraction" inherit_id="l10n_pe_edi.pe_ubl_2_1_common">
+        <xpath expr="//*[@t-if='not is_refund']" position="before">
+            <t xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+               xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+
+                <t t-if="spot">
+                <cac:InvoiceLine>
+                    <cac:Item>
+                        <cac:AdditionalItemProperty>
+                            <cbc:NameCode t-esc="spot['PaymentMeansID']"/>
+                            <cbc:Value t-esc="spot['PaymentMeansID']"/>
+                            <cbc:ValueQuantity t-esc="spot['PaymentMeansID']"/>
+                            <cac:UsabilityPeriod>
+                                <cbc:StartDate esc="spot['PaymentMeansID']"/>
+                            </cac:UsabilityPeriod>
+                        </cac:AdditionalItemProperty>
+                    </cac:Item>
+                </cac:InvoiceLine>
+                </t>
+
+            </t>
+        </xpath>
+    </template>
+</odoo>

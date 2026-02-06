@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="module_category_operaciones" model="ir.module.category">
+        <field name="name">Operaciones</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="module_category_operaciones_operaciones" model="ir.module.category">
+        <field name="name">Operaciones</field>
+        <field name="sequence">1</field>
+        <field name="parent_id" ref="operations_management.module_category_operaciones"/>
+    </record>
+
+    <record id="usuario_operaciones_group" model="res.groups">
+        <field name="name">Usuario</field>
+        <field name="category_id" ref="operations_management.module_category_operaciones_operaciones"/>
+        <field name="implied_ids" eval="[(6, 0, [ref('base.group_user')])]"/>
+    </record>
+
+    <record id="supervisor_operaciones_group" model="res.groups">
+        <field name="name">Supervisor</field>
+        <field name="category_id" ref="operations_management.module_category_operaciones_operaciones"/>
+        <field name="implied_ids" eval="[(6, 0, [ref('operations_management.usuario_operaciones_group')])]"/>
+    </record>
+
+    <record id="operacion_contrato_company_rule" model="ir.rule">
+        <field name="name">Contratos Multi-Company</field>
+        <field name="model_id" ref="model_operacion_contrato"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="operacion_documento_company_rule" model="ir.rule">
+        <field name="name">Documentos Multi-Company</field>
+        <field name="model_id" ref="model_operacion_documento"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="operacion_tipo_company_rule" model="ir.rule">
+        <field name="name">Tipo de operación Multi-Company</field>
+        <field name="model_id" ref="model_operacion_tipo"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="operacion_operacion_company_rule" model="ir.rule">
+        <field name="name">Operación Multi-Company</field>
+        <field name="model_id" ref="model_operacion_operacion"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="operacion_operacion_line?company_rule" model="ir.rule">
+        <field name="name">Línea de operación Multi-Company</field>
+        <field name="model_id" ref="model_operacion_operacion_line"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+</odoo>

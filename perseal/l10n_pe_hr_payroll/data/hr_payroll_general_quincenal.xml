@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payroll_structure_pe_type_biweekly_general" model="hr.payroll.structure.type">
+        <field name="name">Regimen General Quincenal</field>
+    </record>
+        <record id="hr_payroll_structure_pe_biweekly_general" model="hr.payroll.structure">
+        <field name="name">Regimen General Quincenal</field>
+        <field name="code">NG</field>
+        <field name="type_id" ref="hr_payroll_structure_pe_type_biweekly_general"/>
+        <field name="rule_ids" eval="[]"/>
+        <field name="use_worked_day_lines" eval="True"/>
+    </record>
+     <record id="hr_salary_rule_pe_basic_biweekly_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="name">SUELDO BASICO</field>
+        <field name="code">BASIC</field>
+        <field name="sequence">50</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.wage
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_biweekly_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_asignacion_familiar_biweekly_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Asignacion Familiar</field>
+        <field name="code">AS-FA</field>
+        <field name="sequence">60</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.children > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+percentage = 10
+result = (percentage/100) * contract.rmv
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_biweekly_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_adelanto_te_biweekly_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="name">Adelanto de Quincena Teorico</field>
+        <field name="code">AQT</field>
+        <field name="sequence">70</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = (payslip.paid_amount + categories.IN) * 0.5
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_biweekly_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_reintegro_feriado" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Reintegro de Feriado</field>
+        <field name="code">REIN_FE</field>
+        <field name="sequence">80</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'REIN_FE' in inputs:
+    result = inputs['REIN_FE'].amount
+else:
+    result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_biweekly_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_biweekly_adelanto_pago" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="name">Adelanto de Quincena Pago</field>
+        <field name="code">AQP</field>
+        <field name="sequence">90</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = result_rules['AQT']['total'] + result_rules['REIN_FE']['total']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_biweekly_general"/>
+    </record>
+</odoo>

@@ -1,0 +1,975 @@
+id,table_id/id,name,description,percent,from_date,to_date,doc_serie_lenght,doc_serie_lenght_fixed,doc_number_lenght,doc_number_lenght_fixed,active
+l10n_pe_oxe360.1092,l10n_pe_oxe360.pe_sunat_ple_table01,1,DEPÓSITO EN CUENTA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1093,l10n_pe_oxe360.pe_sunat_ple_table01,2,GIRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1094,l10n_pe_oxe360.pe_sunat_ple_table01,3,TRANSFERENCIA DE FONDOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1095,l10n_pe_oxe360.pe_sunat_ple_table01,4,ORDEN DE PAGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1096,l10n_pe_oxe360.pe_sunat_ple_table01,5,TARJETA DE DÉBITO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1097,l10n_pe_oxe360.pe_sunat_ple_table01,6,TARJETA DE CRÉDITO EMITIDA EN EL PAÍS POR UNA EMPRESA DEL SISTEMA FINANCIERO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1098,l10n_pe_oxe360.pe_sunat_ple_table01,7,"CHEQUES CON LA CLÁUSULA DE 'NO NEGOCIABLE', 'INTRANSFERIBLES', 'NO A LA ORDEN' U OTRA EQUIVALENTE, A QUE SE REFIERE EL INCISO G) DEL ARTICULO 5° DE LA LEY",0,,,0,False,0,False,True
+l10n_pe_oxe360.1099,l10n_pe_oxe360.pe_sunat_ple_table01,8,"EFECTIVO, POR OPERACIONES EN LAS QUE NO EXISTE OBLIGACIÓN DE UTILIZAR MEDIO DE PAGO",0,,,0,False,0,False,True
+l10n_pe_oxe360.1100,l10n_pe_oxe360.pe_sunat_ple_table01,9,"EFECTIVO, EN LOS DEMÁS CASOS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1101,l10n_pe_oxe360.pe_sunat_ple_table01,10,MEDIOS DE PAGO USADOS EN COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1102,l10n_pe_oxe360.pe_sunat_ple_table01,11,DOCUMENTOS EMITIDOS POR LAS EDPYMES Y LAS COOPERATIVAS DE AHORRO Y CRÉDITO NO AUTORIZADAS A CAPTAR DEPÓSITOS DEL PÚBLICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1103,l10n_pe_oxe360.pe_sunat_ple_table01,12,"TARJETA DE CRÉDITO EMITIDA EN EL PAÍS O EN EL EXTERIOR POR UNA EMPRESA NO PERTENECIENTE AL SISTEMA FINANCIERO, CUYO OBJETO PRINCIPAL SEA LA EMISIÓN Y ADMINISTRACIÓN DE TARJETAS DE CRÉDITO",0,,,0,False,0,False,True
+l10n_pe_oxe360.1104,l10n_pe_oxe360.pe_sunat_ple_table01,13,TARJETAS DE CRÉDITO EMITIDAS EN EL EXTERIOR POR EMPRESAS BANCARIAS O FINANCIERAS NO DOMICILIADAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1105,l10n_pe_oxe360.pe_sunat_ple_table01,101,TRANSFERENCIAS - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1106,l10n_pe_oxe360.pe_sunat_ple_table01,102,CHEQUES BANCARIOS  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1107,l10n_pe_oxe360.pe_sunat_ple_table01,103,ORDEN DE PAGO SIMPLE  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1108,l10n_pe_oxe360.pe_sunat_ple_table01,104,ORDEN DE PAGO DOCUMENTARIO  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1109,l10n_pe_oxe360.pe_sunat_ple_table01,105,REMESA SIMPLE  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1110,l10n_pe_oxe360.pe_sunat_ple_table01,106,REMESA DOCUMENTARIA  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1111,l10n_pe_oxe360.pe_sunat_ple_table01,107,CARTA DE CRÉDITO SIMPLE  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1112,l10n_pe_oxe360.pe_sunat_ple_table01,108,CARTA DE CRÉDITO DOCUMENTARIO  - COMERCIO EXTERIOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1113,l10n_pe_oxe360.pe_sunat_ple_table01,999,OTROS MEDIOS DE PAGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1114,l10n_pe_oxe360.pe_sunat_ple_table02,0,OTROS TIPOS DE DOCUMENTOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1115,l10n_pe_oxe360.pe_sunat_ple_table02,1,DOCUMENTO NACIONAL DE IDENTIDAD (DNI),0,,,0,False,0,False,True
+l10n_pe_oxe360.1116,l10n_pe_oxe360.pe_sunat_ple_table02,4,CARNET DE EXTRANJERIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1117,l10n_pe_oxe360.pe_sunat_ple_table02,6,REGISTRO ÚNICO DE CONTRIBUYENTES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1118,l10n_pe_oxe360.pe_sunat_ple_table02,7,PASAPORTE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1119,l10n_pe_oxe360.pe_sunat_ple_table02,A,CÉDULA DIPLOMÁTICA DE IDENTIDAD,0,,,0,False,0,False,True
+l10n_pe_oxe360.1120,l10n_pe_oxe360.pe_sunat_ple_table03,1,CENTRAL RESERVA DEL PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1121,l10n_pe_oxe360.pe_sunat_ple_table03,2,DE CREDITO DEL PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1122,l10n_pe_oxe360.pe_sunat_ple_table03,3,INTERNACIONAL DEL PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1123,l10n_pe_oxe360.pe_sunat_ple_table03,5,LATINO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1124,l10n_pe_oxe360.pe_sunat_ple_table03,7,CITIBANK DEL PERU S.A.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1125,l10n_pe_oxe360.pe_sunat_ple_table03,8,STANDARD CHARTERED,0,,,0,False,0,False,True
+l10n_pe_oxe360.1126,l10n_pe_oxe360.pe_sunat_ple_table03,9,SCOTIABANK PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1127,l10n_pe_oxe360.pe_sunat_ple_table03,11,CONTINENTAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1128,l10n_pe_oxe360.pe_sunat_ple_table03,12,DE LIMA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1129,l10n_pe_oxe360.pe_sunat_ple_table03,16,MERCANTIL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1130,l10n_pe_oxe360.pe_sunat_ple_table03,18,NACION,0,,,0,False,0,False,True
+l10n_pe_oxe360.1131,l10n_pe_oxe360.pe_sunat_ple_table03,22,SANTANDER CENTRAL HISPANO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1132,l10n_pe_oxe360.pe_sunat_ple_table03,23,DE COMERCIO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1133,l10n_pe_oxe360.pe_sunat_ple_table03,25,REPUBLICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1134,l10n_pe_oxe360.pe_sunat_ple_table03,26,NBK BANK,0,,,0,False,0,False,True
+l10n_pe_oxe360.1135,l10n_pe_oxe360.pe_sunat_ple_table03,29,BANCOSUR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1136,l10n_pe_oxe360.pe_sunat_ple_table03,35,FINANCIERO DEL PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1137,l10n_pe_oxe360.pe_sunat_ple_table03,37,DEL PROGRESO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1138,l10n_pe_oxe360.pe_sunat_ple_table03,38,INTERAMERICANO FINANZAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1139,l10n_pe_oxe360.pe_sunat_ple_table03,39,BANEX,0,,,0,False,0,False,True
+l10n_pe_oxe360.1140,l10n_pe_oxe360.pe_sunat_ple_table03,40,NUEVO MUNDO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1141,l10n_pe_oxe360.pe_sunat_ple_table03,41,SUDAMERICANO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1142,l10n_pe_oxe360.pe_sunat_ple_table03,42,DEL LIBERTADOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1143,l10n_pe_oxe360.pe_sunat_ple_table03,43,DEL TRABAJO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1144,l10n_pe_oxe360.pe_sunat_ple_table03,44,SOLVENTA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1145,l10n_pe_oxe360.pe_sunat_ple_table03,45,SERBANCO SA.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1146,l10n_pe_oxe360.pe_sunat_ple_table03,46,BANK OF BOSTON,0,,,0,False,0,False,True
+l10n_pe_oxe360.1147,l10n_pe_oxe360.pe_sunat_ple_table03,47,ORION,0,,,0,False,0,False,True
+l10n_pe_oxe360.1148,l10n_pe_oxe360.pe_sunat_ple_table03,48,DEL PAIS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1149,l10n_pe_oxe360.pe_sunat_ple_table03,49,MI BANCO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1150,l10n_pe_oxe360.pe_sunat_ple_table03,50,BNP PARIBAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1151,l10n_pe_oxe360.pe_sunat_ple_table03,51,AGROBANCO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1152,l10n_pe_oxe360.pe_sunat_ple_table03,53,HSBC BANK PERU S.A.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1153,l10n_pe_oxe360.pe_sunat_ple_table03,54,BANCO FALABELLA S.A.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1154,l10n_pe_oxe360.pe_sunat_ple_table03,55,BANCO RIPLEY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1155,l10n_pe_oxe360.pe_sunat_ple_table03,56,BANCO SANTANDER PERU S.A.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1156,l10n_pe_oxe360.pe_sunat_ple_table03,58,BANCO AZTECA DEL PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1157,l10n_pe_oxe360.pe_sunat_ple_table03,99,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1158,l10n_pe_oxe360.pe_sunat_ple_table04,AED,UAE Dirham / Emiratos Árabes Unidos,0,,,0,False,0,False,True
+l10n_pe_oxe360.1159,l10n_pe_oxe360.pe_sunat_ple_table04,AFN,Afghani / Afganistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1160,l10n_pe_oxe360.pe_sunat_ple_table04,ALL,Lek / Albania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1161,l10n_pe_oxe360.pe_sunat_ple_table04,AMD,Armenian Dram / Armenia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1162,l10n_pe_oxe360.pe_sunat_ple_table04,ANG,Netherlands Antillian Guilder / Antillas Holandesas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1163,l10n_pe_oxe360.pe_sunat_ple_table04,AOA,Kwanza / Angola,0,,,0,False,0,False,True
+l10n_pe_oxe360.1164,l10n_pe_oxe360.pe_sunat_ple_table04,ARS,Argentine Peso / Argentina,0,,,0,False,0,False,True
+l10n_pe_oxe360.1165,l10n_pe_oxe360.pe_sunat_ple_table04,AUD,Australian Dollar / Australia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1166,l10n_pe_oxe360.pe_sunat_ple_table04,AWG,Aruban Guilder / Aruba,0,,,0,False,0,False,True
+l10n_pe_oxe360.1167,l10n_pe_oxe360.pe_sunat_ple_table04,AZN,Azerbaijanian Manat / Azerbaiyán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1168,l10n_pe_oxe360.pe_sunat_ple_table04,BAM,Convertible Marks / Bosnia y Herzegovina,0,,,0,False,0,False,True
+l10n_pe_oxe360.1169,l10n_pe_oxe360.pe_sunat_ple_table04,BBD,Barbados Dollar / Barbados,0,,,0,False,0,False,True
+l10n_pe_oxe360.1170,l10n_pe_oxe360.pe_sunat_ple_table04,BDT,Taka / Bangladesh,0,,,0,False,0,False,True
+l10n_pe_oxe360.1171,l10n_pe_oxe360.pe_sunat_ple_table04,BGN,Bulgarian Lev / Bulgaria,0,,,0,False,0,False,True
+l10n_pe_oxe360.1172,l10n_pe_oxe360.pe_sunat_ple_table04,BHD,Bahraini Dinar / Bahréin,0,,,0,False,0,False,True
+l10n_pe_oxe360.1173,l10n_pe_oxe360.pe_sunat_ple_table04,BIF,Burundi Franc / Burundi,0,,,0,False,0,False,True
+l10n_pe_oxe360.1174,l10n_pe_oxe360.pe_sunat_ple_table04,BMD,Bermudian Dollar (customarily known as Bermuda Dollar) / Bermudas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1175,l10n_pe_oxe360.pe_sunat_ple_table04,BND,Brunei Dollar / Brunéi Darussalam,0,,,0,False,0,False,True
+l10n_pe_oxe360.1176,l10n_pe_oxe360.pe_sunat_ple_table04,BOB,Boliviano / Bolivia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1177,l10n_pe_oxe360.pe_sunat_ple_table04,BOV,Mvdol / Bolivia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1178,l10n_pe_oxe360.pe_sunat_ple_table04,BRL,Brazilian Real / Brasil,0,,,0,False,0,False,True
+l10n_pe_oxe360.1179,l10n_pe_oxe360.pe_sunat_ple_table04,BSD,Bahamian Dollar / Bahamas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1180,l10n_pe_oxe360.pe_sunat_ple_table04,BTN,Ngultrum / Bután,0,,,0,False,0,False,True
+l10n_pe_oxe360.1181,l10n_pe_oxe360.pe_sunat_ple_table04,BWP,Pula / Botsuana,0,,,0,False,0,False,True
+l10n_pe_oxe360.1182,l10n_pe_oxe360.pe_sunat_ple_table04,BYR,Belarussian Ruble / Bielorrusia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1183,l10n_pe_oxe360.pe_sunat_ple_table04,BZD,Belize Dollar / Belice,0,,,0,False,0,False,True
+l10n_pe_oxe360.1184,l10n_pe_oxe360.pe_sunat_ple_table04,CAD,Canadian Dollar / Canadá,0,,,0,False,0,False,True
+l10n_pe_oxe360.1185,l10n_pe_oxe360.pe_sunat_ple_table04,CDF,Congolese Franc / República Democrática del Congo,0,,,0,False,0,False,True
+l10n_pe_oxe360.1186,l10n_pe_oxe360.pe_sunat_ple_table04,CHE,WIR Euro / Suiza,0,,,0,False,0,False,True
+l10n_pe_oxe360.1187,l10n_pe_oxe360.pe_sunat_ple_table04,CHF,Swiss Franc / Suiza,0,,,0,False,0,False,True
+l10n_pe_oxe360.1188,l10n_pe_oxe360.pe_sunat_ple_table04,CHW,WIR Franc / Suiza,0,,,0,False,0,False,True
+l10n_pe_oxe360.1189,l10n_pe_oxe360.pe_sunat_ple_table04,CLF,Unidades de fomento / Chile,0,,,0,False,0,False,True
+l10n_pe_oxe360.1190,l10n_pe_oxe360.pe_sunat_ple_table04,CLP,Chilean Peso / Chile,0,,,0,False,0,False,True
+l10n_pe_oxe360.1191,l10n_pe_oxe360.pe_sunat_ple_table04,CNY,Yuan Renminbi / China (República Popular),0,,,0,False,0,False,True
+l10n_pe_oxe360.1192,l10n_pe_oxe360.pe_sunat_ple_table04,COP,Colombian Peso / Colombia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1193,l10n_pe_oxe360.pe_sunat_ple_table04,COU,Unidad de Valor Real / Colombia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1194,l10n_pe_oxe360.pe_sunat_ple_table04,CRC,Costa Rican Colon / Costa Rica,0,,,0,False,0,False,True
+l10n_pe_oxe360.1195,l10n_pe_oxe360.pe_sunat_ple_table04,CUC,Peso Convertible / Cuba,0,,,0,False,0,False,True
+l10n_pe_oxe360.1196,l10n_pe_oxe360.pe_sunat_ple_table04,CUP,Cuban Peso / Cuba,0,,,0,False,0,False,True
+l10n_pe_oxe360.1197,l10n_pe_oxe360.pe_sunat_ple_table04,CVE,Cape Verde Escudo / Cabo Verde,0,,,0,False,0,False,True
+l10n_pe_oxe360.1198,l10n_pe_oxe360.pe_sunat_ple_table04,CZK,Czech Koruna / República Checa,0,,,0,False,0,False,True
+l10n_pe_oxe360.1199,l10n_pe_oxe360.pe_sunat_ple_table04,DJF,Djibouti Franc / Yibuti,0,,,0,False,0,False,True
+l10n_pe_oxe360.1200,l10n_pe_oxe360.pe_sunat_ple_table04,DKK,Danish Krone / Dinamarca,0,,,0,False,0,False,True
+l10n_pe_oxe360.1201,l10n_pe_oxe360.pe_sunat_ple_table04,DOP,Dominican Peso / República Dominicana,0,,,0,False,0,False,True
+l10n_pe_oxe360.1202,l10n_pe_oxe360.pe_sunat_ple_table04,DZD,Algerian Dinar / Argelia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1203,l10n_pe_oxe360.pe_sunat_ple_table04,EEK,Kroon / Estonia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1204,l10n_pe_oxe360.pe_sunat_ple_table04,EGP,Egyptian Pound / Egipto,0,,,0,False,0,False,True
+l10n_pe_oxe360.1205,l10n_pe_oxe360.pe_sunat_ple_table04,ERN,Nakfa / Eritrea,0,,,0,False,0,False,True
+l10n_pe_oxe360.1206,l10n_pe_oxe360.pe_sunat_ple_table04,ETB,Ethiopian Birr / Etiopía,0,,,0,False,0,False,True
+l10n_pe_oxe360.1207,l10n_pe_oxe360.pe_sunat_ple_table04,EUR,Euro / Unión Europea,0,,,0,False,0,False,True
+l10n_pe_oxe360.1208,l10n_pe_oxe360.pe_sunat_ple_table04,FJD,Fiji Dollar / Fiyi,0,,,0,False,0,False,True
+l10n_pe_oxe360.1209,l10n_pe_oxe360.pe_sunat_ple_table04,FKP,Falkland Islands Pound / Islas Malvinas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1210,l10n_pe_oxe360.pe_sunat_ple_table04,GBP,Pound Sterling / Reino Unido,0,,,0,False,0,False,True
+l10n_pe_oxe360.1211,l10n_pe_oxe360.pe_sunat_ple_table04,GEL,Lari / Georgia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1212,l10n_pe_oxe360.pe_sunat_ple_table04,GHS,Cedi / Ghana,0,,,0,False,0,False,True
+l10n_pe_oxe360.1213,l10n_pe_oxe360.pe_sunat_ple_table04,GIP,Gibraltar Pound / Gibraltar,0,,,0,False,0,False,True
+l10n_pe_oxe360.1214,l10n_pe_oxe360.pe_sunat_ple_table04,GMD,Dalasi / Gambia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1215,l10n_pe_oxe360.pe_sunat_ple_table04,GNF,Guinea Franc / Guinea,0,,,0,False,0,False,True
+l10n_pe_oxe360.1216,l10n_pe_oxe360.pe_sunat_ple_table04,GTQ,Quetzal / Guatemala,0,,,0,False,0,False,True
+l10n_pe_oxe360.1217,l10n_pe_oxe360.pe_sunat_ple_table04,GYD,Guyana Dollar / Guyana,0,,,0,False,0,False,True
+l10n_pe_oxe360.1218,l10n_pe_oxe360.pe_sunat_ple_table04,HKD,Hong Kong Dollar / Hong Kong,0,,,0,False,0,False,True
+l10n_pe_oxe360.1219,l10n_pe_oxe360.pe_sunat_ple_table04,HNL,Lempira / Honduras,0,,,0,False,0,False,True
+l10n_pe_oxe360.1220,l10n_pe_oxe360.pe_sunat_ple_table04,HRK,Croatian Kuna / Croacia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1221,l10n_pe_oxe360.pe_sunat_ple_table04,HTG,Gourde / Haití,0,,,0,False,0,False,True
+l10n_pe_oxe360.1222,l10n_pe_oxe360.pe_sunat_ple_table04,HUF,Forint / Hungría,0,,,0,False,0,False,True
+l10n_pe_oxe360.1223,l10n_pe_oxe360.pe_sunat_ple_table04,IDR,Rupiah / Indonesia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1224,l10n_pe_oxe360.pe_sunat_ple_table04,ILS,New Israeli Sheqel / Israel,0,,,0,False,0,False,True
+l10n_pe_oxe360.1225,l10n_pe_oxe360.pe_sunat_ple_table04,INR,Indian Rupee / India,0,,,0,False,0,False,True
+l10n_pe_oxe360.1226,l10n_pe_oxe360.pe_sunat_ple_table04,IQD,Iraqi Dinar / Iraq,0,,,0,False,0,False,True
+l10n_pe_oxe360.1227,l10n_pe_oxe360.pe_sunat_ple_table04,IRR,Iranian Rial / Irán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1228,l10n_pe_oxe360.pe_sunat_ple_table04,ISK,Iceland Krona / Islandia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1229,l10n_pe_oxe360.pe_sunat_ple_table04,JMD,Jamaican Dollar / Jamaica,0,,,0,False,0,False,True
+l10n_pe_oxe360.1230,l10n_pe_oxe360.pe_sunat_ple_table04,JOD,Jordanian Dinar / Jordania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1231,l10n_pe_oxe360.pe_sunat_ple_table04,JPY,Yen / Japón,0,,,0,False,0,False,True
+l10n_pe_oxe360.1232,l10n_pe_oxe360.pe_sunat_ple_table04,KES,Kenyan Shilling / Kenia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1233,l10n_pe_oxe360.pe_sunat_ple_table04,KGS,Som / Kirguistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1234,l10n_pe_oxe360.pe_sunat_ple_table04,KHR,Riel / Camboya,0,,,0,False,0,False,True
+l10n_pe_oxe360.1235,l10n_pe_oxe360.pe_sunat_ple_table04,KMF,Comoro Franc / Comoras,0,,,0,False,0,False,True
+l10n_pe_oxe360.1236,l10n_pe_oxe360.pe_sunat_ple_table04,KPW,North Korean Won / Corea (del Norte),0,,,0,False,0,False,True
+l10n_pe_oxe360.1237,l10n_pe_oxe360.pe_sunat_ple_table04,KRW,Won / Corea (del Sur),0,,,0,False,0,False,True
+l10n_pe_oxe360.1238,l10n_pe_oxe360.pe_sunat_ple_table04,KWD,Kuwaiti Dinar / Kuwait,0,,,0,False,0,False,True
+l10n_pe_oxe360.1239,l10n_pe_oxe360.pe_sunat_ple_table04,KYD,Cayman Islands Dollar / Islas Caimán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1240,l10n_pe_oxe360.pe_sunat_ple_table04,KZT,Tenge / Kazajistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1241,l10n_pe_oxe360.pe_sunat_ple_table04,LAK,Kip / Laos,0,,,0,False,0,False,True
+l10n_pe_oxe360.1242,l10n_pe_oxe360.pe_sunat_ple_table04,LBP,Lebanese Pound / Líbano,0,,,0,False,0,False,True
+l10n_pe_oxe360.1243,l10n_pe_oxe360.pe_sunat_ple_table04,LKR,Sri Lanka Rupee / Sri Lanka,0,,,0,False,0,False,True
+l10n_pe_oxe360.1244,l10n_pe_oxe360.pe_sunat_ple_table04,LRD,Liberian Dollar / Liberia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1245,l10n_pe_oxe360.pe_sunat_ple_table04,LSL,Loti / Lesoto,0,,,0,False,0,False,True
+l10n_pe_oxe360.1246,l10n_pe_oxe360.pe_sunat_ple_table04,LTL,Lithuanian Litas / Lituania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1247,l10n_pe_oxe360.pe_sunat_ple_table04,LVL,Latvian Lats / Letonia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1248,l10n_pe_oxe360.pe_sunat_ple_table04,LYD,Libyan Dinar / Libia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1249,l10n_pe_oxe360.pe_sunat_ple_table04,MAD,Moroccan Dirham / Marruecos,0,,,0,False,0,False,True
+l10n_pe_oxe360.1250,l10n_pe_oxe360.pe_sunat_ple_table04,MDL,Moldovan Leu / Moldavia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1251,l10n_pe_oxe360.pe_sunat_ple_table04,MGA,Malagasy Ariary / Madagascar,0,,,0,False,0,False,True
+l10n_pe_oxe360.1252,l10n_pe_oxe360.pe_sunat_ple_table04,MKD,Denar / Macedonia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1253,l10n_pe_oxe360.pe_sunat_ple_table04,MMK,Kyat / Myanmar (Birmania),0,,,0,False,0,False,True
+l10n_pe_oxe360.1254,l10n_pe_oxe360.pe_sunat_ple_table04,MNT,Tugrik / Mongolia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1255,l10n_pe_oxe360.pe_sunat_ple_table04,MOP,Pataca / Macao,0,,,0,False,0,False,True
+l10n_pe_oxe360.1256,l10n_pe_oxe360.pe_sunat_ple_table04,MRO,Ouguiya / Mauritania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1257,l10n_pe_oxe360.pe_sunat_ple_table04,MUR,Mauritius Rupee / Mauricio,0,,,0,False,0,False,True
+l10n_pe_oxe360.1258,l10n_pe_oxe360.pe_sunat_ple_table04,MVR,Rufiyaa / Maldivas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1259,l10n_pe_oxe360.pe_sunat_ple_table04,MWK,Kwacha / Malaui,0,,,0,False,0,False,True
+l10n_pe_oxe360.1260,l10n_pe_oxe360.pe_sunat_ple_table04,MXN,Mexican Peso / México,0,,,0,False,0,False,True
+l10n_pe_oxe360.1261,l10n_pe_oxe360.pe_sunat_ple_table04,MXV,Mexican Unidad de Inversion (UDI) / México,0,,,0,False,0,False,True
+l10n_pe_oxe360.1262,l10n_pe_oxe360.pe_sunat_ple_table04,MYR,Malaysian Ringgit / Malasia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1263,l10n_pe_oxe360.pe_sunat_ple_table04,MZN,Metical / Mozambique,0,,,0,False,0,False,True
+l10n_pe_oxe360.1264,l10n_pe_oxe360.pe_sunat_ple_table04,NAD,Namibia Dollar / Namibia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1265,l10n_pe_oxe360.pe_sunat_ple_table04,NGN,Naira / Nigeria,0,,,0,False,0,False,True
+l10n_pe_oxe360.1266,l10n_pe_oxe360.pe_sunat_ple_table04,NIO,Cordoba Oro / Nicaragua,0,,,0,False,0,False,True
+l10n_pe_oxe360.1267,l10n_pe_oxe360.pe_sunat_ple_table04,NOK,Norwegian Krone / Noruega,0,,,0,False,0,False,True
+l10n_pe_oxe360.1268,l10n_pe_oxe360.pe_sunat_ple_table04,NPR,Nepalese Rupee / Nepal,0,,,0,False,0,False,True
+l10n_pe_oxe360.1269,l10n_pe_oxe360.pe_sunat_ple_table04,NZD,New Zealand Dollar / Nueva Zelanda,0,,,0,False,0,False,True
+l10n_pe_oxe360.1270,l10n_pe_oxe360.pe_sunat_ple_table04,OMR,Rial Omani / Omán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1271,l10n_pe_oxe360.pe_sunat_ple_table04,PAB,Balboa / Panamá,0,,,0,False,0,False,True
+l10n_pe_oxe360.1272,l10n_pe_oxe360.pe_sunat_ple_table04,PEN,Nuevo Sol o Sol / Perú,0,,,0,False,0,False,True
+l10n_pe_oxe360.1273,l10n_pe_oxe360.pe_sunat_ple_table04,PGK,Kina / Papúa Nueva Guinea,0,,,0,False,0,False,True
+l10n_pe_oxe360.1274,l10n_pe_oxe360.pe_sunat_ple_table04,PHP,Philippine Peso / Filipinas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1275,l10n_pe_oxe360.pe_sunat_ple_table04,PKR,Pakistan Rupee / Pakistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1276,l10n_pe_oxe360.pe_sunat_ple_table04,PLN,Zloty / Polonia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1277,l10n_pe_oxe360.pe_sunat_ple_table04,PYG,Guarani / Paraguay,0,,,0,False,0,False,True
+l10n_pe_oxe360.1278,l10n_pe_oxe360.pe_sunat_ple_table04,QAR,Qatari Rial / Qatar,0,,,0,False,0,False,True
+l10n_pe_oxe360.1279,l10n_pe_oxe360.pe_sunat_ple_table04,RON,New Leu / Rumania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1280,l10n_pe_oxe360.pe_sunat_ple_table04,RSD,Serbian Dinar / Serbia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1281,l10n_pe_oxe360.pe_sunat_ple_table04,RUB,Russian Ruble / Rusia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1282,l10n_pe_oxe360.pe_sunat_ple_table04,RWF,Rwanda Franc / Ruanda,0,,,0,False,0,False,True
+l10n_pe_oxe360.1283,l10n_pe_oxe360.pe_sunat_ple_table04,SAR,Saudi Riyal / Arabia Saudita,0,,,0,False,0,False,True
+l10n_pe_oxe360.1284,l10n_pe_oxe360.pe_sunat_ple_table04,SBD,Solomon Islands Dollar / Islas Salomón,0,,,0,False,0,False,True
+l10n_pe_oxe360.1285,l10n_pe_oxe360.pe_sunat_ple_table04,SCR,Seychelles Rupee / Seychelles,0,,,0,False,0,False,True
+l10n_pe_oxe360.1286,l10n_pe_oxe360.pe_sunat_ple_table04,SDG,Sudanese Pound / Sudán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1287,l10n_pe_oxe360.pe_sunat_ple_table04,SEK,Swedish Krona / Suecia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1288,l10n_pe_oxe360.pe_sunat_ple_table04,SGD,Singapore Dollar / Singapur,0,,,0,False,0,False,True
+l10n_pe_oxe360.1289,l10n_pe_oxe360.pe_sunat_ple_table04,SHP,Saint Helena Pound / Santa Helena,0,,,0,False,0,False,True
+l10n_pe_oxe360.1290,l10n_pe_oxe360.pe_sunat_ple_table04,SLL,Leone / Sierra Leona,0,,,0,False,0,False,True
+l10n_pe_oxe360.1291,l10n_pe_oxe360.pe_sunat_ple_table04,SOS,Somali Shilling / Somalia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1292,l10n_pe_oxe360.pe_sunat_ple_table04,SRD,Surinam Dollar / Surinam,0,,,0,False,0,False,True
+l10n_pe_oxe360.1293,l10n_pe_oxe360.pe_sunat_ple_table04,STD,Dobra / Santo Tomé y Príncipe,0,,,0,False,0,False,True
+l10n_pe_oxe360.1294,l10n_pe_oxe360.pe_sunat_ple_table04,SVC,El Salvador Colon / El Salvador,0,,,0,False,0,False,True
+l10n_pe_oxe360.1295,l10n_pe_oxe360.pe_sunat_ple_table04,SYP,Syrian Pound / Siria,0,,,0,False,0,False,True
+l10n_pe_oxe360.1296,l10n_pe_oxe360.pe_sunat_ple_table04,SZL,Lilangeni / Suazilandia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1297,l10n_pe_oxe360.pe_sunat_ple_table04,THB,Baht / Tailandia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1298,l10n_pe_oxe360.pe_sunat_ple_table04,TJS,Somoni / Tayikistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1299,l10n_pe_oxe360.pe_sunat_ple_table04,TMT,Manat / Turkmenistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1300,l10n_pe_oxe360.pe_sunat_ple_table04,TND,Tunisian Dinar / Túnez,0,,,0,False,0,False,True
+l10n_pe_oxe360.1301,l10n_pe_oxe360.pe_sunat_ple_table04,TOP,Pa'anga / Tonga,0,,,0,False,0,False,True
+l10n_pe_oxe360.1302,l10n_pe_oxe360.pe_sunat_ple_table04,TRY,Turkish Lira / Turquía,0,,,0,False,0,False,True
+l10n_pe_oxe360.1303,l10n_pe_oxe360.pe_sunat_ple_table04,TTD,Trinidad and Tobago Dollar / Trinidad y Tobago,0,,,0,False,0,False,True
+l10n_pe_oxe360.1304,l10n_pe_oxe360.pe_sunat_ple_table04,TWD,New Taiwan Dollar / Taiwán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1305,l10n_pe_oxe360.pe_sunat_ple_table04,TZS,Tanzanian Shilling / Tanzania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1306,l10n_pe_oxe360.pe_sunat_ple_table04,UAH,Hryvnia / Ucrania,0,,,0,False,0,False,True
+l10n_pe_oxe360.1307,l10n_pe_oxe360.pe_sunat_ple_table04,UGX,Uganda Shilling / Uganda,0,,,0,False,0,False,True
+l10n_pe_oxe360.1308,l10n_pe_oxe360.pe_sunat_ple_table04,USD,US Dollar / Estados Unidos (EEUU),0,,,0,False,0,False,True
+l10n_pe_oxe360.1309,l10n_pe_oxe360.pe_sunat_ple_table04,USN,US Dollar (Next day) / Estados Unidos (EEUU),0,,,0,False,0,False,True
+l10n_pe_oxe360.1310,l10n_pe_oxe360.pe_sunat_ple_table04,USS,US Dollar (Same day) / Estados Unidos (EEUU),0,,,0,False,0,False,True
+l10n_pe_oxe360.1311,l10n_pe_oxe360.pe_sunat_ple_table04,UYI,Uruguay Peso en Unidades Indexadas / Uruguay,0,,,0,False,0,False,True
+l10n_pe_oxe360.1312,l10n_pe_oxe360.pe_sunat_ple_table04,UYU,Peso Uruguayo / Uruguay,0,,,0,False,0,False,True
+l10n_pe_oxe360.1313,l10n_pe_oxe360.pe_sunat_ple_table04,UZS,Uzbekistan Sum / Uzbekistán,0,,,0,False,0,False,True
+l10n_pe_oxe360.1314,l10n_pe_oxe360.pe_sunat_ple_table04,VEF,Bolivar Fuerte / Venezuela,0,,,0,False,0,False,True
+l10n_pe_oxe360.1315,l10n_pe_oxe360.pe_sunat_ple_table04,VND,Dong / Vietnam,0,,,0,False,0,False,True
+l10n_pe_oxe360.1316,l10n_pe_oxe360.pe_sunat_ple_table04,VUV,Vatu / Vanuatu,0,,,0,False,0,False,True
+l10n_pe_oxe360.1317,l10n_pe_oxe360.pe_sunat_ple_table04,WST,Tala / Samoa del Oeste,0,,,0,False,0,False,True
+l10n_pe_oxe360.1318,l10n_pe_oxe360.pe_sunat_ple_table04,XAF,CFA Franc BEAC ‡ / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1319,l10n_pe_oxe360.pe_sunat_ple_table04,XAG,Silver / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1320,l10n_pe_oxe360.pe_sunat_ple_table04,XAU,Gold / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1321,l10n_pe_oxe360.pe_sunat_ple_table04,XBA,Bond Markets Units European Composite Unit (EURCO) / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1322,l10n_pe_oxe360.pe_sunat_ple_table04,XBB,European Monetary Unit (E.M.U.-6) / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1323,l10n_pe_oxe360.pe_sunat_ple_table04,XBC,European Unit of Account 9(E.U.A.-9) / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1324,l10n_pe_oxe360.pe_sunat_ple_table04,XBD,European Unit of Account 17(E.U.A.-17) / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1325,l10n_pe_oxe360.pe_sunat_ple_table04,XCD,East Caribbean Dollar / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1326,l10n_pe_oxe360.pe_sunat_ple_table04,XDR,SDR / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1327,l10n_pe_oxe360.pe_sunat_ple_table04,XFU,UIC-Franc / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1328,l10n_pe_oxe360.pe_sunat_ple_table04,XOF,CFA Franc BCEAO † / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1329,l10n_pe_oxe360.pe_sunat_ple_table04,XPD,Palladium / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1330,l10n_pe_oxe360.pe_sunat_ple_table04,XPF,CFP Franc / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1331,l10n_pe_oxe360.pe_sunat_ple_table04,XPT,Platinum / -,0,,,0,False,0,False,True
+l10n_pe_oxe360.1332,l10n_pe_oxe360.pe_sunat_ple_table04,YER,Yemeni Rial / Yemen,0,,,0,False,0,False,True
+l10n_pe_oxe360.1333,l10n_pe_oxe360.pe_sunat_ple_table04,ZAR,Rand / Sudáfrica,0,,,0,False,0,False,True
+l10n_pe_oxe360.1334,l10n_pe_oxe360.pe_sunat_ple_table04,ZMK,Zambian Kwacha / Zambia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1335,l10n_pe_oxe360.pe_sunat_ple_table04,ZWL,Zimbabwe Dollar / Zimbabue,0,,,0,False,0,False,True
+l10n_pe_oxe360.1336,l10n_pe_oxe360.pe_sunat_ple_table05,1,MERCADERÍAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1337,l10n_pe_oxe360.pe_sunat_ple_table05,2,PRODUCTOS TERMINADOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1338,l10n_pe_oxe360.pe_sunat_ple_table05,3,MATERIAS PRIMAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1339,l10n_pe_oxe360.pe_sunat_ple_table05,4,ENVASES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1340,l10n_pe_oxe360.pe_sunat_ple_table05,5,MATERIALES AUXILIARES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1341,l10n_pe_oxe360.pe_sunat_ple_table05,6,SUMINISTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1342,l10n_pe_oxe360.pe_sunat_ple_table05,7,REPUESTOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1343,l10n_pe_oxe360.pe_sunat_ple_table05,8,EMBALAJES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1344,l10n_pe_oxe360.pe_sunat_ple_table05,9,SUBPRODUCTOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1345,l10n_pe_oxe360.pe_sunat_ple_table05,10,DESECHOS Y DESPERDICIOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1346,l10n_pe_oxe360.pe_sunat_ple_table05,91,OTROS 1,0,,,0,False,0,False,True
+l10n_pe_oxe360.1347,l10n_pe_oxe360.pe_sunat_ple_table05,92,OTROS 2,0,,,0,False,0,False,True
+l10n_pe_oxe360.1348,l10n_pe_oxe360.pe_sunat_ple_table05,93,OTROS 3,0,,,0,False,0,False,True
+l10n_pe_oxe360.1349,l10n_pe_oxe360.pe_sunat_ple_table05,94,OTROS 4,0,,,0,False,0,False,True
+l10n_pe_oxe360.1350,l10n_pe_oxe360.pe_sunat_ple_table05,95,OTROS 5,0,,,0,False,0,False,True
+l10n_pe_oxe360.1351,l10n_pe_oxe360.pe_sunat_ple_table05,96,OTROS 6,0,,,0,False,0,False,True
+l10n_pe_oxe360.1352,l10n_pe_oxe360.pe_sunat_ple_table05,97,OTROS 7,0,,,0,False,0,False,True
+l10n_pe_oxe360.1353,l10n_pe_oxe360.pe_sunat_ple_table05,98,OTROS 8,0,,,0,False,0,False,True
+l10n_pe_oxe360.1354,l10n_pe_oxe360.pe_sunat_ple_table05,99,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1355,l10n_pe_oxe360.pe_sunat_ple_table06,4A,BOBINAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1356,l10n_pe_oxe360.pe_sunat_ple_table06,BJ,BALDE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1357,l10n_pe_oxe360.pe_sunat_ple_table06,BLL,BARRILES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1358,l10n_pe_oxe360.pe_sunat_ple_table06,BG,BOLSA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1359,l10n_pe_oxe360.pe_sunat_ple_table06,BO,BOTELLAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1360,l10n_pe_oxe360.pe_sunat_ple_table06,BX,CAJA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1361,l10n_pe_oxe360.pe_sunat_ple_table06,CT,CARTONES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1362,l10n_pe_oxe360.pe_sunat_ple_table06,CMK,CENTIMETRO CUADRADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1363,l10n_pe_oxe360.pe_sunat_ple_table06,CMQ,CENTIMETRO CUBICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1364,l10n_pe_oxe360.pe_sunat_ple_table06,CMT,CENTIMETRO LINEAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1365,l10n_pe_oxe360.pe_sunat_ple_table06,CEN,CIENTO DE UNIDADES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1366,l10n_pe_oxe360.pe_sunat_ple_table06,CY,CILINDRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1367,l10n_pe_oxe360.pe_sunat_ple_table06,CJ,CONOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1368,l10n_pe_oxe360.pe_sunat_ple_table06,DZN,DOCENA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1369,l10n_pe_oxe360.pe_sunat_ple_table06,DZP,DOCENA POR 10**6,0,,,0,False,0,False,True
+l10n_pe_oxe360.1370,l10n_pe_oxe360.pe_sunat_ple_table06,BE,FARDO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1371,l10n_pe_oxe360.pe_sunat_ple_table06,GLI,"GALON INGLES (4,545956L)",0,,,0,False,0,False,True
+l10n_pe_oxe360.1372,l10n_pe_oxe360.pe_sunat_ple_table06,GRM,GRAMO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1373,l10n_pe_oxe360.pe_sunat_ple_table06,GRO,GRUESA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1374,l10n_pe_oxe360.pe_sunat_ple_table06,HLT,HECTOLITRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1375,l10n_pe_oxe360.pe_sunat_ple_table06,LEF,HOJA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1376,l10n_pe_oxe360.pe_sunat_ple_table06,SET,JUEGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1377,l10n_pe_oxe360.pe_sunat_ple_table06,KGM,KILOGRAMO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1378,l10n_pe_oxe360.pe_sunat_ple_table06,KTM,KILOMETRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1379,l10n_pe_oxe360.pe_sunat_ple_table06,KWH,KILOVATIO HORA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1380,l10n_pe_oxe360.pe_sunat_ple_table06,KT,KIT,0,,,0,False,0,False,True
+l10n_pe_oxe360.1381,l10n_pe_oxe360.pe_sunat_ple_table06,CA,LATAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1382,l10n_pe_oxe360.pe_sunat_ple_table06,LBR,LIBRAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1383,l10n_pe_oxe360.pe_sunat_ple_table06,LTR,LITRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1384,l10n_pe_oxe360.pe_sunat_ple_table06,MWH,MEGAWATT HORA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1385,l10n_pe_oxe360.pe_sunat_ple_table06,MTR,METRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1386,l10n_pe_oxe360.pe_sunat_ple_table06,MTK,METRO CUADRADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1387,l10n_pe_oxe360.pe_sunat_ple_table06,MTQ,METRO CUBICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1388,l10n_pe_oxe360.pe_sunat_ple_table06,MGM,MILIGRAMOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1389,l10n_pe_oxe360.pe_sunat_ple_table06,MLT,MILILITRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1390,l10n_pe_oxe360.pe_sunat_ple_table06,MMT,MILIMETRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1391,l10n_pe_oxe360.pe_sunat_ple_table06,MMK,MILIMETRO CUADRADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1392,l10n_pe_oxe360.pe_sunat_ple_table06,MMQ,MILIMETRO CUBICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1393,l10n_pe_oxe360.pe_sunat_ple_table06,MLL,MILLARES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1394,l10n_pe_oxe360.pe_sunat_ple_table06,UM,MILLON DE UNIDADES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1395,l10n_pe_oxe360.pe_sunat_ple_table06,ONZ,ONZAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1396,l10n_pe_oxe360.pe_sunat_ple_table06,PF,PALETAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1397,l10n_pe_oxe360.pe_sunat_ple_table06,PK,PAQUETE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1398,l10n_pe_oxe360.pe_sunat_ple_table06,PR,PAR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1399,l10n_pe_oxe360.pe_sunat_ple_table06,FOT,PIES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1400,l10n_pe_oxe360.pe_sunat_ple_table06,FTK,PIES CUADRADOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1401,l10n_pe_oxe360.pe_sunat_ple_table06,FTQ,PIES CUBICOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1402,l10n_pe_oxe360.pe_sunat_ple_table06,C62,PIEZAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1403,l10n_pe_oxe360.pe_sunat_ple_table06,PG,PLACAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1404,l10n_pe_oxe360.pe_sunat_ple_table06,ST,PLIEGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1405,l10n_pe_oxe360.pe_sunat_ple_table06,INH,PULGADAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1406,l10n_pe_oxe360.pe_sunat_ple_table06,RM,RESMA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1407,l10n_pe_oxe360.pe_sunat_ple_table06,DR,TAMBOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1408,l10n_pe_oxe360.pe_sunat_ple_table06,STN,TONELADA CORTA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1409,l10n_pe_oxe360.pe_sunat_ple_table06,LTN,TONELADA LARGA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1410,l10n_pe_oxe360.pe_sunat_ple_table06,TNE,TONELADAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1411,l10n_pe_oxe360.pe_sunat_ple_table06,TU,TUBOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1412,l10n_pe_oxe360.pe_sunat_ple_table06,NIU,UNIDAD (BIENES),0,,,0,False,0,False,True
+l10n_pe_oxe360.1413,l10n_pe_oxe360.pe_sunat_ple_table06,ZZ,UNIDAD (SERVICIOS),0,,,0,False,0,False,True
+l10n_pe_oxe360.1414,l10n_pe_oxe360.pe_sunat_ple_table06,GLL,"US GALON (3,7843 L)",0,,,0,False,0,False,True
+l10n_pe_oxe360.1415,l10n_pe_oxe360.pe_sunat_ple_table06,YRD,YARDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1416,l10n_pe_oxe360.pe_sunat_ple_table06,YDK,YARDA CUADRADA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1417,l10n_pe_oxe360.pe_sunat_ple_table10,0,Otros,0,,,0,False,0,False,True
+l10n_pe_oxe360.1418,l10n_pe_oxe360.pe_sunat_ple_table10,1,Factura,0,,,4,True,8,False,True
+l10n_pe_oxe360.1419,l10n_pe_oxe360.pe_sunat_ple_table10,2,Recibo por Honorarios,0,,,0,False,0,False,True
+l10n_pe_oxe360.1420,l10n_pe_oxe360.pe_sunat_ple_table10,3,Boleta de Venta,0,,,4,True,8,False,True
+l10n_pe_oxe360.1421,l10n_pe_oxe360.pe_sunat_ple_table10,4,Liquidación de compra,0,,,4,True,8,False,True
+l10n_pe_oxe360.1422,l10n_pe_oxe360.pe_sunat_ple_table10,5,"Boletos de Transporte Aéreo que emiten las Compañías de Aviación Comercial por el servicio de transporte aéreo regular de pasajeros, emitido de manera manual, mecanizada o por medios electrónicos (BME)",0,,,1,True,11,False,True
+l10n_pe_oxe360.1423,l10n_pe_oxe360.pe_sunat_ple_table10,6,Carta de porte aéreo por el servicio de transporte de carga aérea,0,,,4,True,8,False,True
+l10n_pe_oxe360.1424,l10n_pe_oxe360.pe_sunat_ple_table10,7,Nota de crédito,0,,,4,True,8,False,True
+l10n_pe_oxe360.1425,l10n_pe_oxe360.pe_sunat_ple_table10,8,Nota de débito,0,,,4,True,8,False,True
+l10n_pe_oxe360.1426,l10n_pe_oxe360.pe_sunat_ple_table10,9,Guía de remisión - Remitente,0,,,0,False,0,False,True
+l10n_pe_oxe360.1427,l10n_pe_oxe360.pe_sunat_ple_table10,10,Recibo por Arrendamiento,0,,,0,False,0,False,True
+l10n_pe_oxe360.1428,l10n_pe_oxe360.pe_sunat_ple_table10,11,"Póliza emitida por las Bolsas de Valores, Bolsas de Productos o Agentes de Intermediación por operaciones realizadas en las Bolsas de Valores o Productos o fuera de las mismas, autorizadas por SMV",0,,,20,False,15,True,True
+l10n_pe_oxe360.1429,l10n_pe_oxe360.pe_sunat_ple_table10,12,Ticket o cinta emitido por máquina registradora,0,,,20,False,20,False,True
+l10n_pe_oxe360.1430,l10n_pe_oxe360.pe_sunat_ple_table10,13,"Documentos emitidos por las empresas del sistema financiero y de seguros, y por las cooperativas de ahorro y crédito no autorizadas a captar recursos del público, que se encuentren bajo el control de la Superintendencia de Banca, Seguros y AFP.",0,,,20,False,20,False,True
+l10n_pe_oxe360.1431,l10n_pe_oxe360.pe_sunat_ple_table10,14,"Recibo por servicios públicos de suministro de energía eléctrica, agua, teléfono, telex y telegráficos y otros servicios complementarios que se incluyan en el recibo de servicio público",0,,,20,False,20,False,True
+l10n_pe_oxe360.1432,l10n_pe_oxe360.pe_sunat_ple_table10,15,Boletos emitidos por el servicio de transporte terrestre regular urbano de pasajeros y el ferroviario público de pasajeros prestado en vía férrea local.,0,,,20,False,20,False,True
+l10n_pe_oxe360.1433,l10n_pe_oxe360.pe_sunat_ple_table10,16,"Boletos de viaje emitidos por las empresas de transporte nacional de pasajeros, siempre que cuenten con la autorización de la autoridad competente, en las rutas autorizadas. Vía terrestre o ferroviario público no emitido por medios electrónicos (BVME)",0,,,20,False,20,False,True
+l10n_pe_oxe360.1434,l10n_pe_oxe360.pe_sunat_ple_table10,17,Documento emitido por la Iglesia Católica por el arrendamiento de bienes inmuebles,0,,,20,False,20,False,True
+l10n_pe_oxe360.1435,l10n_pe_oxe360.pe_sunat_ple_table10,18,"Documento emitido por las Administradoras Privadas de Fondo de Pensiones que se encuentran bajo la supervisión de la Superintendencia de Banca, Seguros y AFP",0,,,20,False,20,False,True
+l10n_pe_oxe360.1436,l10n_pe_oxe360.pe_sunat_ple_table10,19,Boleto o entrada por atracciones y espectáculos públicos,0,,,20,False,20,False,True
+l10n_pe_oxe360.1437,l10n_pe_oxe360.pe_sunat_ple_table10,20,Comprobante de Retención,0,,,0,False,0,False,True
+l10n_pe_oxe360.1438,l10n_pe_oxe360.pe_sunat_ple_table10,21,Conocimiento de embarque por el servicio de transporte de carga marítima,0,,,20,False,20,False,True
+l10n_pe_oxe360.1439,l10n_pe_oxe360.pe_sunat_ple_table10,22,Comprobante por Operaciones No Habituales,0,,,0,False,0,False,True
+l10n_pe_oxe360.1440,l10n_pe_oxe360.pe_sunat_ple_table10,23,"Pólizas de Adjudicación emitidas con ocasión del remate o adjudicación de bienes por venta forzada, por los martilleros o las entidades que rematen o subasten bienes por cuenta de terceros",0,,,4,False,7,False,True
+l10n_pe_oxe360.1441,l10n_pe_oxe360.pe_sunat_ple_table10,24,Certificado de pago de regalías emitidas por PERUPETRO S.A,0,,,20,False,20,False,True
+l10n_pe_oxe360.1442,l10n_pe_oxe360.pe_sunat_ple_table10,25,"Documento de Atribución (Ley del Impuesto General a las Ventas e Impuesto Selectivo al Consumo, Art. 19º, último párrafo, R.S. N° 022-98-SUNAT).",0,,,4,False,7,False,True
+l10n_pe_oxe360.1443,l10n_pe_oxe360.pe_sunat_ple_table10,26,"Recibo por el Pago de la Tarifa por Uso de Agua Superficial con fines agrarios y por el pago de la Cuota para la ejecución de una determinada obra o actividad acordada por la Asamblea General de la Comisión de Regantes o Resolución expedida por el Jefe de la Unidad de Aguas y de Riego (Decreto Supremo N° 003-90-AG, Arts. 28 y 48)",0,,,20,False,20,False,True
+l10n_pe_oxe360.1444,l10n_pe_oxe360.pe_sunat_ple_table10,27,Seguro Complementario de Trabajo de Riesgo,0,,,20,False,20,False,True
+l10n_pe_oxe360.1445,l10n_pe_oxe360.pe_sunat_ple_table10,28,"Documentos emitidos por los servicios aeroportuarios prestados a favor de los pasajeros, mediante mecanismo de etiquetas autoadhesivas.",0,,,20,False,20,False,True
+l10n_pe_oxe360.1446,l10n_pe_oxe360.pe_sunat_ple_table10,29,"Documentos emitidos por la COFOPRI en calidad de oferta de venta de terrenos, los correspondientes a las subastas públicas y a la retribución de los servicios que presta",0,,,20,False,20,False,True
+l10n_pe_oxe360.1447,l10n_pe_oxe360.pe_sunat_ple_table10,30,"Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito, emitidas por bancos e instituciones financieras o crediticias, domiciliados o no en el país.",0,,,20,False,20,False,True
+l10n_pe_oxe360.1448,l10n_pe_oxe360.pe_sunat_ple_table10,31,Guía de Remisión - Transportista,0,,,0,False,0,False,True
+l10n_pe_oxe360.1449,l10n_pe_oxe360.pe_sunat_ple_table10,32,Documentos emitidos por las empresas recaudadoras de la denominada Garantía de Red Principal a la que hace referencia el numeral 7.6 del artículo 7° de la Ley N° 27133 – Ley de Promoción del Desarrollo de la Industria del Gas Natural,0,,,20,False,20,False,True
+l10n_pe_oxe360.1450,l10n_pe_oxe360.pe_sunat_ple_table10,33,Manifiesto de Pasajeros,0,,,0,False,0,False,True
+l10n_pe_oxe360.1451,l10n_pe_oxe360.pe_sunat_ple_table10,34,Documento del Operador,0,,,4,True,7,False,True
+l10n_pe_oxe360.1452,l10n_pe_oxe360.pe_sunat_ple_table10,35,Documento del Partícipe,0,,,4,True,7,False,True
+l10n_pe_oxe360.1453,l10n_pe_oxe360.pe_sunat_ple_table10,36,Recibo de Distribución de Gas Natural,0,,,4,True,8,False,True
+l10n_pe_oxe360.1454,l10n_pe_oxe360.pe_sunat_ple_table10,37,"Documentos que emitan los concesionarios del servicio de revisiones técnicas vehiculares, por la prestación de dicho servicio",0,,,20,False,20,False,True
+l10n_pe_oxe360.1455,l10n_pe_oxe360.pe_sunat_ple_table10,40,Comprobante de Percepción,0,,,0,False,0,False,True
+l10n_pe_oxe360.1456,l10n_pe_oxe360.pe_sunat_ple_table10,41,Comprobante de Percepción - Venta interna,0,,,0,False,0,False,True
+l10n_pe_oxe360.1457,l10n_pe_oxe360.pe_sunat_ple_table10,42,Documentos emitidos por las empresas que desempeñan el rol adquiriente en los sistemas de pago mediante tarjetas de crédito emitidas por ellas mismas,0,,,20,False,20,False,True
+l10n_pe_oxe360.1458,l10n_pe_oxe360.pe_sunat_ple_table10,43,Boletos emitidos por las Compañías de Aviación Comercial que prestan servicios de transporte aéreo no regular de pasajeros y transporte aéreo especial de pasajeros.,0,,,20,False,20,False,True
+l10n_pe_oxe360.1459,l10n_pe_oxe360.pe_sunat_ple_table10,44,"Billetes de lotería, rifas y apuestas.",0,,,20,False,20,False,True
+l10n_pe_oxe360.1460,l10n_pe_oxe360.pe_sunat_ple_table10,45,"Documentos emitidos por centros educativos y culturales, universidades, asociaciones y fundaciones, en lo referente a actividades no gravadas con tributos administrados por la SUNAT.",0,,,20,False,20,False,True
+l10n_pe_oxe360.1461,l10n_pe_oxe360.pe_sunat_ple_table10,46,Formulario de Declaración - pago o Boleta de pago de tributos Internos,0,,,0,False,0,False,True
+# l10n_pe_oxe360.1462,l10n_pe_oxe360.pe_sunat_ple_table10,48,Comprobante de Operaciones - Ley N° 29972,0,,,0,False,0,False,True
+l10n_pe_oxe360.1463,l10n_pe_oxe360.pe_sunat_ple_table10,49,Constancia de Depósito - IVAP (Ley 28211),0,,,20,False,20,False,True
+l10n_pe_oxe360.1464,l10n_pe_oxe360.pe_sunat_ple_table10,50,Declaración Única de Aduanas - Importación definitiva,0,,,0,False,0,False,True
+l10n_pe_oxe360.1465,l10n_pe_oxe360.pe_sunat_ple_table10,51,Póliza o DUI Fraccionada,0,,,0,False,0,False,True
+l10n_pe_oxe360.1466,l10n_pe_oxe360.pe_sunat_ple_table10,52,Despacho Simplificado - Importación Simplificada,0,,,0,False,0,False,True
+l10n_pe_oxe360.1467,l10n_pe_oxe360.pe_sunat_ple_table10,53,Declaración de Mensajería o Courier,0,,,0,False,0,False,True
+l10n_pe_oxe360.1468,l10n_pe_oxe360.pe_sunat_ple_table10,54,Liquidación de Cobranza,0,,,0,False,0,False,True
+l10n_pe_oxe360.1469,l10n_pe_oxe360.pe_sunat_ple_table10,55,BVME para transporte ferroviario de pasajeros,0,,,1,True,11,False,True
+l10n_pe_oxe360.1470,l10n_pe_oxe360.pe_sunat_ple_table10,56,Comprobante de pago SEAE,0,,,4,True,11,False,True
+l10n_pe_oxe360.1471,l10n_pe_oxe360.pe_sunat_ple_table10,87,Nota de Crédito Especial,0,,,20,False,20,False,True
+l10n_pe_oxe360.1472,l10n_pe_oxe360.pe_sunat_ple_table10,88,Nota de Débito Especial,0,,,20,False,20,False,True
+# l10n_pe_oxe360.1473,l10n_pe_oxe360.pe_sunat_ple_table10,89,Nota de Ajuste de Operaciones - Ley N° 29972,0,,,0,False,0,False,True
+l10n_pe_oxe360.1474,l10n_pe_oxe360.pe_sunat_ple_table10,91,Comprobante de No Domiciliado,0,,,0,False,0,False,True
+l10n_pe_oxe360.1475,l10n_pe_oxe360.pe_sunat_ple_table10,96,Exceso de crédito fiscal por retiro de bienes,0,,,0,False,0,False,True
+l10n_pe_oxe360.1476,l10n_pe_oxe360.pe_sunat_ple_table10,97,Nota de Crédito - No Domiciliado,0,,,0,False,0,False,True
+l10n_pe_oxe360.1477,l10n_pe_oxe360.pe_sunat_ple_table10,98,Nota de Débito - No Domiciliado,0,,,0,False,0,False,True
+l10n_pe_oxe360.1478,l10n_pe_oxe360.pe_sunat_ple_table11,19,TUMBES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1479,l10n_pe_oxe360.pe_sunat_ple_table11,28,TALARA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1480,l10n_pe_oxe360.pe_sunat_ple_table11,46,PAITA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1481,l10n_pe_oxe360.pe_sunat_ple_table11,55,CHICLAYO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1482,l10n_pe_oxe360.pe_sunat_ple_table11,82,SALAVERRY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1483,l10n_pe_oxe360.pe_sunat_ple_table11,91,CHIMBOTE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1484,l10n_pe_oxe360.pe_sunat_ple_table11,118,MARÍTIMA DEL CALLAO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1485,l10n_pe_oxe360.pe_sunat_ple_table11,127,PISCO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1486,l10n_pe_oxe360.pe_sunat_ple_table11,145,MOLLENDO MATARANI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1487,l10n_pe_oxe360.pe_sunat_ple_table11,154,AREQUIPA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1488,l10n_pe_oxe360.pe_sunat_ple_table11,163,ILO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1489,l10n_pe_oxe360.pe_sunat_ple_table11,172,TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1490,l10n_pe_oxe360.pe_sunat_ple_table11,181,PUNO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1491,l10n_pe_oxe360.pe_sunat_ple_table11,190,CUZCO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1492,l10n_pe_oxe360.pe_sunat_ple_table11,217,PUCALLPA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1493,l10n_pe_oxe360.pe_sunat_ple_table11,226,IQUITOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1494,l10n_pe_oxe360.pe_sunat_ple_table11,235,AÉREA DEL CALLAO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1495,l10n_pe_oxe360.pe_sunat_ple_table11,244,POSTAL DE LIMA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1496,l10n_pe_oxe360.pe_sunat_ple_table11,262,DESAGUADERO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1497,l10n_pe_oxe360.pe_sunat_ple_table11,271,TARAPOTO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1498,l10n_pe_oxe360.pe_sunat_ple_table11,280,PUERTO MALDONADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1499,l10n_pe_oxe360.pe_sunat_ple_table11,299,LA TINA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1500,l10n_pe_oxe360.pe_sunat_ple_table11,884,DEPENDENCIA FERROVIARIA TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1501,l10n_pe_oxe360.pe_sunat_ple_table11,893,DEPENDENCIA POSTAL TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1502,l10n_pe_oxe360.pe_sunat_ple_table11,910,DEPENDENCIA POSTAL AREQUIPA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1503,l10n_pe_oxe360.pe_sunat_ple_table11,929,COMPLEJO FRONTERIZO STA ROSA TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1504,l10n_pe_oxe360.pe_sunat_ple_table11,938,TERMINAL TERRESTRE TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1505,l10n_pe_oxe360.pe_sunat_ple_table11,947,AEROPUERTO TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1506,l10n_pe_oxe360.pe_sunat_ple_table11,956,CETICOS TACNA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1507,l10n_pe_oxe360.pe_sunat_ple_table11,965,DEPENDENCIA POSTAL DE SALAVERRY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1508,l10n_pe_oxe360.pe_sunat_ple_table12,1,VENTA NACIONAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1509,l10n_pe_oxe360.pe_sunat_ple_table12,2,COMPRA NACIONAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1510,l10n_pe_oxe360.pe_sunat_ple_table12,3,CONSIGNACIÓN RECIBIDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1511,l10n_pe_oxe360.pe_sunat_ple_table12,4,CONSIGNACIÓN ENTREGADA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1512,l10n_pe_oxe360.pe_sunat_ple_table12,5,DEVOLUCIÓN RECIBIDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1513,l10n_pe_oxe360.pe_sunat_ple_table12,6,DEVOLUCIÓN ENTREGADA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1514,l10n_pe_oxe360.pe_sunat_ple_table12,7,BONIFICACIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1515,l10n_pe_oxe360.pe_sunat_ple_table12,8,PREMIO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1516,l10n_pe_oxe360.pe_sunat_ple_table12,9,DONACIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1517,l10n_pe_oxe360.pe_sunat_ple_table12,10,SALIDA A PRODUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1518,l10n_pe_oxe360.pe_sunat_ple_table12,11,SALIDA POR TRANSFERENCIA ENTRE ALMACENES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1519,l10n_pe_oxe360.pe_sunat_ple_table12,12,RETIRO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1520,l10n_pe_oxe360.pe_sunat_ple_table12,13,MERMAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1521,l10n_pe_oxe360.pe_sunat_ple_table12,14,DESMEDROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1522,l10n_pe_oxe360.pe_sunat_ple_table12,15,DESTRUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1523,l10n_pe_oxe360.pe_sunat_ple_table12,16,SALDO INICIAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1524,l10n_pe_oxe360.pe_sunat_ple_table12,17,EXPORTACIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1525,l10n_pe_oxe360.pe_sunat_ple_table12,18,IMPORTACIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1526,l10n_pe_oxe360.pe_sunat_ple_table12,19,ENTRADA DE PRODUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1527,l10n_pe_oxe360.pe_sunat_ple_table12,20,ENTRADA POR DEVOLUCIÓN DE PRODUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1528,l10n_pe_oxe360.pe_sunat_ple_table12,21,ENTRADA POR TRANSFERENCIA ENTRE ALMACENES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1529,l10n_pe_oxe360.pe_sunat_ple_table12,22,ENTRADA POR IDENTIFICACIÓN ERRONEA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1530,l10n_pe_oxe360.pe_sunat_ple_table12,23,SALIDA POR IDENTIFICACIÓN ERRONEA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1531,l10n_pe_oxe360.pe_sunat_ple_table12,24,ENTRADA POR DEVOLUCIÓN DEL CLIENTE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1532,l10n_pe_oxe360.pe_sunat_ple_table12,25,SALIDA POR DEVOLUCIÓN AL PROVEEDOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1533,l10n_pe_oxe360.pe_sunat_ple_table12,26,ENTRADA PARA SERVICIO DE PRODUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1534,l10n_pe_oxe360.pe_sunat_ple_table12,27,SALIDA POR SERVICIO DE PRODUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1535,l10n_pe_oxe360.pe_sunat_ple_table12,28,AJUSTE POR DIFERENCIA DE INVENTARIO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1536,l10n_pe_oxe360.pe_sunat_ple_table12,29,ENTRADA DE BIENES EN PRÉSTAMO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1537,l10n_pe_oxe360.pe_sunat_ple_table12,30,SALIDA DE BIENES EN PRÉSTAMO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1538,l10n_pe_oxe360.pe_sunat_ple_table12,31,ENTRADA DE BIENES EN CUSTODIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1539,l10n_pe_oxe360.pe_sunat_ple_table12,32,SALIDA DE BIENES EN CUSTODIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1540,l10n_pe_oxe360.pe_sunat_ple_table12,33,MUESTRAS MÉDICAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1541,l10n_pe_oxe360.pe_sunat_ple_table12,34,PUBLICIDAD,0,,,0,False,0,False,True
+l10n_pe_oxe360.1542,l10n_pe_oxe360.pe_sunat_ple_table12,35,GASTOS DE REPRESENTACIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1543,l10n_pe_oxe360.pe_sunat_ple_table12,36,RETIRO PARA ENTREGA A TRABAJADORES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1544,l10n_pe_oxe360.pe_sunat_ple_table12,37,RETIRO POR CONVENIO COLECTIVO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1545,l10n_pe_oxe360.pe_sunat_ple_table12,38,RETIRO POR SUSTITUCIÓN DE BIEN SINIESTRADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1546,l10n_pe_oxe360.pe_sunat_ple_table12,91,OTROS 1,0,,,0,False,0,False,True
+l10n_pe_oxe360.1547,l10n_pe_oxe360.pe_sunat_ple_table12,92,OTROS 2,0,,,0,False,0,False,True
+l10n_pe_oxe360.1548,l10n_pe_oxe360.pe_sunat_ple_table12,93,OTROS 3,0,,,0,False,0,False,True
+l10n_pe_oxe360.1549,l10n_pe_oxe360.pe_sunat_ple_table12,94,OTROS 4,0,,,0,False,0,False,True
+l10n_pe_oxe360.1550,l10n_pe_oxe360.pe_sunat_ple_table12,95,OTROS 5,0,,,0,False,0,False,True
+l10n_pe_oxe360.1551,l10n_pe_oxe360.pe_sunat_ple_table12,96,OTROS 6,0,,,0,False,0,False,True
+l10n_pe_oxe360.1552,l10n_pe_oxe360.pe_sunat_ple_table12,97,OTROS 7,0,,,0,False,0,False,True
+l10n_pe_oxe360.1553,l10n_pe_oxe360.pe_sunat_ple_table12,98,OTROS 8,0,,,0,False,0,False,True
+l10n_pe_oxe360.1554,l10n_pe_oxe360.pe_sunat_ple_table12,99,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1555,l10n_pe_oxe360.pe_sunat_ple_table13,1,NACIONES UNIDAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1556,l10n_pe_oxe360.pe_sunat_ple_table13,3,GS1 (EAN-UCC),0,,,0,False,0,False,True
+l10n_pe_oxe360.1557,l10n_pe_oxe360.pe_sunat_ple_table13,9,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1558,l10n_pe_oxe360.pe_sunat_ple_table14,1,PROMEDIO PONDERADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1559,l10n_pe_oxe360.pe_sunat_ple_table14,2,"PRIMERAS ENTRADAS, PRIMERAS SALIDAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1560,l10n_pe_oxe360.pe_sunat_ple_table14,3,EXISTENCIAS BÁSICAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1561,l10n_pe_oxe360.pe_sunat_ple_table14,4,DETALLISTA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1562,l10n_pe_oxe360.pe_sunat_ple_table14,5,IDENTIFICACIÓN ESPECÍFICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1563,l10n_pe_oxe360.pe_sunat_ple_table14,9,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1564,l10n_pe_oxe360.pe_sunat_ple_table15,1,VALORES EMITIDOS O GARANTIZADOS POR EL ESTADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1565,l10n_pe_oxe360.pe_sunat_ple_table15,2,VALORES EMITIDOS O GARANTIZADOS POR EL SISTEMA FINANCIERO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1566,l10n_pe_oxe360.pe_sunat_ple_table15,3,VALORES EMITIDOS POR LA EMPRESA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1567,l10n_pe_oxe360.pe_sunat_ple_table15,4,OTROS INSTRUMENTOS FINANCIEROS REPRESENTATIVOS DE DEUDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1568,l10n_pe_oxe360.pe_sunat_ple_table15,5,CERTIFICADOS DE SUSCRIPCIÓN PREFERENTE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1569,l10n_pe_oxe360.pe_sunat_ple_table15,6,ACCIONES REPRESENTATIVAS DE CAPITAL SOCIAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1570,l10n_pe_oxe360.pe_sunat_ple_table15,7,ACCIONES DE INVERSIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1571,l10n_pe_oxe360.pe_sunat_ple_table15,8,CERTIFICADO DE PARTICIPACIÓN DE FONDOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1572,l10n_pe_oxe360.pe_sunat_ple_table15,9,ASOCIACIONES EN PARTICIPACIÓN Y CONSORCIOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1573,l10n_pe_oxe360.pe_sunat_ple_table15,10,OTROS INSTRUMENTOS FINANCIEROS REPRESENTATIVOS DE DERECHO PATRIMONIAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1574,l10n_pe_oxe360.pe_sunat_ple_table15,99,OTROS TÍTULOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1575,l10n_pe_oxe360.pe_sunat_ple_table16,1,ACCIONES CON DERECHO A VOTO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1576,l10n_pe_oxe360.pe_sunat_ple_table16,2,ACCIONES SIN DERECHO A VOTO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1577,l10n_pe_oxe360.pe_sunat_ple_table16,3,PARTICIPACIONES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1578,l10n_pe_oxe360.pe_sunat_ple_table16,4,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1579,l10n_pe_oxe360.pe_sunat_ple_table17,1,PLAN CONTABLE GENERAL EMPRESARIAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1580,l10n_pe_oxe360.pe_sunat_ple_table17,2,PLAN CONTABLE GENERAL REVISADO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1581,l10n_pe_oxe360.pe_sunat_ple_table17,3,"PLAN DE CUENTAS PARA EMPRESAS DEL SISTEMA FINANCIERO, SUPERVISADAS POR SBS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1582,l10n_pe_oxe360.pe_sunat_ple_table17,4,"PLAN DE CUENTAS PARA ENTIDADES PRESTADORAS DE SALUD, SUPERVISADAS POR SBS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1583,l10n_pe_oxe360.pe_sunat_ple_table17,5,"PLAN DE CUENTAS PARA EMPRESAS DEL SISTEMA ASEGURADOR, SUPERVISADAS POR SBS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1584,l10n_pe_oxe360.pe_sunat_ple_table17,6,"PLAN DE CUENTAS DE LAS ADMINISTRADORAS PRIVADAS DE FONDOS DE PENSIONES, SUPERVISADAS POR SBS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1585,l10n_pe_oxe360.pe_sunat_ple_table17,7,PLAN CONTABLE GUBERNAMENTAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1586,l10n_pe_oxe360.pe_sunat_ple_table17,99,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1587,l10n_pe_oxe360.pe_sunat_ple_table18,1,NO REVALUADO O REVALUADO SIN EFECTO TRIBUTARIO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1588,l10n_pe_oxe360.pe_sunat_ple_table18,2,REVALUADO CON EFECTO TRIBUTARIO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1589,l10n_pe_oxe360.pe_sunat_ple_table19,1,ACTIVOS EN DESUSO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1590,l10n_pe_oxe360.pe_sunat_ple_table19,2,ACTIVOS OBSOLETOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1591,l10n_pe_oxe360.pe_sunat_ple_table19,9,RESTO DE ACTIVOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1592,l10n_pe_oxe360.pe_sunat_ple_table20,1,LINEA RECTA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1593,l10n_pe_oxe360.pe_sunat_ple_table20,2,UNIDADES PRODUCIDAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1594,l10n_pe_oxe360.pe_sunat_ple_table20,9,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1595,l10n_pe_oxe360.pe_sunat_ple_table21,1,PROCESO PRODUCTIVO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1596,l10n_pe_oxe360.pe_sunat_ple_table21,2,LÍNEA DE PRODUCCIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1597,l10n_pe_oxe360.pe_sunat_ple_table21,3,PRODUCTO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1598,l10n_pe_oxe360.pe_sunat_ple_table21,4,PROYECTO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1599,l10n_pe_oxe360.pe_sunat_ple_table21,9,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1600,l10n_pe_oxe360.pe_sunat_ple_table22,1,SUPERINTENDENCIA DEL MERCADO DE VALORES - SECTOR DIVERSAS - INDIVIDUAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1601,l10n_pe_oxe360.pe_sunat_ple_table22,2,SUPERINTENDENCIA DEL MERCADO DE VALORES - SECTOR SEGUROS - INDIVIDUAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1602,l10n_pe_oxe360.pe_sunat_ple_table22,3,SUPERINTENDENCIA DEL MERCADO DE VALORES - SECTOR BANCOS Y FINANCIERAS - INDIVIDUAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1603,l10n_pe_oxe360.pe_sunat_ple_table22,4,SUPERINTENDENCIA DEL MERCADO DE VALORES - ADMINISTRADORAS DE FONDOS DE PENSIONES (AFP),0,,,0,False,0,False,True
+l10n_pe_oxe360.1604,l10n_pe_oxe360.pe_sunat_ple_table22,5,SUPERINTENDENCIA DEL MERCADO DE VALORES - AGENTES DE INTERMEDIACIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1605,l10n_pe_oxe360.pe_sunat_ple_table22,6,SUPERINTENDENCIA DEL MERCADO DE VALORES - FONDOS DE INVERSIÓN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1606,l10n_pe_oxe360.pe_sunat_ple_table22,7,SUPERINTENDENCIA DEL MERCADO DE VALORES - PATRIMONIO EN FIDEICOMISOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1607,l10n_pe_oxe360.pe_sunat_ple_table22,8,SUPERINTENDENCIA DEL MERCADO DE VALORES - ICLV,0,,,0,False,0,False,True
+l10n_pe_oxe360.1608,l10n_pe_oxe360.pe_sunat_ple_table22,9,OTROS NO CONSIDERADOS EN LOS ANTERIORES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1609,l10n_pe_oxe360.pe_sunat_ple_table25,0,NINGUNO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1610,l10n_pe_oxe360.pe_sunat_ple_table25,1,CANADA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1611,l10n_pe_oxe360.pe_sunat_ple_table25,2,CHILE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1612,l10n_pe_oxe360.pe_sunat_ple_table25,3,COMUNIDAD ANDINA DE NACIONES (CAN),0,,,0,False,0,False,True
+l10n_pe_oxe360.1613,l10n_pe_oxe360.pe_sunat_ple_table25,4,BRASIL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1614,l10n_pe_oxe360.pe_sunat_ple_table25,5,ESTADOS UNIDOS MEXICANOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1615,l10n_pe_oxe360.pe_sunat_ple_table25,6,REPUBLICA DE COREA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1616,l10n_pe_oxe360.pe_sunat_ple_table25,7,CONFEDERACIÓN SUIZA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1617,l10n_pe_oxe360.pe_sunat_ple_table25,8,PORTUGAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1618,l10n_pe_oxe360.pe_sunat_ple_table25,9,OTROS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1619,l10n_pe_oxe360.pe_sunat_ple_table27,0,Sin vinculación,0,,,0,False,0,False,True
+l10n_pe_oxe360.1620,l10n_pe_oxe360.pe_sunat_ple_table27,1,"Una persona natural o jurídica posea más de treinta por ciento (30%) del capital de otra persona jurídica, directamente o por intermedio de un tercero",0,,,0,False,0,False,True
+l10n_pe_oxe360.1621,l10n_pe_oxe360.pe_sunat_ple_table27,2,"Más del treinta por ciento (30%) del capital de dos (2) o más personas jurídicas pertenezca a una misma persona natural o jurídica, directamente o por intermedio de un tercero",0,,,0,False,0,False,True
+l10n_pe_oxe360.1622,l10n_pe_oxe360.pe_sunat_ple_table27,3,"En cualesquiera de los casos anteriores, cuando la indicada proporción del capital pertenezca a cónyuges entre sí o a personas naturales vinculadas hasta el segundo grado de consanguinidad o afinidad",0,,,0,False,0,False,True
+l10n_pe_oxe360.1623,l10n_pe_oxe360.pe_sunat_ple_table27,4,El capital de dos (2) o más personas jurídicas pertenezca en más del treinta por ciento (30%) a socios comunes a éstas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1624,l10n_pe_oxe360.pe_sunat_ple_table27,5,"Las personas jurídicas o entidades cuenten con una o más directores, gerentes, administradores u otros directivos comunes, que tengan poder de decisión en los acuerdos financieros, operativos y/o comerciales que se adopten",0,,,0,False,0,False,True
+l10n_pe_oxe360.1625,l10n_pe_oxe360.pe_sunat_ple_table27,6,Dos o más personas naturales o jurídicas consoliden Estados Financieros,0,,,0,False,0,False,True
+l10n_pe_oxe360.1626,l10n_pe_oxe360.pe_sunat_ple_table27,7,"Exista un contrato de colaboración empresarial con contabilidad independiente, en cuyo caso el contrato se considerará vinculado con aquellas partes contratantes que participen, directamente o por intermedio de un tercero, en mas del treinta por ciento (30%) en el patrimonio del contrato o cuando alguna de las partes contratantes tengan poder de decisión en los acuerdos financieros, comerciales u operativos que se adopten para el desarrollo del contrato, caso en el cual la parte contratante que ejerza el poder de decisión se encontrará vinculado con el contrato",0,,,0,False,0,False,True
+l10n_pe_oxe360.1627,l10n_pe_oxe360.pe_sunat_ple_table27,8,"En el caso de un contrato de colaboración empresarial sin contabilidad independiente, la vinculación entre cada una de las partes integrantes del contrato y la contraparte deberá verificarse individualmente, aplicando algunos de los criterios de vinculación establecidos en este artículo (articulo 24° del reglamento del Impuesto a la Renta). Se entiende por contraparte a la persona natural o jurídica con las que las partes integrantes celebren alguna operación con el fin de alcanzar el objeto del contrato",0,,,0,False,0,False,True
+l10n_pe_oxe360.1628,l10n_pe_oxe360.pe_sunat_ple_table27,9,"Exista un contrato de asociación en participación, en el que alguno de los asociados, directa o indirectamente, participe en mas del treinta por ciento (30%) en los resultados o en las utilidades de uno o varios negocios del asociante, en cuyo caso se considerará que existe vinculación entre el asociante y cada uno de sus asociados. También se considerará que existe vinculación cuando alguno de los asociados tenga poder de decisión en los aspectos financieros, comerciales u operativos en uno o varios negocios del asociante",0,,,0,False,0,False,True
+l10n_pe_oxe360.1629,l10n_pe_oxe360.pe_sunat_ple_table27,10,"Una empresa no domiciliada tenga uno o mas establecimientos permanentes en el país, en cuyo caso existirá vinculación entre la empresa no domiciliada y cada uno de sus establecimientos permanentes y entre todos ellos entre si",0,,,0,False,0,False,True
+l10n_pe_oxe360.1630,l10n_pe_oxe360.pe_sunat_ple_table27,11,"Una empresa domiciliada en territorio peruano tenga uno o mas establecimientos permanentes en el extranjero, en cuyo caso existirá vinculación entre la empresa domiciliada y cada uno de sus establecimientos permanentes",0,,,0,False,0,False,True
+l10n_pe_oxe360.1631,l10n_pe_oxe360.pe_sunat_ple_table27,12,"Una persona natural o jurídica ejerza influencia dominante en las decisiones de los órganos de administración de una o mas personas jurídicas o entidades. En tal situación, se considerará que las personas jurídicas o entidades influidas están vinculadas entre si y con la persona natural o jurídica que ejerce dicha influencia. Se entiende que una persona natural o jurídica ejerce influencia  dominante cuando, en la adopción del acuerdo, ejerce o controla la mayoría absoluta de votos para la toma de decisiones en los órganos de administración de la persona jurídica o entidad. En el caso de decisiones relacionadas con los asuntos mencionados en el artículo 126° de la Ley General de Sociedades, existirá influencia dominante de la persona natural o jurídica que, participando en la adopción del acuerdo, por si misma o con la intervención de votos de terceros, tiene en el acto de votación el mayor número de acciones suscritas con derecho a voto, siempre y cuando cuente con, al menos, el diez por ciento (10%) de las acciones suscritas con derecho a voto. También se otorgará el tratamiento de partes vinculadas cuando una persona, empresa o entidad domiciliada en el país realice, en el ejercicio gravable anterior, el ochenta por ciento (80%) o mas de sus ventas de bienes, prestación de servicios u otro tipo de operaciones, con una persona, empresa o entidad domiciliada en el país o con personas, empresas o entidades vinculadas entre si, domiciliadas en el país, siempre que tales operaciones, a su vez, representen por lo menos el treinta por ciento (30%) de las compras o adquisiciones de la otra parte en el mismo período. Tratándose de empresas que tengan actividades por períodos mayores a tres ejercicios gravables, tales porcentajes se calcularán teniendo en cuenta el porcentaje promedio de ventas o compras, según sea el caso, realizadas en los tres ejercicios gravables inmediatos anteriores. Lo dispuesto en este párrafo no será de aplicación a las operaciones que realicen las empresas que conforman la Actividad Empresarial del Estado, en las cuales la participación del Estado sea mayor al cincuenta por ciento (50%) del capital. La vinculación, de acuerdo a alguno de los criterios establecidos en este artículo, también operará cuando la transacción sea realizada utilizando personas o entidades interpuestas, domiciliadas o no en el país con el propósito de encubrir una transacción entre partes vinculadas",0,,,0,False,0,False,True
+l10n_pe_oxe360.1632,l10n_pe_oxe360.pe_sunat_ple_table28,501,50 CAPITAL / Capital social,0,,,0,False,0,False,True
+l10n_pe_oxe360.1633,l10n_pe_oxe360.pe_sunat_ple_table28,5011,50 CAPITAL / Acciones,0,,,0,False,0,False,True
+l10n_pe_oxe360.1634,l10n_pe_oxe360.pe_sunat_ple_table28,5012,50 CAPITAL / Participaciones,0,,,0,False,0,False,True
+l10n_pe_oxe360.1635,l10n_pe_oxe360.pe_sunat_ple_table28,502,50 CAPITAL / Acciones en tesorería,0,,,0,False,0,False,True
+l10n_pe_oxe360.1636,l10n_pe_oxe360.pe_sunat_ple_table28,511,51 ACCIONES DE INVERSIÓN / Acciones de inversión en tesorería,0,,,0,False,0,False,True
+l10n_pe_oxe360.1637,l10n_pe_oxe360.pe_sunat_ple_table28,512,51 ACCIONES DE INVERSIÓN / 52 CAPITAL ADICIONAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1638,l10n_pe_oxe360.pe_sunat_ple_table28,521,52 CAPITAL ADICIONAL / Primas (descuento) de acciones,0,,,0,False,0,False,True
+l10n_pe_oxe360.1639,l10n_pe_oxe360.pe_sunat_ple_table28,522,52 CAPITAL ADICIONAL / Capitalizaciones en trámite,0,,,0,False,0,False,True
+l10n_pe_oxe360.1640,l10n_pe_oxe360.pe_sunat_ple_table28,5221,52 CAPITAL ADICIONAL / Aportes,0,,,0,False,0,False,True
+l10n_pe_oxe360.1641,l10n_pe_oxe360.pe_sunat_ple_table28,5222,52 CAPITAL ADICIONAL / Reservas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1642,l10n_pe_oxe360.pe_sunat_ple_table28,5223,52 CAPITAL ADICIONAL / Acreencias,0,,,0,False,0,False,True
+l10n_pe_oxe360.1643,l10n_pe_oxe360.pe_sunat_ple_table28,5224,52 CAPITAL ADICIONAL / Utilidades,0,,,0,False,0,False,True
+l10n_pe_oxe360.1644,l10n_pe_oxe360.pe_sunat_ple_table28,523,52 CAPITAL ADICIONAL / Reducciones de capital pendientes de formalización,0,,,0,False,0,False,True
+l10n_pe_oxe360.1645,l10n_pe_oxe360.pe_sunat_ple_table28,561,56 RESULTADOS NO REALIZADOS / Diferencia en cambio de inversiones permanentes en entidades extranjeras,0,,,0,False,0,False,True
+l10n_pe_oxe360.1646,l10n_pe_oxe360.pe_sunat_ple_table28,562,56 RESULTADOS NO REALIZADOS / Instrumentos financieros – Cobertura de flujo de efectivo,0,,,0,False,0,False,True
+l10n_pe_oxe360.1647,l10n_pe_oxe360.pe_sunat_ple_table28,563,56 RESULTADOS NO REALIZADOS / Ganancia o pérdida en activos o pasivos financieros disponibles para la venta,0,,,0,False,0,False,True
+l10n_pe_oxe360.1648,l10n_pe_oxe360.pe_sunat_ple_table28,5631,56 RESULTADOS NO REALIZADOS / Ganancia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1649,l10n_pe_oxe360.pe_sunat_ple_table28,5632,56 RESULTADOS NO REALIZADOS / Pérdida,0,,,0,False,0,False,True
+l10n_pe_oxe360.1650,l10n_pe_oxe360.pe_sunat_ple_table28,564,56 RESULTADOS NO REALIZADOS / Ganancia o pérdida en activos o pasivos financieros disponibles para la venta – Compra o venta convencional fecha de liquidación,0,,,0,False,0,False,True
+l10n_pe_oxe360.1651,l10n_pe_oxe360.pe_sunat_ple_table28,5641,56 RESULTADOS NO REALIZADOS / Ganancia,0,,,0,False,0,False,True
+l10n_pe_oxe360.1652,l10n_pe_oxe360.pe_sunat_ple_table28,5642,56 RESULTADOS NO REALIZADOS / Pérdida,0,,,0,False,0,False,True
+l10n_pe_oxe360.1653,l10n_pe_oxe360.pe_sunat_ple_table28,571,57 EXCEDENTE DE REVALUACIÓN / Excedente de revaluación,0,,,0,False,0,False,True
+l10n_pe_oxe360.1654,l10n_pe_oxe360.pe_sunat_ple_table28,5711,57 EXCEDENTE DE REVALUACIÓN / Inversiones inmobiliarias,0,,,0,False,0,False,True
+l10n_pe_oxe360.1655,l10n_pe_oxe360.pe_sunat_ple_table28,5712,"57 EXCEDENTE DE REVALUACIÓN / Inmuebles, maquinaria y equipos",0,,,0,False,0,False,True
+l10n_pe_oxe360.1656,l10n_pe_oxe360.pe_sunat_ple_table28,5713,57 EXCEDENTE DE REVALUACIÓN / Intangibles,0,,,0,False,0,False,True
+l10n_pe_oxe360.1657,l10n_pe_oxe360.pe_sunat_ple_table28,572,57 EXCEDENTE DE REVALUACIÓN / Excedente de revaluación – Acciones liberadas recibidas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1658,l10n_pe_oxe360.pe_sunat_ple_table28,573,57 EXCEDENTE DE REVALUACIÓN / Participación en excedente de revaluación – Inversiones en entidades relacionadas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1659,l10n_pe_oxe360.pe_sunat_ple_table28,581,58 RESERVAS / Reinversión,0,,,0,False,0,False,True
+l10n_pe_oxe360.1660,l10n_pe_oxe360.pe_sunat_ple_table28,582,58 RESERVAS / Legal,0,,,0,False,0,False,True
+l10n_pe_oxe360.1661,l10n_pe_oxe360.pe_sunat_ple_table28,583,58 RESERVAS / Contractuales,0,,,0,False,0,False,True
+l10n_pe_oxe360.1662,l10n_pe_oxe360.pe_sunat_ple_table28,584,58 RESERVAS / Estatutarias,0,,,0,False,0,False,True
+l10n_pe_oxe360.1663,l10n_pe_oxe360.pe_sunat_ple_table28,585,58 RESERVAS / Facultativas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1664,l10n_pe_oxe360.pe_sunat_ple_table28,589,58 RESERVAS / Otras reservas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1665,l10n_pe_oxe360.pe_sunat_ple_table28,591,59 RESULTADOS ACUMULADOS / Utilidades no distribuidas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1666,l10n_pe_oxe360.pe_sunat_ple_table28,5911,59 RESULTADOS ACUMULADOS / Utilidades acumuladas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1667,l10n_pe_oxe360.pe_sunat_ple_table28,5912,59 RESULTADOS ACUMULADOS / Ingresos de años anteriores,0,,,0,False,0,False,True
+l10n_pe_oxe360.1668,l10n_pe_oxe360.pe_sunat_ple_table28,592,59 RESULTADOS ACUMULADOS / Pérdidas acumuladas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1669,l10n_pe_oxe360.pe_sunat_ple_table28,5921,59 RESULTADOS ACUMULADOS / Pérdidas acumuladas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1670,l10n_pe_oxe360.pe_sunat_ple_table28,5922,59 RESULTADOS ACUMULADOS / Gastos de años anteriores,0,,,0,False,0,False,True
+l10n_pe_oxe360.1671,l10n_pe_oxe360.pe_sunat_ple_table30,1,"MERCADERIA, MATERIA PRIMA, SUMINISTRO, ENVASES Y EMBALAJES",0,,,0,False,0,False,True
+l10n_pe_oxe360.1672,l10n_pe_oxe360.pe_sunat_ple_table30,2,ACTIVO FIJO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1673,l10n_pe_oxe360.pe_sunat_ple_table30,3,OTROS ACTIVOS NO CONSIDERADOS EN LOS NUMERALES 1 Y 2,0,,,0,False,0,False,True
+l10n_pe_oxe360.1674,l10n_pe_oxe360.pe_sunat_ple_table30,4,"GASTOS DE EDUCACIÓN, RECREACIÓN, SALUD, CULTURALES. REPRESENTACIÓN, CAPACITACIÓN, DE VIAJE, MANTENIMIENTO DE VEHICULO Y  DE PREMIOS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1675,l10n_pe_oxe360.pe_sunat_ple_table30,5,OTROS GASTOS NO INCLUIDOS EN EL NUMERAL 4,0,,,0,False,0,False,True
+l10n_pe_oxe360.1676,l10n_pe_oxe360.pe_sunat_ple_table31,0,OCDE- / Bienes,0,,,0,False,0,False,True
+l10n_pe_oxe360.1677,l10n_pe_oxe360.pe_sunat_ple_table31,1,OCDE-06 / Arrendamiento de predios,0,,,0,False,0,False,True
+l10n_pe_oxe360.1678,l10n_pe_oxe360.pe_sunat_ple_table31,2,OCDE-06 / Enajenación Inmuebles y derechos sobre inmuebles,0,,,0,False,0,False,True
+l10n_pe_oxe360.1679,l10n_pe_oxe360.pe_sunat_ple_table31,3,"OCDE-12 / Rentas de bienes situados en el país o derechos utilizados en el país, incluye enajenación.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1680,l10n_pe_oxe360.pe_sunat_ple_table31,4,OCDE-12 / Regalias: Bienes o derechos por los que pagan son utilizados país.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1681,l10n_pe_oxe360.pe_sunat_ple_table31,5,OCDE-12 / Regalias: Pagador de las regalías es domiciliado.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1682,l10n_pe_oxe360.pe_sunat_ple_table31,6,"OCDE-11 / Por capitales,  intereses, comisiones, primas - operaciones financieras - capital utilizado en el país o el pagador sea un sujeto domiciliado. Originadas por fondos de cualquier tipo de entidad, por cesión a terceros de un capital, por operaciones de capitalización o por contratos de seguro de vida o invalidez que no tengan su origen en el trabajo personal.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1683,l10n_pe_oxe360.pe_sunat_ple_table31,7,"OCDE-10 / Dividendos y cualquier otra forma de distribución de utilidades, cuando la empresa que los distribuye, pague y acredite se encuentre domiciliada en el país, o cuando el fondo de inversión, patrimonio fideicometido o fiduciario banacario, fondo de pensiones, que lo distribuya, pague o acredite, se encuentre constituido o establecido en el país",0,,,0,False,0,False,True
+l10n_pe_oxe360.1684,l10n_pe_oxe360.pe_sunat_ple_table31,8,OCDE-10 / Los rendimientos de los ADR y GDRs que tengan como subyacentes acciones emitidas por empresas no domiciliadas,0,,,0,False,0,False,True
+l10n_pe_oxe360.1685,l10n_pe_oxe360.pe_sunat_ple_table31,9,"OCDE-21 / Originadas en actividades civiles, comerciales, empresariales o de cualquier índole, que se lleven a cabo en territorio nacional.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1686,l10n_pe_oxe360.pe_sunat_ple_table31,10,"OCDE-15 / Originadas en el trabajo personal que lleven a cabo en el territorio nacional No comprende cuando se ingresa al país  temporalmente a efectuar: actos previos a la realización de inversiones extranjeras; actos destinados a supervisar o controlar la inversión o el negocio, tales como los de recolección de datos o información o la realización de entrevistas; actos relacionados con la contratación de personal local; actos relacionados con la firma de convenios o actos similares.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1687,l10n_pe_oxe360.pe_sunat_ple_table31,11,"OCDE-18 / Rentas vitalicias y las pensiones que tengan su origen en el trabajo personal, pagadas por un sujeto domiciliada",0,,,0,False,0,False,True
+l10n_pe_oxe360.1688,l10n_pe_oxe360.pe_sunat_ple_table31,12,"OCDE-13 / Las obtenidas por la enajenación de acciones y participaciones representativas del capital,  cuando las empresas, que los hayan emitido estén constituidos o establecidos en el Perú. Fuera de Bolsa",0,,,0,False,0,False,True
+l10n_pe_oxe360.1689,l10n_pe_oxe360.pe_sunat_ple_table31,13,"OCDE-13 / Las obtenidas por la enajenación,  de  certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando los  Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú.  Fuera de Bolsa",0,,,0,False,0,False,True
+l10n_pe_oxe360.1690,l10n_pe_oxe360.pe_sunat_ple_table31,14,"OCDE-13 / Las obtenidas por la redención o rescate de certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando los  Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú.  Fuera de Bolsa",0,,,0,False,0,False,True
+l10n_pe_oxe360.1691,l10n_pe_oxe360.pe_sunat_ple_table31,15,"OCDE-13 / Las obtenidas por la enajenación de acciones y participaciones representativas del capital, acciones de inversión, certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando las empresas, sociedades, Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú.  Dentro de Bolsa",0,,,0,False,0,False,True
+l10n_pe_oxe360.1692,l10n_pe_oxe360.pe_sunat_ple_table31,16,"OCDE-13 / Las obtenidas por la redención o rescate de  acciones de inversión, certificados, títulos, bonos y papeles comerciales, valores representativos de cédulas hipotecarias, obligaciones al portador u otros valores al portador y otros valores mobiliarios cuando las empresas, sociedades, Fondos de Inversión, Fondos Mutuos de Inversión en Valores o Patrimonios Fideicometidos que los hayan emitido estén constituidos o establecidos en el Perú. Dentro de Bolsa",0,,,0,False,0,False,True
+l10n_pe_oxe360.1693,l10n_pe_oxe360.pe_sunat_ple_table31,17,OCDE-13 / Enajenación de los ADR’s  y GDR’s  que tengan como subyacente acciones emitidas por empresas domiciliadas en el país.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1694,l10n_pe_oxe360.pe_sunat_ple_table31,18,"OCDE-21 / Las obtenidas por servicios digitales prestados a través del Internet o de cualquier adaptación o aplicación de los protocolos, plataformas o de la tecnología utilizada por Internet o cualquier otra red a través de la que se presten servicios equivalentes, cuando el servicio se utilice económicamente, use o consuma en el país",0,,,0,False,0,False,True
+l10n_pe_oxe360.1695,l10n_pe_oxe360.pe_sunat_ple_table31,19,"OCDE-7 / La obtenida por asistencia técnica, cuando ésta se utilice económicamente en el país",0,,,0,False,0,False,True
+l10n_pe_oxe360.1696,l10n_pe_oxe360.pe_sunat_ple_table31,20,"OCDE-11 / Los intereses de obligaciones, cuando la entidad emisora ha sido constituida en el país",0,,,0,False,0,False,True
+l10n_pe_oxe360.1697,l10n_pe_oxe360.pe_sunat_ple_table31,21,OCDE-16 / Remuneracion pagada por Domiciliados; Sujeto miembro de un consejo directivo o adm.; Actuación en el Extranjero,0,,,0,False,0,False,True
+l10n_pe_oxe360.1698,l10n_pe_oxe360.pe_sunat_ple_table31,22,OCDE-19 / Honorarios o remuneraciones del Sector Público Nacional por trabajos realizados en el exterior.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1699,l10n_pe_oxe360.pe_sunat_ple_table31,23,OCDE-7 / Resultados Proveniente de la contratación de IFD,0,,,0,False,0,False,True
+l10n_pe_oxe360.1700,l10n_pe_oxe360.pe_sunat_ple_table31,24,OCDE-7 / Resultados  de IFD con cobertura destinados a la generación de RFP,0,,,0,False,0,False,True
+l10n_pe_oxe360.1701,l10n_pe_oxe360.pe_sunat_ple_table31,25,OCDE-7 / Proveniente de la contratación de IFD sin cobertura destinados a la generación de RFP,0,,,0,False,0,False,True
+l10n_pe_oxe360.1702,l10n_pe_oxe360.pe_sunat_ple_table31,26,"OCDE-7 / IFD donde Activo subyacente sea referido al Tipo de Cambio Moneda extranjera. 180 dias. (La Dom es la prestadora del IFD, la No Dom es la que obtiene el resultado)",0,,,0,False,0,False,True
+l10n_pe_oxe360.1703,l10n_pe_oxe360.pe_sunat_ple_table31,27,"OCDE-13 / Las obtenidas por la enajenación indirecta de acciones y participaciones representativas del capital de personas jurídicas domiciliadas en el país, cuando la operación cumple las condiciones para ser gravadas en el Perú",0,,,0,False,0,False,True
+l10n_pe_oxe360.1704,l10n_pe_oxe360.pe_sunat_ple_table31,28,OCDE-13 / Se incluye dentro de la enajenación de de empresas no domiciliadas en el país la enajenación de ADR´s (American Depositary Receipts) que tengan como subyacente a tales acciones.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1705,l10n_pe_oxe360.pe_sunat_ple_table31,29,"OCDE-10 / Sujeto es el No Dom que distribuye  por la reducción de capital dentro de los 12 meses anteriores cuando hubiera aumentado su capital como consecuencia de nuevos aportes, de capitalización de créditos o de una reorganización",0,,,0,False,0,False,True
+l10n_pe_oxe360.1706,l10n_pe_oxe360.pe_sunat_ple_table31,30,OCDE-07 - 21 / Actividades de Seguros 7% sobre las primas. Comisiones por  Reaseguros sobre personas y/o bienes radicados en el país,0,,,0,False,0,False,True
+l10n_pe_oxe360.1707,l10n_pe_oxe360.pe_sunat_ple_table31,31,"OCDE-8 / Alquiler de Naves, 8% sobre Ingresos Brutos que perciban por dicha actividad",0,,,0,False,0,False,True
+l10n_pe_oxe360.1708,l10n_pe_oxe360.pe_sunat_ple_table31,32,"OCDE-8 / Alquiler de Aeronaves, 60% sobre Ingresos Brutos que perciban por dicha actividad",0,,,0,False,0,False,True
+l10n_pe_oxe360.1709,l10n_pe_oxe360.pe_sunat_ple_table31,33,OCDE-8 / 1% por el ingresos brutos por el transporte aéreo.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1710,l10n_pe_oxe360.pe_sunat_ple_table31,34,OCDE-8 / Excepto Otros transportes no aereos o maritimos que van por los ingresos de la parte prestada en el país,0,,,0,False,0,False,True
+l10n_pe_oxe360.1711,l10n_pe_oxe360.pe_sunat_ple_table31,35,OCDE-8 / 2% por el ingresos brutos por fletamiento o transporte marítimo.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1712,l10n_pe_oxe360.pe_sunat_ple_table31,36,OCDE-24 / Empresas por reciprocidad en lineas extranjeras con sedes en esos países,0,,,0,False,0,False,True
+l10n_pe_oxe360.1713,l10n_pe_oxe360.pe_sunat_ple_table31,37,"OCDE-07 - 21 / Servicio portadores, teleservcios o finales, difusión y de valor añadido. Con excepcion de los Servicios Digitales según 4-A",0,,,0,False,0,False,True
+l10n_pe_oxe360.1714,l10n_pe_oxe360.pe_sunat_ple_table31,38,"OCDE-07 - 21 / 10%. sobre las remuneraciones brutas que obtengan por el suministro de noticias y, en general material informativo o gráfico, a personas o entidades domiciliadas o que utilicen dicho material en el país.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1715,l10n_pe_oxe360.pe_sunat_ple_table31,39,"OCDE-07 - 21 / para su utilización por personas naturales o jurídicas domiciliadas: 20% sobre los ingresos brutos que perciban por el uso de películas cinematográficas o para televisión, 'video tape', radionovelas, discos fonográficos, historietas gráficas y cualquier otro medio similar de proyección, reproducción, transmisión o difusión de imágenes o sonidos.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1716,l10n_pe_oxe360.pe_sunat_ple_table31,40,OCDE-8 / en el país o desde el país al exterior y no presten el servicio de transporte 15% de los ingresos brutos que obtengan por dicho suministro.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1717,l10n_pe_oxe360.pe_sunat_ple_table31,41,OCDE-07 - 21 / 80% de los ingresos brutos que obtengan por el exceso de estadía de contenedores.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1718,l10n_pe_oxe360.pe_sunat_ple_table31,42,OCDE-07 - 21 / 20% de los ingresos brutos que obtengan los contribuyentes no domiciliados por la cesión de derechos para la retransmisión por televisión en el país de eventos en vivo realizados en el extranjero. ,0,,,0,False,0,False,True
+l10n_pe_oxe360.1719,l10n_pe_oxe360.pe_sunat_ple_table31,43,OCDE-15 / Extranjeros que ingresan al país y cuentas con las siguientes calidades especificas a prestar servicios,0,,,0,False,0,False,True
+l10n_pe_oxe360.1720,l10n_pe_oxe360.pe_sunat_ple_table32,1,SERVICIO PRESTADO INTEGRAMENTE EN EL PERÚ,0,,,0,False,0,False,True
+l10n_pe_oxe360.1721,l10n_pe_oxe360.pe_sunat_ple_table32,2,SERVICIO PRESTADO PARTE EN EL PERÚ Y PARTE EN EL EXTRANJERO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1722,l10n_pe_oxe360.pe_sunat_ple_table32,3,SERVICIO PRESTADO EXCLUSIVAMENTE EN EL EXTRANJERO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1723,l10n_pe_oxe360.pe_sunat_ple_table33,1,Los intereses provenientes de créditos de fomento otorgados directamente o mediante proveedores o intermediarios financieros por organismos internacionales o instituciones gubernamentales extranjeras.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1724,l10n_pe_oxe360.pe_sunat_ple_table33,2,Las rentas de los inmuebles de propiedad de organismos internacionales que les sirvan de sede. ,0,,,0,False,0,False,True
+l10n_pe_oxe360.1725,l10n_pe_oxe360.pe_sunat_ple_table33,3,"Las remuneraciones que perciban, por el ejercicio de su cargo en el país, los funcionarios y empleados considerados como tales dentro de la estructura organizacional de los gobiernos extranjeros, instituciones oficiales extranjeras y organismos internacionales, siempre que los convenios constitutivos así lo establezcan. ",0,,,0,False,0,False,True
+l10n_pe_oxe360.1726,l10n_pe_oxe360.pe_sunat_ple_table33,4,Los ingresos brutos que perciben las representaciones deportivas nacionales de países extranjeros por sus actuaciones en el país.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1727,l10n_pe_oxe360.pe_sunat_ple_table33,5,"Las regalías por asesoramiento técnico, económico, financiero, o de otra índole, prestados desde el exterior por entidades estatales u organismos internacionales.",0,,,0,False,0,False,True
+l10n_pe_oxe360.1728,l10n_pe_oxe360.pe_sunat_ple_table33,6,"Los ingresos extranjeros por los espectáculos en vivo de teatro, zarzuela, conciertos de música clásica, ópera, opereta, ballet y folclor, calificados como espectáculos públicos culturales por el Instituto Nacional de Cultura, realizados en el país. brutos que perciben las representaciones de países. ",0,,,0,False,0,False,True
+l10n_pe_oxe360.1729,l10n_pe_oxe360.pe_sunat_ple_table34,xxx,'---',0,,,0,False,0,False,True
+l10n_pe_oxe360.1730,l10n_pe_oxe360.pe_sunat_ple_table35,9001,BOUVET ISLAND,0,,,0,False,0,False,True
+l10n_pe_oxe360.1731,l10n_pe_oxe360.pe_sunat_ple_table35,9002,COTE D'IVOIRE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1732,l10n_pe_oxe360.pe_sunat_ple_table35,9003,FALKLAND ISLANDS (MALVINAS),0,,,0,False,0,False,True
+l10n_pe_oxe360.1733,l10n_pe_oxe360.pe_sunat_ple_table35,9004,"FRANCE, METROPOLITAN",0,,,0,False,0,False,True
+l10n_pe_oxe360.1734,l10n_pe_oxe360.pe_sunat_ple_table35,9005,FRENCH SOUTHERN TERRITORIES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1735,l10n_pe_oxe360.pe_sunat_ple_table35,9006,HEARD AND MC DONALD ISLANDS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1736,l10n_pe_oxe360.pe_sunat_ple_table35,9007,MAYOTTE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1737,l10n_pe_oxe360.pe_sunat_ple_table35,9008,SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1738,l10n_pe_oxe360.pe_sunat_ple_table35,9009,SVALBARD AND JAN MAYEN ISLANDS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1739,l10n_pe_oxe360.pe_sunat_ple_table35,9010,UNITED STATES MINOR OUTLYING ISLANDS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1740,l10n_pe_oxe360.pe_sunat_ple_table35,9011,OTROS PAISES O LUGARES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1741,l10n_pe_oxe360.pe_sunat_ple_table35,9013,AFGANISTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1742,l10n_pe_oxe360.pe_sunat_ple_table35,9017,ALBANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1743,l10n_pe_oxe360.pe_sunat_ple_table35,9019,ALDERNEY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1744,l10n_pe_oxe360.pe_sunat_ple_table35,9023,ALEMANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1745,l10n_pe_oxe360.pe_sunat_ple_table35,9026,ARMENIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1746,l10n_pe_oxe360.pe_sunat_ple_table35,9027,ARUBA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1747,l10n_pe_oxe360.pe_sunat_ple_table35,9028,ASCENCI?N,0,,,0,False,0,False,True
+l10n_pe_oxe360.1748,l10n_pe_oxe360.pe_sunat_ple_table35,9029,BOSNIA-HERZEGOVINA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1749,l10n_pe_oxe360.pe_sunat_ple_table35,9031,BURKINA FASO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1750,l10n_pe_oxe360.pe_sunat_ple_table35,9037,ANDORRA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1751,l10n_pe_oxe360.pe_sunat_ple_table35,9040,ANGOLA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1752,l10n_pe_oxe360.pe_sunat_ple_table35,9041,ANGUILLA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1753,l10n_pe_oxe360.pe_sunat_ple_table35,9043,ANTIGUA Y BARBUDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1754,l10n_pe_oxe360.pe_sunat_ple_table35,9047,ANTILLAS HOLANDESAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1755,l10n_pe_oxe360.pe_sunat_ple_table35,9053,ARABIA SAUDITA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1756,l10n_pe_oxe360.pe_sunat_ple_table35,9059,ARGELIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1757,l10n_pe_oxe360.pe_sunat_ple_table35,9063,ARGENTINA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1758,l10n_pe_oxe360.pe_sunat_ple_table35,9069,AUSTRALIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1759,l10n_pe_oxe360.pe_sunat_ple_table35,9072,AUSTRIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1760,l10n_pe_oxe360.pe_sunat_ple_table35,9074,AZERBAIJAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1761,l10n_pe_oxe360.pe_sunat_ple_table35,9077,BAHAMAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1762,l10n_pe_oxe360.pe_sunat_ple_table35,9080,BAHREIN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1763,l10n_pe_oxe360.pe_sunat_ple_table35,9081,BANGLADESH,0,,,0,False,0,False,True
+l10n_pe_oxe360.1764,l10n_pe_oxe360.pe_sunat_ple_table35,9083,BARBADOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1765,l10n_pe_oxe360.pe_sunat_ple_table35,9087,BELGICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1766,l10n_pe_oxe360.pe_sunat_ple_table35,9088,BELICE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1767,l10n_pe_oxe360.pe_sunat_ple_table35,9090,BERMUDAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1768,l10n_pe_oxe360.pe_sunat_ple_table35,9091,BELARUS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1769,l10n_pe_oxe360.pe_sunat_ple_table35,9093,MYANMAR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1770,l10n_pe_oxe360.pe_sunat_ple_table35,9097,BOLIVIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1771,l10n_pe_oxe360.pe_sunat_ple_table35,9101,BOTSWANA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1772,l10n_pe_oxe360.pe_sunat_ple_table35,9105,BRASIL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1773,l10n_pe_oxe360.pe_sunat_ple_table35,9108,BRUNEI DARUSSALAM,0,,,0,False,0,False,True
+l10n_pe_oxe360.1774,l10n_pe_oxe360.pe_sunat_ple_table35,9111,BULGARIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1775,l10n_pe_oxe360.pe_sunat_ple_table35,9115,BURUNDI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1776,l10n_pe_oxe360.pe_sunat_ple_table35,9119,BUTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1777,l10n_pe_oxe360.pe_sunat_ple_table35,9127,CABO VERDE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1778,l10n_pe_oxe360.pe_sunat_ple_table35,9137,"CAIMAN,ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1779,l10n_pe_oxe360.pe_sunat_ple_table35,9141,CAMBOYA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1780,l10n_pe_oxe360.pe_sunat_ple_table35,9145,"CAMERUN,REPUBLICA UNIDA DEL",0,,,0,False,0,False,True
+l10n_pe_oxe360.1781,l10n_pe_oxe360.pe_sunat_ple_table35,9147,CAMPIONE D?TALIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1782,l10n_pe_oxe360.pe_sunat_ple_table35,9149,CANADA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1783,l10n_pe_oxe360.pe_sunat_ple_table35,9155,"CANAL (NORMANDAS), ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1784,l10n_pe_oxe360.pe_sunat_ple_table35,9157,CANTON Y ENDERBURRY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1785,l10n_pe_oxe360.pe_sunat_ple_table35,9159,SANTA SEDE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1786,l10n_pe_oxe360.pe_sunat_ple_table35,9165,"COCOS (KEELING),ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1787,l10n_pe_oxe360.pe_sunat_ple_table35,9169,COLOMBIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1788,l10n_pe_oxe360.pe_sunat_ple_table35,9173,COMORAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1789,l10n_pe_oxe360.pe_sunat_ple_table35,9177,CONGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1790,l10n_pe_oxe360.pe_sunat_ple_table35,9183,"COOK, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1791,l10n_pe_oxe360.pe_sunat_ple_table35,9187,"COREA (NORTE), REPUBLICA POPULAR DEMOCRATICA DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1792,l10n_pe_oxe360.pe_sunat_ple_table35,9190,"COREA (SUR), REPUBLICA DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1793,l10n_pe_oxe360.pe_sunat_ple_table35,9193,COSTA DE MARFIL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1794,l10n_pe_oxe360.pe_sunat_ple_table35,9196,COSTA RICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1795,l10n_pe_oxe360.pe_sunat_ple_table35,9198,CROACIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1796,l10n_pe_oxe360.pe_sunat_ple_table35,9199,CUBA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1797,l10n_pe_oxe360.pe_sunat_ple_table35,9203,CHAD,0,,,0,False,0,False,True
+l10n_pe_oxe360.1798,l10n_pe_oxe360.pe_sunat_ple_table35,9207,CHECOSLOVAQUIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1799,l10n_pe_oxe360.pe_sunat_ple_table35,9211,CHILE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1800,l10n_pe_oxe360.pe_sunat_ple_table35,9215,CHINA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1801,l10n_pe_oxe360.pe_sunat_ple_table35,9218,TAIWAN (FORMOSA),0,,,0,False,0,False,True
+l10n_pe_oxe360.1802,l10n_pe_oxe360.pe_sunat_ple_table35,9221,CHIPRE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1803,l10n_pe_oxe360.pe_sunat_ple_table35,9229,BENIN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1804,l10n_pe_oxe360.pe_sunat_ple_table35,9232,DINAMARCA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1805,l10n_pe_oxe360.pe_sunat_ple_table35,9235,DOMINICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1806,l10n_pe_oxe360.pe_sunat_ple_table35,9239,ECUADOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1807,l10n_pe_oxe360.pe_sunat_ple_table35,9240,EGIPTO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1808,l10n_pe_oxe360.pe_sunat_ple_table35,9242,EL SALVADOR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1809,l10n_pe_oxe360.pe_sunat_ple_table35,9243,ERITREA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1810,l10n_pe_oxe360.pe_sunat_ple_table35,9244,EMIRATOS ARABES UNIDOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1811,l10n_pe_oxe360.pe_sunat_ple_table35,9245,ESPA?A,0,,,0,False,0,False,True
+l10n_pe_oxe360.1812,l10n_pe_oxe360.pe_sunat_ple_table35,9246,ESLOVAQUIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1813,l10n_pe_oxe360.pe_sunat_ple_table35,9247,ESLOVENIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1814,l10n_pe_oxe360.pe_sunat_ple_table35,9249,ESTADOS UNIDOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1815,l10n_pe_oxe360.pe_sunat_ple_table35,9251,ESTONIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1816,l10n_pe_oxe360.pe_sunat_ple_table35,9253,ETIOPIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1817,l10n_pe_oxe360.pe_sunat_ple_table35,9259,"FEROE, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1818,l10n_pe_oxe360.pe_sunat_ple_table35,9267,FILIPINAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1819,l10n_pe_oxe360.pe_sunat_ple_table35,9271,FINLANDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1820,l10n_pe_oxe360.pe_sunat_ple_table35,9275,FRANCIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1821,l10n_pe_oxe360.pe_sunat_ple_table35,9281,GABON,0,,,0,False,0,False,True
+l10n_pe_oxe360.1822,l10n_pe_oxe360.pe_sunat_ple_table35,9285,GAMBIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1823,l10n_pe_oxe360.pe_sunat_ple_table35,9286,GAZA Y JERICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1824,l10n_pe_oxe360.pe_sunat_ple_table35,9287,GEORGIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1825,l10n_pe_oxe360.pe_sunat_ple_table35,9289,GHANA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1826,l10n_pe_oxe360.pe_sunat_ple_table35,9293,GIBRALTAR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1827,l10n_pe_oxe360.pe_sunat_ple_table35,9297,GRANADA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1828,l10n_pe_oxe360.pe_sunat_ple_table35,9301,GRECIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1829,l10n_pe_oxe360.pe_sunat_ple_table35,9305,GROENLANDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1830,l10n_pe_oxe360.pe_sunat_ple_table35,9309,GUADALUPE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1831,l10n_pe_oxe360.pe_sunat_ple_table35,9313,GUAM,0,,,0,False,0,False,True
+l10n_pe_oxe360.1832,l10n_pe_oxe360.pe_sunat_ple_table35,9317,GUATEMALA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1833,l10n_pe_oxe360.pe_sunat_ple_table35,9325,GUAYANA FRANCESA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1834,l10n_pe_oxe360.pe_sunat_ple_table35,9327,GUERNSEY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1835,l10n_pe_oxe360.pe_sunat_ple_table35,9329,GUINEA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1836,l10n_pe_oxe360.pe_sunat_ple_table35,9331,GUINEA ECUATORIAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1837,l10n_pe_oxe360.pe_sunat_ple_table35,9334,GUINEA-BISSAU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1838,l10n_pe_oxe360.pe_sunat_ple_table35,9337,GUYANA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1839,l10n_pe_oxe360.pe_sunat_ple_table35,9341,HAITI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1840,l10n_pe_oxe360.pe_sunat_ple_table35,9345,HONDURAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1841,l10n_pe_oxe360.pe_sunat_ple_table35,9348,HONDURAS BRITANICAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1842,l10n_pe_oxe360.pe_sunat_ple_table35,9351,HONG KONG,0,,,0,False,0,False,True
+l10n_pe_oxe360.1843,l10n_pe_oxe360.pe_sunat_ple_table35,9355,HUNGRIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1844,l10n_pe_oxe360.pe_sunat_ple_table35,9361,INDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1845,l10n_pe_oxe360.pe_sunat_ple_table35,9365,INDONESIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1846,l10n_pe_oxe360.pe_sunat_ple_table35,9369,IRAK,0,,,0,False,0,False,True
+l10n_pe_oxe360.1847,l10n_pe_oxe360.pe_sunat_ple_table35,9372,"IRAN, REPUBLICA ISLAMICA DEL",0,,,0,False,0,False,True
+l10n_pe_oxe360.1848,l10n_pe_oxe360.pe_sunat_ple_table35,9375,IRLANDA (EIRE),0,,,0,False,0,False,True
+l10n_pe_oxe360.1849,l10n_pe_oxe360.pe_sunat_ple_table35,9377,ISLA AZORES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1850,l10n_pe_oxe360.pe_sunat_ple_table35,9378,ISLA DEL MAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1851,l10n_pe_oxe360.pe_sunat_ple_table35,9379,ISLANDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1852,l10n_pe_oxe360.pe_sunat_ple_table35,9380,ISLAS CANARIAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1853,l10n_pe_oxe360.pe_sunat_ple_table35,9381,ISLAS DE CHRISTMAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1854,l10n_pe_oxe360.pe_sunat_ple_table35,9382,ISLAS QESHM,0,,,0,False,0,False,True
+l10n_pe_oxe360.1855,l10n_pe_oxe360.pe_sunat_ple_table35,9383,ISRAEL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1856,l10n_pe_oxe360.pe_sunat_ple_table35,9386,ITALIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1857,l10n_pe_oxe360.pe_sunat_ple_table35,9391,JAMAICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1858,l10n_pe_oxe360.pe_sunat_ple_table35,9395,"JONSTON, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1859,l10n_pe_oxe360.pe_sunat_ple_table35,9399,JAPON,0,,,0,False,0,False,True
+l10n_pe_oxe360.1860,l10n_pe_oxe360.pe_sunat_ple_table35,9401,JERSEY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1861,l10n_pe_oxe360.pe_sunat_ple_table35,9403,JORDANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1862,l10n_pe_oxe360.pe_sunat_ple_table35,9406,KAZAJSTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1863,l10n_pe_oxe360.pe_sunat_ple_table35,9410,KENIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1864,l10n_pe_oxe360.pe_sunat_ple_table35,9411,KIRIBATI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1865,l10n_pe_oxe360.pe_sunat_ple_table35,9412,KIRGUIZISTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1866,l10n_pe_oxe360.pe_sunat_ple_table35,9413,KUWAIT,0,,,0,False,0,False,True
+l10n_pe_oxe360.1867,l10n_pe_oxe360.pe_sunat_ple_table35,9418,LABUN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1868,l10n_pe_oxe360.pe_sunat_ple_table35,9420,"LAOS, REPUBLICA POPULAR DEMOCRATICA DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1869,l10n_pe_oxe360.pe_sunat_ple_table35,9426,LESOTHO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1870,l10n_pe_oxe360.pe_sunat_ple_table35,9429,LETONIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1871,l10n_pe_oxe360.pe_sunat_ple_table35,9431,LIBANO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1872,l10n_pe_oxe360.pe_sunat_ple_table35,9434,LIBERIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1873,l10n_pe_oxe360.pe_sunat_ple_table35,9438,LIBIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1874,l10n_pe_oxe360.pe_sunat_ple_table35,9440,LIECHTENSTEIN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1875,l10n_pe_oxe360.pe_sunat_ple_table35,9443,LITUANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1876,l10n_pe_oxe360.pe_sunat_ple_table35,9445,LUXEMBURGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1877,l10n_pe_oxe360.pe_sunat_ple_table35,9447,MACAO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1878,l10n_pe_oxe360.pe_sunat_ple_table35,9448,MACEDONIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1879,l10n_pe_oxe360.pe_sunat_ple_table35,9450,MADAGASCAR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1880,l10n_pe_oxe360.pe_sunat_ple_table35,9453,MADEIRA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1881,l10n_pe_oxe360.pe_sunat_ple_table35,9455,MALAYSIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1882,l10n_pe_oxe360.pe_sunat_ple_table35,9458,MALAWI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1883,l10n_pe_oxe360.pe_sunat_ple_table35,9461,MALDIVAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1884,l10n_pe_oxe360.pe_sunat_ple_table35,9464,MALI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1885,l10n_pe_oxe360.pe_sunat_ple_table35,9467,MALTA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1886,l10n_pe_oxe360.pe_sunat_ple_table35,9469,"MARIANAS DEL NORTE, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1887,l10n_pe_oxe360.pe_sunat_ple_table35,9472,"MARSHALL, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1888,l10n_pe_oxe360.pe_sunat_ple_table35,9474,MARRUECOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1889,l10n_pe_oxe360.pe_sunat_ple_table35,9477,MARTINICA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1890,l10n_pe_oxe360.pe_sunat_ple_table35,9485,MAURICIO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1891,l10n_pe_oxe360.pe_sunat_ple_table35,9488,MAURITANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1892,l10n_pe_oxe360.pe_sunat_ple_table35,9493,MEXICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1893,l10n_pe_oxe360.pe_sunat_ple_table35,9494,"MICRONESIA, ESTADOS FEDERADOS DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1894,l10n_pe_oxe360.pe_sunat_ple_table35,9495,MIDWAY ISLAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1895,l10n_pe_oxe360.pe_sunat_ple_table35,9496,MOLDAVIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1896,l10n_pe_oxe360.pe_sunat_ple_table35,9497,MONGOLIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1897,l10n_pe_oxe360.pe_sunat_ple_table35,9498,MONACO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1898,l10n_pe_oxe360.pe_sunat_ple_table35,9501,"MONTSERRAT, ISLA",0,,,0,False,0,False,True
+l10n_pe_oxe360.1899,l10n_pe_oxe360.pe_sunat_ple_table35,9505,MOZAMBIQUE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1900,l10n_pe_oxe360.pe_sunat_ple_table35,9507,NAMIBIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1901,l10n_pe_oxe360.pe_sunat_ple_table35,9508,NAURU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1902,l10n_pe_oxe360.pe_sunat_ple_table35,9511,"NAVIDAD (CHRISTMAS), ISLA",0,,,0,False,0,False,True
+l10n_pe_oxe360.1903,l10n_pe_oxe360.pe_sunat_ple_table35,9517,NEPAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1904,l10n_pe_oxe360.pe_sunat_ple_table35,9521,NICARAGUA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1905,l10n_pe_oxe360.pe_sunat_ple_table35,9525,NIGER,0,,,0,False,0,False,True
+l10n_pe_oxe360.1906,l10n_pe_oxe360.pe_sunat_ple_table35,9528,NIGERIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1907,l10n_pe_oxe360.pe_sunat_ple_table35,9531,"NIUE, ISLA",0,,,0,False,0,False,True
+l10n_pe_oxe360.1908,l10n_pe_oxe360.pe_sunat_ple_table35,9535,"NORFOLK, ISLA",0,,,0,False,0,False,True
+l10n_pe_oxe360.1909,l10n_pe_oxe360.pe_sunat_ple_table35,9538,NORUEGA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1910,l10n_pe_oxe360.pe_sunat_ple_table35,9542,NUEVA CALEDONIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1911,l10n_pe_oxe360.pe_sunat_ple_table35,9545,PAPUASIA NUEVA GUINEA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1912,l10n_pe_oxe360.pe_sunat_ple_table35,9548,NUEVA ZELANDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1913,l10n_pe_oxe360.pe_sunat_ple_table35,9551,VANUATU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1914,l10n_pe_oxe360.pe_sunat_ple_table35,9556,OMAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1915,l10n_pe_oxe360.pe_sunat_ple_table35,9566,"PACIFICO, ISLAS DEL",0,,,0,False,0,False,True
+l10n_pe_oxe360.1916,l10n_pe_oxe360.pe_sunat_ple_table35,9573,PAISES BAJOS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1917,l10n_pe_oxe360.pe_sunat_ple_table35,9576,PAKISTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1918,l10n_pe_oxe360.pe_sunat_ple_table35,9578,"PALAU, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1919,l10n_pe_oxe360.pe_sunat_ple_table35,9579,TERRITORIO AUTONOMO DE PALESTINA.,0,,,0,False,0,False,True
+l10n_pe_oxe360.1920,l10n_pe_oxe360.pe_sunat_ple_table35,9580,PANAMA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1921,l10n_pe_oxe360.pe_sunat_ple_table35,9586,PARAGUAY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1922,l10n_pe_oxe360.pe_sunat_ple_table35,9589,PERU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1923,l10n_pe_oxe360.pe_sunat_ple_table35,9593,"PITCAIRN, ISLA",0,,,0,False,0,False,True
+l10n_pe_oxe360.1924,l10n_pe_oxe360.pe_sunat_ple_table35,9599,POLINESIA FRANCESA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1925,l10n_pe_oxe360.pe_sunat_ple_table35,9603,POLONIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1926,l10n_pe_oxe360.pe_sunat_ple_table35,9607,PORTUGAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1927,l10n_pe_oxe360.pe_sunat_ple_table35,9611,PUERTO RICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1928,l10n_pe_oxe360.pe_sunat_ple_table35,9618,QATAR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1929,l10n_pe_oxe360.pe_sunat_ple_table35,9628,REINO UNIDO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1930,l10n_pe_oxe360.pe_sunat_ple_table35,9629,ESCOCIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1931,l10n_pe_oxe360.pe_sunat_ple_table35,9633,REPUBLICA ARABE UNIDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1932,l10n_pe_oxe360.pe_sunat_ple_table35,9640,REPUBLICA CENTROAFRICANA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1933,l10n_pe_oxe360.pe_sunat_ple_table35,9644,REPUBLICA CHECA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1934,l10n_pe_oxe360.pe_sunat_ple_table35,9645,REPUBLICA DE SWAZILANDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1935,l10n_pe_oxe360.pe_sunat_ple_table35,9646,REPUBLICA DE TUNEZ,0,,,0,False,0,False,True
+l10n_pe_oxe360.1936,l10n_pe_oxe360.pe_sunat_ple_table35,9647,REPUBLICA DOMINICANA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1937,l10n_pe_oxe360.pe_sunat_ple_table35,9660,REUNION,0,,,0,False,0,False,True
+l10n_pe_oxe360.1938,l10n_pe_oxe360.pe_sunat_ple_table35,9665,ZIMBABWE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1939,l10n_pe_oxe360.pe_sunat_ple_table35,9670,RUMANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1940,l10n_pe_oxe360.pe_sunat_ple_table35,9675,RUANDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1941,l10n_pe_oxe360.pe_sunat_ple_table35,9676,RUSIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1942,l10n_pe_oxe360.pe_sunat_ple_table35,9677,"SALOMON, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1943,l10n_pe_oxe360.pe_sunat_ple_table35,9685,SAHARA OCCIDENTAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1944,l10n_pe_oxe360.pe_sunat_ple_table35,9687,SAMOA OCCIDENTAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1945,l10n_pe_oxe360.pe_sunat_ple_table35,9690,SAMOA NORTEAMERICANA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1946,l10n_pe_oxe360.pe_sunat_ple_table35,9695,SAN CRISTOBAL Y NIEVES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1947,l10n_pe_oxe360.pe_sunat_ple_table35,9697,SAN MARINO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1948,l10n_pe_oxe360.pe_sunat_ple_table35,9700,SAN PEDRO Y MIQUELON,0,,,0,False,0,False,True
+l10n_pe_oxe360.1949,l10n_pe_oxe360.pe_sunat_ple_table35,9705,SAN VICENTE Y LAS GRANADINAS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1950,l10n_pe_oxe360.pe_sunat_ple_table35,9710,SANTA ELENA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1951,l10n_pe_oxe360.pe_sunat_ple_table35,9715,SANTA LUCIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1952,l10n_pe_oxe360.pe_sunat_ple_table35,9720,SANTO TOME Y PRINCIPE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1953,l10n_pe_oxe360.pe_sunat_ple_table35,9728,SENEGAL,0,,,0,False,0,False,True
+l10n_pe_oxe360.1954,l10n_pe_oxe360.pe_sunat_ple_table35,9731,SEYCHELLES,0,,,0,False,0,False,True
+l10n_pe_oxe360.1955,l10n_pe_oxe360.pe_sunat_ple_table35,9735,SIERRA LEONA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1956,l10n_pe_oxe360.pe_sunat_ple_table35,9741,SINGAPUR,0,,,0,False,0,False,True
+l10n_pe_oxe360.1957,l10n_pe_oxe360.pe_sunat_ple_table35,9744,"SIRIA, REPUBLICA ARABE DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1958,l10n_pe_oxe360.pe_sunat_ple_table35,9748,SOMALIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1959,l10n_pe_oxe360.pe_sunat_ple_table35,9750,SRI LANKA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1960,l10n_pe_oxe360.pe_sunat_ple_table35,9756,"SUDAFRICA, REPUBLICA DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1961,l10n_pe_oxe360.pe_sunat_ple_table35,9759,SUDAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1962,l10n_pe_oxe360.pe_sunat_ple_table35,9764,SUECIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1963,l10n_pe_oxe360.pe_sunat_ple_table35,9767,SUIZA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1964,l10n_pe_oxe360.pe_sunat_ple_table35,9770,SURINAM,0,,,0,False,0,False,True
+l10n_pe_oxe360.1965,l10n_pe_oxe360.pe_sunat_ple_table35,9773,SAWSILANDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1966,l10n_pe_oxe360.pe_sunat_ple_table35,9774,TADJIKISTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1967,l10n_pe_oxe360.pe_sunat_ple_table35,9776,TAILANDIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1968,l10n_pe_oxe360.pe_sunat_ple_table35,9780,"TANZANIA, REPUBLICA UNIDA DE",0,,,0,False,0,False,True
+l10n_pe_oxe360.1969,l10n_pe_oxe360.pe_sunat_ple_table35,9783,DJIBOUTI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1970,l10n_pe_oxe360.pe_sunat_ple_table35,9786,TERRITORIO ANTARTICO BRITANICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1971,l10n_pe_oxe360.pe_sunat_ple_table35,9787,TERRITORIO BRITANICO DEL OCEANO INDICO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1972,l10n_pe_oxe360.pe_sunat_ple_table35,9788,TIMOR DEL ESTE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1973,l10n_pe_oxe360.pe_sunat_ple_table35,9800,TOGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1974,l10n_pe_oxe360.pe_sunat_ple_table35,9805,TOKELAU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1975,l10n_pe_oxe360.pe_sunat_ple_table35,9810,TONGA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1976,l10n_pe_oxe360.pe_sunat_ple_table35,9815,TRINIDAD Y TOBAGO,0,,,0,False,0,False,True
+l10n_pe_oxe360.1977,l10n_pe_oxe360.pe_sunat_ple_table35,9816,TRISTAN DA CUNHA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1978,l10n_pe_oxe360.pe_sunat_ple_table35,9820,TUNICIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1979,l10n_pe_oxe360.pe_sunat_ple_table35,9823,"TURCAS Y CAICOS, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1980,l10n_pe_oxe360.pe_sunat_ple_table35,9825,TURKMENISTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1981,l10n_pe_oxe360.pe_sunat_ple_table35,9827,TURQUIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1982,l10n_pe_oxe360.pe_sunat_ple_table35,9828,TUVALU,0,,,0,False,0,False,True
+l10n_pe_oxe360.1983,l10n_pe_oxe360.pe_sunat_ple_table35,9830,UCRANIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1984,l10n_pe_oxe360.pe_sunat_ple_table35,9833,UGANDA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1985,l10n_pe_oxe360.pe_sunat_ple_table35,9840,URSS,0,,,0,False,0,False,True
+l10n_pe_oxe360.1986,l10n_pe_oxe360.pe_sunat_ple_table35,9845,URUGUAY,0,,,0,False,0,False,True
+l10n_pe_oxe360.1987,l10n_pe_oxe360.pe_sunat_ple_table35,9847,UZBEKISTAN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1988,l10n_pe_oxe360.pe_sunat_ple_table35,9850,VENEZUELA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1989,l10n_pe_oxe360.pe_sunat_ple_table35,9855,VIET NAM,0,,,0,False,0,False,True
+l10n_pe_oxe360.1990,l10n_pe_oxe360.pe_sunat_ple_table35,9858,VIETNAM (DEL NORTE),0,,,0,False,0,False,True
+l10n_pe_oxe360.1991,l10n_pe_oxe360.pe_sunat_ple_table35,9863,"VIRGENES, ISLAS (BRITANICAS)",0,,,0,False,0,False,True
+l10n_pe_oxe360.1992,l10n_pe_oxe360.pe_sunat_ple_table35,9866,"VIRGENES, ISLAS (NORTEAMERICANAS)",0,,,0,False,0,False,True
+l10n_pe_oxe360.1993,l10n_pe_oxe360.pe_sunat_ple_table35,9870,FIJI,0,,,0,False,0,False,True
+l10n_pe_oxe360.1994,l10n_pe_oxe360.pe_sunat_ple_table35,9873,"WAKE, ISLA",0,,,0,False,0,False,True
+l10n_pe_oxe360.1995,l10n_pe_oxe360.pe_sunat_ple_table35,9875,"WALLIS Y FORTUNA, ISLAS",0,,,0,False,0,False,True
+l10n_pe_oxe360.1996,l10n_pe_oxe360.pe_sunat_ple_table35,9880,YEMEN,0,,,0,False,0,False,True
+l10n_pe_oxe360.1997,l10n_pe_oxe360.pe_sunat_ple_table35,9885,YUGOSLAVIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.1998,l10n_pe_oxe360.pe_sunat_ple_table35,9888,ZAIRE,0,,,0,False,0,False,True
+l10n_pe_oxe360.1999,l10n_pe_oxe360.pe_sunat_ple_table35,9890,ZAMBIA,0,,,0,False,0,False,True
+l10n_pe_oxe360.2000,l10n_pe_oxe360.pe_sunat_ple_table35,9895,ZONA DEL CANAL DE PANAMA,0,,,0,False,0,False,True
+l10n_pe_oxe360.2001,l10n_pe_oxe360.pe_sunat_ple_table35,9896,ZONA LIBRE OSTRAVA,0,,,0,False,0,False,True
+l10n_pe_oxe360.2002,l10n_pe_oxe360.pe_sunat_ple_table35,9897,ZONA NEUTRAL (PALESTINA),0,,,0,False,0,False,True
+l10n_pe_ple.ple010100,l10n_pe_ple.ple_books,1.1,Libro Caja y Bancos - Detalle de Los Movimientos del Efectivo,0,,,0,False,0,False,True
+l10n_pe_ple.ple010200,l10n_pe_ple.ple_books,1.2,Libro Caja y Bancos - Detalle de Los Movimientos de la Cuenta Corriente,0,,,0,False,0,False,True
+l10n_pe_ple.ple030100,l10n_pe_ple.ple_books,3.1,Libro de Inventarios y Balances - Estado de Situación Financiera,0,,,0,False,0,False,True
+l10n_pe_ple.ple030200,l10n_pe_ple.ple_books,3.2,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 10 Efectivo y Equivalentes de Efectivo (2),0,,,0,False,0,False,True
+l10n_pe_ple.ple030300,l10n_pe_ple.ple_books,3.3,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 12 Cuentas por Cobrar Comerciales – Terceros y 13 Cuentas por Cobrar Comerciales – Relacionadas,0,,,0,False,0,False,True
+l10n_pe_ple.ple030400,l10n_pe_ple.ple_books,3.4,"Libro de Inventarios y Balances - Detalle Del Saldo de la Cuenta 14 Cuentas por Cobrar al Personal, A Los Accionistas (Socios), Directores Y Gerentes (2)",0,,,0,False,0,False,True
+l10n_pe_ple.ple030500,l10n_pe_ple.ple_books,3.5,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 16 Cuentas por Cobrar Diversas - Terceros o Cuenta 17 - Cuentas por Cobrar Diversas - Relacionadas,0,,,0,False,0,False,True
+l10n_pe_ple.ple030600,l10n_pe_ple.ple_books,3.6,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 19 Estimación de Cuentas de Cobranza Dudosa,0,,,0,False,0,False,True
+l10n_pe_ple.ple030700,l10n_pe_ple.ple_books,3.7,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 20 - Mercaderias y la Cuenta 21 - Productos Terminados (2),0,,,0,False,0,False,True
+l10n_pe_ple.ple030800,l10n_pe_ple.ple_books,3.8,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 30 Inversiones Mobiliarias (2),0,,,0,False,0,False,True
+l10n_pe_ple.ple030900,l10n_pe_ple.ple_books,3.9,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 34 - Intangibles,0,,,0,False,0,False,True
+l10n_pe_ple.ple031100,l10n_pe_ple.ple_books,3.11,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 41 Remuneraciones y Participaciones por Pagar (2),0,,,0,False,0,False,True
+l10n_pe_ple.ple031200,l10n_pe_ple.ple_books,3.12,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 42 Cuentas por Pagar Comerciales – Terceros y la Cuenta 43 Cuentas por Pagar Comerciales – Relacionadas,0,,,0,False,0,False,True
+l10n_pe_ple.ple031300,l10n_pe_ple.ple_books,3.13,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 46 Cuentas por Pagar Diversas – Terceros y de la Cuenta 47 Cuentas por Pagar Diversas – Relacionadas,0,,,0,False,0,False,True
+l10n_pe_ple.ple031400,l10n_pe_ple.ple_books,3.14,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 47 - Beneficios Sociales de Los Trabajadores (Pcgr) - No Aplicable Para El Pcge (2),0,,,0,False,0,False,True
+l10n_pe_ple.ple031500,l10n_pe_ple.ple_books,3.15,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 37 Activo Diferido y de la Cuenta 49 Pasivo Diferido,0,,,0,False,0,False,True
+l10n_pe_ple.ple031600,l10n_pe_ple.ple_books,3.16,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 50 Capital,0,,,0,False,0,False,True
+l10n_pe_ple.ple031601,l10n_pe_ple.ple_books,3.16.1,Detalle del Saldo de la Cuenta 50 - Capital,0,,,0,False,0,False,True
+l10n_pe_ple.ple031602,l10n_pe_ple.ple_books,3.16.2,Estructura de la Participación Accionaria o de Participaciones Sociales,0,,,0,False,0,False,True
+l10n_pe_ple.ple031700,l10n_pe_ple.ple_books,3.17,Libro de Inventarios y Balances - Balance de Comprobación,0,,,0,False,0,False,True
+l10n_pe_ple.ple031800,l10n_pe_ple.ple_books,3.18,Libro de Inventarios y Balances - Estado de Flujos de Efectivo - Método Directo,0,,,0,False,0,False,True
+l10n_pe_ple.ple031900,l10n_pe_ple.ple_books,3.19,Libro de Inventarios y Balances - Estado de Cambios En El Patrimonio Neto,0,,,0,False,0,False,True
+l10n_pe_ple.ple032000,l10n_pe_ple.ple_books,3.2,Libro de Inventarios y Balances - Estado de Resultados,0,,,0,False,0,False,True
+l10n_pe_ple.ple032300,l10n_pe_ple.ple_books,3.23,Libro de Inventarios y Balances - Notas a Los Estados Financieros (3),0,,,0,False,0,False,True
+l10n_pe_ple.ple032400,l10n_pe_ple.ple_books,3.24,Libro de Inventarios y Balances - Estado de Resultados Integrales,0,,,0,False,0,False,True
+l10n_pe_ple.ple032500,l10n_pe_ple.ple_books,3.25,Libro de Inventarios y Balances - Estado de Flujos de Efectivo - Método Indirecto,0,,,0,False,0,False,True
+l10n_pe_ple.ple040100,l10n_pe_ple.ple_books,4.1,Libro de Retenciones Inciso E) y F) del Art. 34° de la Ley del Impuesto a la Renta,0,,,0,False,0,False,True
+l10n_pe_ple.ple050100,l10n_pe_ple.ple_books,5.1,Libro Diario,0,,,0,False,0,False,True
+l10n_pe_ple.ple050300,l10n_pe_ple.ple_books,5.3,Libro Diario - Detalle del Plan Contable Utilizado,0,,,0,False,0,False,True
+l10n_pe_ple.ple050200,l10n_pe_ple.ple_books,5.2,Libro Diario de Formato Simplificado,0,,,0,False,0,False,True
+l10n_pe_ple.ple050400,l10n_pe_ple.ple_books,5.4,Libro Diario de Formato Simplificado - Detalle del Plan Contable Utilizado,0,,,0,False,0,False,True
+l10n_pe_ple.ple060100,l10n_pe_ple.ple_books,6.1,Libro Mayor,0,,,0,False,0,False,True
+l10n_pe_ple.ple070100,l10n_pe_ple.ple_books,7.1,Registro de Activos Fijos - Detalle de Los Activos Fijos Revaluados y No Revaluados,0,,,0,False,0,False,True
+l10n_pe_ple.ple070300,l10n_pe_ple.ple_books,7.3,Registro de Activos Fijos - Detalle de la Diferencia de Cambio,0,,,0,False,0,False,True
+l10n_pe_ple.ple070400,l10n_pe_ple.ple_books,7.4,Registro de Activos Fijos - Detalle de Los Activos Fijos Bajo la Modalidad de Arrendamiento Financiero Al 31.12,0,,,0,False,0,False,True
+l10n_pe_ple.ple080100,l10n_pe_ple.ple_books,8.1,Registro de Compras,0,,,0,False,0,False,True
+l10n_pe_ple.ple080200,l10n_pe_ple.ple_books,8.2,Registro de Compras - Información de Operaciones Con Sujetos No Domiciliados,0,,,0,False,0,False,True
+l10n_pe_ple.ple080300,l10n_pe_ple.ple_books,8.3,Registro de Compras Simplificado,0,,,0,False,0,False,True
+l10n_pe_ple.ple090100,l10n_pe_ple.ple_books,9.1,Registro de Consignaciones - Para El Consignador - Control de Bienes Entregados En Consignación,0,,,0,False,0,False,True
+l10n_pe_ple.ple090200,l10n_pe_ple.ple_books,9.2,Registro de Consignaciones - Para El Consignatario - Control de Bienes Recibidos En Consignación,0,,,0,False,0,False,True
+l10n_pe_ple.ple100100,l10n_pe_ple.ple_books,10.1,Registro de Costos - Estado de Costo de Ventas Anual,0,,,0,False,0,False,True
+l10n_pe_ple.ple100200,l10n_pe_ple.ple_books,10.2,Registro de Costos - Elementos del Costo Mensual,0,,,0,False,0,False,True
+l10n_pe_ple.ple100300,l10n_pe_ple.ple_books,10.3,Registro de Costos - Estado de Costo de Produccion Valorizado Anual,0,,,0,False,0,False,True
+l10n_pe_ple.ple100400,l10n_pe_ple.ple_books,10.4,Registro de Costos - Centro de Costos,0,,,0,False,0,False,True
+l10n_pe_ple.ple120100,l10n_pe_ple.ple_books,12.1,Registro del Inventario Permanente En Unidades Físicas - Detalle del Inventario Permanente En Unidades Físicas,0,,,0,False,0,False,True
+l10n_pe_ple.ple130100,l10n_pe_ple.ple_books,13.1,Registro del Inventario Permanente Valorizado - Detalle del Inventario Valorizado,0,,,0,False,0,False,True
+l10n_pe_ple.ple140100,l10n_pe_ple.ple_books,14.1,Registro de Ventas E Ingresos,0,,,0,False,0,False,True
+l10n_pe_ple.ple140200,l10n_pe_ple.ple_books,14.2,Registro de Ventas E Ingresos Simplificado,0,,,0,False,0,False,True
+l10n_pe_ple_filename282900,l10n_pe_ple.ple_filename_2829,0,No Aplica,0,,,0,False,0,False,True
+l10n_pe_ple_filename282901,l10n_pe_ple.ple_filename_2829,1,Al 31 de diciembre,0,,,0,False,0,False,True
+l10n_pe_ple_filename282902,l10n_pe_ple.ple_filename_2829,2,"Al 31 de enero, por modificación del porcentaje",0,,,0,False,0,False,True
+l10n_pe_ple_filename282903,l10n_pe_ple.ple_filename_2829,3,"Al 30 de junio, por modificación del coeficiente o porcentaje",0,,,0,False,0,False,True
+l10n_pe_ple_filename282904,l10n_pe_ple.ple_filename_2829,4,Al último día del mes que sustentará la suspensión o modificación del coeficiente (distinto al 31 de enero o 30 de junio),0,,,0,False,0,False,True
+l10n_pe_ple_filename282905,l10n_pe_ple.ple_filename_2829,5,"Al día anterior a la entrada en vigencia de la fusión, escisión y demás formas de reorganización de sociedades o empresas o extinción de la persona jurídica",0,,,0,False,0,False,True
+l10n_pe_ple_filename282906,l10n_pe_ple.ple_filename_2829,6,"A la fecha del balance de liquidación, cierre o cese definitivo del deudor tributario",0,,,0,False,0,False,True
+l10n_pe_ple_filename282907,l10n_pe_ple.ple_filename_2829,7,A la fecha de presentación para libre propósito,0,,,0,False,0,False,True
+l10n_pe_ple_filename30300,l10n_pe_ple.ple_filename_3030,0,Cierre de operaciones - baja de inscripción en el RUC,0,,,0,False,0,False,True
+l10n_pe_ple_filename30301,l10n_pe_ple.ple_filename_3030,1,Empresa o entidad operativa,0,,,0,False,0,False,True
+l10n_pe_ple_filename30302,l10n_pe_ple.ple_filename_3030,2,Cierre del libro - no obligado a llevarlo,0,,,0,False,0,False,True
+l10n_pe_ple_filename31311,l10n_pe_ple.ple_filename_3131,1,Con información,0,,,0,False,0,False,True
+l10n_pe_ple_filename31310,l10n_pe_ple.ple_filename_3131,0,Sin información,0,,,0,False,0,False,True
+l10n_pe_ple_filename32321,l10n_pe_ple.ple_filename_3232,1,Soles,0,,,0,False,0,False,True
+l10n_pe_ple_filename32322,l10n_pe_ple.ple_filename_3232,2,US dólares,0,,,0,False,0,False,True

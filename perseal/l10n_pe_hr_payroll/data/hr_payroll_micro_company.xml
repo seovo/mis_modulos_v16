@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payroll_structure_pe_micro_company_type" model="hr.payroll.structure.type">
+        <field name="name">Microempresa</field>
+    </record>
+    <record id="hr_payroll_structure_pe_micro_company" model="hr.payroll.structure">
+        <field name="name">Nomina Microempresa</field>
+        <field name="code">NG</field>
+        <field name="type_id" ref="hr_payroll_structure_pe_micro_company_type"/>
+        <field name="rule_ids" eval="[]"/>
+        <field name="use_worked_day_lines" eval="True"/>
+    </record>
+    <record id="hr_salary_rule_pe_basic_micro_company" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="name">Salario Basico</field>
+        <field name="code">BASIC</field>
+        <field name="amount_select">code</field>
+        <field name="sequence">170</field>
+        <field name="condition_select">none</field>
+        <field name="amount_python_compute">
+        result = payslip.paid_amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_micro_company"/>
+    </record>
+</odoo>

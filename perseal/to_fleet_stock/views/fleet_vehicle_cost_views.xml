@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="fleet_vehicle_log_services_view_form_cost">
+			<field name="name">fleet.vehicle.log.services.view.form.cost</field>
+			<field name="model">fleet.vehicle.log.services</field>
+			<field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form" />
+			<field name="arch" type="xml">
+
+				<xpath expr="//field[@name='purchaser_id']" position="after">
+					<field name="created_from_stock_move_id" readonly="True" invisible="created_from_stock_move_id == False" />
+					<field name="created_from_stock_stock_picking_id" readonly="True" invisible="created_from_stock_stock_picking_id == False" />
+				</xpath>
+
+			</field>
+		</record>
+	</data>
+</odoo>

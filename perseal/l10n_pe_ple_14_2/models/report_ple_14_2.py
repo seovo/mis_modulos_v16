@@ -1,0 +1,396 @@
+# -*- coding: utf-8 -*-
+
+from odoo import api, fields, models, _
+import base64
+import logging
+
+
+class ReportPle142(models.Model):
+    _name = 'report.ple.14.2'
+    _inherit = ['report.ple']
+    _description = 'Registro de Ventas'
+
+    file_txt = fields.Binary(string='Archivo TXT', readonly=True)
+    filename_txt = fields.Char(string='Nombre del archivo')
+    line_ids = fields.One2many(comodel_name='report.ple.14.2.line', inverse_name='ple_id', string='Detalle del libro', readonly=True)
+
+    @api.model
+    def create(self, vals):
+        res = super(ReportPle142, self).create(vals)
+        res.update({'name': self.env['ir.sequence'].next_by_code(self._name)})
+        return res
+
+    def action_generate(self):
+        prefix = "LE"
+        company_vat = self.env.user.company_id.partner_id.vat or ''
+        date_start = self.date_from
+        date_end = self.date_to
+        year, month = str(fields.Date().from_string(date_start).year), str(fields.Date().from_string(date_start).month).rjust(2, "0")
+        currency = 1
+        config_settings = self.env['ple.configuration'].search([('report_type', '=', '14.1'), ('company_id', '=', self.company_id.id)])
+        template = "{}{}{}{}00{}00{}{}{}{}.txt"
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('state', 'in', ['posted']),
+            ('company_id', '=', self.company_id.id),
+            ('move_type', 'in', ['out_invoice', 'out_refund'])
+        ]
+        if config_settings.journals_ids:
+            domain += [('journal_id', 'in', config_settings.journals_ids.ids)]
+        invoice_obj = self.env['account.move'].search(domain, order='date asc, create_date asc')
+        self.create_lines(invoice_obj)
+        data = self._get_content_simplified(self.line_ids)
+        filename = template.format(
+            prefix, company_vat, year, month, '140200', self.indicator_operation,
+            self.indicator_content, currency, 1)
+        value = {'filename_txt': filename, 'file_txt': base64.encodebytes(data.encode('utf-8'))}
+        self.action_generate_ple(value)
+
+    def create_lines(self, invoice_obj):
+        self.line_ids.unlink()
+        for x, line in enumerate(invoice_obj, 1):
+            self.env['report.ple.14.2.line'].create({
+                'invoice_id': line.id,
+                'ple_id': self.id,
+                'move_name': u'{}{}'.format(line.l10n_pe_operation_type_sunat, x),
+                'state_opportunity': '2' if line.state in ['cancel'] else '1'
+            })
+
+    @staticmethod
+    def _get_content_simplified(move_line_obj):
+        template = '{period}|{cuo}|{move_name}|{date_emission}|{date_due}|{document_payment_type}|' \
+                   '{document_payment_series}|{document_payment_number}|{ticket_fiscal_credit}|' \
+                   '{customer_document_type}|{customer_document_number}|{customer_name}|{amount_untaxed}|' \
+                   '{amount_tax_igv}|{amount_tax_plastic_bag}|{amount_tax_other}|{amount_total}|{currency}|{exchange_currency}|' \
+                   '{date_emission_update}|{document_payment_type_update}|{document_payment_series_update}|' \
+                   '{document_payment_correlative_update}|{type_error_1}|{method_payment}|{state_opportunity}|\r\n'''
+        data = ''
+        for line in move_line_obj:
+            data += template.format(
+                period=line.period,
+                cuo=line.cuo,
+                move_name=line.move_name,
+                date_emission=line.date_emission,
+                date_due=line.date_due or '',
+                document_payment_type=line.document_payment_type or '',
+                document_payment_series=line.document_payment_series or '',
+                document_payment_number=line.document_payment_number or '',
+                ticket_fiscal_credit=line.ticket_fiscal_credit or '',
+                customer_document_type=line.customer_document_type or '',
+                customer_document_number=line.customer_document_number or '',
+                customer_name=line.customer_name or '',
+                amount_untaxed=round(line.amount_untaxed, 2) or '0.00',
+                amount_tax_igv=round(line.amount_tax_igv, 2) or '0.00',
+                amount_tax_plastic_bag=round(line.amount_tax_plastic_bag, 2) or '0.00',
+                amount_tax_other=round(line.amount_tax_other, 2) or '0.00',
+                amount_total=round(line.amount_total, 2) or '0.00',
+                currency=line.currency or '',
+                exchange_currency=str(format(line.exchange_currency, '.3f')) or '0.000',
+                date_emission_update=line.date_emission_update or '',
+                document_payment_type_update=line.document_payment_type_update or '',
+                document_payment_series_update=line.document_payment_series_update or '',
+                document_payment_correlative_update=line.document_payment_correlative_update or '',
+                type_error_1=line.type_error_1 or '',
+                method_payment=line.method_payment and '1' or '',
+                state_opportunity=line.state_opportunity or ''
+            )
+        return data
+
+
+class ReportPle142Line(models.Model):
+    _name = 'report.ple.14.2.line'
+    _order = 'date_emission,document_payment_series,document_payment_number'
+    _description = 'Detalle de registro de ventas'
+
+    invoice_id = fields.Many2one(comodel_name='account.move', string='Factura')
+    period = fields.Char(string='Periodo', compute='_compute_data')
+    cuo = fields.Char(string='CUO', compute='_compute_data')
+    move_name = fields.Char(string='Asiento')
+    date_emission = fields.Char(string='Fecha de emisión', compute='_compute_data')
+    date_due = fields.Char(string='Fecha de vencimiento', compute='_compute_data')
+    document_payment_type = fields.Char(string='Tipo', compute='_compute_data')
+    document_payment_series = fields.Char(string='Serie', compute='_compute_data')
+    document_payment_number = fields.Char(string='Nro del comprobante', compute='_compute_data')
+    ticket_fiscal_credit = fields.Float(string='Operaciones sin derecho fiscal')
+    customer_document_type = fields.Char(string='Tipo de DC', compute='_compute_data')
+    customer_document_number = fields.Char(string='Número de DC')
+    customer_name = fields.Char(string='Cliente', related='invoice_id.partner_id.name')
+    amount_untaxed = fields.Float(string='Base imponible', compute='_compute_amount', digits=(12, 2))
+    amount_tax_igv = fields.Float(string='IGV y/o IPM', compute='_compute_amount', digits=(12, 2))
+    amount_tax_plastic_bag = fields.Float(string='Impuesto Bolsa de Plástico', compute='_compute_amount', digits=(12, 2))
+    amount_tax_other = fields.Float(string='Otros conceptos', compute='_compute_amount', digits=(12, 2))
+    amount_total = fields.Float(string='Importe Total', compute='_compute_amount', digits=(12, 2))
+    currency = fields.Char(string='Moneda', compute='_compute_data')
+    exchange_currency = fields.Float(string='Tipo de cambio', compute='_compute_data', digits=(10, 3))
+    date_emission_update = fields.Char(string='Fecha emision de CR', compute='_compute_data')
+    document_payment_type_update = fields.Char(string='Tipo de CR', compute='_compute_data')
+    document_payment_series_update = fields.Char(string='Serie de CR', compute='_compute_data')
+    document_payment_correlative_update = fields.Char(string='Correlativo de CR', compute='_compute_data')
+    type_error_1 = fields.Char(string='Error tipo 1')
+    method_payment = fields.Boolean(string='Método de pago', compute='_compute_data')
+    state_opportunity = fields.Char(string='Estado')
+    ple_id = fields.Many2one(comodel_name='report.ple.14.2')
+
+    amount_export = fields.Float(string='Valor facturado de la exportación', compute='_compute_amount', digits=(12, 2))
+
+    @api.depends('invoice_id')
+    def _compute_data(self):
+
+        def get_series_correlative(name):
+            #return (name.split('-')[0], name.split('-')[1].rjust(8, '0')) if name and '-' in name else ('', '')
+            return (name.split('-')[0], name.split('-')[1]) if name and '-' in name else ('', '')
+
+        def format_date(date):
+            return date and fields.Date().from_string(date).strftime("%d/%m/%Y") or ''
+
+        def get_exhange(inv):
+            #exch = self.env['res.currency.rate'].search([('currency_id','=',inv.currency_id.id), ('name','=',inv.invoice_date)])
+            curren = self.env['res.currency'].search([('name', '=', 'USD')])
+            date = inv.invoice_date
+            if inv.move_type == 'out_refund':
+                if inv.reversed_entry_id.invoice_date:
+                    date = inv.reversed_entry_id.invoice_date
+            if curren:
+                balance = curren._get_conversion_rate(curren,inv.company_currency_id,inv.company_id,date)
+            else:
+                balance = 1
+            #balance = inv.rate_exchange
+            return balance
+
+        def get_year_month(date):
+            return '{}{}'.format(str(fields.Date().from_string(date).year), str(fields.Date().from_string(date).month).rjust(2, "0"))
+
+        self.mapped(lambda x: x.update({
+            'period': '{}00'.format(get_year_month(x.invoice_id.date)),
+            'cuo': x.invoice_id.name,
+            'date_emission': format_date(x.invoice_id.invoice_date),
+            'date_due': '01/01/0001', #format_date(x.invoice_id.invoice_date_due) or '',
+            'document_payment_type': x.invoice_id.l10n_latam_document_type_id.code or '',
+            'document_payment_series': get_series_correlative(x.invoice_id.name)[0],
+            'document_payment_number': get_series_correlative(x.invoice_id.name)[1],
+            'customer_document_type': x.invoice_id.partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code or '',
+            'customer_document_number': x.invoice_id.partner_id.vat or '',
+            'date_emission_update':
+                (x.invoice_id.move_type == 'out_refund' and format_date(x.invoice_id.reversed_entry_id.invoice_date) or
+                    format_date(x.invoice_id.reversed_entry_id.invoice_date)),
+            'document_payment_type_update':
+                (x.invoice_id.move_type == 'out_refund'
+                 and x.invoice_id.reversed_entry_id
+                 and x.invoice_id.reversed_entry_id[0].l10n_latam_document_type_id.code or
+                    ""),
+            'document_payment_series_update':
+                (x.invoice_id.move_type == 'out_refund'
+                 and x.invoice_id.reversed_entry_id
+                 and get_series_correlative(x.invoice_id.reversed_entry_id[0].name)[0] or
+                    ""),
+            'document_payment_correlative_update':
+                (x.invoice_id.move_type == 'out_refund'
+                 and x.invoice_id.reversed_entry_id
+                 and get_series_correlative(x.invoice_id.reversed_entry_id[0].name)[1] or
+                    ""),
+            'type_error_1': '',
+            'currency': x.invoice_id.currency_id.name or '',
+            'exchange_currency': get_exhange(x.invoice_id),
+            'method_payment': x.invoice_id.state in ['paid'] or False
+        }))
+
+    @api.depends('invoice_id', 'exchange_currency')
+    def _compute_amount(self):
+
+        def get_amount_tax(invoice):
+            def compute_tax(p, t, x):
+                res = t.compute_all(p, x.invoice_id.currency_id, x.quantity, product=x.product_id,
+                                    partner=x.invoice_id.partner_id)
+                return res['total_included'] - res['total_excluded']
+
+            config_settings = self.env['ple.configuration'].search([('report_type', '=', '14.2'), ('company_id', '=', self.ple_id.company_id.id)])
+            data_process = self._l10n_pe_edi_get_edi_values(invoice)
+            v_base_imponible = 0
+            v_monto_exo = 0
+            totalVentaGravada = 0
+            totalVentaExonerada = 0
+            totalVentaInafecta = 0
+            sumatoriaIgv = 0
+            amount_export = 0
+            amount_total = invoice.amount_total
+            isc = 0
+            other = 0
+
+            v_base_imponible = round(data_process['tax_details']['total_excluded'], 2)
+            igv = round(data_process['tax_details']['total_taxes'], 2)
+
+            for element in data_process['tax_details']['grouped_taxes']:
+                if element.get('tax_id') in config_settings.l10n_pe_taxable_vat.ids:
+                    totalVentaGravada += element.get('base')
+                    sumatoriaIgv += element.get('amount')
+                if element.get('tax_id') in config_settings.l10n_pe_exonerated_vat.ids:
+                    totalVentaExonerada += element.get('base')
+                if element.get('tax_id') in config_settings.l10n_pe_not_affected_vat.ids:
+                    totalVentaInafecta += element.get('base')
+                if element.get('tax_id') in config_settings.l10n_pe_exportation_vat.ids:
+                    amount_export += element.get('base')
+
+            if invoice.move_type == 'out_refund':
+                v_base_imponible = v_base_imponible *-1
+                igv =  igv*-1
+                totalVentaGravada =  totalVentaGravada*-1
+                totalVentaExonerada =  totalVentaExonerada*-1
+                totalVentaInafecta =  totalVentaInafecta*-1
+                isc =  isc*-1
+                other =  other*-1
+                amount_export =  amount_export*-1
+                amount_total = amount_total*-1
+
+            if invoice.currency_id != invoice.company_id.currency_id:
+                date = invoice.invoice_date
+                if invoice.move_type == 'out_refund':
+                    date = invoice.reversed_entry_id.invoice_date
+                v_base_imponible =  invoice.currency_id._convert(v_base_imponible, invoice.company_id.currency_id, invoice.company_id, date)
+                igv = invoice.currency_id._convert(igv, invoice.company_id.currency_id, invoice.company_id, invoice.invoice_date)
+                totalVentaGravada = invoice.currency_id._convert(totalVentaGravada, invoice.company_id.currency_id, invoice.company_id, date)
+                totalVentaExonerada = invoice.currency_id._convert(totalVentaExonerada, invoice.company_id.currency_id, invoice.company_id, date)
+                totalVentaInafecta = invoice.currency_id._convert(totalVentaInafecta, invoice.company_id.currency_id, invoice.company_id, date)
+                isc = invoice.currency_id._convert(isc, invoice.company_id.currency_id, invoice.company_id, invoice.invoice_date)
+                other = invoice.currency_id._convert(other, invoice.company_id.currency_id, invoice.company_id, invoice.invoice_date)
+                amount_export = invoice.currency_id._convert(amount_export, invoice.company_id.currency_id, invoice.company_id, date)
+                amount_total = invoice.currency_id._convert(amount_total, invoice.company_id.currency_id, invoice.company_id, date)
+
+                # exo = exo + v_monto_exo
+            return v_base_imponible, igv, totalVentaGravada, totalVentaExonerada, totalVentaInafecta, isc, other, amount_export, amount_total
+
+        def get_invoice_tax(lines_tax):
+            #usamos el impuesto asignado al account_invoice
+            igv = exo = inaf = rice = isc = other = 0
+            for invtax in lines_tax:
+                if invtax.tax_id.tax_sunat.code in ['1000']:
+                    igv = igv + invtax.amount
+                if invtax.tax_id.tax_sunat.code in ['9997']:
+                    exo = exo + invtax.base
+                if invtax.tax_id.tax_sunat.code in ['9998']:
+                    inaf = inaf + invtax.base
+                if invtax.tax_id.tax_sunat.code in ['1016']:
+                    rice = rice + invtax.amount
+                if invtax.tax_id.tax_sunat.code in ['2000']:
+                    isc = isc + invtax.amount
+                if invtax.tax_id.tax_sunat.code in ['9999']:
+                    other = other + invtax.amount
+            return igv, exo, inaf, rice, isc, other
+
+        def get_discount_tax(invoice_id):
+            discount_tax = 0
+            if invoice_id.global_discount_type == 'percent':
+                discount_tax =get_invoice_tax(invoice_id.tax_line_ids)[0]*(invoice_id.global_discount_rate/100)
+            elif invoice_id.global_discount_type == 'amount':
+                rate = invoice_id.global_discount_rate/(get_invoice_tax(invoice_id.tax_line_ids)[0] + get_amount_tax(invoice_id.invoice_line_ids)[0])
+                discount_tax = get_invoice_tax(invoice_id.tax_line_ids)[0]*rate
+            return discount_tax
+
+
+        self.filtered(
+            lambda record: record.invoice_id.state != 'cancel'
+        ).mapped(lambda w: w.update({
+            'amount_export': get_amount_tax(w.invoice_id)[7],
+            # 'amount_untaxed': 0 if get_amount_tax(w.invoice_id)[7] != 0 else get_amount_tax(w.invoice_id)[0],
+            'amount_untaxed': get_amount_tax(w.invoice_id)[2],
+            'amount_tax_igv': get_amount_tax(w.invoice_id)[1],
+            #     (w.invoice_id.currency_id != w.invoice_id.company_id.currency_id and w.invoice_id.move_id.tipocambio or 1) *
+            #     (w.invoice_id.type == 'out_refund' and -1 or 1),
+            'amount_tax_plastic_bag': 0.00,
+            'amount_tax_other': (get_amount_tax(w.invoice_id)[6]),
+            'amount_total': (get_amount_tax(w.invoice_id)[8])
+        }))
+
+    def _l10n_pe_edi_get_edi_values(self, invoice):
+
+        def format_float(amount, precision=2):
+            ''' Helper to format monetary amount as a string with 2 decimal places. '''
+            if amount is None or amount is False:
+                return None
+            return '%.*f' % (precision, amount)
+
+        def unit_amount(amount, quantity):
+            ''' Helper to divide amount by quantity by taking care about float division by zero. '''
+            if quantity:
+                return invoice.currency_id.round(amount / quantity)
+            else:
+                return 0.0
+
+        values = {
+            'record': invoice,
+            'spot': invoice._l10n_pe_edi_get_spot(),
+            'PaymentMeansID': invoice._l10n_pe_edi_get_payment_means(),
+            'invoice_lines_vals': [],
+            'certificate_date': self.env['l10n_pe_edi.certificate']._get_pe_current_datetime().date(),
+            'format_float': format_float,
+            'tax_details': {
+                'total_excluded': 0.0,
+                'total_included': 0.0,
+                'total_taxes': 0.0,
+            },
+        }
+        tax_details = values['tax_details']
+
+        # Invoice lines.
+        tax_res_grouped = {}
+        invoice_lines = invoice.invoice_line_ids.filtered(lambda line: not line.display_type)
+        for i, line in enumerate(invoice_lines, start=1):
+            price_unit_wo_discount = line.price_unit * (1.0 - (line.discount or 0.0) / 100.0)
+
+            taxes_res = line.tax_ids.compute_all(
+                price_unit_wo_discount,
+                currency=line.currency_id,
+                quantity=line.quantity,
+                product=line.product_id,
+                partner=line.partner_id,
+                is_refund=invoice.move_type in ('out_refund', 'in_refund'),
+            )
+
+            taxes_res.update({
+                'unit_total_included': unit_amount(taxes_res['total_included'], line.quantity),
+                'unit_total_excluded': unit_amount(taxes_res['total_excluded'], line.quantity),
+                'price_unit_type_code': '01' if not line.currency_id.is_zero(price_unit_wo_discount) else '02',
+            })
+            for tax_res in taxes_res['taxes']:
+                tax = self.env['account.tax'].browse(tax_res['id'])
+                tax_res.update({
+                    'tax_id': tax.id,
+                    'tax_amount': tax.amount,
+                    'tax_amount_type': tax.amount_type,
+                    'price_unit_type_code': '01' if not line.currency_id.is_zero(tax_res['amount']) else '02',
+                    'l10n_pe_edi_tax_code': tax.l10n_pe_edi_tax_code,
+                    'l10n_pe_edi_group_code': tax.tax_group_id.l10n_pe_edi_code,
+                    'l10n_pe_edi_international_code': tax.l10n_pe_edi_international_code,
+                })
+
+                tuple_key = (
+                    tax_res['l10n_pe_edi_group_code'],
+                    tax_res['l10n_pe_edi_international_code'],
+                    tax_res['l10n_pe_edi_tax_code'],
+                    tax_res['tax_id'],
+                )
+
+                tax_res_grouped.setdefault(tuple_key, {
+                    'base': 0.0,
+                    'amount': 0.0,
+                    'tax_id': tax_res['tax_id'],
+                    'l10n_pe_edi_group_code': tax_res['l10n_pe_edi_group_code'],
+                    'l10n_pe_edi_international_code': tax_res['l10n_pe_edi_international_code'],
+                    'l10n_pe_edi_tax_code': tax_res['l10n_pe_edi_tax_code'],
+                })
+                tax_res_grouped[tuple_key]['base'] += tax_res['base']
+                tax_res_grouped[tuple_key]['amount'] += tax_res['amount']
+
+                tax_details['total_excluded'] += tax_res['base']
+                tax_details['total_included'] += tax_res['base'] + tax_res['amount']
+                tax_details['total_taxes'] += tax_res['amount']
+
+                values['invoice_lines_vals'].append({
+                    'index': i,
+                    'line': line,
+                    'tax_details': taxes_res,
+                })
+
+        values['tax_details']['grouped_taxes'] = list(tax_res_grouped.values())
+
+        return values

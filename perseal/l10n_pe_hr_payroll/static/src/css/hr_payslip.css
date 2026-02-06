@@ -1,0 +1,16 @@
+.style_font{
+    font-size:10px;
+    width:100%;
+}
+.style_font_tr > td{
+    border:1px solid black;
+}
+
+.total_tr{
+    border:1px solid black;
+}
+
+.display_line > table{
+    display: inline-block;
+    vertical-align: top;
+}

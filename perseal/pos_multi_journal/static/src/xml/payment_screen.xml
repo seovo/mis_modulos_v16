@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_multi_journal.PaymentScreenButtons" t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('js_invoice')]" position="replace">
+            <div class="paymentmethods-container overflow-y-auto flex-grow-1">
+                <div class="paymentmethods d-flex flex-column">
+                    <h4 class="title-category pt-3 pb-2 px-3 m-0 bg-view border-bottom border-2">Tipo de Documento</h4>
+                    <t t-foreach="journal_ids_from_config" t-as="journal" t-key="journal.id">
+                        <div class="button paymentmethod btn btn-light rounded-0 border-bottom"
+                             style="padding-top:15px; padding-bottom:15px"
+                             t-att-class="{'highlight text-bg-primary': currentOrder.is_to_invoice() and currentOrder.invoice_journal_id == journal.id}"
+                             t-on-click="() => this.SetDefaultInvoice(journal.id)">
+                            <div class="payment-method-display d-flex align-items-center flex-grow-1">
+                                <i class="fa fa-file-text-o me-2" />
+                                <span class="payment-name" t-esc="journal.name" />
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+
+    </t>
+ </templates>

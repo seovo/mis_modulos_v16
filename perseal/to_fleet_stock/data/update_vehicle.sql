@@ -1,0 +1,1 @@
+UPDATE stock_move_line AS sml SET vehicle_id = sm.vehicle_id FROM stock_move AS sm WHERE sm.picking_id = sml.picking_id

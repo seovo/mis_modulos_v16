@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_report_ple_08_2_tree" model="ir.ui.view">
+            <field name="name">report.ple.08.2.tree</field>
+            <field name="model">report.ple.08.2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="indicator_operation"/>
+                    <field name="indicator_content"/>
+                    <field name="currency_id"/>
+                    <field name="state"/>
+                    <field name="create_uid" string="Creado por"/>
+                    <field name="create_date" string="Fecha creación"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_report_ple_08_2_form" model="ir.ui.view">
+            <field name="name">report.ple.08.2.form</field>
+            <field name="model">report.ple.08.2</field>
+            <field name="arch" type="xml">
+                <form duplicate="0">
+                    <header>
+                        <button name="action_generate" string="Generar" type="object" class="oe_highlight" states="draft,validated"/>
+                        <button name="action_declare" string="Declarar" type="object" class="oe_highlight" states="validated"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div style="width: 70%;">
+                            <table>
+                                <tr>
+                                    <td><label for="company_id"/></td>
+                                    <td style="padding-left: 20px;"><field name="company_id" style="width: 100%;" options="{'no_create': True, 'no_create_edit':True, 'no_quick_create': True, 'no_open': True}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="date_from"/></td>
+                                    <td style="padding-left: 20px;"><field name="date_from" style="width: 100%;"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="date_to"/></td>
+                                    <td style="padding-left: 20px;"><field name="date_to" style="width: 100%;"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><label for="indicator_operation"/></td>
+                                    <td style="padding-left: 20px;"><field name="indicator_operation" style="width: 100%;"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><label for="indicator_content"/></td>
+                                    <td style="padding-left: 20px;"><field name="indicator_content" style="width: 100%;"/></td>
+                                </tr>
+                                <tr invisible="True">
+                                    <td><label for="type_report"/></td>
+                                    <td style="padding-left: 20px;"><field name="type_report"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><label for="currency_id"/></td>
+                                    <td style="padding-left: 20px;"><field name="currency_id" style="width: 100%;" options="{'no_create': True, 'no_create_edit':True, 'no_quick_create': True, 'no_open': True}"/></td>
+                                </tr>
+                                <tr  attrs="{'invisible': [('type_report', 'not in', 'normal')]}">
+                                    <td><label for="file_txt"/></td>
+                                    <td style="padding-left: 20px;">
+                                        <field name="filename_txt" invisible="True"/>
+                                        <field name="file_txt" filename="filename_txt" widget="binary"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <notebook>
+                            <page string="Detalle">
+                                <field name="line_ids">
+                                    <tree>
+                                        <field name="period"/>
+                                        <field name="cuo"/>
+                                        <field name="document_payment_type_5"/>
+                                        <field name="document_payment_series_6"/>
+                                        <field name="document_payment_number_7"/>
+                                        <field name="tax_base_8"/>
+                                        <field name="tax_amount_9"/>
+                                        <field name="total_amount_10"/>
+                                        <field name="type_11"/>
+                                        <field name="sequence_dua_12"/>
+                                        <field name="dua_dsi_year_13"/>
+                                        <field name="reference_dua_tax_14"/>
+                                        <field name="retention_mark_15"/>
+                                        <field name="type_currency_16"/>
+                                        <field name="currency_exchange_rate_17"/>
+                                        <field name="provider_country_18"/>
+                                        <field name="supplier_name_19"/>
+                                        <field name="street_provider_20"/>
+                                        <field name="supplier_doc_number_21"/>
+                                        <field name="tax_identification_beneficiary_22"/>
+                                        <field name="supplier_name_beneficiary_23"/>
+                                        <field name="beneficiary_country_24"/>
+                                        <field name="state_opportunity_36"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Sequences-->
+        <record model="ir.sequence" id="sequence_report_ple_08_2">
+            <field name="name">Libro compras no domci</field>
+            <field name="code">report.ple.08.2</field>
+            <field name="prefix">RC-</field>
+            <field name="padding">6</field>
+        </record>
+
+        <!-- Reports XLS-->
+
+
+		<!--<report  id="report_ple__08"
+                 model="report.ple.08"
+                 string="Libro compras(Excel)"
+                 report_type="xlsx"
+                 name="ple.08" file="Libro compras"
+                 attachment_use="False"/>-->
+        <record id="report_ple__08_2" model="ir.actions.report">
+            <field name="name">Report Excel</field>
+            <field name="model">report.ple.08.2</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">report.ple.08.2</field>
+            <field name="report_file">report.ple.08.2</field>
+            <field name="binding_model_id" ref="model_report_ple_08_2"></field>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_ple_8_2" model="ir.actions.act_window">
+            <field name="name">Registo de Compras no domiciliado</field>
+            <field name="res_model">report.ple.08.2</field>
+            <field name="view_mode">tree,form</field>
+         </record>
+
+    <menuitem id="menu_report_ple_8_2"
+              name="Registro de Compras no domiciliado"
+              parent="l10n_pe_ple.menu_report_ple"
+              sequence="15"
+              action="action_report_ple_8_2"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_contract_view_form_pe" model="ir.ui.view">
+        <field name="name">hr.contract.form.pe</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="priority">60</field>
+        <field name="arch" type="xml">
+            <field name="hr_responsible_id" position="after">
+                <field name="vacation_scheme"/>
+            </field>
+            <group name="salary" position="after">
+                <group string="Conceptos fijos">
+                    <field name="mov" invisible="1"/>
+                    <field name="mov_libre" invisible="mov ==  False"/>
+                    <field name="mov_sup" invisible="mov == False"/>
+                    <field name="expenses"/>
+                    <field name="feeding"/>
+                </group>
+                <group name="fixed_concepts" string="Otros conceptos">
+                     <field name="bond_rotating_schedule"/>
+                    <field name="bond_forklift"/>
+                    <field name="bond_store"/>
+                    <field name="bond_extra"/>
+                </group>
+
+            </group>
+        </field>
+    </record>
+</odoo>

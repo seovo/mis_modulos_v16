@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="res_bank_01" model="res.bank">
+            <field name="name">CENTRAL RESERVA DEL PERU</field>
+            <field name="bic">01</field>
+        </record>
+        <record id="res_bank_02" model="res.bank">
+            <field name="name">DE CREDITO DEL PERU</field>
+            <field name="bic">02</field>
+        </record>
+        <record id="res_bank_03" model="res.bank">
+            <field name="name">INTERNACIONAL DEL PERU</field>
+            <field name="bic">03</field>
+        </record>
+        <record id="res_bank_05" model="res.bank">
+            <field name="name">LATINO</field>
+            <field name="bic">05</field>
+        </record>
+        <record id="res_bank_07" model="res.bank">
+            <field name="name">CITIBANK DEL PERU S.A.</field>
+            <field name="bic">07</field>
+        </record>
+        <record id="res_bank_08" model="res.bank">
+            <field name="name">STANDARD CHARTERED</field>
+            <field name="bic">08</field>
+        </record>
+        <record id="res_bank_09" model="res.bank">
+            <field name="name">SCOTIABANK PERU</field>
+            <field name="bic">09</field>
+        </record>
+        <record id="res_bank_11" model="res.bank">
+            <field name="name">CONTINENTAL</field>
+            <field name="bic">11</field>
+        </record>
+        <record id="res_bank_12" model="res.bank">
+            <field name="name">DE LIMA</field>
+            <field name="bic">12</field>
+        </record>
+        <record id="res_bank_16" model="res.bank">
+            <field name="name">MERCANTIL</field>
+            <field name="bic">16</field>
+        </record>
+        <record id="res_bank_18" model="res.bank">
+            <field name="name">NACION</field>
+            <field name="bic">18</field>
+        </record>
+        <record id="res_bank_22" model="res.bank">
+            <field name="name">SANTANDER CENTRAL HISPANO</field>
+            <field name="bic">22</field>
+        </record>
+        <record id="res_bank_23" model="res.bank">
+            <field name="name">DE COMERCIO</field>
+            <field name="bic">23</field>
+        </record>
+        <record id="res_bank_25" model="res.bank">
+            <field name="name">REPUBLICA</field>
+            <field name="bic">25</field>
+        </record>
+        <record id="res_bank_26" model="res.bank">
+            <field name="name">NBK BANK</field>
+            <field name="bic">26</field>
+        </record>
+        <record id="res_bank_29" model="res.bank">
+            <field name="name">BANCOSUR</field>
+            <field name="bic">29</field>
+        </record>
+        <record id="res_bank_35" model="res.bank">
+            <field name="name">FINANCIERO DEL PERU</field>
+            <field name="bic">35</field>
+        </record>
+        <record id="res_bank_37" model="res.bank">
+            <field name="name">DEL PROGRESO</field>
+            <field name="bic">37</field>
+        </record>
+        <record id="res_bank_39" model="res.bank">
+            <field name="name">BANEX</field>
+            <field name="bic">39</field>
+        </record>
+        <record id="res_bank_40" model="res.bank">
+            <field name="name">NUEVO MUNDO</field>
+            <field name="bic">40</field>
+        </record>
+        <record id="res_bank_41" model="res.bank">
+            <field name="name">SUDAMERICANO</field>
+            <field name="bic">41</field>
+        </record>
+        <record id="res_bank_42" model="res.bank">
+            <field name="name">DEL LIBERTADOR</field>
+            <field name="bic">42</field>
+        </record>
+        <record id="res_bank_43" model="res.bank">
+            <field name="name">DEL TRABAJO</field>
+            <field name="bic">43</field>
+        </record>
+        <record id="res_bank_44" model="res.bank">
+            <field name="name">SOLVENTA</field>
+            <field name="bic">44</field>
+        </record>
+        <record id="res_bank_45" model="res.bank">
+            <field name="name">SERBANCO SA.</field>
+            <field name="bic">45</field>
+        </record>
+        <record id="res_bank_46" model="res.bank">
+            <field name="name">BANK OF BOSTON</field>
+            <field name="bic">46</field>
+        </record>
+        <record id="res_bank_47" model="res.bank">
+            <field name="name">ORION</field>
+            <field name="bic">47</field>
+        </record>
+        <record id="res_bank_48" model="res.bank">
+            <field name="name">DEL PAIS</field>
+            <field name="bic">48</field>
+        </record>
+        <record id="res_bank_49" model="res.bank">
+            <field name="name">MI BANCO</field>
+            <field name="bic">49</field>
+        </record>
+        <record id="res_bank_50" model="res.bank">
+            <field name="name">BNP PARIBAS</field>
+            <field name="bic">50</field>
+        </record>
+        <record id="res_bank_53" model="res.bank">
+            <field name="name">HSBC BANK PERU S.A.</field>
+            <field name="bic">53</field>
+        </record>
+        <record id="res_bank_99" model="res.bank">
+            <field name="name">OTROS</field>
+            <field name="bic">99</field>
+        </record>
+    </data>
+</odoo>

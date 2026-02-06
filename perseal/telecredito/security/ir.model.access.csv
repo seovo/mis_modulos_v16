@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_teletransfer,access_teletransfer,model_teletransfer,account.group_account_invoice,1,1,1,1
+access_teletransfer_line,access_teletransfer_line,model_teletransfer_line,account.group_account_invoice,1,1,1,1

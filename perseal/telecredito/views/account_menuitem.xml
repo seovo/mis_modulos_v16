@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="teletransfer_open_action" model="ir.actions.act_window">
+        <field name="name">Teletransfer</field>
+        <field name="res_model">teletransfer</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="teletransfer_menuitem"
+              name="Teletransfer"
+              action="teletransfer_open_action"
+              parent="account.menu_finance_receivables"
+              sequence="16"/>
+
+</odoo>

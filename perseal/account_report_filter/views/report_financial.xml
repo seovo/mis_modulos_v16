@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="main_template_with_filter_input_partner_inherit_filtro_por_cuenta" inherit_id="account_reports.main_template_with_filter_input_partner">
+        <xpath expr="//div[hasclass('o_reports_filter_input_wrapper')]" position="after">
+            <div class="o_reports_filter_input_wrapper no_print" style="margin-right: 20px;" id="filtro_cuenta_personalizado">
+                <span class="searchIcon"><i class="fa fa-search" role="img" aria-label="Buscar" title="Buscar"></i></span>
+                <input class="o_account_reports_filter_input_custom" type="text" placeholder="Buscar cuenta" style="border: none; border-bottom: 1px black solid;"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="main_template_inherit_filtro_por_cuenta" inherit_id="account_reports.main_template" primary="True">
+        <xpath expr="//div[hasclass('print_only')]" position="after">
+            <div class="o_reports_filter_input_wrapper no_print" id="filtro_cuenta_personalizado">
+                <span class="searchIcon"><i class="fa fa-search" role="img" aria-label="Buscar" title="Buscar"></i></span>
+                <input class="o_account_reports_filter_input_vencido" type="text" placeholder="Buscar cuenta" style="border: none; border-bottom: 1px black solid;"/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

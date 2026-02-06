@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_ple__05_4" model="ir.actions.report">
+            <field name="name">Report Excel</field>
+            <field name="model">report.ple.05.4</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">report.ple.05.4</field>
+            <field name="report_file">report.ple.05.4</field>
+            <field name="binding_model_id" ref="l10n_pe_ple_5_4.model_report_ple_05_4"></field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

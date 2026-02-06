@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <template id="external_layout_standard_hr_payslip_cts">
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                <div>
+                    <div class="row">
+                        <div class="col-3">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" class="logo" style="max-width: 100%; max-height: 120px;"/>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <p class="font-weight-bold">
+                                LIQUIDACION POR COMPENSACION POR TIEMPO DE SERVICIOS<br/>
+                                    T.U.O. DECRETO LEGISLATIVO N° 650<br/>
+                                     DECRETO SUPREMO 001 - 97 TR
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <div class="pt-5">
+                    <!-- This div ensures that the address is not cropped by the header. -->
+                    <t t-call="web.address_layout"/>
+                </div>
+                <t t-out="0"/>
+            </div>
+
+            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+
+            </div>
+        </template>
+
+        <template id="external_layout_hr_pays_lip_cts">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+                <t t-if="not company">
+                    <t t-if="company_id">
+                        <t t-set="company" t-value="company_id"/>
+                    </t>
+                    <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                    </t>
+                    <t t-else="else">
+                        <t t-set="company" t-value="res_company"/>
+                    </t>
+                </t>
+            <t t-call="l10n_pe_hr_payroll.external_layout_standard_hr_payslip_cts"><t t-out="0"/></t>
+        </template>
+
+        <template id="template_hr_payslip_cts">
+            <t t-call="web.html_container">
+                <t t-call="l10n_pe_hr_payroll.external_layout_hr_pays_lip_cts">
+                    <link rel="stylesheet" type="text/scss" href="/l10n_pe_hr_payroll/static/src/css/hr_payslip.css"/>
+                    <div class="row" style="border-top:1px solid black; border-bottom:1px solid black;font-size:12px;margin-bottom:15px">
+                        <div class="col-2">
+                            <span>COMPAÑIA</span><br/>
+                            <span>DOMICILIO</span><br/>
+                            <span>R.U.C.</span>
+                        </div>
+                        <div class="col-8">
+                            <span t-field="o.company_id.name"/><br/>
+                            <span t-field="o.company_id.street"/><br/>
+                            <span t-field="o.company_id.partner_id.vat"/>
+                        </div>
+                    </div>
+                    <table style="font-size:12px; width:100%;">
+                        <tr>
+                            <td style="width: 30%"/>
+                            <td style="width: 70%"/>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>DATOS DEL TRABAJADOR</strong></td>
+                        </tr>
+                        <tr>
+                            <td>APELLIDOS Y NOMBRES</td>
+                            <td>: <t t-esc="o.employee_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td>DOC. IDENTIDAD </td>
+                            <td>: <t t-esc="o.employee_id.address_home_id.l10n_latam_identification_type_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td>N° DE DOC. IDENTIDAD</td>
+                            <td>: <t t-esc="o.employee_id.address_home_id.vat"/></td>
+                        </tr>
+                        <tr>
+                            <td>FECHA DE INGRESO</td>
+                            <td>: <t t-esc="o.contract_id.date_start"/></td>
+                        </tr>
+                        <tr>
+                            <td>PERIODO</td>
+                            <td>: DEL <t t-esc="o.date_from"/> AL <t t-esc="o.date_to"/></td>
+                        </tr>
+                        <tr>
+                            <td>DIAS COMPUTADOS</td>
+                            <td>: <t t-esc="o.line_ids.filtered(lambda line: line.code == 'DT').quantity"/></td>
+                        </tr>
+                        <tr>
+                            <td>AUSENCIAS</td>
+                            <td>: <t t-esc="o.line_ids.filtered(lambda line: line.code == 'DA').quantity"/></td>
+                        </tr>
+                        <tr>
+                            <td>DIAS A PAGAR</td>
+                            <td>: <t t-esc="o.line_ids.filtered(lambda line: line.code == 'DAP').quantity"/></td>
+                        </tr>
+                        <tr>
+                            <td>ENTIDAD FINANCIERA</td>
+                            <td>: <t t-esc="o.employee_id.bank_account_id_cts.bank_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td>CUENTA DEPOSITO</td>
+                            <td>: <t t-esc="o.employee_id.bank_account_id_cts.acc_number"/></td>
+                        </tr>
+                        <tr>
+                            <td>MONEDA</td>
+                            <td>: <t t-esc="o.employee_id.bank_account_id_cts.currency_id.name"/></td>
+                        </tr>
+
+                    </table>
+
+                    <table style="font-size:12px; width:100%;border-top:1px solid black; margin-top:15px">
+                        <tr>
+                            <td style="width: 50%"/>
+                            <td style="width: 50%"/>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>REMUNERACION COMPUTABLE:</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DESCRIPCION</strong></td>
+                            <td class="text-right"><strong>MONTO ( S/. )</strong></td>
+                        </tr>
+                        <tr>
+                            <td>SUELDO BASICO</td>
+                            <td class="text-right"><t t-esc="o.line_ids.filtered(lambda line: line.code == 'ST').total"/></td>
+                        </tr>
+                        <tr>
+                            <td>ASIGNACIÓN FAMILIAR</td>
+                            <td class="text-right"><t t-esc="o.line_ids.filtered(lambda line: line.code == 'AF').total"/></td>
+                        </tr>
+                        <tr>
+                            <td>PROMEDIO DE VARIABLES CTS</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1/6 GRATIFICACION PAGADA EN JULIO 2023</td>
+                            <td class="text-right"><t t-esc="o.line_ids.filtered(lambda line: line.code == 'UG').total"/></td>
+                        </tr>
+                        <tr>
+                            <td>TOTAL REMUNERACION COMPUTABLE (TRC)</td>
+                            <td class="text-right"><t t-esc="o.line_ids.filtered(lambda line: line.code == 'RC').total"/></td>
+                        </tr>
+                        <tr>
+                            <td>CALCULO DE CTS (TRC/360) x 43 Días</td>
+                            <td class="text-right"><t t-esc="o.line_ids.filtered(lambda line: line.code == 'CTSAP').total"/></td>
+                        </tr>
+                        <tr>
+                            <td>DEPOSITO EN SOLES</td>
+                            <td class="text-right"><t t-esc="o.line_ids.filtered(lambda line: line.code == 'CTSAP').total"/></td>
+                        </tr>
+                    </table>
+                    <div class="row text-center" style="font-size:12px;margin-top:100px">
+                        <div class="col-4 offset-1" style="border-top:1px solid black">
+                            REPRESENTANTE LEGAL<br/>
+                            <span><t t-esc="o.company_id.name"/></span>
+                        </div>
+                        <div class="col-4 offset-2" style="border-top:1px solid black">
+                            <span><t t-esc="o.employee_id.name"/></span><br/>
+                             <t t-esc="o.employee_id.address_home_id.l10n_latam_identification_type_id.name"/>
+                                <span> </span>
+                                <t t-esc="o.employee_id.address_home_id.vat"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_hr_payslip_pe_cts">
+            <t t-foreach="docs" t-as="o">
+                <t t-if="o and 'company_id' in o">-->
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+                <t t-call="l10n_pe_hr_payroll.template_hr_payslip_cts" t-lang="o.env.lang">
+                    <t t-set="o" t-value="o.with_context({'lang':o.env.lang})"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

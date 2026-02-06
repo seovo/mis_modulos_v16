@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payroll_structure_pe_general_type" model="hr.payroll.structure.type">
+        <field name="name">Regimen General Mensual</field>
+    </record>
+    <record id="hr_payroll_structure_pe_general" model="hr.payroll.structure">
+        <field name="name">Regimen General Mensual</field>
+        <field name="code">NG</field>
+        <field name="type_id" ref="hr_payroll_structure_pe_general_type"/>
+        <field name="rule_ids" eval="[]"/>
+        <field name="use_worked_day_lines" eval="True"/>
+    </record>
+    <record id="hr_salary_rule_pe_basic_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="name">SUELDO BASICO</field>
+        <field name="code">BASIC</field>
+        <field name="sequence">170</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'WORK100' in worked_days:
+    result = worked_days['WORK100'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_sin_goce" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Licencia sin goce</field>
+        <field name="code">C7020</field>
+        <field name="sequence">171</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C7020' in worked_days:
+    result = worked_days['C7020'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_con_goce" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Licencia con goce de haber</field>
+        <field name="code">C7021</field>
+        <field name="sequence">172</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C7021' in worked_days:
+    result = worked_days['C7021'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_20_day" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Descanso Medico (20 primeros dias)</field>
+        <field name="code">C121</field>
+        <field name="sequence">173</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C7029' in worked_days:
+    result = worked_days['C7029'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_maternidad" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">Subsidios por maternidad</field>
+        <field name="code">C915</field>
+        <field name="sequence">174</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C7040' in worked_days:
+    result = worked_days['C7040'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_general_enfermedad" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">Subsidios de incapacidad por enfermedad</field>
+        <field name="code">C916</field>
+        <field name="sequence">175</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C7030' in worked_days:
+    result = worked_days['C7030'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_general_vacaciones" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Vacaciones</field>
+        <field name="code">C7050</field>
+        <field name="sequence">176</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C7050' in worked_days:
+    result = worked_days['C7050'].amount
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_nhe25_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Horas extras 25</field>
+        <field name="code">NHE25</field>
+        <field name="sequence">177</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C_7066' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = inputs['C_7066'].amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_nhe35_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Horas extras 35</field>
+        <field name="code">NHE35</field>
+        <field name="sequence">178</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C_7067' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = inputs['C_7067'].amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_nhe100_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Horas extras 100</field>
+        <field name="code">NHE100</field>
+        <field name="sequence">179</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C_7068' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = inputs['C_7068']amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_nheferiado_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Horas extra feriado</field>
+        <field name="code">NHE-FE</field>
+        <field name="sequence">180</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C_7069' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = inputs['C_7069'].amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_asigancion_familiar_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Asignacion Familiar</field>
+        <field name="code">AS-FA</field>
+        <field name="sequence">185</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.children > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+percentage = 10
+result = (percentage/100) * contract.rmv
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_gratificacion_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Gratificacion</field>
+        <field name="code">GTFCC</field>
+        <field name="sequence">186</field>
+         <field name="condition_select">python</field>
+        <field name="condition_python">
+result = payslip.compute_rule_gratification() > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'GTFCC' in inputs:
+    result = inputs['GTFCC'].amount
+else:
+    result = payslip.compute_rule_gratification()
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_general_c1264" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Movilidad libre disponible</field>
+        <field name="code">C1264</field>
+        <field name="sequence">190</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.mov_libre
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_c1263" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.NRMT"/>
+        <field name="name">Movilidad sup asistencia</field>
+        <field name="code">C1263</field>
+        <field name="sequence">191</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C_1263' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = round(inputs['C_1263'].amount)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_viatico_sup" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.NRMT"/>
+        <field name="name">Viaticos Sup.</field>
+        <field name="code">VIASUP1</field>
+        <field name="sequence">192</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'VIASUP1' in inputs:
+    result = inputs['VIASUP1'].amount
+else:
+    result = round(contract.expenses * worked_days['WORK100'].number_of_days)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_alimentacion_sup" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.NRMT"/>
+        <field name="name">Alimentación Sup</field>
+        <field name="code">ALIM1</field>
+        <field name="sequence">192</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'ALIM1' in inputs:
+    result = inputs['ALIM1'].amount
+else:
+    result = round(contract.feeding * worked_days['WORK100'].number_of_days)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_comisiones" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Comisiones</field>
+        <field name="code">COM1</field>
+        <field name="sequence">192</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'COM1' in inputs:
+    result = inputs['COM1'].amount
+else:
+    result = contract.commissions
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_general_rotativo" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Bono horario rotativo</field>
+        <field name="code">C2563</field>
+        <field name="sequence">194</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = contract.bond_rotating_schedule > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.bond_rotating_schedule
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_horario_nocturno" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">horario Nocturno</field>
+        <field name="code">HORNOC</field>
+        <field name="sequence">194</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 1383.75 > contract.wage
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'HORNOC' in inputs:
+    result = (1383.75 - contract.wage) * (inputs['HORNOC'].amount/240)
+else:
+    result = 0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_general_forklift" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Bono montacarga</field>
+        <field name="code">C2566</field>
+        <field name="sequence">195</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = contract.bond_forklift > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.bond_forklift
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_bond_store" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Bono almacén</field>
+        <field name="code">C2564</field>
+        <field name="sequence">196</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = contract.bond_store > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.bond_store
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_general_bond_extra" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.RMT"/>
+        <field name="name">Bono extra</field>
+        <field name="code">C2565</field>
+        <field name="sequence">197</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = contract.bond_extra > 0
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.bond_extra
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_total_ingresos" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.TOTAL_INGRESOS"/>
+        <field name="name">TOTAL INGRESOS</field>
+        <field name="code">TOTALI</field>
+        <field name="sequence">199</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['BASIC'] + categories['RMT'] + categories['NRMT'] + categories['ALW']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_haber_basic_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.GROSS"/>
+        <field name="name">BASE QUINTA</field>
+        <field name="code">HBASIC</field>
+        <field name="sequence">200</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['BASIC'] + categories['RMT'] + categories['NRMT']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_base_afp" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.BASE_AFP"/>
+        <field name="name">BASE AFP</field>
+        <field name="code">BASE_AFP</field>
+        <field name="sequence">205</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['BASIC'] + categories['RMT'] + categories['ALW']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_base_snp" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.BASE_SNP"/>
+        <field name="name">BASE SNP</field>
+        <field name="code">BASE_SNP</field>
+        <field name="sequence">206</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['BASIC'] + categories['RMT']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_base_essalud" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.BASE_ESSALUD"/>
+        <field name="name">BASE ESSALUD</field>
+        <field name="code">BASE_ESSALUD</field>
+        <field name="sequence">207</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['BASIC'] + categories['RMT']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_afp_c_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Comision Variable</field>
+        <field name="code">AFP-C</field>
+        <field name="sequence">210</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_afp
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+dict_afp = {'HF':1.47, 'IF':1.55, 'PMF':1.60, 'PFF':1.69}
+commission = 0.0 if employee.input_afp in ('HS','IS','PMS','PFS','SNP') else dict_afp[employee.input_afp]
+result =  -(categories['BASE_AFP'])  * (commission/100)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_afp_s_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Seguro Invalidez</field>
+        <field name="code">AFP-S</field>
+        <field name="sequence">211</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_afp
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+commission = 0.0 if employee.input_afp in ('SNP') else 1.7
+result_sure_afp = (categories['BASE_AFP']) * (commission/100)
+if result_sure_afp > contract.insurance_stop:
+    result_sure_afp = contract.insurance_stop
+result = -result_sure_afp
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+     <record id="hr_salary_rule_pe_afp_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">AFP</field>
+        <field name="code">AFP</field>
+        <field name="sequence">212</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_afp
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if employee.input_afp not in ('SNP'):
+    result = -(categories['BASE_AFP']) * 0.10
+else:
+    result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+     <record id="hr_salary_rule_pe_snp_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">SNP</field>
+        <field name="code">SNP</field>
+        <field name="sequence">213</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_afp
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if employee.input_afp in ('SNP'):
+    result = -(categories['BASE_SNP'])* 0.13
+else:
+    result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_quincena" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Adelanto de quincena</field>
+        <field name="code">C1111</field>
+        <field name="sequence">230</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C1111' in inputs:
+    result = -inputs['C1111'].amount
+else:
+    result = -payslip.compute_paycheck_advance()
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_desc_eps" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Descuento EPS</field>
+        <field name="code">C1112</field>
+        <field name="sequence">241</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C1112' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -inputs['C1112']amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_desc_otros" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Otros descuentos</field>
+        <field name="code">C1113</field>
+        <field name="sequence">242</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C1113' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -inputs['C1113'].amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+    <record id="hr_salary_rule_pe_desc_prestamo" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Descuento por préstamo</field>
+        <field name="code">C1114</field>
+        <field name="sequence">243</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'C1114' in inputs
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -inputs['C1114'].amount
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_quinta_categoria" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Quinta categoria</field>
+        <field name="code">QC</field>
+        <field name="sequence">280</field>
+         <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if 'C_3060' in inputs:
+    result = -inputs['C_3060'].amount
+else:
+    result = -payslip.compute_fifth_category(result_rules['HBASIC']['total'])
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_adelanto_gratificacion_general" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="name">Adelanto Gratificacion</field>
+        <field name="code">AGTFCC</field>
+        <field name="sequence">281</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = 'GTFCC' in result_rules
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -result_rules['GTFCC']['total']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_total_deduction" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.base"/>
+        <field name="name">(-) Total deducciones</field>
+        <field name="code">C8990</field>
+        <field name="sequence">285</field>
+         <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['DED']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_general_total_neto" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="name">TOTAL NETO</field>
+        <field name="code">NETO</field>
+        <field name="sequence">300</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories['TIN'] + categories['DED']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_esalud_9_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.input"/>
+        <field name="name">Essalud 9</field>
+        <field name="code">ESSALUD-9</field>
+        <field name="sequence">310</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_eps not in ['yes']
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -(categories['BASE_ESSALUD'])* 0.09
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+    <record id="hr_salary_rule_pe_esalud_675_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.input"/>
+        <field name="name">Essalud 675</field>
+        <field name="code">ESSALUD-675</field>
+        <field name="sequence">315</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_eps in ['yes']
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -(categories['BASE_ESSALUD']) * 0.0675
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+     <record id="hr_salary_rule_pe_eps_225_general" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.input"/>
+        <field name="name">Aporte EPS 225</field>
+        <field name="code">EPS-225</field>
+        <field name="sequence">320</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+result = employee.input_eps in ['yes']
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = -(categories['BASE_ESSALUD']) * 0.0225
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_pe_general"/>
+    </record>
+
+</odoo>

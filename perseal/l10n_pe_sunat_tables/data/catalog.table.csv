@@ -1,0 +1,72 @@
+id,company_id,country_id,code,name,description,parent_id:id,type
+pe,,Peru,PE,PERU Configuracion,Tablas y valores de configuración PERU,,view
+sunat,,Peru,PE.SUNAT,SUNAT Configuration,Tablas y valores de configuración de SUNAT,pe,view
+pe_vars,,Peru,PE.VARS,Perú Variables,Official Indicators and Variables for Perú,pe,normal
+sunat_table_general_01,,Peru,PE.SUNAT.TABLE_GENERAL_01,Tipo_de_Documento Identidad,Tabla General SUNAT 1: Tipo de Documento Identidad TABLA6 FACTURA ELECTRONICA y TABLA2 PLE,sunat,normal
+sunat_table_efact_01,,Peru,PE.SUNAT.TABLE_EFACT_01,Codigo_de_Tipo_de_Documento,CATÁLOGO N° 01: Códigos de Tipo de Documentos,sunat,normal
+sunat_table_efact_02,,Peru,PE.SUNAT.TABLE_EFACT_02,Codigo_de_tipo_de_monedas, CATÁLOGO N° 02: Código de tipo de monedas,sunat,normal
+sunat_table_efact_03,,Peru,PE.SUNAT.TABLE_EFACT_03,Codigo_de_tipo_de unidad_de_medida_comercial,CATÁLOGO N° 03: Código de tipo de unidad de medida comercial,sunat,normal
+sunat_table_efact_04,,Peru,PE.SUNAT.TABLE_EFACT_04,Codigo_de_pais,CATÁLOGO N° 04: Código de pais,sunat,normal
+sunat_table_efact_05,,Peru,PE.SUNAT.TABLE_EFACT_05,Codigo_de_tipos_de_tributos_y_otros_conceptos,CATÁLOGO N° 05: Código de tipos de tributos y otros conceptos,sunat,normal
+sunat_table_efact_06,,Peru,PE.SUNAT.TABLE_EFACT_06,Codigo_de_tipo_de_documento_de_identidad,CATÁLOGO N° 06: Código de tipo de documento de identidad,sunat,normal
+sunat_table_efact_07,,Peru,PE.SUNAT.TABLE_EFACT_07,Codigo_de_tipo_de_afectacion_del_IGV,CATÁLOGO N° 07: Código de tipo de afectación del IGV,sunat,normal
+sunat_table_efact_08,,Peru,PE.SUNAT.TABLE_EFACT_08,Codigo_de_tipos_de_sistema_de_calculo_del_ISC,CATÁLOGO N° 08: Código de tipos de sistema de cálculo del ISC,sunat,normal
+sunat_table_efact_09,,Peru,PE.SUNAT.TABLE_EFACT_09,Codigos_de_tipo_de_nota_de_credito_electronica,CATÁLOGO N° 09: Códigos de tipo de nota de crédito electrónica,sunat,normal
+sunat_table_efact_10,,Peru,PE.SUNAT.TABLE_EFACT_10,Codigos_de_tipo_de_nota_de_debito_electronica,CATÁLOGO N° 10: Códigos de tipo de nota de débito electrónica,sunat,normal
+sunat_table_efact_11,,Peru,PE.SUNAT.TABLE_EFACT_11,Codigos_de_tipo_de_valor_de_venta_(Resumen_diario_de_boletas_y_notas),CATÁLOGO N° 11: Códigos de tipo de valor de venta (Resumen diario de boletas y notas),sunat,normal
+sunat_table_efact_12,,Peru,PE.SUNAT.TABLE_EFACT_12,Codigo_de_documentos_relacionados_tributarios,CATÁLOGO N° 12: Código de documentos relacionados tributarios,sunat,normal
+sunat_table_efact_13,,Peru,PE.SUNAT.TABLE_EFACT_13,Codigo_de_ubicacion_geografica_(UBIGEO),CATÁLOGO N° 13: Código de ubicación geográfica (UBIGEO),sunat,normal
+sunat_table_efact_14,,Peru,PE.SUNAT.TABLE_EFACT_14,Codigo_de_otros_conceptos_tributarios,CATÁLOGO N° 14: Código de otros conceptos tributarios,sunat,normal
+sunat_table_efact_15,,Peru,PE.SUNAT.TABLE_EFACT_15,Codigos_de_elementos_adicionales_en_la_factura_y_boleta_electronica,CATÁLOGO N° 15: Códigos de elementos adicionales en la factura y boleta electrónica,sunat,normal
+sunat_table_efact_16,,Peru,PE.SUNAT.TABLE_EFACT_16,Codigo_de_tipo_de_precio_de_venta_unitario,CATÁLOGO N° 16: Código de tipo de precio de venta unitario,sunat,normal
+sunat_table_efact_17,,Peru,PE.SUNAT.TABLE_EFACT_17,Codigo_de_tipo_de_operacion,CATÁLOGO N° 17: Código de tipo de operación,sunat,normal
+sunat_table_efact_18,,Peru,PE.SUNAT.TABLE_EFACT_18,Codigo_de_modalidad_de_transporte,CATÁLOGO N° 18: Código de modalidad de transporte,sunat,normal
+sunat_table_efact_19,,Peru,PE.SUNAT.TABLE_EFACT_19,Codigo_de_estado_del_item_(resumen_diario),CATÁLOGO N° 19: Código de estado del ítem (resumen diario),sunat,normal
+sunat_table_efact_20,,Peru,PE.SUNAT.TABLE_EFACT_20,Codigo_de_motivo_de_traslado,CATÁLOGO N° 20: Código de motivo de traslado,sunat,normal
+sunat_table_efact_21,,Peru,PE.SUNAT.TABLE_EFACT_21,Codigo_de_documentos_relacionados_(solo_guia_de_remision_electronica),CATÁLOGO N° 21: Código de documentos relacionados (sólo guía de remisión electrónica),sunat,normal
+sunat_table_efact_22,,Peru,PE.SUNAT.TABLE_EFACT_22,Codigo_de_regimen_de_percepciones,CATÁLOGO N° 22: Código de regimen de percepciones,sunat,normal
+sunat_table_efact_23,,Peru,PE.SUNAT.TABLE_EFACT_23,Codigo_de_regimen_de_retenciones,CATÁLOGO N° 23: Código de regimen de retenciones,sunat,normal
+sunat_table_efact_24,,Peru,PE.SUNAT.TABLE_EFACT_24,Codigo_de_tarifa_de_servicios_publicos,CATÁLOGO N° 24: Código de tarifa de servicios públicos,sunat,normal
+sunat_table_efact_25,,Peru,PE.SUNAT.TABLE_EFACT_25,Codigo_de_producto_SUNAT,CATÁLOGO N° 25: Código de producto SUNAT,sunat,normal
+sunat_table_efact_26,,Peru,PE.SUNAT.TABLE_EFACT_26,Tipo_de_prestamo_(creditos_hipotecarios),CATÁLOGO N° 26: Tipo de préstamo (créditos hipotecarios),sunat,normal
+sunat_table_efact_27,,Peru,PE.SUNAT.TABLE_EFACT_27,Indicador_de_primera_vivienda,CATÁLOGO N° 17: Indicador de primera vivienda,sunat,normal
+sunat_table_efact_51,,Peru,PE.SUNAT.TABLE_EFACT_51,Codigo_de_tipo_de_operacion,CATÁLOGO N° 51: Código de tipo de operación,sunat,normal
+sunat_table_efact_52,,Peru,PE.SUNAT.TABLE_EFACT_52,Codigos_de_leyendas,CATÁLOGO N° 52: Códigos de leyendas,sunat,normal
+sunat_table_efact_53,,Peru,PE.SUNAT.TABLE_EFACT_53,Codigos_de_cargos_o_descuentos,CATÁLOGO N° 53: Códigos de cargos o descuentos,sunat,normal
+sunat_table_efact_54,,Peru,PE.SUNAT.TABLE_EFACT_54,Codigos_de_bienes_y_servicios_sujetos_a_detracciones,CATÁLOGO N° 54: Códigos de bienes y servicios sujetos a detracciones,sunat,normal
+sunat_table_efact_55,,Peru,PE.SUNAT.TABLE_EFACT_55,Codigo_de_identificacion_del_concepto_tributario,CATÁLOGO N° 55: Código de identificación del concepto tributario,sunat,normal
+sunat_table_efact_56,,Peru,PE.SUNAT.TABLE_EFACT_56,Codigo_de_tipo_de_servicio_publico,CATÁLOGO N° 56: Código de tipo de servicio público,sunat,normal
+sunat_table_efact_57,,Peru,PE.SUNAT.TABLE_EFACT_57,Codigo_de_tipo_de_servicio_publicos_-_telecomunicaciones,CATÁLOGO N° 57: Código de tipo de servicio públicos - telecomunicaciones,sunat,normal
+sunat_table_efact_58,,Peru,PE.SUNAT.TABLE_EFACT_58,Codigo_de_tipo_de_medidor_(recibo_de_luz),CATÁLOGO N° 58: Código de tipo de medidor (recibo de luz),sunat,normal
+sunat_table_efact_59,,Peru,PE.SUNAT.TABLE_EFACT_59,Medios_de_Pago,CATÁLOGO N° 59: Medios de Pago,sunat,normal
+sunat_table_efact_60,,Peru,PE.SUNAT.TABLE_EFACT_60,Código_de_tipo_de_dirección,CATÁLOGO N° 60: Código de tipo de dirección,sunat,normal
+sunat_table_detraction,,Peru,PE.SUNAT.DETRACTION,Compras / Codigos_de_bienes_y_servicios_sujetos_a_detracciones,Compras / Códigos de bienes y servicios sujetos a detracciones,sunat,normal
+pe_sunat_ple_table01,,Peru,PE.SUNAT.PLE_TABLE01,TABLA 1: TIPO DE MEDIO DE PAGO,TABLA 1: TIPO DE MEDIO DE PAGO,sunat,normal
+pe_sunat_ple_table02,,Peru,PE.SUNAT.PLE_TABLE02,TABLA 2: TIPO DE DOCUMENTO DE IDENTIDAD,TABLA 2: TIPO DE DOCUMENTO DE IDENTIDAD,sunat,normal
+pe_sunat_ple_table03,,Peru,PE.SUNAT.PLE_TABLE03,TABLA 3: ENTIDAD FINANCIERA,TABLA 3: ENTIDAD FINANCIERA,sunat,normal
+pe_sunat_ple_table04,,Peru,PE.SUNAT.PLE_TABLE04,TABLA 4: TIPO DE MONEDA,TABLA 4: TIPO DE MONEDA,sunat,normal
+pe_sunat_ple_table05,,Peru,PE.SUNAT.PLE_TABLE05,TABLA 5: TIPO DE EXISTENCIA,TABLA 5: TIPO DE EXISTENCIA,sunat,normal
+pe_sunat_ple_table06,,Peru,PE.SUNAT.PLE_TABLE06,TABLA 6: CÓDIGO DE LA UNIDAD DE MEDIDA,TABLA 6: CÓDIGO DE LA UNIDAD DE MEDIDA,sunat,normal
+pe_sunat_ple_table10,,Peru,PE.SUNAT.PLE_TABLE10,TABLA 10: TIPO DE COMPROBANTE DE PAGO O DOCUMENTO,TABLA 10: TIPO DE COMPROBANTE DE PAGO O DOCUMENTO,sunat,normal
+pe_sunat_ple_table11,,Peru,PE.SUNAT.PLE_TABLE11,TABLA 11: CÓDIGO DE LA ADUANA,TABLA 11: CÓDIGO DE LA ADUANA,sunat,normal
+pe_sunat_ple_table12,,Peru,PE.SUNAT.PLE_TABLE12,TABLA 12: TIPO DE OPERACIÓN,TABLA 12: TIPO DE OPERACIÓN,sunat,normal
+pe_sunat_ple_table13,,Peru,PE.SUNAT.PLE_TABLE13,TABLA 13: CATÁLOGO DE EXISTENCIAS,TABLA 13: CATÁLOGO DE EXISTENCIAS,sunat,normal
+pe_sunat_ple_table14,,Peru,PE.SUNAT.PLE_TABLE14,TABLA 14: MÉTODO DE VALUACIÓN,TABLA 14: MÉTODO DE VALUACIÓN,sunat,normal
+pe_sunat_ple_table15,,Peru,PE.SUNAT.PLE_TABLE15,TABLA 15: TIPO DE TÍTULO,TABLA 15: TIPO DE TÍTULO,sunat,normal
+pe_sunat_ple_table16,,Peru,PE.SUNAT.PLE_TABLE16,TABLA 16: TIPO DE ACCIONES O PARTICIPACIONES,TABLA 16: TIPO DE ACCIONES O PARTICIPACIONES,sunat,normal
+pe_sunat_ple_table17,,Peru,PE.SUNAT.PLE_TABLE17,TABLA 17: PLAN DE CUENTAS,TABLA 17: PLAN DE CUENTAS,sunat,normal
+pe_sunat_ple_table18,,Peru,PE.SUNAT.PLE_TABLE18,TABLA 18: TIPO DE ACTIVO FIJO,TABLA 18: TIPO DE ACTIVO FIJO,sunat,normal
+pe_sunat_ple_table19,,Peru,PE.SUNAT.PLE_TABLE19,TABLA 19: ESTADO DEL ACTIVO FIJO,TABLA 19: ESTADO DEL ACTIVO FIJO,sunat,normal
+pe_sunat_ple_table20,,Peru,PE.SUNAT.PLE_TABLE20,TABLA 20: MÉTODO DE DEPRECIACIÓN,TABLA 20: MÉTODO DE DEPRECIACIÓN,sunat,normal
+pe_sunat_ple_table21,,Peru,PE.SUNAT.PLE_TABLE21,TABLA 21: CÓDIGO DE AGRUPAMIENTO DEL COSTO DE PRODUCCIÓN VALORIZADO ANUAL,TABLA 21: CÓDIGO DE AGRUPAMIENTO DEL COSTO DE PRODUCCIÓN VALORIZADO ANUAL,sunat,normal
+pe_sunat_ple_table22,,Peru,PE.SUNAT.PLE_TABLE22,TABLA 22: CATÁLOGO DE ESTADOS FINANCIEROS,TABLA 22: CATÁLOGO DE ESTADOS FINANCIEROS,sunat,normal
+pe_sunat_ple_table25,,Peru,PE.SUNAT.PLE_TABLE25,TABLA 25 "CONVENIOS PARA EVITAR LA DOBLE TRIBUTACIÓN",TABLA 25: "CONVENIOS PARA EVITAR LA DOBLE TRIBUTACIÓN",sunat,normal
+pe_sunat_ple_table27,,Peru,PE.SUNAT.PLE_TABLE27,TABLA 27: TIPO DE VINCULACION ECONOMICA,TABLA 27: TIPO DE VINCULACION ECONOMICA,sunat,normal
+pe_sunat_ple_table28,,Peru,PE.SUNAT.PLE_TABLE28,TABLA 28: PATRIMONIO NETO,TABLA 28: PATRIMONIO NETO,sunat,normal
+pe_sunat_ple_table30,,Peru,PE.SUNAT.PLE_TABLE30,TABLA 30: CLASIFICACIÓN DE LOS BIENES Y SERVICIOS ADQUIRIDOS,TABLA 30: CLASIFICACIÓN DE LOS BIENES Y SERVICIOS ADQUIRIDOS,sunat,normal
+pe_sunat_ple_table31,,Peru,PE.SUNAT.PLE_TABLE31,TABLA 31: TIPO DE RENTA,TABLA 31: TIPO DE RENTA,sunat,normal
+pe_sunat_ple_table32,,Peru,PE.SUNAT.PLE_TABLE32,TABLA 32: MODALIDAD DEL SERVICIO PRESTADO POR EL SUJETO NO DOMICILIADO,TABLA 32: MODALIDAD DEL SERVICIO PRESTADO POR EL SUJETO NO DOMICILIADO,sunat,normal
+pe_sunat_ple_table33,,Peru,PE.SUNAT.PLE_TABLE33,TABLA 33: EXONERACIONES DE OPERACIONES DE NO DOMICILIADOS (ART. 19 DE LA LEY DEL IMPUESTO A LA RENTA),TABLA 33: EXONERACIONES DE OPERACIONES DE NO DOMICILIADOS (ART. 19 DE LA LEY DEL IMPUESTO A LA RENTA),sunat,normal
+pe_sunat_ple_table34,,Peru,PE.SUNAT.PLE_TABLE34,TABLA 34: CÓDIGO DE LOS RUBROS DE LOS ESTADOS FINANCIEROS,TABLA 34: CÓDIGO DE LOS RUBROS DE LOS ESTADOS FINANCIEROS,sunat,normal
+pe_sunat_ple_table35,,Peru,PE.SUNAT.PLE_TABLE35,TABLA 35: PAISES,TABLA 35: PAISES,sunat,normal
+pe_sunat_ple_table36,,Peru,PE.SUNAT.PLE_BOOKS,TABLAS ANEXO 3 PLE,TABLAS ANEXO 3 PLE,sunat,Normal

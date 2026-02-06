@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="base_view_partner_form_inherit_anka_custom" model="ir.ui.view">
+        <field name="name">base.view.partner.form.inherit.anka.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale']" position="inside">
+                <field name="simple_interest"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="partner_follow_up_tree_view" model="ir.ui.view">
+        <field name="name">partner.follow.up.tree.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Follow-up Reports Tree View" create="false" import="false" delete="false" sample="1">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="name"/>
+                <field name="total_due_document"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="partner_pending_tree_view" model="ir.ui.view">
+        <field name="name">partner.follow.up.tree.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Follow-up Reports Tree View" create="false" import="false" delete="false" sample="1">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="name"/>
+                <field name="total_pending_document"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="partner_follow_up_form_view" model="ir.ui.view">
+        <field name="name">partner.follow.up.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false">
+                <header>
+                    <button string="Seguimiento"
+                            name="%(manual_reminder_action_debtor)d"
+                            type="action"
+                            class="button btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="True" required="True" class="oe_inline"/> <small><field name="trust" widget="followup_trust_widget" class="oe_inline"/></small></h1>
+                    </div>
+                    <group name="schedule">
+                        <group>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <field name="document_due_ids">
+                        <tree create="false" delete="false" editable="bottom" no_open="true">
+                            <field name="name"/>
+                            <field name="operacion_ids" widget="many2many_tags"/>
+                            <field name="issue_date"/>
+                            <field name="due_date"/>
+                            <field name="disbursement_date"/>
+                            <field name="currency_id"/>
+                            <field name="net_amount_document"/>
+                            <field name="company_id"/>
+                        </tree>
+                    </field>
+                     <group class="oe_invoice_lines_tab">
+                        <group class="oe_subtotal_footer">
+                            <field name="total_due_document" style="font-weight: bold; font-size: 1.2em;"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_pending_form_view" model="ir.ui.view">
+        <field name="name">partner.follow.up.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false">
+                <header>
+                    <button string="Seguimiento"
+                            name="%(manual_reminder_action_debtor)d"
+                            type="action"
+                            class="button btn-primary"/>
+                    <button string="Registrar pago"
+                            name="action_register_payment"
+                            type="object"
+                            class="button btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="True" required="True" class="oe_inline"/> <small><field name="trust" widget="followup_trust_widget" class="oe_inline"/></small></h1>
+                    </div>
+                    <notebook>
+                        <page name="document" string="Documentos">
+                            <field name="document_pending_ids">
+                                <tree create="false" editable="bottom">
+                                    <field name="register_payment"/>
+                                    <field name="name" readonly="1"/>
+                                    <button name="action_automatic_entry" type="object" icon="fa-folder-open-o" string="Documento" aria-label="Change Period" class="float-end"/>
+                                    <field name="operacion_ids" widget="many2many_tags" readonly="1" optional="hide"/>
+                                    <field name="issue_date" readonly="1" optional="hide"/>
+                                    <field name="due_date" readonly="1" decoration-danger="register_payment != context_today().strftime('%Y-%m-%d')"/>
+                                    <field name="operacion_line_id" column_invisible="True"/>
+                                    <field name="monto_fondo_garantia" decoration-danger="register_payment != context_today().strftime('%Y-%m-%d')"/>
+                                    <field name="debt_amount" decoration-danger="register_payment != context_today().strftime('%Y-%m-%d')"/>
+                                    <field name="disbursement_date" readonly="1" optional="hide"/>
+                                    <field name="currency_id" readonly="1" options="{'no_open': True}" optional="hide"/>
+                                    <field name="net_amount_document" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                    
+
+                     <group class="oe_invoice_lines_tab">
+                        <group class="oe_subtotal_footer">
+                            <!-- <field name="pending_currecy_id"/> -->
+                            <field name="total_pending_document" style="font-weight: bold; font-size: 1.2em;"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_pending_search_view" model="ir.ui.view">
+        <field name="name">partner.pending.search.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search string="Documentos pendientes">
+                <filter name="pending_ids" string="Pendientes de cobro" domain="[('id', 'in', context.get('pending_ids', []))]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="operaciones_seguimiento_open_action_server" model="ir.actions.server">
+        <field name="name">Seguimiento</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">action = model.open_view_res_partner_follow()</field>
+    </record>
+
+    <record id="operaciones_documentos_pendientes_action_server" model="ir.actions.server">
+        <field name="name">documentos pendientes</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">action = model.open_view_res_partner_pending()</field>
+    </record>
+
+</odoo>

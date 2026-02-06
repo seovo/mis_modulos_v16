@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="work_entry_type_li_si_go" model="hr.work.entry.type">
+        <field name="name">Licencia sin goce</field>
+        <field name="code">C7020</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+        <field name="unpaid_structure_ids" eval="[
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_general')),
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_micro_company')),
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_small_company'))]"/>
+            </record>
+    <record id="work_entry_type_faltas" model="hr.work.entry.type">
+        <field name="name">Falta</field>
+        <field name="code">C7042</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+        <field name="unpaid_structure_ids" eval="[
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_general')),
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_micro_company')),
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_small_company'))]"/>
+            </record>
+    <record id="work_entry_type_suspendido" model="hr.work.entry.type">
+        <field name="name">Suspendido</field>
+        <field name="code">C7043</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+        <field name="unpaid_structure_ids" eval="[
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_general')),
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_micro_company')),
+            (4, ref('l10n_pe_hr_payroll.hr_payroll_structure_pe_small_company'))]"/>
+            </record>
+
+    <record id="work_entry_type_li_con_go" model="hr.work.entry.type">
+        <field name="name">Licencia con goce de haber</field>
+        <field name="code">C7021</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+    </record>
+    <record id="work_entry_type_li_por_enf" model="hr.work.entry.type">
+        <field name="name">Licencia por enfermedad</field>
+        <field name="code">C7029</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+    </record>
+    <record id="work_entry_type_vacaciones" model="hr.work.entry.type">
+        <field name="name">Vacaciones</field>
+        <field name="code">C7050</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+    </record>
+    <record id="work_entry_type_hora_extra_25" model="hr.work.entry.type">
+        <field name="name">Hora extra</field>
+        <field name="code">C7066</field>
+        <field name="is_leave">False</field>
+        <field name="extra_hours">True</field>
+        <field name="color">5</field>
+    </record>
+    <record id="work_entry_type_li_sub_enfermedad" model="hr.work.entry.type">
+        <field name="name">Subsidio enfermedad</field>
+        <field name="code">C7030</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+    </record>
+    <record id="work_entry_type_li_sub_amternidad" model="hr.work.entry.type">
+        <field name="name">Subsidio maternidad</field>
+        <field name="code">C7040</field>
+        <field name="is_leave">True</field>
+        <field name="color">5</field>
+    </record>
+</odoo>

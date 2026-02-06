@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="address_inherit_website_sale_custom" inherit_id="website_sale.address">
+        <xpath expr="//input[@name='company_name']/.." position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='vat']/.." position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='street']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//label[@for='street']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='street2']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//label[@for='street2']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='city']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//label[@for='city']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//select[@name='country_id']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//label[@for='country_id']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//select[@name='state_id']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//label[@for='state_id']" position="attributes">
+            <attribute name="style">display: none</attribute>
+        </xpath>
+        <xpath expr="//input[@name='name']/.." position="before">
+            <div class="mb-3 col-lg-12 div_tipo_comprobante" id="div_tipo_comprobante">
+                <div>
+                    <label class="col-form-label">Tipo de Comprobante</label>
+                </div>
+                <div>
+                    <input type="radio" class="form-check-input" name="tipo_comprobante" id="wsale_boleta" value="boleta"/>
+                    <label class="form-check-label fw-normal" for="wsale_boleta">Boleta</label>
+                    <input type="radio" class="form-check-input" name="tipo_comprobante" id="wsale_factura"  value="factura" checked="'checked'" style="margin-left: 30px;"/>
+                    <label class="form-check-label fw-normal" for="wsale_factura">Factura</label>
+                </div>
+            </div>
+            <div class="mb-3 col-lg-3">
+                <label class="col-form-label">Tipo de documento</label>
+                <select name="l10n_latam_identification_type_id" id="l10n_latam_identification_type_id" t-attf-class="form-select">
+                    <t t-foreach="l10n_latam_identification_type_ids" t-as="s">
+                        <option t-att-value="s.id" t-att-selected="(s.id == ('l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] != '' and int(checkout['l10n_latam_identification_type_id']))) or s.l10n_pe_vat_code == '6'" t-att-data="s.l10n_pe_vat_code">
+                            <t t-esc="s.name"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-3 #{error.get('vat') and 'o_has_error' or ''} div_num_documento">
+                <label class="col-form-label" for="vat">Núm. documento</label>
+                <input type="text" name="vat" id="vat" t-attf-class="form-control #{error.get('vat') and 'is-invalid' or ''}" t-att-value="'vat' in checkout and checkout['vat']"/>
+            </div>
+        </xpath>
+        <xpath expr="//input[@name='name']/.." position="attributes">
+            <attribute name="t-attf-class">mb-3 #{error.get('name') and 'o_has_error' or ''} col-lg-6 div_name</attribute>
+        </xpath>
+        <xpath expr="//label[@for='name']" position="replace">
+            <label class="col-form-label" for="name">Razón social</label>
+        </xpath>
+        <xpath expr="//div[hasclass('w-100')]" position="after">
+            <div t-attf-class="mb-3 #{error.get('street') and 'o_has_error' or ''} col-lg-12 div_direccion">
+                <label class="col-form-label" for="street">Dirección</label>
+                <input type="text" name="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="'street' in checkout and checkout['street']" />
+            </div>
+            <div class="mb-3 col-lg-4 #{error.get('state_id') and 'o_has_error' or ''} div_state_id">
+                <label class="col-form-label" for="state_id">Departamento</label>
+                <select id="state_id" name="state_id" t-attf-class="form-select #{error.get('state_id') and 'is-invalid' or ''}" data-init="1">
+                    <option value="0">Departamento...</option>
+                    <t t-foreach="country_states" t-as="s">
+                        <option t-att-value="s.id" t-att-selected="s.id == ('state_id' in checkout and country and checkout['state_id'] != '' and int(checkout['state_id']))">
+                            <t t-esc="s.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-4 #{error.get('city_id') and 'o_has_error' or ''} div_city_id">
+                <input type="hidden" id="prov_sel" name="prov_sel" t-att-value="prov_sel or '0'"/>
+                <label class="col-form-label" for="city_id">Provincia</label>
+                <select id="city_id" name="city_id" t-attf-class="form-select #{error.get('city_id') and 'is-invalid' or ''}" disabled="1">
+                    <option value="">Provincia...</option>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-4 #{error.get('l10n_pe_district') and 'o_has_error' or ''} div_l10n_pe_district">
+                <input type="hidden" id="dist_sel" name="dist_sel" t-att-value="dist_sel or '0'"/>
+                <label class="col-form-label" for="l10n_pe_district">Distrito</label>
+                <select id="l10n_pe_district" name="l10n_pe_district" t-attf-class="form-select #{error.get('l10n_pe_district') and 'is-invalid' or ''}" disabled="1">
+                    <option value="">Distrito...</option>
+                </select>
+            </div>
+            <input type="hidden" id="zip" name="zip" t-att-value="'zip' in checkout and checkout['zip']"/>
+        </xpath>
+        <xpath expr="//label[@for='phone']" position="replace">
+            <label class="col-form-label" for="phone">Celular</label>
+        </xpath>
+        <xpath expr="//input[@name='field_required']" position="attributes">
+            <attribute name="t-att-value">'phone,name,state_id,city_id,l10n_pe_district'</attribute>
+        </xpath>
+
+    </template>
+
+</odoo>

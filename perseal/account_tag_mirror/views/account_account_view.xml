@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_form" model="ir.ui.view">
+        <field name="name">account.account.form</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='deprecated']" position="after">
+                <field name="have_target_account"/>
+                <field name="target_account_debit"
+                       domain="[('internal_group', 'in', ['income', 'expense'])]"
+                       invisible="have_target_account != True"/>
+                <field name="target_account_credit"
+                       domain="[('internal_group', 'in', ['income', 'expense'])]"
+                       invisible="have_target_account != True"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

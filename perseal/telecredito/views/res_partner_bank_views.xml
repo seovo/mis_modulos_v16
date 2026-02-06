@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_partner_bank_form_inherit_teletransfer" model="ir.ui.view">
+        <field name="name">view.partner.bank.form.inherit.teletransfer</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='acc_number']" position="after">
+                <field name="acc_cci_number"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

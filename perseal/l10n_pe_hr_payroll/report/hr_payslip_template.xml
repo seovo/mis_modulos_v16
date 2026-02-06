@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <template id="external_layout_standard_hr_payslip">
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                <div>
+                    <div class="row">
+                        <div class="col-3">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" class="logo" style="max-width: 100%; max-height: 120px;"/>
+                            <span t-if="o.company_id.partner_id.l10n_pe_district" t-field="o.company_id.partner_id.l10n_pe_district"/>
+                            <span t-if="o.company_id.partner_id.city" t-field="o.company_id.partner_id.city"/>
+                            <span t-if="o.company_id.partner_id.state_id" t-field="o.company_id.partner_id.state_id.name"/>
+                            <div>RUC: <span t-field="o.company_id.partner_id.vat"/></div>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-4">
+                            <div>
+                                <strong>
+                                    <span>BOLETA DE PAGO</span>
+                                </strong><br/>
+                                <span>D.S. N° 001-98-TR DEL 22/01/98</span><br/>
+                                <span>R.M. N° 020-2008-TR DEL 17/01/08</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <div class="pt-5">
+                    <!-- This div ensures that the address is not cropped by the header. -->
+                    <t t-call="web.address_layout"/>
+                </div>
+                <t t-out="0"/>
+            </div>
+
+            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+                <div class="text-center" style="padding-top: 20px">
+                    <span>Este documento es una representación impresa de la Guía de Remisión. Favor de consultarlo en www.sunat.gob.pe</span>
+                </div>
+                <div class="col-12 text-center" style="font-size:13px;">
+                    Pág <span class="page"/> de <span class="topage"/>
+                </div>
+            </div>
+        </template>
+
+        <template id="external_layout_hr_pays_lip">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+                <t t-if="not company">
+                    <t t-if="company_id">
+                        <t t-set="company" t-value="company_id"/>
+                    </t>
+                    <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                    </t>
+                    <t t-else="else">
+                        <t t-set="company" t-value="res_company"/>
+                    </t>
+                </t>
+            <t t-call="l10n_pe_hr_payroll.external_layout_standard_hr_payslip"><t t-out="0"/></t>
+        </template>
+
+        <template id="template_hr_payslip">
+            <t t-call="web.html_container">
+                <t t-call="l10n_pe_hr_payroll.external_layout_hr_pays_lip">
+                    <link rel="stylesheet" type="text/scss" href="/l10n_pe_hr_payroll/static/src/css/hr_payslip.css"/>
+                    <div class="row">
+                        <div class="col-6">
+                            <span>MES: <t t-esc="o.month_name(o.date_from.month).upper()"/> - <t t-esc="o.date_from.year"/></span>
+                        </div>
+                        <div class="col-6">
+                            <span>Del <t t-esc="o.date_from.day"/> <t t-esc="o.month_name(o.date_from.month)"/> <t t-esc="o.date_from.year"/>
+                                Al <t t-esc="o.date_to.day"/> <t t-esc="o.month_name(o.date_to.month)"/> <t t-esc="o.date_to.year"/></span>
+                        </div>
+                    </div>
+                    <table class="style_font">
+                        <tr>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                        </tr>
+
+                        <tr class="style_font_tr">
+                            <td>00<t t-esc="o.employee_id.address_home_id.vat"/></td>
+                            <td colspan="3"><t t-esc="o.employee_id.name"/></td>
+                            <td colspan="3">EMPLEADOS</td>
+                            <td colspan="2">Rem. Bruta</td>
+                            <td><t t-esc="o.contract_id.wage"/></td>
+                        </tr>
+
+                        <tr class="style_font_tr">
+                            <td colspan="4">Ocupacion: <br/>
+                                <t t-esc="o.contract_id.job_id.name"/>
+                            </td>
+                            <td colspan="2">sexo:</td>
+                            <td>Ingreso: <br/>
+                                <t t-esc="o.contract_id.date_start"/>
+                            </td>
+                            <td colspan="2">Cese:</td>
+                            <td>Doc. Iden: <br/>
+                                <t t-esc="o.employee_id.address_home_id.l10n_latam_identification_type_id.name"/>
+                                <span> </span>
+                                <t t-esc="o.employee_id.address_home_id.vat"/>
+                            </td>
+                        </tr>
+
+                        <tr class="style_font_tr">
+                            <td colspan="2">AFP: <br/>
+                                <t t-esc="o.employee_id.input_afp"/>
+                            </td>
+                            <td colspan="2">CUSSP: </td>
+                            <td colspan="2">Ini. Vac:</td>
+                            <td colspan="2">Fin Vac:</td>
+                            <td colspan="2">Area: <br/>
+                                <t t-esc="o.employee_id.department_id.name"/>
+                            </td>
+                        </tr>
+
+                        <tr class="style_font_tr">
+                            <td>Dias Trab:</td>
+                            <td>Hor. Trab:</td>
+                            <td>Dias Subs Ess:</td>
+                            <td>Dias Subs Mat:</td>
+                            <td colspan="2">Reg. Pensionario:</td>
+                            <td colspan="4">Rirecc./Confianza:</td>
+                        </tr>
+
+                        <tr class="style_font_tr">
+                            <td colspan="5">INGRESO</td>
+                            <td colspan="5">DESCUENTO</td>
+                        </tr>
+
+                        <tr class="style_font_tr">
+                            <td colspan="2">DESCRIPCION</td>
+                            <td>DIAS/HORAS</td>
+                            <td>IMPORTE</td>
+                            <td colspan="2">DESCRIPCION</td>
+                            <td>IMPORTE</td>
+                            <td colspan="2">DESCRIPCION</td>
+                            <td>IMPORTE</td>
+                        </tr>
+                    </table>
+
+                    <div class="display_line">
+                        <table class="style_font" style="width:40%">
+                             <tr>
+                                <td style="width: 72%"/>
+                                <td style="width: 19%"/>
+                                <td style="width: 10%"/>
+                            </tr>
+                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code == 'IN')" t-as="line">
+                                <tr>
+                                    <td><t t-esc="line.name"/></td>
+                                    <td><t t-esc="line.quantity"/><span> </span></td>
+                                    <td><t t-esc="round(line.amount,2)"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                        <table class="style_font" style="width:30%">
+                            <tr>
+                                <td style="width: 50%"/>
+                                <td style="width: 15%"/>
+                            </tr>
+                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code == 'DED')" t-as="line">
+                                <tr>
+                                    <td><t t-esc="line.name"/></td>
+                                    <td><t t-esc="round(line.amount,2)"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                        <table class="style_font" style="width:29%">
+                             <tr>
+                                <td style="width: 50%"/>
+                                <td style="width: 15%"/>
+                            </tr>
+                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code == 'INP')" t-as="line">
+                                <tr>
+                                    <td><t t-esc="line.name"/></td>
+                                    <td><t t-esc="round(line.amount,2)"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+
+                    <div style="margin-top:30px"></div>
+
+                    <table class="style_font">
+                        <tr>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                            <td style="width: 10%"/>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3" class="total_tr">TOTAL INGRESO: S/</td>
+                            <td class="total_tr"><t t-esc="round(sum(o.line_ids.filtered(lambda line: line.category_id.code == 'IN').mapped('amount')),2) if o.line_ids else 0.0"/></td>
+                            <td colspan="2" class="total_tr">TOTAL DESCUENTOS: S/</td>
+                            <td class="total_tr"><t t-esc="round(sum(o.line_ids.filtered(lambda line: line.category_id.code == 'DED').mapped('amount')),2) if o.line_ids else 0.0"/></td>
+                            <td colspan="2" class="total_tr">APORTES EMPRESA: S/</td>
+                            <td class="total_tr"><t t-esc="round(sum(o.line_ids.filtered(lambda line: line.category_id.code == 'INP').mapped('amount')),2) if o.line_ids else 0.0"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td colspan="3" class="total_tr">IMPORTE NETO: S/</td>
+                            <td colspan="3" class="total_tr">SALDOS</td>
+                        </tr>
+                         <tr>
+                            <td colspan="7"></td>
+                            <td colspan="2" class="total_tr">PRESTAMO</td>
+                            <td colspan="1" class="total_tr">OTROS</td>
+                        </tr>
+                         <tr>
+                            <td colspan="7"></td>
+                            <td colspan="2" class="total_tr">0.00</td>
+                            <td colspan="1" class="total_tr">0.00</td>
+                        </tr>
+                         <tr>
+                            <td colspan="7"></td>
+                            <td colspan="3" class="total_tr">Numero de Cuenta de Abono:</td>
+                        </tr>
+
+                    </table>
+                    <div class="row" style="font-size:12px;margin-top:70px;">
+                        <div class="col-2"></div>
+                        <div class="col-3 text-center" style="border-top:1px solid black">
+                            <span>GERENTE GENERAL</span>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-3 text-center" style="border-top:1px solid black">
+                            <span>FIRMA TRABAJADOR</span>
+                        </div>
+                    </div>
+
+                </t>
+            </t>
+        </template>
+
+        <template id="report_hr_payslip_pe">
+            <t t-foreach="docs" t-as="o">
+                <t t-if="o and 'company_id' in o">-->
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+                <t t-call="l10n_pe_hr_payroll.template_hr_payslip" t-lang="o.env.lang">
+                    <t t-set="o" t-value="o.with_context({'lang':o.env.lang})"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

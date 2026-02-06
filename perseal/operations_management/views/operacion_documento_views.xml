@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="operacion_documento_tree_view" model="ir.ui.view">
+        <field name="name">operacion.documento.tree.view</field>
+        <field name="model">operacion.documento</field>
+        <field name="arch" type="xml">
+<!--            <tree create="false" delete="false">-->
+            <tree>
+                <field name="name"/>
+                <field name="operacion_ids" widget="many2many_tags"/>
+                <field name="deudor_id"/>
+
+                <field name="issue_date"/>
+                <field name="due_date"/>
+                <field name="disbursement_date"/>
+
+                <field name="currency_id"/>
+                <field name="net_amount_document"/>
+                <field name="company_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="operacion_documento_form_view" model="ir.ui.view">
+        <field name="name">operacion.documento.form.view</field>
+        <field name="model">operacion.documento</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false">
+                <header>
+                    <!-- <button name="action_por_desembolsar" type="object" string="Por desembolsar" class="oe_highlight" invisible="state != 'borrador'"/>
+                    <button name="action_por_cobrar" type="object" string="Por cobrar" class="oe_highlight" invisible="state != 'por_desembolsar'"/>
+                    <button name="action_proceso_pago" type="object" string="Proceso de pago" class="oe_highlight" invisible="state != 'por_cobrar'"/> -->
+                    <button name="action_register_payment" 
+                            type="object" 
+                            string="Registrar pago"
+                            invisible="state not in ['por_cobrar', 'proceso_pago']"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="payment_count" invisible="1"/>
+                    <div name="button_box" class="oe_button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_payment"
+                                icon="fa-pencil-square-o"
+                                invisible="payment_count == 0">
+                        <field string="Pagos" name="payment_count" widget="statinfo"/>
+                    </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"
+                                   force_save="1"
+                                   readonly="1"/>
+                        </h1>
+                    </div>
+                    <group string="Invisibles" invisible="1">
+                        <group>
+                            <field name="company_partner_category_proveedor_id"/>
+                            <field name="company_partner_category_cedente_id"/>
+                            <field name="company_partner_category_deudor_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="proveedor_id"
+                                   domain="[('category_id', 'in', [company_partner_category_proveedor_id])]"
+                                   options="{'no_create': True}"/>
+                            <field name="issue_date"/>
+                            <field name="due_date" required="1"/>
+                            <field name="disbursement_date"/>
+                            <field name="cedente_id"
+                                   domain="[('category_id', 'in', [company_partner_category_cedente_id])]"
+                                   options="{'no_create': True}"
+                                   required="1"/>
+                            <field name="deudor_id"
+                                   domain="[('category_id', 'in', [company_partner_category_deudor_id])]"
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" required="1"/>
+                            <field name="net_amount_document" required="1"/>
+                            <field name="amount_paid" groups="base.group_no_one"/>
+                            <field name="tipo_documento_id"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                            <field name="num_documento"
+                                   required="tipo_documento_id"/>
+                            <field name="company_id"
+                                   readonly="1"
+                                   options="{'no_open': True}"
+                                   force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

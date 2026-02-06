@@ -1,0 +1,17 @@
+<odoo>
+    <menuitem id="menu_reportes_sunat"
+        name="Reportes Sunat"
+        parent="stock.menu_stock_root"
+        sequence="50"/>
+
+
+    <!--Submenu-->
+    <menuitem id="menu_reportes_sunat_electronico"
+        name="Libros Electronicos"
+        parent="menu_reportes_sunat"/>
+
+    <menuitem id="kardex_electronico"
+        name="Registro de Inventario Valorizado Electronico"
+        action="act_window_ekardex_action"
+        parent="menu_reportes_sunat_electronico"/>
+</odoo>

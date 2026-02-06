@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="file_upload_operation_form_view" model="ir.ui.view">
+        <field name="name">file.upload.operation.form.view</field>
+        <field name="model">file.upload.operation</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+<!--                        <field name="nombre_archivo" invisible="1"/>-->
+                        <field name="archivo"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_upload_file" string="Cargar Archivo" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

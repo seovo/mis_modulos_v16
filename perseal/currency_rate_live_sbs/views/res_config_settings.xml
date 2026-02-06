@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sbs_res_config_settings">
+            <field name="name">Currency Rate Update Config</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='currency_next_execution_date']/parent::div" position="after">
+                    <hr style="height:5px;" attrs="{'invisible': [('module_currency_rate_live', '=', False)]}"/>
+                    <div class="title h5 mb0 o_form_label" style="text-weight:bolder;"
+                         attrs="{'invisible': [('module_currency_rate_live', '=', False)]}">
+                        <strong>Currency Rate - Manual Update</strong>
+                    </div>
+                    <div class="row" attrs="{'invisible': [('module_currency_rate_live', '=', False)]}">
+<!--                        <label string="Update Since" for="currency_update_from" class="col-md-3 o_light_label"/>-->
+                        <label string="Update Since" for="from_update" class="col-md-3 o_light_label"/>
+                        <field name="from_update"/>
+                        <button name="sbs_update_currency_rates_manual" type="object" class="btn-link">
+                            <i title='SBS Manual Update' class='fa fa-fw fa-refresh'/>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

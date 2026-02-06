@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<odoo>
+    <template id="pe_ubl_2_1_common_global_discount" inherit_id="l10n_pe_edi.pe_ubl_2_1_common">
+        <xpath expr="//*[name()='cac:TaxTotal']" position="before">
+            <t xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+               xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+                <t t-if="amount_discount and record.move_type=='out_invoice'">
+                    <cac:AllowanceCharge>
+                        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+                        <cbc:AllowanceChargeReasonCode listAgencyName="PE:SUNAT"
+                                                       listName="Cargo/descuento"
+                                                       listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo53">02</cbc:AllowanceChargeReasonCode>
+                        <cbc:MultiplierFactorNumeric t-esc="multiplier"/>
+                        <cbc:Amount t-att-currencyID="record.currency_id.name"
+                                    t-esc="format_float(amount_discount)"/>
+                        <cbc:BaseAmount t-att-currencyID="record.currency_id.name"
+                                        t-esc="format_float(amount_untaxed)"/>
+                    </cac:AllowanceCharge>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="pe_ubl_2_1_invoice_body_global_discount" inherit_id="l10n_pe_edi.pe_ubl_2_1_refund_body">
+        <xpath expr="//*[name()='cac:LegalMonetaryTotal']" position="replace">
+            <t xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+               xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+                <t t-if="amount_discount and record.move_type == 'out_refund'">
+                    <cac:LegalMonetaryTotal>
+                        <cbc:PayableAmount
+                            t-att-currencyID="record.currency_id.name"
+                            t-esc="format_float(record.amount_total)"/>
+                    </cac:LegalMonetaryTotal>
+                </t>
+                <t t-else="">
+                    <cac:LegalMonetaryTotal>
+                        <cbc:LineExtensionAmount
+                                t-att-currencyID="record.currency_id.name"
+                                t-esc="format_float(record.amount_untaxed)"/>
+                        <cbc:TaxInclusiveAmount
+                                t-att-currencyID="record.currency_id.name"
+                                t-esc="format_float(record.amount_total)"/>
+                        <cbc:PayableAmount
+                                t-att-currencyID="record.currency_id.name"
+                                t-esc="format_float(record.amount_total)"/>
+                    </cac:LegalMonetaryTotal>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

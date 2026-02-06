@@ -1,0 +1,50 @@
+id,table_id:id,name,description,percent,from_date,to_date,doc_number_lenght,doc_number_lenght_fixed,doc_serie_lenght,doc_serie_lenght_fixed,active
+
+2501,l10n_pe_sunat_tables.pe_sunat_ple_table36,1.1,Libro Caja y Bancos - Detalle de Los Movimientos del Efectivo,0,,,0,False,0,False,True
+2502,l10n_pe_sunat_tables.pe_sunat_ple_table36,1.2,Libro Caja y Bancos - Detalle de Los Movimientos de la Cuenta Corriente,0,,,0,False,0,False,True
+2503,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.1,Libro de Inventarios y Balances - Estado de Situación Financiera,0,,,0,False,0,False,True
+2504,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.2,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 10 Efectivo y Equivalentes de Efectivo (2),0,,,0,False,0,False,True
+2505,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.3,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 12 Cuentas por Cobrar Comerciales – Terceros y 13 Cuentas por Cobrar Comerciales – Relacionadas,0,,,0,False,0,False,True
+2506,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.4,"Libro de Inventarios y Balances - Detalle Del Saldo de la Cuenta 14 Cuentas por Cobrar al Personal, A Los Accionistas (Socios), Directores Y Gerentes (2)",0,,,0,False,0,False,True
+2507,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.5,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 16 Cuentas por Cobrar Diversas - Terceros o Cuenta 17 - Cuentas por Cobrar Diversas - Relacionadas,0,,,0,False,0,False,True
+2508,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.6,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 19 Estimación de Cuentas de Cobranza Dudosa,0,,,0,False,0,False,True
+2509,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.7,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 20 - Mercaderias y la Cuenta 21 - Productos Terminados (2),0,,,0,False,0,False,True
+2510,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.8,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 30 Inversiones Mobiliarias (2),0,,,0,False,0,False,True
+2511,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.9,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 34 - Intangibles,0,,,0,False,0,False,True
+2512,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.11,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 41 Remuneraciones y Participaciones por Pagar (2),0,,,0,False,0,False,True
+2513,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.12,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 42 Cuentas por Pagar Comerciales – Terceros y la Cuenta 43 Cuentas por Pagar Comerciales – Relacionadas,0,,,0,False,0,False,True
+2514,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.13,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 46 Cuentas por Pagar Diversas – Terceros y de la Cuenta 47 Cuentas por Pagar Diversas – Relacionadas,0,,,0,False,0,False,True
+2515,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.14,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 47 - Beneficios Sociales de Los Trabajadores (Pcgr) - No Aplicable Para El Pcge (2),0,,,0,False,0,False,True
+2516,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.15,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 37 Activo Diferido y de la Cuenta 49 Pasivo Diferido,0,,,0,False,0,False,True
+2517,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.16,Libro de Inventarios y Balances - Detalle del Saldo de la Cuenta 50 Capital,0,,,0,False,0,False,True
+2518,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.16.1,Detalle del Saldo de la Cuenta 50 - Capital,0,,,0,False,0,False,True
+2519,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.16.2,Estructura de la Participación Accionaria o de Participaciones Sociales,0,,,0,False,0,False,True
+2520,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.17,Libro de Inventarios y Balances - Balance de Comprobación,0,,,0,False,0,False,True
+2521,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.18,Libro de Inventarios y Balances - Estado de Flujos de Efectivo - Método Directo,0,,,0,False,0,False,True
+2522,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.19,Libro de Inventarios y Balances - Estado de Cambios En El Patrimonio Neto,0,,,0,False,0,False,True
+2523,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.2,Libro de Inventarios y Balances - Estado de Resultados,0,,,0,False,0,False,True
+2524,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.23,Libro de Inventarios y Balances - Notas a Los Estados Financieros (3),0,,,0,False,0,False,True
+2525,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.24,Libro de Inventarios y Balances - Estado de Resultados Integrales,0,,,0,False,0,False,True
+2526,l10n_pe_sunat_tables.pe_sunat_ple_table36,3.25,Libro de Inventarios y Balances - Estado de Flujos de Efectivo - Método Indirecto,0,,,0,False,0,False,True
+2527,l10n_pe_sunat_tables.pe_sunat_ple_table36,4.1,Libro de Retenciones Inciso E) y F) del Art. 34° de la Ley del Impuesto a la Renta,0,,,0,False,0,False,True
+2528,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.1,Libro Diario,0,,,0,False,0,False,True
+2529,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.3,Libro Diario - Detalle del Plan Contable Utilizado,0,,,0,False,0,False,True
+2530,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.2,Libro Diario de Formato Simplificado,0,,,0,False,0,False,True
+2531,l10n_pe_sunat_tables.pe_sunat_ple_table36,5.4,Libro Diario de Formato Simplificado - Detalle del Plan Contable Utilizado,0,,,0,False,0,False,True
+2532,l10n_pe_sunat_tables.pe_sunat_ple_table36,6.1,Libro Mayor,0,,,0,False,0,False,True
+2533,l10n_pe_sunat_tables.pe_sunat_ple_table36,7.1,Registro de Activos Fijos - Detalle de Los Activos Fijos Revaluados y No Revaluados,0,,,0,False,0,False,True
+2534,l10n_pe_sunat_tables.pe_sunat_ple_table36,7.3,Registro de Activos Fijos - Detalle de la Diferencia de Cambio,0,,,0,False,0,False,True
+2535,l10n_pe_sunat_tables.pe_sunat_ple_table36,7.4,Registro de Activos Fijos - Detalle de Los Activos Fijos Bajo la Modalidad de Arrendamiento Financiero Al 31.12,0,,,0,False,0,False,True
+2536,l10n_pe_sunat_tables.pe_sunat_ple_table36,8.1,Registro de Compras,0,,,0,False,0,False,True
+2537,l10n_pe_sunat_tables.pe_sunat_ple_table36,8.2,Registro de Compras - Información de Operaciones Con Sujetos No Domiciliados,0,,,0,False,0,False,True
+2538,l10n_pe_sunat_tables.pe_sunat_ple_table36,8.3,Registro de Compras Simplificado,0,,,0,False,0,False,True
+2539,l10n_pe_sunat_tables.pe_sunat_ple_table36,9.1,Registro de Consignaciones - Para El Consignador - Control de Bienes Entregados En Consignación,0,,,0,False,0,False,True
+2540,l10n_pe_sunat_tables.pe_sunat_ple_table36,9.2,Registro de Consignaciones - Para El Consignatario - Control de Bienes Recibidos En Consignación,0,,,0,False,0,False,True
+2541,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.1,Registro de Costos - Estado de Costo de Ventas Anual,0,,,0,False,0,False,True
+2542,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.2,Registro de Costos - Elementos del Costo Mensual,0,,,0,False,0,False,True
+2543,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.3,Registro de Costos - Estado de Costo de Produccion Valorizado Anual,0,,,0,False,0,False,True
+2544,l10n_pe_sunat_tables.pe_sunat_ple_table36,10.4,Registro de Costos - Centro de Costos,0,,,0,False,0,False,True
+2545,l10n_pe_sunat_tables.pe_sunat_ple_table36,12.1,Registro del Inventario Permanente En Unidades Físicas - Detalle del Inventario Permanente En Unidades Físicas,0,,,0,False,0,False,True
+2546,l10n_pe_sunat_tables.pe_sunat_ple_table36,13.1,Registro del Inventario Permanente Valorizado - Detalle del Inventario Valorizado,0,,,0,False,0,False,True
+2547,l10n_pe_sunat_tables.pe_sunat_ple_table36,14.1,Registro de Ventas E Ingresos,0,,,0,False,0,False,True
+2548,l10n_pe_sunat_tables.pe_sunat_ple_table36,14.2,Registro de Ventas E Ingresos Simplificado,0,,,0,False,0,False,True

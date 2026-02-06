@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_picking_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.invoice.invoice</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//field[@name='location_dest_id']" position="after">
+<!--                <field name="is_guie"/>-->
+                <field name="enable_document" invisible="1"/>
+                <field name="tabla12" required="1" options="{'no_open': True, 'no_create': True}"/>
+                <field name="tabla10" attrs="{'invisible':[('enable_document','=',False)], 'required':[('enable_document','=',True)]}" options="{'no_open': True, 'no_create': True}"/>
+
+                <field name="number_document" attrs="{'invisible':[('enable_document','=',False)], 'required':[('enable_document','=',True)]}"/>
+            </xpath>
+
+<!--            <xpath expr="//sheet/div[2]" position="inside">-->
+<!--                <h2 class="o_row" attrs="{'invisible':[('is_guie','=',False)]}">-->
+<!--                    <div class="col">-->
+<!--                        <label for="number_document" class="oe_edit_only"/>-->
+<!--                        <div class="o_row">-->
+<!--                            <field name="number_document"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </h2>-->
+<!--            </xpath>-->
+
+        </field>
+    </record>
+
+    <record id="view_picking_type_inherit" model="ir.ui.view">
+        <field name="name">res.partner.invoice.invoice</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence_id']" position="after">
+                <field name="sequence_guia_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

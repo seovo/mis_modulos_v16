@@ -1,0 +1,575 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_pe_ple
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200815\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-08 13:51+0000\n"
+"PO-Revision-Date: 2020-09-08 09:52-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_PE\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__account_id
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__account_chart_code
+msgid "Account Chart"
+msgstr "Plan de Cuentas"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__move_line_id
+msgid "Accounting movement"
+msgstr "Movimiento de cuenta"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.sunat_ple_configuration_form_view
+msgid "Accounts"
+msgstr "Cuentas"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "Action error - Subclass has not implemented report action!"
+msgstr ""
+"Error de acción: ¡la subclase no ha implementado la acción de informe!"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.sunat_ple_configuration_tree_view
+msgid "Book"
+msgstr "Libro"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__book_code
+#, python-format
+msgid "Book Code"
+msgstr "Código de libro"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "Can not delete Confirmed reports"
+msgstr "No se pueden eliminar los informes confirmados"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.save_file_form_view
+msgid "Click to Download The File:"
+msgstr "Haga clic para descargar el archivo:"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.save_file_form_view
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__company_id
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__company_id
+msgid "Company"
+msgstr "Compañia"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "Company not found"
+msgstr "Compañía no encontrada"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple__state__confirmed
+#, python-format
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__content_code
+#, python-format
+msgid "Content"
+msgstr "Contenido"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__create_uid
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__create_date
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__currency_code
+#, python-format
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_pe_ple
+#: model:catalog.table,name:l10n_pe_ple.ple_filename_2829
+msgid ""
+"Código de oportunidad de presentación del EEFF, aplica al Libro de "
+"Inventarios y Balances, para los demás consigne '00':"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__display_name
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__display_name
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__display_name
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "Download Output File"
+msgstr "Descargar Archivo de Salida"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple__state__draft
+#, python-format
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple_line__validation__2
+msgid "Error"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__error_description
+msgid "Error Description"
+msgstr "Descripción del error"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__errors_qty
+msgid "Errors"
+msgstr "Errores"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_purchase_excise_tax
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_sales_excise_tax
+msgid "Excise Tax"
+msgstr "Impuesto especial"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_exonerated_vat
+msgid "Exonerated"
+msgstr "Exonerado"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.save_file_form_view
+msgid "Export SUNAT Files"
+msgstr "Exportar archivos de SUNAT"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_exportation_vat
+msgid "Exportation"
+msgstr "Exportación"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.save_file_form_view
+msgid "Fields separated by pipe \"|\""
+msgstr "Campos separados por barra vertical “|”"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.save_file_form_view
+msgid "File Generated"
+msgstr "Archivo generado"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__id
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__id
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__id
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_needaction
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_has_error
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: l10n_pe_ple
+#: model:catalog.table,name:l10n_pe_ple.ple_filename_3232
+msgid "Indicador de la moneda utilizada"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:catalog.table,name:l10n_pe_ple.ple_filename_3030
+msgid "Indicador de operaciones"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:catalog.table,name:l10n_pe_ple.ple_filename_3131
+msgid "Indicador del contenido del libro o registro"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__correlativo
+msgid "Journal ID"
+msgstr "Diario ID"
+
+#. module: l10n_pe_ple
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.sunat_ple_configuration_form_view
+msgid "Journals"
+msgstr "Diarios"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple____last_update
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration____last_update
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line____last_update
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save____last_update
+msgid "Last Modified on"
+msgstr "Ultima Modificación en"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__write_uid
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado última vez por"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__write_date
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualización"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple__state__loaded
+#, python-format
+msgid "Loaded"
+msgstr "Cargado"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "Missing Configuration Settings. Book Code %s, Company [%s]"
+msgstr "Falta Opciones de Configuración. Código de Libro %s, Compañia [%s]"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "Missing Journal Definition. Book Code %s, Company [%s]"
+msgstr "Falta Definición de Diario. Código de Libro %s, Compañia [%s]"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_notxbl_vat
+msgid "Non Taxable"
+msgstr "Sin impuestos"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_not_affected_vat
+msgid "Not Affected"
+msgstr "No afectado"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero de errores"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple_line__validation__1
+msgid "OK"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__operation_code
+#, python-format
+msgid "Operation Code"
+msgstr "Código de operación"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_purchase_other_tax
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_sales_other_tax
+msgid "Other Tax"
+msgstr "Otro impuesto"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__output_file
+msgid "Output file"
+msgstr "Archivo de salida"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/sunat_file_save.py:0
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_sunat_file_save__output_name
+#, python-format
+msgid "Output filename"
+msgstr "Nombre del archivo de salida"
+
+#. module: l10n_pe_ple
+#: model:ir.ui.menu,name:l10n_pe_ple.sunat_ple_configuration_menu
+msgid "PLE Configuration"
+msgstr "Configuración PLE"
+
+#. module: l10n_pe_ple
+#: model:catalog.table,name:l10n_pe_ple.ple
+msgid "PLE_Configuration"
+msgstr "PLE_Configuración"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple_line__validation__0
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_piled_rise_tax
+msgid "Piled Rise Tax"
+msgstr "Aumento de impuesto acumulado"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__oportunity_code
+msgid "Presentation Opportunity Code"
+msgstr "Código de oportunidad de presentación "
+
+#. module: l10n_pe_ple
+#: model:ir.ui.menu,name:l10n_pe_ple.menu_action_sunat_ple
+#: model:res.groups,name:l10n_pe_ple.ple_access_group
+msgid "Programa de Libros Electrónicos"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__report_type
+msgid "Report type"
+msgstr "Tipo de reporte"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega del SMS"
+
+#. module: l10n_pe_ple
+#: model:ir.ui.menu,name:l10n_pe_ple.menu_action_sunat
+msgid "SUNAT"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.actions.act_window,name:l10n_pe_ple.sunat_ple_configuration_action
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.sunat_ple_configuration_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_pe_ple.sunat_ple_configuration_tree_view
+msgid "SUNAT PLE Configuration"
+msgstr "Configuración PLE SUNAT"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__state
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_pe_ple
+#: model:catalog.table,name:l10n_pe_ple.ple_books
+msgid "TABLAS ANEXO 3 PLE"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__accounts_ids
+msgid "Target accounts"
+msgstr "Cuenta objetivo"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__journals_ids
+msgid "Target journals"
+msgstr "Diario de destino"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_taxable_vat
+msgid "Taxable"
+msgstr "Imponible"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_txbl_notxbl_vat
+msgid "Taxable for Non Taxable and Export"
+msgstr "Gravable para no gravable y exportación"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_txbl_txbl_vat
+msgid "Taxable for Taxable and Export"
+msgstr "Gravable para gravable y exportación"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_configuration__l10n_pe_txbl_txbl_notxbl_vat
+msgid "Taxable for Taxable, Non Taxable and Export"
+msgstr "Gravable para gravable, no gravable y exportación"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__cuo
+msgid "UOC"
+msgstr "CUO"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple_line__validation
+msgid "Validate the information loaded"
+msgstr "Validar la información cargada"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#: model:ir.model.fields.selection,name:l10n_pe_ple.selection__ple__state__validated
+#, python-format
+msgid "Validated"
+msgstr "Validado"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple_line__validation
+msgid "Validation"
+msgstr "Validación"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid ""
+"Value error - The VAT number of the company is a mandatory field. It could "
+"not be blank! Please check it on company form"
+msgstr ""
+"Error de valor: El número de RUC de la empresa es un campo obligatorio. ¡No "
+"puede estar en blanco! Por favor verifíquelo en el formulario de la compañía"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,field_description:l10n_pe_ple.field_ple__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: l10n_pe_ple
+#: model:ir.model.fields,help:l10n_pe_ple.field_ple__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "You can not get back to \"no confirmed\" an issued report!"
+msgstr "¡No puede volver un informe emitido a \"no confirmado\"!"
+
+#. module: l10n_pe_ple
+#: code:addons/l10n_pe_ple/models/ple.py:0
+#, python-format
+msgid "You cannot download file because not exists any record in lines"
+msgstr ""
+"No se puede descargar el archivo porque no existe ningún registro en las "
+"líneas"
+
+#. module: l10n_pe_ple
+#: model:ir.model,name:l10n_pe_ple.model_ple
+msgid "ple"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model,name:l10n_pe_ple.model_ple_configuration
+msgid "ple.configuration"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model,name:l10n_pe_ple.model_ple_line
+msgid "ple.line"
+msgstr ""
+
+#. module: l10n_pe_ple
+#: model:ir.model,name:l10n_pe_ple.model_sunat_file_save
+msgid "sunat.file.save"
+msgstr ""

@@ -1,0 +1,7 @@
+id,company_id,country_id/id,code,name,description,parent_id:id,type
+ple,,base.pe,PE.PLE,PLE_Configuration,Tablas y valores de configuración de PLE,l10n_pe_oxe360.pe,view
+l10n_pe_ple.ple_books,,base.pe,PE.SUNAT.PLE_BOOKS,TABLAS ANEXO 3 PLE,TABLAS ANEXO 3 PLE,ple,Normal
+l10n_pe_ple.ple_filename_2829,,,PE.SUNAT.PLE_FILENAME.2829,"Código de oportunidad de presentación del EEFF, aplica al Libro de Inventarios y Balances, para los demás consigne '00':","Código de oportunidad de presentación del EEFF, aplica al Libro de Inventarios y Balances, para los demás consigne '00':",ple,Normal
+l10n_pe_ple.ple_filename_3030,,,PE.SUNAT.PLE_FILENAME.3030,Indicador de operaciones,Indicador de operaciones,ple,Normal
+l10n_pe_ple.ple_filename_3131,,,PE.SUNAT.PLE_FILENAME.3131,Indicador del contenido del libro o registro,Indicador del contenido del libro o registro,ple,Normal
+l10n_pe_ple.ple_filename_3232,,,PE.SUNAT.PLE_FILENAME.3232,Indicador de la moneda utilizada,Indicador de la moneda utilizada,ple,Normal

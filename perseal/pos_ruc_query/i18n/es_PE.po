@@ -1,0 +1,491 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_pe_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200815\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-02 01:01+0000\n"
+"PO-Revision-Date: 2020-10-01 21:04-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_PE\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "% discount"
+msgstr "% descuento"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "0123456789"
+msgstr ""
+
+#. module: l10n_pe_pos
+#: model:ir.model.fields,help:l10n_pe_pos.field_pos_config__invoice_journal_ids
+msgid "Accounting journal used to create invoices."
+msgstr "Diario contable utilizado para crear facturas."
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Address"
+msgstr "Dirección"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Address:"
+msgstr "Dirección:"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Change:"
+msgstr "Vuelto:"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "City"
+msgstr "Ciudad"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Commercial Name"
+msgstr "Nombre comercial"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Condition"
+msgstr "Condición"
+
+#. module: l10n_pe_pos
+#: model:ir.model,name:l10n_pe_pos.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Country"
+msgstr "País"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Customer:"
+msgstr "Cliente:"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__db_hostname
+#, python-format
+msgid "DB Hostname"
+msgstr ""
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__db_name
+#, python-format
+msgid "DB Name"
+msgstr "DB Nombre"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__db_notify
+#, python-format
+msgid "DB Notify"
+msgstr "DB Notificar"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__db_password
+#, python-format
+msgid "DB Password"
+msgstr "DB Contraseña "
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__db_port
+#, python-format
+msgid "DB Port"
+msgstr "DB Puerto"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__db_username
+#, python-format
+msgid "DB Username"
+msgstr "DB Usuario"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Date:"
+msgstr "Fecha:"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__default_partner
+#, python-format
+msgid "Default Customer"
+msgstr "Cliente predeterminado"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_numpad_view.xml:0
+#, python-format
+msgid "Disc"
+msgstr "Desc."
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Discount:"
+msgstr "Descuento:"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "District"
+msgstr "Distrito"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Doc. num"
+msgstr "Número de documento"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Doc. type"
+msgstr "Tipo de documento"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Document"
+msgstr "Documento"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Email"
+msgstr "Correo"
+
+#. module: l10n_pe_pos
+#: model_terms:ir.ui.view,arch_db:l10n_pe_pos.pos_config_base
+msgid "Extend Setting"
+msgstr "Ampliar configuración"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Fiscal Name"
+msgstr "Nombre fiscal"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__fuel_pump_id
+#, python-format
+msgid "Fuel Pump Id"
+msgstr "Identificación de la bomba de combustible"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/res_partner.py:0
+#, python-format
+msgid ""
+"Impossible to recover information for this RUC, please complete manually"
+msgstr ""
+"Imposible recuperar información para esta RUC, por favor complete "
+"manualmente"
+
+#. module: l10n_pe_pos
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__invoice_journal_ids
+msgid "Invoice Journal"
+msgstr "Diario de facturas"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_order.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_order__invoice_journal_id
+#, python-format
+msgid "Journal account"
+msgstr "Cuenta de diario"
+
+#. module: l10n_pe_pos
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_res_partner__license_plate
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_res_users__license_plate
+msgid "License Plate"
+msgstr "Placa"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "License plate"
+msgstr "Placa"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_numpad_view.xml:0
+#, python-format
+msgid "Mount"
+msgstr "Montar"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "N/A"
+msgstr ""
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "None"
+msgstr "Ninguno"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Open Cashbox"
+msgstr "Abrir Gaveta de Dinero"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__pos_auto_invoice
+#, python-format
+msgid "POS auto invoice"
+msgstr "Factura automática POS"
+
+#. module: l10n_pe_pos
+#: model:ir.model.fields,help:l10n_pe_pos.field_pos_config__pos_auto_invoice
+msgid "POS auto to checked to invoice button"
+msgstr "POS automático al botón verificado para facturar"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Phone"
+msgstr "Telefono"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Phone:"
+msgstr "Teléfono:"
+
+#. module: base
+#: model:ir.module.category,name:base.module_category_point_of_sale
+#: model:ir.module.module,shortdesc:base.module_point_of_sale
+#: model:ir.module.category,name:base.module_category_sales_point_of_sale
+#: model_terms:ir.ui.view,arch_db:base.user_groups_view
+msgid "Point of Sale"
+msgstr "Punto de Venta"
+
+#. module: l10n_pe_pos
+#: model:ir.model,name:l10n_pe_pos.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuración de Punto de Venta"
+
+#. module: l10n_pe_pos
+#: model:ir.model,name:l10n_pe_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos de Punto de Venta"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_numpad_view.xml:0
+#, python-format
+msgid "Price"
+msgstr "Precio"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Product"
+msgstr "Producto"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_numpad_view.xml:0
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Qty"
+msgstr "Cant."
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Ruc:"
+msgstr ""
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Search Customers"
+msgstr "Buscar Clientes"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Select Customer"
+msgstr "Seleccionar Cliente"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__set_db_notify
+#, python-format
+msgid "Set DB Notify"
+msgstr "Configurar DB Notify"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/pos_config.py:0
+#: model:ir.model.fields,field_description:l10n_pe_pos.field_pos_config__set_qty_by_amount
+#, python-format
+msgid "Set quantity by amount"
+msgstr "Establecer cantidad por cantidad"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Street"
+msgstr "Calle"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Subtotal"
+msgstr ""
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Subtotal:"
+msgstr ""
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Tip"
+msgstr "Propina"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Total:"
+msgstr ""
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_client_view.xml:0
+#, python-format
+msgid "Ubigeo"
+msgstr ""
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "User:"
+msgstr "Usuario:"
+
+#. module: l10n_pe_pos
+#: code:addons/l10n_pe_pos/models/res_partner.py:0
+#, python-format
+msgid "Warning"
+msgstr "Advertencia"
+
+#. module: l10n_pe_pos
+#. openerp-web
+#: code:addons/l10n_pe_pos/static/src/xml/pos_ticket_view.xml:0
+#, python-format
+msgid "With a"
+msgstr "Con un"

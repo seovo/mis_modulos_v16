@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="currency_rate_live.ir_cron_currency_update" model="ir.cron">
+            <field name="nextcall" eval="(DateTime.now().replace(hour=6, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        </record>
+    </data>
+
+</odoo>

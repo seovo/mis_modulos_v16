@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_invoice_document_credit_payments_inherit_l10n_pe_agent_retention"  inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='qrcode']" position="before">
+            <div id="retention">
+                <t t-set="retention" t-value="o._prepare_retention()"/>
+                <table t-if="retention" class="table text-left tbl_amount_detail">
+                    <th colspan="6">
+                        <strong>
+                            INFORMACIÓN DE RETENCIÓN
+                        </strong>
+                    </th>
+                    <tr>
+                        <td><span><strong>Base imponible:</strong></span></td>
+                        <td><span><t t-esc="retention['BaseAmount']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></span></td>
+                        <td><span><strong>Porcentaje:</strong></span></td>
+                        <td><span><t t-esc="retention['MultiplierFactorNumeric'] * 100"/>%</span></td>
+                        <td><span><strong>Monto:</strong></span></td>
+                        <td><span><t t-esc="retention['Amount']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></span></td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

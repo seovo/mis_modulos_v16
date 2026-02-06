@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+    <menuitem id="menu_report_ple" name="Libros y Registros Electrónicos" parent="account.menu_finance_reports" sequence="5"
+                      groups="account.group_account_invoice"/>
+    </data>
+</odoo>

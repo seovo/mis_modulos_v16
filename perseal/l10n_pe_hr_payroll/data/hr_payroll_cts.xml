@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payroll_structure_type_cts" model="hr.payroll.structure.type">
+        <field name="name">CTS</field>
+    </record>
+
+    <record id="hr_payroll_structure_cts" model="hr.payroll.structure">
+        <field name="name">CTS</field>
+        <field name="code">CTS</field>
+        <field name="type_id" ref="hr_payroll_structure_type_cts"/>
+        <field name="rule_ids" eval="[]"/>
+        <field name="use_worked_day_lines" eval="True"/>
+    </record>
+
+     <record id="hr_salary_rule_cts_dt" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.days"/>
+        <field name="name">Dias Teoricos</field>
+        <field name="code">DT</field>
+        <field name="sequence">30</field>
+        <field name="condition_select">none</field>
+         <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if  contract.date_start > payslip.date_from:
+    theoretical_days = payslip.date_to - contract.date_start
+    result_qty = theoretical_days.days
+else:
+    result_qty = 180
+result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+     </record>
+
+    <record id="hr_salary_rule_cts_da" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.days"/>
+        <field name="name">Dias Ausencia</field>
+        <field name="code">DA</field>
+        <field name="sequence">32</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result_qty = payslip.dict.compute_worked_days_unpaid()
+result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+     </record>
+
+    <record id="hr_salary_rule_cts_st_dap" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.days"/>
+        <field name="name">Dias a Pagar</field>
+        <field name="code">DAP</field>
+        <field name="sequence">33</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result_qty = result_rules['DT']['quantity'] - result_rules['DA']['quantity']
+result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+     </record>
+
+     <record id="hr_salary_rule_cts_st" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Sueldo Teorico</field>
+        <field name="code">ST</field>
+        <field name="sequence">50</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = contract.wage
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+     <record id="hr_salary_rule_cts_af" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Asignacion Familiar</field>
+        <field name="code">AF</field>
+        <field name="sequence">60</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if employee.children > 0:
+    percentage = 10
+    result = (percentage/100) * contract.rmv
+else:
+    result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+     <record id="hr_salary_rule_cts_phe" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Prom HHEE</field>
+        <field name="code">PHE</field>
+        <field name="sequence">70</field>
+        <field name="condition_select">none</field>
+         <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.HHEE:
+    result = inputs.HHEE.amount
+else:
+    values = ['NHE25','NHE35']
+    result = payslip.dict.compute_average_rules(values)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+     <record id="hr_salary_rule_cts_phd" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Prom HHDD</field>
+        <field name="code">PHD</field>
+        <field name="sequence">75</field>
+        <field name="condition_select">none</field>
+         <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.HHDD:
+    result = inputs.HHDD.amount
+else:
+    values = ['NHE100','NHE-FE']
+    result = payslip.dict.compute_average_rules(values)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts_pbr" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Prom Bono Rotativo</field>
+        <field name="code">PBR</field>
+        <field name="sequence">80</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.PBHR:
+    result = inputs.PBHR.amount
+else:
+    values = ['C2563']
+    result = payslip.dict.compute_average_rules(values)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts_pbm" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Prom Bono Montacarga</field>
+        <field name="code">PBM</field>
+        <field name="sequence">85</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.PBM:
+    result = inputs.PBM.amount
+else:
+    values = ['C2566']
+    result = payslip.dict.compute_average_rules(values)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts_pmlp" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Prom Movilidad Libre Disponibilidad</field>
+        <field name="code">PMLD</field>
+        <field name="sequence">90</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.PMLD:
+    result = inputs.PMLD.amount
+else:
+    values = ['C1264']
+    result = payslip.dict.compute_average_rules(values)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts_pmsa" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">Prom Movilidad Sup. Asistencia</field>
+        <field name="code">PMSA</field>
+        <field name="sequence">95</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.PMSA:
+    result = inputs.PMSA.amount
+else:
+    values = ['C1263']
+    result = payslip.dict.compute_average_rules(values)
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts_ug" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.income"/>
+        <field name="name">1/6 Última gratif.</field>
+        <field name="code">UG</field>
+        <field name="sequence">100</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+if inputs.UG:
+    result = inputs.UG.amount
+else:
+    result = 0.0
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts_rc" model="hr.salary.rule">
+        <field name="category_id" ref="l10n_pe_hr_payroll.base"/>
+        <field name="name">Remuneración Computable</field>
+        <field name="code">RC</field>
+        <field name="sequence">105</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = categories.IN
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+    <record id="hr_salary_rule_cts" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="name">CTS a Pagar</field>
+        <field name="code">CTSAP</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = (result_rules['RC']['total']/360) * result_rules['DAP']['quantity']
+        </field>
+        <field name="struct_id" ref="hr_payroll_structure_cts"/>
+    </record>
+</odoo>

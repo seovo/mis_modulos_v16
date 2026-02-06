@@ -1,0 +1,12 @@
+id,name,description,display_name,active,amount,amount_type,analytic,children_tax_ids,company_id/id,hide_tax_exigibility,include_base_amount,price_include,sequence,l10n_pe_edi_tax_code,tax_exigibility,tax_group_id/id,type_tax_use,l10n_pe_edi_unece_category
+l10n_pe_ple.account_tax_igv18_ge,IGV 18% -> G/E,IGV 18% -> G/E,IGV 18% -> G/E,True,18,Percentage of Price,,,base.main_company,,False,,1,1000,Based on Invoice,l10n_pe.tax_group_igv,Purchases,G
+l10n_pe_ple.account_tax_igv18_gnge,IGV 18% -> G/NG/E,IGV 18% -> G/NG/E,IGV 18% -> G/NG/E,True,18,Percentage of Price,,,base.main_company,,False,,1,1000,Based on Invoice,l10n_pe.tax_group_igv,Purchases,G
+l10n_pe_ple.account_tax_igv18_nge,IGV 18% -> NG/E,IGV 18% -> NG/E,IGV 18% -> NG/E,True,18,Percentage of Price,,,base.main_company,,False,,1,1000,Based on Invoice,l10n_pe.tax_group_igv,Purchases,G
+l10n_pe_ple.account_tax_isc5,ISC 5%,ISC 5%,ISC 5%,True,5,Percentage of Price,,,base.main_company,,True,,1,2000,Based on Invoice,l10n_pe.tax_group_isc,Purchases,E
+l10n_pe_ple.account_tax_other_purchase,Otros,Otros,Otros,True,0,Percentage of Price,,,base.main_company,,True,,1,9999,Based on Invoice,account.tax_group_taxes,Purchases,O
+l10n_pe_ple.account_tax_not_affected_purchase,Inafecto,Inafecto,Inafecto,True,0,Percentage of Price,,,base.main_company,,True,,1,9999,Based on Invoice,account.tax_group_taxes,Purchases,O
+l10n_pe_ple.account_tax_other_sales,Otros,Otros,Otros,True,0,Percentage of Price,,,base.main_company,,True,,1,9999,Based on Invoice,account.tax_group_taxes,Sales,O
+l10n_pe_ple.account_tax_exportation,Exportación,Exportación,Exportación,True,0,Percentage of Price,,,base.main_company,,True,,1,9999,Based on Invoice,account.tax_group_taxes,Sales,O
+l10n_pe_ple.account_tax_exonerated,Exonerado,Exonerado,Exonerado,True,0,Percentage of Price,,,base.main_company,,True,,1,9999,Based on Invoice,account.tax_group_taxes,Sales,O
+l10n_pe_ple.account_tax_not_affected_sales,Inafecto,Inafecto,Inafecto,True,0,Percentage of Price,,,base.main_company,,True,,1,9999,Based on Invoice,account.tax_group_taxes,Sales,O
+l10n_pe_ple.account_tax_ivap4,IVAP 4% Venta,IVAP 4% Venta,IVAP 4% Venta,True,4,Percentage of Price,,,base.main_company,,False,,1,1016,Based on Invoice,account.tax_group_taxes,Sales,G

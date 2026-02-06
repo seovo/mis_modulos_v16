@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<odoo>
+
+    <template id="pe_ubl_2_1_invoice_payments_boy_inherit_l10n_pe_agent_retention" inherit_id="l10n_pe_edi.pe_ubl_2_1_common">
+        <xpath expr="//*[name()='cac:TaxTotal']" position="before">
+            <t xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+               xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+                <t t-if="retention" id="retention">
+                    <cac:AllowanceCharge>
+                        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+                        <cbc:AllowanceChargeReasonCode
+                                listAgencyName="PE:SUNAT"
+                                listName="Cargo/descuento"
+                                listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo53"
+                                t-esc="retention['AllowanceChargeReasonCode']"/>
+                        <cbc:MultiplierFactorNumeric t-esc="retention['MultiplierFactorNumeric']"/>
+                        <cbc:Amount
+                                t-att-currencyID="record.currency_id.name"
+                                t-esc="retention['Amount']"/>
+                        <cbc:BaseAmount
+                                t-att-currencyID="record.currency_id.name"
+                                t-esc="retention['BaseAmount']"/>
+                    </cac:AllowanceCharge>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
