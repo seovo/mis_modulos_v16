@@ -15,6 +15,10 @@
 
                <xpath expr="//notebook" position="inside">
                    <page id="smc_tab" string="SMC" >
+                       <group>
+                           <field name="clave_colonia_smc" />
+                       </group>
+
                        <field name="log_smc" />
                        <field name="xml_send_smc" />
                    </page>

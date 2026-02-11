@@ -8,6 +8,7 @@
                <xpath expr="//notebook" position="inside" >
                    <page name="smc_settings" string="SMC">
                        <group >
+                           <field name="smc_active" />
 
                            <field name="smc_usuario" />
                            <field name="smc_password" />
@@ -15,8 +16,19 @@
                            <field name="smc_name_dt" />
 
                            <field name="smc_category_ids"  widget="many2many_tags"  />
-                           <field name="smc_excluded_partner_ids"  widget="many2many_tags"   domain="[('ref_company_ids','!=',False)]"  />
+                           <field name="smc_excluded_partner_ids"  widget="many2many_tags"
+                                  domain="[('ref_company_ids','!=',False)]"  />
+
+                           <field name="smc_journal_ids"  widget="many2many_tags"
+                                  domain="[('type','=','sale')]"  />
+                           <field name="smc_date_after" />
+
+
                        </group>
+                       <button name="action_view_moves_smc"
+                                   string="Ver Facturas"
+                                   type="object"
+                                   class="btn-primary"  />
                    </page>
                </xpath>
            </field>

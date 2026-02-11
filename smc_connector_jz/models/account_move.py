@@ -58,10 +58,17 @@ class AccountMove(models.Model):
 
     def send_smc_data(self):
 
+        if not self.env.company.smc_active:
+            return
+
         invoices = ''
 
         for record in self:
+
             invoices += record.send_smc_data_one()
+
+        if invoices == '':
+            return
 
         # Ejemplo de uso
         numero_dt = self.env.company.smc_dt # '43006'
@@ -107,7 +114,9 @@ class AccountMove(models.Model):
         # Mostrar la respuesta
 
         xml_dict = xmltodict.parse(xml_data)
-        json_responsex = str(json.dumps(xml_dict.encode('utf-8'), indent=4))
+        json_responsex = str(json.dumps(xml_dict, indent=4))
+        #.encode('utf-8')
+
 
         record.log_smc = json_responsex
 
@@ -129,7 +138,14 @@ class AccountMove(models.Model):
 
         lines_availables = []
 
-        if self.partner_id is self.company_id.smc_excluded_partner_ids:
+        if self.journal_id in self.company_id.smc_journal_ids:
+            return
+
+        if self.company_id.smc_date_after:
+            if self.invoice_date < self.company_id.smc_date_after:
+                return
+
+        if self.partner_id in self.company_id.smc_excluded_partner_ids:
             return
 
         for line in self.line_ids:
@@ -137,17 +153,23 @@ class AccountMove(models.Model):
                 lines_availables.append(line)
 
         if not lines_availables:
-            return
+            return ''
 
 
 
         lines = ''
         colony = ''
 
-        try:
-            colony = self.partner_id.colony
-        except:
-            colony = self.x_colonia
+        #try:
+        #    colony = self.partner_id.colony
+        #except:
+        #    colony = self.x_colonia
+
+        colony = self.partner_id.colony
+
+
+        if not colony:
+            raise UserError('Indique una colonia')
 
         area_smc = self.partner_id.type_negocio_area_smc
 
@@ -160,6 +182,10 @@ class AccountMove(models.Model):
             raise UserError('NO EXISTE AREA EMPRESARIAL')
 
 
+        #FLETE = PRECIO VENTA - PRECIO LISTA
+        flete = 0
+
+
         for line_av in lines_availables:
             lines += f'''
             <item>
@@ -170,7 +196,7 @@ class AccountMove(models.Model):
                
                <precioLista>{line_av.product_id.standard_price}</precioLista>
                <precioVenta>{line_av.price_unit}</precioVenta>
-               <montoUnitarioFlete>{line_av.price_unit}</montoUnitarioFlete>
+               <montoUnitarioFlete>{flete}</montoUnitarioFlete>
                <descuentoPorPartida>0</descuentoPorPartida>
                <lineaFactura>{int(line_av.sequence)}</lineaFactura>
             </item>
@@ -196,9 +222,26 @@ class AccountMove(models.Model):
         folio = texto[1:]  # Desde el primer carácter hasta el final
 
         # Imprimir resultados
-        print(f"Serie: {serie}")
-        print(f"Folio: {folio}")
+        #print(f"Serie: {serie}")
+        #print(f"Folio: {folio}")
 
+        moneda = None
+        tipo_cambio = 1
+
+        if self.currency_id == self.env.ref('base.MXN'):
+            moneda = "MXN"
+
+        if self.currency_id == self.env.ref('base.USD'):
+            moneda = "USD"
+            tipo_cambio = self.inv_exchange_rate_display
+
+        tipo_combrobante = None
+
+        if self.type == 'out_invoice':
+            tipo_combrobante = 'I'
+
+        if self.type == 'out_refund':
+            tipo_combrobante = 'E'
 
         item = f'''
         <item>

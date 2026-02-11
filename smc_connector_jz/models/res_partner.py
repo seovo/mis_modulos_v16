@@ -7,4 +7,4 @@ class ResPartner(models.Model):
         ('Maquiladora','Maquiladora')
     ],string="Tipo Negocio")
     area_empresarial_smc = fields.Char(string="Area Empresarial")
-    #type_area_empresarial = fields.Char()
+    clave_colonia_smc = fields.Many2one('catalogos.colonias')

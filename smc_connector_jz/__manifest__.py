@@ -19,7 +19,7 @@
     #"price": 150.00,
     #"currency": "USD",
     # any module necessary for this one to work correctly
-    "depends": ["base","account"],
+    "depends": ["base","account","catalogos_cfdi"],
     # always loaded
     "data": [
         'views/account_move.xml',
