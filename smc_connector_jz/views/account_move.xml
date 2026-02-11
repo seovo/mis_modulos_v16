@@ -29,6 +29,28 @@
     </record>
 
 
+    <record id="view_move_form_smc" model="ir.ui.view">
+           <field name="name">account.move</field>
+           <field name="model">account.move</field>
+           <field name="arch" type="xml">
+               <form>
+                   <group>
+                       <field name="clave_colonia_smc"  />
+                       <field name="type_negocio_area_smc"  />
+                       <field name="area_empresarial_smc"  />
+                   </group>
+                   <footer>
+                       <button name="send_smc_data" string="Enviar SMC"
+                            type="object" class="oe_highlight" />
+
+                       <button string="Cancel" class="oe_link" special="cancel"/>
+                   </footer>
+
+               </form>
+           </field>
+    </record>
+
+
 
 
 

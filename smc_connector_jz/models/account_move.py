@@ -28,6 +28,11 @@ class AccountMove(models.Model):
     _inherit = "account.move"
     log_smc = fields.Text()
     xml_send_smc = fields.Text()
+    type_negocio_area_smc = fields.Selection([
+        ('Armadora', 'Armadora'),
+        ('Maquiladora', 'Maquiladora')
+    ], string="Tipo Negocio",related='partner_id.type_negocio_area_smc',readonly=False)
+    area_empresarial_smc = fields.Char(string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
 
@@ -60,17 +65,20 @@ class AccountMove(models.Model):
 
     def send_smc_data(self):
 
-        if not self.clave_colonia_smc:
-            view = self.env.ref('smc_connector_jz.view_partner_form_smc')
-            return {
-                "name": f"COMPLETAR DATOS :   {self.partner_id.dispaly_name}",
-                "type": "ir.actions.act_window",
-                "view_mode": "form",
-                "res_model": "res.partner",
-                "target": "new",
-                "res_id": self.partner_id.id,
-                "view_id": view.id
-            }
+        if len(self) == 1:
+            if not self.clave_colonia_smc:
+                view = self.env.ref('smc_connector_jz.view_move_form_smc')
+                return {
+                    "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
+                    "type": "ir.actions.act_window",
+                    "view_mode": "form",
+                    "res_model": "account.move",
+                    "target": "new",
+                    "res_id": self.id,
+                    "view_id": view.id
+                }
+
+
 
         if not self.env.company.smc_active:
             return
