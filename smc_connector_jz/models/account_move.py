@@ -70,7 +70,7 @@ class AccountMove(models.Model):
             if not self.company_id.smc_active:
                 return
 
-            if self.journal_id in self.company_id.smc_journal_ids:
+            if self.journal_id not in self.company_id.smc_journal_ids:
                 return
 
             if self.company_id.smc_date_after:
@@ -101,9 +101,16 @@ class AccountMove(models.Model):
 
         for record in self:
 
-            invoices += record.send_smc_data_one()
+            dt = record.send_smc_data_one()
+
+            if dt:
+                invoices += dt
+
+
 
         if invoices == '':
+            if len(self) == 1:
+                raise UserError('NO SE ENCONTRO LINEAS DE VENTA')
             return
 
         # Ejemplo de uso
@@ -172,7 +179,7 @@ class AccountMove(models.Model):
 
         lines_availables = []
 
-        if self.journal_id in self.company_id.smc_journal_ids:
+        if self.journal_id not in self.company_id.smc_journal_ids:
             return
 
         if self.company_id.smc_date_after:
@@ -217,11 +224,30 @@ class AccountMove(models.Model):
 
 
         for line_av in lines_availables:
+
+            name_product = line_av.product_id.name
+            code_japon = line_av.product_id.default_code
+
+            if code_japon:
+                code_japon = code_japon.replace(' ','')
+
+            if not code_japon or code_japon == '':
+                raise UserError(f'''INDIQUE CODIGO JAPON PARA {name_product}''')
+
+            if code_japon:
+                if len(code_japon) < 6 :
+                    raise  UserError(f'''El codigo de barras no debe ser menor a 6 digitos , producto {name_product}''')
+
+                first_code_japon = code_japon[0]
+
+                if str(first_code_japon) in ['0','1','2','3','4','5','6','7','8','9']:
+                    raise UserError(f'''El codigo de barras no puede comenzar con un numero {code_japon} , en el producto {name_product}''')
+
             lines += f'''
             <item>
                <banderaFleteIncluidoEnPrecio>false</banderaFleteIncluidoEnPrecio>
-               <codigoInterno>{line_av.product_id.name}</codigoInterno>
-               <codigoJapon>{line_av.product_id.default_code}</codigoJapon>
+               <codigoInterno>{name_product}</codigoInterno>
+               <codigoJapon>{code_japon}</codigoJapon>
                <cantidad>{int(line_av.quantity)}</cantidad>
                
                <precioLista>{line_av.product_id.standard_price}</precioLista>
@@ -234,11 +260,6 @@ class AccountMove(models.Model):
             #<ordenCompra></ordenCompra>
             #<codigoProductoDT>{line_av.product_id.default_code}</codigoProductoDT>
 
-        #try:
-        #    folio =  self.folio_fiscal
-        #except:
-        #    folio = '85114ba1-aa08-43f2-b8d4-e6ae87f5b513'
-        # Texto de entrada
 
         if not self.folio_fiscal:
             raise UserError('No se Indico Folio Fiscal')
