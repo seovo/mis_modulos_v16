@@ -28,7 +28,8 @@ class AccountMove(models.Model):
     _inherit = "account.move"
     log_smc = fields.Text()
     xml_send_smc = fields.Text()
-    clave_colonia_smc = fields.Many2one('catalogos.colonias',related='partner_id.clave_colonia_smc',readonly=False)
+    clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
+                                        related='partner_id.clave_colonia_smc',readonly=False)
 
     def generar_token(self,numero_dt):
 
