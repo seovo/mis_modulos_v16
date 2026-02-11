@@ -37,9 +37,9 @@
            <field name="arch" type="xml">
                <form>
                    <group>
-                       <field name="clave_colonia_smc"  />
-                       <field name="type_negocio_area_smc"  />
-                       <field name="area_empresarial_smc"  />
+                       <field name="clave_colonia_smc" required="True" />
+                       <field name="type_negocio_area_smc"  required="True" />
+                       <field name="area_empresarial_smc"  required="True" />
                    </group>
                    <footer>
                        <button name="send_smc_data" string="Enviar SMC"

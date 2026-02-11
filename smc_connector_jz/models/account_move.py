@@ -66,6 +66,20 @@ class AccountMove(models.Model):
     def send_smc_data(self):
 
         if len(self) == 1:
+
+            if not self.company_id.smc_active:
+                return
+
+            if self.journal_id in self.company_id.smc_journal_ids:
+                return
+
+            if self.company_id.smc_date_after:
+                if self.invoice_date < self.company_id.smc_date_after:
+                    return
+
+            if self.partner_id in self.company_id.smc_excluded_partner_ids:
+                return
+
             if not self.clave_colonia_smc:
                 view = self.env.ref('smc_connector_jz.view_move_form_smc')
                 return {
@@ -180,14 +194,8 @@ class AccountMove(models.Model):
 
 
         lines = ''
-        colony = ''
 
-        #try:
-        #    colony = self.partner_id.colony
-        #except:
-        #    colony = self.x_colonia
-
-        colony = self.partner_id.colony
+        colony = self.clave_colonia_smc.descripcion
 
 
         if not colony:
@@ -283,9 +291,9 @@ class AccountMove(models.Model):
                     <folioFactura>{folio}</folioFactura>
                     <serie>{serie}</serie>
                     <fechaFactura>{str(self.date)}</fechaFactura>
-                    <tipoComprobante>I</tipoComprobante>
-                    <moneda>MXN</moneda>
-                    <tipoCambio>1</tipoCambio>
+                    <tipoComprobante>{tipo_combrobante}</tipoComprobante>
+                    <moneda>{moneda}</moneda>
+                    <tipoCambio>{tipo_cambio}</tipoCambio>
                     <subtotal>{self.amount_untaxed}</subtotal>
                     <descuento>0</descuento>
                     <IVA>{self.amount_total-self.amount_untaxed}</IVA>
