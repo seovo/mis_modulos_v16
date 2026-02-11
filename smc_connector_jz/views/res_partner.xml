@@ -14,6 +14,22 @@
            </field>
     </record>
 
+    <record id="view_partner_form_smc" model="ir.ui.view">
+           <field name="name">res.partner.form</field>
+           <field name="model">res.partner</field>
+
+           <field name="arch" type="xml">
+               <form>
+                   <group>
+                       <field name="clave_colonia_smc"  />
+                       <field name="type_negocio_area_smc"  />
+                       <field name="area_empresarial_smc"  />
+                   </group>
+
+               </form>
+           </field>
+    </record>
+
 
 
 
