@@ -60,6 +60,18 @@ class AccountMove(models.Model):
 
     def send_smc_data(self):
 
+        if not self.clave_colonia_smc:
+            view = self.env.ref('smc_connector_jz.view_partner_form_smc')
+            return {
+                "name": f"COMPLETAR DATOS :   {self.partner_id.dispaly_name}",
+                "type": "ir.actions.act_window",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "target": "new",
+                "res_id": self.partner_id.id,
+                "view_id": view.id
+            }
+
         if not self.env.company.smc_active:
             return
 
@@ -148,17 +160,7 @@ class AccountMove(models.Model):
         if self.partner_id in self.company_id.smc_excluded_partner_ids:
             return
 
-        if not self.clave_colonia_smc:
-            view = self.env.ref('smc_connector_jz.view_partner_form_smc')
-            return {
-                "name": f"COMPLETAR DATOS :   {self.partner_id.dispaly_name}",
-                "type": "ir.actions.act_window",
-                "view_mode": "form",
-                "res_model": "res.partner",
-                "target": "new",
-                "res_id": self.partner_id.id,
-                "view_id": view.id
-            }
+
 
         for line in self.line_ids:
             if line.product_id.categ_id in  self.company_id.smc_category_ids:
