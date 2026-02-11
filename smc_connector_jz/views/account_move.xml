@@ -29,9 +29,11 @@
     </record>
 
 
+
     <record id="view_move_form_smc" model="ir.ui.view">
            <field name="name">account.move</field>
            <field name="model">account.move</field>
+           <field name="priority">100</field>
            <field name="arch" type="xml">
                <form>
                    <group>
