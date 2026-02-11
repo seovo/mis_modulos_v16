@@ -236,7 +236,7 @@ class AccountMove(models.Model):
 
             if code_japon:
                 if len(code_japon) < 6 :
-                    raise  UserError(f'''El codigo de barras no debe ser menor a 6 digitos , producto {name_product}''')
+                    raise  UserError(f'''El codigo de barras no debe ser menor a 6 digitos , {code_japon} , producto {name_product}''')
 
                 first_code_japon = code_japon[0]
 
