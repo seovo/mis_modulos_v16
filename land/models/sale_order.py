@@ -31,6 +31,7 @@ class SaleOrder(models.Model):
     dues_land            = fields.Float(string="Cuotas",copy=False)
     qty_dues_payment     = fields.Integer(compute='get_qty_dues_payment', string="Cuotas Pagadas")
     value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='get_amount_prices_land',digits=(12, 3))
+    value_due_land_custom = fields.Float(string="Precio Cuota Custom", copy=False,  digits=(12, 3))
 
     total_dues_independence = fields.Integer(compute='get_qty_dues_payment', string="Total Independización",store=True)
     qty_dues_independence_payment = fields.Integer(compute='get_qty_dues_payment', string="N° Independización Pagadas",store=True)
@@ -1097,12 +1098,40 @@ class SaleOrder(models.Model):
                 #crear las fechas previstas y balances
                 datex = record.date_first_due_land
                 i = 0
+
+                value_due = record.value_due_land
+                amount_acumulado = 0
+
                 for sche in schedule_land_dues:
-                    sche.write({
-                        'date': datex ,
-                        'balan': total_dues - (i*record.value_due_land) ,
-                        'amount': record.value_due_land
-                    })
+
+                    if record.schedule_land_custom_ids:
+
+                        dx_due = {
+                            'date': datex,
+                            'balan': total_dues - amount_acumulado,
+                            'amount': record.value_due_land_custom
+                        }
+
+                        due_custom = self.env['schedule.dues.land.custom'].search([
+                            ('order_id','=',record.id),('number_due','=',record.number_due)
+                        ])
+                        if due_custom:
+                            dx_due.update({
+                                'amount': due_custom.amount
+                            })
+
+                        amount_acumulado += dx_due['amount']
+
+                        sche.write(dx_due)
+                    else:
+                        sche.write({
+                            'date': datex,
+                            'balan': total_dues - (i * value_due),
+                            'amount': value_due
+                        })
+
+
+
 
                     i += 1
 
