@@ -201,7 +201,6 @@
 
                        <group>
 
-
                            <field name="schedule_land_custom_ids"  editable="bottom" >
                                 <tree  >
                                     <field name="number_due"  />
