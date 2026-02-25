@@ -133,6 +133,22 @@ class SaleOrderLine(models.Model):
                 'order_advance_land': self.order_id.id
             })
 
+        if self.order_id.schedule_land_custom_ids:
+            next_cuota = int(sale_line.order_id.qty_dues_payment + 1)
+
+            due_custom = self.env['schedule.dues.land.custom'].search([
+                ('order_id', '=', self.order_id.id), ('number_due', '=', next_cuota)
+            ])
+
+            if due_custom:
+                res.update({
+                    'price_unit': due_custom.amount
+                })
+            else:
+                res.update({
+                    'price_unit': self.order_id.value_due_land_custom
+                })
+
 
         return res
 
