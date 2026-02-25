@@ -1113,7 +1113,7 @@ class SaleOrder(models.Model):
                         }
 
                         due_custom = self.env['schedule.dues.land.custom'].search([
-                            ('order_id','=',record.id),('number_due','=',record.number_due)
+                            ('order_id','=',record.id),('number_due','=',sche.number_due)
                         ])
                         if due_custom:
                             dx_due.update({
