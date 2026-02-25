@@ -201,8 +201,8 @@
 
                        <group>
 
-                           <field name="schedule_land_custom_ids"  editable="bottom" >
-                                <tree  >
+                           <field name="schedule_land_custom_ids"   >
+                                <tree  editable="bottom" >
                                     <field name="number_due"  />
                                     <field name="amount"  />
                                 </tree>
