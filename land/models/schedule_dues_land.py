@@ -1,6 +1,14 @@
 from odoo import api, fields, models , _
 from odoo.exceptions import ValidationError
 
+class ScheduleDuesLandPersonalizado(models.Model):
+    _name          = 'schedule.dues.land.custom'
+    _description   = 'schedule.dues.land.custom'
+    number_due = fields.Integer(string="Cuota")
+    amount = fields.Float(string="Mensualidad")
+    order_id = fields.Many2one('sale.order', string='Venta')
+
+
 class ScheduleDuesLand(models.Model):
     _name          = 'schedule.dues.land'
     _description   = 'schedule.dues.land'

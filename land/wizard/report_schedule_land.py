@@ -1,6 +1,6 @@
 from odoo import api, fields, models , _
-from datetime import date
-import io
+
+
 try:
     import base64
 except:
@@ -17,6 +17,9 @@ except:
     install('tempfile')
 
 import os
+
+from datetime import date
+import io
 
 stage_payment_lan = {
     'separation' :'Separado',

@@ -1,12 +1,22 @@
 from odoo import api, fields, models
 import subprocess
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+try:
+    import pandas
+except:
+    install('pandas')
+
+
+
 import sys
 from dateutil.relativedelta import relativedelta
 
 from datetime import date, datetime, time
 
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
 
 try:
     import base64
@@ -18,10 +28,7 @@ try:
 except:
     install('openpyxl')
 
-try:
-    import pandas
-except:
-    install('pandas')
+
 
 
 import pandas as pd

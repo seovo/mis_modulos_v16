@@ -134,6 +134,7 @@ class SaleOrder(models.Model):
     type_periodo_invoiced  = fields.Selection([('half_month','Quincenal'),('end_month','Fin de Mes')],
                                               string="Periodo de Facturación")
     schedule_land_ids = fields.One2many('schedule.dues.land','order_id')
+    schedule_land_custom_ids = fields.One2many('schedule.dues.land', 'order_id',string='Cuotas Personalizada')
     mz_land = fields.Char(store=True,string="Manzana Terreno")
     lot_land = fields.Char(store=True,string="Lote Terreno")
     sector_land = fields.Char(store=True, string="Etapa Terreno")
