@@ -1,6 +1,8 @@
 from odoo import api, fields, models
 import subprocess
 
+import sys
+
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
@@ -11,7 +13,7 @@ except:
 
 
 
-import sys
+
 from dateutil.relativedelta import relativedelta
 
 from datetime import date, datetime, time
