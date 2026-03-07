@@ -32,7 +32,8 @@ class AccountMove(models.Model):
         ('Armadora', 'Armadora'),
         ('Maquiladora', 'Maquiladora')
     ], string="Tipo Negocio",related='partner_id.type_negocio_area_smc',readonly=False)
-    area_empresarial_smc = fields.Char(string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
+    #area_empresarial_smc = fields.Char(string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
+    area_empresarial_smc = fields.Many2one('area.empresarial.smc', string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
 
