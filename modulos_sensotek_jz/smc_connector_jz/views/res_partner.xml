@@ -30,17 +30,6 @@
            </field>
     </record>
 
-    <record id="action_area_empresarial_smc" model="ir.actions.act_window">
-        <field name="name">Area Empresarial SMC</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">area.empresarial.smc</field>
-        <field name="view_mode">tree,form</field>
-
-    </record>
-
-    <menuitem action="action_area_empresarial_smc" id="menu_area_empresarial_smc"
-              parent="contacts.res_partner_menu_config" sequence="12" />
-
 
 
 

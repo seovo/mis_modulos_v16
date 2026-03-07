@@ -37,39 +37,6 @@ class AccountMove(models.Model):
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
 
-    def action_post(self):
-
-        if len(self) == 1:
-
-            if self.company_id.smc_category_ids:
-                exist_categ_smc = False
-
-                for line in self.line_ids:
-                    if line.product_id:
-                        if line.product_id.categ_id in self.company_id.smc_category_ids:
-                            view = self.env.ref('smc_connector_jz.view_move_form_smc')
-                            return {
-                                "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
-                                "type": "ir.actions.act_window",
-                                "view_mode": "form",
-                                "res_model": "account.move",
-                                "target": "new",
-                                "res_id": self.id,
-                                "view_id": view.id
-                            }
-
-
-
-
-
-
-
-
-
-        res = super().action_post()
-
-        return res
-
     def generar_token(self,numero_dt):
 
         timezone = pytz.timezone('America/Mexico_City')
