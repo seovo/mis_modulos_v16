@@ -39,7 +39,7 @@
     </record>
 
     <menuitem action="action_area_empresarial_smc" id="menu_area_empresarial_smc"
-              parent=" sale.menu_sale_config" sequence="12" />
+              parent="sale.menu_sale_config" sequence="12" />
 
 
 
