@@ -22,6 +22,7 @@
     "depends": ["base","account","catalogos_cfdi"],
     # always loaded
     "data": [
+        'security/ir.model.access.csv',
         'views/account_move.xml',
         'views/res_company.xml',
         'views/res_partner.xml'
