@@ -14,8 +14,9 @@ class SmcModel(models.Model):
     numero_exterior = fields.Char()
     tipo_negocio_area = fields.Char()
     area_empresarial = fields.Char()
-    state = fields.Selection([('error','Error'),('sent','Enviado')])
+    state = fields.Selection([('draft','Pendiente'),('error','Error'),('sent','Enviado')])
     msg = fields.Text()
+    xml_sent = fields.Text()
 
     uuid = fields.Char()
     folio_factura = fields.Char()

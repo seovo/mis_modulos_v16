@@ -35,6 +35,7 @@ class AccountMove(models.Model):
     area_empresarial_smc = fields.Many2one('area.empresarial.smc', string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
+    smc_model_ids = fields.One2many('smc.model','move_id')
 
     def action_post(self):
 
@@ -228,11 +229,21 @@ class AccountMove(models.Model):
 
 
 
+
+
         #raise ValueError(response.text)
         #print(response.text)
 
 
     def send_smc_data_one(self):
+
+        dx = {
+            # 'cliente':
+
+        }
+
+
+
 
         lines_availables = []
 
@@ -387,6 +398,22 @@ class AccountMove(models.Model):
         </item>
         '''
         #motivoDescuento
+
+        dx.update({
+            'cliente': str(self.partner_id.id),
+            'rfc': str(self.partner_id.vat)   ,
+            'razon_social': self.partner_id.name ,
+            'codigo_postal': self.partner_id.zip ,
+            'colonia': colony
+
+        })
+
+
+        if not self.smc_model_ids:
+            self.smc_model_ids += self.env['smc.model'].new(dx)
+        else:
+            self.smc_model_ids[0].write(dx)
+
         return item
 
 

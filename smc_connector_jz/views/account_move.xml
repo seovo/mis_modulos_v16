@@ -17,6 +17,9 @@
 
                <xpath expr="//notebook" position="inside">
                    <page id="smc_tab" string="SMC" >
+
+                       <field name="smc_model_ids" />
+
                        <group>
                            <field name="clave_colonia_smc" />
                        </group>
