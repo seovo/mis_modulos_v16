@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 area,area,model_area_empresarial_smc,,1,1,1,1
-model,model,model_smc_model,,1,1,1,1
-line,line,model_smc_model_item,,1,1,1,1
+model,model,model_smc_model,account.group_account_invoice,1,1,1,1
+line,line,model_smc_model_item,account.group_account_invoice,1,1,1,1
 

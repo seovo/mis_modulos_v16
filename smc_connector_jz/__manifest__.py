@@ -25,7 +25,8 @@
         'security/ir.model.access.csv',
         'views/account_move.xml',
         'views/res_company.xml',
-        'views/res_partner.xml'
+        'views/res_partner.xml',
+        'views/smc_model.xml'
 
     ],
     "license": "LGPL-3"

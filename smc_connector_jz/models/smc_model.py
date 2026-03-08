@@ -3,7 +3,7 @@ from odoo import api, fields, models
 class SmcModel(models.Model):
     _name = "smc.model"
     _description = "smc.model"
-    move_id = fields.Many2one('account.move')
+    move_id = fields.Many2one('account.move',string='Factura')
 
     cliente = fields.Char()
     rfc  = fields.Char()
@@ -14,6 +14,7 @@ class SmcModel(models.Model):
     numero_exterior = fields.Char()
     tipo_negocio_area = fields.Char()
     area_empresarial = fields.Char()
+
     state = fields.Selection([('draft','Pendiente'),('error','Error'),('sent','Enviado')])
     msg = fields.Text()
     xml_sent = fields.Text()
