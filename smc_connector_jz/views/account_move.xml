@@ -8,6 +8,8 @@
            <field name="arch" type="xml">
                <xpath expr="//header" position="inside">
                    <button name="send_smc_data" type="object"
+                           attrs="{'invisible': [('state', '!=', 'posted' )]}"
+
                            string="Enviar SMC" />
                    <!-- invisible="not server_vex"  -->
 
@@ -21,6 +23,7 @@
 
                        <field name="log_smc" />
                        <field name="xml_send_smc" />
+
                    </page>
 
                </xpath>
@@ -40,10 +43,16 @@
                        <field name="clave_colonia_smc" required="True" />
                        <field name="type_negocio_area_smc"  required="True" />
                        <field name="area_empresarial_smc"  required="True" />
+                       <field name="state" invisible="1" />
                    </group>
                    <footer>
                        <button name="send_smc_data" string="Enviar SMC"
-                            type="object" class="oe_highlight" />
+                               attrs="{'invisible': [('state', '!=', 'posted' )]}"
+                               type="object" class="oe_highlight" />
+
+                       <button name="action_post" string="Publicar" class="oe_highlight"
+                               type="object" groups="account.group_account_invoice"
+                               attrs="{'invisible': [('state', '!=', 'draft')]}"/>
 
                        <button string="Cancel" class="oe_link" special="cancel"/>
                    </footer>

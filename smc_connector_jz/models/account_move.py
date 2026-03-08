@@ -32,7 +32,6 @@ class AccountMove(models.Model):
         ('Armadora', 'Armadora'),
         ('Maquiladora', 'Maquiladora')
     ], string="Tipo Negocio",related='partner_id.type_negocio_area_smc',readonly=False)
-    #area_empresarial_smc = fields.Char(string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
     area_empresarial_smc = fields.Many2one('area.empresarial.smc', string="Area Empresarial",related='partner_id.area_empresarial_smc',readonly=False)
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
@@ -41,22 +40,36 @@ class AccountMove(models.Model):
 
         if len(self) == 1:
 
-            if self.company_id.smc_category_ids:
+            if self.company_id.smc_category_ids and self.company_id.smc_active:
                 exist_categ_smc = False
 
                 for line in self.line_ids:
                     if line.product_id:
                         if line.product_id.categ_id in self.company_id.smc_category_ids:
-                            view = self.env.ref('smc_connector_jz.view_move_form_smc')
-                            return {
-                                "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
-                                "type": "ir.actions.act_window",
-                                "view_mode": "form",
-                                "res_model": "account.move",
-                                "target": "new",
-                                "res_id": self.id,
-                                "view_id": view.id
-                            }
+                            exist_categ_smc = True
+
+                incomplete_datos = False
+
+                if not self.clave_colonia_smc:
+                    incomplete_datos = True
+
+                if not self.area_empresarial_smc:
+                    incomplete_datos = True
+
+                if not self.type_negocio_area_smc:
+                    incomplete_datos = True
+
+                if incomplete_datos:
+                    view = self.env.ref('smc_connector_jz.view_move_form_smc')
+                    return {
+                        "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
+                        "type": "ir.actions.act_window",
+                        "view_mode": "form",
+                        "res_model": "account.move",
+                        "target": "new",
+                        "res_id": self.id,
+                        "view_id": view.id
+                    }
 
 
 
@@ -114,7 +127,18 @@ class AccountMove(models.Model):
             if self.partner_id in self.company_id.smc_excluded_partner_ids:
                 return
 
+            incomplete_datos = False
+
             if not self.clave_colonia_smc:
+                incomplete_datos = True
+
+            if not self.area_empresarial_smc:
+                incomplete_datos = True
+
+            if not self.type_negocio_area_smc:
+                incomplete_datos = True
+
+            if incomplete_datos:
                 view = self.env.ref('smc_connector_jz.view_move_form_smc')
                 return {
                     "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
@@ -125,7 +149,6 @@ class AccountMove(models.Model):
                     "res_id": self.id,
                     "view_id": view.id
                 }
-
 
 
         if not self.env.company.smc_active:
@@ -247,10 +270,12 @@ class AccountMove(models.Model):
         if not area_smc:
             raise UserError('INDIQUE EL TIPO DE NEGOCIO AL CLIENTE')
 
-        areaempresarial = self.partner_id.area_empresarial_smc
-
-        if not areaempresarial:
+        if not self.partner_id.area_empresarial_smc:
             raise UserError('NO EXISTE AREA EMPRESARIAL')
+
+        areaempresarial = self.partner_id.area_empresarial_smc.name
+
+
 
 
         #FLETE = PRECIO VENTA - PRECIO LISTA
