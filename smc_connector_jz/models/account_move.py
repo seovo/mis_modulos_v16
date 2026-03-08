@@ -292,6 +292,8 @@ class AccountMove(models.Model):
         #FLETE = PRECIO VENTA - PRECIO LISTA
         flete = 0
 
+        add_lines = []
+
 
         for line_av in lines_availables:
 
@@ -327,6 +329,16 @@ class AccountMove(models.Model):
                <lineaFactura>{int(line_av.sequence)}</lineaFactura>
             </item>
             '''
+
+            add_lines.append({
+                'codigo_interno': name_product ,
+                'codigo_japon': code_japon ,
+                'cantidad': int(line_av.quantity) ,
+                'precio_lista': line_av.product_id.standard_price ,
+                'precio_venta': line_av.price_unit ,
+                'monto_unitario_flete': flete ,
+                'linea_factura': int(line_av.sequence)
+            })
             #<ordenCompra></ordenCompra>
             #<codigoProductoDT>{line_av.product_id.default_code}</codigoProductoDT>
 
@@ -364,6 +376,10 @@ class AccountMove(models.Model):
         if self.type == 'out_refund':
             tipo_combrobante = 'E'
 
+        subtotal = self.amount_untaxed
+        iva = self.amount_total-self.amount_untaxed
+        total = self.amount_total
+
         item = f'''
         <item>
             
@@ -385,10 +401,10 @@ class AccountMove(models.Model):
                     <tipoComprobante>{tipo_combrobante}</tipoComprobante>
                     <moneda>{moneda}</moneda>
                     <tipoCambio>{tipo_cambio}</tipoCambio>
-                    <subtotal>{self.amount_untaxed}</subtotal>
+                    <subtotal>{subtotal}</subtotal>
                     <descuento>0</descuento>
-                    <IVA>{self.amount_total-self.amount_untaxed}</IVA>
-                    <total>{self.amount_total}</total>
+                    <IVA>{iva}</IVA>
+                    <total>{total}</total>
                     <oListaItems>
                     {lines}
                     </oListaItems>
@@ -404,7 +420,22 @@ class AccountMove(models.Model):
             'rfc': str(self.partner_id.vat)   ,
             'razon_social': self.partner_id.name ,
             'codigo_postal': self.partner_id.zip ,
-            'colonia': colony
+            'colonia': colony ,
+            'calle': self.partner_id.street_name ,
+            'numero_exterior': self.partner_id.street_number ,
+            'tipo_negocio_area': area_smc ,
+            'area_empresarial': areaempresarial ,
+            'uuid': self.folio_fiscal ,
+            'serie': serie ,
+            'folio_factura': folio,
+            'fecha_factura': self.date ,
+            'tipo_comprobante': tipo_combrobante ,
+            'moneda': moneda ,
+            'tipoCambio': tipo_cambio ,
+            'subtotal': subtotal ,
+            'iva': iva ,
+            'total': total
+
 
         })
 
@@ -413,6 +444,14 @@ class AccountMove(models.Model):
             self.smc_model_ids += self.env['smc.model'].new(dx)
         else:
             self.smc_model_ids[0].write(dx)
+
+        if self.smc_model_ids[0].line_ids:
+            self.smc_model_ids[0].line_ids.unlink()
+
+        if add_lines:
+            for dxx in add_lines:
+                self.smc_model_ids[0].line_ids += self.env['smc.model.item'].new(dxx)
+
 
         return item
 

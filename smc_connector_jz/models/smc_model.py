@@ -15,14 +15,14 @@ class SmcModel(models.Model):
     tipo_negocio_area = fields.Char()
     area_empresarial = fields.Char()
 
-    state = fields.Selection([('draft','Pendiente'),('error','Error'),('sent','Enviado')])
+    state = fields.Selection([('draft','Pendiente'),('error','Error'),('sent','Enviado')],default='draft')
     msg = fields.Text()
     xml_sent = fields.Text()
 
     uuid = fields.Char()
     folio_factura = fields.Char()
     serie = fields.Char()
-    fecha_factura = fields.Char()
+    fecha_factura = fields.Date()
     tipo_comprobante = fields.Char()
     moneda = fields.Char()
     tipoCambio = fields.Float()
@@ -37,7 +37,7 @@ class SmcModelItem(models.Model):
     _description = "smc.model.item"
     model_id = fields.Many2one('smc.model')
 
-    bandera_flete_incluido_en_precio = fields.Char()
+    bandera_flete_incluido_en_precio = fields.Boolean(default=False)
     codigo_interno = fields.Char()
     codigo_japon = fields.Char()
     cantidad = fields.Integer()
@@ -45,4 +45,4 @@ class SmcModelItem(models.Model):
     precio_venta = fields.Float()
     monto_unitario_flete = fields.Float()
     descuento_por_partida = fields.Float()
-    lineaFactura = fields.Integer()
+    linea_factura = fields.Integer()

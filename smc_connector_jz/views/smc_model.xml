@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="smc_model_item_tree" model="ir.ui.view">
+           <field name="name">smc.model.tree</field>
+           <field name="model">smc.model</field>
+           <field name="arch" type="xml">
+               <tree>
+
+                   <field name="codigo_interno" optional="show" />
+                   <field name="codigo_japon" optional="show" />
+                   <field name="cantidad" optional="show" />
+                   <field name="precio_lista" optional="show" />
+                   <field name="precio_venta" optional="show" />
+                   <field name="monto_unitario_flete" optional="show" />
+                   <field name="descuento_por_partida" optional="hidden"  />
+                   <field name="linea_factura" optional="show" />
+                   <field name="bandera_flete_incluido_en_precio" optional="hidden" />
+
+               </tree>
+
+           </field>
+    </record>
+
+    <record id="smc_model_tree" model="ir.ui.view">
+           <field name="name">smc.model.tree</field>
+           <field name="model">smc.model</field>
+           <field name="arch" type="xml">
+               <tree>
+                   <field name="move_id" optional="show" />
+                   <field name="cliente" optional="show" />
+                   <field name="rfc" optional="hidden" />
+                   <field name="razon_social" optional="show" />
+                   <field name="codigo_postal" optional="hidden" />
+                   <field name="colonia"  optional="hidden" />
+                   <field name="calle" readonly="1"  optional="hidden" />
+                   <field name="numero_exterior"  optional="hidden"  />
+                   <field name="tipo_negocio_area"  optional="hidden" />
+                   <field name="area_empresarial" optional="hidden"  />
+
+                   <field name="uuid" readonly="1"  optional="hidden" />
+                   <field name="folio_factura" optional="hidden" />
+                   <field name="serie" optional="hidden" />
+                   <field name="fecha_factura" optional="show" />
+                   <field name="tipo_comprobante" optional="show" />
+                   <field name="moneda" optional="show" />
+                   <field name="tipoCambio" optional="show" />
+                   <field name="subtotal" optional="show" />
+                   <field name="descuento" optional="show" />
+                   <field name="iva" optional="show" />
+                   <field name="total" optional="show" />
+
+               </tree>
+
+           </field>
+    </record>
+
     <record id="smc_model_form" model="ir.ui.view">
            <field name="name">smc.model.form</field>
            <field name="model">smc.model</field>
