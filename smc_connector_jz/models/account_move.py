@@ -223,9 +223,14 @@ class AccountMove(models.Model):
 
         numero_registros_recibidos = resultado['numeroRegistrosRecibidos']['#text']
         numero_registros_agregados = resultado['numeroRegistrosAgregados']['#text']
-        mensajes = resultado['mensajes']['item']['#text']
+        try:
+            mensajes = resultado['mensajes']['item']['#text']
+        except:
+            mensajes = str(resultado)
 
-        # Imprimir los resultados
+
+
+            # Imprimir los resultados
         msg = f'''
               Número de registros recibidos : {numero_registros_recibidos}
               Número de registros agregados: {numero_registros_agregados}
@@ -331,17 +336,22 @@ class AccountMove(models.Model):
             if code_japon:
                 code_japon = code_japon.replace(' ','')
 
-            if not code_japon or code_japon == '':
-                raise UserError(f'''INDIQUE CODIGO JAPON PARA {name_product}''')
+            if name_product:
+                name_product = name_product.replace(' ','')
 
-            if code_japon:
-                if len(code_japon) < 6 :
-                    raise  UserError(f'''El codigo de barras no debe ser menor a 6 digitos , {code_japon} , producto {name_product}''')
 
-                first_code_japon = code_japon[0]
 
-                if str(first_code_japon) in ['0','1','2','3','4','5','6','7','8','9']:
-                    raise UserError(f'''El codigo de barras no puede comenzar con un numero {code_japon} , en el producto {name_product}''')
+            #if not code_japon or code_japon == '':
+            #    raise UserError(f'''INDIQUE CODIGO JAPON PARA {name_product}''')
+
+            #if code_japon:
+            #    if len(code_japon) < 6 :
+            #        raise  UserError(f'''El codigo de referencia no debe ser menor a 6 digitos , {code_japon} , producto {name_product}''')
+
+            #    first_code_japon = code_japon[0]
+
+            #    if str(first_code_japon) in ['0','1','2','3','4','5','6','7','8','9']:
+            #        raise UserError(f'''El codigo japon no puede comenzar con un numero {code_japon} , en el producto {name_product}''')
 
             lines += f'''
             <item>
