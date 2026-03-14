@@ -27,7 +27,7 @@ except:
 class AccountMove(models.Model):
     _inherit = "account.move"
     log_smc = fields.Text()
-    xml_send_smc = fields.Text()
+
     type_negocio_area_smc = fields.Selection([
         ('Armadora', 'Armadora'),
         ('Maquiladora', 'Maquiladora')
@@ -36,6 +36,7 @@ class AccountMove(models.Model):
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
     smc_model_ids = fields.One2many('smc.model','move_id')
+    state_smc = fields.Selection([('draft', 'Pendiente'), ('error', 'Error'), ('sent', 'Enviado')],string='Estado SMC')
 
     def action_post(self):
 
@@ -209,30 +210,57 @@ class AccountMove(models.Model):
 
         soap_body = soap_body.encode('utf-8')
 
-
+        #RESPUESTA
         response = requests.post(url, data=soap_body, headers=headers)
         xml_data = response.text
-        # Mostrar la respuesta
-
         xml_dict = xmltodict.parse(xml_data)
         json_responsex = str(json.dumps(xml_dict, indent=4))
         #.encode('utf-8')
 
+        # Extraer los valores que necesitas
+        resultado = xml_dict['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:enviarDetalleVentaResponse'][
+            'enviarDetalleVentaResult']
 
-        record.log_smc = json_responsex
+        numero_registros_recibidos = resultado['numeroRegistrosRecibidos']['#text']
+        numero_registros_agregados = resultado['numeroRegistrosAgregados']['#text']
+        mensajes = resultado['mensajes']['item']['#text']
+
+        # Imprimir los resultados
+        msg = f'''
+              Número de registros recibidos : {numero_registros_recibidos}
+              Número de registros agregados: {numero_registros_agregados}
+              Mensajes: {mensajes}
+        '''
+
+        record.log_smc = mensajes
 
 
         xml_dict_send = xmltodict.parse(soap_body)
-        record.xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
+        xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
+        record.xml_send_smc = xml_send_smc
+
+        if self.smc_model_ids:
+
+
+            smc_model = self.smc_model_ids[0]
+
+            smc_model.xml_sent = xml_send_smc
+            smc_model.log_smc = json_responsex
+            smc_model.msg = msg
+
+            if int(numero_registros_recibidos) > 0 :
+                st_smc = ''
+                if int(numero_registros_agregados) != int(numero_registros_recibidos):
+                    st_smc = 'error'
+
+                else:
+                    st_smc = 'sent'
+
+                smc_model.state = st_smc
+                self.state_smc = st_smc
 
 
 
-
-
-
-
-        #raise ValueError(response.text)
-        #print(response.text)
 
 
     def send_smc_data_one(self):
@@ -386,7 +414,7 @@ class AccountMove(models.Model):
             <clienteFinal>{self.partner_id.id}</clienteFinal>
             <RFC>{self.partner_id.vat}</RFC>
             <razonSocial>{self.partner_id.name}</razonSocial>
-            <codigoPostal>{self.partner_id.zip}</codigoPostal>
+            <codigoPostal>{self.clave_colonia_smc.c_codigopostal}</codigoPostal>
             <colonia>{colony}</colonia>
             <calle>{self.partner_id.street_name}</calle>
             <numeroExterior>{self.partner_id.street_number}</numeroExterior>

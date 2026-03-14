@@ -18,6 +18,7 @@ class SmcModel(models.Model):
     state = fields.Selection([('draft','Pendiente'),('error','Error'),('sent','Enviado')],default='draft')
     msg = fields.Text()
     xml_sent = fields.Text()
+    log_smc = fields.Text()
 
     uuid = fields.Char()
     folio_factura = fields.Char()

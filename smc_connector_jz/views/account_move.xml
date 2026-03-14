@@ -20,16 +20,17 @@
 
                        <field name="smc_model_ids" />
 
-                       <group>
-                           <field name="clave_colonia_smc" />
-                       </group>
+                       <field name="log_smc" attrs="{'invisible':[ '|',('smc_model_ids', '=', False),('state_smc','!=','error')]}"  />
 
-                       <field name="log_smc" />
-                       <field name="xml_send_smc" />
 
                    </page>
 
                </xpath>
+
+               <field name="currency_id" position="after" >
+                   <field name="state_smc" attrs="{'invisible':[ ('smc_model_ids', '=', [])]}"/>
+                   <field name="log_smc" attrs="{'invisible':[ '|',('smc_model_ids', '=', []),('state_smc','!=','error')]}"  />
+               </field>
 
            </field>
     </record>

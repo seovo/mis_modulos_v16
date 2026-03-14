@@ -2,8 +2,8 @@
 <odoo>
 
     <record id="smc_model_item_tree" model="ir.ui.view">
-           <field name="name">smc.model.tree</field>
-           <field name="model">smc.model</field>
+           <field name="name">smc.model.item.tree</field>
+           <field name="model">smc.model.item</field>
            <field name="arch" type="xml">
                <tree>
 
@@ -91,6 +91,7 @@
                                <field name="descuento" readonly="1" force_save="1" />
                                <field name="iva" readonly="1" force_save="1" />
                                <field name="total" readonly="1" force_save="1" />
+                               <field name="msg" readonly="1" force_save="1" />
 
 
                            </group>
@@ -98,6 +99,12 @@
                        <notebook>
                            <page id="aml_tab" string="Items" >
                                 <field name="line_ids" />
+                           </page>
+                           <page  string="Xml Enviado" >
+                                <field name="xml_sent" />
+                           </page>
+                           <page  string="Xml Respuesta" >
+                                <field name="log_smc" />
                            </page>
                        </notebook>
                    </sheet>
