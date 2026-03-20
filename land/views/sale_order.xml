@@ -577,7 +577,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('stage_payment_lan','=','completed')]</field>
+        <field name="domain">[('stage_payment_lan','=','completed'),('state','=','sale')]</field>
     </record>
 
     <menuitem action="action_sale_dues_complete"
