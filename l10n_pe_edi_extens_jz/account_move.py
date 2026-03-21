@@ -17,6 +17,8 @@ class AccountMove(models.Model):
                 date_now = fields.Datetime.now().date()
                 date_now = fields.Datetime.now()
 
+                raise ValidationError(date_now)
+
                 diff =  date_now - record.invoice_date
 
                 raise ValidationError(str([diff,date_now,record.invoice_date]))
