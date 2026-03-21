@@ -22,7 +22,7 @@ class AccountMove(models.Model):
 
                 diff =  date_now - record.invoice_date
 
-                if diff < 0:
+                if diff.days < 0:
                     raise ValidationError('FECHA NO PERMITIDA')
 
                 #raise ValidationError(str([diff,date_now,record.invoice_date]))
