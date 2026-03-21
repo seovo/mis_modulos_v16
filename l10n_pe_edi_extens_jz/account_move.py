@@ -15,14 +15,17 @@ class AccountMove(models.Model):
         for record in self:
             if record.invoice_date and record.state == 'draft' :
 
-                date_now = fields.Datetime.now().date()
+                #date_now = fields.Datetime.now().date()
                 date_now = fields.Datetime.now() - timedelta(hours=5)
-
-                raise ValidationError(date_now)
+                date_now = date_now.date()
+                #raise ValidationError(date_now)
 
                 diff =  date_now - record.invoice_date
 
-                raise ValidationError(str([diff,date_now,record.invoice_date]))
+                if diff < 0:
+                    raise ValidationError('FECHA NO PERMITIDA')
+
+                #raise ValidationError(str([diff,date_now,record.invoice_date]))
 
 
                 #para facturas
