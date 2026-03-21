@@ -2,6 +2,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 import requests
 import json
+from datetime import datetime
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -15,7 +16,7 @@ class AccountMove(models.Model):
             if record.invoice_date and record.state == 'draft' :
 
                 date_now = fields.Datetime.now().date()
-                date_now = fields.Datetime.now()
+                date_now = fields.Datetime.now() - timedelta(hours=5)
 
                 raise ValidationError(date_now)
 
