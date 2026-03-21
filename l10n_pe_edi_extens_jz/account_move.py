@@ -13,7 +13,12 @@ class AccountMove(models.Model):
     def change_date_jz_jz(self):
         for record in self:
             if record.invoice_date and record.state == 'draft' :
-                diff = fields.Datetime.now().date() - record.invoice_date
+
+                date_now = fields.Datetime.now().date()
+
+                diff =  date_now - record.invoice_date
+
+                raise ValidationError(str([diff,date_now,record.invoice_date]))
 
 
                 #para facturas
