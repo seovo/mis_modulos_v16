@@ -2,7 +2,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
