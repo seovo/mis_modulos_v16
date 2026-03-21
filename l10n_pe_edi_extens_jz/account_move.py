@@ -15,6 +15,7 @@ class AccountMove(models.Model):
             if record.invoice_date and record.state == 'draft' :
 
                 date_now = fields.Datetime.now().date()
+                date_now = fields.Datetime.now()
 
                 diff =  date_now - record.invoice_date
 
