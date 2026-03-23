@@ -395,6 +395,7 @@
 
     <menuitem name="Facturas y Notas de Credito Clientes"
               sequence="3"
+              action="action_invoice_note_credit"
               id="menu_invoice_note_credit"
               parent="account.menu_finance_receivables"
     />
