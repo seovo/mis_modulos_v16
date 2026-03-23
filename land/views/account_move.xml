@@ -376,4 +376,27 @@
 			<field name="code">action = records.validate_date_nubefact()</field>
     </record>
 
+
+    <!-- MENU JUNTANDO -->
+
+    <record id="action_invoice_note_credit" model="ir.actions.act_window">
+        <field name="name">Facturas y Notas de Credito Clientes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
+        <!--
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_separacion')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
+        -->
+    </record>
+
+    <menuitem name="Facturas y Notas de Credito Clientes"
+              sequence="3"
+              id="menu_invoice_note_credit"
+              parent="account.menu_finance_receivables"
+    />
+
 </odoo>
