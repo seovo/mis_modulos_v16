@@ -427,7 +427,7 @@
                                     <field name="mz_lot" />
                                     <field name="partner_id"   optional="show" />
                                     <field name="last_payment_date_land"  optional="hidden" />
-                                    <field name="last_date_to_pay"  optional="hidden" />
+                                    <field name="last_date_to_pay_land"  optional="hidden" />
 
                                     <field name="mounth_expired_land"  optional="hidden" />
                                     <field name="validity_date" widget="remaining_days" />
