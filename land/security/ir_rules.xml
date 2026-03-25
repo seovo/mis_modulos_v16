@@ -5,7 +5,7 @@
     <record id="sale_order_land_zona_rule" model="ir.rule">
         <field name="name">ZONA multi-company</field>
         <field name="model_id" ref="model_land_zona"/>
-        <field name="domain_force">['|',('company_id', 'in', company_ids),('company_id.parent_id', 'in', company_ids)]</field>
+        <field name="domain_force">['|',('company_id', 'in', company_ids),('company_id.child_ids','in',company_ids)]</field>
     </record>
 
 

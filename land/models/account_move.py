@@ -275,16 +275,10 @@ class AccountMove(models.Model):
     @api.model
     def create(self,vals):
 
-
-
         res = super(AccountMove, self).create(vals)
 
 
         for record in res:
-            self.env['sale.order'].verifi_mz_lot(mz=record.mz_land_separation_id.name, lt=record.lot_land_separation_id.name,object= record)
-
-
-
 
             for line in record.invoice_line_ids:
                 if line.product_id.is_advanced_land:
