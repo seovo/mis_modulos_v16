@@ -214,180 +214,9 @@ class SaleOrder(models.Model):
     contrato_generado_land = fields.Binary(string='Contrato Generado')
     name_contrato_generado_land = fields.Char()
 
-    def reemplazar_parrafo(self, parrafo, reemplazar_dict):
-        if any(key in parrafo.text for key in reemplazar_dict.keys()):
-            for run in parrafo.runs:
-                for buscar, item in reemplazar_dict.items():
-                    if buscar in run.text and item['value']:
-                        run.text = run.text.replace(buscar, item['value'])
-
-
-    def reemplazar_texto_plantilla_land(self, doc, reemplazar_dict):
-
-        for shape in doc.inline_shapes:
-            if shape.type == 3:
-                for parrafo in shape.text_frame.paragraphs:
-                    self.reemplazar_parrafo(parrafo,reemplazar_dict)
-
-
-        # Reemplazar en cuadros de texto
-        for shape in doc.inline_shapes:
-            for parrafo in shape.text_frame.paragraphs:
-                self.reemplazar_parrafo(parrafo,reemplazar_dict)
-
-        # Reemplazar en encabezados
-        #for footer in section.footer.paragraphs:
-        for section in doc.sections:
-            for header in section.header.paragraphs:
-                self.reemplazar_parrafo(header,reemplazar_dict)
 
 
 
-        for parrafo in doc.paragraphs:
-
-            self.reemplazar_parrafo(parrafo,reemplazar_dict)
-
-
-
-
-    def generar_contrato(self):
-
-        if not self.documents_document_land_id:
-            return
-
-        import subprocess
-        import sys
-        from io import BytesIO
-
-        def install(package):
-            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-        try:
-            from docx import Document
-        except:
-            install('python-docx')
-
-        try:
-            import base64
-        except:
-            install('base64')
-
-        try:
-            from num2words import num2words
-        except:
-            install('num2words')
-
-        def numero_a_letras(num,formateo=True):
-           LABEL_CURRENCY = self.currency_id.currency_unit_label.upper()
-           # Convertir el número a letras en español
-           if isinstance(num, float):
-               entero_part = int(num)
-               decimal_part = int(str(num).split(".")[1])
-               entero_str = num2words(entero_part, lang='es')
-               entero_str = entero_str.upper()
-               if not decimal_part:
-                   if formateo:
-                       return f'''{entero_str} CON 00/100 {LABEL_CURRENCY}'''
-                   return entero_str
-
-               if formateo:
-                   decimal_part = decimal_part
-                   return f'''{entero_str} CON {decimal_part}/100 {LABEL_CURRENCY}'''
-
-               #decimal_str = num2words(decimal_part, lang='es')
-               return entero_str
-           else:
-               entero_str = num2words(num, lang='es')
-               entero_str = entero_str.upper()
-
-               if formateo:
-                   return f'''{entero_str} CON 00/100 {LABEL_CURRENCY}'''
-
-               return entero_str
-
-
-
-        def format_text_currency_contrato(number):
-            tformat = "{:,.2f}".format(number)
-            return f'''{self.currency_id.symbol} {tformat}'''
-
-        attachment = self.documents_document_land_id.attachment_id
-        if not attachment:
-            raise ValueError("Attachment no encontrado")
-
-        file_content = base64.b64decode(attachment.datas)
-
-        # Crear un objeto Document a partir del contenido
-        doc = Document(BytesIO(file_content))
-
-        marital = self.partner_id.marital
-
-        initial_val = round(self.price_initial_land,2)
-        initial_val_format = format_text_currency_contrato(initial_val)
-
-        credit_val = round(self.price_credit_land,2)
-        credit_val_format = format_text_currency_contrato(credit_val)
-
-        area_val = round(self.area_lot_related,2)
-        area_val_format = format_text_currency_contrato(area_val)
-
-        price_total_val = round(self.price_total_land,2)
-        price_total_val_format = format_text_currency_contrato(price_total_val)
-
-        cuota_men_val = round(self.value_due_land,2)
-        cuota_men_val_format = format_text_currency_contrato(cuota_men_val)
-
-        num_cuotas = int(self.dues_land)
-
-        if not  self.partner_id.function:
-            raise ValidationError('INDIQUE UNA OCUPACION EN EL CLIENTE')
-
-        if not  self.partner_id.marital:
-            raise ValidationError('INDIQUE UN ESTADO CIVIL EN EL CLIENTE')
-
-        if not self.partner_id.contact_address_inline:
-            raise ValidationError('INDIQUE UNA DIRECCION EN EL CLIENTE')
-
-        if not self.partner_id.l10n_pe_district_name:
-            raise ValidationError('INDIQUE UN DISTRITO EN EL CLIENTE')
-
-
-        values_reemplace = {
-            '{{CLIENTE}}' :                 {'value': self.partner_id.display_name } ,
-            '{{CLIENTE_DNI}}':              {'value': self.partner_id.vat } ,
-            '{{CLIENTE_OCUPACION}}':        {'value': self.partner_id.function} ,
-            '{{CLIENTE_ESTADO_CIVIL}}':     {'value': self.partner_id.get_values_marital()[marital] if marital else None } ,
-            '{{CLIENTE_DIRECCION}}':        {'value': self.partner_id.contact_address_inline} ,
-            '{{CLIENTE_DISTRITO}}':         {'value': self.partner_id.l10n_pe_district_name} ,
-            '{{NUMERO_DE_LOTE}}':           {'value': str(self.lot_land)} ,
-            '{{LETRA_DE_MANZANA}}':         {'value': self.mz_land} ,
-            '{{METRAJE}}':                  {'value': str(area_val_format) } ,
-            '{{PRECIO_EN_NUMEROS}}':        {'value': str(price_total_val_format)} ,
-            '{{PRECIO_EN_LETRAS}}':         {'value': str(numero_a_letras(price_total_val))} ,
-            '{{CUOTA_INICIAL_EN_NUMEROS}}': {'value': str(initial_val_format)} ,
-            '{{CUOTA_INICIAL_EN_LETRAS}}':  {'value': str(numero_a_letras(initial_val))} ,
-            '{{SALDO_EN_NUMEROS}}':         {'value': str(credit_val_format)} ,
-            '{{SALDO_EN_LETRAS}}':          {'value': str(numero_a_letras(credit_val))} ,
-            '{{PLAZO_EN_NUMEROS}}':         {'value': str(num_cuotas)} ,
-            '{{PLAZO_EN_LETRAS}}':          {'value': str(numero_a_letras(num_cuotas,formateo=False))} ,
-            '{{CUOTA_MENSUAL_EN_NUMEROS}}': {'value': str(cuota_men_val_format)} ,
-            '{{CUOTA_MENSUAL_EN_LETRAS}}':  {'value': str(numero_a_letras(cuota_men_val))} ,
-            '{{EXP}}'                    :  {'value': self.nro_internal_land} ,
-            #
-        }
-
-        # Reemplazar variables en el documento
-        self.reemplazar_texto_plantilla_land(doc, values_reemplace)
-        #self.reemplazar_texto_plantilla_land(doc, '{{FECHA}}', '25 de septiembre de 2025')
-        #{{CLIENTE_DIRECCION}}
-
-        # Guardar el nuevo documento en un BytesIO
-        output = BytesIO()
-        doc.save(output)
-        output.seek(0)
-
-        self.contrato_generado_land = base64.b64encode(output.read())
-        self.name_contrato_generado_land = f'''CONTRATO_{str(self.nro_internal_land)}_{self.partner_id.name}.docx'''
 
 
 
@@ -402,11 +231,7 @@ class SaleOrder(models.Model):
             ('date', '<=', end_date),
         ])
 
-
-
         return schedule_land_dues
-
-
 
     @api.depends('schedule_land_ids')
     def get_amounts_paid_land(self):
@@ -454,9 +279,6 @@ class SaleOrder(models.Model):
             record.payment_year_now = payment_year_now
             record.saldo_year_now = saldo_year_now
 
-
-
-
     @api.onchange('report_lot_land_line_id')
     def change_report_lot_land(self):
         for record in self:
@@ -489,23 +311,6 @@ class SaleOrder(models.Model):
                 record.m2_land = record.area_lot_related
 
 
-
-    def open_product_land(self):
-        return {
-            "name": f"AGREGAR TERRENO",
-            "type": "ir.actions.act_window",
-            "view_mode": "form",
-            "view_id": self.env.ref('land.add_terreno_sale').id,
-            "res_model": "sale.order",
-            "res_id": self.id,
-            "target": "new",
-            #"context": {
-            #    'default_order_id': self.id
-            #}
-
-        }
-
-
     @api.depends('commision_line_ids','commision_line_ids.commission_land_id.state')
     def get_comision_payment(self):
         for record in self:
@@ -527,55 +332,7 @@ class SaleOrder(models.Model):
             if record.nro_internal_land and not  record.stage_land:
                 record.stage_land = 'signed'
 
-    def update_dates_land(self):
-        for invc in self.invoice_ids:
-            if invc.amount_total == self.price_initial_land:
-                invc.invoice_date = self.date_sign_land
 
-            if invc.state == 'draft':
-                invc.action_post()
-            #    exist_confirm = True
-
-        if self.price_total_land and self.price_total_land != 0 and len(
-                self.invoice_ids) > 1 and self.date_first_due_land:
-            invoices = self.env['account.move'].search([
-                ('id', 'in', self.invoice_ids.ids),
-            ], order='invoice_date asc')
-            date_init = self.date_first_due_land
-            is_end_month = False
-            if date_init.day > 25 and date_init.day <= 31:
-                is_end_month = True
-
-            c = 0
-            for invoice in invoices:
-
-                if c > 0:
-                    if is_end_month:
-                        cx = c - 1
-                        if cx > 0 :
-                            date_initx = date_init + relativedelta(months=cx)
-                        else:
-                            date_initx = date_init
-
-
-
-
-                        last_date = datetime(date_initx.year if date_initx.month != 12 else date_initx.year + 1,
-                                             date_initx.month + 1 if date_initx.month != 12 else 1, 1) - timedelta(
-                            days=1)
-
-                        if last_date.day != date_init.day:
-                            date_initx = last_date
-
-                    else:
-                        cx = c - 1
-                        if cx > 0:
-                            date_initx = date_init + relativedelta(months=cx)
-                        else:
-                            date_initx = date_init
-
-                    invoice.invoice_date = date_initx
-                c += 1
 
     @api.onchange('user_id')
     def  change_team_comission(self):
@@ -593,16 +350,6 @@ class SaleOrder(models.Model):
             mz_land =  None
             lot_land =  None
             product_tmp = None
-            '''
-            for line in  record.order_line:
-                for at in line.product_id.product_template_attribute_value_ids:
-                    #product_tmp = line.product_id.product_tmpl_id
-                    typex = at.attribute_id.type_land
-                    if typex == 'mz':
-                        mz_land = at.name
-                    if typex == 'lot':
-                        lot_land = at.name
-            '''
 
             #raise ValueError([mz_land,lot_land])
 
@@ -686,18 +433,7 @@ class SaleOrder(models.Model):
             if line:
                 record.report_lot_land_line_id = line
 
-    def show_dues_land(self):
-        self.update_schedule()
-        return {
-            "name": f"PAGOS",
-            "type": "ir.actions.act_window",
-            "view_mode": "form",
-            "view_id": self.env.ref('land.view_order_form_due').id ,
-            "res_model": "sale.order",
-            "res_id": self.id,
-            "target": "new",
 
-        }
 
     @api.depends('order_line', 'order_line.price_unit', 'order_line.product_uom_qty',
                  'order_line.invoice_lines','order_line.invoice_lines.quantity','order_line.qty_invoiced','nro_internal_land')
@@ -762,31 +498,6 @@ class SaleOrder(models.Model):
                     date_next = date_next.date()
 
                 record.date_first_due_land = date_next
-
-    def show_lot_availables(self):
-        product = self.env['product.template'].search([('payment_land_dues','=',True),('sale_ok','=',True)])
-        product.update_lots_jz()
-
-        return {
-            "name": f"LOTES",
-            "type": "ir.actions.act_window",
-            "view_mode": "kanban,tree",
-            # "view_id": self.env.ref('land.view_order_form_due').id,
-            "res_model": "report.lot.land.line",
-            "res_id": product.id,
-            "target": "current",
-            "domain": [('product_tmp_id', '=', product.id)],
-            "context": {
-                'search_default_gr_mz_value_id': 1
-            }
-
-        }
-
-
-
-
-
-
 
 
 
