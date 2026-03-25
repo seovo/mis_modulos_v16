@@ -783,20 +783,10 @@ class SaleOrder(models.Model):
         }
 
 
-    def update_all_seller_lot(self):
-        for record in self:
-            if record.id in [760 ,  804]  or record._origin.id in [760 ,  804] :
-                continue
-            if record.seller_land_id:
-                if not  record.report_lot_land_line_id:
-                    raise ValueError(record.name)
-                record.report_lot_land_line_id = record.seller_land_id.id
 
 
-    def update_all_info_land(self):
-        record = self.env['sale.order'].search([])
-        record.get_info_land()
-        record.update_all_seller_lot()
+
+
 
 
 
@@ -861,84 +851,8 @@ class SaleOrder(models.Model):
                 record.m2_land = m2
 
 
-    def publish_invoice(self):
-        for record in self:
-            for line in record.schedule_land_ids:
-                if line.move_id:
-                    if line.move_id.state == 'draft' and line.move_id.journal_id.id == 10:
-                        line.move_id.action_post()
 
 
-    def recreate_schedule(self):
-        for record in self:
-            record.schedule_land_ids.unlink()
-        self.update_schedule()
-
-
-    def update_schedule_all(self):
-        orders = self.env['sale.order'].search([])
-        orders.update_schedule()
-        orders.update_credit_saldo()
-
-
-    def invoice_lines_available_land(self):
-        invoice_lines_dues = []
-        invoice_lines_initial = []
-        invoice_lines_indepen = []
-
-
-        amount_indepenced = 0
-        qty_to_indepenced = 0
-
-        for line in self.order_line:
-
-            #para independizacion
-            if line.product_id.is_independence:
-                qty_to_indepenced += line.product_uom_qty
-                amount_indepenced += line.price_unit
-
-            for line_inv in line.invoice_lines:
-
-                if line_inv.move_id.move_type in ['out_refund']:
-                    continue
-
-
-                if line_inv.move_id.payment_state == 'reversed' or line_inv.move_id.l10n_pe_edi_reversal_type_id:
-                    continue
-
-                if line_inv.move_id.debit_origin_id or line_inv.move_id.state == 'cancel':
-                    continue
-
-
-                #para cuotas
-                if line.product_id.payment_land_dues and not line.product_id.is_independence:
-
-                    x = range(int(line_inv.quantity))
-
-                    for n in x:
-                        invoice_lines_dues.append(line_inv)
-
-                #para iniciales
-                if line.product_id.is_advanced_land or line.product_id.is_separation_land:
-                    invoice_lines_initial.append(line_inv)
-
-
-
-
-                #para independicacion
-                if line.product_id.is_independence:
-                    invoice_lines_indepen.append(line_inv)
-
-
-
-
-        if invoice_lines_dues:
-            invoice_lines_dues.reverse()
-
-        if invoice_lines_indepen:
-            invoice_lines_indepen.reverse()
-
-        return invoice_lines_dues , invoice_lines_initial , qty_to_indepenced , invoice_lines_indepen , amount_indepenced
 
 
 
@@ -1428,148 +1342,6 @@ class SaleOrder(models.Model):
                     stage = 'completed'
 
             record.stage_payment_lan = stage
-
-    def _recalcule_price_land(self):
-        for record in self:
-
-            for line in record.order_line:
-                if line.product_id and line.product_id.payment_land_dues:
-
-                    line.change_product_uom_qty_land()
-
-
-
-    def verifi_mz_lot(self,mz=None,lt=None,object=None):
-
-        #esta funcion no funciona bien
-        #reescribir
-
-        return
-
-
-        self2 = object or self
-
-
-
-        mz_lot = None
-
-
-        for record in self2:
-            objectx = object if object else record
-
-            if objectx._name == 'sale.order':
-
-                #domain_order.append(('id', '!=', objectx.id))
-
-                if objectx.repeat_mz_lot:
-                    continue
-
-            if objectx._name == 'sale.order.line':
-                if objectx.order_id.repeat_mz_lot:
-                    continue
-
-            if objectx._name == 'account.move':
-                if not objectx.is_separation_land:
-                    continue
-
-            #raise ValueError([mz,lt])
-            #raise ValueError(record.mz_lot)
-            if not mz and not lt:
-                if objectx._name == 'sale.order':
-                    if not record.mz_lot:
-                        continue
-
-
-
-            if mz and lt :
-                mz_lot = f'{mz}-{lt}'
-            else:
-                if objectx._name == 'sale.order':
-                    mz_lot = record.mz_lot
-
-                    mz_lot_split = mz_lot.split('-')
-
-                    mz = mz_lot_split[0]
-                    lt = mz_lot_split[1]
-
-
-
-            if mz_lot:
-                domain_order = [
-                    ('company_id', '=', record.company_id.id),
-                    ('mz_lot', '=', mz_lot),
-                    ('state', 'in', ['done', 'sale']),
-                    ('stage_land', '!=', 'cancel')
-                ]
-
-                if objectx._name == 'sale.order':
-                    domain_order.append(('id', '!=', objectx.id))
-
-
-
-                exist = self.env['sale.order'].search(domain_order)
-
-                #raise ValueError([mz, lt, object, mz_lot, exist])
-
-
-
-                if exist:
-
-                    raise ValueError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot} {objectx} {objectx.order_id}  {objectx.order_id.name}')
-                    raise ValidationError(f'YA EXISTE UNA COTIZACION-VENTA PARA {mz_lot} {objectx} {objectx.order_id}')
-                else:
-                    lt = int(lt)
-                    if lt <= 9:
-                        lt = str(lt).zfill(2)
-                        mz_lot = f'{mz}-{lt}'
-
-                    domain_order = [
-                        ('company_id', '=', record.company_id.id),
-                        ('mz_lot', '=', mz_lot),
-                        ('state', 'in', ['done', 'sale']),
-                        ('stage_land', '!=', 'cancel')
-                    ]
-
-                    if objectx._name == 'sale.order':
-                        domain_order.append(('id', '!=', objectx.id))
-
-                    exist = self.env['sale.order'].search(domain_order)
-
-                    # raise ValueError([mz, lt, object, mz_lot, exist])
-
-                    if exist:
-                        raise ValidationError(f'YA EXISTE UNA COTIZACION - VENTA PARA {mz_lot}')
-
-
-
-
-
-            if mz and lt:
-                domain_move = [
-                    ('company_id', '=', record.company_id.id),
-                    ('mz_land_separation_id.name', '=', mz),
-                    ('lot_land_separation_id.name', '=', lt),
-                    ('state', 'in', ['posted']),
-                    # ('stage_land', '!=', 'cancel')
-                ]
-
-                if objectx._name == 'account.move':
-                    domain_move.append(('id', '!=', objectx.id))
-
-                if objectx._name == 'sale.order.line':
-                    if objectx.order_id.move_separation_land_id:
-                        domain_move.append(('id', '!=', objectx.order_id.move_separation_land_id.id))
-
-                if objectx._name == 'sale.order':
-                    if objectx.move_separation_land_id:
-                        domain_move.append(('id', '!=', objectx.move_separation_land_id.id))
-
-                exist_move = self.env['account.move'].search(domain_move)
-
-                if exist_move:
-                    raise ValidationError(f'YA EXISTE UNA SEPARACION PARA {mz_lot} ')
-
-
 
 
 

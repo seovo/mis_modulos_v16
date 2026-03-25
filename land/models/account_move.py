@@ -275,6 +275,8 @@ class AccountMove(models.Model):
     @api.model
     def create(self,vals):
 
+
+
         res = super(AccountMove, self).create(vals)
 
 

@@ -184,10 +184,7 @@
                                <field name="journal_id"  />
                                <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
                                <button name="update_schedule" string="Actualizar Cronograma" type="object"  />
-                               <button name="publish_invoice"
-                                       groups="land.group_reordenate_date_sale"
-                                       confirm="Haga esto solo si esta seguro que desea confirmar las facturas en estado borrador y estan correcto los datos como monto y fecha"
-                                       string="Publicar Facturas Portal Sunat" type="object"  />
+
 
                                -->
                                <field name="price_independence_land"   readonly="1" force_save="1"  />
