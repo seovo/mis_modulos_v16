@@ -851,7 +851,7 @@ class SaleOrder(models.Model):
                     date_next = date_next - timedelta( days=1)
                     date_next = date_next.date()
 
-                last_due_landx = self.env['schedule.dues.land'].search_count(
+                last_due_landx = self.env['schedule.dues.land'].search(
                     [
                         #('is_paid', '!=', True),
                         ('order_id', '=', record.id),
