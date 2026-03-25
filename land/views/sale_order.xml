@@ -223,6 +223,7 @@
                                <field name="value_due_land" readonly="1"  />
                                <field name="last_payment_date_land"  readonly="1" />
                                <field name="next_payment_date_land"  readonly="1" />
+                               <field name="last_date_to_pay_land"  optional="show" />
                                <field name="days_tolerance_land" readonly="1" />
                                <field name="dues_land" readonly="1" />
                                <field name="qty_dues_payment" readonly="1" />
@@ -416,7 +417,7 @@
 
 
     <record id="view_order_tree_separacion" model="ir.ui.view">
-           <field name="name">sale.order.Form</field>
+           <field name="name">sale.order.tree</field>
            <field name="model">sale.order</field>
            <field name="arch" type="xml">
                <tree string="Ventas"
