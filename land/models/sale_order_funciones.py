@@ -7,6 +7,99 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    paid_land_1 = fields.Float(compute='get_amounts_paid_land', string='Ene')
+    paid_land_2 = fields.Float(compute='get_amounts_paid_land', string='Feb')
+    paid_land_3 = fields.Float(compute='get_amounts_paid_land', string='Mar')
+    paid_land_4 = fields.Float(compute='get_amounts_paid_land', string='Abr')
+    paid_land_5 = fields.Float(compute='get_amounts_paid_land', string='May')
+    paid_land_6 = fields.Float(compute='get_amounts_paid_land', string='Jun')
+    paid_land_7 = fields.Float(compute='get_amounts_paid_land', string='Jul')
+    paid_land_8 = fields.Float(compute='get_amounts_paid_land', string='Agos')
+    paid_land_9 = fields.Float(compute='get_amounts_paid_land', string='Sep')
+    paid_land_10 = fields.Float(compute='get_amounts_paid_land', string='Oct')
+    paid_land_11 = fields.Float(compute='get_amounts_paid_land', string='Nov')
+    paid_land_12 = fields.Float(compute='get_amounts_paid_land', string='Dic')
+    credit_year_now = fields.Float(compute='get_amounts_paid_land', string='Credito Anual')
+    payment_year_now = fields.Float(compute='get_amounts_paid_land', string='Aportado Anual')
+    saldo_year_now = fields.Float(compute='get_amounts_paid_land', string='Saldo Anual')
+
+
+    @api.depends('schedule_land_ids')
+    def get_amounts_paid_land(self):
+        year = fields.Datetime.now().year
+        for record in self:
+            record.paid_land_1 = None
+            record.paid_land_2 = None
+            record.paid_land_3 = None
+            record.paid_land_4 = None
+            record.paid_land_5 = None
+            record.paid_land_6 = None
+            record.paid_land_7 = None
+            record.paid_land_8 = None
+            record.paid_land_9 = None
+            record.paid_land_10 = None
+            record.paid_land_11 = None
+            record.paid_land_12 = None
+
+            credit_year_now = 0
+            payment_year_now = 0
+            saldo_year_now = 0
+
+            schedule_land_dues = record.get_schedule_x_year(year)
+
+            for sche in schedule_land_dues:
+                datex = sche.date
+
+                if datex and datex.year == year:
+                    # if datex.month == 1 :
+                    #    record.paid_land_1 = sche.amount_due_land
+
+                    if sche.amount_due_land > 0:
+
+                        pagadox = sche.amount_due_land + sche.get_value_adelantos()
+                        record[f'paid_land_{datex.month}'] = pagadox
+                        payment_year_now += pagadox
+                    else:
+                        record[f'paid_land_{datex.month}'] = -1 * sche.amount
+                        saldo_year_now += sche.amount
+
+                    credit_year_now += sche.amount
+
+            record.credit_year_now = credit_year_now
+            record.payment_year_now = payment_year_now
+            record.saldo_year_now = saldo_year_now
+
+    def update_credit_saldo(self):
+        for record in self:
+            total_payment = 0
+            total_independence = 0
+
+            for line in record.schedule_land_ids:
+                if line.type_schedule in ['dues','advances']:
+                    total_payment += line.amount_due_land
+
+                if line.type_schedule in ['independence']:
+                    total_independence += line.amount_due_land
+
+            record.total_payment_land = round(total_payment, 2)
+            record.saldo_payment_land = round(record.price_credit_land - total_payment, 2)
+
+            record.total_independence_land = round(total_independence, 2)
+            record.saldo_independence_land = round(record.price_independence_land - total_independence, 2)
+
+    def get_schedule_x_year(self,year):
+        start_date = date(year, 1, 1)
+        end_date = date(year, 12, 31)
+        # Filtrar los registros
+        schedule_land_dues = self.env['schedule.dues.land'].search([
+            ('type_schedule', 'in', ['dues']),
+            ('order_id', '=', self.id),
+            ('date', '>=', start_date),
+            ('date', '<=', end_date),
+        ])
+
+        return schedule_land_dues
+
     def reemplazar_parrafo(self, parrafo, reemplazar_dict):
         if any(key in parrafo.text for key in reemplazar_dict.keys()):
             for run in parrafo.runs:

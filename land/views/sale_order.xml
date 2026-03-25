@@ -389,6 +389,7 @@
                                     />
                    <field name="last_payment_date_land" widget="remaining_days" />
                    <field name="next_payment_date_land"  />
+                   <field name="last_date_to_pay"  optional="show" />
 
                </xpath>
            </field>
@@ -410,7 +411,7 @@
     </record>
 
 
-    <!--  -->
+
 
     <record id="view_order_tree_separacion" model="ir.ui.view">
            <field name="name">sale.order.Form</field>
@@ -424,6 +425,8 @@
                                     <field name="mz_lot" />
                                     <field name="partner_id"   optional="show" />
                                     <field name="last_payment_date_land"  optional="hidden" />
+                                    <field name="last_date_to_pay"  optional="hidden" />
+
                                     <field name="mounth_expired_land"  optional="hidden" />
                                     <field name="validity_date" widget="remaining_days" />
                                     <field name="next_payment_date_land" />
@@ -489,6 +492,7 @@
                 (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_move_form')})]"
             />
     </record>
+
     <record id="action_sale_separation" model="ir.actions.act_window">
         <field name="name">Separacion con Cotización</field>
         <field name="type">ir.actions.act_window</field>
@@ -634,6 +638,7 @@
 
 
                    <field name="next_payment_date_land" optional="show" />
+                   <field name="last_date_to_pay"  optional="show" />
                    <field name="mounth_expired_land"  optional="show" />
                    <field name="days_expired_land" optional="show" />
                    <field name="mora_acumulada" optional="hidden" />
