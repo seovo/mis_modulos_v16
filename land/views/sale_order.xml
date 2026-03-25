@@ -640,7 +640,7 @@
 
 
                    <field name="next_payment_date_land" optional="show" />
-                   <field name="last_date_to_pay"  optional="show" />
+                   <field name="last_date_to_pay_land"  optional="show" />
                    <field name="mounth_expired_land"  optional="show" />
                    <field name="days_expired_land" optional="show" />
                    <field name="mora_acumulada" optional="hidden" />
