@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
     ],compute='_get_stage_payment_land',store=True,string='Etapa Pago  Terreno')
 
     last_payment_date_land = fields.Date(string="Ultima Fecha de Pago",compute="get_last_payment_date_land",store=True)
-    last_date_to_pay  = fields.Date(string="Ultima Fecha a Pagar",compute="get_last_payment_date_land",store=True)
+    last_date_to_pay_land  = fields.Date(string="Ultima Fecha a Pagar",compute="get_last_payment_date_land",store=True)
     next_payment_date_land = fields.Date(string="Proxima Fecha de Pago", compute="get_last_payment_date_land",store=True)
     days_expired_land = fields.Integer(string="Dias Vencidos", compute="get_last_payment_date_land")
 
@@ -861,7 +861,7 @@ class SaleOrder(models.Model):
                 )
 
                 if last_due_landx:
-                    record.last_date_to_pay = last_due_landx.date
+                    last_date_to_pay = last_due_landx.date
 
 
 
@@ -913,7 +913,7 @@ class SaleOrder(models.Model):
             record.days_expired_land = diff_days
             record.mora_acumulada  = diff_days * record.value_mora_land
             record.amount_total_payment_month_land = record.amount_payment_month_land + record.mora_acumulada
-            record.last_date_to_pay = last_date_to_pay
+            record.last_date_to_pay_land = last_date_to_pay
 
 
     @api.depends('order_line','order_line.product_id','order_line.qty_invoiced',

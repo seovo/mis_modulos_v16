@@ -389,7 +389,7 @@
                                     />
                    <field name="last_payment_date_land" widget="remaining_days" />
                    <field name="next_payment_date_land"  />
-                   <field name="last_date_to_pay"  optional="show" />
+                   <field name="last_date_to_pay_land"  optional="show" />
 
                </xpath>
            </field>
@@ -405,7 +405,9 @@
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
                    <field name="last_payment_date_land" widget="remaining_days" />
-                   <field name="next_payment_date_land"  />
+                   <field name="next_payment_date_land"  optional="show"  />
+                   <field name="last_date_to_pay_land"  optional="show" />
+
                </xpath>
            </field>
     </record>
