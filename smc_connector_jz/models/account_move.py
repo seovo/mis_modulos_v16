@@ -257,7 +257,8 @@ class AccountMove(models.Model):
         self.log_smc = mensajes
 
 
-        c
+
+
 
         if self.smc_model_ids:
 
