@@ -555,13 +555,13 @@ class AccountMove(models.Model):
 
                 #raise ValueError(author_partner_id)
 
-                channel.sudo().message_post(
+                channel.message_channel_ids.sudo().message_post(
                     body=body,
                     subject=subject,
                     author_id=author_partner_id,
                     message_type='comment',  # mensaje normal
                     subtype_xmlid='mail.mt_comment' ,
-                    partner_ids=partner_ids
+                    #partner_ids=partner_ids
                 )
 
 
