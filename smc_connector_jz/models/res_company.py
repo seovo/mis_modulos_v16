@@ -13,7 +13,7 @@ class ResCompany(models.Model):
     smc_date_after = fields.Date(string="Despues de")
 
     def  action_view_moves_smc(self):
-        domain = [('company_id','=',self.id)]
+        domain = [('company_id','=',self.id),('state','=','posted')]
 
         if self.smc_excluded_partner_ids:
             domain.append(('partner_id','not in', self.smc_excluded_partner_ids.ids))
