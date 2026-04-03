@@ -539,6 +539,11 @@ class AccountMove(models.Model):
                 if not channel.channel_last_seen_partner_ids:
                     continue
 
+                partner_ids = []
+
+                for cpartner in channel.channel_last_seen_partner_ids:
+                    partner_ids.append(cpartner.partner_id.id)
+
                 #raise ValueError(channel)
 
                 body ='BODY'
@@ -556,7 +561,7 @@ class AccountMove(models.Model):
                     author_id=author_partner_id,
                     message_type='comment',  # mensaje normal
                     subtype_xmlid='mail.mt_comment' ,
-                    partner_ids=channel.channel_last_seen_partner_ids.ids
+                    partner_ids=partner_ids
                 )
 
 
