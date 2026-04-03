@@ -563,8 +563,8 @@ class AccountMove(models.Model):
                 for mv in moves:
                     moves_names.append(mv.name)
 
-                body =f'Las siguientes facturas tienen incompleto sus datos {",".join(moves_names)}'
-                subject = 'FACTURAS INCOMPLETAS'
+                body =f'Las siguientes facturas tienen incompleto sus datos {" , ".join(moves_names)} en la compañia {company.name}'
+                subject = 'FACTURAS INCOMPLETAS SMC'
 
                 #raise ValueError(author_partner_id)
 
@@ -580,16 +580,39 @@ class AccountMove(models.Model):
 
                 wizard.action_send_mail()
 
-                continue
+                #ENVIAR LAS FACTURAS CON ERROR
 
-                channel.message_channel_ids.sudo().message_post(
-                    body=body,
-                    subject=subject,
-                    author_id=author_partner_id,
-                    message_type='comment',  # mensaje normal
-                    subtype_xmlid='mail.mt_comment' ,
-                    #partner_ids=partner_ids
-                )
+                domain_add = [
+                    ('state_smc', '=', 'error'),
+                    #('partner_id.type_negocio_area_smc', '=', False),
+                    #('partner_id.area_empresarial_smc', '=', False),
+                    #('partner_id.clave_colonia_smc', '=', False)
+                ]
+                moves = company.action_view_moves_smc(retornar=True, domain_add=domain_add)
+                moves_names = []
+                for mv in moves:
+                    moves_names.append(mv.name)
+
+                body = f'Las siguientes facturas fueron enviados con error {" , ".join(moves_names)} en la compañia {company.name}'
+                subject = 'FACTURAS CON ERROR SMC'
+
+                # raise ValueError(author_partner_id)
+
+                wizard = self.env['mail.compose.message'].create({
+                    'partner_ids': partner_ids,
+                    'body': body,
+                    'subject': subject,
+                    'model': 'mail.channel',
+                    'res_id': channel.id,
+                    'author_id': author_partner_id,
+                    'message_type': 'comment'
+                })
+
+                wizard.action_send_mail()
+
+
+
+
 
 
 
