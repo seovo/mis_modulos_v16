@@ -564,11 +564,11 @@ class AccountMove(models.Model):
                     for mv in moves:
                         moves_names.append(mv.name)
 
-                    body = f'Las siguientes facturas tienen incompleto sus datos {" , ".join(moves_names)} en la compañia {company.name}'
+
                     body = f'''
                                     <div class="alert alert-dark" role="alert">
                                       <p><b>compañia {company.name}</b></p>
-                                      Las siguientes facturas fueron enviados con error {" , ".join(moves_names)}
+                                      Las siguientes facturas tienen incompleto sus datos : {" , ".join(moves_names)}
                                     </div>
                                     '''
                     subject = 'FACTURAS INCOMPLETAS SMC'
@@ -603,7 +603,7 @@ class AccountMove(models.Model):
                     body = f'''
                                     <div class="alert alert-danger" role="alert">
                                       <p><b>compañia {company.name}</b></p>
-                                      Las siguientes facturas fueron enviados con error {" , ".join(moves_names)}
+                                      Las siguientes facturas fueron enviados con error : {" , ".join(moves_names)}
                                     </div>
                                     '''
                     subject = 'FACTURAS CON ERROR SMC'
