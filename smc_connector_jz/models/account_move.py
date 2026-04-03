@@ -548,6 +548,8 @@ class AccountMove(models.Model):
                 bot_partner_id = bot_user.partner_id.id if bot_user else False
                 author_partner_id = bot_partner_id
 
+                ValueError(author_partner_id)
+
                 channel.sudo().message_post(
                     body=body,
                     subject=subject,
