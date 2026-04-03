@@ -219,7 +219,7 @@ class AccountMove(models.Model):
 
         xml_dict_send = xmltodict.parse(soap_body)
         xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
-        self.xml_send_smc = xml_send_sm
+        self.xml_send_smc = xml_send_smc
 
         # Extraer los valores que necesitas
         try:
