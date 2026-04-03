@@ -24,6 +24,7 @@ class ResCompany(models.Model):
         if self.smc_journal_ids:
             domain.append(('journal_id','in',self.smc_journal_ids.ids))
 
+
         if self.smc_date_after:
             domain.append(('invoice_date','>=',self.smc_date_after))
 
