@@ -11,7 +11,8 @@ class ResCompany(models.Model):
     smc_active = fields.Boolean()
     smc_journal_ids = fields.Many2many('account.journal','smc_journal_ids',string="Diarios Permitidos")
     smc_date_after = fields.Date(string="Despues de")
-    smc_channel_id = fields.Many2one('discuss.channel', string='Canal')
+    smc_channel_id =  fields.Many2one('mail.channel', string='Canal Anuncios')
+
 
 
     def  action_view_moves_smc(self,retornar=False):
