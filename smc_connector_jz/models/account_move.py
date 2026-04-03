@@ -593,7 +593,12 @@ class AccountMove(models.Model):
                 for mv in moves:
                     moves_names.append(mv.name)
 
-                body = f'Las siguientes facturas fueron enviados con error {" , ".join(moves_names)} en la compañia {company.name}'
+                body = f'''
+                <div class="alert alert-danger" role="alert">
+                  <p><b>compañia {company.name}</b></p>
+                  Las siguientes facturas fueron enviados con error {" , ".join(moves_names)}
+                </div>
+                '''
                 subject = 'FACTURAS CON ERROR SMC'
 
                 # raise ValueError(author_partner_id)
