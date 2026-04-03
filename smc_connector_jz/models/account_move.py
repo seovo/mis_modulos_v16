@@ -530,6 +530,10 @@ class AccountMove(models.Model):
     def send_alert_smc_cron(self):
         companys = self.env['res.company'].search([('smc_active', '=', True)])
 
+        bot_user = self.env.ref('base.user_root')  # o búsqueda de usuario bot
+        bot_partner_id = bot_user.partner_id.id if bot_user else False
+        author_partner_id = bot_partner_id
+
         for company in companys:
             if company.smc_channel_id:
 
@@ -546,12 +550,22 @@ class AccountMove(models.Model):
 
                 #raise ValueError(channel)
 
-                body ='BODY'
-                subject = 'ASUNTO'
+                #buscar facturas que faltan completar datos
 
-                bot_user = self.env.ref('base.user_root')  # o búsqueda de usuario bot
-                bot_partner_id = bot_user.partner_id.id if bot_user else False
-                author_partner_id = bot_partner_id
+                domain_add = [
+                    #('state_smc', '=', False),
+                    ('partner_id.type_negocio_area_smc', '=', False),
+                    ('partner_id.area_empresarial_smc', '=', False),
+                    ('partner_id.clave_colonia_smc', '=', False)
+                ]
+                moves = company.action_view_moves_smc(retornar=True,domain_add=domain_add)
+                moves_names = []
+                for mv in moves:
+                    moves_names.append(mv.name)
+
+
+                body =f'Las siguientes facturas tienen incompleto sus datos {",".join(moves_names)}'
+                subject = 'FACTURAS INCOMPLETAS'
 
                 #raise ValueError(author_partner_id)
 

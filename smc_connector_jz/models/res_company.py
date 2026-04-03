@@ -18,7 +18,7 @@ class ResCompany(models.Model):
 
 
 
-    def  action_view_moves_smc(self,retornar=False):
+    def  action_view_moves_smc(self,retornar=False,domain_add=[]):
         domain = [('company_id','=',self.id),('state','=','posted')]
 
         if self.smc_excluded_partner_ids:
@@ -35,12 +35,16 @@ class ResCompany(models.Model):
             domain.append(('invoice_date','>=',self.smc_date_after))
 
         if retornar:
-            domain.append(
-                ('state_smc','=',False),
-                ('partner_id.type_negocio_area_smc','!=',False),
-                ('partner_id.area_empresarial_smc','!=',False),
-                ('partner_id.clave_colonia_smc','!=',False)
-            )
+            if domain_add:
+                domain = domain + domain_add
+            else:
+                domain.append(
+                    ('state_smc', '=', False),
+                    ('partner_id.type_negocio_area_smc', '!=', False),
+                    ('partner_id.area_empresarial_smc', '!=', False),
+                    ('partner_id.clave_colonia_smc', '!=', False)
+                )
+
             moves = self.env['account.move'].search(domain)
             return moves
 
