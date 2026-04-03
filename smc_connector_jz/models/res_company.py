@@ -25,7 +25,7 @@ class ResCompany(models.Model):
             domain.append(('journal_id','in',self.smc_journal_ids.ids))
 
         if self.smc_date_after:
-            domain.append(('invoice_date','=',self.smc_date_after))
+            domain.append(('invoice_date','>=',self.smc_date_after))
 
         moves = self.env['account.move'].search(domain)
 
