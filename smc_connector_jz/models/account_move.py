@@ -539,6 +539,8 @@ class AccountMove(models.Model):
                 if not channel.channel_last_seen_partner_ids:
                     continue
 
+                raise ValueError(channel)
+
                 body ='BODY'
                 subject = 'ASUNTO'
 
