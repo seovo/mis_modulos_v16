@@ -220,6 +220,15 @@ class AccountMove(models.Model):
         try:
             xml_dict_send = xmltodict.parse(soap_body)
         except:
+
+            self.xml_send_smc = soap_body
+            mensajes = str(json_responsex)
+
+            self.log_smc = mensajes
+            st_smc = 'error'
+            self.state_smc = st_smc
+
+            return
             raise ValueError([soap_body,json_responsex])
 
 
