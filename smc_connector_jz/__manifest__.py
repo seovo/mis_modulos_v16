@@ -26,7 +26,8 @@
         'views/account_move.xml',
         'views/res_company.xml',
         'views/res_partner.xml',
-        'views/smc_model.xml'
+        'views/smc_model.xml',
+        'data/cron.xml'
 
     ],
     "license": "LGPL-3"

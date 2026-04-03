@@ -495,4 +495,14 @@ class AccountMove(models.Model):
         for record in self:
             record.send_smc_data()
 
+    def send_masive_smc_cron(self):
+        companys = self.env['res.company'].search([('smc_active','=',True)])
+
+        for company in companys:
+            moves =  company.action_view_moves_smc(retornar=True)
+
+            moves = moves[:3]
+
+            moves.send_masive_smc()
+
 

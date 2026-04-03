@@ -12,7 +12,7 @@ class ResCompany(models.Model):
     smc_journal_ids = fields.Many2many('account.journal','smc_journal_ids',string="Diarios Permitidos")
     smc_date_after = fields.Date(string="Despues de")
 
-    def  action_view_moves_smc(self):
+    def  action_view_moves_smc(self,retornar=False):
         domain = [('company_id','=',self.id),('state','=','posted')]
 
         if self.smc_excluded_partner_ids:
@@ -27,6 +27,11 @@ class ResCompany(models.Model):
 
         if self.smc_date_after:
             domain.append(('invoice_date','>=',self.smc_date_after))
+
+        if retornar:
+            domain.append(('state_smc','=',False))
+            moves = self.env['account.move'].search(domain)
+            return moves
 
         moves = self.env['account.move'].search(domain)
 
