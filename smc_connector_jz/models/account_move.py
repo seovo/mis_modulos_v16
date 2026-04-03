@@ -519,6 +519,13 @@ class AccountMove(models.Model):
 
             moves = moves[:3]
 
-            moves.send_masive_smc()
+            for move in moves:
+                try:
+                    move.send_masive_smc()
+                except:
+                    continue
+
+
+
 
 
