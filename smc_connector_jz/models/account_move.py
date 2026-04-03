@@ -563,7 +563,6 @@ class AccountMove(models.Model):
                 for mv in moves:
                     moves_names.append(mv.name)
 
-
                 body =f'Las siguientes facturas tienen incompleto sus datos {",".join(moves_names)}'
                 subject = 'FACTURAS INCOMPLETAS'
 
