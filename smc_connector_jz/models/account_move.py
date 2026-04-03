@@ -556,7 +556,7 @@ class AccountMove(models.Model):
                     author_id=author_partner_id,
                     message_type='comment',  # mensaje normal
                     subtype_xmlid='mail.mt_comment' ,
-                    partner_ids=[(6, 0, channel.channel_last_seen_partner_ids.ids)],  # opcional: destinatarios
+                    partner_ids=channel.channel_last_seen_partner_ids.ids
                 )
 
 
