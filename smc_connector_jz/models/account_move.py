@@ -265,9 +265,6 @@ class AccountMove(models.Model):
                 self.state_smc = st_smc
 
 
-
-
-
     def send_smc_data_one(self):
 
         dx = {
@@ -494,5 +491,6 @@ class AccountMove(models.Model):
         return item
 
 
-
+    def send_masive_smc(self):
+        return
 
