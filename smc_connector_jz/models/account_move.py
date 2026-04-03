@@ -512,6 +512,7 @@ class AccountMove(models.Model):
         for record in self:
             record.send_smc_data()
 
+
     def send_masive_smc_cron(self):
         companys = self.env['res.company'].search([('smc_active','=',True)])
 
@@ -525,6 +526,35 @@ class AccountMove(models.Model):
                     move.send_masive_smc()
                 except:
                     continue
+
+    def send_alert_smc_cron(self):
+        companys = self.env['res.company'].search([('smc_active', '=', True)])
+
+        for company in companys:
+            if company.smc_channel_id:
+
+
+                channel = company.smc_channel_id
+
+                if not channel.channel_last_seen_partner_ids:
+                    continue
+
+                body ='BODY'
+                subject = 'ASUNTO'
+
+                bot_user = self.env.ref('base.user_root')  # o búsqueda de usuario bot
+                bot_partner_id = bot_user.partner_id.id if bot_user else False
+                author_partner_id = bot_partner_id
+
+                channel.sudo().message_post(
+                    body=body,
+                    subject=subject,
+                    author_id=author_partner_id,
+                    message_type='comment',  # mensaje normal
+                    subtype_xmlid='mail.mt_comment'
+                )
+
+
 
 
 
