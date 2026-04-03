@@ -218,8 +218,12 @@ class AccountMove(models.Model):
         #.encode('utf-8')
 
         # Extraer los valores que necesitas
-        resultado = xml_dict['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:enviarDetalleVentaResponse'][
-            'enviarDetalleVentaResult']
+        try:
+            resultado = xml_dict['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:enviarDetalleVentaResponse'][
+                'enviarDetalleVentaResult']
+        except:
+            mensajes = str(resultado)
+
 
         numero_registros_recibidos = resultado['numeroRegistrosRecibidos']['#text']
         numero_registros_agregados = resultado['numeroRegistrosAgregados']['#text']
@@ -227,6 +231,10 @@ class AccountMove(models.Model):
             mensajes = resultado['mensajes']['item']['#text']
         except:
             mensajes = str(resultado)
+            self.log_smc = mensajes
+            st_smc = 'error'
+            self.state_smc = st_smc
+
 
 
 
@@ -237,7 +245,7 @@ class AccountMove(models.Model):
               Mensajes: {mensajes}
         '''
 
-        record.log_smc = mensajes
+        self.log_smc = mensajes
 
 
         xml_dict_send = xmltodict.parse(soap_body)
