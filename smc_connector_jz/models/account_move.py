@@ -555,6 +555,20 @@ class AccountMove(models.Model):
 
                 #raise ValueError(author_partner_id)
 
+                wizard = self.env['mail.compose.message'].create({
+                    'partner_ids': partner_ids ,
+                    'body': body,
+                    'subject': subject,
+                    'model': 'mail.channel' ,
+                    'res_id': channel.id ,
+                    'author_id': author_partner_id ,
+                    'message_type': 'comment'
+                })
+
+                wizard.action_send_mail()
+
+                continue
+
                 channel.message_channel_ids.sudo().message_post(
                     body=body,
                     subject=subject,
