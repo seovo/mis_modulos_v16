@@ -548,14 +548,15 @@ class AccountMove(models.Model):
                 bot_partner_id = bot_user.partner_id.id if bot_user else False
                 author_partner_id = bot_partner_id
 
-                raise ValueError(author_partner_id)
+                #raise ValueError(author_partner_id)
 
                 channel.sudo().message_post(
                     body=body,
                     subject=subject,
                     author_id=author_partner_id,
                     message_type='comment',  # mensaje normal
-                    subtype_xmlid='mail.mt_comment'
+                    subtype_xmlid='mail.mt_comment' ,
+                    partner_ids=[(6, 0, channel.channel_last_seen_partner_ids.ids)],  # opcional: destinatarios
                 )
 
 
