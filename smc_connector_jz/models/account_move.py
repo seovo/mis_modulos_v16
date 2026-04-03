@@ -517,7 +517,7 @@ class AccountMove(models.Model):
         for company in companys:
             moves =  company.action_view_moves_smc(retornar=True)
 
-            moves = moves[:3]
+            moves = moves[:5]
 
             for move in moves:
                 try:
