@@ -492,5 +492,7 @@ class AccountMove(models.Model):
 
 
     def send_masive_smc(self):
-        return
+        for record in self:
+            record.send_smc_data()
+
 
