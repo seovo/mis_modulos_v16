@@ -559,61 +559,70 @@ class AccountMove(models.Model):
                     ('partner_id.clave_colonia_smc', '=', False)
                 ]
                 moves = company.action_view_moves_smc(retornar=True,domain_add=domain_add)
-                moves_names = []
-                for mv in moves:
-                    moves_names.append(mv.name)
+                if moves:
+                    moves_names = []
+                    for mv in moves:
+                        moves_names.append(mv.name)
 
-                body =f'Las siguientes facturas tienen incompleto sus datos {" , ".join(moves_names)} en la compañia {company.name}'
-                subject = 'FACTURAS INCOMPLETAS SMC'
+                    body = f'Las siguientes facturas tienen incompleto sus datos {" , ".join(moves_names)} en la compañia {company.name}'
+                    body = f'''
+                                    <div class="alert alert-dark" role="alert">
+                                      <p><b>compañia {company.name}</b></p>
+                                      Las siguientes facturas fueron enviados con error {" , ".join(moves_names)}
+                                    </div>
+                                    '''
+                    subject = 'FACTURAS INCOMPLETAS SMC'
 
-                #raise ValueError(author_partner_id)
+                    # raise ValueError(author_partner_id)
 
-                wizard = self.env['mail.compose.message'].create({
-                    'partner_ids': partner_ids ,
-                    'body': body,
-                    'subject': subject,
-                    'model': 'mail.channel' ,
-                    'res_id': channel.id ,
-                    'author_id': author_partner_id ,
-                    'message_type': 'comment'
-                })
+                    wizard = self.env['mail.compose.message'].create({
+                        'partner_ids': partner_ids,
+                        'body': body,
+                        'subject': subject,
+                        'model': 'mail.channel',
+                        'res_id': channel.id,
+                        'author_id': author_partner_id,
+                        'message_type': 'comment'
+                    })
 
-                wizard.action_send_mail()
+                    wizard.action_send_mail()
+
 
                 #ENVIAR LAS FACTURAS CON ERROR
 
                 domain_add = [
-                    ('state_smc', '=', 'error'),
-                    #('partner_id.type_negocio_area_smc', '=', False),
-                    #('partner_id.area_empresarial_smc', '=', False),
-                    #('partner_id.clave_colonia_smc', '=', False)
+                    ('state_smc', '=', 'error')
                 ]
                 moves = company.action_view_moves_smc(retornar=True, domain_add=domain_add)
-                moves_names = []
-                for mv in moves:
-                    moves_names.append(mv.name)
 
-                body = f'''
-                <div class="alert alert-danger" role="alert">
-                  <p><b>compañia {company.name}</b></p>
-                  Las siguientes facturas fueron enviados con error {" , ".join(moves_names)}
-                </div>
-                '''
-                subject = 'FACTURAS CON ERROR SMC'
+                if moves:
+                    moves_names = []
+                    for mv in moves:
+                        moves_names.append(mv.name)
 
-                # raise ValueError(author_partner_id)
+                    body = f'''
+                                    <div class="alert alert-danger" role="alert">
+                                      <p><b>compañia {company.name}</b></p>
+                                      Las siguientes facturas fueron enviados con error {" , ".join(moves_names)}
+                                    </div>
+                                    '''
+                    subject = 'FACTURAS CON ERROR SMC'
 
-                wizard = self.env['mail.compose.message'].create({
-                    'partner_ids': partner_ids,
-                    'body': body,
-                    'subject': subject,
-                    'model': 'mail.channel',
-                    'res_id': channel.id,
-                    'author_id': author_partner_id,
-                    'message_type': 'comment'
-                })
+                    # raise ValueError(author_partner_id)
 
-                wizard.action_send_mail()
+                    wizard = self.env['mail.compose.message'].create({
+                        'partner_ids': partner_ids,
+                        'body': body,
+                        'subject': subject,
+                        'model': 'mail.channel',
+                        'res_id': channel.id,
+                        'author_id': author_partner_id,
+                        'message_type': 'comment'
+                    })
+
+                    wizard.action_send_mail()
+
+
 
 
 
