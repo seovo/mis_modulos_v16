@@ -217,12 +217,23 @@ class AccountMove(models.Model):
         json_responsex = str(json.dumps(xml_dict, indent=4))
         #.encode('utf-8')
 
+        xml_dict_send = xmltodict.parse(soap_body)
+        xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
+        self.xml_send_smc = xml_send_sm
+
         # Extraer los valores que necesitas
         try:
             resultado = xml_dict['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:enviarDetalleVentaResponse'][
                 'enviarDetalleVentaResult']
         except:
-            mensajes = str(resultado)
+            mensajes = str(json_responsex)
+
+            self.log_smc = mensajes
+            st_smc = 'error'
+            self.state_smc = st_smc
+
+
+            return
 
 
         numero_registros_recibidos = resultado['numeroRegistrosRecibidos']['#text']
@@ -231,9 +242,7 @@ class AccountMove(models.Model):
             mensajes = resultado['mensajes']['item']['#text']
         except:
             mensajes = str(resultado)
-            self.log_smc = mensajes
-            st_smc = 'error'
-            self.state_smc = st_smc
+
 
 
 
@@ -248,9 +257,7 @@ class AccountMove(models.Model):
         self.log_smc = mensajes
 
 
-        xml_dict_send = xmltodict.parse(soap_body)
-        xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
-        record.xml_send_smc = xml_send_smc
+        c
 
         if self.smc_model_ids:
 
