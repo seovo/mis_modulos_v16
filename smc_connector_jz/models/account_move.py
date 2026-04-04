@@ -230,7 +230,7 @@ class AccountMove(models.Model):
             if self.smc_model_ids:
                 smc_model = self.smc_model_ids[0]
 
-                smc_model.xml_sent = xml_send_smc
+                smc_model.xml_sent =  str(soap_body)
                 smc_model.log_smc = mensajes
                 smc_model.state = st_smc
                 #smc_model.msg = msg
