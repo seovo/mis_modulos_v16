@@ -221,19 +221,35 @@ class AccountMove(models.Model):
             xml_dict_send = xmltodict.parse(soap_body)
         except:
 
-            self.xml_send_smc = soap_body
             mensajes = str(json_responsex)
 
             self.log_smc = mensajes
             st_smc = 'error'
             self.state_smc = st_smc
 
+            if self.smc_model_ids:
+                smc_model = self.smc_model_ids[0]
+
+                smc_model.xml_sent = xml_send_smc
+                smc_model.log_smc = mensajes
+                smc_model.state = st_smc
+                #smc_model.msg = msg
+
+
+
+
             return
             raise ValueError([soap_body,json_responsex])
 
 
         xml_send_smc = str(json.dumps(xml_dict_send, indent=4))
-        self.xml_send_smc = xml_send_smc
+
+        if self.smc_model_ids:
+            smc_model = self.smc_model_ids[0]
+            smc_model.xml_sent = xml_send_smc
+
+
+        #self.xml_send_smc = xml_send_smc
 
         # Extraer los valores que necesitas
         try:
@@ -245,6 +261,14 @@ class AccountMove(models.Model):
             self.log_smc = mensajes
             st_smc = 'error'
             self.state_smc = st_smc
+
+            if self.smc_model_ids:
+                smc_model = self.smc_model_ids[0]
+
+                smc_model.xml_sent = xml_send_smc
+                smc_model.log_smc = mensajes
+                smc_model.state = st_smc
+                #smc_model.msg = msg
 
 
             return
