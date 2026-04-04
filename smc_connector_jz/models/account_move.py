@@ -303,7 +303,7 @@ class AccountMove(models.Model):
 
             smc_model = self.smc_model_ids[0]
 
-            smc_model.xml_sent = xml_send_smc
+            smc_model.xml_sent =  str(soap_bodyx)
             smc_model.log_smc = json_responsex
             smc_model.msg = msg
 
