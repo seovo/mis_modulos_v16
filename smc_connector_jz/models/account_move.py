@@ -39,6 +39,13 @@ class AccountMove(models.Model):
     smc_model_ids = fields.One2many('smc.model','move_id')
     state_smc = fields.Selection([('draft', 'Pendiente'), ('error', 'Error'), ('sent', 'Enviado')],string='Estado SMC')
 
+    def escape_xml_smc(self,texto):
+        return (s.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace('"', "&quot;")
+                .replace("'", "&apos;"))
+
     def action_post(self):
 
         if len(self) == 1:
@@ -209,16 +216,11 @@ class AccountMove(models.Model):
 
         #raise ValueError(soap_body)
 
-        def escape_xml(s):
-            return (s.replace("&", "&amp;")
-                    .replace("<", "&lt;")
-                    .replace(">", "&gt;")
-                    .replace('"', "&quot;")
-                    .replace("'", "&apos;"))
+
 
 
         #safe = escape_xml(value)
-        soap_bodyx = escape_xml(soap_bodyx)
+        #soap_bodyx = escape_xml(soap_bodyx)
         # insertar safe en el XML
 
         soap_body = soap_bodyx.encode('utf-8')
@@ -481,12 +483,16 @@ class AccountMove(models.Model):
         iva = self.amount_total-self.amount_untaxed
         total = self.amount_total
 
+        name_partner = self.partner_id.name
+
+        name_partner = self.escape_xml_smc(name_partner)
+
         item = f'''
         <item>
             
             <clienteFinal>{self.partner_id.id}</clienteFinal>
             <RFC>{self.partner_id.vat}</RFC>
-            <razonSocial>{self.partner_id.name}</razonSocial>
+            <razonSocial>{name_partner}</razonSocial>
             <codigoPostal>{self.clave_colonia_smc.c_codigopostal}</codigoPostal>
             <colonia>{colony}</colonia>
             <calle>{self.partner_id.street_name}</calle>
