@@ -191,7 +191,7 @@ class AccountMove(models.Model):
 
 
 
-        soap_body = f'''<?xml version="1.0" encoding="UTF-8"?>
+        soap_bodyx = f'''<?xml version="1.0" encoding="UTF-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="https://ws.smcmx.com.mx/wssmc_test/smcmx_service_test.php">
     <soap:Body>
         <tns:enviarDetalleVenta>
@@ -209,7 +209,7 @@ class AccountMove(models.Model):
 
         #raise ValueError(soap_body)
 
-        soap_body = soap_body.encode('utf-8')
+        soap_body = soap_bodyx.encode('utf-8')
 
         #RESPUESTA
         response = requests.post(url, data=soap_body, headers=headers)
@@ -230,7 +230,7 @@ class AccountMove(models.Model):
             if self.smc_model_ids:
                 smc_model = self.smc_model_ids[0]
 
-                smc_model.xml_sent =  str(soap_body)
+                smc_model.xml_sent =  str(soap_bodyx)
                 smc_model.log_smc = mensajes
                 smc_model.state = st_smc
                 #smc_model.msg = msg
