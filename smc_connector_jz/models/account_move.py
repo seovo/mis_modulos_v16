@@ -209,6 +209,18 @@ class AccountMove(models.Model):
 
         #raise ValueError(soap_body)
 
+        def escape_xml(s):
+            return (s.replace("&", "&amp;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+                    .replace('"', "&quot;")
+                    .replace("'", "&apos;"))
+
+
+        #safe = escape_xml(value)
+        soap_bodyx = escape_xml(soap_bodyx)
+        # insertar safe en el XML
+
         soap_body = soap_bodyx.encode('utf-8')
 
         #RESPUESTA
