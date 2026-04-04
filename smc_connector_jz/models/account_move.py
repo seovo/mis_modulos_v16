@@ -124,6 +124,9 @@ class AccountMove(models.Model):
 
         if len(self) == 1:
 
+            if self.state_smc == 'sent':
+                return
+
             if not self.company_id.smc_active:
                 return
 
