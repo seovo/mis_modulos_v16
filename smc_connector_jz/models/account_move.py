@@ -324,9 +324,17 @@ class AccountMove(models.Model):
             if int(numero_registros_recibidos) > 0 :
                 st_smc = ''
                 if int(numero_registros_agregados) != int(numero_registros_recibidos):
+
                     st_smc = 'error'
 
+                    if int(numero_registros_recibidos) == 1 and 'ya fue reportada previamente' in mensajes:
+                        st_smc = 'sent'
+
+
+
+
                 else:
+
                     st_smc = 'sent'
 
                 smc_model.state = st_smc
