@@ -19,7 +19,7 @@
            <field name="arch" type="xml">
                <xpath expr="//header" position="inside">
                    <button name="send_smc_data" type="object"
-                           attrs="{'invisible': [('state', '!=', 'posted' )]}"
+                           attrs="{'invisible': ['|',('state', '!=', 'posted' ),('state_smc','=','sent')]}"
 
                            string="Enviar SMC" />
                    <!-- invisible="not server_vex"  -->
