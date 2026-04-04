@@ -40,7 +40,7 @@ class AccountMove(models.Model):
     state_smc = fields.Selection([('draft', 'Pendiente'), ('error', 'Error'), ('sent', 'Enviado')],string='Estado SMC')
 
     def escape_xml_smc(self,texto):
-        return (s.replace("&", "&amp;")
+        return (texto.replace("&", "&amp;")
                 .replace("<", "&lt;")
                 .replace(">", "&gt;")
                 .replace('"', "&quot;")
