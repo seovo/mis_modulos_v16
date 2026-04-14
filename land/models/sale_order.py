@@ -923,7 +923,7 @@ class SaleOrder(models.Model):
         for record in self:
             stage = None
 
-            total_initial = se
+            total_initial = 0
             total_initial_invoiced = 0
             total_separation_invoiced = 0
             total_anticipo_invoiced = 0
