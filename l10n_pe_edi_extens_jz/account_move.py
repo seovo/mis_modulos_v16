@@ -52,7 +52,7 @@ class AccountMove(models.Model):
 
 
     def action_post(self):
-        self.change_date_jz_jz()
+        #self.change_date_jz_jz()
         res = super().action_post()
         if len(self) == 1 :
             if self.edi_document_ids:
