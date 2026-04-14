@@ -375,6 +375,7 @@
            </field>
     </record>
 
+    <!--
 
 
     <record id="sale_order_tree" model="ir.ui.view">
@@ -391,6 +392,8 @@
            </field>
     </record>
 
+    -->
+
 
 
 
@@ -399,6 +402,11 @@
            <field name="model">sale.order</field>
            <field name="inherit_id" ref="sale.view_order_tree" />
            <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='amount_to_invoice']" position="replace" >
+                   <field name="saldo_total_land" optional="hide"/>
+
+               </xpath>
 
 
                <xpath expr="//field[@name='name']" position="after" >
