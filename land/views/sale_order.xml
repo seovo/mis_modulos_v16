@@ -725,11 +725,11 @@
 
 
     <record id="update_mzlt_sale_order" model="ir.actions.server">
-			<field name="name">Actualizar MZ LT</field>
+			<field name="name">Actualizar Cronograma / Info</field>
 			<field name="model_id" ref="land.model_sale_order"/>
 			<field name="binding_model_id" ref="land.model_sale_order"/>
 			<field name="state">code</field>
-			<field name="code">action = records.get_info_land()</field>
+			<field name="code">action = records.update_schedule()</field>
     </record>
 
 
