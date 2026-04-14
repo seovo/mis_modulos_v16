@@ -174,12 +174,12 @@
                    <page string="Cronograma">
 
                        <group>
-                           <group>
+                           <group string="Credito">
                                <field name="price_credit_land" readonly="1" force_save="1" />
                                <field name="total_payment_land" readonly="1" force_save="1" />
                                <field name="saldo_payment_land" readonly="1" force_save="1" />
                            </group>
-                           <group>
+                           <group string="Independización">
                                <!--
                                <field name="journal_id"  />
                                <button name="recreate_schedule" string="Recrear Cronograma" type="object"  />
@@ -190,6 +190,7 @@
                                <field name="price_independence_land"   readonly="1" force_save="1"  />
                                <field name="total_independence_land"   readonly="1" force_save="1"  />
                                <field name="saldo_independence_land"   readonly="1" force_save="1"  />
+                               <field name="saldo_total_land"   readonly="1" force_save="1"  />
                            </group>
 
                        </group>
@@ -375,11 +376,31 @@
     </record>
 
 
+    <record id="sale_order_tree" model="ir.ui.view">
+           <field name="name">sale.order.Form</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.sale_order_tree" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='amount_to_invoice']" position="replace" >
+                   <field name="saldo_total_land" optional="hide"/>
+
+               </xpath>
+
+
+           </field>
+    </record>
+
+
     <record id="view_order_tree" model="ir.ui.view">
            <field name="name">sale.order.Form</field>
            <field name="model">sale.order</field>
            <field name="inherit_id" ref="sale.view_order_tree" />
            <field name="arch" type="xml">
+               <xpath expr="//field[@name='amount_to_invoice']" position="replace" >
+                   <field name="saldo_total_land" optional="hide"/>
+
+               </xpath>
+
                <xpath expr="//field[@name='name']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />

@@ -146,6 +146,7 @@ class SaleOrder(models.Model):
     saldo_payment_land = fields.Float(string='Saldo Cuotas')
     total_independence_land = fields.Float(string='Total Pagado Independización')
     saldo_independence_land = fields.Float(string='Saldo Independización')
+    saldo_total_land = fields.Float(string='Saldo Terreno')
 
 
     commision_lan     = fields.Float(string='Commision Terreno')

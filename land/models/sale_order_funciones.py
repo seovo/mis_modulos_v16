@@ -87,6 +87,8 @@ class SaleOrder(models.Model):
             record.total_independence_land = round(total_independence, 2)
             record.saldo_independence_land = round(record.price_independence_land - total_independence, 2)
 
+            record.saldo_total_land = record.saldo_independence_land + record.saldo_payment_land
+
     def get_schedule_x_year(self,year):
         start_date = date(year, 1, 1)
         end_date = date(year, 12, 31)
