@@ -923,13 +923,14 @@ class SaleOrder(models.Model):
         for record in self:
             stage = None
 
-            total_initial = 0
+            total_initial = se
             total_initial_invoiced = 0
             total_separation_invoiced = 0
             total_anticipo_invoiced = 0
 
             total_dues = 0
             total_dues_invoiced = 0
+
             for line in record.order_line:
 
                 if line.product_id.is_advanced_land and not line.is_due_land :
@@ -947,30 +948,34 @@ class SaleOrder(models.Model):
                     total_anticipo_invoiced += line.qty_invoiced
 
 
+            #ESTADO INICIAL O SEPARACION
 
-            if total_initial_invoiced < total_initial :
+            if total_initial  > 0 :
+                if total_initial_invoiced < total_initial:
 
-                if total_separation_invoiced > 0 :
-                    stage = 'separation'
+                     #SI EXISTE UN MONTO  SEPARADO
+                     if total_separation_invoiced > 0:
+                         stage = 'separation'
 
-                if total_separation_invoiced and total_anticipo_invoiced > 0 :
-                    stage = 'initial'
+                     #SI TIENE SEPARACION Y TAMBIEN ANTICIPO DE INICIAL (POR VER SI ES ANTICIPO DE INCIAL)
+                     if total_separation_invoiced  and total_anticipo_invoiced > 0:
+                         stage = 'initial'
+                     #SI TIENE INICIAL PAGADAS
+                     if total_initial_invoiced > 0:
+                         stage = 'initial'
 
-                if total_initial_invoiced > 0 :
-                    stage = 'initial'
 
+            if total_dues > 0:
 
-            if not stage and total_initial_invoiced > 0:
                 if total_dues_invoiced < total_dues:
                     stage = 'dues'
 
                 if total_dues_invoiced > 0:
                     stage = 'payment'
 
-                #raise ValueError(stage)
-
                 if total_dues_invoiced == total_dues:
                     stage = 'completed'
+
 
             record.stage_payment_lan = stage
 
