@@ -824,9 +824,8 @@ class SaleOrder(models.Model):
                         else:
                             if invoice.invoice_date > date:
                                 date = invoice.invoice_date
-
-            #    date = record.date_first_due_land + relativedelta(months=1)
             record.last_payment_date_land = date
+
 
 
 
@@ -882,7 +881,7 @@ class SaleOrder(models.Model):
 
 
 
-            if date_next and record.qty_dues_payment > 0:
+            if date_next : #and record.qty_dues_payment > 0
                 #diff_month = ((date_now - date_next).days) / 30
                 #hay que cambiar este calculo
                 #diff_month += 1
@@ -895,12 +894,10 @@ class SaleOrder(models.Model):
                     ]
                 )
 
-            if date_next and record.qty_dues_payment == 0:
-                raise ValueError([date_now,date_next])
-                diff_month = ((date_now - date_next).days) / 30
-
-
-            raise ValueError(diff_month)
+            #if date_next and record.qty_dues_payment == 0:
+            #    raise ValueError([date_now,date_next])
+            #    diff_month = ((date_now - date_next).days) / 30
+            #raise ValueError(diff_month)
 
 
 
