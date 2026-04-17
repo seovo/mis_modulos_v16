@@ -896,6 +896,7 @@ class SaleOrder(models.Model):
                 )
 
             if date_next and record.qty_dues_payment == 0:
+                raise ValueError([date_now,date_next])
                 diff_month = ((date_now - date_next).days) / 30
 
 
