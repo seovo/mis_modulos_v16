@@ -92,6 +92,7 @@
                 <field name="large2"  optional="hide" />
                 <field name="background"  optional="hide" />
                 <field name="price"   />
+                <field name="seller_land_id"   />
 
                 <field name="state"
 
