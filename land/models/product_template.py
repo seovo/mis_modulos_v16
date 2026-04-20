@@ -33,30 +33,7 @@ class ProductTemplate(models.Model):
         for line in self.report_lot_land_line_ids:
             if line.mz_value_id:
                 line.manzana = line.mz_value_id.name
-        #orders = self.env['sale.order'].search([])
-        #if orders:
-        #    orders.get_report_lot_land_line_id(self)
 
-        '''
-        mzs = None
-
-        for attribute_line in self.attribute_line_ids:
-            if attribute_line.attribute_id.type_land == 'mz':
-                mzs = attribute_line
-
-        if mzs:
-
-            for mz in mzs.product_template_value_ids:
-
-                if mz.max_lot > 0 and not mz.report_lot_land_line_ids:
-
-                    for n in range(mz.max_lot):
-                        self.env['report.lot.land.line'].create({
-                            'name': n + 1,
-                            'mz_value_id': mz.id,
-                            'product_tmp_id': self.id
-                        })
-        '''
     def open_lots_report(self):
 
         self.update_lots_jz()
@@ -68,7 +45,7 @@ class ProductTemplate(models.Model):
             "view_mode": "tree,form,kanban",
             #"view_id": self.env.ref('land.view_order_form_due').id,
             "res_model": "report.lot.land.line",
-            "res_id": self.id,
+            #"res_id": self.id,
             "target": "current",
             "domain": [('product_tmp_id','=',self.id)] ,
             "context": {
