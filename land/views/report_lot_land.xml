@@ -103,6 +103,7 @@
                        widget="badge" optional="show"/>
                 <field name="order_ids" widget="many2many_tags" optional="show" />
                 <field name="move_ids" widget="many2many_tags" optional="hide" />
+                <field name="product_tmp_id"  optional="hide" />
 
 
 
