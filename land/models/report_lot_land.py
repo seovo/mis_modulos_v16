@@ -124,7 +124,7 @@ class ReportLotLandLine(models.Model):
         (
             "unique_report_lot_land_line",
             "unique(manzana, name , product_tmp_id , area)",
-            "There can be no report.lot.land.line",
+            "No puede repetirse el Lote",
         )
     ]
 
