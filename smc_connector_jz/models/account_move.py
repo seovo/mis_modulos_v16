@@ -29,7 +29,7 @@ class AccountMoveLine(models.Model):
 
 class AccountMove(models.Model):
     _inherit = "account.move"
-    last_sequence_smc = fields.Integer(default=1)
+    last_sequence_smc = fields.Integer(default=0)
     log_smc = fields.Text()
 
     type_negocio_area_smc = fields.Selection([
