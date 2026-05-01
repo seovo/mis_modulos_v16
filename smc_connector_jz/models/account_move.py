@@ -466,7 +466,7 @@ class AccountMove(models.Model):
                 'precio_lista': line_av.product_id.standard_price ,
                 'precio_venta': line_av.price_unit ,
                 'monto_unitario_flete': flete ,
-                'linea_factura': int(line_av.sequence)
+                'linea_factura': int(line_av.sequence_to_smc)
             })
             #<ordenCompra></ordenCompra>
             #<codigoProductoDT>{line_av.product_id.default_code}</codigoProductoDT>
