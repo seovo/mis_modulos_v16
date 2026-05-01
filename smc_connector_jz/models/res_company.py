@@ -38,12 +38,15 @@ class ResCompany(models.Model):
             if domain_add:
                 domain = domain + domain_add
             else:
-                domain.append(
+
+                domain = domain + [
                     ('state_smc', '=', False),
                     ('partner_id.type_negocio_area_smc', '!=', False),
                     ('partner_id.area_empresarial_smc', '!=', False),
                     ('partner_id.clave_colonia_smc', '!=', False)
-                )
+                ]
+
+
 
             moves = self.env['account.move'].search(domain)
             return moves
