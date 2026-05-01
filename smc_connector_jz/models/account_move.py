@@ -22,10 +22,14 @@ try:
 except:
     install('xmltodict')
 
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+    sequence_to_smc = fields.Integer()
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
+    last_sequence_smc = fields.Integer(default=1)
     log_smc = fields.Text()
 
     type_negocio_area_smc = fields.Selection([
@@ -372,8 +376,17 @@ class AccountMove(models.Model):
 
 
 
-        for line in self.line_ids:
+        for line in self.invoice_line_ids:
             if line.product_id.categ_id in  self.company_id.smc_category_ids:
+
+                if not line.sequence_to_smc or line.sequence_to_smc == 0 :
+                    last_sequence_smc = line.move_id.last_sequence_smc + 1
+
+
+                    line.sequence_to_smc =   last_sequence_smc
+
+                    line.move_id.last_sequence_smc = last_sequence_smc
+
                 lines_availables.append(line)
 
         if not lines_availables:
@@ -442,7 +455,7 @@ class AccountMove(models.Model):
                <precioVenta>{line_av.price_unit}</precioVenta>
                <montoUnitarioFlete>{flete}</montoUnitarioFlete>
                <descuentoPorPartida>0</descuentoPorPartida>
-               <lineaFactura>{int(line_av.sequence)}</lineaFactura>
+               <lineaFactura>{int(line_av.sequence_to_smc)}</lineaFactura>
             </item>
             '''
 
