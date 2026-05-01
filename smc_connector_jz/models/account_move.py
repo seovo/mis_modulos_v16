@@ -331,6 +331,8 @@ class AccountMove(models.Model):
 
                     st_smc = 'error'
 
+                    raise ValueError([int(numero_registros_recibidos),mensajes.count('ya fue reportada previamente')])
+
                     if int(numero_registros_recibidos) == mensajes.count('ya fue reportada previamente'):
                         st_smc = 'sent'
 
