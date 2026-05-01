@@ -37,7 +37,8 @@ class AccountMove(models.Model):
     clave_colonia_smc = fields.Many2one('catalogos.colonias',string='Colonia',
                                         related='partner_id.clave_colonia_smc',readonly=False)
     smc_model_ids = fields.One2many('smc.model','move_id')
-    state_smc = fields.Selection([('draft', 'Pendiente'), ('error', 'Error'), ('sent', 'Enviado')],string='Estado SMC')
+    state_smc = fields.Selection([('draft', 'Pendiente'), ('error', 'Error'), ('sent', 'Enviado')],
+                                 string='Estado SMC')
 
     def escape_xml_smc(self,texto):
         return (texto.replace("&", "&amp;")
@@ -122,65 +123,62 @@ class AccountMove(models.Model):
 
     def send_smc_data(self):
 
-        if len(self) == 1:
+        #ESTO ES SOLO PARA UN REGISTRO
 
-            if self.state_smc == 'sent':
-                return
+        if len(self) != 1 :
+            raise ValueError('SOLO ESTA PERMITIDO UN REGISTRO')
 
-            if not self.company_id.smc_active:
-                return
-
-            if self.journal_id not in self.company_id.smc_journal_ids:
-                return
-
-            if self.company_id.smc_date_after:
-                if self.invoice_date < self.company_id.smc_date_after:
-                    return
-
-            if self.partner_id in self.company_id.smc_excluded_partner_ids:
-                return
-
-            incomplete_datos = False
-
-            if not self.clave_colonia_smc:
-                incomplete_datos = True
-
-            if not self.area_empresarial_smc:
-                incomplete_datos = True
-
-            if not self.type_negocio_area_smc:
-                incomplete_datos = True
-
-            if incomplete_datos:
-                view = self.env.ref('smc_connector_jz.view_move_form_smc')
-                return {
-                    "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
-                    "type": "ir.actions.act_window",
-                    "view_mode": "form",
-                    "res_model": "account.move",
-                    "target": "new",
-                    "res_id": self.id,
-                    "view_id": view.id
-                }
-
-
-        if not self.env.company.smc_active:
+        if self.state_smc == 'sent':
             return
+
+        if not self.company_id.smc_active:
+            return
+
+        if self.journal_id not in self.company_id.smc_journal_ids:
+            return
+
+        if self.company_id.smc_date_after:
+            if self.invoice_date < self.company_id.smc_date_after:
+                return
+
+        if self.partner_id in self.company_id.smc_excluded_partner_ids:
+            return
+
+        incomplete_datos = False
+
+        if not self.clave_colonia_smc:
+            incomplete_datos = True
+
+        if not self.area_empresarial_smc:
+            incomplete_datos = True
+
+        if not self.type_negocio_area_smc:
+            incomplete_datos = True
+
+        if incomplete_datos:
+            view = self.env.ref('smc_connector_jz.view_move_form_smc')
+            return {
+                "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
+                "type": "ir.actions.act_window",
+                "view_mode": "form",
+                "res_model": "account.move",
+                "target": "new",
+                "res_id": self.id,
+                "view_id": view.id
+            }
+
 
         invoices = ''
 
-        for record in self:
+        dt = self.send_smc_data_one()
 
-            dt = record.send_smc_data_one()
-
-            if dt:
-                invoices += dt
+        if dt:
+            invoices += dt
 
 
 
         if invoices == '':
-            if len(self) == 1:
-                raise UserError('NO SE ENCONTRO LINEAS DE VENTA')
+            raise UserError('NO SE ENCONTRO LINEAS DE VENTA')
             return
 
         # Ejemplo de uso
@@ -294,7 +292,8 @@ class AccountMove(models.Model):
         numero_registros_recibidos = resultado['numeroRegistrosRecibidos']['#text']
         numero_registros_agregados = resultado['numeroRegistrosAgregados']['#text']
         try:
-            mensajes = resultado['mensajes']['item']['#text']
+            #mensajes = resultado['mensajes']['item']['#text']
+            mensajes = resultado['mensajes']['item']
         except:
             mensajes = str(resultado)
 
@@ -324,6 +323,8 @@ class AccountMove(models.Model):
             smc_model.log_smc = json_responsex
             smc_model.msg = msg
 
+
+            #SI SE ENVIARON REGISTROS
             if int(numero_registros_recibidos) > 0 :
                 st_smc = ''
                 if int(numero_registros_agregados) != int(numero_registros_recibidos):
@@ -344,13 +345,7 @@ class AccountMove(models.Model):
 
     def send_smc_data_one(self):
 
-        dx = {
-            # 'cliente':
-
-        }
-
-
-
+        dx = {}
 
         lines_availables = []
 
@@ -412,8 +407,6 @@ class AccountMove(models.Model):
 
             if name_product:
                 name_product = name_product.replace(' ','')
-
-
 
             #if not code_japon or code_japon == '':
             #    raise UserError(f'''INDIQUE CODIGO JAPON PARA {name_product}''')
