@@ -333,8 +333,17 @@ class AccountMove(models.Model):
 
                     #raise ValueError([int(numero_registros_recibidos),str(mensajes).count('ya fue reportada previamente'),mensajes])
 
-                    if int(numero_registros_recibidos) == str(mensajes).count('ya fue reportada previamente'):
+                    mensajes_str =  str(mensajes)
+
+                    if int(numero_registros_recibidos) == mensajes_str.count('ya fue reportada previamente'):
                         st_smc = 'sent'
+
+                    if 'enviando no existe en los registros' in mensajes_str:
+                        st_smc = 'error'
+
+                    if 'indicado como obligatorio' in mensajes_str:
+                        st_smc = 'error'
+
 
 
                 else:
