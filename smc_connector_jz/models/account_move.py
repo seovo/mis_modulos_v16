@@ -433,7 +433,7 @@ class AccountMove(models.Model):
                 name_product = name_product.replace(' ','')
 
                 if len(name_product) < 6:
-                    raise UserError(f'''El codigoInterno no debe ser menor a 6 digitos , {name_product} ''')
+                    raise UserError(f'''El codigoInterno no debe ser menor a 6 digitos : {name_product} ''')
 
             #if not code_japon or code_japon == '':
             #    raise UserError(f'''INDIQUE CODIGO JAPON PARA {name_product}''')
