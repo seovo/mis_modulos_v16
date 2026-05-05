@@ -15,7 +15,7 @@
     #"price": 150.00,
     #"currency": "USD",
     # any module necessary for this one to work correctly
-    "depends": ["base","account","catalogos_cfdi"],
+    "depends": ["sale_management"],
     # always loaded
     "data": [
         'security/ir.model.access.csv',
