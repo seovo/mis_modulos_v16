@@ -43,10 +43,10 @@ class SaleOrder(models.Model):
             excede_limit = limit_credit <  sum_total
 
             if excede_limit:
-                msg = f'''El cliente {self.partner_id.display_name}  ah excedido el limite de credito 
-                tiene una deuda de {amount_residual_signed} + el valor de venta actual {monto_actual}
-                sumando un total de credito de  {sum_total} 
-                '''
+                msg = f"El cliente {self.partner_id.display_name}  ah excedido el limite de credito "
+                msg += f"tiene una deuda de {amount_residual_signed} + el valor de venta actual {monto_actual} "
+                msg += f"sumando un total de credito de  {sum_total} "
+
                 raise UserError(msg)
 
             #raise ValueError([excede_limit,limit_credit, sum_total , self.amount_total  , amount_residual_signed  ])
