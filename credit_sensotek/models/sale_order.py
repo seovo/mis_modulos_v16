@@ -43,8 +43,7 @@ class SaleOrder(models.Model):
             excede_limit = limit_credit <  sum_total
 
             if excede_limit:
-                msg = f'''
-                El cliente {self.partner_id.display_name}  ah excedido el limite de credito 
+                msg = f'''El cliente {self.partner_id.display_name}  ah excedido el limite de credito 
                 tiene una deuda de {amount_residual_signed} + el valor de venta actual {monto_actual}
                 sumando un total de credito de  {sum_total} 
                 '''
