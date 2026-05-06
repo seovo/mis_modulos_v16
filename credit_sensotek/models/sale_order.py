@@ -42,7 +42,7 @@ class SaleOrder(models.Model):
             moneda_compañia = self.company_id.currency_id
 
             if moneda_compañia != moneda_venta :
-                raise ValueError('Moneda Diferente')
+                monto_actual = moneda_venta._convert( monto_actual, moneda_compañia, self.order_id.company_id or self.env.company, self.date_order or fields.Date.today())
 
 
 
