@@ -1,5 +1,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from datetime import date
 
 class AccountMove(models.Model):
     _inherit = "account.move"
