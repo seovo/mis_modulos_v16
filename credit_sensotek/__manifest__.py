@@ -17,15 +17,7 @@
     # any module necessary for this one to work correctly
     "depends": ["sale_management"],
     # always loaded
-    "data": [
-        'security/ir.model.access.csv',
-        'views/account_move.xml',
-        'views/res_company.xml',
-        'views/res_partner.xml',
-        'views/smc_model.xml',
-        'data/cron.xml'
-
-    ],
+    "data": [],
     "license": "LGPL-3"
     #'images': ['static/description/odoo-mercadolibre.gif'],
 }
