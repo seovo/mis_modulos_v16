@@ -17,7 +17,9 @@
     # any module necessary for this one to work correctly
     "depends": ["sale_management"],
     # always loaded
-    "data": [],
+    "data": [
+        'security/group.xml'
+    ],
     "license": "LGPL-3"
     #'images': ['static/description/odoo-mercadolibre.gif'],
 }

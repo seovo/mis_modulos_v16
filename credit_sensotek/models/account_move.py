@@ -7,7 +7,7 @@ class AccountMove(models.Model):
 
     def action_post(self):
 
-        if len(self) == 1 :
+        if len(self) == 1 and self.env.user.sudo().has_group('credit_sensotek.group_alert_credit') :
             if self.type == 'out_invoice' :
                 limit_credit = self.partner_id.credit_limit
 
