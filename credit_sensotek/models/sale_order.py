@@ -38,14 +38,22 @@ class SaleOrder(models.Model):
 
             monto_actual = self.amount_total
 
-            sum_total = self.amount_total + amount_residual_signed
+            moneda_venta = self.currency_id
+            moneda_compañia = self.company_id.currency_id
+
+            if moneda_compañia != moneda_venta :
+                raise ValueError('Moneda Diferente')
+
+
+
+            sum_total = monto_actual + amount_residual_signed
 
             sum_total = round(sum_total,2)
 
             excede_limit = limit_credit <  sum_total
 
             if excede_limit:
-                msg = f"El cliente {self.partner_id.display_name}  ah excedido el limite de credito "
+                msg = f"El cliente {self.partner_id.display_name}  ah excedido el limite de credito ({limit_credit})"
                 msg += f"tiene una deuda de {amount_residual_signed} + el valor de venta actual {monto_actual} "
                 msg += f"sumando un total de credito de  {sum_total} "
 
