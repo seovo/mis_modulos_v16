@@ -17,7 +17,8 @@ class SaleOrder(models.Model):
             moves = self.env['account.move'].search([
                 ('invoice_date_due', '<', today),
                 ('state', '=', 'posted'),
-                ('invoice_payment_state', '=', 'not_paid')
+                ('invoice_payment_state', '=', 'not_paid'),
+                ('company_id','=',self.company_id.id)
             ])
 
             raise ValueError(moves)
