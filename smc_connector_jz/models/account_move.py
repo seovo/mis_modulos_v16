@@ -74,7 +74,7 @@ class AccountMove(models.Model):
                 if not self.type_negocio_area_smc:
                     incomplete_datos = True
 
-                if incomplete_datos:
+                if incomplete_datos and exist_categ_smc:
                     view = self.env.ref('smc_connector_jz.view_move_form_smc')
                     return {
                         "name": f"COMPLETAR DATOS :   {self.partner_id.display_name}",
