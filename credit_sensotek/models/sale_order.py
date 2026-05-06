@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
 
         limit_credit = self.partner_id.credit_limit
 
-        if self.parent_id:
+        if self.partner_id.parent_id:
             limit_credit = self.partner_id.parent_id.credit_limit
 
         if limit_credit != 0 :
