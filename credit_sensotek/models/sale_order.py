@@ -14,13 +14,13 @@ class SaleOrder(models.Model):
         if limit_credit != 0 :
             today = date.today()
 
-            raise ValueError(today)
-
             moves = self.env['account.move'].search([
                 ('invoice_date_due', '<', today),
                 ('state', '=', 'posted'),
                 ('invoice_payment_state', '=', 'not_paid')
             ])
+
+            raise ValueError(moves)
 
         res = super().action_confirm()
 
