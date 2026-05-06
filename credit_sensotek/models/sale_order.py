@@ -30,7 +30,12 @@ class SaleOrder(models.Model):
                 ('company_id','=',self.company_id.id)
             ])
 
-            raise ValueError(moves)
+            amount_residual_signed = 0
+
+            for move in moves:
+                amount_residual_signed += move.amount_residual_signed
+
+            raise ValueError(amount_residual_signed)
 
         res = super().action_confirm()
 
