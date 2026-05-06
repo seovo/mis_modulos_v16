@@ -40,6 +40,8 @@ class SaleOrder(models.Model):
 
             sum_total = self.amount_total + amount_residual_signed
 
+            sum_total = round(sum_total,2)
+
             excede_limit = limit_credit <  sum_total
 
             if excede_limit:
