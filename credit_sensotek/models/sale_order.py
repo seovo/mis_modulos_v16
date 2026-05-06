@@ -14,7 +14,15 @@ class SaleOrder(models.Model):
         if limit_credit != 0 :
             today = date.today()
 
+            partner_ids = [self.partner_id.id]
+
+            if self.partner_id.parent_id:
+                partner_ids.append(self.partner_id.parent_id.id)
+
+
+
             moves = self.env['account.move'].search([
+                ('partner_id','in',partner_ids)
                 ('invoice_date_due', '<', today),
                 ('state', '=', 'posted'),
                 ('invoice_payment_state', '=', 'not_paid'),
