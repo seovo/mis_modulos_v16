@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
 
 
             moves = self.env['account.move'].search([
-                ('partner_id','in',partner_ids)
+                ('partner_id','in',partner_ids) ,
                 ('invoice_date_due', '<', today),
                 ('state', '=', 'posted'),
                 ('invoice_payment_state', '=', 'not_paid'),
