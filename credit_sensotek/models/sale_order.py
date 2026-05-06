@@ -1,5 +1,6 @@
 from odoo import api, fields, models
 from datetime import date
+from odoo.exceptions import UserError
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -35,11 +36,21 @@ class SaleOrder(models.Model):
             for move in moves:
                 amount_residual_signed += move.amount_residual_signed
 
+            monto_actual = self.amount_total
+
             sum_total = self.amount_total + amount_residual_signed
 
             excede_limit = limit_credit <  sum_total
 
-            raise ValueError([excede_limit,limit_credit, sum_total , self.amount_total  , amount_residual_signed  ])
+            if excede_limit:
+                msg = f'''
+                El cliente {self.parner_id.display_name}  ah excedido el limite de credito 
+                tiene una deuda de {self.amount_residual_signed} + el valor de venta actual {monto_actual}
+                sumando un total de credito de  {sum_total} 
+                '''
+                raise UserError(msg)
+
+            #raise ValueError([excede_limit,limit_credit, sum_total , self.amount_total  , amount_residual_signed  ])
 
         res = super().action_confirm()
 
