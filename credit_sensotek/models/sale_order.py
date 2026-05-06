@@ -35,7 +35,11 @@ class SaleOrder(models.Model):
             for move in moves:
                 amount_residual_signed += move.amount_residual_signed
 
-            raise ValueError(amount_residual_signed)
+            sum_total = self.amount_total + amount_residual_signed
+
+            excede_limit = limit_credit <  sum_total
+
+            raise ValueError([excede_limit,limit_credit, sum_total , self.amount_total  , amount_residual_signed  ])
 
         res = super().action_confirm()
 
