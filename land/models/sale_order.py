@@ -468,9 +468,6 @@ class SaleOrder(models.Model):
 
 
 
-
-
-
     @api.depends('order_line', 'invoice_ids', 'invoice_ids.state','date_first_due_land','date_first_due_land')
     def update_schedule(self):
         for record in self:

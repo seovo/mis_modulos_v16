@@ -596,6 +596,9 @@ class SaleOrder(models.Model):
         if self.days_expired_land:
             res['days_expired_land'] = self.days_expired_land
             res['value_mora_land'] = self.value_mora_land
+
+        res['invoice_payment_term_id'] =  self.env.ref('account.account_payment_term_immediate').id
+
         return res
 
     def print_report_schedule_excell(self):
