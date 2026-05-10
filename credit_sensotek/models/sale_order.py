@@ -62,6 +62,7 @@ class SaleOrder(models.Model):
 
 
 
+
         res = super().action_confirm()
 
         return res
