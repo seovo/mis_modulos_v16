@@ -15,10 +15,11 @@ class SaleOrderLine(models.Model):
     purchase_qty_received = fields.Float(compute='get_data_report_time', string="Compra Cant Recibida")
     purchase_product_uom_qty = fields.Float(compute='get_data_report_time', string="Compra Cant Total")
     purchase_date_planned = fields.Datetime(compute='get_data_report_time', string="Fecha Prevista")
-    purchase_partner_id = fields.Many2one('res.partner', compute='get_data_report_time', string="Proveedor")
-    purchase_currency_id = fields.Many2one('res.currency', compute='get_data_report_time', string="Compra Moneda")
+    purchase_partner_id    = fields.Many2one('res.partner', compute='get_data_report_time', string="Proveedor")
+    purchase_currency_id   = fields.Many2one('res.currency', compute='get_data_report_time', string="Compra Moneda")
     purchase_paqueteria    = fields.Char(string="Paqueteria", compute='get_data_report_time')
     purchase_guia_envio    = fields.Char(string="Guia de Envio", compute='get_data_report_time')
+    qty_to_deliver_store   = fields.Float(related='qty_to_deliver',store=True)
 
     def get_data_report_time(self):
         for record in self:

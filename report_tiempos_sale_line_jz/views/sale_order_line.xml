@@ -61,5 +61,5 @@
     </record>
 
     <menuitem action="action_sale_order_line_tree" id="menu_sale_order_line"
-              parent="sale.sale_order_menu" />
+              parent="sale.sale_order_menu"   name="Reporte General" />
 </odoo>
