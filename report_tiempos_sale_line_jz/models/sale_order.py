@@ -19,6 +19,7 @@ class SaleOrderLine(models.Model):
     purchase_currency_id   = fields.Many2one('res.currency', compute='get_data_report_time', string="Compra Moneda")
     purchase_paqueteria    = fields.Char(string="Paqueteria", compute='get_data_report_time')
     purchase_guia_envio    = fields.Char(string="Guia de Envio", compute='get_data_report_time')
+
     qty_to_deliver_store   = fields.Float(related='qty_to_deliver',store=True)
 
     def get_data_report_time(self):
