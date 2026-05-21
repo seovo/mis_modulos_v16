@@ -37,7 +37,7 @@ class SaleReport(models.Model):
     purchase_create_date     = fields.Datetime(related='sale_line_id.purchase_create_date',string="Fecha Creada Compra")
     purchase_date_order      = fields.Datetime(related='sale_line_id.purchase_date_order', string="Fecha Compra")
     purchase_create_uid      = fields.Many2one('res.users', related='sale_line_id.purchase_create_uid', string="Compra creado por")
-    purchase_product_qty     = fields.Float(related='sale_line_id.purchase_create_uid', string="Compra Cantidad")
+    purchase_product_qty     = fields.Float(related='sale_line_id.purchase_product_qty', string="Compra Cantidad")
     purchase_price_unit      = fields.Float(related='sale_line_id.purchase_price_unit', string="Compra P. Unit")
     purchase_qty_received    = fields.Float(related='sale_line_id.purchase_qty_received', string="Compra Cant Recibida")
     purchase_product_uom_qty = fields.Float(related='sale_line_id.purchase_product_uom_qty', string="Compra Cant Total")
