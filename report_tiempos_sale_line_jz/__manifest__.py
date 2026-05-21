@@ -14,6 +14,7 @@
     # always loaded
     "data": [
         'views/sale_order_line.xml',
+        'views/sale_report_sensotek.xml',
     ],
     # 'images': ['static/description/odoo-woo.gif'],
 }

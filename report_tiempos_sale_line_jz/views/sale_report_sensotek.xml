@@ -1,0 +1,66 @@
+<odoo>
+
+    <record model="ir.ui.view" id="sale_report_sensotek_tree" >
+        <field name="name">sale.report.sensotek.tree</field>
+        <field name="model">sale.report.sensotek</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+
+                <field name="user_id" string="Vendedor" optional="show" readonly="1" />
+                <field name="partner_id"  optional="show" readonly="1"  />
+                <field name="order_id"  optional="show" readonly="1"  />
+                <field name="client_order_ref"  optional="show" readonly="1"  />
+                <field name="state"  optional="show" readonly="1"  />
+                <field name="product_id"  optional="show" readonly="1"  />
+                <field name="customer_lead"  optional="show" readonly="1"  />
+                <field name="product_uom_qty"  optional="show" readonly="1"  />
+                <field name="qty_delivered"  optional="show" readonly="1"  />
+                <field name="qty_to_deliver"  optional="show" readonly="1"  />
+                <field name="qty_invoiced"  optional="show" readonly="1"  />
+                <field name="qty_to_invoice"  optional="show" readonly="1"  />
+                <field name="free_qty_today"  optional="show" readonly="1"  />
+                <field name="create_date"  optional="show" readonly="1"  />
+                <field name="purchase_id"  optional="show" readonly="1"  />
+                <field name="purchase_create_date"  optional="show" readonly="1"  />
+                <field name="purchase_date_order"  optional="show" readonly="1"  />
+                <field name="purchase_create_uid"  optional="show" readonly="1"  />
+                <field name="purchase_partner_id"  optional="show" readonly="1"  />
+                <field name="purchase_date_planned"  optional="show" readonly="1"  />
+                <field name="purchase_product_qty"  optional="show" readonly="1"  />
+                <field name="purchase_price_unit"  optional="show" readonly="1"  />
+                <field name="purchase_currency_id"  optional="show" readonly="1"  />
+                <field name="purchase_qty_received"  optional="show" readonly="1"  />
+                <field name="purchase_product_uom_qty"  optional="show" readonly="1"  />
+                <field name="purchase_paqueteria"  optional="show" readonly="1"  />
+                <field name="purchase_guia_envio"  optional="show" readonly="1"  />
+                <field name="company_id" optional="show"  readonly="1"/>
+
+
+
+
+<!--
+                <field name="default_code"  readonly="1" />
+                <field name="move_reference"  readonly="1" />
+                -->
+
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_sale_report_sensotek" model="ir.actions.act_window">
+        <field name="name">Seguimiento a OC.</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.report.sensotek</field>
+        <field name="view_mode">tree</field>
+        <!--
+        <field name="view_id" ref="report_tiempos_sale_line_jz.report_time" />
+        -->
+
+    </record>
+
+    <menuitem action="action_sale_report_sensotek" id="menu_sale_report_sensotek"
+              parent="sale.sale_order_menu"   name="Seguimiento a OC." />
+</odoo>
