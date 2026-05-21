@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo import tools
 
 state_sales = [
         ('draft', 'Draft Quotation'),
