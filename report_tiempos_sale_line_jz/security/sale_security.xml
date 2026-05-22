@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+
     <record model="ir.rule" id="sale_stk_report_comp_rule">
         <field name="name">Sales Report Sensotek multi-company</field>
         <field name="model_id" ref="model_sale_report_sensotek"/>
