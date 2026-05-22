@@ -6,7 +6,7 @@
         <field name="name">Sales Report Sensotek multi-company</field>
         <field name="model_id" ref="model_sale_report_sensotek"/>
         <field name="global" eval="True"/>
-        <field name="domain_force">[('company_id', 'in', user.company_rstk_ids)]</field>
+        <field name="domain_force">[('company_id', 'in', user.company_rstk_ids.ids)]</field>
     </record>
 
 
