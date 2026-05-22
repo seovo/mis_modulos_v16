@@ -14,6 +14,7 @@
     # always loaded
     "data": [
         'security/ir.model.access.csv',
+        'security/sale_security.xml',
         'views/sale_order_line.xml',
         'views/sale_report_sensotek.xml',
     ],
