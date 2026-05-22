@@ -2,4 +2,4 @@ from odoo import api, fields, models
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
-    company_rstk_ids = fields.Many2many('res.company')
+    company_rstk_ids = fields.Many2many('res.company',"Compañias Permitidas Reporte Sensotek")

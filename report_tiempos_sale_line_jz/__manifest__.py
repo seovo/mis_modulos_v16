@@ -17,6 +17,7 @@
         'security/sale_security.xml',
         'views/sale_order_line.xml',
         'views/sale_report_sensotek.xml',
+        'views/res_users.xml',
     ],
     # 'images': ['static/description/odoo-woo.gif'],
 }
