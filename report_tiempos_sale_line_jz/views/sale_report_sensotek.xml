@@ -12,27 +12,6 @@
                 <field name="client_order_ref"  optional="show" readonly="1"  />
                 <field name="state"  optional="show" readonly="1"  />
                 <field name="product_id"  optional="show" readonly="1"  />
-                <field name="customer_lead"  optional="show" readonly="1"  />
-                <field name="product_uom_qty"  optional="show" readonly="1"  />
-                <field name="qty_delivered"  optional="show" readonly="1"  />
-                <field name="qty_to_deliver"  optional="show" readonly="1"  />
-                <field name="qty_invoiced"  optional="show" readonly="1"  />
-                <field name="qty_to_invoice"  optional="show" readonly="1"  />
-                <field name="free_qty_today"  optional="show" readonly="1"  />
-                <field name="create_date"  optional="show" readonly="1"  />
-                <field name="purchase_id"  optional="show" readonly="1"  />
-                <field name="purchase_create_date"  optional="show" readonly="1"  />
-                <field name="purchase_date_order"  optional="show" readonly="1"  />
-                <field name="purchase_create_uid"  optional="show" readonly="1"  />
-                <field name="purchase_partner_id"  optional="show" readonly="1"  />
-                <field name="purchase_date_planned"  optional="show" readonly="1"  />
-                <field name="purchase_product_qty"  optional="show" readonly="1"  />
-                <field name="purchase_price_unit"  optional="show" readonly="1"  />
-                <field name="purchase_currency_id"  optional="show" readonly="1"  />
-                <field name="purchase_qty_received"  optional="show" readonly="1"  />
-                <field name="purchase_product_uom_qty"  optional="show" readonly="1"  />
-                <field name="purchase_paqueteria"  optional="show" readonly="1"  />
-                <field name="purchase_guia_envio"  optional="show" readonly="1"  />
                 <field name="company_id" optional="show"  readonly="1"/>
 
                 <group expand="0" string="Group By">
