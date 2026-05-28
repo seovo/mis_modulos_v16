@@ -83,9 +83,9 @@
                 <field name="mz_value_id" optional="hide" />
                 <field name="manzana"   />
                 <field name="name"   />
-                <field name="zona"    />
+                <field name="zona" domain="[('company_id','=',company_id)]"   />
                 <field name="company_id" invisible="1" />
-                <field name="ettapa"  domain="[('company_id','=',company_id)]" />
+                <field name="ettapa"   />
                 <field name="shape"   />
                 <field name="area"   />
                 <field name="front"   optional="hide" />
