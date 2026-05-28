@@ -6,6 +6,7 @@ from datetime import date
 class LandZona(models.Model):
     _name        = 'land.zona'
     _description = 'land.zona'
+    active = fields.Boolean(default=True)
     name  = fields.Char(required=True)
     value = fields.Float()
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
