@@ -84,7 +84,7 @@
                 <field name="manzana"   />
                 <field name="name"   />
                 <field name="zona" domain="[('company_id','=',company_id)]"   />
-                <field name="company_id" invisible="1" />
+                <field name="company_id" column_invisible="1" />
                 <field name="ettapa"   />
                 <field name="shape"   />
                 <field name="area"   />
