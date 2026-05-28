@@ -35,6 +35,7 @@ class ReportLotLandLine(models.Model):
     order_ids          = fields.One2many('sale.order','report_lot_land_line_id',string="Ventas")
     move_ids           = fields.One2many('account.move','report_lot_land_line_id',string="Separaciones")
     product_tmp_id     = fields.Many2one('product.template', string='Producto',required=True)
+    company_id         = fields.Many2one('res.company',related='product_tmp_id.company_id')
     state              = fields.Selection([('sale','Vendido'),('free','Libre'),('reserved','Separado')],
                                            compute='get_state',store=True,string="Estado")
     seller_land_id    = fields.Many2one('seller.land', string="Proveedor Terreno",  copy=False)

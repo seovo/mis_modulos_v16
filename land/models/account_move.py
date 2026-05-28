@@ -159,9 +159,9 @@ class AccountMove(models.Model):
         '''
 
 
-    def update_all_moves(self):
-        moves = self.env['account.move'].search([])
-        moves[11000:12000].get_proveedores_land()
+    #def update_all_moves(self):
+    #    moves = self.env['account.move'].search([])
+    #    moves[11000:12000].get_proveedores_land()
 
 
     @api.onchange('mz_land_separation_id', 'lot_land_separation_id')

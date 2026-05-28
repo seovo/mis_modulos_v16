@@ -76,7 +76,7 @@
                     decoration-success="state in ['free']"
                     decoration-warning="state in ['reserved']"
 
-                    editable="bottom" >
+                    editable="top" >
 
                 <!-- decoration-info="state in ['draft', 'sent']" decoration-muted="state == 'cancel'" -->
 
@@ -84,7 +84,8 @@
                 <field name="manzana"   />
                 <field name="name"   />
                 <field name="zona"    />
-                <field name="ettapa"   />
+                <field name="company_id" invisible="1" />
+                <field name="ettapa"  domain="[('company_id','=',company_id)]" />
                 <field name="shape"   />
                 <field name="area"   />
                 <field name="front"   optional="hide" />
