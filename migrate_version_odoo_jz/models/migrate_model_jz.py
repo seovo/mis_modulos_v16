@@ -222,6 +222,8 @@ class MigrateModelJz(models.Model):
         if self.migrate_id.from_version == 12:
             if self.table == 'product_attribute_value_product_product_rel':
                 self.insert_product_variant_combination( cursor, table, column_names)
+            else:
+                self.insert_record_migrate(cursor, table, column_names)
         else:
             self.insert_record_migrate(cursor, table, column_names)
 

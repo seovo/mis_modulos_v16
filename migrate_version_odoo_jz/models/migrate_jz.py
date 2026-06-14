@@ -309,9 +309,12 @@ class MigrateJz(models.Model):
 
             text_tax = self.text_tax
 
-            text_tax = text_tax.replace('account_tax_id','tax_id')
+            if text_tax:
+                text_tax = text_tax.replace('account_tax_id', 'tax_id')
 
-            jfiels2.value_set = text_tax
+                jfiels2.value_set = text_tax
+
+
 
         location_fields = self.env['migrate.model.columns.jz'].search([('name','=','location_id')])
 
