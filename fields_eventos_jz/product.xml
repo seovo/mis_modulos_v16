@@ -1,0 +1,21 @@
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+           <field name="name">product.template.Form</field>
+           <field name="model">product.template</field>
+           <field name="inherit_id" ref="product.product_template_form_view" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='product_variant_id']" position="after" >
+                   <field name="marca" />
+                   <field name="modelo" />
+                   <field name="serie" />
+                   <field name="nombre_corto" />
+
+               </xpath>
+           </field>
+    </record>
+
+
+
+
+
+</odoo>

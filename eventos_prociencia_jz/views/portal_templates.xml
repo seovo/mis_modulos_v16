@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="portal_my_home_menu" name="Portal layout : pickings menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+
+            <t t-if="page_name == 'picking'">
+                <li  t-attf-class="breadcrumb-item #{'active ' if not picking else ''}">
+                   <a t-if="picking" t-attf-href="/my/checklist?{{ keep_query() }}">Mis Traslados</a>
+                   <t t-else="">Mis Traslados</t>
+                </li>
+                <li t-if="picking" class="breadcrumb-item active">
+                  <t t-out="picking.name"/>
+                </li>
+            </t>
+
+
+
+        </xpath>
+    </template>
+
+    <template id="portal_my_home" name="Check List" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
+
+
+
+        <div id="portal_vendor_category" position="inside">
+
+            <t t-call="portal.portal_docs_entry">
+                <!--<t t-set="icon" t-value="'/eventos_prociencia_jz/static/src/img/check_list.svg'"/> -->
+                <t t-set="title">Mis Traslados</t>
+                <t t-set="text">Verifica la Salida-Ingreso de Equipos</t>
+                <t t-set="url" t-value="'/my/checklist'"/>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+
+
+
+
+        </div>
+
+    </template>
+
+    <template id="portal_my_pickings" name="My Pickings">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Mis Traslados</t>
+            </t>
+            <div t-if="not pickings" class="alert alert-warning" role="alert">
+                No se encontraron traslados
+            </div>
+
+
+
+
+            <div class="row">
+                <t t-foreach="pickings" t-as="picking">
+                    <div class="col-sm-6">
+                       <div class="card">
+                          <div class="card-body">
+                             <h5 class="card-title" t-if="picking.name_event">
+                                 <t t-out="picking.name_event"/>
+                             </h5>
+                             <h5 class="card-subtitle mb-2 text-muted"><t t-out="picking.name"/></h5>
+                             <p class="card-text">
+                                 <span t-field="picking.date_event" t-options="{'widget': 'date'}"/>&amp;nbsp;
+                                 <span t-field="picking.date_event" t-options="{'time_only': True}"/>
+                             </p>
+                             <div class="">
+
+                            <span t-if="picking.state_event == 'in_progress'"  class="badge rounded-pill text-bg-primary">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="En Progreso"/>En Progreso
+                            </span>
+
+                            <span t-if="picking.state_event == 'embarked'"  class="badge rounded-pill text-bg-warning">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Embarcado"/>Embarcado
+                            </span>
+
+                            <span t-if="picking.state_event == 'collect'"  class="badge rounded-pill text-bg-info">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Embarcado"/>Transportado
+                            </span>
+
+                            <span t-if="picking.state_event == 'done'"  class="badge rounded-pill text-bg-success">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Done"/>Recepcionado
+                            </span>
+                        </div>
+                             <a t-att-href="picking.get_checklist_url()" class="btn bg-dark text-white">
+                                 <span>CheckList</span>
+                                 <!--
+                                 <t t-if="picking.picking_type_id.code == 'incoming'">
+                                    <span>CheckList Recojo</span>
+                                </t>
+                                <t t-if="picking.picking_type_id.code == 'outgoing'">
+                                    <span>CheckList Envio</span>
+                                </t>
+                                 -->
+                             </a>
+                          </div>
+                       </div>
+                    </div>
+                </t>
+             </div>
+
+        </t>
+    </template>
+
+    <!-- Complete page of the sale_order -->
+    <template id="picking_portal_template" name="Sales Order Portal Template"
+              inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+
+
+
+            <!--
+            <t t-set="o_portal_fullwidth_alert" groups="sales_team.group_sale_salesman">
+
+                <t t-call="portal.portal_back_in_edit_mode"/>
+            </t>
+            -->
+
+            <div class="row mt16 o_portal_sale_sidebar">
+                <!-- Sidebar -->
+
+                <t t-call="portal.portal_record_sidebar">
+
+
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+
+                    <t t-set="title">
+                        <h4 class="mb-0">
+                            <b t-field="picking.name_event" />
+                        </h4>
+
+
+
+
+                    </t>
+
+                    <t t-set="entries">
+                        <h6>
+                        <span t-if="picking.state_event == 'in_progress'"  class="badge rounded-pill text-bg-primary">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="En Progreso"/>En Progreso
+                            </span>
+
+                            <span t-if="picking.state_event == 'embarked'"  class="badge rounded-pill text-bg-warning">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Embarcado"/>Embarcado
+                            </span>
+
+                            <span t-if="picking.state_event == 'collect'"  class="badge rounded-pill text-bg-info">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Embarcado"/>Recogido
+                            </span>
+
+                            <span t-if="picking.state_event == 'done'"  class="badge rounded-pill text-bg-success">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Done"/>Recepcionado
+                            </span>
+                    </h6>
+
+
+                    </t>
+
+
+
+
+                </t>
+
+
+                <!-- Page content -->
+
+
+                <div id="quote_content" class="col-12 col-lg justify-content-end">
+
+
+
+
+
+                    <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}" id="portal_sale_content">
+                        <!--
+                        <div t-call="sale.sale_order_portal_content" />
+                        -->
+
+                        <style>
+                            @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/*Page styles*/
+
+
+.boxes {
+  margin: auto;
+  padding: 15px;
+  /* background: #484848;*/
+}
+
+/*Checkboxes styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  color: black ;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #303679;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+                        </style>
+
+                        <div class="card-body" >
+                            <div class="container checklist_jz">
+	                           <div class="row">
+	                              <div class="boxes">
+                                      <t t-foreach="picking.event_line_ids" t-as="line">
+
+                                          <t t-set="continue_line" t-value="True" />
+
+                                          <t t-if="picking.state_event == 'embarked' and not line.check1 and not line.display_type">
+                                              <t t-set="continue_line" t-value="False" />
+                                          </t>
+
+                                          <t t-if="picking.state_event == 'collect' and not line.check2  and not line.display_type">
+                                              <t t-set="continue_line" t-value="False" />
+                                          </t>
+
+                                          <t t-if="picking.state_event == 'done' and not line.check2  and not line.display_type">
+                                              <t t-set="continue_line" t-value="False" />
+                                          </t>
+
+                                          <t t-if="continue_line">
+                                              <t t-if="not line.display_type" >
+                                                  <t t-if="line.check" >
+                                                 <input type="checkbox"  checked="1"
+                                                     t-if="picking.state_event != 'done'"
+                                                     t-att-data-id="line.id" t-att-id="line.id"/>
+
+                                                 <input type="checkbox"  checked="1" disabled="1"
+                                                     t-if="picking.state_event == 'done'"
+                                                     t-att-data-id="line.id" t-att-id="line.id"/>
+
+                                              </t>
+
+                                                  <t t-if="not line.check" >
+                                                     <input type="checkbox"
+                                                        t-if="picking.state_event != 'done'"
+                                                        t-att-data-id="line.id" t-att-id="line.id" />
+
+                                                    <input type="checkbox"  disabled="1"
+                                                        t-if="picking.state_event == 'done'"
+                                                        t-att-data-id="line.id" t-att-id="line.id" />
+                                                 </t>
+
+                                              </t>
+
+
+
+                                              <label t-att-for="line.id" >
+                                                  <t t-esc="line.quantity" t-if="line.product_id" class="mr-2" />
+                                                  <t t-esc="line.product_id.name" t-if="line.product_id" />
+                                                  <t t-esc="line.name"  t-if="not line.product_id"  />
+
+                                                  <span  t-if="line.is_external" class="rounded border border-info p-1" >Externo</span>
+
+
+                                              </label>
+
+                                          </t>
+
+
+                                      </t>
+                                  </div>
+                               </div>
+                               <button type="button"
+                                t-if="picking.state_event in ['in_progress','embarked','collect']"
+                                t-att-data-id="picking.id"
+                                t-att-data-state="picking.state_event"
+                                id="btnstate"
+                                class="btn btn-primary">
+                                        <t t-if="picking.state_event == 'in_progress'">Embarcar</t>
+                                        <t t-if="picking.state_event == 'embarked'">Recoger</t>
+                                        <t t-if="picking.state_event == 'collect'">Recepcionar</t>
+
+                              </button>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <div id="sale_order_communication" class="mt-4">
+                        <h2>History</h2>
+                        <t t-call="portal.message_thread"/>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </xpath>
+    </template>
+
+
+
+
+</odoo>

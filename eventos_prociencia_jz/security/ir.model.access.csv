@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+place_event,place_event,model_place_event,,1,1,1,1
+linesevent,linesevent,model_sale_order_items_event,,1,1,1,1
+ventas,ventas,model_sale_order,,1,1,0,0
+payment_sale_order,payment_sale_order,model_payment_sale_order,,1,1,1,1

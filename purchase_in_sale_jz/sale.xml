@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.view_order_form" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//page[@name='order_lines']" position="after" >
+
+                   <page string="Compras" name="purchase_sale">
+                       <field name="purchase_order_line_ids"   >
+                           <tree  editable="bottom" >
+                               <field name="company_id" column_invisible="True"/>
+                               <field name="product_id" domain="[('purchase_ok', '=', True)]" optional="hide" />
+                               <field name="name" />
+                               <field name="product_qty" />
+                               <field name="price_unit" />
+                               <field name="taxes_id"  widget="many2many_tags"
+                                      optional="show"
+                                      domain="[('type_tax_use', '=', 'purchase'), ('company_id', 'parent_of', parent.company_id), ('country_id', '=', parent.tax_country_id)]"  />
+                               <field name="price_total" sum="Total" />
+                               <field name="serie_jz" />
+                               <field name="numeral_jz" />
+
+                               <field name="partner_ref" string="Serie - Numero"   optional="hide"  />
+                               <field name="partner_id" readonly="false" string="Proveedor" />
+                               <field name="order_related_id" readonly="1" string="Compra" />
+                           </tree>
+                       </field>
+                       <group>
+                           <field name="amount_total" />
+                           <field name="total_purchase" />
+                           <field name="neto_amount_total" />
+                       </group>
+
+                   </page>
+
+               </xpath>
+           </field>
+    </record>
+
+
+    <record id="sale_order_tree" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.sale_order_tree" />
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='amount_total']" position="after" >
+                   <field name="total_purchase"  optional="show" />
+                   <field name="neto_amount_total"  optional="show" />
+
+               </xpath>
+           </field>
+    </record>
+</odoo>

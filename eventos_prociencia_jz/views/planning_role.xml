@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="planning_role_tree" model="ir.ui.view">
+           <field name="name">planning.role.tree</field>
+           <field name="model">planning.role</field>
+           <field name="inherit_id" ref="planning.planning_role_view_tree" />
+           <field name="arch" type="xml">
+
+               <field name="color" position="after">
+                   <field name="type_role" />
+               </field>
+
+
+           </field>
+    </record>
+</odoo>
