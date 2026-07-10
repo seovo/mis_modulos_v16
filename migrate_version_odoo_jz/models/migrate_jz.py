@@ -256,10 +256,20 @@ class MigrateJz(models.Model):
             table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])
 
             if not table_object:
-                table_object = self.env['migrate.model.jz'].create({
-                    'migrate_id': self.id ,
-                    'table': table
-                })
+                dict_table_object = {
+                    'migrate_id': self.id,
+                    'table': table,
+                }
+
+                table_model =  table.replace('_','.')
+
+                model_object = self.env['ir.model'].search([('name','=',table_model)])
+                if model_object:
+                    dict_table_object.update({
+                        'model_id': model_object.id
+                    })
+
+                table_object = self.env['migrate.model.jz'].create(dict_table_object)
 
                 if table == 'account_invoice_line':
                     table_object.identificador = 'name , invoice_id'
