@@ -263,7 +263,7 @@ class MigrateJz(models.Model):
 
                 table_model =  table.replace('_','.')
 
-                model_object = self.env['ir.model'].search([('name','=',table_model)])
+                model_object = self.env['ir.model'].search([('model','=',table_model)])
                 if model_object:
                     dict_table_object.update({
                         'model_id': model_object.id
