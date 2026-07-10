@@ -100,8 +100,8 @@ class MigrateModelJz(models.Model):
                         'value_set': 'display_name as complete_name'
                     })
 
-                #if desc[0] == 'message_main_attachment_id':
-                #    dx.update({'ignore': True})
+                if desc[0] == 'create_uid':
+                    dx.update({'ignore': True})
 
             #if table in ['account_invoice_line']:
             #    dx.update({'ignore': True})
