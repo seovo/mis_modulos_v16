@@ -107,7 +107,6 @@ class MigrateModelJz(models.Model):
                 list_field_insert.append(dx['name'])
 
 
-
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
                 new_field = self.env['migrate.model.columns.jz'].create({
