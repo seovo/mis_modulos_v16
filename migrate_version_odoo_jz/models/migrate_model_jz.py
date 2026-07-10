@@ -116,7 +116,8 @@ class MigrateModelJz(models.Model):
             if 'autopost_bills' not in  list_field_insert:
                 new_field = self.env['migrate.model.columns.jz'].create({
                     'name': 'autopost_bills' ,
-                    'value_set': "'ask'"
+                    'value_set': "'ask'",
+                    'migrate_model_id': self.id,
                 })
 
 
