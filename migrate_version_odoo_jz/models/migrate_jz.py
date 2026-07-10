@@ -10,7 +10,7 @@ from psycopg2 import sql
 
 class MigrateJz(models.Model):
     _name = 'migrate.jz'
-    #_rec_name =
+    _rec_name =  'host'
     host = fields.Char(string="IP del Servidor Postgres",required=True)
     port = fields.Integer(string="Puerto Postgres",default=5432)
     dbname = fields.Char(string="Base de Datos Postgres",required=True)
@@ -19,9 +19,6 @@ class MigrateJz(models.Model):
     model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
     log = fields.Text()
     from_version = fields.Integer()
-
-
-
 
     field_ids = fields.One2many('migrate.ir.model.fields','migrate_id',string="Modelos")
     journal_migration_ids = fields.One2many('journal.migration.jz','migrate_id')
@@ -208,8 +205,6 @@ class MigrateJz(models.Model):
             '''
 
             self.text_state = textx
-
-
 
 
 

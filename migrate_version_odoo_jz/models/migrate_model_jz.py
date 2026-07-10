@@ -56,12 +56,28 @@ class MigrateModelJz(models.Model):
         if  '_rel' in self.table:
             self.no_existe_id = True
 
+        columns_current = None
+        list_field_current = []
+
+        if self.model_id:
+            if self.model_id.field_id:
+                for field_current in self.model_id.field_id:
+                    list_field_current.append(field_current.name)
+
+
         for desc in cursor.description:
+
             #if desc[0] == 'name':
             #    raise ValueError(desc[1])
             dx = {
                 'name': desc[0]
             }
+
+            if list_field_current:
+                if desc[0] not in list_field_current:
+                    dx.update({'ignore': True})
+
+
             if desc[1] == 3802 :
                 dx.update({'type_field':'jsonb_text'})
 
