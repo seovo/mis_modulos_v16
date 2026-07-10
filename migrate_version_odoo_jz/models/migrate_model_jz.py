@@ -94,8 +94,16 @@ class MigrateModelJz(models.Model):
                         'value_set': 'display_name as complete_name'
                     })
 
-                if desc[0] == 'create_uid':
+                if desc[0] in ['create_uid' , 'write_uid'] :
                     dx.update({'ignore': True})
+
+                if desc[0] in ['commercial_partner_id','parent_id'] :
+                    dx.update({'ignore': True})
+
+                if desc[0] in ['user_id'] :
+                    dx.update({'ignore': True})
+
+
 
             #if table in ['account_invoice_line']:
             #    dx.update({'ignore': True})
@@ -120,15 +128,14 @@ class MigrateModelJz(models.Model):
 
         case_sql = None
 
-
-
         cursor = self.migrate_id.conect_postgres()
+        table = self.new_table or self.table
 
 
         #ESTO NO SE ESTA USANDO
         if ',' in self.identificador :
 
-            table = self.new_table or self.table
+
             name_constraint = 'TEMPORAL_'+table
 
             queryy = f"""
@@ -146,9 +153,17 @@ class MigrateModelJz(models.Model):
 
         for colx in self.columns:
             #raise ValueError([col,col.ignore])
+            ignorar = False
             if colx.ignore == True:
+                ignorar = True
+
+            if table == 'res_partner':
+                if self.update_if_exist:
+                    if colx.name in ['parent_id']:
+                        ignorar = False
+
+            if ignorar:
                 continue
-                #continue
 
             namm = f'"{colx.name}"'
 
