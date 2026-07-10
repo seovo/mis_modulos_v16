@@ -19,6 +19,7 @@ class MigrateJz(models.Model):
     model_ids = fields.One2many('migrate.model.jz','migrate_id',string="Modelos")
     log = fields.Text()
     from_version = fields.Integer()
+    current_version = fields.Integer()
 
     field_ids = fields.One2many('migrate.ir.model.fields','migrate_id',string="Modelos")
     journal_migration_ids = fields.One2many('journal.migration.jz','migrate_id')

@@ -64,12 +64,14 @@ class MigrateModelJz(models.Model):
                 for field_current in self.model_id.field_id:
                     list_field_current.append(field_current.name)
 
+        list_field_insert = []
 
         for desc in cursor.description:
 
             #if desc[0] == 'name':
             #    raise ValueError(desc[1])
             dx = {
+                'migrate_model_id' : self.id ,
                 'name': desc[0]
             }
 
@@ -78,17 +80,18 @@ class MigrateModelJz(models.Model):
                     dx.update({'ignore': True})
 
 
+
             if desc[1] == 3802 :
                 dx.update({'type_field':'jsonb_text'})
 
             #para version16 a version 17
-            if table in ['product_template']:
-                if desc[0] == 'message_main_attachment_id':
-                    dx.update({'ignore': True})
+            #if table in ['product_template']:
+            #    if desc[0] == 'message_main_attachment_id':
+            #        dx.update({'ignore': True})
 
-            if table in ['product_product']:
-                if desc[0] == 'message_main_attachment_id':
-                    dx.update({'ignore': True})
+            #if table in ['product_product']:
+            #    if desc[0] == 'message_main_attachment_id':
+            #        dx.update({'ignore': True})
 
             if table in ['res_partner']:
                 if desc[0] == 'display_name':
@@ -97,15 +100,25 @@ class MigrateModelJz(models.Model):
                         'value_set': 'display_name as complete_name'
                     })
 
-                if desc[0] == 'message_main_attachment_id':
-                    dx.update({'ignore': True})
+                #if desc[0] == 'message_main_attachment_id':
+                #    dx.update({'ignore': True})
 
-            if table in ['account_invoice_line']:
+            #if table in ['account_invoice_line']:
+            #    dx.update({'ignore': True})
 
-                dx.update({'ignore': True})
 
+            new_field = self.env['migrate.model.columns.jz'].create(dx)
 
-            self.columns += self.env['migrate.model.columns.jz'].new(dx)
+            if new_field.ignore != True:
+                list_field_insert.append(new_field.name)
+
+        if table == 'res_partner':
+            if 'autopost_bills' not in  list_field_insert:
+                new_field = self.env['migrate.model.columns.jz'].create({
+                    'name': 'autopost_bills' ,
+                    'value_set': "'ask'"
+                })
+
 
     def migrate_table(self):
 

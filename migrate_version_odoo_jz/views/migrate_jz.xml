@@ -20,17 +20,10 @@
         <field name="arch" type="xml">
             <form string="Migracion">
                 <header>
-
                      <button name="migrate_table" string="Sincronizar" type="object" />
-
-
 
                 </header>
                 <sheet>
-
-
-
-
 
                     <group>
                         <group>
@@ -136,6 +129,7 @@
                             <field name="host"/>
                             <field name="port"/>
                             <field name="from_version"/>
+                            <field name="current_version"/>
                         </group>
                         <group>
                             <field name="dbname" password="true" />
