@@ -101,10 +101,10 @@ class MigrateModelJz(models.Model):
             #    dx.update({'ignore': True})
 
 
-            new_field = self.env['migrate.model.columns.jz'].create(dx)
+            self.env['migrate.model.columns.jz'].create(dx)
 
             if dx['ignore'] != True:
-                list_field_insert.append(new_field.name)
+                list_field_insert.append(dx['name'])
 
 
 
