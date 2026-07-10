@@ -205,8 +205,8 @@ class MigrateModelJz(models.Model):
                 namm = case_sql
 
             select_columnsx.append(namm)
-            if colx.ignore :
-                raise ValueError([colx,colx.ignore,colx.name])
+            #if colx.ignore :
+            #    raise ValueError([colx,colx.ignore,colx.name])
 
 
         #raise ValueError(select_columnsx)
