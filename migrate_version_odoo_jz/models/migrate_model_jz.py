@@ -66,6 +66,7 @@ class MigrateModelJz(models.Model):
 
         list_field_insert = []
 
+
         for desc in cursor.description:
 
             #if desc[0] == 'name':
@@ -84,14 +85,6 @@ class MigrateModelJz(models.Model):
             if desc[1] == 3802 :
                 dx.update({'type_field':'jsonb_text'})
 
-            #para version16 a version 17
-            #if table in ['product_template']:
-            #    if desc[0] == 'message_main_attachment_id':
-            #        dx.update({'ignore': True})
-
-            #if table in ['product_product']:
-            #    if desc[0] == 'message_main_attachment_id':
-            #        dx.update({'ignore': True})
 
             if table in ['res_partner']:
                 if desc[0] == 'display_name':
@@ -107,7 +100,10 @@ class MigrateModelJz(models.Model):
             #    dx.update({'ignore': True})
 
 
+
             new_field = self.env['migrate.model.columns.jz'].create(dx)
+
+            raise ValueError(new_field)
 
             if new_field.ignore != True:
                 list_field_insert.append(new_field.name)
