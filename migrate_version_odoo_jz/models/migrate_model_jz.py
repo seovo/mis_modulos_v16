@@ -101,7 +101,6 @@ class MigrateModelJz(models.Model):
             #    dx.update({'ignore': True})
 
 
-
             new_field = self.env['migrate.model.columns.jz'].create(dx)
 
             if dx['ignore'] != True:
