@@ -73,7 +73,8 @@ class MigrateModelJz(models.Model):
             #    raise ValueError(desc[1])
             dx = {
                 'migrate_model_id' : self.id ,
-                'name': desc[0]
+                'name': desc[0] ,
+                'ignore': False
             }
 
             if list_field_current:
@@ -103,10 +104,10 @@ class MigrateModelJz(models.Model):
 
             new_field = self.env['migrate.model.columns.jz'].create(dx)
 
-            raise ValueError(new_field)
-
-            if new_field.ignore != True:
+            if dx['ignore'] != True:
                 list_field_insert.append(new_field.name)
+
+
 
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
