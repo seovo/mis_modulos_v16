@@ -32,7 +32,7 @@ class TaxMigrationJz(models.Model):
     name = fields.Char(required=True)
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
-    tax_id = fields.Many2one('account.tax')
+    tax_id = fields.Many2one('account.tax',domain=[('tax_migration_jz_ids','=',False)])
 
 class LocationMigrationJz(models.Model):
     _name  = 'location.migration.jz'

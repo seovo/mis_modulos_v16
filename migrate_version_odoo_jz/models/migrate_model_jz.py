@@ -123,6 +123,16 @@ class MigrateModelJz(models.Model):
                     'migrate_model_id': self.id,
                 })
 
+        if table == 'product_template':
+            if 'service_tracking' not in  list_field_insert:
+                self.env['migrate.model.columns.jz'].create({
+                    'name': 'service_tracking' ,
+                    'value_set': "'no'",
+                    'migrate_model_id': self.id,
+                })
+
+
+
 
     def migrate_table(self):
 
@@ -215,12 +225,14 @@ class MigrateModelJz(models.Model):
 
 
         #ESTO NO SE ESTA USANDO
+        '''
         if ',' in self.identificador:
             queryy += f"""
                 alter table {table}
                 drop constraint {name_constraint};
             """
             #self.env.cr.execute(queryy)
+        '''
             
 
 
@@ -344,6 +356,11 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'res_currency':
 
+            raise ValueError({
+                'a': column_names ,
+                'b': resultados[0]
+            })
+
             if not self.migrate_id.currency_migration_ids:
                 for journal in resultados:
                     #raise ValueError(journal)
@@ -362,13 +379,21 @@ class MigrateModelJz(models.Model):
 
             if not self.migrate_id.tax_migration_ids:
                 for journal in resultados:
+                    #REALIZAR LA MIGRACION AQUI
                     #raise ValueError(journal)
+
+                    exist_tax = self.env['account.tax'].search([
+                        ('')
+
+                    ])
+
                     self.env['tax.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
                         'name': str(journal[1]) ,
                         'id_sql': int(journal[0])
                         #'journal_id':
                     })
+
             #raise ValidationError('Contabilidad')
 
             return

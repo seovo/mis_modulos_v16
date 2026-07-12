@@ -208,8 +208,6 @@ class MigrateJz(models.Model):
             self.text_state = textx
 
 
-
-
     def add_modelos_usuales(self):
 
 
@@ -226,7 +224,11 @@ class MigrateJz(models.Model):
         tablas = [
             'res_partner','res_users','product_category',
 
-            'product_template','product_product','product_taxes_rel','product_supplier_taxes_rel',
+            'product_template','product_product',
+
+            'account_tax',
+
+            'product_taxes_rel','product_supplier_taxes_rel',
                   
             'account_journal','res_currency','account_account','account_move','account_move_line',
             'account_move_line_account_tax_rel',
@@ -234,7 +236,7 @@ class MigrateJz(models.Model):
 
             'purchase_order','purchase_order_line','purchase_order_stock_picking_rel',
 
-            'account_tax','account_tax_purchase_order_line_rel','stock_location',
+            'account_tax_purchase_order_line_rel','stock_location',
             'stock_picking','stock_move','stock_move_line','stock_quant',
 
             'product_supplierinfo',
