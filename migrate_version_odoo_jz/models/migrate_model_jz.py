@@ -356,10 +356,7 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'res_currency':
 
-            raise ValueError({
-                'a': column_names ,
-                'b': resultados[0]
-            })
+
 
             if not self.migrate_id.currency_migration_ids:
                 for journal in resultados:
@@ -376,6 +373,11 @@ class MigrateModelJz(models.Model):
 
 
         if self.table == 'account_tax':
+
+            raise ValueError({
+                'a': column_names,
+                'b': resultados[0]
+            })
 
             if not self.migrate_id.tax_migration_ids:
                 for journal in resultados:
