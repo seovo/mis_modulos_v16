@@ -409,10 +409,24 @@ class MigrateModelJz(models.Model):
                         #'journal_id':
                     }
 
+
+
                     if exist_tax:
+
+
+
+                        if  len(exist_tax) > 1:
+                            exist_tax = self.env['account.tax'].search([
+                                ('type_tax_use', '=', value_type_tax_use),
+                                ('amount', '=', value_amount),
+                                ('description','=',value_description)
+
+                            ])
 
                         if  len(exist_tax) > 1:
                             raise ValidationError(str([result_tax]))
+
+
 
                         data_insert.update({
                             'tax_id': exist_tax.id
