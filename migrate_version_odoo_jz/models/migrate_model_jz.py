@@ -383,7 +383,7 @@ class MigrateModelJz(models.Model):
             #raise ValueError(column_names)
             position_description = column_names.index('"description"')
             position_type_tax_use = column_names.index('"type_tax_use"')
-            position_amount = column_names.index('"type_amount"')
+            position_amount = column_names.index('"amount"')
 
             #raise ValueError(resultados[0][position_description])
 
