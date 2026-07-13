@@ -382,25 +382,43 @@ class MigrateModelJz(models.Model):
             #esto solo esta probado en odoo12
             #raise ValueError(column_names)
             position_description = column_names.index('"description"')
+            position_type_tax_use = column_names.index('"type_tax_use"')
+            position_amount = column_names.index('"type_amount"')
 
-            raise ValueError(resultados[0][position_description])
+            #raise ValueError(resultados[0][position_description])
 
             if not self.migrate_id.tax_migration_ids:
-                for journal in resultados:
+                for result_tax in resultados:
                     #REALIZAR LA MIGRACION AQUI
                     #raise ValueError(journal)
 
+                    value_description = result_tax[position_description]
+                    value_type_tax_use =  result_tax[position_type_tax_use]
+                    value_amount = result_tax[position_amount]
+
                     exist_tax = self.env['account.tax'].search([
-                        ('')
+                        ('type_tax_use','=',value_type_tax_use),
+                        ('amount','=',value_amount)
 
                     ])
 
-                    self.env['tax.migration.jz'].create({
+                    data_insert = {
                         'migrate_id': self.migrate_id.id ,
-                        'name': str(journal[1]) ,
-                        'id_sql': int(journal[0])
+                        'name': str(result_tax[1]) ,
+                        'id_sql': int(result_tax[0])
                         #'journal_id':
-                    })
+                    }
+
+                    if exist_tax:
+
+                        if  len(exist_tax) > 1:
+                            raise ValidationError(str([result_tax]))
+
+                        data_insert.update({
+                            'tax_id': exist_tax.id
+                        })
+
+                    self.env['tax.migration.jz'].create(data_insert)
 
             #raise ValidationError('Contabilidad')
 
