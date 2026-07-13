@@ -398,14 +398,16 @@ class MigrateModelJz(models.Model):
 
                     exist_tax = self.env['account.tax'].search([
                         ('type_tax_use','=',value_type_tax_use),
-                        ('amount','=',value_amount)
+                        ('amount','=',value_amount),
+                        ('tax_migration_jz_ids','=',False)
 
                     ])
 
                     data_insert = {
                         'migrate_id': self.migrate_id.id ,
                         'name': str(result_tax[1]) ,
-                        'id_sql': int(result_tax[0])
+                        'id_sql': int(result_tax[0]),
+
                         #'journal_id':
                     }
 
@@ -419,7 +421,8 @@ class MigrateModelJz(models.Model):
                             exist_tax = self.env['account.tax'].search([
                                 ('type_tax_use', '=', value_type_tax_use),
                                 ('amount', '=', value_amount),
-                                ('description','=',value_description)
+                                ('description','=',value_description),
+                                ('tax_migration_jz_ids', '=', False)
 
                             ])
 
