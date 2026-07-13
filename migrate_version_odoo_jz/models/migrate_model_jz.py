@@ -381,9 +381,10 @@ class MigrateModelJz(models.Model):
 
             #esto solo esta probado en odoo12
             #raise ValueError(column_names)
-            position_description = column_names.index('"description"')
+            position_description  = column_names.index('"description"')
             position_type_tax_use = column_names.index('"type_tax_use"')
-            position_amount = column_names.index('"amount"')
+            position_amount       = column_names.index('"amount"')
+            position_name         = column_names.index('"name"')
 
             #raise ValueError(resultados[0][position_description])
 
@@ -395,43 +396,51 @@ class MigrateModelJz(models.Model):
                     value_description = result_tax[position_description]
                     value_type_tax_use =  result_tax[position_type_tax_use]
                     value_amount = result_tax[position_amount]
+                    value_name = result_tax[position_name]
 
                     exist_tax = self.env['account.tax'].search([
                         ('type_tax_use','=',value_type_tax_use),
                         ('amount','=',value_amount),
-                        ('tax_migration_jz_ids','=',False)
+                        ('tax_migration_jz_ids','=',False),
+
 
                     ])
 
+
+                    if len(exist_tax) > 1:
+                        exist_tax = self.env['account.tax'].search([
+                            ('type_tax_use', '=', value_type_tax_use),
+                            ('amount', '=', value_amount),
+                            ('description', '=', value_description),
+                            ('tax_migration_jz_ids', '=', False)
+
+                        ])
+
+                        if not exist_tax:
+                            exist_tax = self.env['account.tax'].search([
+                                ('type_tax_use', '=', value_type_tax_use),
+                                ('amount', '=', value_amount),
+                                ('description', '=', value_name),
+                                ('tax_migration_jz_ids', '=', False)
+
+                            ])
+
+
+                    if len(exist_tax) > 1:
+                        raise ValidationError(str([result_tax]))
+
                     data_insert = {
-                        'migrate_id': self.migrate_id.id ,
-                        'name': str(result_tax[1]) ,
+                        'migrate_id': self.migrate_id.id,
+                        'name': value_name ,
                         'id_sql': int(result_tax[0]),
                         'type': value_type_tax_use
 
-                        #'journal_id':
+                        # 'journal_id':
                     }
 
 
 
                     if exist_tax:
-
-
-
-                        if  len(exist_tax) > 1:
-                            exist_tax = self.env['account.tax'].search([
-                                ('type_tax_use', '=', value_type_tax_use),
-                                ('amount', '=', value_amount),
-                                ('description','=',value_description),
-                                ('tax_migration_jz_ids', '=', False)
-
-                            ])
-
-                        if  len(exist_tax) > 1:
-                            raise ValidationError(str([result_tax]))
-
-
-
                         data_insert.update({
                             'tax_id': exist_tax.id
                         })
