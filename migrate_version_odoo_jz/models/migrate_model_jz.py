@@ -407,6 +407,7 @@ class MigrateModelJz(models.Model):
                         'migrate_id': self.migrate_id.id ,
                         'name': str(result_tax[1]) ,
                         'id_sql': int(result_tax[0]),
+                        'type': value_type_tax_use
 
                         #'journal_id':
                     }

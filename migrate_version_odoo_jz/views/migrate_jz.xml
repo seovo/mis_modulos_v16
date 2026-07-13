@@ -218,7 +218,10 @@
                                 <list editable="bottom">
                                     <field name="id_sql" />
                                     <field name="name" />
-                                    <field name="tax_id" />
+                                    <field name="type" />
+                                    <field name="tax_id"
+                                           domain="[('tax_migration_jz_ids','=',False),('type_tax_use','=',type)]"
+                                    />
                                 </list>
                             </field>
                             <group>

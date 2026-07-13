@@ -33,6 +33,9 @@ class TaxMigrationJz(models.Model):
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
     tax_id = fields.Many2one('account.tax',domain=[('tax_migration_jz_ids','=',False)])
+    type   = fields.Selection([
+        ('sale','Ventas'),('purchase','Compras'),('none','Ninguno')
+    ])
 
 class LocationMigrationJz(models.Model):
     _name  = 'location.migration.jz'
