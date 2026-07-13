@@ -380,7 +380,7 @@ class MigrateModelJz(models.Model):
             #})
 
             #esto solo esta probado en odoo12
-            position_description = resultados.index('description')
+            position_description = column_names.index('description')
             raise ValueError(resultados[position_description])
 
             if not self.migrate_id.tax_migration_ids:
