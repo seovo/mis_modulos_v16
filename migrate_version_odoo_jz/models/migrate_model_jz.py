@@ -374,10 +374,14 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'account_tax':
 
-            raise ValueError({
-                'a': column_names,
-                'b': resultados[0]
-            })
+            #raise ValueError({
+            #    'a': column_names,
+            #    'b': resultados[0]
+            #})
+
+            #esto solo esta probado en odoo12
+            position_description = resultados.index('description')
+            raise ValueError(resultados[position_description])
 
             if not self.migrate_id.tax_migration_ids:
                 for journal in resultados:
