@@ -420,7 +420,7 @@ class MigrateModelJz(models.Model):
                             exist_tax = self.env['account.tax'].search([
                                 ('type_tax_use', '=', value_type_tax_use),
                                 ('amount', '=', value_amount),
-                                ('description', '=', value_name),
+                                ('name', '=', value_description),
                                 ('tax_migration_jz_ids', '=', False)
 
                             ])
