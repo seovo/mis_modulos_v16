@@ -32,13 +32,13 @@ class AccountMoveLine(models.Model):
                 if re.number_advance_land <= 0:
                     raise  ValidationError('NUMERO DE ADELANTO INCORRECTO')
 
-                '''
+
 
                 if re.price_unit <= 0:
-                    raise ValueError('PRECIO INCORRECTO')
-                    raise  ValidationError('PRECIO INCORRECTO')
+
+                    raise  ValidationError('PRECIO INCORRECTO ')
                     
-                '''
+
 
         return res
 
