@@ -635,8 +635,17 @@ class MigrateModelJz(models.Model):
                     })
             return
 
-        if self.table == 'product_taxes_rel':
-            self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
+        if self.last_value <= 0 :
+            if self.table == 'product_taxes_rel':
+                self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
+
+            if self.table == 'product_supplier_taxes_rel':
+                self.env.cr.execute("TRUNCATE TABLE product_supplier_taxes_rel ;")
+
+            if self.table == 'account_tax_purchase_order_line_rel':
+                self.env.cr.execute("TRUNCATE TABLE account_tax_purchase_order_line_rel ;")
+
+
 
 
         #raise ValueError(column_names)
