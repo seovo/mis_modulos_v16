@@ -570,7 +570,7 @@ class MigrateModelJz(models.Model):
 
 
 
-                # VALIDACION DESCRIPCION / NOMBRE E IMPUESTO
+                # VALIDACION NAME->DESCRIPCION / NOMBRE E IMPUESTO
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
@@ -591,6 +591,25 @@ class MigrateModelJz(models.Model):
 
                 if exist_tax in tax_use_ids:
                     exist_tax = None
+
+                #DESCRIPTION -> NAME
+                if not exist_tax:
+                    dominio_tax = [
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('amount', '=', value_amount),
+                        ('tax_migration_jz_ids', '=', False),
+                        ('name', 'ilike', value_description),
+                        # ('id','not in',tax_use_ids)
+                    ]
+
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                if len(exist_tax) > 1:
+                    exist_tax = None
+
+                if exist_tax in tax_use_ids:
+                    exist_tax = None
+
 
                 #if value_name == 'Retención 2% ISR a Física (con Materiales)':
                 #    raise ValueError(exist_tax)
