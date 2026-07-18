@@ -458,6 +458,9 @@ class MigrateModelJz(models.Model):
                     if len(exist_tax) > 1:
                         exist_tax = None
 
+                if value_name == '16% ITBIS Incl. Compras':
+                    raise ValueError([exist_tax,tax_use_ids])
+
                 #VALIDACION PORCENTAJE
 
                 if not exist_tax:
@@ -487,29 +490,7 @@ class MigrateModelJz(models.Model):
 
                 #if len(exist_tax) > 1:
                 #    exist_tax = None
-                '''
 
-                if len(exist_tax) > 1:
-                    exist_tax = self.env['account.tax'].search([
-                        ('type_tax_use', '=', value_type_tax_use),
-                        ('amount', '=', value_amount),
-                        ('description', '=', value_description),
-                        ('tax_migration_jz_ids', '=', False)
-
-                    ])
-
-                    if not exist_tax:
-                        exist_tax = self.env['account.tax'].search([
-                            ('type_tax_use', '=', value_type_tax_use),
-                            ('amount', '=', value_amount),
-                            ('name', '=', value_description),
-                            ('tax_migration_jz_ids', '=', False)
-
-                        ])
-
-                if len(exist_tax) > 1:
-                    raise ValidationError(str([result_tax]))
-                '''
 
 
                 if not exist_tax:
@@ -531,8 +512,7 @@ class MigrateModelJz(models.Model):
                     'tax_id': exist_tax
                 }
 
-                if value_name == '16% ITBIS Incl. Compras':
-                    raise ValueError([exist_tax,tax_use_ids,data_insert])
+
 
 
 
