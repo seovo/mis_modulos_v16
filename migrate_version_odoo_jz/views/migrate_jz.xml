@@ -223,8 +223,7 @@
                                     <field name="tax_id"
                                            domain="[
                                              ('tax_migration_jz_ids','=',False),
-                                             ('type_tax_use','=',type),
-                                             ('amount','=',amount)
+                                             ('type_tax_use','=',type)
                                            ]"
                                     />
 

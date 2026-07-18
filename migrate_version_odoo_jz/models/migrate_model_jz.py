@@ -411,17 +411,26 @@ class MigrateModelJz(models.Model):
 
                 #Validacion por porcentaje
 
-                exist_tax = self.env['account.tax'].search([
+                dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
                     ('tax_migration_jz_ids', '=', False),
 
-                ])
+                ]
+
+                exist_tax = self.env['account.tax'].search(dominio_tax)
 
                 if len(exist_tax) > 1:
-                    if value_amount == '2% ISC':
-                        raise ValidationError(str(exist_tax))
                     exist_tax = None
+
+                # Validacion por descripcion
+                if not exist_tax:
+                    dominio_tax += [('description','=',value_description)]
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                if len(exist_tax) > 1:
+                    exist_tax = None
+
 
 
 
