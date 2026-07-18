@@ -480,8 +480,9 @@ class MigrateModelJz(models.Model):
                     if len(exist_tax) > 1:
                         exist_tax = None
 
-                #if value_name == '16% ITBIS Incl. Compras':
-                #    raise ValueError([exist_tax,tax_use_ids])
+                if value_name == '18% ITBIS Compras':
+                    raise ValueError([exist_tax,tax_use_ids])
+
                 if not exist_tax:
                     exist_tax = None
 
