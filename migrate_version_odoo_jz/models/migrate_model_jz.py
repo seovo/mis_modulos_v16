@@ -538,7 +538,8 @@ class MigrateModelJz(models.Model):
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
                     ('tax_migration_jz_ids', '=', False),
-                    ('description', 'ilike', value_name)
+                    ('description', 'ilike', value_name),
+                    ('id','not in',tax_use_ids)
                 ]
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
