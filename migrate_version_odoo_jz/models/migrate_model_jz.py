@@ -430,10 +430,6 @@ class MigrateModelJz(models.Model):
 
                 if len(exist_tax) > 1:
                     exist_tax = None
-
-
-
-
                 '''
 
                 if len(exist_tax) > 1:
