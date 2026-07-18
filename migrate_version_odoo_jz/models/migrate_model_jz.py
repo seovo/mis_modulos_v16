@@ -529,7 +529,7 @@ class MigrateModelJz(models.Model):
                         ('id_sql', '=', int(result_tax[0]))
                     ])
 
-                    tax_migration.write({'tax_id': tax_migration.id })
+                    tax_migration.write({'tax_id': exist_tax.id })
 
 
 
