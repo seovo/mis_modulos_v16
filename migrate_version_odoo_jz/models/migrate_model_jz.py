@@ -430,35 +430,52 @@ class MigrateModelJz(models.Model):
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
 
-                #VALIDACION DESCRIPCION->NOMBRE , MONTO  E IMPUESTO
+                # VALIDACION DESCRIPCION->NOMBRE , MONTO , NOMBRE -> DESCRIPCION ,  E IMPUESTO
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    ('description', 'ilike', value_name)
+                    ('description', 'ilike', value_name),
+                    ('name', 'ilike', value_description)
+
                 ]
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
-
-
 
                 if len(exist_tax) > 1:
                     exist_tax = None
 
+                # VALIDACION DESCRIPCION->NOMBRE , MONTO  E IMPUESTO
+                if not exist_tax:
+                    dominio_tax = [
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('amount', '=', value_amount),
+                        ('description', 'ilike', value_name)
+                    ]
+
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                    if len(exist_tax) > 1:
+                        exist_tax = None
+
+
+
+
                 #VALIDACION NOMBRE -> DESCRIPCION , ,MONTO E IMPUESTO
-                dominio_tax = [
-                    ('type_tax_use', '=', value_type_tax_use),
-                    ('amount', '=', value_amount),
-                    # ('tax_migration_jz_ids', '=', False),
-                    ('name', 'ilike', value_description)
-                ]
+                if not exist_tax:
+                    dominio_tax = [
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('amount', '=', value_amount),
+                        # ('tax_migration_jz_ids', '=', False),
+                        ('name', 'ilike', value_description)
+                    ]
 
-                exist_tax = self.env['account.tax'].search(dominio_tax)
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                if exist_tax and len(exist_tax) > 1 :
-                    exist_tax = None
+                    if exist_tax and len(exist_tax) > 1:
+                        exist_tax = None
 
-                if exist_tax and exist_tax.id in tax_use_ids:
-                    exist_tax = None
+                    if exist_tax and exist_tax.id in tax_use_ids:
+                        exist_tax = None
 
 
 
