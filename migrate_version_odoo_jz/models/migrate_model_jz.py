@@ -421,11 +421,26 @@ class MigrateModelJz(models.Model):
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                if value_name == 'Retención a Físicas por Honorarios por Servicios (10%)':
-                    raise ValueError(dominio_tax)
+                #if value_name == 'Retención a Físicas por Honorarios por Servicios (10%)':
+                #    raise ValueError(dominio_tax)
 
                 if len(exist_tax) > 1:
                     exist_tax = None
+
+                #VALIDACION DESCRIPCION
+                if not exist_tax:
+                    # VALIDACION DESCRIPCION / NOMBRE E IMPUESTO
+                    dominio_tax = [
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('description', 'ilike', value_name)
+                    ]
+
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                    if len(exist_tax) > 1:
+                        exist_tax = None
+
+                #VALIDACION PORCENTAJE
 
                 if not exist_tax:
                     # Validacion solo por porcentaje
