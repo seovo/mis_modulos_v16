@@ -435,7 +435,8 @@ class MigrateModelJz(models.Model):
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
                     ('description', 'ilike', value_name),
-                    ('name', 'ilike', value_description)
+                    ('name', 'ilike', value_description),
+                    '|',('active','=',True),('active','=',False)
 
                 ]
 
@@ -449,7 +450,8 @@ class MigrateModelJz(models.Model):
                     dominio_tax = [
                         ('type_tax_use', '=', value_type_tax_use),
                         ('amount', '=', value_amount),
-                        ('description', 'ilike', value_name)
+                        ('description', 'ilike', value_name),
+                        '|', ('active', '=', True), ('active', '=', False)
                     ]
 
                     exist_tax = self.env['account.tax'].search(dominio_tax)
@@ -465,8 +467,8 @@ class MigrateModelJz(models.Model):
                     dominio_tax = [
                         ('type_tax_use', '=', value_type_tax_use),
                         ('amount', '=', value_amount),
-                        # ('tax_migration_jz_ids', '=', False),
-                        ('name', 'ilike', value_description)
+                        ('name', 'ilike', value_description),
+                        '|', ('active', '=', True), ('active', '=', False)
                     ]
 
                     exist_tax = self.env['account.tax'].search(dominio_tax)
@@ -484,7 +486,8 @@ class MigrateModelJz(models.Model):
                     # VALIDACION DESCRIPCION / NOMBRE E IMPUESTO
                     dominio_tax = [
                         ('type_tax_use', '=', value_type_tax_use),
-                        ('description', 'ilike', value_name)
+                        ('description', 'ilike', value_name),
+                        '|', ('active', '=', True), ('active', '=', False)
                     ]
 
                     exist_tax = self.env['account.tax'].search(dominio_tax)
@@ -504,8 +507,7 @@ class MigrateModelJz(models.Model):
                     dominio_tax = [
                         ('type_tax_use', '=', value_type_tax_use),
                         ('amount', '=', value_amount),
-                        #('tax_migration_jz_ids', '=', False),
-
+                        '|', ('active', '=', True), ('active', '=', False)
                     ]
 
                     exist_tax = self.env['account.tax'].search(dominio_tax)
