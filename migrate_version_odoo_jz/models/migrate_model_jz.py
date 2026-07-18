@@ -454,7 +454,7 @@ class MigrateModelJz(models.Model):
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                if len(exist_tax) > 1:
+                if len(exist_tax) > 1 or exist_tax in tax_use_ids:
                     exist_tax = None
 
                 #VALIDACION DESCRIPCION
