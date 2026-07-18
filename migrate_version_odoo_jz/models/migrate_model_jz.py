@@ -347,13 +347,30 @@ class MigrateModelJz(models.Model):
                     ('migrate_id','=',self.migrate_id.id),
                     ('id_sql','=', int(journal[0]))
                 ])
-                if not journal_migration:
-                    self.env['journal.migration.jz'].create({
-                        'migrate_id': self.migrate_id.id,
-                        'name': str(journal[1]),
-                        'id_sql': int(journal[0])
-                        # 'journal_id':
+
+                name_journal = str(journal[1])
+
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'name': name_journal,
+                    'id_sql': int(journal[0])
+                     # 'journal_id':
+                }
+
+                exist_diario = self.env['account.journal'].search([('name','=',name_journal)])
+
+                if len(exist_diario) > 1 :
+                    exist_diario = None
+
+                if exist_diario:
+                    data_insert.update({
+                        'journal_id'  : exist_diario.id
                     })
+
+                if not journal_migration:
+                    self.env['journal.migration.jz'].create(data_insert)
+                else:
+                    journal_migration.write(data_insert)
 
 
             #if not self.migrate_id.journal_migration_ids:

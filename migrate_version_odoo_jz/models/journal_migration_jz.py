@@ -29,6 +29,8 @@ class AcountAcountMigrationJz(models.Model):
 
 class TaxMigrationJz(models.Model):
     _name  = 'tax.migration.jz'
+    _order = 'type , id_sql'
+
     name = fields.Char(required=True)
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
