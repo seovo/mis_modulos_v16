@@ -475,19 +475,22 @@ class MigrateModelJz(models.Model):
                     raise ValidationError(str([result_tax]))
                 '''
 
+                if exist_tax and exist_tax.tax_migration_jz_ids:
+                    exist_tax = None
+
+                if not exist_tax:
+                    exist_tax = None
+
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
                     'name': value_name,
                     'id_sql': int(result_tax[0]),
                     'type': value_type_tax_use ,
                     'amount': value_amount ,
-                    'tax_id': False
+                    'tax_id': exist_tax
                 }
 
-                if exist_tax:
-                    data_insert.update({
-                        'tax_id': exist_tax.id
-                    })
+
 
                 tax_migration = self.env['tax.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
