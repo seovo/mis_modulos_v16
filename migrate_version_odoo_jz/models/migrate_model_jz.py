@@ -483,18 +483,11 @@ class MigrateModelJz(models.Model):
                 #if value_name == '18% ITBIS Compras':
                 #    raise ValueError([exist_tax,tax_use_ids])
 
-                if not exist_tax:
+                if exist_tax in tax_use_ids:
                     exist_tax = None
-
-
 
                 if exist_tax:
                     tax_use_ids.append(exist_tax.id)
-                    exist_tax = exist_tax.id
-
-
-                if exist_tax in tax_use_ids:
-                    exist_tax = None
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
@@ -502,7 +495,7 @@ class MigrateModelJz(models.Model):
                     'id_sql': int(result_tax[0]),
                     'type': value_type_tax_use ,
                     'amount': value_amount ,
-                    'tax_id': exist_tax
+                    'tax_id': exist_tax.id if exist_tax else None
                 }
 
 
