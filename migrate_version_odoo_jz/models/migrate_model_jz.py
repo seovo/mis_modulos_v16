@@ -408,12 +408,22 @@ class MigrateModelJz(models.Model):
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
 
+
+                #Validacion por porcentaje
+
                 exist_tax = self.env['account.tax'].search([
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
                     ('tax_migration_jz_ids', '=', False),
 
                 ])
+
+                if len(exist_tax) > 1:
+                    exist_tax = None
+
+
+
+                '''
 
                 if len(exist_tax) > 1:
                     exist_tax = self.env['account.tax'].search([
@@ -435,6 +445,7 @@ class MigrateModelJz(models.Model):
 
                 if len(exist_tax) > 1:
                     raise ValidationError(str([result_tax]))
+                '''
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
