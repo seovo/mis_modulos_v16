@@ -457,7 +457,7 @@ class MigrateModelJz(models.Model):
                 if exist_tax and exist_tax.id in tax_use_ids:
                     exist_tax = None
 
-                if len(exist_tax) > 1 :
+                if exist_tax and len(exist_tax) > 1 :
                     exist_tax = None
 
                 #VALIDACION DESCRIPCION
