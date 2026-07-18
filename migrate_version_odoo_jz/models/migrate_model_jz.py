@@ -534,6 +534,9 @@ class MigrateModelJz(models.Model):
                     'tax_id': exist_tax.id if exist_tax else None
                 }
 
+                if value_name == 'Retención 2% ISR a Física (con Materiales)':
+                    raise ValueError(data_insert)
+
 
 
 
