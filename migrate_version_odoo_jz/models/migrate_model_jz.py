@@ -583,8 +583,8 @@ class MigrateModelJz(models.Model):
 
 
 
-                if value_name == 'Retención 2% ISR por Transferencia de Títulos':
-                    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
+                #if value_name == 'Retención 2% ISR por Transferencia de Títulos':
+                #    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
 
                 if len(exist_tax) > 1:
                     exist_tax = None
