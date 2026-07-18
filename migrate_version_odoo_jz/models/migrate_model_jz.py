@@ -576,6 +576,11 @@ class MigrateModelJz(models.Model):
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
+                if exist_tax.tax_id:
+                    continue
+
+
+
                 #if value_name == 'Retención a Proveedores Informales de Bienes (75%)':
                 #    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
 
@@ -585,8 +590,8 @@ class MigrateModelJz(models.Model):
                 if exist_tax in tax_use_ids:
                     exist_tax = None
 
-                if value_name == 'Retención 2% ISR a Física (con Materiales)':
-                    raise ValueError(exist_tax)
+                #if value_name == 'Retención 2% ISR a Física (con Materiales)':
+                #    raise ValueError(exist_tax)
 
                 if exist_tax:
 
