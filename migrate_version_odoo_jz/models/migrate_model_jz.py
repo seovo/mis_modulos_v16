@@ -341,15 +341,22 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'account_journal':
 
-            if not self.migrate_id.journal_migration_ids:
-                for journal in resultados:
-                    #raise ValueError(journal)
+            for journal in resultados:
+                # raise ValueError(journal)
+                journal_migration = self.env['journal.migration.jz'].search([
+                    ('migrate_id','=',self.migrate_id.id),
+                    ('id_sql','=', int(journal[0]))
+                ])
+                if not journal_migration:
                     self.env['journal.migration.jz'].create({
-                        'migrate_id': self.migrate_id.id ,
-                        'name': str(journal[1]) ,
+                        'migrate_id': self.migrate_id.id,
+                        'name': str(journal[1]),
                         'id_sql': int(journal[0])
-                        #'journal_id':
+                        # 'journal_id':
                     })
+
+
+            #if not self.migrate_id.journal_migration_ids:
             #raise ValidationError('Contabilidad')
 
             return
@@ -374,6 +381,8 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'account_tax':
 
+
+
             #raise ValueError({
             #    'a': column_names,
             #    'b': resultados[0]
@@ -388,64 +397,71 @@ class MigrateModelJz(models.Model):
 
             #raise ValueError(resultados[0][position_description])
 
-            if not self.migrate_id.tax_migration_ids:
-                for result_tax in resultados:
-                    #REALIZAR LA MIGRACION AQUI
-                    #raise ValueError(journal)
+            for result_tax in resultados:
+                # REALIZAR LA MIGRACION AQUI
+                # raise ValueError(journal)
 
-                    value_description = result_tax[position_description]
-                    value_type_tax_use =  result_tax[position_type_tax_use]
-                    value_amount = result_tax[position_amount]
-                    value_name = result_tax[position_name]
 
+
+                value_description = result_tax[position_description]
+                value_type_tax_use = result_tax[position_type_tax_use]
+                value_amount = result_tax[position_amount]
+                value_name = result_tax[position_name]
+
+                exist_tax = self.env['account.tax'].search([
+                    ('type_tax_use', '=', value_type_tax_use),
+                    ('amount', '=', value_amount),
+                    ('tax_migration_jz_ids', '=', False),
+
+                ])
+
+                if len(exist_tax) > 1:
                     exist_tax = self.env['account.tax'].search([
-                        ('type_tax_use','=',value_type_tax_use),
-                        ('amount','=',value_amount),
-                        ('tax_migration_jz_ids','=',False),
-
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('amount', '=', value_amount),
+                        ('description', '=', value_description),
+                        ('tax_migration_jz_ids', '=', False)
 
                     ])
 
-
-                    if len(exist_tax) > 1:
+                    if not exist_tax:
                         exist_tax = self.env['account.tax'].search([
                             ('type_tax_use', '=', value_type_tax_use),
                             ('amount', '=', value_amount),
-                            ('description', '=', value_description),
+                            ('name', '=', value_description),
                             ('tax_migration_jz_ids', '=', False)
 
                         ])
 
-                        if not exist_tax:
-                            exist_tax = self.env['account.tax'].search([
-                                ('type_tax_use', '=', value_type_tax_use),
-                                ('amount', '=', value_amount),
-                                ('name', '=', value_description),
-                                ('tax_migration_jz_ids', '=', False)
+                if len(exist_tax) > 1:
+                    raise ValidationError(str([result_tax]))
 
-                            ])
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'name': value_name,
+                    'id_sql': int(result_tax[0]),
+                    'type': value_type_tax_use ,
+                    'tax_id': False
+                }
+
+                if exist_tax:
+                    data_insert.update({
+                        'tax_id': exist_tax.id
+                    })
+
+                tax_migration = self.env['tax.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', int(result_tax[0]))
+                ])
+
+                if not tax_migration:
+                    tax_migration = self.env['tax.migration.jz'].create(data_insert)
+                else:
+                    tax_migration.write(data_insert)
 
 
-                    if len(exist_tax) > 1:
-                        raise ValidationError(str([result_tax]))
-
-                    data_insert = {
-                        'migrate_id': self.migrate_id.id,
-                        'name': value_name ,
-                        'id_sql': int(result_tax[0]),
-                        'type': value_type_tax_use
-
-                        # 'journal_id':
-                    }
 
 
-
-                    if exist_tax:
-                        data_insert.update({
-                            'tax_id': exist_tax.id
-                        })
-
-                    self.env['tax.migration.jz'].create(data_insert)
 
             #raise ValidationError('Contabilidad')
 
