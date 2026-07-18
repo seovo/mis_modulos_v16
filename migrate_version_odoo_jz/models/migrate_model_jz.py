@@ -419,6 +419,8 @@ class MigrateModelJz(models.Model):
                 ])
 
                 if len(exist_tax) > 1:
+                    if value_amount == '2% ISC':
+                        raise ValidationError(str(exist_tax))
                     exist_tax = None
 
 
