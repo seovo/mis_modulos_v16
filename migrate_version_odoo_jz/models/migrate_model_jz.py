@@ -489,8 +489,9 @@ class MigrateModelJz(models.Model):
 
 
                 if exist_tax:
+                    tax_use_ids.append(exist_tax.id)
                     exist_tax = exist_tax.id
-                    tax_use_ids.append(exist_tax)
+
 
                 if exist_tax in tax_use_ids:
                     exist_tax = None
@@ -556,7 +557,7 @@ class MigrateModelJz(models.Model):
                 if exist_tax:
 
 
-                    tax_use_ids.append(exist_tax)
+                    tax_use_ids.append(exist_tax.id)
 
                     tax_migration = self.env['tax.migration.jz'].search([
                         ('migrate_id', '=', self.migrate_id.id),
