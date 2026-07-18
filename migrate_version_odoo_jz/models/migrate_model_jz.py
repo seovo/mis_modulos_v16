@@ -357,7 +357,7 @@ class MigrateModelJz(models.Model):
                      # 'journal_id':
                 }
 
-                exist_diario = self.env['account.journal'].search([('name','=',name_journal)])
+                exist_diario = self.env['account.journal'].search([('name','ilike',name_journal)])
 
                 if len(exist_diario) > 1 :
                     exist_diario = None
