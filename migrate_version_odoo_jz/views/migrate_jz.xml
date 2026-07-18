@@ -177,7 +177,9 @@
                                 <list editable="bottom">
                                     <field name="id_sql" />
                                     <field name="name" />
-                                    <field name="journal_id" />
+                                    <field name="journal_id"
+                                           domain="[('tax_migration_jz_ids','=',False)]"
+                                    />
                                 </list>
                             </field>
                             <group>
