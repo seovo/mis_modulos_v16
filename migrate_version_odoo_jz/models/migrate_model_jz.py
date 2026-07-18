@@ -480,22 +480,19 @@ class MigrateModelJz(models.Model):
                     if len(exist_tax) > 1:
                         exist_tax = None
 
-
-
-                if value_name == '16% ITBIS Incl. Compras':
-                    raise ValueError([exist_tax,tax_use_ids])
-
-
-
+                #if value_name == '16% ITBIS Incl. Compras':
+                #    raise ValueError([exist_tax,tax_use_ids])
                 if not exist_tax:
                     exist_tax = None
 
-                if exist_tax in tax_use_ids:
-                    exist_tax = None
+
 
                 if exist_tax:
                     exist_tax = exist_tax.id
                     tax_use_ids.append(exist_tax)
+
+                if exist_tax in tax_use_ids:
+                    exist_tax = None
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
