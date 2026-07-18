@@ -194,8 +194,7 @@
                                     <field name="id_sql" />
                                     <field name="name" />
                                     <field name="currency_id" />
-                                    <field name="label_tax" />
-                                    <field name="description_tax" />
+
                                 </list>
                             </field>
                             <group>
@@ -231,6 +230,8 @@
                                              ('type_tax_use','=',type)
                                            ]"
                                     />
+                                    <field name="label_tax" />
+                                    <field name="description_tax" />
 
                                 </list>
                             </field>
