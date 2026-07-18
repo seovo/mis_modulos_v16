@@ -40,7 +40,7 @@ class TaxMigrationJz(models.Model):
     ])
     amount = fields.Float()
     label_tax = fields.Char(related='tax_id.invoice_label')
-    description_tax  = fields.Char(related='tax_id.description')
+    description_tax  = fields.Html(related='tax_id.description')
 
 class LocationMigrationJz(models.Model):
     _name  = 'location.migration.jz'
