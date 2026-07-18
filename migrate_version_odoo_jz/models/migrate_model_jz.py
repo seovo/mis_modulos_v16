@@ -440,8 +440,8 @@ class MigrateModelJz(models.Model):
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                #if value_name == 'Retención a Físicas por Honorarios por Servicios (10%)':
-                #    raise ValueError(dominio_tax)
+                if value_name == '16% ITBIS Incl. Compras':
+                    raise ValueError([exist_tax,tax_use_ids])
 
                 if len(exist_tax) > 1:
                     exist_tax = None
