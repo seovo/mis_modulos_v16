@@ -483,7 +483,7 @@ class MigrateModelJz(models.Model):
                 #if value_name == '18% ITBIS Compras':
                 #    raise ValueError([exist_tax,tax_use_ids])
 
-                if exist_tax in tax_use_ids:
+                if exist_tax.id in tax_use_ids:
                     exist_tax = None
 
                 if exist_tax:
