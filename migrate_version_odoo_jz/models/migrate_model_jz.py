@@ -553,9 +553,14 @@ class MigrateModelJz(models.Model):
 
             #REALIZAR UNA SEGUNDA BUSQUEDA
             for result_tax in resultados:
-                # REALIZAR LA MIGRACION AQUI
-                # raise ValueError(journal)
 
+                tax_migration = self.env['tax.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', int(result_tax[0]))
+                ])
+
+                if tax_migration.tax_id:
+                    continue
 
 
                 value_description = result_tax[position_description]
@@ -576,9 +581,6 @@ class MigrateModelJz(models.Model):
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                if exist_tax.tax_id:
-                    continue
-
 
 
                 #if value_name == 'Retención a Proveedores Informales de Bienes (75%)':
@@ -598,10 +600,7 @@ class MigrateModelJz(models.Model):
 
                     tax_use_ids.append(exist_tax.id)
 
-                    tax_migration = self.env['tax.migration.jz'].search([
-                        ('migrate_id', '=', self.migrate_id.id),
-                        ('id_sql', '=', int(result_tax[0]))
-                    ])
+
 
                     tax_migration.write({'tax_id': exist_tax.id })
 
