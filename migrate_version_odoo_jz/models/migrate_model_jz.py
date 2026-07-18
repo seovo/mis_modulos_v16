@@ -635,7 +635,8 @@ class MigrateModelJz(models.Model):
                     })
             return
 
-
+        if self.table == 'product_taxes_rel':
+            self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
 
 
         #raise ValueError(column_names)
