@@ -501,6 +501,40 @@ class MigrateModelJz(models.Model):
                     tax_migration.write(data_insert)
 
 
+            #REALIZAR UNA SEGUNDA BUSQUEDA
+            for result_tax in resultados:
+                # REALIZAR LA MIGRACION AQUI
+                # raise ValueError(journal)
+
+
+
+                value_description = result_tax[position_description]
+                value_type_tax_use = result_tax[position_type_tax_use]
+                value_amount = result_tax[position_amount]
+                value_name = result_tax[position_name]
+
+                # VALIDACION DESCRIPCION / NOMBRE E IMPUESTO
+                dominio_tax = [
+                    ('type_tax_use', '=', value_type_tax_use),
+                    ('amount', '=', value_amount),
+                    ('tax_migration_jz_ids', '=', False),
+                    ('description', 'ilike', value_name)
+                ]
+
+                exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                if exist_tax:
+                    tax_migration = self.env['tax.migration.jz'].search([
+                        ('migrate_id', '=', self.migrate_id.id),
+                        ('id_sql', '=', int(result_tax[0]))
+                    ])
+
+                    tax_migration.write({'tax_id': tax_migration.id })
+
+
+
+
+
 
 
 
