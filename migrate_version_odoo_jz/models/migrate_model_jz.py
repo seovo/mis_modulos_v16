@@ -478,8 +478,7 @@ class MigrateModelJz(models.Model):
                 if exist_tax and exist_tax.tax_migration_jz_ids:
                     exist_tax = None
 
-                if not exist_tax:
-                    exist_tax = None
+
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
