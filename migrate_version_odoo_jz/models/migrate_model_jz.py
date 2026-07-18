@@ -414,6 +414,8 @@ class MigrateModelJz(models.Model):
 
             #raise ValueError(resultados[0][position_description])
 
+            tax_use_ids = []
+
 
 
 
@@ -514,6 +516,13 @@ class MigrateModelJz(models.Model):
                 if not exist_tax:
                     exist_tax = None
 
+                if exist_tax in tax_use_ids:
+                    exist_tax = None
+
+                if exist_tax:
+                    exist_tax = exist_tax.id
+                    tax_use_ids.append(exist_tax)
+
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
                     'name': value_name,
@@ -561,7 +570,14 @@ class MigrateModelJz(models.Model):
                 if len(exist_tax) > 1:
                     exist_tax = None
 
+                if exist_tax in tax_use_ids:
+                    exist_tax = None
+
                 if exist_tax:
+
+                    exist_tax = exist_tax.id
+                    tax_use_ids.append(exist_tax)
+
                     tax_migration = self.env['tax.migration.jz'].search([
                         ('migrate_id', '=', self.migrate_id.id),
                         ('id_sql', '=', int(result_tax[0]))
