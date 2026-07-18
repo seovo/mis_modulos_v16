@@ -414,11 +414,14 @@ class MigrateModelJz(models.Model):
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    ('tax_migration_jz_ids', '=', False),
+                    #('tax_migration_jz_ids', '=', False),
 
                 ]
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                #if value_description == '2% ISC':
+                #    raise V
 
                 if len(exist_tax) > 1:
                     exist_tax = None
