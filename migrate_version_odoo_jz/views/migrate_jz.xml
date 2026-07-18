@@ -180,6 +180,8 @@
                                     <field name="journal_id"
                                            domain="[('tax_migration_jz_ids','=',False)]"
                                     />
+                                    <field name="label_tax" />
+                                    <field name="description_tax" />
                                 </list>
                             </field>
                             <group>

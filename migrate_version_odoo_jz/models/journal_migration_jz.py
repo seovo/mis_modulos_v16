@@ -39,6 +39,8 @@ class TaxMigrationJz(models.Model):
         ('sale','Ventas'),('purchase','Compras'),('none','Ninguno')
     ])
     amount = fields.Float()
+    label_tax = fields.Char(related='tax_id.invoice_label')
+    description_tax  = fields.Char(related='tax_id.description')
 
 class LocationMigrationJz(models.Model):
     _name  = 'location.migration.jz'
