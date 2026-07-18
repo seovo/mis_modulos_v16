@@ -430,11 +430,10 @@ class MigrateModelJz(models.Model):
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
 
-                #VALIDACION DESCRIPCION->NOMBRE / NOMBRE E IMPUESTO
+                #VALIDACION DESCRIPCION->NOMBRE , MONTO  E IMPUESTO
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    #('tax_migration_jz_ids', '=', False),
                     ('description', 'ilike', value_name)
                 ]
 
@@ -445,7 +444,7 @@ class MigrateModelJz(models.Model):
                 if len(exist_tax) > 1:
                     exist_tax = None
 
-                #VALIDACION NOMBRE -> DESCRIPCION / NOMBRE E IMPUESTO
+                #VALIDACION NOMBRE -> DESCRIPCION , ,MONTO E IMPUESTO
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
@@ -471,6 +470,8 @@ class MigrateModelJz(models.Model):
                     if len(exist_tax) > 1:
                         exist_tax = None
 
+                if value_name == 'Retención a Proveedores Informales de Bienes (75%)':
+                    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
 
 
                 #VALIDACION PORCENTAJE
@@ -551,8 +552,8 @@ class MigrateModelJz(models.Model):
 
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                if value_name == 'Retención a Proveedores Informales de Bienes (75%)':
-                    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
+                #if value_name == 'Retención a Proveedores Informales de Bienes (75%)':
+                #    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
 
                 if len(exist_tax) > 1:
                     exist_tax = None
