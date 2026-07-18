@@ -219,9 +219,15 @@
                                     <field name="id_sql" />
                                     <field name="name" />
                                     <field name="type" />
+                                    <field name="amount" />
                                     <field name="tax_id"
-                                           domain="[('tax_migration_jz_ids','=',False),('type_tax_use','=',type)]"
+                                           domain="[
+                                             ('tax_migration_jz_ids','=',False),
+                                             ('type_tax_use','=',type),
+                                             ('amount','=',amount)
+                                           ]"
                                     />
+
                                 </list>
                             </field>
                             <group>

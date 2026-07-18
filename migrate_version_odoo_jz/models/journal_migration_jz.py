@@ -36,6 +36,7 @@ class TaxMigrationJz(models.Model):
     type   = fields.Selection([
         ('sale','Ventas'),('purchase','Compras'),('none','Ninguno')
     ])
+    amount = fields.Float()
 
 class LocationMigrationJz(models.Model):
     _name  = 'location.migration.jz'

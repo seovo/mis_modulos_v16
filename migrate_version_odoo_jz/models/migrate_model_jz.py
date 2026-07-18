@@ -452,6 +452,7 @@ class MigrateModelJz(models.Model):
                     'name': value_name,
                     'id_sql': int(result_tax[0]),
                     'type': value_type_tax_use ,
+                    'amount': value_amount ,
                     'tax_id': False
                 }
 
