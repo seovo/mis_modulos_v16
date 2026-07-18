@@ -397,9 +397,7 @@ class MigrateModelJz(models.Model):
 
             #raise ValueError(resultados[0][position_description])
 
-            if self.migrate_id.account_migration_ids:
-                for amigra in self.migrate_id.account_migration_ids:
-                    amigra.tax_id = None
+
 
 
             for result_tax in resultados:
@@ -417,7 +415,7 @@ class MigrateModelJz(models.Model):
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    ('tax_migration_jz_ids', '=', False),
+                    #('tax_migration_jz_ids', '=', False),
                     ('description', 'ilike', value_description)
                 ]
 
@@ -432,7 +430,7 @@ class MigrateModelJz(models.Model):
                     dominio_tax = [
                         ('type_tax_use', '=', value_type_tax_use),
                         ('amount', '=', value_amount),
-                        ('tax_migration_jz_ids', '=', False),
+                        #('tax_migration_jz_ids', '=', False),
 
                     ]
 
