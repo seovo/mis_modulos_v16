@@ -131,6 +131,35 @@ class MigrateModelJz(models.Model):
                     'migrate_model_id': self.id,
                 })
 
+    def validate_fields(self):
+        # para los campos que son journal_id
+        jurnal_fields = self.env['migrate.model.columns.jz'].search([
+            ('name', '=', 'journal_id'),('migrate_model_id','=',self.id)
+        ])
+
+        if jurnal_fields:
+            for jfiels in jurnal_fields:
+                jfiels.value_set = self.migrate_id.text_journal
+
+        currency_fields = self.env['migrate.model.columns.jz'].search([
+            ('name', '=', 'currency_id'),('migrate_model_id','=',self.id)
+        ])
+
+        if currency_fields:
+            for jfiels in currency_fields:
+                jfiels.value_set = self.migrate_id.text_currency
+
+        tax_fields2 = self.env['migrate.model.columns.jz'].search([('name', '=', 'tax_id')])
+
+        for jfiels2 in tax_fields2:
+
+            text_tax = self.text_tax
+
+            if text_tax:
+                text_tax = text_tax.replace('account_tax_id', 'tax_id')
+                jfiels2.value_set = text_tax
+
+
 
 
 
@@ -380,32 +409,18 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'res_currency':
 
-            for currency in resultados:
-                # raise ValueError(journal)
 
-                name_currency = str(currency[1])
-                id_currency = int(currency[0])
 
-                exist_currency = self.env['res.currency'].search([('name','=',name_currency)])
-
-                currency_migration = self.env['currency.migration.jz'].search([('id_sql','=',id_currency)])
-
-                data_insert = {
-                    'migrate_id': self.migrate_id.id,
-                    'name': name_currency,
-                    'id_sql': id_currency
-                    # 'journal_id':
-                }
-
-                if exist_currency:
-                    data_insert.update({
-                        'currency_id': exist_currency.id
+            if not self.migrate_id.currency_migration_ids:
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['currency.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0])
+                        #'journal_id':
                     })
-
-                if currency_migration:
-                    currency_migration.write(data_insert)
-                else:
-                    currency_migration = self.env['currency.migration.jz'].create(data_insert)
+            #raise ValidationError('Contabilidad')
 
             return
 
@@ -651,38 +666,21 @@ class MigrateModelJz(models.Model):
             return
 
 
+
         if self.table == 'account_account':
 
-            for account in resultados:
-                name_account = str(account[1])
-                id_account = int(account[0])
-                code_account = str(account[3])
-
-                exist_account = self.env['account.account'].search([('code','=',code_account)])
-
-                data_insert = {
-                    'migrate_id': self.migrate_id.id,
-                    'name': name_account,
-                    'id_sql': id_account,
-                    'code': code_account
-                }
-
-                if exist_account:
-                    data_insert.update({
-                        'account_id': exist_account.id
+            if not self.migrate_id.account_migration_ids:
+                #raise ValidationError(str(resultados))
+                for journal in resultados:
+                    #raise ValueError(journal)
+                    self.env['account.migration.jz'].create({
+                        'migrate_id': self.migrate_id.id ,
+                        'name': str(journal[1]) ,
+                        'id_sql': int(journal[0]) ,
+                        'code': str(journal[3]) ,
+                        #'journal_id':
                     })
-
-                account_migration = self.env['account.migration.jz'].search([
-                    ('id_sql','=',id_account)
-                ])
-                if account_migration:
-                    account_migration.write(data_insert)
-                else:
-                    self.env['account.migration.jz'].create(data_insert)
-
-
-
-
+            #raise ValidationError('Contabilidad')
 
             return
 

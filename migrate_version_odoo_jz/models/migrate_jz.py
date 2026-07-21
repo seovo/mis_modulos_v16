@@ -254,7 +254,6 @@ class MigrateJz(models.Model):
 
 
 
-
         for table in tablas:
             table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])
 
@@ -279,7 +278,7 @@ class MigrateJz(models.Model):
                     table_object.update_if_exist = True
                     table_object.new_table = 'account_invoice_line'
 
-                if table == 'res_currency':
+                if table == 'account_tax':
                     table_object.where_set = "active = 't' ; "
 
                 if table == 'account_account':
@@ -288,22 +287,12 @@ class MigrateJz(models.Model):
                     id IN (  SELECT DISTINCT aml.account_id  FROM account_move_line aml )
                     
                     '''
-
-
-
                 table_object.change_table()
 
 
-        #para los campos que son journal_id
-        jurnal_fields= self.env['migrate.model.columns.jz'].search([('name','=','journal_id')])
 
-        for jfiels in jurnal_fields:
-            jfiels.value_set = self.text_journal
 
-        currency_fields= self.env['migrate.model.columns.jz'].search([('name','=','currency_id')])
 
-        for jfiels in currency_fields:
-            jfiels.value_set = self.text_currency
 
 
         account_fields = self.env['migrate.model.columns.jz'].search([('name','=','account_id')])
@@ -316,16 +305,7 @@ class MigrateJz(models.Model):
         for jfiels in tax_fields:
             jfiels.value_set = self.text_tax
 
-        tax_fields2 = self.env['migrate.model.columns.jz'].search([('name', '=', 'tax_id')])
 
-        for jfiels2 in tax_fields2:
-
-            text_tax = self.text_tax
-
-            if text_tax:
-                text_tax = text_tax.replace('account_tax_id', 'tax_id')
-
-                jfiels2.value_set = text_tax
 
 
 
