@@ -165,6 +165,8 @@ class MigrateModelJz(models.Model):
 
     def migrate_table(self):
 
+        self.validate_fields()
+
         case_sql = None
 
         cursor = self.migrate_id.conect_postgres()
