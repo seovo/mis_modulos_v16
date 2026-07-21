@@ -279,12 +279,17 @@ class MigrateJz(models.Model):
                     table_object.update_if_exist = True
                     table_object.new_table = 'account_invoice_line'
 
+                if table == 'res_currency':
+                    table_object.where_set = "active = 't' ; "
+
                 if table == 'account_account':
                     table_object.where_set = '''
                     
                     id IN (  SELECT DISTINCT aml.account_id  FROM account_move_line aml )
                     
                     '''
+
+
 
                 table_object.change_table()
 
