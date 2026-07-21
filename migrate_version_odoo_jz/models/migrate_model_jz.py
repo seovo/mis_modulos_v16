@@ -149,7 +149,9 @@ class MigrateModelJz(models.Model):
             for jfiels in currency_fields:
                 jfiels.value_set = self.migrate_id.text_currency
 
-        tax_fields2 = self.env['migrate.model.columns.jz'].search([('name', '=', 'tax_id')])
+        tax_fields2 = self.env['migrate.model.columns.jz'].search([
+            ('name', '=', 'tax_id'),('migrate_model_id','=',self.id)
+        ])
 
         for jfiels2 in tax_fields2:
 
@@ -158,8 +160,6 @@ class MigrateModelJz(models.Model):
             if text_tax:
                 text_tax = text_tax.replace('account_tax_id', 'tax_id')
                 jfiels2.value_set = text_tax
-
-
 
 
 
