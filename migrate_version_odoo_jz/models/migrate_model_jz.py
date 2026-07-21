@@ -407,8 +407,6 @@ class MigrateModelJz(models.Model):
                 else:
                     currency_migration = self.env['currency.migration.jz'].create(data_insert)
 
-
-
             return
 
 
@@ -653,21 +651,38 @@ class MigrateModelJz(models.Model):
             return
 
 
-
         if self.table == 'account_account':
 
-            if not self.migrate_id.account_migration_ids:
-                #raise ValidationError(str(resultados))
-                for journal in resultados:
-                    #raise ValueError(journal)
-                    self.env['account.migration.jz'].create({
-                        'migrate_id': self.migrate_id.id ,
-                        'name': str(journal[1]) ,
-                        'id_sql': int(journal[0]) ,
-                        'code': str(journal[3]) ,
-                        #'journal_id':
+            for account in resultados:
+                name_account = str(account[1])
+                id_account = int(account[0])
+                code_account = str(account[3])
+
+                exist_account = self.env['account.account'].search([('code','=',code_account)])
+
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'name': name_account,
+                    'id_sql': id_account,
+                    'code': code_account
+                }
+
+                if exist_account:
+                    data_insert.update({
+                        'account_id': exist_account.id
                     })
-            #raise ValidationError('Contabilidad')
+
+                account_migration = self.env['account.migration.jz'].search([
+                    ('id_sql','=',id_account)
+                ])
+                if account_migration:
+                    account_migration.write(data_insert)
+                else:
+                    self.env['account.migration.jz'].create(data_insert)
+
+
+
+
 
             return
 
