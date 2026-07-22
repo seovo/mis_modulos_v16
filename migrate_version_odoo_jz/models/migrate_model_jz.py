@@ -132,8 +132,7 @@ class MigrateModelJz(models.Model):
                 })
 
     def remplace_fields(self):
-
-        raise ValidationError('hola')
+        raise ValidationError('oke')
         # para los campos que son journal_id
         jurnal_fields = self.env['migrate.model.columns.jz'].search([
             ('name', '=', 'journal_id'),('migrate_model_id','=',self.id)
@@ -155,7 +154,6 @@ class MigrateModelJz(models.Model):
             ('name', '=', 'tax_id'),('migrate_model_id','=',self.id)
         ])
 
-
         for jfiels2 in tax_fields2:
 
             text_tax = self.text_tax
@@ -165,9 +163,10 @@ class MigrateModelJz(models.Model):
                 jfiels2.value_set = text_tax
 
 
-    def remplace_fields(self):
 
-        self.validate_fields()
+    def migrate_table(self):
+
+        self.remplace_fields()
 
         case_sql = None
 
