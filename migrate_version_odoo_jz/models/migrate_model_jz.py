@@ -401,6 +401,11 @@ class MigrateModelJz(models.Model):
         #if self.show_data:
         #    raise ValueError(resultados)
 
+        if self.table == 'product_pricelist':
+            for pricelist in resultados:
+                continue
+            return
+
         if self.table == 'account_journal':
 
             for journal in resultados:

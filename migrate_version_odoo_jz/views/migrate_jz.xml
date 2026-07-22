@@ -202,6 +202,19 @@
                             </group>
                         </page>
 
+                        <page string="Precio de Lista" name="priceli">
+                            <field name="pricelist_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="pricelist_id" />
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_pricelist" />
+                            </group>
+                        </page>
+
 
                         <page string="Cuentas" name="account">
                             <field name="account_migration_ids">

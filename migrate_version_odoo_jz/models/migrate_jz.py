@@ -38,6 +38,8 @@ class MigrateJz(models.Model):
     text_state = fields.Text()
     city_migration_ids = fields.One2many('city.migration.jz', 'migrate_id')
     text_city = fields.Text()
+    pricelist_migration_ids = fields.One2many('pricelist.migration.jz', 'migrate_id')
+    text_pricelist = fields.Text()
 
 
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
@@ -229,10 +231,14 @@ class MigrateJz(models.Model):
             'account_tax',
 
             'product_taxes_rel','product_supplier_taxes_rel',
+
+            'product_pricelist','sale_order', 'sale_order_line',
                   
             'account_journal','res_currency','account_account','account_move','account_move_line',
             'account_move_line_account_tax_rel',
-            'account_payment','sale_order','sale_order_line',
+            'account_payment',
+
+
 
             'purchase_order','purchase_order_line','purchase_order_stock_picking_rel',
 
