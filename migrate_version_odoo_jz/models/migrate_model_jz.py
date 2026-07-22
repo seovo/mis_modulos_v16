@@ -156,7 +156,7 @@ class MigrateModelJz(models.Model):
 
         for jfiels2 in tax_fields2:
 
-            text_tax = self.text_tax
+            text_tax = self.migrate_id.text_tax
 
             if text_tax:
                 text_tax = text_tax.replace('account_tax_id', 'tax_id')
