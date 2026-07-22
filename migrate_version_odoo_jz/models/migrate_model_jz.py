@@ -153,6 +153,7 @@ class MigrateModelJz(models.Model):
             ('name', '=', 'tax_id'),('migrate_model_id','=',self.id)
         ])
 
+
         for jfiels2 in tax_fields2:
 
             text_tax = self.text_tax
