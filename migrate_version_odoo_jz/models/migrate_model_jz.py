@@ -157,7 +157,7 @@ class MigrateModelJz(models.Model):
 
         if tax_fields:
             for jfiels in tax_fields:
-                jfiels.value_set = self.text_tax
+                jfiels.value_set = self.migrate_id.text_tax
 
 
         tax_fields2 = self.env['migrate.model.columns.jz'].search([
@@ -177,25 +177,25 @@ class MigrateModelJz(models.Model):
 
         if account_fields:
             for jfiels in account_fields:
-                jfiels.value_set = self.text_account
+                jfiels.value_set = self.migrate_id.text_account
 
         location_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'location_id'),('migrate_model_id','=',self.id)])
 
         if location_fields:
             for jfiels in location_fields:
-                jfiels.value_set = self.text_location
+                jfiels.value_set = self.migrate_id.text_location
 
         country_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'country_id'),('migrate_model_id','=',self.id)])
 
         if country_fields:
             for jfiels in country_fields:
-                jfiels.value_set = self.text_country
+                jfiels.value_set = self.migrate_id.text_country
 
         state_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'state_id'),('migrate_model_id','=',self.id)])
 
         if state_fields:
             for jfiels in state_fields:
-                jfiels.value_set = self.text_state
+                jfiels.value_set = self.migrate_id.text_state
 
         pricelist_fields = self.env['migrate.model.columns.jz'].search(
             [('name', '=', 'pricelist_id'), ('migrate_model_id', '=', self.id)]
@@ -203,7 +203,7 @@ class MigrateModelJz(models.Model):
 
         if pricelist_fields:
             for jfiels in pricelist_fields:
-                jfiels.value_set = self.text_pricelist
+                jfiels.value_set = self.migrate_id.text_pricelist
 
 
 
