@@ -80,9 +80,9 @@ class MigrateJz(models.Model):
 
                 #raise ValueError(resultados)
 
-    def generate_text_journal(self):
+    def generate_text_set_clave(self):
 
-        if self.currency_migration_ids and not self.text_currency:
+        if self.currency_migration_ids :
 
             id_journal = ''
 
@@ -100,7 +100,7 @@ class MigrateJz(models.Model):
 
             self.text_currency = textx
 
-        if self.journal_migration_ids and not self.text_journal:
+        if self.journal_migration_ids :
 
             id_journal = ''
 
@@ -118,7 +118,7 @@ class MigrateJz(models.Model):
 
             self.text_journal =textx
 
-        if self.account_migration_ids and not self.text_account:
+        if self.account_migration_ids :
 
             id_journal = ''
 
@@ -136,7 +136,7 @@ class MigrateJz(models.Model):
 
             self.text_account =textx
 
-        if self.tax_migration_ids and not self.text_tax:
+        if self.tax_migration_ids :
 
             id_journal = ''
 
@@ -154,7 +154,7 @@ class MigrateJz(models.Model):
 
             self.text_tax =textx
 
-        if self.location_migration_ids and not self.text_location:
+        if self.location_migration_ids :
 
             id_journal = ''
 
@@ -172,7 +172,7 @@ class MigrateJz(models.Model):
 
             self.text_location =textx
 
-        if self.country_migration_ids and not self.text_country:
+        if self.country_migration_ids :
 
             id_countrys = ''
 
@@ -191,7 +191,7 @@ class MigrateJz(models.Model):
             self.text_country = textx
 
 
-        if self.state_migration_ids and not self.text_state:
+        if self.state_migration_ids :
 
             id_countrys = ''
 
@@ -209,6 +209,26 @@ class MigrateJz(models.Model):
 
             self.text_state = textx
 
+        if self.pricelist_migration_ids :
+
+            id_pricelist = ''
+
+            for migrat in self.pricelist_migration_ids:
+                if not migrat.pricelist_id:
+                    continue
+                id_pricelist  += f''' WHEN pricelist_id = {migrat.id_sql} THEN {migrat.pricelist_id.id } \n'''
+
+            textx = f'''
+                CASE
+                    {id_pricelist}
+                ELSE  pricelist_id
+                END AS pricelist_id
+            '''
+
+            self.text_pricelist = textx
+
+
+
 
     def add_modelos_usuales(self):
 
@@ -220,7 +240,7 @@ class MigrateJz(models.Model):
         #self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
         #self.env.cr.execute("TRUNCATE TABLE product_supplier_taxes_rel ;")
 
-        self.generate_text_journal()
+        self.generate_text_set_clave()
 
 
         tablas = [

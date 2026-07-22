@@ -132,6 +132,9 @@ class MigrateModelJz(models.Model):
                 })
 
     def remplace_fields(self):
+
+        self.migrate_id.generate_text_set_clave()
+
         #raise ValidationError('oke')
         # para los campos que son journal_id
         jurnal_fields = self.env['migrate.model.columns.jz'].search([
@@ -194,6 +197,13 @@ class MigrateModelJz(models.Model):
             for jfiels in state_fields:
                 jfiels.value_set = self.text_state
 
+        pricelist_fields = self.env['migrate.model.columns.jz'].search(
+            [('name', '=', 'pricelist_id'), ('migrate_model_id', '=', self.id)]
+        )
+
+        if pricelist_fields:
+            for jfiels in pricelist_fields:
+                jfiels.value_set = self.text_pricelist
 
 
 
