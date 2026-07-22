@@ -290,17 +290,18 @@ class MigrateJz(models.Model):
 
             model_object = self.env['ir.model'].search([('model', '=', table_model)])
 
+            dict_table_object = {
+                'migrate_id': self.id,
+                'table': table,
+            }
+
+            if model_object:
+                dict_table_object.update({
+                    'model_id': model_object.id
+                })
+
             if not table_object:
-                dict_table_object = {
-                    'migrate_id': self.id,
-                    'table': table,
-                }
 
-
-                if model_object:
-                    dict_table_object.update({
-                        'model_id': model_object.id
-                    })
 
                 table_object = self.env['migrate.model.jz'].create(dict_table_object)
 
@@ -318,10 +319,13 @@ class MigrateJz(models.Model):
                     id IN (  SELECT DISTINCT aml.account_id  FROM account_move_line aml )
                     
                     '''
-                table_object.change_table()
+
             else:
-                if table == 'purchase_order':
-                    raise ValidationError(table_object)
+                table_object.write(dict_table_object)
+
+            table_object.change_table()
+
+
 
 
 
