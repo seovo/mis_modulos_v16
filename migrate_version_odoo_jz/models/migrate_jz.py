@@ -291,39 +291,6 @@ class MigrateJz(models.Model):
 
 
 
-
-
-
-
-        account_fields = self.env['migrate.model.columns.jz'].search([('name','=','account_id')])
-
-        for jfiels in account_fields:
-            jfiels.value_set = self.text_account
-
-        tax_fields = self.env['migrate.model.columns.jz'].search([('name','=','account_tax_id')])
-
-        for jfiels in tax_fields:
-            jfiels.value_set = self.text_tax
-
-
-
-
-
-        location_fields = self.env['migrate.model.columns.jz'].search([('name','=','location_id')])
-
-        for jfiels in location_fields:
-            jfiels.value_set = self.text_location
-
-        country_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'country_id')])
-
-        for jfiels in country_fields:
-            jfiels.value_set = self.text_country
-
-        state_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'state_id')])
-
-        for jfiels in state_fields:
-            jfiels.value_set = self.text_state
-
         #location_id
 
 

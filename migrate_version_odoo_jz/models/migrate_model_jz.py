@@ -150,17 +150,50 @@ class MigrateModelJz(models.Model):
             for jfiels in currency_fields:
                 jfiels.value_set = self.migrate_id.text_currency
 
+        tax_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'account_tax_id'),('migrate_model_id','=',self.id)])
+
+        if tax_fields:
+            for jfiels in tax_fields:
+                jfiels.value_set = self.text_tax
+
+
         tax_fields2 = self.env['migrate.model.columns.jz'].search([
             ('name', '=', 'tax_id'),('migrate_model_id','=',self.id)
         ])
 
-        for jfiels2 in tax_fields2:
+        if tax_fields2:
+            for jfiels2 in tax_fields2:
 
-            text_tax = self.migrate_id.text_tax
+                text_tax = self.migrate_id.text_tax
 
-            if text_tax:
-                text_tax = text_tax.replace('account_tax_id', 'tax_id')
-                jfiels2.value_set = text_tax
+                if text_tax:
+                    text_tax = text_tax.replace('account_tax_id', 'tax_id')
+                    jfiels2.value_set = text_tax
+
+        account_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'account_id'),('migrate_model_id','=',self.id)])
+
+        if account_fields:
+            for jfiels in account_fields:
+                jfiels.value_set = self.text_account
+
+        location_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'location_id'),('migrate_model_id','=',self.id)])
+
+        if location_fields:
+            for jfiels in location_fields:
+                jfiels.value_set = self.text_location
+
+        country_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'country_id'),('migrate_model_id','=',self.id)])
+
+        if country_fields:
+            for jfiels in country_fields:
+                jfiels.value_set = self.text_country
+
+        state_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'state_id'),('migrate_model_id','=',self.id)])
+
+        if state_fields:
+            for jfiels in state_fields:
+                jfiels.value_set = self.text_state
+
 
 
 
@@ -265,8 +298,6 @@ class MigrateModelJz(models.Model):
             """
             #self.env.cr.execute(queryy)
         '''
-            
-
 
     def _migrate_table(self,cursor,select_columns,column_names):
         table = self.table
@@ -357,7 +388,6 @@ class MigrateModelJz(models.Model):
 
 
                 #raise ValueError([data, sql])
-
 
     def insert_record_migrate(self,cursor,table,column_names):
 
