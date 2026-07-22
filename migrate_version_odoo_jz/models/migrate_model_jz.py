@@ -162,7 +162,6 @@ class MigrateModelJz(models.Model):
                 jfiels2.value_set = text_tax
 
 
-
     def remplace_fields(self):
 
         self.validate_fields()
