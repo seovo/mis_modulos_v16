@@ -132,6 +132,8 @@ class MigrateModelJz(models.Model):
                 })
 
     def remplace_fields(self):
+
+        raise ValidationError('hola')
         # para los campos que son journal_id
         jurnal_fields = self.env['migrate.model.columns.jz'].search([
             ('name', '=', 'journal_id'),('migrate_model_id','=',self.id)
