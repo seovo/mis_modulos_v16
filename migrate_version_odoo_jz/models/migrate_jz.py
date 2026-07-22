@@ -275,11 +275,10 @@ class MigrateJz(models.Model):
 
         if self.from_version in [11,12]:
             tablas.append("account_invoice")
-
-        if self.from_version == 11:
-
             tablas.append("account_invoice_line")
             tablas.append("account_invoice_payment_rel")
+
+        #if self.from_version == 11:
 
 
 
