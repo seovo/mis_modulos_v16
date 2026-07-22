@@ -403,7 +403,24 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'product_pricelist':
             for pricelist in resultados:
-                continue
+                id_pricelist = int(pricelist[0])
+                name_pricelist = str(pricelist[1])
+                pricelist_migration = self.env['pricelist.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', id_pricelist )
+                ])
+
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'name': name_pricelist,
+                    'id_sql': id_pricelist
+                }
+
+                if not  pricelist_migration:
+                    self.env['pricelist.migration.jz'].create(data_insert)
+
+
+
             return
 
         if self.table == 'account_journal':
@@ -439,9 +456,6 @@ class MigrateModelJz(models.Model):
                 else:
                     journal_migration.write(data_insert)
 
-
-            #if not self.migrate_id.journal_migration_ids:
-            #raise ValidationError('Contabilidad')
 
             return
 
