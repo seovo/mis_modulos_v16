@@ -37,6 +37,46 @@ class MigrateModelJz(models.Model):
                 #raise ValueError(table)
                 record.table = table
 
+    def validate_columns_no_existentes(self):
+        if table == 'res_partner':
+            if 'autopost_bills' not in  list_field_insert:
+                self.env['migrate.model.columns.jz'].create({
+                    'name': 'autopost_bills' ,
+                    'value_set': "'ask'",
+                    'migrate_model_id': self.id,
+                })
+
+        if table == 'product_template':
+            if 'service_tracking' not in  list_field_insert:
+                self.env['migrate.model.columns.jz'].create({
+                    'name': 'service_tracking' ,
+                    'value_set': "'no'",
+                    'migrate_model_id': self.id,
+                })
+
+        if table == 'account_move':
+            if self.migrate_id.current_version > 15:
+                exist_move_type = False
+                exist_auto_post = False
+                for column_model in self.columns:
+                    if column_model.name == 'move_type':
+                        exist_move_type = True
+                    if column_model.name == 'auto_post':
+                        exist_auto_post = True
+
+                if not exist_move_type:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'move_type',
+                        'value_set': "'entry'",
+                        'migrate_model_id': self.id,
+                    })
+                if not exist_auto_post:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'auto_post',
+                        'value_set': "'no'",
+                        'migrate_model_id': self.id,
+                    })
+
     @api.onchange('table')
     def change_table(self):
         table = self.table
@@ -115,35 +155,8 @@ class MigrateModelJz(models.Model):
                 list_field_insert.append(dx['name'])
 
 
-        if table == 'res_partner':
-            if 'autopost_bills' not in  list_field_insert:
-                self.env['migrate.model.columns.jz'].create({
-                    'name': 'autopost_bills' ,
-                    'value_set': "'ask'",
-                    'migrate_model_id': self.id,
-                })
+        self.validate_columns_no_existentes()
 
-        if table == 'product_template':
-            if 'service_tracking' not in  list_field_insert:
-                self.env['migrate.model.columns.jz'].create({
-                    'name': 'service_tracking' ,
-                    'value_set': "'no'",
-                    'migrate_model_id': self.id,
-                })
-
-        if table == 'account_move':
-            if self.migrate_id.current_version > 15:
-                exist_move_type = False
-                for column_model in self.columns:
-                    if column_model.name == 'move_type':
-                        exist_move_type = True
-
-                if not exist_move_type:
-                    self.env['migrate.model.columns.jz'].create({
-                        'name': 'move_type',
-                        'value_set': "'entry'",
-                        'migrate_model_id': self.id,
-                    })
 
     def remplace_fields(self):
 
@@ -222,6 +235,8 @@ class MigrateModelJz(models.Model):
 
 
     def migrate_table(self):
+
+        self.validate_columns_no_existentes()
 
         self.remplace_fields()
 
