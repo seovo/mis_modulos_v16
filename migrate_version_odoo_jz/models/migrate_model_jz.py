@@ -37,7 +37,9 @@ class MigrateModelJz(models.Model):
                 #raise ValueError(table)
                 record.table = table
 
-    def validate_columns_no_existentes(self):
+    def validate_columns_no_existentes(self,table=None):
+        if not table:
+            table = self.table
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
                 self.env['migrate.model.columns.jz'].create({
@@ -155,7 +157,7 @@ class MigrateModelJz(models.Model):
                 list_field_insert.append(dx['name'])
 
 
-        self.validate_columns_no_existentes()
+        self.validate_columns_no_existentes(table)
 
 
     def remplace_fields(self):
@@ -236,8 +238,7 @@ class MigrateModelJz(models.Model):
 
     def migrate_table(self):
 
-
-
+        self.validate_columns_no_existentes()
         self.remplace_fields()
 
         case_sql = None
