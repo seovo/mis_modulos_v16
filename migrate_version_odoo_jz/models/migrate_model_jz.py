@@ -236,7 +236,7 @@ class MigrateModelJz(models.Model):
 
     def migrate_table(self):
 
-        self.validate_columns_no_existentes()
+
 
         self.remplace_fields()
 
