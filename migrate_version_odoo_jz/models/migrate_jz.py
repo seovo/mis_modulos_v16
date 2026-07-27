@@ -254,8 +254,11 @@ class MigrateJz(models.Model):
 
             'product_pricelist','sale_order', 'sale_order_line', 'account_tax_sale_order_line_rel',
                   
-            'account_journal','res_currency','account_account','account_move','account_move_line',
-            'account_move_line_account_tax_rel',
+            'account_journal','res_currency','account_account',
+
+            'account_move', 'account_move_line', 'account_move_line_account_tax_rel',
+
+
             'account_payment',
 
 

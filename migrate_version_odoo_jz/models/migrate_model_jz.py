@@ -131,6 +131,20 @@ class MigrateModelJz(models.Model):
                     'migrate_model_id': self.id,
                 })
 
+        if table == 'account_move':
+            if self.migrate_id.current_version > 15:
+                exist_move_type = False
+                for column_model in self.columns:
+                    if column_model.name == 'move_type':
+                        exist_move_type = True
+
+                if not exist_move_type:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'move_type',
+                        'value_set': "'entry'",
+                        'migrate_model_id': self.id,
+                    })
+
     def remplace_fields(self):
 
         self.migrate_id.generate_text_set_clave()
@@ -218,6 +232,7 @@ class MigrateModelJz(models.Model):
 
 
         #ESTO NO SE ESTA USANDO
+        '''
         if ',' in self.identificador :
 
 
@@ -229,9 +244,8 @@ class MigrateModelJz(models.Model):
                 ADD CONSTRAINT {name_constraint}
                 UNIQUE  ({self.identificador});
             """
-            #self.env.cr.execute(queryy)
-            
-
+            #self.env.cr.execute(queryy)   
+        '''
 
         select_columnsx = []
         column_names = []
@@ -727,8 +741,6 @@ class MigrateModelJz(models.Model):
 
             return
 
-
-
         if self.table == 'account_account':
 
             if not self.migrate_id.account_migration_ids:
@@ -970,8 +982,6 @@ END $$;
                             continue
 
 
-
-
                         else:
                         #if 1 == 1:
                             val3 = ','.join(
@@ -1035,6 +1045,8 @@ END $$;
 
             if self.show_data:
                 raise ValueError([SQL_INSERT,fila])
+
+
 
             #raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
