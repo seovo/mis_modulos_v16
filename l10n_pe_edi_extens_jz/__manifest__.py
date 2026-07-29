@@ -10,7 +10,7 @@
     "data": [
         "views/account_move.xml",
         "views/cron.xml",
-        "views/res.company.xml"
+        "views/res_company.xml"
     ],
     # 'uninstall_hook': 'uninstall_hook',
     #"external_dependencies": {"python": ["msal"]},
