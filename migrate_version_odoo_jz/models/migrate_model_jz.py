@@ -146,7 +146,7 @@ class MigrateModelJz(models.Model):
                 ('model_id','=',id_model),('name','=',desc[0])
             ])
 
-            raise ValueError(exist_field_odoo)
+
 
             if not exist_field_odoo:
                 dx.update({'ignore': True})
@@ -180,7 +180,7 @@ class MigrateModelJz(models.Model):
                 if desc[0] in ['user_id'] :
                     dx.update({'ignore': True})
 
-
+            raise ValueError(dx)
 
             try:
                 self.env['migrate.model.columns.jz'].create(dx)
