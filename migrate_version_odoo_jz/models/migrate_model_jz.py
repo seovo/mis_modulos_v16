@@ -335,7 +335,6 @@ class MigrateModelJz(models.Model):
                      )::text AS {namm}
                  '''
 
-
             if colx.type_field in ['jsonb_text']:
                 namm += '::text'
                 #namm = f''' '"' || jsonb_to_json({namm}) || '"' AS {namm}_json '''
