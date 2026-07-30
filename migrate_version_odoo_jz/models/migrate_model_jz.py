@@ -1088,7 +1088,7 @@ END $$;
             if type(fila[31]) != bool :
                 raise ValueError(fila)
 
-
+            raise ValueError(fila[31])
 
             #raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
