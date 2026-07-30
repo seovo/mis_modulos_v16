@@ -116,8 +116,8 @@ class MigrateModelJz(models.Model):
 
         for desc in cursor.description:
 
-            #if desc[0] == 'name':
-            #    raise ValueError(desc[1])
+            if desc[0] == 'description_sale':
+                raise ValueError(desc[1])
 
             #raise ValueError(type(self.id))
 
