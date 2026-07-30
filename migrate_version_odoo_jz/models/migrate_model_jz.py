@@ -131,7 +131,7 @@ class MigrateModelJz(models.Model):
             else:
                 id_model = self.model_id.id
 
-            raise ValueError(id_model)
+
 
 
             dx = {
@@ -145,6 +145,8 @@ class MigrateModelJz(models.Model):
             exist_field_odoo = self.env['ir.model.fields'].search([
                 ('model_id','=',id_model),('name','=',desc[0])
             ])
+
+            raise ValueError(exist_field_odoo)
 
             if not exist_field_odoo:
                 dx.update({'ignore': True})
