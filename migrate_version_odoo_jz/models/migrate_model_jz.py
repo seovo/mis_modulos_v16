@@ -397,6 +397,9 @@ class MigrateModelJz(models.Model):
         #raise ValueError(string_sql)
 
         cursor.execute(string_sql)
+        resultados = cursor.fetchall()
+
+        raise ValueError([string_sql,resultados[0]])
 
         #try:
         #    cursor.execute(string_sql)
@@ -407,11 +410,11 @@ class MigrateModelJz(models.Model):
 
         if self.migrate_id.from_version == 12:
             if self.table == 'product_attribute_value_product_product_rel':
-                self.insert_product_variant_combination( cursor, table, column_names)
+                self.insert_product_variant_combination( cursor, resultados)
             else:
-                self.insert_record_migrate(cursor, table, column_names)
+                self.insert_record_migrate(cursor, table, column_names,resultados=resultados)
         else:
-            self.insert_record_migrate(cursor, table, column_names)
+            self.insert_record_migrate(cursor, table, column_names,resultados=resultados)
 
         if  self.where_set and '%LAST' in self.where_set:
             self.last_value = self.last_value + self.records_value
@@ -420,8 +423,7 @@ class MigrateModelJz(models.Model):
 
         #resultados = cursor.fetchall()
 
-    def insert_product_variant_combination(self, cursor, table, column_names):
-        resultados = cursor.fetchall()
+    def insert_product_variant_combination(self, cursor , resultados):
 
         insert_sql = ''
 
@@ -460,14 +462,16 @@ class MigrateModelJz(models.Model):
 
                 #raise ValueError([data, sql])
 
-    def insert_record_migrate(self,cursor,table,column_names):
+    def insert_record_migrate(self,cursor,table,column_names,resultados=None):
 
         if self.new_table:
             table = self.new_table
 
         #column_names = [f'"{element}"' for element in column_names]
 
-        resultados = cursor.fetchall()  # Obtener todos los resultados
+        if not resultados:
+            resultados = cursor.fetchall()  # Obtener todos los resultados
+
 
         #if self.show_data:
         #    raise ValueError(resultados)
@@ -901,8 +905,6 @@ END $$;
                     '''
                 else:
                     SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
-
-
 
             else:
                 if self.update_if_exist:
