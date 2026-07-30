@@ -153,7 +153,11 @@ class MigrateModelJz(models.Model):
                     dx.update({'ignore': True})
 
 
-            self.env['migrate.model.columns.jz'].create(dx)
+            try:
+                self.env['migrate.model.columns.jz'].create(dx)
+            except:
+                raise ValueError(dx)
+
 
 
         #self.validate_columns_no_existentes(table)
