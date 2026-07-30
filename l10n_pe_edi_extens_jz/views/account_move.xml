@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_invoice_tree" model="ir.ui.view">
+    <record id="view_out_invoice_tree_inherit" model="ir.ui.view">
            <field name="name">account.move.tree</field>
            <field name="model">account.move</field>
            <field name="inherit_id" ref="account_edi.view_out_invoice_tree_inherit" />
            <field name="arch" type="xml">
                <xpath expr="//field[@name='edi_state']" position="replace" >
+                   <field name="edi_state"
+                          widget="badge"
+                          decoration-success="edi_state == 'sent'"
+                          decoration-danger="state != 'sent'"
+                          optional="show"/>
+               </xpath>
+           </field>
+    </record>
+
+
+    <record id="view_invoice_tree" model="ir.ui.view">
+           <field name="name">account.move.tree</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_invoice_tree" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='state']" position="before" >
                    <field name="edi_state"
                           widget="badge"
                           decoration-success="edi_state == 'sent'"
