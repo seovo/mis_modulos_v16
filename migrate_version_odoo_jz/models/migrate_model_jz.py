@@ -121,10 +121,16 @@ class MigrateModelJz(models.Model):
             #if desc[0] == 'name':
             #    raise ValueError(desc[1])
 
-            raise ValueError(type(self.id))
+            #raise ValueError(type(self.id))
+
+            id_self = self.id
+
+            if type(id_self) != int :
+                id_self = self._origin.id
+
 
             dx = {
-                'migrate_model_id' : self.id ,
+                'migrate_model_id' :  id_self ,
                 'name': desc[0] ,
                 'ignore': False
             }
@@ -156,7 +162,7 @@ class MigrateModelJz(models.Model):
                     dx.update({'ignore': True})
 
 
-            raise ValueError(dx)
+
             try:
                 self.env['migrate.model.columns.jz'].create(dx)
             except:
