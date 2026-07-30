@@ -328,7 +328,10 @@ class MigrateModelJz(models.Model):
                 '''
                 #,'es_PE', {colx.name}
 
-            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23]:
+
+            #todos los  que son company_dependent  tendran esta estructura debe ser automatico ahorita est manual
+
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23,16]:
                 namm = f'''
                      jsonb_build_object(
                         '1', {colx.name}
