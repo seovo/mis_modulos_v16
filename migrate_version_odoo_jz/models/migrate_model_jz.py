@@ -399,7 +399,7 @@ class MigrateModelJz(models.Model):
         cursor.execute(string_sql)
         resultados = cursor.fetchall()
 
-        raise ValueError([string_sql,resultados[0]])
+        #raise ValueError([string_sql,resultados[0]])
 
         #try:
         #    cursor.execute(string_sql)
