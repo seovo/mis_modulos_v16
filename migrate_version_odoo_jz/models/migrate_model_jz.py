@@ -116,8 +116,8 @@ class MigrateModelJz(models.Model):
 
         for desc in cursor.description:
 
-            if desc[0] == 'name':
-                raise ValueError(desc[1])
+            #if desc[0] == 'name':
+            #    raise ValueError(desc[1])
 
             #raise ValueError(type(self.id))
 
@@ -133,14 +133,24 @@ class MigrateModelJz(models.Model):
                 'ignore': False
             }
 
-            if list_field_current:
-                if desc[0] not in list_field_current:
-                    dx.update({'ignore': True})
+            exist_field_odoo = self.env['ir.model.fields'].search([
+                ('model_id','=',self.model_id.id),('name','=',desc[0])
+            ])
+
+            if not exist_field_odoo:
+                dx.update({'ignore': True})
+            else:
+                # tipo JSON A TEXTO
+                if desc[1] == 3802:
+                    dx.update({'type_field': 'jsonb_text'})
+
+                # TIPO TEXTO A JSONB
+                if desc[1] == 1043 and exist_field_odoo.translate :
+                    dx.update({'type_field': 'jsonb_text'})
 
 
 
-            if desc[1] == 3802 :
-                dx.update({'type_field':'jsonb_text'})
+
 
 
             if table in ['res_partner']:
