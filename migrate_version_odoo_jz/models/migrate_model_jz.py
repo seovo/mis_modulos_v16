@@ -396,7 +396,7 @@ class MigrateModelJz(models.Model):
 
         #raise ValueError(string_sql)
 
-        string_sql = f'SELECT service_to_purchase FROM {table}'
+        #string_sql = f'SELECT service_to_purchase FROM {table}'
 
         cursor.execute(string_sql)
         resultados = cursor.fetchall()
