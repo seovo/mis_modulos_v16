@@ -56,6 +56,7 @@ class AccountMove(models.Model):
         res = super().action_post()
         for record in self:
             if record.company_id.automatic_factu_jz:
+
                 if record.edi_document_ids:
                     record.button_process_edi_web_services()
 
@@ -188,6 +189,19 @@ class AccountMove(models.Model):
         if len(self) == 1:
             note = self.narration
             self.narration = None
+
+        for record in self:
+            if not record.company_id.series_available_factu_jz:
+                raise ValidationError('Configure las series permitidas')
+
+            series = record.company_id.series_available_factu_jz.split(',')
+            available_name = False
+            for serie in series:
+                if serie in  available_name:
+                    available_name = True
+
+            if not available_name:
+                raise ValidationError('SERIE NO VALIDA')
 
 
         res = super().button_process_edi_web_services()
