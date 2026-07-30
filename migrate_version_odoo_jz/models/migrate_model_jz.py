@@ -1087,18 +1087,20 @@ END $$;
             if self.show_data:
                 raise ValueError([SQL_INSERT,fila])
 
-            contador += 1
+            #contador += 1
 
-            if type(fila[31]) != bool :
-                raise ValueError(fila)
+            #if type(fila[31]) != bool :
+            #    raise ValueError(fila)
 
-            if str(fila[31]) != 'false' :
-                raise ValueError([fila,contador])
+            #if str(fila[31]) != 'false' :
+            #    raise ValueError([fila,contador])
 
             #raise ValueError(fila[31])
 
             #raise ValueError([SQL_INSERT,fila])
             self.env.cr.execute(SQL_INSERT, fila)
+
+            raise ValueError('jaaa')
             #return
 
 
