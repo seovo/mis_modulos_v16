@@ -116,8 +116,8 @@ class MigrateModelJz(models.Model):
 
         for desc in cursor.description:
 
-            if desc[0] == 'description_sale':
-                raise ValueError(desc[1])
+            #if desc[0] == 'description_sale':
+            #    raise ValueError(desc[1])
 
             #raise ValueError(type(self.id))
 
@@ -156,7 +156,7 @@ class MigrateModelJz(models.Model):
                     dx.update({'type_field': 'jsonb_text'})
 
                 # TIPO TEXTO A JSONB
-                if desc[1] == 1043 and exist_field_odoo.translate :
+                if desc[1] in [1043,25] and exist_field_odoo.translate :
                     dx.update({'type_field': 'text_jsonb'})
 
 
