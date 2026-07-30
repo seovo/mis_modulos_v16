@@ -157,7 +157,7 @@ class MigrateModelJz(models.Model):
 
                 # TIPO TEXTO A JSONB
                 if desc[1] == 1043 and exist_field_odoo.translate :
-                    dx.update({'type_field': 'jsonb_text'})
+                    dx.update({'type_field': 'text_jsonb'})
 
 
 
@@ -567,16 +567,9 @@ class MigrateModelJz(models.Model):
             #raise ValueError(resultados[0][position_description])
 
             tax_use_ids = []
-
-
-
-
             for result_tax in resultados:
                 # REALIZAR LA MIGRACION AQUI
                 # raise ValueError(journal)
-
-
-
                 value_description = result_tax[position_description]
                 value_type_tax_use = result_tax[position_type_tax_use]
                 value_amount = result_tax[position_amount]
@@ -688,12 +681,6 @@ class MigrateModelJz(models.Model):
                     'tax_id': exist_tax.id if exist_tax else None
                 }
 
-
-
-
-
-
-
                 tax_migration = self.env['tax.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
                     ('id_sql', '=', int(result_tax[0]))
@@ -769,20 +756,8 @@ class MigrateModelJz(models.Model):
                 #    raise ValueError(exist_tax)
 
                 if exist_tax:
-
-
                     tax_use_ids.append(exist_tax.id)
-
-
-
                     tax_migration.write({'tax_id': exist_tax.id })
-
-
-
-
-
-
-
 
             #raise ValidationError('Contabilidad')
 
@@ -1047,8 +1022,6 @@ END $$;
                         SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT ({identificador}) DO UPDATE SET {val3}"
 
                     #raise ValueError(val3)
-
-
 
 
                 else:

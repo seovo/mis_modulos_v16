@@ -66,6 +66,8 @@ class MigrateJz(models.Model):
 
                 resultados = cursor.fetchall()
 
+                self.field_ids.unlink()
+
                 for resultado in resultados:
                     dx = {
                             'id_sql': resultado[0],
