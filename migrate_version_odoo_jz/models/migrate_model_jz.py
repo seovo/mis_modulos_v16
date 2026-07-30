@@ -876,6 +876,8 @@ AND column_name = 'service_to_purchase';
 
         # Generar la instrucción INSERT
 
+        contador = 0
+
         for fila in resultados:
             val1 = ','.join(column_names)
             val2 = corchetes_n
@@ -1085,11 +1087,13 @@ END $$;
             if self.show_data:
                 raise ValueError([SQL_INSERT,fila])
 
+            contador += 1
+
             if type(fila[31]) != bool :
                 raise ValueError(fila)
 
             if str(fila[31]) != 'false' :
-                raise ValueError(fila)
+                raise ValueError([fila,contador])
 
             #raise ValueError(fila[31])
 
