@@ -169,8 +169,7 @@ class MigrateModelJz(models.Model):
                 raise ValueError(dx)
 
 
-
-        #self.validate_columns_no_existentes(table)
+        self.validate_columns_no_existentes(table)
 
 
     def remplace_fields(self):
