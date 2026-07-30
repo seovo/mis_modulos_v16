@@ -180,7 +180,7 @@ class MigrateModelJz(models.Model):
                 if desc[0] in ['user_id'] :
                     dx.update({'ignore': True})
 
-            raise ValueError(dx)
+            #raise ValueError(dx)
 
             try:
                 self.env['migrate.model.columns.jz'].create(dx)
