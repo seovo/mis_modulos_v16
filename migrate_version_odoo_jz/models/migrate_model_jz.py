@@ -40,6 +40,13 @@ class MigrateModelJz(models.Model):
     def validate_columns_no_existentes(self,table=None):
         if not table:
             table = self.table
+
+        list_field_insert = []
+        for columnx in self.columns:
+            if columnx.ignore == True:
+                continue
+            list_field_insert.append(columnx.name)
+
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
                 self.env['migrate.model.columns.jz'].create({
@@ -106,7 +113,7 @@ class MigrateModelJz(models.Model):
                 for field_current in self.model_id.field_id:
                     list_field_current.append(field_current.name)
 
-        list_field_insert = []
+
 
 
         for desc in cursor.description:
@@ -145,16 +152,7 @@ class MigrateModelJz(models.Model):
                 if desc[0] in ['user_id'] :
                     dx.update({'ignore': True})
 
-
-
-            #if table in ['account_invoice_line']:
-            #    dx.update({'ignore': True})
-
-
             self.env['migrate.model.columns.jz'].create(dx)
-
-            if dx['ignore'] != True:
-                list_field_insert.append(dx['name'])
 
 
         self.validate_columns_no_existentes(table)
