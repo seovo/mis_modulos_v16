@@ -137,7 +137,8 @@ class MigrateModelJz(models.Model):
             dx = {
                 'migrate_model_id' :  id_self ,
                 'name': desc[0] ,
-                'ignore': False
+                'ignore': False ,
+                'type_field_postgres': desc[1]
             }
 
 
@@ -318,13 +319,14 @@ class MigrateModelJz(models.Model):
             column_names.append(namm)
 
             if colx.type_field in ['text_jsonb']:
+                #code_pais = self.company.country_id.
                 #namm += '::jsonb'
                 namm = f'''
                 jsonb_build_object(
-                    'en_US', {colx.name},
-                    'es_PE', {colx.name}
+                    'en_US', {colx.name}
                 )::text AS {namm}
                 '''
+                #,'es_PE', {colx.name}
 
 
             if colx.type_field in ['jsonb_text']:
@@ -1046,7 +1048,7 @@ END $$;
 
 
                 else:
-                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT ({identificador}) DO NOTHING"
 
                 if self.ignorar_if_error:
                     SQL_INSERT = f'''

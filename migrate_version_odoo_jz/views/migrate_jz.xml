@@ -51,6 +51,7 @@
                                 <list editable="bottom">
                                     <field name="name" />
                                     <field name="ignore" />
+                                    <field name="type_field_postgres" />
                                     <field name="type_field" />
                                     <field name="value_set" />
                                     <field name="is_field" optional="hidden" />
