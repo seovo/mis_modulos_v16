@@ -114,12 +114,10 @@ class MigrateModelJz(models.Model):
                     list_field_current.append(field_current.name)
 
 
-
-
         for desc in cursor.description:
 
-            #if desc[0] == 'name':
-            #    raise ValueError(desc[1])
+            if desc[0] == 'name':
+                raise ValueError(desc[1])
 
             #raise ValueError(type(self.id))
 
