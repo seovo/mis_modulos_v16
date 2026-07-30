@@ -152,10 +152,11 @@ class MigrateModelJz(models.Model):
                 if desc[0] in ['user_id'] :
                     dx.update({'ignore': True})
 
+            continue
             self.env['migrate.model.columns.jz'].create(dx)
 
 
-        self.validate_columns_no_existentes(table)
+        #self.validate_columns_no_existentes(table)
 
 
     def remplace_fields(self):
