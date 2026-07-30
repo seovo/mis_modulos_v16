@@ -407,7 +407,7 @@ WHERE table_name = 'product_template'
 AND column_name = 'service_to_purchase';
         '''
 
-        cursor.execute(string_sql)
+        cursor.execute(SQL_TEST)
         resultados = cursor.fetchall()
         raise ValueError(resultados)
 
