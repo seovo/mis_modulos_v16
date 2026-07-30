@@ -408,8 +408,8 @@ AND column_name = 'service_to_purchase';
         '''
 
         cursor.execute(SQL_TEST)
-        resultados = cursor.fetchall()
-        raise ValueError(resultados)
+        #resultados = cursor.fetchall()
+        #raise ValueError(resultados)
 
 
 
