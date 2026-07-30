@@ -124,10 +124,8 @@ class MigrateModelJz(models.Model):
             id_self = self.id
 
             if type(id_self) != int :
-                id_model = self._origin.model_id.id
+
                 id_self = self._origin.id
-            else:
-                id_model = self.model_id.id
 
 
             dx = {
@@ -137,21 +135,6 @@ class MigrateModelJz(models.Model):
             }
 
 
-
-            exist_field_odoo = self.env['ir.model.fields'].search([
-                ('model_id','=',id_model),('name','=',desc[0])
-            ])
-
-            if not exist_field_odoo:
-                dx.update({'ignore': True})
-            else:
-                # tipo JSON A TEXTO
-                if desc[1] == 3802:
-                    dx.update({'type_field': 'jsonb_text'})
-
-                # TIPO TEXTO A JSONB
-                if desc[1] == 1043 and exist_field_odoo.translate :
-                    dx.update({'type_field': 'jsonb_text'})
 
 
 
