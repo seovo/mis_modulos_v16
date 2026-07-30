@@ -123,7 +123,7 @@ class MigrateModelJz(models.Model):
 
             id_self = self.id
 
-            raise ValueError(id_self)
+
 
             if type(id_self) != int :
                 id_model = self._origin.model_id.id
@@ -131,7 +131,7 @@ class MigrateModelJz(models.Model):
             else:
                 id_model = self.model_id.id
 
-
+            raise ValueError(id_model)
 
 
             dx = {
