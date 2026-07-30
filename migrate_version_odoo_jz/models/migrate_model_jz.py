@@ -124,7 +124,7 @@ class MigrateModelJz(models.Model):
             id_self = self.id
 
             if type(id_self) != int :
-                id_model = self.model_id._origin.id
+                id_model = self._origin.model_id.id
                 id_self = self._origin.id
             else:
                 id_model = self.model_id.id
