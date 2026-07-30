@@ -120,6 +120,9 @@ class MigrateModelJz(models.Model):
 
             #if desc[0] == 'name':
             #    raise ValueError(desc[1])
+
+            raise ValueError(type(self.id))
+
             dx = {
                 'migrate_model_id' : self.id ,
                 'name': desc[0] ,
