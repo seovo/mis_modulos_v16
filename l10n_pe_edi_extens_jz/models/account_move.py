@@ -192,7 +192,7 @@ class AccountMove(models.Model):
 
         for record in self:
             if not record.company_id.series_available_factu_jz:
-                raise ValidationError('Configure las series permitidas')
+                raise ValidationError(f'Configure las series permitidas {record.company_id.series_available_factu_jz}')
 
             series = record.company_id.series_available_factu_jz.split(',')
             available_name = False
