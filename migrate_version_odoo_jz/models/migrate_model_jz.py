@@ -23,6 +23,7 @@ class MigrateModelJz(models.Model):
     identificador = fields.Char(default='id')
     sequence = fields.Integer(string="Sequence", default=10)
     show_data = fields.Boolean(string='Mostrar Data')
+    create_record_master = fields.Boolean(string='Crear Registros Maestros')
 
     is_part_cron = fields.Boolean(string='Ejecutar por Lotes Cron')
     last_value = fields.Integer(string='Ultimo Registro Ejecutado %LAST')
