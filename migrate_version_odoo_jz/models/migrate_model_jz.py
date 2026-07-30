@@ -318,7 +318,7 @@ class MigrateModelJz(models.Model):
 
             column_names.append(namm)
 
-            if colx.type_field in ['text_jsonb']:
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [1043,25]:
                 #code_pais = self.company.country_id.
                 #namm += '::jsonb'
                 namm = f'''
@@ -327,6 +327,13 @@ class MigrateModelJz(models.Model):
                 )::text AS {namm}
                 '''
                 #,'es_PE', {colx.name}
+
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23]:
+                namm = f'''
+                     jsonb_build_object(
+                        '1', {colx.name}
+                     )::text AS {namm}
+                 '''
 
 
             if colx.type_field in ['jsonb_text']:
