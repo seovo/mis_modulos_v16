@@ -133,8 +133,14 @@ class MigrateModelJz(models.Model):
                 'ignore': False
             }
 
+            id_model = self.model_id.id
+
+            if type(id_model) != int :
+                id_model = self.model_id._origin.id
+
+
             exist_field_odoo = self.env['ir.model.fields'].search([
-                ('model_id','=',self.model_id.id),('name','=',desc[0])
+                ('model_id','=',id_model),('name','=',desc[0])
             ])
 
             if not exist_field_odoo:
