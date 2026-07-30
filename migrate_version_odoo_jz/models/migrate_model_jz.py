@@ -398,6 +398,21 @@ class MigrateModelJz(models.Model):
 
         #string_sql = f'SELECT service_to_purchase FROM {table}'
 
+        SQL_TEST = f'''
+        SELECT 
+    column_name, 
+    data_type 
+FROM information_schema.columns 
+WHERE table_name = 'product_template' 
+AND column_name = 'service_to_purchase';
+        '''
+
+        cursor.execute(string_sql)
+        resultados = cursor.fetchall()
+        raise ValueError(resultados)
+
+
+
         cursor.execute(string_sql)
         resultados = cursor.fetchall()
 
