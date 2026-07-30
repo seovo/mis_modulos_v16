@@ -1046,7 +1046,7 @@ END $$;
 
 
                 else:
-                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) ON CONFLICT ({identificador}) DO NOTHING"
+                    SQL_INSERT = f"INSERT INTO {table} ({val1}) VALUES ({val2}) "
 
                 if self.ignorar_if_error:
                     SQL_INSERT = f'''
