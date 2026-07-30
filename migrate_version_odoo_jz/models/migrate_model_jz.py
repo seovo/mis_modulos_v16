@@ -52,7 +52,7 @@ class MigrateModelJz(models.Model):
                 self.env['migrate.model.columns.jz'].create({
                     'name': 'autopost_bills' ,
                     'value_set': "'ask'",
-                    'migrate_model_id': self.id,
+                    'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
                 })
 
         if table == 'product_template':
@@ -60,7 +60,7 @@ class MigrateModelJz(models.Model):
                 self.env['migrate.model.columns.jz'].create({
                     'name': 'service_tracking' ,
                     'value_set': "'no'",
-                    'migrate_model_id': self.id,
+                    'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
                 })
 
         if table == 'account_move':
@@ -77,13 +77,13 @@ class MigrateModelJz(models.Model):
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'move_type',
                         'value_set': "'entry'",
-                        'migrate_model_id': self.id,
+                        'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
                     })
                 if not exist_auto_post:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'auto_post',
                         'value_set': "'no'",
-                        'migrate_model_id': self.id,
+                        'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
                     })
 
     @api.onchange('table')
