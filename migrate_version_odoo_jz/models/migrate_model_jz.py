@@ -791,7 +791,9 @@ AND column_name = 'service_to_purchase';
                 if exist_tax:
                     tax_use_ids.append(exist_tax.id)
                     tax_migration.write({'tax_id': exist_tax.id })
-
+                else:
+                    if self.create_record_master:
+                        raise ValueError(result_tax)
             #raise ValidationError('Contabilidad')
 
             return
