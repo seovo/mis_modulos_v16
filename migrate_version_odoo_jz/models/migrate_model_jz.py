@@ -1085,6 +1085,9 @@ END $$;
             if self.show_data:
                 raise ValueError([SQL_INSERT,fila])
 
+            if type(fila[31]) != bool :
+                raise ValueError(fila)
+
 
 
             #raise ValueError([SQL_INSERT,fila])
