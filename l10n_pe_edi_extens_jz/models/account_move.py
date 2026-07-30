@@ -197,7 +197,7 @@ class AccountMove(models.Model):
             series = record.company_id.series_available_factu_jz.split(',')
             available_name = False
             for serie in series:
-                if serie in  available_name:
+                if serie in  record.name.replace(' ',''):
                     available_name = True
 
             if not available_name:
