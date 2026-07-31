@@ -497,6 +497,26 @@ class MigrateModelJz(models.Model):
         #if self.show_data:
         #    raise ValueError(resultados)
 
+        if self.table == 'account_tax_group':
+            for taxgroup in resultados:
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'id_sql': taxgroup[0] ,
+                    'name':  taxgroup[1]
+
+                }
+
+                journal_migration = self.env['tax.group.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', taxgroup[0])
+                ])
+
+                if not journal_migration:
+                    journal_migration = self.env['tax.group.migration.jz'].create(data_insert)
+
+            return
+
+
         if self.table == 'product_pricelist':
             for pricelist in resultados:
                 id_pricelist = int(pricelist[0])
