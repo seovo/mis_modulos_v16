@@ -32,7 +32,7 @@ class MigrateJz(models.Model):
     tax_migration_ids = fields.One2many('tax.migration.jz','migrate_id')
     text_tax = fields.Text()
 
-    tax_group_migration_ids = fields.One2many('account.tax.group', 'migrate_id')
+    tax_group_migration_ids = fields.One2many('tax.group.migration.jz', 'migrate_id')
     text_tax_group = fields.Text()
 
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
