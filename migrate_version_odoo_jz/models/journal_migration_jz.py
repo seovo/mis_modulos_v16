@@ -36,7 +36,7 @@ class AcountAcountMigrationJz(models.Model):
 
 class TaxGroupMigrationJz(models.Model):
     _name  = 'tax.group.migration.jz'
-    _order = 'type , id_sql'
+    #_order = 'type , id_sql'
     name = fields.Char(required=True)
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz', required=True)
