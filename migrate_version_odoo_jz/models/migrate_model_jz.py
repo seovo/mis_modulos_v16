@@ -596,6 +596,12 @@ AND column_name = 'service_to_purchase';
             position_type_tax_use = column_names.index('"type_tax_use"')
             position_amount       = column_names.index('"amount"')
             position_name         = column_names.index('"name"')
+            position_include_base_amount = column_names.index('"include_base_amount"')
+
+            if self.create_record_master:
+                position_amount_type  = column_names.index('"amount_type"')
+                position_price_include = column_names.index('"price_include"')
+                position_analytic = column_names.index('"analytic"')
 
             #raise ValueError(resultados[0][position_description])
 
@@ -741,6 +747,7 @@ AND column_name = 'service_to_purchase';
                 value_type_tax_use = result_tax[position_type_tax_use]
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
+                value_analytic = result_tax[position_analytic]
 
 
 
@@ -793,6 +800,29 @@ AND column_name = 'service_to_purchase';
                     tax_migration.write({'tax_id': exist_tax.id })
                 else:
                     if self.create_record_master:
+                        value_amount_type = result_tax[position_amount_type]
+                        value_price_include = result_tax[position_price_include]
+                        value_include_base_amount = result_tax[position_include_base_amount]
+                        data_tax = {
+                            'name': value_name ,
+                            'type_tax_use': value_type_tax_use ,
+                            'amount_type': value_amount_type ,
+                            'amount': value_amount ,
+                            'description': value_description ,
+                            'include_base_amount': value_include_base_amount ,
+                            'analytic': value_analytic
+
+
+
+                        }
+                        if value_price_include and  value_price_include == True:
+                            data_tax.update({
+                                'price_include_override': 'tax_included'
+                            })
+
+                        exist_tax = self.env['account.tax'].create(dx)
+
+
                         raise ValueError([column_names,result_tax])
             #raise ValidationError('Contabilidad')
 

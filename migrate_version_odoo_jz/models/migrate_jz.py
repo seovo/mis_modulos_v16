@@ -28,8 +28,13 @@ class MigrateJz(models.Model):
     text_currency = fields.Text()
     account_migration_ids = fields.One2many('account.migration.jz','migrate_id')
     text_account = fields.Text()
+
     tax_migration_ids = fields.One2many('tax.migration.jz','migrate_id')
     text_tax = fields.Text()
+
+    tax_group_migration_ids = fields.One2many('account.tax.group', 'migrate_id')
+    text_tax_group = fields.Text()
+
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
     text_location = fields.Text()
     country_migration_ids = fields.One2many('country.migration.jz', 'migrate_id')

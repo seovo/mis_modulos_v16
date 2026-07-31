@@ -7,6 +7,7 @@ jmigra,jmigra,model_journal_migration_jz,,1,1,1,1
 curre,curren,model_currency_migration_jz,,1,1,1,1
 acc,acc,model_account_migration_jz,,1,1,1,1
 tax,tax,model_tax_migration_jz,,1,1,1,1
+gtx,gtx,model_tax_group_migration_jz,,1,1,1,1
 location,location,model_location_migration_jz,,1,1,1,1
 counttry,country,model_country_migration_jz,,1,1,1,1
 state,state,model_state_migration_jz,,1,1,1,1

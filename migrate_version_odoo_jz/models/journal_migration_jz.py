@@ -34,6 +34,15 @@ class AcountAcountMigrationJz(models.Model):
     migrate_id = fields.Many2one('migrate.jz',required=True)
     account_id = fields.Many2one('account.account')
 
+class TaxGroupMigrationJz(models.Model):
+    _name  = 'tax.group.migration.jz'
+    _order = 'type , id_sql'
+    name = fields.Char(required=True)
+    id_sql = fields.Integer(required=True)
+    migrate_id = fields.Many2one('migrate.jz', required=True)
+    tax_group_id = fields.Many2one('account.tax.group', domain=[('tax_group_migration_jz_ids', '=', False)])
+
+
 class TaxMigrationJz(models.Model):
     _name  = 'tax.migration.jz'
     _order = 'type , id_sql'

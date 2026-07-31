@@ -232,6 +232,27 @@
                             </group>
                         </page>
 
+                        <page string="Grupos de  Impuestos" name="taxs_group">
+                            <field name="tax_group_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="type" />
+                                    <field name="amount" />
+                                    <field name="tax_group_id"
+                                           domain="[
+                                             ('tax_group_migration_jz_ids','=',False),
+                                             ('type_tax_use','=',type)
+                                           ]"
+                                    />
+
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_tax_group" />
+                            </group>
+                        </page>
+
                         <page string="Impuestos" name="taxs">
                             <field name="tax_migration_ids">
                                 <list editable="bottom">
