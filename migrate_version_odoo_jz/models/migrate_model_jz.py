@@ -114,6 +114,7 @@ class MigrateModelJz(models.Model):
                 for field_current in self.model_id.field_id:
                     list_field_current.append(field_current.name)
 
+        raise ValueError(cursor)
 
         for desc in cursor.description:
 
@@ -410,16 +411,6 @@ class MigrateModelJz(models.Model):
 
         #string_sql = f'SELECT service_to_purchase FROM {table}'
 
-        SQL_TEST = f'''
-        SELECT 
-    column_name, 
-    data_type 
-FROM information_schema.columns 
-WHERE table_name = 'product_template' 
-AND column_name = 'service_to_purchase';
-        '''
-
-        cursor.execute(SQL_TEST)
         #resultados = cursor.fetchall()
         #raise ValueError(resultados)
 

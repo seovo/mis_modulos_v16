@@ -255,7 +255,7 @@ class MigrateJz(models.Model):
 
             'product_template','product_product',
 
-            'account_tax',
+            'account_tax_group','account_tax',
 
             'product_taxes_rel','product_supplier_taxes_rel',
 
@@ -385,6 +385,7 @@ class MigrateJz(models.Model):
 
         line_variants_atrr =  self.env['product.template.attribute.line'].search([('value_count','=',False),('value_ids','!=',False)],limit=1000)
         line_variants_atrr._compute_value_count()
+
     def show_lines(self):
         return {
             "name": f"LINEAS",
