@@ -232,6 +232,7 @@
                             </group>
                         </page>
 
+
                         <page string="Grupos de  Impuestos" name="taxs_group">
                             <field name="tax_group_migration_ids">
                                 <list editable="bottom">
