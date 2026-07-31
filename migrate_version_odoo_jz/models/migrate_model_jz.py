@@ -93,6 +93,7 @@ class MigrateModelJz(models.Model):
         cursor = self.migrate_id.conect_postgres()
 
         string_sql = f"SELECT * FROM {table} LIMIT 1"
+        raise ValueError(string_sql)
         try:
             cursor.execute(string_sql)
 
@@ -114,7 +115,7 @@ class MigrateModelJz(models.Model):
                 for field_current in self.model_id.field_id:
                     list_field_current.append(field_current.name)
 
-        raise ValueError(cursor)
+
 
         for desc in cursor.description:
 
