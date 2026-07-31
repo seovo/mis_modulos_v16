@@ -237,7 +237,6 @@
                                 <list editable="bottom">
                                     <field name="id_sql" />
                                     <field name="name" />
-                                    <field name="type" />
                                     <field name="amount" />
                                     <field name="tax_group_id"
                                            domain="[
