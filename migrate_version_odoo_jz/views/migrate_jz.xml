@@ -239,8 +239,7 @@
                                     <field name="name" />
                                     <field name="tax_group_id"
                                            domain="[
-                                             ('tax_group_migration_jz_ids','=',False),
-                                             ('type_tax_use','=',type)
+                                             ('tax_group_migration_jz_ids','=',False)
                                            ]"
                                     />
 
