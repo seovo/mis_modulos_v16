@@ -94,13 +94,7 @@ class MigrateModelJz(models.Model):
 
         string_sql = f"SELECT * FROM {table} LIMIT 1"
         raise ValueError(string_sql)
-        try:
-            cursor.execute(string_sql)
-
-        except:
-            #cursor.execute(string_sql)
-            self.columns = None
-            return
+        cursor.execute(string_sql)
 
         self.columns = None
 
