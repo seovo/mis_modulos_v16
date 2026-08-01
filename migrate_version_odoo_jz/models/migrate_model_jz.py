@@ -782,7 +782,14 @@ class MigrateModelJz(models.Model):
                         ('id_sql', '=', int(result_tax[0]))
                     ])
                     if tax_migration:
+
                         if not tax_migration.tax_id:
+
+                            value_description = result_tax[position_description]
+                            value_type_tax_use = result_tax[position_type_tax_use]
+                            value_amount = result_tax[position_amount]
+                            value_name = result_tax[position_name]
+
                             value_amount_type = result_tax[position_amount_type]
                             value_price_include = result_tax[position_price_include]
                             value_include_base_amount = result_tax[position_include_base_amount]
