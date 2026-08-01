@@ -98,6 +98,23 @@ class MigrateJz(models.Model):
             id_tax_group = ''
 
             for migrat in self.tax_group_migration_ids:
+                if not migrat.account_type:
+                    continue
+                id_tax_group += f''' WHEN user_type_id = {migrat.id_sql} THEN '{migrat.account_type}' \n'''
+
+            textx = f'''
+                        CASE
+                           {id_tax_group}
+                        ELSE  'off_balance'
+                        END AS account_type
+                        '''
+
+            self.text_tax_group = textx
+
+        if self.tax_group_migration_ids:
+            id_tax_group = ''
+
+            for migrat in self.tax_group_migration_ids:
                 if not migrat.tax_group_id:
                     continue
                 id_tax_group += f''' WHEN tax_group_id = {migrat.id_sql} THEN {migrat.tax_group_id.id } \n'''
