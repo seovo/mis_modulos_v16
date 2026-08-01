@@ -965,7 +965,7 @@ class MigrateModelJz(models.Model):
                     tax_migration.write({'tax_id': exist_tax.id })
 
 
-            for tax_migra in self.migrate_id.tax_migration_ids:
+            for result_tax in resultados:
                 tax_migration = self.env['tax.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
                     ('id_sql', '=', int(result_tax[0]))
