@@ -42,7 +42,7 @@ class AcountAcountMigrationJz(models.Model):
     id_sql = fields.Integer(required=True)
     code = fields.Char(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
-    account_id = fields.Many2one('account.account')
+    account_id = fields.Many2one('account.account', domain=[('account_migration_jz_ids', '=', False)])
 
 class TaxGroupMigrationJz(models.Model):
     _name  = 'tax.group.migration.jz'

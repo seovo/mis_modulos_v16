@@ -1,5 +1,9 @@
 from odoo import api, fields, models , _
 
+class AccountAccount(models.Model):
+    _inherit = "account.account"
+    account_migration_jz_ids  = fields.One2many('account.migration.jz','account_id')
+
 class AccountGroup(models.Model):
     _inherit = "account.group"
     account_group_migration_jz_ids  = fields.One2many('account.group.migration.jz','account_group_id')
