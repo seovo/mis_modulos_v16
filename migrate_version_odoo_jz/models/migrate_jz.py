@@ -89,6 +89,23 @@ class MigrateJz(models.Model):
 
     def generate_text_set_clave(self):
 
+        if self.tax_group_migration_ids:
+            id_tax_group = ''
+
+            for migrat in self.tax_group_migration_ids:
+                if not migrat.tax_group_id:
+                    continue
+                id_tax_group += f''' WHEN tax_group_id = {migrat.id_sql} THEN {migrat.tax_group_id.id } \n'''
+
+            textx = f'''
+                        CASE
+                           {id_tax_group}
+                        ELSE  tax_group_id
+                        END AS tax_group_id
+                        '''
+
+            self.text_tax_group = textx
+
         if self.currency_migration_ids :
 
             id_journal = ''
