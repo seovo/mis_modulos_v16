@@ -982,6 +982,9 @@ class MigrateModelJz(models.Model):
                             value_tax_group_id = result_tax[position_tax_group_id]
                             value_refund_account_id = result_tax[position_refund_account_id]
 
+                            if value_name == 'Retención 2% ISR por Transferencia de Títulos':
+                                raise ValueError(tax_migration.tax_id)
+
                             data_tax = {
                                 'name': value_name,
                                 'type_tax_use': value_type_tax_use,
