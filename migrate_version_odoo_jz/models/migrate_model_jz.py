@@ -239,6 +239,13 @@ class MigrateModelJz(models.Model):
             for jfiels in currency_fields:
                 jfiels.value_set = self.migrate_id.text_currency
 
+        act_fields = self.env['migrate.model.columns.jz'].search(
+            [('name', '=', 'user_type_id'), ('migrate_model_id', '=', self.id)])
+
+        if act_fields:
+            for jfiels in act_fields:
+                jfiels.value_set = self.migrate_id.text_account_type
+
         tax_group_fields = self.env['migrate.model.columns.jz'].search(
             [('name', '=', 'tax_group_id'), ('migrate_model_id', '=', self.id)])
 
