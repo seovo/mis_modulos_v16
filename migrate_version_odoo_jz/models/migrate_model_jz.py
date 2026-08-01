@@ -511,9 +511,14 @@ class MigrateModelJz(models.Model):
 
                 name_group = taxgroup[1]
 
-                exist_tax_group = self.env['account.tax.group'].search([
+                dom = [
                     ('name', 'ilike', name_group),('country_id','=',self.env.company.country_id.id)
-                ])
+                ]
+
+                exist_tax_group = self.env['account.tax.group'].search(dom)
+
+                if len(exist_tax_group) > 1:
+                    raise ValidationError(dom)
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
