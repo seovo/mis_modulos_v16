@@ -647,6 +647,7 @@ class MigrateModelJz(models.Model):
                 position_amount_type  = column_names.index('"amount_type"')
                 position_price_include = column_names.index('"price_include"')
                 position_analytic = column_names.index('"analytic"')
+                position_tax_exigibility = column_names.index('"tax_exigibility"')
 
             #raise ValueError(resultados[0][position_description])
 
@@ -687,8 +688,6 @@ class MigrateModelJz(models.Model):
 
                     if len(exist_tax) > 1:
                         exist_tax = None
-
-
 
 
                 #VALIDACION NOMBRE -> DESCRIPCION , ,MONTO E IMPUESTO
@@ -847,8 +846,9 @@ class MigrateModelJz(models.Model):
                         value_price_include = result_tax[position_price_include]
                         value_include_base_amount = result_tax[position_include_base_amount]
                         value_analytic = result_tax[position_analytic]
+                        value_tax_exigibility = result_tax[position_tax_exigibility]
 
-                        raise ValueError(column_names)
+
 
                         data_tax = {
                             'name': value_name ,
@@ -857,15 +857,20 @@ class MigrateModelJz(models.Model):
                             'amount': value_amount ,
                             'description': value_description ,
                             'include_base_amount': value_include_base_amount ,
-                            'analytic': value_analytic
+                            'analytic': value_analytic ,
+                            'tax_exigibility': value_tax_exigibility
 
 
 
                         }
+
+
                         if value_price_include and  value_price_include == True:
                             data_tax.update({
                                 'price_include_override': 'tax_included'
                             })
+
+                        raise ValueError([column_names,data_tax])
 
 
 
@@ -879,18 +884,32 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'account_account':
 
-            if not self.migrate_id.account_migration_ids:
-                #raise ValidationError(str(resultados))
-                for journal in resultados:
-                    #raise ValueError(journal)
-                    self.env['account.migration.jz'].create({
-                        'migrate_id': self.migrate_id.id ,
-                        'name': str(journal[1]) ,
-                        'id_sql': int(journal[0]) ,
-                        'code': str(journal[3]) ,
-                        #'journal_id':
+            for account in resultados:
+                name_account = str(account[1])
+                id_account = int(account[0])
+                code_account = str(account[3])
+
+                exist_account = self.env['account.account'].search([('code', '=', code_account)])
+
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'name': name_account,
+                    'id_sql': id_account,
+                    'code': code_account
+                }
+
+                if exist_account:
+                    data_insert.update({
+                        'account_id': exist_account.id
                     })
-            #raise ValidationError('Contabilidad')
+
+                account_migration = self.env['account.migration.jz'].search([
+                    ('id_sql', '=', id_account)
+                ])
+                if account_migration:
+                    account_migration.write(data_insert)
+                else:
+                    self.env['account.migration.jz'].create(data_insert)
 
             return
 
