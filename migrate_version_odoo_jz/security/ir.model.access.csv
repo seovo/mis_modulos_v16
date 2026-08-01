@@ -13,3 +13,4 @@ counttry,country,model_country_migration_jz,,1,1,1,1
 state,state,model_state_migration_jz,,1,1,1,1
 city,city,model_city_migration_jz,,1,1,1,1
 pricelist,pricelist,model_pricelist_migration_jz,,1,1,1,1
+act,act,model_account_type_migration_jz,,1,1,1,1

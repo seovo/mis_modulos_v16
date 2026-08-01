@@ -217,6 +217,19 @@
                             </group>
                         </page>
 
+                        <page string="Tipo Cuentas" name="type_account">
+                            <field name="account_type_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="account_type" />
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_account_type" />
+                            </group>
+                        </page>
+
 
                         <page string="Cuentas" name="account">
                             <field name="account_migration_ids">

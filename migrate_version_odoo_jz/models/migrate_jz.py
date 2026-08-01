@@ -35,6 +35,9 @@ class MigrateJz(models.Model):
     tax_group_migration_ids = fields.One2many('tax.group.migration.jz', 'migrate_id')
     text_tax_group = fields.Text()
 
+    account_type_migration_ids = fields.One2many('account.type.migration.jz', 'migrate_id')
+    text_account_type = fields.Text()
+
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
     text_location = fields.Text()
     country_migration_ids = fields.One2many('country.migration.jz', 'migrate_id')
@@ -45,6 +48,8 @@ class MigrateJz(models.Model):
     text_city = fields.Text()
     pricelist_migration_ids = fields.One2many('pricelist.migration.jz', 'migrate_id')
     text_pricelist = fields.Text()
+
+
 
 
     #company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
@@ -317,7 +322,7 @@ class MigrateJz(models.Model):
                     table_object.update_if_exist = True
                     table_object.new_table = 'account_invoice_line'
 
-                if table == 'account_tax':
+                if table in ['account_tax','res_currency']:
                     table_object.where_set = "active = 't' ; "
 
                 if table == 'account_account':

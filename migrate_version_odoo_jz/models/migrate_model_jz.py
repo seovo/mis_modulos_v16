@@ -641,15 +641,6 @@ class MigrateModelJz(models.Model):
 
 
         if self.table == 'account_tax':
-
-
-
-            #raise ValueError({
-            #    'a': column_names,
-            #    'b': resultados[0]
-            #})
-
-            #esto solo esta probado en odoo12
             #raise ValueError(column_names)
             position_description  = column_names.index('"description"')
             position_type_tax_use = column_names.index('"type_tax_use"')
@@ -897,10 +888,15 @@ class MigrateModelJz(models.Model):
             return
 
         if self.table == 'account_account':
+            position_name = column_names.index('"name"')
+            position_code = column_names.index('"code"')
+            if self.create_record_master:
+                position_deprecated = column_names.index('"deprecated"')
+
             for account in resultados:
-                name_account = str(account[1])
                 id_account = int(account[0])
-                code_account = str(account[3])
+                name_account = str(account[position_name])
+                code_account = str(account[position_code])
 
                 exist_account = self.env['account.account'].search([('code', '=', code_account)])
 
@@ -915,6 +911,23 @@ class MigrateModelJz(models.Model):
                     data_insert.update({
                         'account_id': exist_account.id
                     })
+                else:
+                    if self.create_record_master:
+                        value_deprecated = account[position_deprecated]
+                        data_create_account = {
+                            'name': name_account ,
+                            'code': code_account ,
+                            'deprecated': value_deprecated ,
+
+
+                        }
+
+                        exist_account = self.env['account.account'].create(data_create_account)
+
+                        data_insert.update({
+                            'account_id': exist_account.id
+                        })
+
 
                 account_migration = self.env['account.migration.jz'].search([
                     ('id_sql', '=', id_account)
