@@ -989,7 +989,7 @@ class MigrateModelJz(models.Model):
                                 'include_base_amount': value_include_base_amount,
                                 'analytic': value_analytic,
                                 'tax_exigibility': value_tax_exigibility ,
-                                'default_account_id': value_account_id ,
+                                #'default_account_id': value_account_id ,
                                 'tax_group_id': value_tax_group_id
 
                             }
@@ -999,10 +999,17 @@ class MigrateModelJz(models.Model):
                                     'price_include_override': 'tax_included'
                                 })
 
+
+
+
                             #raise ValueError([column_names, data_tax])
 
                             exist_tax = self.env['account.tax'].create(data_tax)
-                            result_tax.account_id = exist_tax.id
+                            tax_migration.tax_id = exist_tax.id
+
+                            if value_account_id:
+                                raise ValidationError(exist_tax.invoice_repartition_line_ids)
+
 
                             #raise ValueError([column_names, result_tax])
 
