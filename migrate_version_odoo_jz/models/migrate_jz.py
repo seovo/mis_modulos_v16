@@ -97,6 +97,22 @@ class MigrateJz(models.Model):
 
     def generate_text_set_clave(self):
 
+        if self.account_group_migration_ids:
+            id_account_group = ''
+
+            for migrat in self.account_type_migration_ids:
+                if not migrat.account_type:
+                    continue
+                id_account_group += f''' WHEN group_id = {migrat.id_sql} THEN '{migrat.account_group_id}' \n'''
+
+            textx = f'''
+                        CASE
+                            {id_account_group}
+                        ELSE  group_id
+                        END AS group_id
+            '''
+            self.text_account_group = textx
+
         if self.account_type_migration_ids:
             id_tax_group = ''
 
