@@ -258,10 +258,14 @@ class MigrateJz(models.Model):
 
 
     def get_tables_maestros(self):
-        return [
+        tables_maestros = [
             'account_account','account_tax_group','product_pricelist','account_journal','res_currency',
             'account_tax','stock_location',
         ]
+
+        if self.from_version in [11,12]:
+            tables_maestros.append("account_account_type")
+        return tables_maestros
 
     def add_modelos_usuales(self):
         #self.env.cr.execute("TRUNCATE TABLE account_tax_purchase_order_line_rel ;")

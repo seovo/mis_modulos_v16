@@ -513,6 +513,21 @@ class MigrateModelJz(models.Model):
         #if self.show_data:
         #    raise ValueError(resultados)
 
+        if self.table == 'account_account_type':
+            for atype in resultados:
+                atype_migration = self.env['account.type.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', atype[0])
+                ])
+                if not atype_migration:
+                    self.env['account.type.migration.jz'].create({
+                        'id_sql' : atype[0] ,
+                        'name': atype[1] ,
+                        'migrate_id' : self.migrate_id.id
+                    })
+            return
+
+
         if self.table == 'account_tax_group':
             for taxgroup in resultados:
 
