@@ -103,7 +103,7 @@ class MigrateJz(models.Model):
             for migrat in self.account_group_migration_ids:
                 if not migrat.account_group_id:
                     continue
-                id_account_group += f''' WHEN group_id = {migrat.id_sql} THEN '{migrat.account_group_id}' \n'''
+                id_account_group += f''' WHEN group_id = {migrat.id_sql} THEN '{migrat.account_group_id.id}' \n'''
 
             textx = f'''
                         CASE
