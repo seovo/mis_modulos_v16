@@ -1036,6 +1036,8 @@ class MigrateModelJz(models.Model):
                         value_note = account[position_note]
                         value_group = account[position_group_id]
                         value_reconcile = account[position_reconcile]
+                        if not code_account or code_account == 'False':
+                            raise ValidationError(str([name_account,id_account]))
                         data_create_account = {
                             'company_ids': [(6, 0, [self.env.company.id])] ,
                             'name': name_account ,
