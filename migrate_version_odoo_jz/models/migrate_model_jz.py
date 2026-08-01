@@ -761,11 +761,14 @@ class MigrateModelJz(models.Model):
             position_name         = column_names.index('"name"')
             position_include_base_amount = column_names.index('"include_base_amount"')
 
+
             if self.create_record_master:
                 position_amount_type  = column_names.index('"amount_type"')
                 position_price_include = column_names.index('"price_include"')
                 position_analytic = column_names.index('"analytic"')
                 position_tax_exigibility = column_names.index('"tax_exigibility"')
+                position_account_id = column_names.index('"account_id"')
+                position_tax_group_id = column_names.index('"tax_group_id"')
 
             #raise ValueError(resultados[0][position_description])
 
@@ -911,6 +914,7 @@ class MigrateModelJz(models.Model):
                 value_name = result_tax[position_name]
 
 
+
                 # VALIDACION NAME->DESCRIPCION / NOMBRE E IMPUESTO
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
@@ -958,45 +962,50 @@ class MigrateModelJz(models.Model):
                 if exist_tax:
                     tax_use_ids.append(exist_tax.id)
                     tax_migration.write({'tax_id': exist_tax.id })
-                else:
-                    if self.create_record_master:
-                        value_amount_type = result_tax[position_amount_type]
-                        value_price_include = result_tax[position_price_include]
-                        value_include_base_amount = result_tax[position_include_base_amount]
-                        value_analytic = result_tax[position_analytic]
-                        value_tax_exigibility = result_tax[position_tax_exigibility]
 
 
+            for result_tax in resultados:
+                tax_migration = self.env['tax.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', int(result_tax[0]))
+                ])
+                if tax_migration:
+                    if not tax_migration.tax_id:
+                        if self.create_record_master:
+                            value_amount_type = result_tax[position_amount_type]
+                            value_price_include = result_tax[position_price_include]
+                            value_include_base_amount = result_tax[position_include_base_amount]
+                            value_analytic = result_tax[position_analytic]
+                            value_tax_exigibility = result_tax[position_tax_exigibility]
+                            value_account_id =  result_tax[position_account_id]
+                            value_tax_group_id = result_tax[position_tax_group_id]
 
-                        data_tax = {
-                            'name': value_name ,
-                            'type_tax_use': value_type_tax_use ,
-                            'amount_type': value_amount_type ,
-                            'amount': value_amount ,
-                            'description': value_description ,
-                            'include_base_amount': value_include_base_amount ,
-                            'analytic': value_analytic ,
-                            'tax_exigibility': value_tax_exigibility
+                            data_tax = {
+                                'name': value_name,
+                                'type_tax_use': value_type_tax_use,
+                                'amount_type': value_amount_type,
+                                'amount': value_amount,
+                                'description': value_description,
+                                'include_base_amount': value_include_base_amount,
+                                'analytic': value_analytic,
+                                'tax_exigibility': value_tax_exigibility ,
+                                'default_account_id': value_account_id ,
+                                'tax_group_id': value_tax_group_id
 
+                            }
 
+                            if value_price_include and value_price_include == True:
+                                data_tax.update({
+                                    'price_include_override': 'tax_included'
+                                })
 
-                        }
+                            #raise ValueError([column_names, data_tax])
 
+                            exist_tax = self.env['account.tax'].create(data_tax)
+                            result_tax.account_id = exist_tax.id
 
-                        if value_price_include and  value_price_include == True:
-                            data_tax.update({
-                                'price_include_override': 'tax_included'
-                            })
+                            #raise ValueError([column_names, result_tax])
 
-                        raise ValueError([column_names,data_tax])
-
-
-
-                        exist_tax = self.env['account.tax'].create(data_tax)
-
-
-                        raise ValueError([column_names,result_tax])
-            #raise ValidationError('Contabilidad')
 
             return
 
