@@ -879,7 +879,16 @@ class MigrateModelJz(models.Model):
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
                 if len(exist_tax) > 1:
-                    exist_tax = None
+                    exist_unique = []
+                    for existt in exist_tax:
+                        if existt.name == value_name:
+                            exist_unique.append(existt)
+
+                    if len(exist_unique > 1):
+                        exist_tax = None
+                    else:
+                        exist_tax = exist_unique[0]
+
 
                 if not exist_tax:
                     # VALIDACION DESCRIPCION->NOMBRE , MONTO , NOMBRE -> DESCRIPCION ,  E IMPUESTO
