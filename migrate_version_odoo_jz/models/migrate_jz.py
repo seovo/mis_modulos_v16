@@ -109,7 +109,7 @@ class MigrateJz(models.Model):
                         END AS account_type
                         '''
 
-            self.text_tax_group = textx
+            self.text_account_type = textx
 
         if self.tax_group_migration_ids:
             id_tax_group = ''
