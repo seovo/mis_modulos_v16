@@ -861,8 +861,8 @@ class MigrateModelJz(models.Model):
                 ]
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                #if value_name == '18% ITBIS Incl. Compras' :
-                #    raise ValueError(exist_tax)
+                if value_name == '9% ITBIS Comprasa' :
+                    raise ValueError(exist_tax)
 
                 if len(exist_tax) > 1:
                     exist_tax = None
@@ -877,6 +877,9 @@ class MigrateModelJz(models.Model):
 
                 ]
                 exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                if value_name == '9% ITBIS Compras' :
+                    raise ValueError(exist_tax)
 
                 if len(exist_tax) > 1:
                     exist_unique = []
