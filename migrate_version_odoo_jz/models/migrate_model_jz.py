@@ -224,7 +224,7 @@ class MigrateModelJz(models.Model):
         #raise ValidationError('oke')
         # para los campos que son journal_id
         account_fields = self.env['migrate.model.columns.jz'].search([
-            ('name', '=', 'group_id'), ('migrate_model_id', '=', self.id),('table','=','account_account')
+            ('name', '=', 'group_id'), ('migrate_model_id', '=', self.id),('migrate_model_id.table','=','account_account')
         ])
         if account_fields:
             for jfiels in account_fields:
