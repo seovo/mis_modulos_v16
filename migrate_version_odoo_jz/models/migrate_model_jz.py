@@ -517,8 +517,8 @@ class MigrateModelJz(models.Model):
 
                 exist_tax_group = self.env['account.tax.group'].search(dom)
 
-                if len(exist_tax_group) > 1:
-                    raise ValidationError(dom)
+                #if len(exist_tax_group) > 1:
+                #    raise ValidationError(dom)
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
@@ -527,7 +527,7 @@ class MigrateModelJz(models.Model):
 
                 }
 
-                if exist_tax_group:
+                if exist_tax_group and len(exist_tax_group) == 1:
                     data_insert.update({
                         'tax_group_id': exist_tax_group.id
                     })
