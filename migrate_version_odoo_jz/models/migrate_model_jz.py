@@ -851,7 +851,7 @@ class MigrateModelJz(models.Model):
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
 
-                # VALIDACION DESCRIPCION->NOMBRE , MONTO , NOMBRE -> DESCRIPCION ,  E IMPUESTO
+                # VALIDACION NOMBRE
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
@@ -861,8 +861,22 @@ class MigrateModelJz(models.Model):
                 ]
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
-                if value_name == '18% ITBIS Incl. Compras' :
-                    raise ValueError(exist_tax)
+                #if value_name == '18% ITBIS Incl. Compras' :
+                #    raise ValueError(exist_tax)
+
+                if len(exist_tax) > 1:
+                    exist_tax = None
+
+                #VALIDAR NOMBRE Y DESCRIPCION
+                dominio_tax = [
+                    ('type_tax_use', '=', value_type_tax_use),
+                    ('amount', '=', value_amount),
+                    ('name', 'ilike', value_name),
+                    ('description', 'ilike', value_description),
+                    '|', ('active', '=', True), ('active', '=', False)
+
+                ]
+                exist_tax = self.env['account.tax'].search(dominio_tax)
 
                 if len(exist_tax) > 1:
                     exist_tax = None
