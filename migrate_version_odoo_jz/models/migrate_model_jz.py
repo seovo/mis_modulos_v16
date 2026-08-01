@@ -155,7 +155,7 @@ class MigrateModelJz(models.Model):
             if not exist_field_odoo:
                 dx.update({'ignore': True})
             else:
-                # tipo JSON A TEXTO
+                # tipo JSON A TEXTO , porque mi insercion solo acepto texto
                 if desc[1] == 3802:
                     dx.update({'type_field': 'jsonb_text'})
 
@@ -163,13 +163,8 @@ class MigrateModelJz(models.Model):
                 if desc[1] in [1043,25] and exist_field_odoo.translate :
                     dx.update({'type_field': 'text_jsonb'})
 
-                #SI ES LA TABLA account_tax_group , porque es una tabla maestra
-                if desc[1] in [1043, 25] and exist_field_odoo.translate and desc[0] == 'name' and table == 'account_tax_group':
-                    dx.update({'type_field': 'jsonb_text'})
-
-
-
-
+                if desc[1] in [1043, 25] and exist_field_odoo.translate and table in ['account_tax_group'] and desc[0] == 'name':
+                    dx.update({'type_field': False})
 
 
             if table in ['res_partner']:
@@ -325,18 +320,18 @@ class MigrateModelJz(models.Model):
 
             column_names.append(namm)
 
-            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [1043,25] :
-                #code_pais = self.company.country_id.
-                #namm += '::jsonb'
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [1043,25]:
+                # code_pais = self.company.country_id.
+                # namm += '::jsonb'
+                # esto es para cuando el texto vine como json b aunque sea tipo texto por verificar si viene un caso asi
+                # namm = f'''
+                # CASE
+                #   WHEN {namm} IS NOT NULL AND jsonb_typeof({namm}::jsonb) IS NOT NULL THEN {namm}::text
+                #   ELSE jsonb_build_object('en_US', COALESCE({namm}, ''))::text
+                # END AS {namm}
+                # '''
 
                 namm = f'''
-                CASE
-                   WHEN {namm} IS NOT NULL AND jsonb_typeof({namm}::jsonb) IS NOT NULL THEN {namm}::text
-                   ELSE jsonb_build_object('en_US', COALESCE({namm}, ''))::text
-                END AS {namm} 
-                '''
-
-                nammx = f'''
                 jsonb_build_object(
                     'en_US', {colx.name}
                 )::text AS {namm}
@@ -346,12 +341,14 @@ class MigrateModelJz(models.Model):
 
             #todos los  que son company_dependent  tendran esta estructura debe ser automatico ahorita est manual
 
-            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23,16] :
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23,16]:
                 namm = f'''
                      jsonb_build_object(
                         '1', {colx.name}
                      )::text AS {namm}
                  '''
+
+
 
             if colx.type_field in ['jsonb_text']:
                 namm += '::text'
@@ -514,7 +511,7 @@ class MigrateModelJz(models.Model):
 
                 name_group = taxgroup[1]
 
-
+                exist_tax_group = self.env['account.tax.group'].search([('name', '=', name_group)])
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
@@ -522,6 +519,11 @@ class MigrateModelJz(models.Model):
                     'name':  name_group
 
                 }
+
+                if exist_tax_group:
+                    data_insert.update({
+                        'tax_group_id': exist_tax_group.id
+                    })
 
                 journal_migration = self.env['tax.group.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
