@@ -511,7 +511,9 @@ class MigrateModelJz(models.Model):
 
                 name_group = taxgroup[1]
 
-                exist_tax_group = self.env['account.tax.group'].search([('name', 'ilike', name_group)])
+                exist_tax_group = self.env['account.tax.group'].search([
+                    ('name', 'ilike', name_group),('country_id','=',self.company.country_id.id)
+                ])
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
