@@ -1019,7 +1019,7 @@ class MigrateModelJz(models.Model):
                     'name': name_account,
                     'id_sql': id_account,
                     'code': code_account ,
-                    'company_ids': [(6, 0, [self.company_id.id])]
+                    'company_ids': [(6, 0, [self.company.id])]
                 }
 
                 if exist_account:
