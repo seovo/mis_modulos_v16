@@ -883,7 +883,6 @@ class MigrateModelJz(models.Model):
             return
 
         if self.table == 'account_account':
-
             for account in resultados:
                 name_account = str(account[1])
                 id_account = int(account[0])
