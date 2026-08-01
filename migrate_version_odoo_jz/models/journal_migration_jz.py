@@ -26,6 +26,15 @@ class CurrencyMigrationJz(models.Model):
     migrate_id = fields.Many2one('migrate.jz',required=True)
     currency_id = fields.Many2one('res.currency')
 
+class AcountGroupMigrationJz(models.Model):
+    _name  = 'account.group.migration.jz'
+    name = fields.Char(required=True)
+    id_sql = fields.Integer(required=True)
+    code = fields.Char()
+    parent_id = fields.Integer()
+    migrate_id = fields.Many2one('migrate.jz',required=True)
+    account_group_id = fields.Many2one('account.group')
+
 class AcountAcountMigrationJz(models.Model):
     _name  = 'account.migration.jz'
     name = fields.Char(required=True)

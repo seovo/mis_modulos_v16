@@ -38,6 +38,9 @@ class MigrateJz(models.Model):
     account_type_migration_ids = fields.One2many('account.type.migration.jz', 'migrate_id')
     text_account_type = fields.Text()
 
+    account_group_migration_ids = fields.One2many('account.group.migration.jz', 'migrate_id')
+    text_account_group = fields.Text()
+
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
     text_location = fields.Text()
     country_migration_ids = fields.One2many('country.migration.jz', 'migrate_id')
@@ -276,7 +279,7 @@ class MigrateJz(models.Model):
 
     def get_tables_maestros(self):
         tables_maestros = [
-            'account_account','account_tax_group','product_pricelist','account_journal','res_currency',
+            'account_group','account_account','account_tax_group','product_pricelist','account_journal','res_currency',
             'account_tax','stock_location',
         ]
 

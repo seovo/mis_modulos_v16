@@ -230,6 +230,21 @@
                             </group>
                         </page>
 
+                        <page string="Account Group" name="group_account">
+                            <field name="account_group_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="code" />
+                                    <field name="parent_id" />
+                                    <field name="account_group_id" />
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_account_group" />
+                            </group>
+                        </page>
+
 
                         <page string="Cuentas" name="account">
                             <field name="account_migration_ids">

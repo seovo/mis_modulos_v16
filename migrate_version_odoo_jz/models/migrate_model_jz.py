@@ -551,9 +551,9 @@ class MigrateModelJz(models.Model):
                 ])
 
                 data_insert = {
-                        'id_sql' : atype[0] ,
-                        'name': atype[1] ,
-                        'migrate_id' : self.migrate_id.id
+                    'id_sql' : atype[0] ,
+                    'name': atype[1] ,
+                    'migrate_id' : self.migrate_id.id
                 }
 
                 try:
@@ -958,6 +958,7 @@ class MigrateModelJz(models.Model):
             position_code = column_names.index('"code"')
             if self.create_record_master:
                 position_deprecated = column_names.index('"deprecated"')
+                position_note  = column_names.index('"note"')
 
             for account in resultados:
                 id_account = int(account[0])
@@ -970,7 +971,8 @@ class MigrateModelJz(models.Model):
                     'migrate_id': self.migrate_id.id,
                     'name': name_account,
                     'id_sql': id_account,
-                    'code': code_account
+                    'code': code_account ,
+                    'company_ids': [(6, 0, [self.company_id.id])]
                 }
 
                 if exist_account:
@@ -980,10 +982,13 @@ class MigrateModelJz(models.Model):
                 else:
                     if self.create_record_master:
                         value_deprecated = account[position_deprecated]
+                        value_note = account[position_note]
                         data_create_account = {
                             'name': name_account ,
                             'code': code_account ,
                             'deprecated': value_deprecated ,
+                            'note': value_note ,
+
 
 
                         }
