@@ -841,6 +841,9 @@ class MigrateModelJz(models.Model):
                         value_amount_type = result_tax[position_amount_type]
                         value_price_include = result_tax[position_price_include]
                         value_include_base_amount = result_tax[position_include_base_amount]
+
+                        raise ValueError(result_tax)
+
                         data_tax = {
                             'name': value_name ,
                             'type_tax_use': value_type_tax_use ,
@@ -858,7 +861,9 @@ class MigrateModelJz(models.Model):
                                 'price_include_override': 'tax_included'
                             })
 
-                        exist_tax = self.env['account.tax'].create(dx)
+
+
+                        exist_tax = self.env['account.tax'].create(data_tax)
 
 
                         raise ValueError([column_names,result_tax])
