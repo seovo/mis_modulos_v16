@@ -566,6 +566,15 @@ class MigrateModelJz(models.Model):
                     'code': value_code_prefix
                 }
 
+                exist_account_group = self.env['account.group'].search([
+                    '|',('code_prefix_end','=',value_code_prefix),('code_prefix_start','=',value_code_prefix)
+                ])
+
+                if exist_account_group:
+                    data_insert.update({
+                        'account_group_id': exist_account_group.id
+                    })
+
                 if not agroup_migration:
                     agroup_migration.create(data_insert)
                 else:
