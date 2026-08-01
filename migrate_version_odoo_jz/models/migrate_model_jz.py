@@ -871,8 +871,8 @@ class MigrateModelJz(models.Model):
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    ('name', 'ilike', value_name),
-                    ('description', 'ilike', value_description),
+                    ('name', '=', value_name),
+                    #('description', 'ilike', value_description),
                     '|', ('active', '=', True), ('active', '=', False)
 
                 ]
@@ -882,15 +882,7 @@ class MigrateModelJz(models.Model):
                     raise ValueError(exist_tax)
 
                 if len(exist_tax) > 1:
-                    exist_unique = []
-                    for existt in exist_tax:
-                        if existt.name == value_name:
-                            exist_unique.append(existt)
-
-                    if len(exist_unique > 1):
-                        exist_tax = None
-                    else:
-                        exist_tax = exist_unique[0]
+                    exist_tax = None
 
 
                 if not exist_tax:
