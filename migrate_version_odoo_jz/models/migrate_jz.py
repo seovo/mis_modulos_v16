@@ -100,8 +100,8 @@ class MigrateJz(models.Model):
         if self.account_group_migration_ids:
             id_account_group = ''
 
-            for migrat in self.account_type_migration_ids:
-                if not migrat.account_type:
+            for migrat in self.account_group_migration_ids:
+                if not migrat.account_group_id:
                     continue
                 id_account_group += f''' WHEN group_id = {migrat.id_sql} THEN '{migrat.account_group_id}' \n'''
 
