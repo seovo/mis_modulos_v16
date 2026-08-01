@@ -546,9 +546,12 @@ class MigrateModelJz(models.Model):
         if self.table == 'account_group':
             position_name = column_names.index('"name"')
             position_parent_id = column_names.index('"parent_id"')
+            position_code_prefix = column_names.index('"code_prefix"')
+
             for agroup in resultados:
                 value_name = agroup[position_name]
                 value_parent_id = agroup[position_parent_id]
+                value_code_prefix = agroup[position_code_prefix]
 
                 agroup_migration = self.env['account.group.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
@@ -559,11 +562,14 @@ class MigrateModelJz(models.Model):
                     'id_sql': agroup[0],
                     'name': value_name,
                     'migrate_id': self.migrate_id.id ,
-                    'parent_id': value_parent_id
+                    'parent_id': value_parent_id ,
+                    'code': value_code_prefix
                 }
 
                 if not agroup_migration:
                     agroup_migration.create(data_insert)
+                else:
+                    agroup_migration.write(data_insert)
             return
 
 
