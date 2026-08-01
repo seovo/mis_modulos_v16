@@ -7,6 +7,29 @@ from odoo.exceptions import ValidationError
 import psycopg2
 from psycopg2 import sql
 
+
+# Si necesitas buscar por el nombre
+selection_account_type_reverse = {
+    "Receivable": "asset_receivable",
+    "Bank and Cash": "asset_cash",
+    "Current Assets": "asset_current",
+    "Non-current Assets": "asset_non_current",
+    "Prepayments": "asset_prepayments",
+    "Fixed Assets": "asset_fixed",
+    "Payable": "liability_payable",
+    "Credit Card": "liability_credit_card",
+    "Current Liabilities": "liability_current",
+    "Non-current Liabilities": "liability_non_current",
+    "Equity": "equity",
+    "Current Year Earnings": "equity_unaffected",
+    "Income": "income",
+    "Other Income": "income_other",
+    "Expenses": "expense",
+    "Depreciation": "expense_depreciation",
+    "Cost of Revenue": "expense_direct_cost",
+    "Off-Balance Sheet": "off_balance",
+}
+
 class MigrateModelJz(models.Model):
     _name = 'migrate.model.jz'
     model_id = fields.Many2one('ir.model',string="Modelo")
@@ -519,12 +542,33 @@ class MigrateModelJz(models.Model):
                     ('migrate_id', '=', self.migrate_id.id),
                     ('id_sql', '=', atype[0])
                 ])
-                if not atype_migration:
-                    self.env['account.type.migration.jz'].create({
+
+                data_insert = {
                         'id_sql' : atype[0] ,
                         'name': atype[1] ,
                         'migrate_id' : self.migrate_id.id
+                }
+
+                try:
+                    selection_account_type = selection_account_type_reverse[atype[1]]
+                    data_insert.update({
+                        'account_type': selection_account_type
                     })
+                except:
+                    pass
+
+
+
+                if not atype_migration:
+                    atype_migration = self.env['account.type.migration.jz'].create(data_insert)
+                else:
+                    atype_migration.write(data_insert)
+
+
+
+
+
+
             return
 
 
