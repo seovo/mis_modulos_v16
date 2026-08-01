@@ -807,7 +807,7 @@ class MigrateModelJz(models.Model):
                                 'type_tax_use': value_type_tax_use,
                                 'amount_type': value_amount_type,
                                 'amount': value_amount,
-                                'description': value_description,
+                                'description': value_description or '',
                                 'include_base_amount': value_include_base_amount,
                                 'analytic': value_analytic,
                                 'tax_exigibility': value_tax_exigibility,
