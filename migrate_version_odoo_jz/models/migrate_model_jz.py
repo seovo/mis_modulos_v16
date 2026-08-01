@@ -792,8 +792,6 @@ class MigrateModelJz(models.Model):
                 value_type_tax_use = result_tax[position_type_tax_use]
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
-                value_analytic = result_tax[position_analytic]
-
 
 
                 # VALIDACION NAME->DESCRIPCION / NOMBRE E IMPUESTO
@@ -848,6 +846,7 @@ class MigrateModelJz(models.Model):
                         value_amount_type = result_tax[position_amount_type]
                         value_price_include = result_tax[position_price_include]
                         value_include_base_amount = result_tax[position_include_base_amount]
+                        value_analytic = result_tax[position_analytic]
 
                         raise ValueError(column_names)
 
