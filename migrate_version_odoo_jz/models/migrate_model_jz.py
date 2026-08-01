@@ -543,6 +543,30 @@ class MigrateModelJz(models.Model):
         #if self.show_data:
         #    raise ValueError(resultados)
 
+        if self.table == 'account_group':
+            position_name = column_names.index('"name"')
+            position_parent_id = column_names.index('"parent_id"')
+            for agroup in resultados:
+                value_name = agroup[position_name]
+                value_parent_id = agroup[position_parent_id]
+
+                agroup_migration = self.env['account.group.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', agroup[0])
+                ])
+
+                data_insert = {
+                    'id_sql': agroup[0],
+                    'name': value_name,
+                    'migrate_id': self.migrate_id.id ,
+                    'parent_id': value_parent_id
+                }
+
+                if not agroup_migration:
+                    agroup_migration.create(data_insert)
+            return
+
+
         if self.table == 'account_account_type':
             for atype in resultados:
                 atype_migration = self.env['account.type.migration.jz'].search([
