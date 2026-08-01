@@ -33,7 +33,8 @@ class AcountGroupMigrationJz(models.Model):
     code = fields.Char()
     parent_id = fields.Integer()
     migrate_id = fields.Many2one('migrate.jz',required=True)
-    account_group_id = fields.Many2one('account.group')
+    account_group_id = fields.Many2one('account.group', domain=[('account_group_migration_jz_ids', '=', False)])
+
 
 class AcountAcountMigrationJz(models.Model):
     _name  = 'account.migration.jz'
