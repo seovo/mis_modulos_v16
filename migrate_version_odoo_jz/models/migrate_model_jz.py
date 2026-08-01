@@ -842,7 +842,7 @@ class MigrateModelJz(models.Model):
                         value_price_include = result_tax[position_price_include]
                         value_include_base_amount = result_tax[position_include_base_amount]
 
-                        raise ValueError(result_tax)
+                        raise ValueError(column_names)
 
                         data_tax = {
                             'name': value_name ,
