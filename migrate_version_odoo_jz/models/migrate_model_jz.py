@@ -1003,14 +1003,18 @@ class MigrateModelJz(models.Model):
         if self.table == 'account_account':
             position_name = column_names.index('"name"')
             position_code = column_names.index('"code"')
+
             if self.create_record_master:
                 position_deprecated = column_names.index('"deprecated"')
                 position_note  = column_names.index('"note"')
+                position_group_id = column_names.index('"group_id"')
+                position_reconcile = column_names.index('"reconcile"')
 
             for account in resultados:
                 id_account = int(account[0])
                 name_account = str(account[position_name])
                 code_account = str(account[position_code])
+
 
                 exist_account = self.env['account.account'].search([('code', '=', code_account)])
 
@@ -1019,7 +1023,7 @@ class MigrateModelJz(models.Model):
                     'name': name_account,
                     'id_sql': id_account,
                     'code': code_account ,
-                    'company_ids': [(6, 0, [self.env.company.id])]
+
                 }
 
                 if exist_account:
@@ -1030,13 +1034,16 @@ class MigrateModelJz(models.Model):
                     if self.create_record_master:
                         value_deprecated = account[position_deprecated]
                         value_note = account[position_note]
+                        value_group = account[position_group_id]
+                        value_reconcile = account[position_reconcile]
                         data_create_account = {
+                            'company_ids': [(6, 0, [self.env.company.id])] ,
                             'name': name_account ,
                             'code': code_account ,
                             'deprecated': value_deprecated ,
                             'note': value_note ,
-
-
+                            'group_id': value_group ,
+                            'reconcile': value_reconcile
 
                         }
 
