@@ -769,6 +769,7 @@ class MigrateModelJz(models.Model):
                 position_tax_exigibility = column_names.index('"tax_exigibility"')
                 position_account_id = column_names.index('"account_id"')
                 position_tax_group_id = column_names.index('"tax_group_id"')
+                position_refund_account_id =  column_names.index('"refund_account_id"')
 
             #raise ValueError(resultados[0][position_description])
 
@@ -979,6 +980,7 @@ class MigrateModelJz(models.Model):
                             value_tax_exigibility = result_tax[position_tax_exigibility]
                             value_account_id =  result_tax[position_account_id]
                             value_tax_group_id = result_tax[position_tax_group_id]
+                            value_refund_account_id = result_tax[position_refund_account_id]
 
                             data_tax = {
                                 'name': value_name,
@@ -989,7 +991,6 @@ class MigrateModelJz(models.Model):
                                 'include_base_amount': value_include_base_amount,
                                 'analytic': value_analytic,
                                 'tax_exigibility': value_tax_exigibility ,
-                                #'default_account_id': value_account_id ,
                                 'tax_group_id': value_tax_group_id
 
                             }
@@ -999,17 +1000,22 @@ class MigrateModelJz(models.Model):
                                     'price_include_override': 'tax_included'
                                 })
 
-
-
-
                             #raise ValueError([column_names, data_tax])
 
                             exist_tax = self.env['account.tax'].create(data_tax)
                             tax_migration.tax_id = exist_tax.id
 
                             if value_account_id:
-                                raise ValidationError(exist_tax.invoice_repartition_line_ids)
+                                for repartition_line in  exist_tax.invoice_repartition_line_ids:
+                                    if repartition_line.repartition_type == 'tax':
+                                        repartition_line.account_id = value_account_id
 
+                                #raise ValidationError(exist_tax.invoice_repartition_line_ids)
+
+                            if value_refund_account_id:
+                                for refun_repartition_line in  exist_tax.refund_repartition_line_ids:
+                                    if refun_repartition_line.repartition_type == 'tax':
+                                        refun_repartition_line.account_id = value_refund_account_id
 
                             #raise ValueError([column_names, result_tax])
 
