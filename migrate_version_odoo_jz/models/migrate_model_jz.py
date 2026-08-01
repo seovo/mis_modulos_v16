@@ -610,18 +610,32 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'res_currency':
 
+            for currency in resultados:
+                # raise ValueError(journal)
 
+                name_currency = str(currency[1])
+                id_currency = int(currency[0])
 
-            if not self.migrate_id.currency_migration_ids:
-                for journal in resultados:
-                    #raise ValueError(journal)
-                    self.env['currency.migration.jz'].create({
-                        'migrate_id': self.migrate_id.id ,
-                        'name': str(journal[1]) ,
-                        'id_sql': int(journal[0])
-                        #'journal_id':
+                exist_currency = self.env['res.currency'].search([('name', '=', name_currency)])
+
+                currency_migration = self.env['currency.migration.jz'].search([('id_sql', '=', id_currency)])
+
+                data_insert = {
+                    'migrate_id': self.migrate_id.id,
+                    'name': name_currency,
+                    'id_sql': id_currency
+                    # 'journal_id':
+                }
+
+                if exist_currency:
+                    data_insert.update({
+                        'currency_id': exist_currency.id
                     })
-            #raise ValidationError('Contabilidad')
+
+                if currency_migration:
+                    currency_migration.write(data_insert)
+                else:
+                    currency_migration = self.env['currency.migration.jz'].create(data_insert)
 
             return
 
