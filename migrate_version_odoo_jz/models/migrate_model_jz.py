@@ -163,6 +163,10 @@ class MigrateModelJz(models.Model):
                 if desc[1] in [1043,25] and exist_field_odoo.translate :
                     dx.update({'type_field': 'text_jsonb'})
 
+                #SI ES LA TABLA account_tax_group , porque es una tabla maestra
+                if desc[1] in [1043, 25] and exist_field_odoo.translate and desc[0] == 'name' and table == 'account_tax_group':
+                    dx.update({'type_field': 'jsonb_text'})
+
 
 
 
@@ -321,10 +325,18 @@ class MigrateModelJz(models.Model):
 
             column_names.append(namm)
 
-            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [1043,25]:
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [1043,25] :
                 #code_pais = self.company.country_id.
                 #namm += '::jsonb'
+
                 namm = f'''
+                CASE
+                   WHEN {namm} IS NOT NULL AND jsonb_typeof({namm}::jsonb) IS NOT NULL THEN {namm}::text
+                   ELSE jsonb_build_object('en_US', COALESCE({namm}, ''))::text
+                END AS {namm} 
+                '''
+
+                nammx = f'''
                 jsonb_build_object(
                     'en_US', {colx.name}
                 )::text AS {namm}
@@ -334,7 +346,7 @@ class MigrateModelJz(models.Model):
 
             #todos los  que son company_dependent  tendran esta estructura debe ser automatico ahorita est manual
 
-            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23,16]:
+            if colx.type_field in ['text_jsonb'] and colx.type_field_postgres in [23,16] :
                 namm = f'''
                      jsonb_build_object(
                         '1', {colx.name}
@@ -499,10 +511,15 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'account_tax_group':
             for taxgroup in resultados:
+
+                name_group = taxgroup[1]
+
+
+
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
                     'id_sql': taxgroup[0] ,
-                    'name':  taxgroup[1]
+                    'name':  name_group
 
                 }
 
