@@ -773,6 +773,67 @@ class MigrateModelJz(models.Model):
 
             #raise ValueError(resultados[0][position_description])
 
+
+
+            if self.create_record_master:
+                for result_tax in resultados:
+                    tax_migration = self.env['tax.migration.jz'].search([
+                        ('migrate_id', '=', self.migrate_id.id),
+                        ('id_sql', '=', int(result_tax[0]))
+                    ])
+                    if tax_migration:
+                        if not tax_migration.tax_id:
+                            value_amount_type = result_tax[position_amount_type]
+                            value_price_include = result_tax[position_price_include]
+                            value_include_base_amount = result_tax[position_include_base_amount]
+                            value_analytic = result_tax[position_analytic]
+                            value_tax_exigibility = result_tax[position_tax_exigibility]
+                            value_account_id = result_tax[position_account_id]
+                            value_tax_group_id = result_tax[position_tax_group_id]
+                            value_refund_account_id = result_tax[position_refund_account_id]
+
+                            if value_name == 'Retención 2% ISR por Transferencia de Títulos':
+                                raise ValueError(tax_migration.tax_id)
+
+                            data_tax = {
+                                'name': value_name,
+                                'type_tax_use': value_type_tax_use,
+                                'amount_type': value_amount_type,
+                                'amount': value_amount,
+                                'description': value_description,
+                                'include_base_amount': value_include_base_amount,
+                                'analytic': value_analytic,
+                                'tax_exigibility': value_tax_exigibility,
+                                'tax_group_id': value_tax_group_id
+
+                            }
+
+                            if value_price_include and value_price_include == True:
+                                data_tax.update({
+                                    'price_include_override': 'tax_included'
+                                })
+
+                            # raise ValueError([column_names, data_tax])
+
+                            exist_tax = self.env['account.tax'].create(data_tax)
+                            tax_migration.tax_id = exist_tax.id
+
+                            if value_account_id:
+                                for repartition_line in exist_tax.invoice_repartition_line_ids:
+                                    if repartition_line.repartition_type == 'tax':
+                                        repartition_line.account_id = value_account_id
+
+                                # raise ValidationError(exist_tax.invoice_repartition_line_ids)
+
+                            if value_refund_account_id:
+                                for refun_repartition_line in exist_tax.refund_repartition_line_ids:
+                                    if refun_repartition_line.repartition_type == 'tax':
+                                        refun_repartition_line.account_id = value_refund_account_id
+
+                            # raise ValueError([column_names, result_tax])
+                return
+
+
             tax_use_ids = []
             for result_tax in resultados:
                 # REALIZAR LA MIGRACION AQUI
@@ -965,62 +1026,8 @@ class MigrateModelJz(models.Model):
                     tax_migration.write({'tax_id': exist_tax.id })
 
 
-            for result_tax in resultados:
-                tax_migration = self.env['tax.migration.jz'].search([
-                    ('migrate_id', '=', self.migrate_id.id),
-                    ('id_sql', '=', int(result_tax[0]))
-                ])
-                if tax_migration:
-                    if not tax_migration.tax_id:
-                        if self.create_record_master:
-                            value_amount_type = result_tax[position_amount_type]
-                            value_price_include = result_tax[position_price_include]
-                            value_include_base_amount = result_tax[position_include_base_amount]
-                            value_analytic = result_tax[position_analytic]
-                            value_tax_exigibility = result_tax[position_tax_exigibility]
-                            value_account_id =  result_tax[position_account_id]
-                            value_tax_group_id = result_tax[position_tax_group_id]
-                            value_refund_account_id = result_tax[position_refund_account_id]
 
-                            if value_name == 'Retención 2% ISR por Transferencia de Títulos':
-                                raise ValueError(tax_migration.tax_id)
 
-                            data_tax = {
-                                'name': value_name,
-                                'type_tax_use': value_type_tax_use,
-                                'amount_type': value_amount_type,
-                                'amount': value_amount,
-                                'description': value_description,
-                                'include_base_amount': value_include_base_amount,
-                                'analytic': value_analytic,
-                                'tax_exigibility': value_tax_exigibility ,
-                                'tax_group_id': value_tax_group_id
-
-                            }
-
-                            if value_price_include and value_price_include == True:
-                                data_tax.update({
-                                    'price_include_override': 'tax_included'
-                                })
-
-                            #raise ValueError([column_names, data_tax])
-
-                            exist_tax = self.env['account.tax'].create(data_tax)
-                            tax_migration.tax_id = exist_tax.id
-
-                            if value_account_id:
-                                for repartition_line in  exist_tax.invoice_repartition_line_ids:
-                                    if repartition_line.repartition_type == 'tax':
-                                        repartition_line.account_id = value_account_id
-
-                                #raise ValidationError(exist_tax.invoice_repartition_line_ids)
-
-                            if value_refund_account_id:
-                                for refun_repartition_line in  exist_tax.refund_repartition_line_ids:
-                                    if refun_repartition_line.repartition_type == 'tax':
-                                        refun_repartition_line.account_id = value_refund_account_id
-
-                            #raise ValueError([column_names, result_tax])
 
 
             return
