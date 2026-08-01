@@ -1049,7 +1049,12 @@ class MigrateModelJz(models.Model):
 
                         }
 
-                        exist_account = self.env['account.account'].create(data_create_account)
+                        try:
+                            exist_account = self.env['account.account'].create(data_create_account)
+                        except:
+                            raise ValidationError(str(data_create_account))
+
+
 
                         data_insert.update({
                             'account_id': exist_account.id
