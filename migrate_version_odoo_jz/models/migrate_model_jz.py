@@ -159,11 +159,11 @@ class MigrateModelJz(models.Model):
                 if desc[1] == 3802:
                     dx.update({'type_field': 'jsonb_text'})
 
-                # TIPO TEXTO A JSONB
+                # TIPO TEXTO A JSONB 1043 = varchar
                 if desc[1] in [1043,25] and exist_field_odoo.translate :
                     dx.update({'type_field': 'text_jsonb'})
 
-                if desc[1] in [1043, 25] and exist_field_odoo.translate and table in ['account_tax_group'] and desc[0] == 'name':
+                if desc[1] in [1043, 25] and exist_field_odoo.translate and table in self.migrate_id.get_tables_maestros():
                     dx.update({'type_field': False})
 
 

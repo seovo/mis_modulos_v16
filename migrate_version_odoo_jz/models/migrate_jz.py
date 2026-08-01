@@ -252,52 +252,33 @@ class MigrateJz(models.Model):
             self.text_pricelist = textx
 
 
-
+    def get_tables_maestros(self):
+        return [
+            'account_account','account_tax_group','product_pricelist','account_journal','res_currency',
+            'account_tax','stock_location',
+        ]
 
     def add_modelos_usuales(self):
-
-
         #self.env.cr.execute("TRUNCATE TABLE account_tax_purchase_order_line_rel ;")
-
-
-
         #self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
         #self.env.cr.execute("TRUNCATE TABLE product_supplier_taxes_rel ;")
 
         self.generate_text_set_clave()
 
 
-        tablas = [
+        tablas = self.get_tables_maestros()  + [
             'res_partner','res_users','product_category',
-
             'product_template','product_product',
-
-            'account_tax_group','account_tax',
-
             'product_taxes_rel','product_supplier_taxes_rel',
-
-            'product_pricelist','sale_order', 'sale_order_line', 'account_tax_sale_order_line_rel',
-                  
-            'account_journal','res_currency','account_account',
-
+            'sale_order', 'sale_order_line', 'account_tax_sale_order_line_rel',
             'account_move', 'account_move_line', 'account_move_line_account_tax_rel',
-
-
             'account_payment',
-
-
-
             'purchase_order','purchase_order_line','purchase_order_stock_picking_rel',
-
-            'account_tax_purchase_order_line_rel','stock_location',
+            'account_tax_purchase_order_line_rel',
             'stock_picking','stock_move','stock_move_line','stock_quant',
-
             'product_supplierinfo',
-
             'res_country','res_country_state','res_city' ,
-
             'account_full_reconcile','account_partial_reconcile',
-
         ]
 
         if self.from_version in [11,12]:
