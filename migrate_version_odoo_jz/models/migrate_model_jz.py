@@ -799,15 +799,16 @@ class MigrateModelJz(models.Model):
                             value_tax_group_id = result_tax[position_tax_group_id]
                             value_refund_account_id = result_tax[position_refund_account_id]
 
-                            if value_name == 'Retención 2% ISR por Transferencia de Títulos':
-                                raise ValueError(tax_migration.tax_id)
+                            #if value_name == 'Retención 2% ISR por Transferencia de Títulos':
+                            #    raise ValueError(tax_migration.tax_id)
 
                             data_tax = {
                                 'name': value_name,
                                 'type_tax_use': value_type_tax_use,
                                 'amount_type': value_amount_type,
                                 'amount': value_amount,
-                                'description': value_description or '',
+                                'description': value_description or value_name,
+                                'invoice_label': value_name ,
                                 'include_base_amount': value_include_base_amount,
                                 'analytic': value_analytic,
                                 'tax_exigibility': value_tax_exigibility,
@@ -854,16 +855,32 @@ class MigrateModelJz(models.Model):
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    ('description', 'ilike', value_name),
-                    ('name', 'ilike', value_description),
-                    '|',('active','=',True),('active','=',False)
+                    ('name', 'ilike', value_name),
+                    '|', ('active', '=', True), ('active', '=', False)
 
                 ]
-
                 exist_tax = self.env['account.tax'].search(dominio_tax)
 
                 if len(exist_tax) > 1:
                     exist_tax = None
+
+                if not exist_tax:
+                    # VALIDACION DESCRIPCION->NOMBRE , MONTO , NOMBRE -> DESCRIPCION ,  E IMPUESTO
+                    dominio_tax = [
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('amount', '=', value_amount),
+                        ('description', 'ilike', value_name),
+                        ('name', 'ilike', value_description),
+                        '|', ('active', '=', True), ('active', '=', False)
+
+                    ]
+
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                    if len(exist_tax) > 1:
+                        exist_tax = None
+
+
 
                 # VALIDACION DESCRIPCION->NOMBRE , MONTO  E IMPUESTO
                 if not exist_tax:
@@ -982,29 +999,42 @@ class MigrateModelJz(models.Model):
                 value_amount = result_tax[position_amount]
                 value_name = result_tax[position_name]
 
-
-
-                # VALIDACION NAME->DESCRIPCION / NOMBRE E IMPUESTO
                 dominio_tax = [
                     ('type_tax_use', '=', value_type_tax_use),
                     ('amount', '=', value_amount),
-                    ('tax_migration_jz_ids', '=', False),
-                    ('description', 'ilike', value_name),
-                    #('id','not in',tax_use_ids)
+                    ('name', 'ilike', value_name),
+                    '|', ('active', '=', True), ('active', '=', False)
+
                 ]
-
                 exist_tax = self.env['account.tax'].search(dominio_tax)
-
-
-
-                #if value_name == 'Retención 2% ISR por Transferencia de Títulos':
-                #    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
 
                 if len(exist_tax) > 1:
                     exist_tax = None
 
-                if exist_tax in tax_use_ids:
-                    exist_tax = None
+                if not exist_tax:
+                    # VALIDACION NAME->DESCRIPCION / NOMBRE E IMPUESTO
+                    dominio_tax = [
+                        ('type_tax_use', '=', value_type_tax_use),
+                        ('amount', '=', value_amount),
+                        ('tax_migration_jz_ids', '=', False),
+                        ('description', 'ilike', value_name),
+                        # ('id','not in',tax_use_ids)
+                    ]
+
+                    exist_tax = self.env['account.tax'].search(dominio_tax)
+
+                    # if value_name == 'Retención 2% ISR por Transferencia de Títulos':
+                    #    raise ValueError([exist_tax,tax_use_ids,dominio_tax])
+
+                    if len(exist_tax) > 1:
+                        exist_tax = None
+
+                    if exist_tax in tax_use_ids:
+                        exist_tax = None
+
+
+
+
 
                 #DESCRIPTION -> NAME
                 if not exist_tax:
