@@ -156,10 +156,13 @@ class MigrateJz(models.Model):
                     continue
                 id_journal += f''' WHEN currency_id = {migrat.id_sql} THEN {migrat.currency_id.id } \n'''
 
+            #MONEDA
+            #self.env.ref('base.USD').id
+
             textx = f'''
             CASE
                {id_journal}
-            ELSE   currency_id
+            ELSE   { self.env.company.currency_id.id }
             END AS currency_id
             '''
 
