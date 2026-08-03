@@ -254,12 +254,14 @@ class MigrateModelJz(models.Model):
                 jfiels.value_set = self.migrate_id.text_journal
 
         currency_fields = self.env['migrate.model.columns.jz'].search([
-            ('name', '=', 'currency_id'),('migrate_model_id','=',self.id)
+            ('name', 'in', ['currency_id','company_currency_id']),('migrate_model_id','=',self.id)
         ])
 
         if currency_fields:
             for jfiels in currency_fields:
-                jfiels.value_set = self.migrate_id.text_currency
+                text_reemplaze = self.migrate_id.text_currency
+                text_reemplaze = text_reemplaze.replace('currency_id',jfiels.name)
+                jfiels.value_set = text_reemplaze
 
         act_fields = self.env['migrate.model.columns.jz'].search(
             [('name', '=', 'user_type_id'), ('migrate_model_id', '=', self.id)])
