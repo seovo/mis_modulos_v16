@@ -23,6 +23,8 @@ class AccountJournal(models.Model):
     @api.model
     def create(self,vals):
         if 'code' in vals:
-            raise ValueError(vals)
+            if vals['code'] == 'TDCIP':
+                raise ValueError(vals)
+
         res = super().create(vals)
         return  res
