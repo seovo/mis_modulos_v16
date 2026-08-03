@@ -703,7 +703,7 @@ class MigrateModelJz(models.Model):
                 position_profit_account_id  = column_names.index('"profit_account_id"')
                 position_loss_account_id = column_names.index('"loss_account_id"')
                 position_bank_account_id = column_names.index('"bank_account_id"')
-                position_bank_statements_source = column_names.index('"bank_bank_statements_source"')
+                position_bank_statements_source = column_names.index('"bank_statements_source"')
                 position_show_on_dashboard = column_names.index('"show_on_dashboard"')
                 position_payment_form = column_names.index('"payment_formd"')
 
