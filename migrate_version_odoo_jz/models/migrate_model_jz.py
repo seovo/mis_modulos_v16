@@ -30,6 +30,9 @@ selection_account_type_reverse = {
     "Off-Balance Sheet": "off_balance",
 }
 
+
+#id < ( %LAST +%NUM_RECORDS ) AND id >= %LAST
+
 class MigrateModelJz(models.Model):
     _name = 'migrate.model.jz'
     model_id = fields.Many2one('ir.model',string="Modelo")
@@ -72,6 +75,14 @@ class MigrateModelJz(models.Model):
             list_field_insert.append(columnx.name)
 
         id_origin = self.id if type(self.id) == int else self._origin.id
+
+        if table == 'account_payment':
+            if 'company_id' not in  list_field_insert:
+                self.env['migrate.model.columns.jz'].create({
+                    'name': 'company_id' ,
+                    'value_set': f"{self.env.company.id}",
+                    'migrate_model_id': id_origin,
+                })
 
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
