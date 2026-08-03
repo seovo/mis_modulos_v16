@@ -753,6 +753,8 @@ class MigrateModelJz(models.Model):
                     #    raise ValidationError(name_journal)
 
 
+
+
                     dict_create_journal = {
                         'name': name_journal ,
                         'code': value_code ,
@@ -769,6 +771,9 @@ class MigrateModelJz(models.Model):
 
 
                     }
+
+                    if value_code == 'TDCIP':
+                        raise ValidationError(str(dict_create_journal))
 
                     #if value_code == 'bank':
                     #    value_account_credit = journal[position_account_credit]
