@@ -288,7 +288,9 @@ class MigrateModelJz(models.Model):
 
         if account_fields:
             for jfiels in account_fields:
-                jfiels.value_set = self.migrate_id.text_account
+                text_account = self.migrate_id.text_account
+                text_account = text_account.replace('account_id',jfiels.name)
+                jfiels.value_set = text_account
 
         location_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'location_id'),('migrate_model_id','=',self.id)])
 
