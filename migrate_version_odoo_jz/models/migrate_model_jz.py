@@ -84,6 +84,13 @@ class MigrateModelJz(models.Model):
                     'migrate_model_id': id_origin,
                 })
 
+            if 'date' not in  list_field_insert:
+                self.env['migrate.model.columns.jz'].create({
+                    'name': 'date' ,
+                    'value_set': '"payment_date" as date',
+                    'migrate_model_id': id_origin,
+                })
+
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
                 self.env['migrate.model.columns.jz'].create({
