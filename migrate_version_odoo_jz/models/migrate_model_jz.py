@@ -284,7 +284,7 @@ class MigrateModelJz(models.Model):
                     text_tax = text_tax.replace('account_tax_id', 'tax_id')
                     jfiels2.value_set = text_tax
 
-        account_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'account_id'),('migrate_model_id','=',self.id)])
+        account_fields = self.env['migrate.model.columns.jz'].search([('name', 'in', ['account_id','profit_account_id']),('migrate_model_id','=',self.id)])
 
         if account_fields:
             for jfiels in account_fields:
@@ -689,6 +689,12 @@ class MigrateModelJz(models.Model):
             return
 
         if self.table == 'account_journal':
+            if self.create_record_master:
+                position_code = column_names.index('"code"')
+                position_type = column_names.index('"type"')
+                position_account_debit = column_names.index('"default_debit_account_id"')
+                position_account_credit = column_names.index('"default_credit_account_id"')
+
 
             for journal in resultados:
                 # raise ValueError(journal)
@@ -710,6 +716,28 @@ class MigrateModelJz(models.Model):
 
                 if len(exist_diario) > 1 :
                     exist_diario = None
+
+                if not exist_diario and self.create_record_master:
+
+                    value_code = journal[position_code]
+                    value_type = journal[position_type]
+                    value_account_debit = journal[position_account_debit]
+
+
+                    dict_create_journal = {
+                        'name': name_journal ,
+                        'code': value_code ,
+                        'type': value_type ,
+                        'default_account_id': value_account_debit
+                    }
+
+                    if value_code == 'bank':
+                        value_account_credit = journal[position_account_credit]
+                        dict_create_journal.write({
+                            'suspense_account_id': value_account_credit
+                        })
+
+                    exist_diario = self.env['account.journal'].create(dict_create_journal)
 
                 if exist_diario:
                     data_insert.update({
