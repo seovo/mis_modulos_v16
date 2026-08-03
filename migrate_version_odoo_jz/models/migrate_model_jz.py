@@ -563,6 +563,7 @@ class MigrateModelJz(models.Model):
             position_parent_id = column_names.index('"parent_id"')
             position_code_prefix = column_names.index('"code_prefix"')
 
+
             for agroup in resultados:
                 value_name = agroup[position_name]
                 value_parent_id = agroup[position_parent_id]
@@ -698,6 +699,13 @@ class MigrateModelJz(models.Model):
                 position_type = column_names.index('"type"')
                 position_account_debit = column_names.index('"default_debit_account_id"')
                 position_account_credit = column_names.index('"default_credit_account_id"')
+                position_currency_id = column_names.index('"currency_id"')
+                position_profit_account_id  = column_names.index('"profit_account_id"')
+                position_loss_account_id = column_names.index('"loss_account_id"')
+                position_bank_account_id = column_names.index('"bank_account_id"')
+                position_bank_statements_source = column_names.index('"bank_bank_statements_source"')
+                position_show_on_dashboard = column_names.index('"show_on_dashboard"')
+                position_payment_form = column_names.index('"payment_formd"')
 
 
             for journal in resultados:
@@ -726,19 +734,38 @@ class MigrateModelJz(models.Model):
                     value_code = journal[position_code]
                     value_type = journal[position_type]
                     value_account_debit = journal[position_account_debit]
+                    value_currency_id = journal[position_currency_id]
+                    value_profit_account_id = journal[position_profit_account_id]
+                    value_loss_account_id = journal[position_loss_account_id]
+                    value_bank_account_id = journal[position_bank_account_id]
+                    value_bank_statements_source = journal[position_bank_statements_source]
+                    value_show_on_dashboard = journal[position_show_on_dashboard]
+                    value_payment_form = journal[position_payment_form]
+
 
 
                     dict_create_journal = {
                         'name': name_journal ,
                         'code': value_code ,
                         'type': value_type ,
-                        'default_account_id': value_account_debit
+                        'default_account_id': value_account_debit ,
+                        'currency_id': value_currency_id ,
+                        'company_id': self.env.company.id ,
+                        'profit_account_id': value_profit_account_id ,
+                        'loss_account_id': value_loss_account_id ,
+                        'bank_account_id': value_bank_account_id ,
+                        'bank_statements_source': value_bank_statements_source ,
+                        'position_show_on_dashboard': value_show_on_dashboard ,
+                        'payment_form': value_payment_form ,
+
+
                     }
 
                     if value_code == 'bank':
                         value_account_credit = journal[position_account_credit]
                         dict_create_journal.write({
-                            'suspense_account_id': value_account_credit
+                            'suspense_account_id': value_account_credit ,
+
                         })
 
                     exist_diario = self.env['account.journal'].create(dict_create_journal)
