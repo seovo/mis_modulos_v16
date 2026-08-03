@@ -71,12 +71,14 @@ class MigrateModelJz(models.Model):
                 continue
             list_field_insert.append(columnx.name)
 
+        id_origin = self.id if type(self.id) == int else self._origin.id
+
         if table == 'res_partner':
             if 'autopost_bills' not in  list_field_insert:
                 self.env['migrate.model.columns.jz'].create({
                     'name': 'autopost_bills' ,
                     'value_set': "'ask'",
-                    'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
+                    'migrate_model_id': id_origin,
                 })
 
         if table == 'product_template':
@@ -84,8 +86,17 @@ class MigrateModelJz(models.Model):
                 self.env['migrate.model.columns.jz'].create({
                     'name': 'service_tracking' ,
                     'value_set': "'no'",
-                    'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
+                    'migrate_model_id': id_origin,
                 })
+
+        if table == 'account_move_line':
+            if self.migrate_id.current_version >= 13:
+                if 'display_type' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'display_type',
+                        'value_set': "'product'",
+                        'migrate_model_id': id_origin,
+                    })
 
         if table == 'account_move':
             if self.migrate_id.current_version > 15:
