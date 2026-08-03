@@ -770,12 +770,12 @@ class MigrateModelJz(models.Model):
 
                     }
 
-                    if value_code == 'bank':
-                        value_account_credit = journal[position_account_credit]
-                        dict_create_journal.write({
-                            'suspense_account_id': value_account_credit ,
+                    #if value_code == 'bank':
+                    #    value_account_credit = journal[position_account_credit]
+                    #    dict_create_journal.write({
+                    #        'suspense_account_id': value_account_credit ,
 
-                        })
+                    #    })
 
                     #exist_diario = self.env['account.journal'].create(dict_create_journal)
                     #'''
