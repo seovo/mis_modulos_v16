@@ -284,7 +284,9 @@ class MigrateModelJz(models.Model):
                     text_tax = text_tax.replace('account_tax_id', 'tax_id')
                     jfiels2.value_set = text_tax
 
-        account_fields = self.env['migrate.model.columns.jz'].search([('name', 'in', ['account_id','profit_account_id']),('migrate_model_id','=',self.id)])
+        account_fields = self.env['migrate.model.columns.jz'].search([
+            ('name', 'in', ['account_id','profit_account_id','loss_account_id','bank_account_id']),
+            ('migrate_model_id','=',self.id)])
 
         if account_fields:
             for jfiels in account_fields:
