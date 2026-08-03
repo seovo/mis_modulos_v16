@@ -711,10 +711,16 @@ class MigrateModelJz(models.Model):
             #raise ValidationError(str(resultados))
             for journal in resultados:
                 # raise ValueError(journal)
-                journal_migration = self.env['journal.migration.jz'].search([
-                    ('migrate_id','=',self.migrate_id.id),
-                    ('id_sql','=', int(journal[0]))
-                ])
+                dom = [
+                        ('migrate_id', '=', self.migrate_id.id),
+                        ('id_sql', '=', int(journal[0]))
+                    ]
+                try:
+                    journal_migration = self.env['journal.migration.jz'].search(dom)
+                except:
+                    raise ValidationError(str(dom))
+
+
 
                 name_journal = str(journal[1])
 
