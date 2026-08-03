@@ -739,7 +739,7 @@ class MigrateModelJz(models.Model):
                     value_loss_account_id = journal[position_loss_account_id]
                     value_bank_account_id = journal[position_bank_account_id]
                     value_bank_statements_source = journal[position_bank_statements_source]
-                    value_show_on_dashboard = journal[position_show_on_dashboard]
+
                     value_payment_form = journal[position_payment_form]
 
 
@@ -755,7 +755,7 @@ class MigrateModelJz(models.Model):
                         'loss_account_id': value_loss_account_id ,
                         'bank_account_id': value_bank_account_id ,
                         'bank_statements_source': value_bank_statements_source ,
-                        'position_show_on_dashboard': value_show_on_dashboard ,
+
                         'payment_form': value_payment_form ,
 
 
