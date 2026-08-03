@@ -782,7 +782,7 @@ class MigrateModelJz(models.Model):
                     try:
                         exist_diario = self.env['account.journal'].create(dict_create_journal)
                     except:
-                        exist_diario = self.env['account.journal'].search('code','=',value_code)
+                        exist_diario = self.env['account.journal'].search(['code','=',value_code])
                         #exist_diario = None
                         raise ValidationError(str([dict_create_journal,exist_diario]))
                     #'''
