@@ -770,8 +770,10 @@ class MigrateModelJz(models.Model):
 
                         })
 
-
-                    exist_diario = self.env['account.journal'].create(dict_create_journal)
+                    try:
+                        exist_diario = self.env['account.journal'].create(dict_create_journal)
+                    except:
+                        raise ValidationError(str(dict_create_journal))
 
 
 
