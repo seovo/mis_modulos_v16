@@ -742,6 +742,9 @@ class MigrateModelJz(models.Model):
 
                     value_payment_form = journal[position_payment_form]
 
+                    if not value_account_debit:
+                        raise ValidationError(name_journal)
+
 
 
                     dict_create_journal = {
