@@ -19,3 +19,10 @@ class AccountTax(models.Model):
 class AccountJournal(models.Model):
     _inherit = "account.journal"
     tax_migration_jz_ids = fields.One2many('journal.migration.jz','journal_id')
+
+    @api.model
+    def create(self,vals):
+        if 'code' in vals:
+            raise ValueError(vals)
+        res = super().create(vals)
+        return  res
