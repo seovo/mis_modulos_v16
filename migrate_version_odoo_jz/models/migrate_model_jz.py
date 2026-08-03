@@ -708,7 +708,7 @@ class MigrateModelJz(models.Model):
                 position_show_on_dashboard = column_names.index('"show_on_dashboard"')
                 position_payment_form = column_names.index('"payment_form"')
 
-            raise ValidationError(str(resultados))
+            #raise ValidationError(str(resultados))
             for journal in resultados:
                 # raise ValueError(journal)
                 journal_migration = self.env['journal.migration.jz'].search([
@@ -770,13 +770,13 @@ class MigrateModelJz(models.Model):
 
                         })
 
-                    exist_diario = self.env['account.journal'].create(dict_create_journal)
-                    '''
+                    #exist_diario = self.env['account.journal'].create(dict_create_journal)
+                    #'''
                     try:
                         exist_diario = self.env['account.journal'].create(dict_create_journal)
                     except:
                         raise ValidationError(str(dict_create_journal))
-                    '''
+                    #'''
 
 
                 if exist_diario:
