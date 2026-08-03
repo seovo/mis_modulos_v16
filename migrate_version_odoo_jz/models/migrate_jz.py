@@ -422,8 +422,6 @@ class MigrateJz(models.Model):
 
             #raise ValueError(url)
 
-
-
     def update_variant_combiation_products(self):
 
         line_variants_atrr =  self.env['product.template.attribute.line'].search([('value_count','=',False),('value_ids','!=',False)],limit=1000)
@@ -443,7 +441,6 @@ class MigrateJz(models.Model):
             #"res_id": self.id,
             #"view_id": view.id
         }
-
 
     def show_lot_availables(self):
         cursor = self.conect_postgres()

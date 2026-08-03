@@ -174,20 +174,23 @@ class MigrateModelJz(models.Model):
             ])
 
 
+            if self.model_id:
+                if not exist_field_odoo:
+                    dx.update({'ignore': True})
+                else:
+                    dx.update({'ir_model_field_id': exist_field_odoo.id })
+                    # tipo JSON A TEXTO , porque mi insercion solo acepto texto
+                    if desc[1] == 3802:
+                        dx.update({'type_field': 'jsonb_text'})
 
-            if not exist_field_odoo:
-                dx.update({'ignore': True})
-            else:
-                # tipo JSON A TEXTO , porque mi insercion solo acepto texto
-                if desc[1] == 3802:
-                    dx.update({'type_field': 'jsonb_text'})
+                    # TIPO TEXTO A JSONB 1043 = varchar
+                    if desc[1] in [1043, 25] and exist_field_odoo.translate:
+                        dx.update({'type_field': 'text_jsonb'})
 
-                # TIPO TEXTO A JSONB 1043 = varchar
-                if desc[1] in [1043,25] and exist_field_odoo.translate :
-                    dx.update({'type_field': 'text_jsonb'})
+                    if (desc[1] in [1043,25] and exist_field_odoo.translate
+                            and table in self.migrate_id.get_tables_maestros()):
+                        dx.update({'type_field': False})
 
-                if desc[1] in [1043, 25] and exist_field_odoo.translate and table in self.migrate_id.get_tables_maestros():
-                    dx.update({'type_field': False})
 
 
             if table in ['res_partner']:

@@ -36,7 +36,7 @@ class MigrateModelColumnsJz(models.Model):
     value_set        = fields.Text()
     type_field_postgres = fields.Integer(string="Tipo Postgres")
     is_field         = fields.Boolean(string="Es un Campo Odoo")
-    ir_model_fields_id = fields.Many2one('ir.model.fields', string='Campo')
+    ir_model_field_id = fields.Many2one('ir.model.fields', string='Campo')
 
     #insert_as_jsonb   = fields.Boolean()
 
