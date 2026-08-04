@@ -65,9 +65,10 @@ class MigrateModelJz(models.Model):
 
     def validate_table(self):
         if self.table == 'account_invoice_line':
-            self.identificador = 'name , invoice_idx'
+            self.identificador = 'name , invoice_id'
             self.update_if_exist = True
             self.new_table = 'account_move_line'
+            raise ValidationError(self.new_table)
 
         if self.table in ['account_tax', 'res_currency']:
             self.where_set = "active = 't' ; "
