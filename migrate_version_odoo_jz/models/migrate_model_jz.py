@@ -225,7 +225,9 @@ class MigrateModelJz(models.Model):
 
         self.validate_table()
 
-        table = self.new_table or self.table
+        return
+
+        table =  self.table
 
 
         cursor = self.migrate_id.conect_postgres()
