@@ -218,7 +218,7 @@ class MigrateModelJz(models.Model):
 
 
             exist_field_odoo = self.env['ir.model.fields'].search([
-                ('model_id','=',id_model),('name','=',desc[0])
+                ('model_id','=',id_model),('name','=',desc[0]),('store','=',True)
             ])
 
 
