@@ -66,15 +66,12 @@ class MigrateModelJz(models.Model):
     def validate_table(self):
 
         if self.table in self.migrate_id.get_modelos_old():
-            return
-            self.new_table = self.migrate_id.convert_modelos_old(table)
 
-        return
+            self.new_table = self.migrate_id.convert_modelos_old(self.table)
+
+
 
         table_model = self.new_table or self.table
-
-
-
 
 
         table_model = table_model.replace('_', '.')
