@@ -1457,7 +1457,7 @@ class MigrateModelJz(models.Model):
                 value_name = fila[position_name]
                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
 
-                self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, position_name])
+                self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
 
                 raise ValidationError(str(result))
