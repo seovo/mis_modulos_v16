@@ -151,7 +151,10 @@ class MigrateModelJz(models.Model):
                 if 'display_type' not in list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'display_type',
-                        'value_set': "'tax'",
+                        'value_set': '''CASE
+         WHEN product_id IS NOT NULL THEN 'product' 
+ELSE   'tax'
+END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
 
