@@ -1472,7 +1472,7 @@ END AS display_type      ''',
 
                     self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0]])
                 else:
-                    raise ValidationError(str(result))
+                    raise ValidationError(str([result,fila]))
 
                 #raise ValidationError(str(result))
 
