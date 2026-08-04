@@ -1470,6 +1470,8 @@ END AS display_type      ''',
                 value_price_unit = fila[position_price_unit]
                 value_quantity = fila[position_quantity]
 
+                values_select = []
+
                 #BUSCAR DESCRIPCION Y PRODUCTO
                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL "
 
@@ -1487,14 +1489,18 @@ END AS display_type      ''',
                     #BUSCAR POR CREDITO
                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND credit = %s"
 
-                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_price_unit])
+                    values_select = [value_invoice_id, value_price_unit]
+
+                    self.env.cr.execute(SQL_CONSULTA, values_select)
                     result = self.env.cr.fetchall()
 
                     if len(result) == 0:
                         # BUSCAR SOLO NOMBRE
                         SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND quantity = %s "
 
-                        self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_quantity])
+                        values_select =  [value_invoice_id, value_quantity]
+
+                        self.env.cr.execute(SQL_CONSULTA,values_select )
                         result = self.env.cr.fetchall()
 
 
@@ -1504,7 +1510,7 @@ END AS display_type      ''',
 
                     self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0] ])
                 else:
-                    raise ValidationError(str([result,fila,SQL_CONSULTA]))
+                    raise ValidationError(str([result,fila,SQL_CONSULTA,values_select]))
 
                 #raise ValidationError(str(result))
 
