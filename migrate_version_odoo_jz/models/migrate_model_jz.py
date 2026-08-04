@@ -64,7 +64,7 @@ class MigrateModelJz(models.Model):
                 self.where_set = 'move_id < ( %LAST +%NUM_RECORDS ) AND move_id >= %LAST and move_id IS NOT NULL ;'
 
     def validate_table(self):
-
+        return
         if self.table in self.migrate_id.get_modelos_old():
             self.new_table = self.migrate_id.convert_modelos_old(table)
 
