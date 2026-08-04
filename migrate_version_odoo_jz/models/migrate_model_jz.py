@@ -1484,7 +1484,7 @@ END AS display_type      ''',
                     result = self.env.cr.fetchall()
 
                 if len(result) > 1:
-                    #BUSCAR SOLO NOMBRE
+                    #BUSCAR POR CREDITO
                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND credit = %s"
 
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_price_unit])
@@ -1502,9 +1502,9 @@ END AS display_type      ''',
                     SQL_INSERT = f'''
                     UPDATE {table} SET  price_unit = %s , display_type = 'product' WHERE  id = %s '''
 
-                    self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0]])
+                    self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0] ])
                 else:
-                    raise ValidationError(str([result,fila]))
+                    raise ValidationError(str([result,fila,SQL_CONSULTA]))
 
                 #raise ValidationError(str(result))
 
