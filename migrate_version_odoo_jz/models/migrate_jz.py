@@ -306,6 +306,20 @@ class MigrateJz(models.Model):
             tables_maestros.append("account_account_type")
         return tables_maestros
 
+    def get_modelos_old(self):
+        if self.from_version <= 12:
+            return ["account_invoice","account_invoice_line","account_invoice_payment_rel"]
+        return  []
+
+    def convert_modelos_old(self,table):
+        if self.from_version <= 12:
+            if table in self.get_modelos_old():
+                if table == "account_invoice":
+                    return "account_move"
+
+
+        return  None
+
     def add_modelos_usuales(self):
         #self.env.cr.execute("TRUNCATE TABLE account_tax_purchase_order_line_rel ;")
         #self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
@@ -323,10 +337,8 @@ class MigrateJz(models.Model):
             'account_move', 'account_move_line', 'account_move_line_account_tax_rel',
         ]
 
-        if self.from_version in [11,12]:
-            tablas.append("account_invoice")
-            tablas.append("account_invoice_line")
-            tablas.append("account_invoice_payment_rel")
+
+        tablas += self.get_modelos_old()
 
         tablas += [
             'account_full_reconcile', 'account_partial_reconcile',
@@ -344,9 +356,15 @@ class MigrateJz(models.Model):
 
 
         for table in tablas:
-            table_object = self.env['migrate.model.jz'].search([('migrate_id','=', self.id),('table','=',table)])
+
+            table_object = self.env['migrate.model.jz'].search([
+                ('migrate_id','=', self.id),('table','=',  table)
+            ])
 
             table_model = table.replace('_', '.')
+
+            if table in self.get_modelos_old():
+                table_model = self.convert_modelos_old(table)
 
             model_object = self.env['ir.model'].search([('model', '=', table_model)])
 
