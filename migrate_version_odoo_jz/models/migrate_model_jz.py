@@ -1487,9 +1487,9 @@ END AS display_type      ''',
 
                 if len(result) > 1:
                     #BUSCAR POR CREDITO
-                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s  AND name = %s  AND credit = %s"
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s  AND name = %s  AND ( credit = %s OR debit = %s)"
 
-                    values_select = [value_invoice_id,  value_name , value_price_unit]
+                    values_select = [value_invoice_id,  value_name , value_price_unit , value_price_unit]
 
                     self.env.cr.execute(SQL_CONSULTA, values_select)
                     result = self.env.cr.fetchall()
