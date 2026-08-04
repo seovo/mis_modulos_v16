@@ -317,7 +317,7 @@ class MigrateJz(models.Model):
                 if table == "account_invoice":
                     return "account_move"
 
-                if table == "account_invoice_line":
+                if table == "account_invoice_linex":
                     return "account_move_line"
 
 

@@ -81,7 +81,7 @@ class MigrateModelJz(models.Model):
         '''
 
 
-        if self.table == 'account_invoice_line':
+        if self.table == 'account_invoice_linex':
             self.identificador = 'name , invoice_id'
             self.update_if_exist = True
             #raise ValidationError(self.new_table)
