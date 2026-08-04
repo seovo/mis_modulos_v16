@@ -190,6 +190,13 @@ class MigrateModelJz(models.Model):
                         'migrate_model_id': id_origin,
                     })
 
+                if 'invoice_date' not in  list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'invoice_date',
+                        'value_set': "date_invoice",
+                        'migrate_model_id': id_origin,
+                    })
+
 
 
     @api.onchange('table')
