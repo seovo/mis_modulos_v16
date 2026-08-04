@@ -359,7 +359,7 @@ class MigrateModelJz(models.Model):
                 jfiels.value_set = self.migrate_id.text_pricelist
 
         state_payment = self.env['migrate.model.columns.jz'].search(
-            [('name', '=', 'state'), ('migrate_model_id', '=', self.id),('table','=','account_payment')])
+            [('name', '=', 'state'), ('migrate_model_id', '=', self.id),('migrate_model_id.table','=','account_payment')])
 
         if state_payment:
             state_payment.value_set = f'''
