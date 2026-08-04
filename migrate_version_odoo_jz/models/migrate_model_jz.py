@@ -118,25 +118,28 @@ class MigrateModelJz(models.Model):
 
         if table == 'account_move':
             if self.migrate_id.current_version > 15:
-                exist_move_type = False
-                exist_auto_post = False
-                for column_model in self.columns:
-                    if column_model.name == 'move_type':
-                        exist_move_type = True
-                    if column_model.name == 'auto_post':
-                        exist_auto_post = True
 
-                if not exist_move_type:
+                #esto es odoo18 	reverse_entry_id
+
+                if 'reversed_entry_id' not in  list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'reversed_entry_id',
+                        'value_set': ' "reverse_entry_id" as reversed_entry_id    ',
+                        'migrate_model_id': id_origin,
+                    })
+
+
+                if 'move_type' not in  list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'move_type',
                         'value_set': "'entry'",
-                        'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
+                        'migrate_model_id': id_origin,
                     })
-                if not exist_auto_post:
+                if 'auto_post' not in  list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'auto_post',
                         'value_set': "'no'",
-                        'migrate_model_id': self.id if type(self.id) == int else self._origin.id,
+                        'migrate_model_id': id_origin,
                     })
 
     @api.onchange('table')
@@ -354,6 +357,20 @@ class MigrateModelJz(models.Model):
         if pricelist_fields:
             for jfiels in pricelist_fields:
                 jfiels.value_set = self.migrate_id.text_pricelist
+
+        state_payment = self.env['migrate.model.columns.jz'].search(
+            [('name', '=', 'state'), ('migrate_model_id', '=', self.id),('table','=','account_payment')])
+
+        if state_payment:
+            state_payment.value_set = f'''
+            CASE
+               WHEN state = 'posted'  THEN  'paid'
+               WHEN state = 'cancelled'  THEN  'canceled'
+            ELSE state
+            END AS state
+            '''
+            for jfiels in state_fields:
+                jfiels.value_set = self.migrate_id.text_state
 
 
 
