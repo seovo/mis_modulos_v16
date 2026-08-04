@@ -101,14 +101,6 @@ class MigrateModelJz(models.Model):
             self.where_set = 'move_id IS NOT NULL ;'
 
 
-    @api.onchange('model_id')
-    def change_model(self):
-        for record in self:
-            if record.model_id:
-                table = record.model_id.model.replace('.','_')
-                #raise ValueError(table)
-                record.table = table
-
 
 
     def validate_columns_no_existentes(self,table=None):
