@@ -151,7 +151,7 @@ class MigrateModelJz(models.Model):
                 if 'display_type' not in list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'display_type',
-                        'value_set': "'product'",
+                        'value_set': "'tax'",
                         'migrate_model_id': id_origin,
                     })
 
@@ -1464,7 +1464,7 @@ class MigrateModelJz(models.Model):
 
                 if len(result) == 1:
                     SQL_INSERT = f'''
-                    UPDATE {table} SET  price_unit = %s WHERE  id = %s '''
+                    UPDATE {table} SET  price_unit = %s , display_type = 'product' WHERE  id = %s '''
 
                     self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0]])
 
