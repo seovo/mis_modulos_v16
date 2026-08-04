@@ -1463,10 +1463,12 @@ END AS display_type      ''',
             position_invoice_id = column_names.index('"invoice_id"')
             position_name = column_names.index('"name"')
             position_price_unit  = column_names.index('"price_unit"')
+            position_quantity  = column_names.index('"quantity"')
             for fila in resultados:
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
                 value_price_unit = fila[position_price_unit]
+                value_quantity = fila[position_quantity]
 
                 #BUSCAR DESCRIPCION Y PRODUCTO
                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL "
@@ -1488,6 +1490,12 @@ END AS display_type      ''',
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_price_unit])
                     result = self.env.cr.fetchall()
 
+                    if len(result) == 0:
+                        # BUSCAR SOLO NOMBRE
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND quantity = %s "
+
+                        self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_quantity])
+                        result = self.env.cr.fetchall()
 
 
                 if len(result) == 1:
