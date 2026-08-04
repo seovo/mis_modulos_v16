@@ -67,7 +67,7 @@ class MigrateModelJz(models.Model):
         if self.table == 'account_invoice_line':
             self.identificador = 'name , invoice_id'
             self.update_if_exist = True
-            self.new_table = 'account_invoice_line'
+            self.new_table = 'account_move_line'
 
         if self.table in ['account_tax', 'res_currency']:
             self.where_set = "active = 't' ; "
