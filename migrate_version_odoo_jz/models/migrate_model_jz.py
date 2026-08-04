@@ -706,6 +706,10 @@ END AS display_type      ''',
         if not resultados:
             resultados = cursor.fetchall()  # Obtener todos los resultados
 
+        if not resultados or len(resultados) == 0:
+            self.last_value = 0
+
+
 
         #if self.show_data:
         #    raise ValueError(resultados)
