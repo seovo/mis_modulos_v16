@@ -155,6 +155,13 @@ class MigrateModelJz(models.Model):
                         'migrate_model_id': id_origin,
                     })
 
+                if 'x_invoice_id' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'x_invoice_id',
+                        'value_set': "invoice_id",
+                        'migrate_model_id': id_origin,
+                    })
+
         if table == 'account_move':
             if self.migrate_id.current_version > 15:
                 #esto es odoo18 	reverse_entry_id
