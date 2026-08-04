@@ -150,6 +150,8 @@ class MigrateModelJz(models.Model):
     @api.onchange('table')
     def change_table(self):
         table = self.table
+        if self.table == 'account_invoice':
+            self.new_table = 'account_move'
         cursor = self.migrate_id.conect_postgres()
 
         string_sql = f"SELECT * FROM {table} LIMIT 1"
@@ -167,8 +169,7 @@ class MigrateModelJz(models.Model):
         if  '_rel' in self.table:
             self.no_existe_id = True
 
-        if self.table == 'account_invoice':
-            self.new_table = 'account_invoice'
+
 
         columns_current = None
         list_field_current = []
