@@ -159,6 +159,13 @@ class MigrateModelJz(models.Model):
                         'migrate_model_id': id_origin,
                     })
 
+                if 'auto_post' not in  list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'auto_post',
+                        'value_set': "'no'",
+                        'migrate_model_id': id_origin,
+                    })
+
 
 
     @api.onchange('table')
