@@ -65,7 +65,7 @@ class MigrateModelJz(models.Model):
 
     def validate_table(self):
         if self.table == 'account_invoice_line':
-            self.identificador = 'name , invoice_id'
+            self.identificador = 'name , invoice_idx'
             self.update_if_exist = True
             self.new_table = 'account_move_line'
 
@@ -201,8 +201,9 @@ class MigrateModelJz(models.Model):
 
     @api.onchange('table')
     def change_table(self):
-        self.validate_table()
+
         table = self.table
+        self.validate_table()
         if table in self.migrate_id.get_modelos_old():
             self.new_table = self.migrate_id.convert_modelos_old(table)
         cursor = self.migrate_id.conect_postgres()
