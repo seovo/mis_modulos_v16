@@ -68,9 +68,11 @@ class MigrateModelJz(models.Model):
         if self.table in self.migrate_id.get_modelos_old():
             self.new_table = self.migrate_id.convert_modelos_old(table)
 
+        return
+
         table_model = self.new_table or self.table
 
-        return
+
 
 
 
