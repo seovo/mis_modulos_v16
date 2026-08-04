@@ -167,6 +167,9 @@ class MigrateModelJz(models.Model):
         if  '_rel' in self.table:
             self.no_existe_id = True
 
+        if self.table == 'account_invoice':
+            self.new_table = 'account_invoice'
+
         columns_current = None
         list_field_current = []
 
@@ -613,6 +616,8 @@ class MigrateModelJz(models.Model):
 
         #if self.show_data:
         #    raise ValueError(resultados)
+
+
 
         if self.table == 'account_group':
             position_name = column_names.index('"name"')
