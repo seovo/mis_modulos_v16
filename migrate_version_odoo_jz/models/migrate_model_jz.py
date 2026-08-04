@@ -55,6 +55,11 @@ class MigrateModelJz(models.Model):
     last_value = fields.Integer(string='Ultimo Registro Ejecutado %LAST')
     records_value = fields.Integer(string="Numero de Registros %NUM_RECORDS ",default=200)
 
+    @api.onchange('is_part_cron')
+    def change_is_part_cron(self):
+        if not self.where_set :
+            self.where_set = 'id < ( %LAST +%NUM_RECORDS ) AND id >= %LAST'
+
 
     @api.onchange('model_id')
     def change_model(self):
@@ -371,7 +376,6 @@ class MigrateModelJz(models.Model):
             '''
             for jfiels in state_fields:
                 jfiels.value_set = self.migrate_id.text_state
-
 
 
     def migrate_table(self):
