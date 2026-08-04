@@ -708,6 +708,7 @@ END AS display_type      ''',
 
         if not resultados or len(resultados) == 0:
             self.last_value = 0
+            return
 
 
 
