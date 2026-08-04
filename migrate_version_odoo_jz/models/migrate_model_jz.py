@@ -60,6 +60,12 @@ class MigrateModelJz(models.Model):
         if not self.where_set :
             self.where_set = 'id < ( %LAST +%NUM_RECORDS ) AND id >= %LAST'
 
+            if self.table == 'account_invoice_line':
+                self.where_set = f'''
+                id < ( %LAST +%NUM_RECORDS ) AND id >= %LAST 
+                AND  invoice_id  NOT IN (SELECT id FROM account_invoice  WHERE move_id IS NULL);
+                '''
+
             if self.table == 'account_invoice':
                 self.where_set = 'move_id < ( %LAST +%NUM_RECORDS ) AND move_id >= %LAST and move_id IS NOT NULL ;'
 
@@ -1461,7 +1467,7 @@ END AS display_type      ''',
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
                 value_price_unit = fila[position_price_unit]
-                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
+                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL"
 
                 self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
