@@ -1467,10 +1467,21 @@ END AS display_type      ''',
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
                 value_price_unit = fila[position_price_unit]
+
+                #BUSCAR DESCRIPCION Y PRODUCTO
                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL"
 
                 self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
+
+                if len(result) == 0:
+                    #BUSCAR SOLO NOMBRE
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
+
+                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
+                    result = self.env.cr.fetchall()
+
+
 
                 if len(result) == 1:
                     SQL_INSERT = f'''
