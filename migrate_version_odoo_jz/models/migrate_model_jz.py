@@ -1452,7 +1452,7 @@ class MigrateModelJz(models.Model):
         if self.new_table == 'account_move_line' and self.table == 'account_invoice_line':
             position_invoice_id = column_names.index('"invoice_id"')
             position_name = column_names.index('"name"')
-            position_price_unit  = column_names.index('"name"')
+            position_price_unit  = column_names.index('"price_unit"')
             for fila in resultados:
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
