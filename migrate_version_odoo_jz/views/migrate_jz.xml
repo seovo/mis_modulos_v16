@@ -54,7 +54,7 @@
                                     <field name="ignore" />
                                     <field name="type_field_postgres" />
                                     <field name="type_field" />
-                                    <field name="value_set" />
+                                    <field name="value_set"  optional="show" />
                                     <field name="ir_model_field_id" optional="hidden" />
                                     <field name="is_field" optional="hidden" />
                                    <!-- <field name="insert_as_jsonb" optional="hidden" /> -->
