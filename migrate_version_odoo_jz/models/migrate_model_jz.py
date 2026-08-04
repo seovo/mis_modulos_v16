@@ -1452,15 +1452,23 @@ class MigrateModelJz(models.Model):
         if self.new_table == 'account_move_line' and self.table == 'account_invoice_line':
             position_invoice_id = column_names.index('"invoice_id"')
             position_name = column_names.index('"name"')
+            position_price_unit  = column_names.index('"name"')
             for fila in resultados:
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
+                value_price_unit = fila[position_price_unit]
                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
 
                 self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
 
-                raise ValidationError(str(result))
+                if len(result) == 1:
+                    SQL_INSERT = f'''
+                    UPDATE {table} SET  price_unit = %s WHERE  id = %s '''
+
+                    self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0]])
+
+                #raise ValidationError(str(result))
 
             return
 
