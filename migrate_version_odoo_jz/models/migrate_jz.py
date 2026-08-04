@@ -364,22 +364,14 @@ class MigrateJz(models.Model):
                 ('migrate_id','=', self.id),('table','=',  table)
             ])
 
-            table_model = table.replace('_', '.')
 
-            if table in self.get_modelos_old():
-                table_model = self.convert_modelos_old(table)
-
-            model_object = self.env['ir.model'].search([('model', '=', table_model)])
 
             dict_table_object = {
                 'migrate_id': self.id,
                 'table': table,
             }
 
-            if model_object:
-                dict_table_object.update({
-                    'model_id': model_object.id
-                })
+
 
             if not table_object:
                 table_object = self.env['migrate.model.jz'].create(dict_table_object)

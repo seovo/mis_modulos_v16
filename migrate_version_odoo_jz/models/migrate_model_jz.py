@@ -64,6 +64,20 @@ class MigrateModelJz(models.Model):
                 self.where_set = 'move_id < ( %LAST +%NUM_RECORDS ) AND move_id >= %LAST and move_id IS NOT NULL ;'
 
     def validate_table(self):
+
+        if self.table in self.migrate_id.get_modelos_old():
+            self.new_table = self.migrate_id.convert_modelos_old(table)
+
+        table_model = self.new_table or self.table
+
+        table_model = table_model.replace('_', '.')
+
+        model_object = self.env['ir.model'].search([('model', '=',table_model)])
+
+        if model_object:
+            self.model_id = model_object.id
+
+
         if self.table == 'account_invoice_line':
             self.identificador = 'name , invoice_id'
             self.update_if_exist = True
@@ -203,9 +217,12 @@ class MigrateModelJz(models.Model):
     def change_table(self):
 
         table = self.table
+
+
+
         self.validate_table()
-        if table in self.migrate_id.get_modelos_old():
-            self.new_table = self.migrate_id.convert_modelos_old(table)
+
+
         cursor = self.migrate_id.conect_postgres()
 
         string_sql = f"SELECT * FROM {table} LIMIT 1"
