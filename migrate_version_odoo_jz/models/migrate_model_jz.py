@@ -710,14 +710,8 @@ END AS display_type      ''',
         if not resultados:
             resultados = cursor.fetchall()  # Obtener todos los resultados
 
-
-
-
-
         #if self.show_data:
         #    raise ValueError(resultados)
-
-
 
         if self.table == 'account_group':
             position_name = column_names.index('"name"')
@@ -1477,6 +1471,8 @@ END AS display_type      ''',
                     UPDATE {table} SET  price_unit = %s , display_type = 'product' WHERE  id = %s '''
 
                     self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0]])
+                else:
+                    raise ValidationError(str(result))
 
                 #raise ValidationError(str(result))
 
