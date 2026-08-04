@@ -1449,6 +1449,21 @@ class MigrateModelJz(models.Model):
                     })
             return
 
+        if self.new_table == 'account_move_line' and self.table == 'account_invoice_line':
+            position_invoice_id = column_names.index('"invoice_id"')
+            position_name = column_names.index('"name"')
+            for fila in resultados:
+                value_invoice_id = fila[position_invoice_id]
+                value_name = fila[position_name]
+                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
+
+                self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, position_name])
+                result = self.env.cr.fetchall()
+
+                raise ValidationError(str(result))
+
+            return
+
         if self.last_value <= 0 :
             if self.table == 'product_taxes_rel':
                 self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
@@ -1479,25 +1494,6 @@ class MigrateModelJz(models.Model):
 
 
 
-
-            '''
-            if self.table == 'account_invoice':
-
-                valores = []
-                id_update = 0
-
-                for coln in column_names:
-                    pass
-
-
-                SQL_INSERT = f"UPDATE account_move SET x_invoice_id = %s WHERE id = %s";
-                self.env.cr.execute(SQL_INSERT, fila)
-
-                #raise ValueError([fila,column_names])
-
-                continue
-                
-            '''
 
 
             if self.no_existe_id:
