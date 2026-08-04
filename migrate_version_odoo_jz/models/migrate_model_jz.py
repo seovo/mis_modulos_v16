@@ -123,17 +123,13 @@ class MigrateModelJz(models.Model):
 
         if table == 'account_move':
             if self.migrate_id.current_version > 15:
-
                 #esto es odoo18 	reverse_entry_id
-
                 if 'reversed_entry_id' not in  list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'reversed_entry_id',
                         'value_set': ' "reverse_entry_id" as reversed_entry_id    ',
                         'migrate_model_id': id_origin,
                     })
-
-
                 if 'move_type' not in  list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'move_type',
@@ -146,6 +142,17 @@ class MigrateModelJz(models.Model):
                         'value_set': "'no'",
                         'migrate_model_id': id_origin,
                     })
+
+        if table == 'account_invoice':
+            if self.migrate_id.current_version > 12:
+                if 'x_invoice_id' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'x_invoice_id',
+                        'value_set': 'id',
+                        'migrate_model_id': id_origin,
+                    })
+
+
 
     @api.onchange('table')
     def change_table(self):
@@ -249,6 +256,25 @@ class MigrateModelJz(models.Model):
 
                 if desc[0] in ['user_id'] :
                     dx.update({'ignore': True})
+
+            if table in ['account_invoice']:
+                if desc[0] in ['id']:
+                    dx.update({
+                        'value_set': 'move_id'
+                    })
+
+                if desc[0] in ['state']:
+                    dx.update({
+                        'value_set': f'''
+                        CASE
+                          WHEN state = 'cancel' THEN  'cancel'
+                          WHEN state = 'annul' THEN  'cancel'
+                          WHEN state = 'draft' THEN 'draft'
+                          ELSE 'posted' 
+                        END AS state
+                        '''
+                    })
+
 
             #raise ValueError(dx)
 
