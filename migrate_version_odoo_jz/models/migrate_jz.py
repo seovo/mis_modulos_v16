@@ -379,50 +379,12 @@ class MigrateJz(models.Model):
                 })
 
             if not table_object:
-
-
                 table_object = self.env['migrate.model.jz'].create(dict_table_object)
-
-                if table == 'account_invoice_line':
-                    table_object.identificador = 'name , invoice_id'
-                    table_object.update_if_exist = True
-                    table_object.new_table = 'account_invoice_line'
-
-                if table in ['account_tax','res_currency']:
-                    table_object.where_set = "active = 't' ; "
-
-                if table == 'account_account':
-                    table_object.where_set = '''
-                    
-                    id IN (  SELECT DISTINCT aml.account_id  FROM account_move_line aml )
-                    
-                    '''
-
             else:
                 table_object.write(dict_table_object)
 
             table_object.change_table()
-
-
-
-
-
-
-        #location_id
-
-
-
-
-        #product_template
-        #product_category
-        #product_product
-        #res_partner
-        #sale_order
-        #sale_order_line
-
-        #account_move
-
-
+            table_object.validate_table()
 
         return
 

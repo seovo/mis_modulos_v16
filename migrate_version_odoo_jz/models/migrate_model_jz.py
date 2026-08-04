@@ -60,6 +60,28 @@ class MigrateModelJz(models.Model):
         if not self.where_set :
             self.where_set = 'id < ( %LAST +%NUM_RECORDS ) AND id >= %LAST'
 
+            if self.table == 'account_invoice':
+                self.where_set = 'move_id < ( %LAST +%NUM_RECORDS ) AND move_id >= %LAST and move_id IS NOT NULL ;'
+
+    def validate_table(self):
+        if self.table == 'account_invoice_line':
+            self.identificador = 'name , invoice_id'
+            self.update_if_exist = True
+            self.new_table = 'account_invoice_line'
+
+        if self.table in ['account_tax', 'res_currency']:
+            self.where_set = "active = 't' ; "
+
+        if self.table == 'account_account':
+            self.where_set = '''
+
+            id IN (  SELECT DISTINCT aml.account_id  FROM account_move_line aml )
+
+            '''
+
+        if self.table == 'account_invoice':
+            self.where_set = 'move_id IS NOT NULL ;'
+
 
     @api.onchange('model_id')
     def change_model(self):
@@ -68,6 +90,8 @@ class MigrateModelJz(models.Model):
                 table = record.model_id.model.replace('.','_')
                 #raise ValueError(table)
                 record.table = table
+
+
 
     def validate_columns_no_existentes(self,table=None):
         if not table:
@@ -170,6 +194,7 @@ class MigrateModelJz(models.Model):
 
     @api.onchange('table')
     def change_table(self):
+        self.validate_table()
         table = self.table
         if table in self.migrate_id.get_modelos_old():
             self.new_table = self.migrate_id.convert_modelos_old(table)
