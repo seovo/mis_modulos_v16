@@ -633,6 +633,10 @@ END AS display_type      ''',
         cursor.execute(string_sql)
         resultados = cursor.fetchall()
 
+        if not resultados or len(resultados) == 0:
+            self.last_value = 0
+            return
+
         #raise ValueError([string_sql,resultados[0]])
 
         #try:
@@ -706,9 +710,7 @@ END AS display_type      ''',
         if not resultados:
             resultados = cursor.fetchall()  # Obtener todos los resultados
 
-        if not resultados or len(resultados) == 0:
-            self.last_value = 0
-            return
+
 
 
 
