@@ -219,11 +219,13 @@ class MigrateModelJz(models.Model):
     @api.onchange('table')
     def change_table(self):
 
-        table = self.table
+
 
 
 
         self.validate_table()
+
+        table = self.new_table or self.table
 
 
         cursor = self.migrate_id.conect_postgres()
