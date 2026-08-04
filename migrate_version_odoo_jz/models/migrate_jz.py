@@ -378,7 +378,6 @@ class MigrateJz(models.Model):
             else:
                 table_object.write(dict_table_object)
 
-            table_object.change_table()
             table_object.validate_table()
 
         return

@@ -70,6 +70,8 @@ class MigrateModelJz(models.Model):
 
         table_model = self.new_table or self.table
 
+        return
+
 
 
         table_model = table_model.replace('_', '.')
@@ -79,7 +81,7 @@ class MigrateModelJz(models.Model):
         if model_object:
             self.model_id = model_object.id
 
-        return
+
 
 
         if self.table == 'account_invoice_linex':
