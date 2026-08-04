@@ -152,6 +152,13 @@ class MigrateModelJz(models.Model):
                         'migrate_model_id': id_origin,
                     })
 
+                if 'move_type' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'move_type',
+                        'value_set': 'type',
+                        'migrate_model_id': id_origin,
+                    })
+
 
 
     @api.onchange('table')
