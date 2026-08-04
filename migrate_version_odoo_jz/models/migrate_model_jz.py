@@ -1487,18 +1487,18 @@ END AS display_type      ''',
 
                 if len(result) > 1:
                     #BUSCAR POR CREDITO
-                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND credit = %s"
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s  AND name = %s  AND credit = %s"
 
-                    values_select = [value_invoice_id, value_price_unit]
+                    values_select = [value_invoice_id,  value_name , value_price_unit]
 
                     self.env.cr.execute(SQL_CONSULTA, values_select)
                     result = self.env.cr.fetchall()
 
                     if len(result) == 0:
                         # BUSCAR SOLO NOMBRE
-                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND quantity = %s "
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s  AND name = %s  AND quantity = %s "
 
-                        values_select =  [value_invoice_id, value_quantity]
+                        values_select =  [value_invoice_id, value_name , value_quantity]
 
                         self.env.cr.execute(SQL_CONSULTA,values_select )
                         result = self.env.cr.fetchall()
