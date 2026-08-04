@@ -70,12 +70,15 @@ class MigrateModelJz(models.Model):
 
         table_model = self.new_table or self.table
 
+        '''
+
         table_model = table_model.replace('_', '.')
 
         model_object = self.env['ir.model'].search([('model', '=',table_model)])
 
         if model_object:
             self.model_id = model_object.id
+        '''
 
 
         if self.table == 'account_invoice_line':
@@ -95,6 +98,16 @@ class MigrateModelJz(models.Model):
 
         if self.table == 'account_invoice':
             self.where_set = 'move_id IS NOT NULL ;'
+
+
+    @api.onchange('model_id')
+    def change_model(self):
+        for record in self:
+            if record.model_id:
+                table = record.model_id.model.replace('.','_')
+                #raise ValueError(table)
+                record.table = table
+
 
 
     def validate_columns_no_existentes(self,table=None):
