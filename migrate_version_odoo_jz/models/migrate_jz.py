@@ -457,6 +457,9 @@ class MigrateJz(models.Model):
 
     def update_currency_migrate_jz(self,moveslines_without_amount):
         for mvl in moveslines_without_amount:
+            mvl._compute_amount_currency()
+
+            continue
 
             line = mvl
 
@@ -495,7 +498,6 @@ class MigrateJz(models.Model):
 
         moves_without_name = self.env['account.move.line'].search([
             ('move_id', '!=', False),
-            #('move_id.name', '!=', '/'),
             ('move_name', '=', False)], limit=2000)
 
         if moves_without_name:
@@ -503,7 +505,7 @@ class MigrateJz(models.Model):
                 mwn.move_name = mwn.move_id.name
             return
 
-        return
+
 
 
 
@@ -514,7 +516,8 @@ class MigrateJz(models.Model):
             ('display_type', '=', 'product'),
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
-            ('currency_id','=',self.env.ref('base.PEN').id) ,
+            ('currency_id', '!=', False),
+            #('currency_id','=',self.env.ref('base.PEN').id) ,
             ('balance','!=',0)
             #('move_id','=',59)
         ])
