@@ -552,6 +552,7 @@ class MigrateJz(models.Model):
 
         moves = self.env['account.move'].search([
             ('amount_total_in_currency_signed', '=', 0),
+            ('amount_total' '!=', 0),
             #('move_type', '!=', 'entry'),
             #('state', '=', 'posted'),
             # ('payment_state','!=','reversed'),
