@@ -116,12 +116,7 @@
     </record>
 
 
-    <menuitem id="report_schedules_parent"  sequence="102"
-              parent="sale.menu_sale_report"  name="Reporte de Cuotas" >
-        <menuitem action="action_schedule_dues_land" id="menu_schedule_dues_land" />
-        <menuitem action="action_schedule_dues_land_excell" id="menu_schedule_dues_land_excell" />
 
-    </menuitem>
 
 
 

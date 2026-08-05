@@ -5,18 +5,26 @@
 
     <menuitem name="Terrenos"
               web_icon="land,static/description/icon.png"
-              id="menu_terrenos" />
-
-       <menuitem action="action_expedientes_c"
+              id="menu_terrenos" >
+        <menuitem name="Expedientes"
+              web_icon="land,static/description/icon.png"
+              id="menu_expedientes" >
+            <menuitem action="action_expedientes_c"
                  groups="land.show_edit_contratos"
                  id="menu_sale_dues_incomplete_terreno"
                  parent="menu_terrenos"
-       />
+           />
 
-       <menuitem action="action_sale_expedientes"
+           <menuitem action="action_sale_expedientes"
                  id="menu_sale_expedientes"
                  parent="menu_terrenos"
-       />
+           />
+
+        </menuitem>
+
+    </menuitem>
+
+
 
     <!--MENUS -->
 
@@ -62,6 +70,14 @@
     <menuitem action="action_sale_resueltosx"
               id="menu_sale_dues_resueltos"
               parent="sale.sale_order_menu" />
+
+
+    <menuitem id="report_schedules_parent"  sequence="102"
+              parent="sale.menu_sale_report"  name="Reporte de Cuotas" >
+        <menuitem action="action_schedule_dues_land" id="menu_schedule_dues_land" />
+        <menuitem action="action_schedule_dues_land_excell" id="menu_schedule_dues_land_excell" />
+
+    </menuitem>
 
 
 
