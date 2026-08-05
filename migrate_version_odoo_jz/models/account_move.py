@@ -62,6 +62,8 @@ class AccountMove(models.Model):
             total_residual, total_residual_currency = 0.0, 0.0
             total, total_currency = 0.0, 0.0
 
+            total_currency_lines = []
+
             for line in move.line_ids:
                 if move.is_invoice(True):
                     # === Invoices ===
@@ -81,6 +83,8 @@ class AccountMove(models.Model):
                         # Residual amount.
                         total_residual += line.amount_residual
                         total_residual_currency += line.amount_residual_currency
+
+                    total_currency_lines.append(total_currency)
                 else:
                     # === Miscellaneous journal entry ===
                     if line.debit:
