@@ -160,7 +160,7 @@
         </field>
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.view_order_tree')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('view_order_form_due')})]"
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
         />
 
         <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
