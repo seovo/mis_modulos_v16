@@ -460,7 +460,7 @@ class MigrateJz(models.Model):
 
             line = mvl
 
-            if line.amount_currency is False:
+            if line.amount_currency is False or  line.amount_currency == 0:
                 line.amount_currency = line.currency_id.round(line.balance * line.currency_rate)
             if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
                 line.amount_currency = line.balance
