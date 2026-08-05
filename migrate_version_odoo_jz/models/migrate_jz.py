@@ -503,6 +503,8 @@ class MigrateJz(models.Model):
                 mwn.move_name = move_id.name
             return
 
+        return
+
 
 
         moveslines_without_amount = self.env['account.move.line'].search([
