@@ -533,6 +533,7 @@ class MigrateJz(models.Model):
 
             return
 
+        return
 
 
         partials = self.env['account.partial.reconcile'].search([
