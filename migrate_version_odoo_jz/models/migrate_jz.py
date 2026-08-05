@@ -467,7 +467,7 @@ class MigrateJz(models.Model):
                 amount_currency = line.balance
 
             sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
-            raise  ValidationError([amount_currency,line.id])
+            #raise  ValidationError([amount_currency,line.id])
             self.env.cr.execute(sql, [amount_currency, line.id])
 
             #raise ValidationError([line.amount_currency,line.balance,line.currency_rate, line.move_id.is_invoice(True)])
@@ -526,9 +526,9 @@ class MigrateJz(models.Model):
 
         moveslines_without_amount = self.env['account.move.line'].search([
             ('amount_currency', '=',0),
-            ('move_id.move_type', '!=', 'entry'),
+            #('move_id.move_type', '!=', 'entry'),
             ('move_id.state', '!=', 'draft'),
-            ('display_type', '=', 'product'),
+            #('display_type', '=', 'product'),
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('currency_id', '!=', False),
