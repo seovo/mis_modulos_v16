@@ -97,7 +97,7 @@ class AccountMove(models.Model):
 
             amount_untaxed = sign * total_untaxed_currency
             amount_tax = sign * total_tax_currency
-            amount_total = sign * total_currency
+            amount_total = sign * total_currency * 1
 
             amount_residual = -sign * total_residual_currency
             amount_untaxed_signed = -total_untaxed
