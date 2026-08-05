@@ -3,16 +3,7 @@
 
 
 
-    <menuitem name="Terrenos"
-              web_icon="land,static/description/icon.png"
-              id="menu_terrenos" >
-        <menuitem name="Expedientes" idd="menu_expedientes" >
-            <menuitem action="action_expedientes_c" groups="land.show_edit_contratos" id="menu_sale_dues_incomplete_terreno" />
-            <menuitem action="action_sale_expedientes" id="menu_sale_expedientes" />
 
-        </menuitem>
-
-    </menuitem>
 
     <menuitem id="report_schedules_parent"  sequence="102"
               parent="sale.menu_sale_report"  name="Reporte de Cuotas" >
