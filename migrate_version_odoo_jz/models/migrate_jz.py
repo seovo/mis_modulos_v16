@@ -555,7 +555,7 @@ class MigrateJz(models.Model):
             #('move_type', '!=', 'entry'),
             #('state', '=', 'posted'),
             # ('payment_state','!=','reversed'),
-            ('currency_id', '=', False),
+            ('currency_id', '!=', False),
             #('currency_id', '=', self.env.ref('base.PEN').id),
         ], limit=500)
 
@@ -564,8 +564,8 @@ class MigrateJz(models.Model):
             # raise ValidationError(moves)
 
             for mv in moves:
-                mv._compute_amount()
-                continue
+                #mv._compute_amount()
+                #continue
                 try:
                     mv._compute_amount()
                 except:
