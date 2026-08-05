@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_edit_contrato" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="priority">1000</field>
+
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                           <group>
+                               <field name="mz_lot"  readonly="1" />
+                               <field name="partner_id" readonly="1"  />
+                               <field name="company_id"  readonly="1" />
+                               <field name="stage_payment_lan"  readonly="1"  />
+
+                               <field
+                                       name="nro_internal_land"
+                                       readonly="stage_payment_lan in ['payment','completed']  "
+                               />
+
+
+                           </group>
+                           <group>
+                               <field name="price_credit_land" string="Credito" readonly="1" />
+                               <field name="total_payment_land" string="Abonado" readonly="1" invisible="1" />
+                               <field name="saldo_payment_land"  string="Saldo" readonly="1" invisible="1" />
+                               <field name="price_initial_land" string="Inicial"  readonly="1" />
+                               <field name="amount_total" readonly="1" />
+
+                           </group>
+
+
+                       </group>
+                       <notebook>
+                           <page string="Contrato" >
+                               <group>
+                           <field name="documents_document_land_id"  />
+
+                           <field name="contrato_generado_land" filename="name_contrato_generado_land" widget="binary"/>
+                           <field name="name_contrato_generado_land" invisible="1"/>
+                       </group>
+                               <group>
+                           <button name="generar_contrato" string="Generar Contrato" type="object"  />
+                       </group>
+
+                          </page>
+                       </notebook>
+                   </sheet>
+               </form>
+
+           </field>
+    </record>
+
+    <record id="action_expedientes_c" model="ir.actions.act_window">
+        <field name="name">Expedientes (Modificar Contratos)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+           ('state','in',['sale','done']) ,
+            ('stage_land','!=','cancel')]
+        </field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.view_order_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('land.view_edit_contrato')})]"
+        />
+
+        <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_sale_expedientes" model="ir.actions.act_window">
+        <field name="name">Expedientes/Ventas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+           ('state','in',['sale','done']) ,
+            ('stage_land','!=','cancel')]
+        </field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.view_order_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+        />
+
+        <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
+
+    </record>
+
     <record id="add_terreno_sale" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order</field>
@@ -375,26 +464,6 @@
            </field>
     </record>
 
-    <!--
-
-
-    <record id="sale_order_tree" model="ir.ui.view">
-           <field name="name">sale.order.tree</field>
-           <field name="model">sale.order</field>
-           <field name="inherit_id" ref="sale.sale_order_tree" />
-           <field name="arch" type="xml">
-               <xpath expr="//field[@name='amount_to_invoice']" position="replace" >
-                   <field name="saldo_total_land" optional="hide"/>
-
-               </xpath>
-
-
-           </field>
-    </record>
-
-    -->
-
-
 
 
     <record id="view_order_tree" model="ir.ui.view">
@@ -441,9 +510,6 @@
                </xpath>
            </field>
     </record>
-
-
-
 
     <record id="view_order_tree_separacion" model="ir.ui.view">
            <field name="name">sale.order.tree</field>
@@ -493,7 +559,6 @@
            </field>
     </record>
 
-
     <record id="action_move_adelantos1" model="ir.actions.act_window">
         <field name="name">Facturas sin Cotización</field>
         <field name="type">ir.actions.act_window</field>
@@ -538,7 +603,6 @@
             />
     </record>
 
-
     <record id="action_sale_initial_incomplete" model="ir.actions.act_window">
         <field name="name">Inicial Pendiente con Cotización</field>
         <field name="type">ir.actions.act_window</field>
@@ -552,37 +616,6 @@
             />
     </record>
 
-
-
-
-    <menuitem name="Separaciones"
-              id="menu_move_adelantos"
-              parent="sale.sale_order_menu"
-    />
-
-    <menuitem action="action_move_adelantos2"
-              id="menu_move_adelantos2"
-              parent="menu_move_adelantos"
-              sequence="0" />
-
-    <menuitem action="action_move_adelantos1"
-              id="menu_move_adelantos1"
-              parent="menu_move_adelantos"
-              sequence="1"
-    />
-
-    <menuitem action="action_sale_separation"
-              id="menu_sale_separation"
-              parent="menu_move_adelantos"
-              sequence="2"
-    />
-
-
-    <menuitem action="action_sale_initial_incomplete"
-              id="menu_sale_initial_incomplete"
-              parent="menu_move_adelantos"
-              sequence="3"
-    />
 
 
 
@@ -600,10 +633,7 @@
         <field name="context">{}</field>
     </record>
 
-    <menuitem action="action_sale_dues_incomplete"
-              id="menu_sale_dues_incomplete"
-              parent="sale.sale_order_menu"
-    />
+
 
     <record id="action_sale_dues_complete" model="ir.actions.act_window">
         <field name="name">Expendientes Pagos Completados</field>
@@ -613,9 +643,7 @@
         <field name="domain">[('stage_payment_lan','=','completed'),('state','=','sale')]</field>
     </record>
 
-    <menuitem action="action_sale_dues_complete"
-              id="menu_sale_dues_complete"
-              parent="sale.sale_order_menu" />
+
 
 
     <record id="view_order_tree_preaviso_cancelx" model="ir.ui.view">
@@ -649,10 +677,6 @@
                 (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
             />
     </record>
-
-    <menuitem action="action_sale_resueltosx"
-              id="menu_sale_dues_resueltos"
-              parent="sale.sale_order_menu" />
 
 
     <record id="view_order_tree_report" model="ir.ui.view">
@@ -739,8 +763,6 @@
 			<field name="state">code</field>
 			<field name="code">action = records.update_schedule()</field>
     </record>
-
-
 
 
 
