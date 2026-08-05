@@ -550,6 +550,31 @@ class MigrateJz(models.Model):
 
             return
 
+        moves = self.env['account.move'].search([
+            ('amount_total_in_currency_signed', '=', 0),
+            ('move_type', '!=', 'entry'),
+            ('state', '=', 'posted'),
+            # ('payment_state','!=','reversed'),
+            ('currency_id', '=', self.env.ref('base.PEN').id), ], limit=500)
+
+        if moves:
+
+            # raise ValidationError(moves)
+
+            for mv in moves:
+                # mv._compute_amount()
+                # continue
+                try:
+                    mv._compute_amount()
+                except:
+                    continue
+                    #self.update_currency_migrate_jz(mv.invoice_line_ids)
+
+                    # raise ValidationError(mv)
+                    # continue
+
+            return
+
         return
 
 
@@ -671,31 +696,7 @@ class MigrateJz(models.Model):
             return
 
 
-        moves = self.env['account.move'].search([
-            ('amount_total_in_currency_signed', '=', 0),
-            ('move_type', '!=', 'entry'),
-            ('state','=','posted'),
-            #('payment_state','!=','reversed'),
-            ('currency_id','=',self.env.ref('base.PEN').id) ,], limit=500)
 
-        if moves:
-
-            #raise ValidationError(moves)
-
-            for mv in moves:
-                #mv._compute_amount()
-                #continue
-                try:
-                    mv._compute_amount()
-                except:
-
-                    self.update_currency_migrate_jz(mv.invoice_line_ids)
-
-                    #raise ValidationError(mv)
-                    #continue
-
-
-            return
 
 
 
