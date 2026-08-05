@@ -465,7 +465,7 @@ class MigrateJz(models.Model):
             if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
                 line.amount_currency = line.balance
 
-            raise ValidationError(line.amount_currency)
+            raise ValidationError([line.amount_currency,line.balance,line.currency_rate,])
 
             #mvl._compute_amount_currency()
 
