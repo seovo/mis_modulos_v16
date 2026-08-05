@@ -558,7 +558,7 @@ class MigrateJz(models.Model):
             ('currency_id', '!=', False),
             ('line_ids', '!=', False)
             #('currency_id', '=', self.env.ref('base.PEN').id),
-        ], limit=800)
+        ], limit=1000)
 
         if moves:
 
