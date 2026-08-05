@@ -104,7 +104,7 @@ class AccountMove(models.Model):
 
             sql = f'''UPDATE account_move 
                       SET 
-                          amount_untaxed = %s , amount_tax = = %s , 
+                          amount_untaxed = %s , amount_tax = %s , 
                           amount_total  = %s , amount_total_in_currency_signed = %s  ,
                           amount_residual = %s ,amount_untaxed_signed = %s  ,
                           amount_untaxed_in_currency_signed = %s , amount_tax_signed = %s  ,
