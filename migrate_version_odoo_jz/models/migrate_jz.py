@@ -500,7 +500,7 @@ class MigrateJz(models.Model):
 
         if moves_without_name:
             for mwn in moves_without_name:
-                mwn.move_name = move_id.name
+                mwn.move_name = mwn.name
             return
 
         return
