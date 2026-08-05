@@ -556,7 +556,7 @@ class MigrateJz(models.Model):
             #('state', '=', 'posted'),
             # ('payment_state','!=','reversed'),
             ('currency_id', '!=', False),
-            ('balance', '!=', 0)
+            ('line_ids', '!=', False)
             #('currency_id', '=', self.env.ref('base.PEN').id),
         ], limit=800)
 
