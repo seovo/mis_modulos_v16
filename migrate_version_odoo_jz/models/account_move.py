@@ -84,12 +84,14 @@ class AccountMove(models.Model):
                         total_residual += line.amount_residual
                         total_residual_currency += line.amount_residual_currency
 
-                    total_currency_lines.append(total_currency)
+
                 else:
                     # === Miscellaneous journal entry ===
                     if line.debit:
                         total += line.balance
                         total_currency += line.amount_currency
+
+                total_currency_lines.append(total_currency)
 
             sign = move.direction_sign
 
