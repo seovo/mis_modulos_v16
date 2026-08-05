@@ -63,7 +63,8 @@ class MigrateModelJz(models.Model):
             if self.table == 'account_invoice_line':
                 self.where_set = f'''
                 id < ( %LAST +%NUM_RECORDS ) AND id >= %LAST 
-                AND  invoice_id  NOT IN (SELECT id FROM account_invoice  WHERE move_id IS NULL);
+                AND  invoice_id  NOT IN (SELECT id FROM account_invoice  WHERE move_id IS NULL)
+                AND display_type IS NULL  ;
                 '''
 
             if self.table == 'account_invoice':
