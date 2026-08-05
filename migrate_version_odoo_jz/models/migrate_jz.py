@@ -522,10 +522,12 @@ class MigrateJz(models.Model):
             #('move_id','=',59)
         ])
 
-        #raise ValidationError(str(moveslines_without_amount))
+        raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
-            self.update_currency_migrate_jz(moveslines_without_amount)
+            for mvl in moveslines_without_amount:
+                mvl._compute_amount_currency()
+            #self.update_currency_migrate_jz(moveslines_without_amount)
 
 
                 #raise ValidationError([mvl.move_id,line.amount_currency])
