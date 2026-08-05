@@ -493,7 +493,7 @@ class MigrateJz(models.Model):
             moves_without_partner._compute_invoice_partner_display_info()
             return
 
-        moves_without_name = self.env['account.move'].search([
+        moves_without_name = self.env['account.move.line'].search([
             ('move_id', '!=', False),
             ('move_id.name', '!=', '/'),
             ('move_name', '=', '/')], limit=1000)
