@@ -527,7 +527,7 @@ class MigrateJz(models.Model):
         moveslines_without_amount = self.env['account.move.line'].search([
             ('amount_currency', '=',0),
             #('move_id.move_type', '!=', 'entry'),
-            ('move_id.state', '!=', 'draft'),
+            #('move_id.state', '!=', 'draft'),
             #('display_type', '=', 'product'),
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
