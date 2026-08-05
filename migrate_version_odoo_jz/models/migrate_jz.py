@@ -575,6 +575,9 @@ class MigrateJz(models.Model):
                     # raise ValidationError(mv)
                     # continue
 
+                if not mv.amount_total_in_currency_signed:
+                    raise ValidationError(mv)
+
             return
 
         return
