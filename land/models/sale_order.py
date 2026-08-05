@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
 
     dues_land            = fields.Float(string="Cuotas",copy=False)
     qty_dues_payment     = fields.Integer(compute='get_qty_dues_payment', string="Cuotas Pagadas")
-    value_due_land       = fields.Float(string="Precio Cuota",copy=False,compute='get_amount_prices_land',digits=(12, 3))
+
     value_due_land_custom = fields.Float(string="Precio Cuota Custom", copy=False,  digits=(12, 3))
 
     total_dues_independence = fields.Integer(compute='get_qty_dues_payment', string="Total Independización",store=True)
@@ -67,11 +67,12 @@ class SaleOrder(models.Model):
     price_initial_land = fields.Float(string="Inicial del Terreno",compute="get_amount_prices_land",store=True,copy=False)
     price_credit_land = fields.Float(string="Credito del Terreno",compute="get_amount_prices_land",store=True,copy=False)
     price_independence_land = fields.Float(string="Independización Terreno",compute="get_amount_prices_land",store=True,copy=False)
+    value_due_land = fields.Float(string="Precio Cuota", copy=False, compute='get_amount_prices_land', digits=(12, 3))
 
 
 
-    @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty','repeat_mz_lot')
-    @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty','repeat_mz_lot')
+    @api.onchange('order_line', 'order_line.price_unit','order_line.product_uom_qty')
+    @api.depends('order_line', 'order_line.price_unit','order_line.product_uom_qty')
     def get_amount_prices_land(self):
         for record in self:
 
@@ -91,15 +92,21 @@ class SaleOrder(models.Model):
                 if line.product_id.is_independence:
                     price_iden += line.price_total
 
+            record.sudo().write({
+                'price_initial_land': price_inicial,
+                'price_credit_land': price_credit,
+                'price_total_land': price_inicial + price_credit,
+                'price_independence_land': price_iden,
+                'dues_land': dues_land ,
+                'value_due_land': value_due
+            })
 
-
-            record.price_initial_land = price_inicial
-            record.price_credit_land =  price_credit
-            record.price_total_land = price_inicial + price_credit
-            record.price_independence_land = price_iden
-            record.dues_land = dues_land
-
-            record.value_due_land = value_due
+            #record.price_initial_land = price_inicial
+            #record.price_credit_land =  price_credit
+            #record.price_total_land = price_inicial + price_credit
+            #record.price_independence_land = price_iden
+            #record.dues_land = dues_land
+            #record.value_due_land = value_due
 
     note = fields.Text()
     seller_land_id = fields.Many2one('seller.land',string="Proveedor Terreno",copy=False)
