@@ -120,7 +120,7 @@ class AccountMove(models.Model):
             ])
 
             if amount_total_in_currency_signed == 0:
-                raise ValidationError(move.id)
+                raise ValidationError([move.id,amount_total])
 
 
     def _get_all_reconciled_invoice_partialsx(self):
