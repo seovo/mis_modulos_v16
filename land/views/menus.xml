@@ -12,12 +12,10 @@
             <menuitem action="action_expedientes_c"
                  groups="land.show_edit_contratos"
                  id="menu_sale_dues_incomplete_terreno"
-                 parent="menu_terrenos"
-           />
+            />
 
            <menuitem action="action_sale_expedientes"
                  id="menu_sale_expedientes"
-                 parent="menu_terrenos"
            />
 
         </menuitem>
