@@ -557,19 +557,18 @@ class MigrateJz(models.Model):
             # ('payment_state','!=','reversed'),
             ('currency_id', '!=', False),
             #('currency_id', '=', self.env.ref('base.PEN').id),
-        ], limit=500)
+        ], limit=800)
 
         if moves:
 
             # raise ValidationError(moves)
 
             for mv in moves:
-                mv._compute_amount_sql()
-                continue
                 try:
                     mv._compute_amount()
                 except:
-                    continue
+                    mv._compute_amount_sql()
+                    #continue
                     #self.update_currency_migrate_jz(mv.invoice_line_ids)
 
                     # raise ValidationError(mv)

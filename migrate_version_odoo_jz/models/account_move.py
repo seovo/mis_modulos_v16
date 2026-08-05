@@ -88,21 +88,36 @@ class AccountMove(models.Model):
                         total_currency += line.amount_currency
 
             sign = move.direction_sign
-            #move.amount_untaxed = sign * total_untaxed_currency
-            #move.amount_tax = sign * total_tax_currency
+
+            amount_untaxed = sign * total_untaxed_currency
+            amount_tax = sign * total_tax_currency
             amount_total = sign * total_currency
 
-            #move.amount_residual = -sign * total_residual_currency
-            #move.amount_untaxed_signed = -total_untaxed
-            #move.amount_untaxed_in_currency_signed = -total_untaxed_currency
-            #move.amount_tax_signed = -total_tax
-            #move.amount_total_signed = abs(total) if move.move_type == 'entry' else -total
-            #move.amount_residual_signed = total_residual
+            amount_residual = -sign * total_residual_currency
+            amount_untaxed_signed = -total_untaxed
+            amount_untaxed_in_currency_signed = -total_untaxed_currency
+            amount_tax_signed = -total_tax
+            amount_total_signed = abs(total) if move.move_type == 'entry' else -total
+            amount_residual_signed = total_residual
             amount_total_in_currency_signed = abs(amount_total) if move.move_type == 'entry' else -(
                         sign * amount_total)
 
-            sql = f'''UPDATE account_move SET amount_total  = %s , amount_total_in_currency_signed = %s   WHERE id = %s'''
-            self.env.cr.execute(sql, [amount_total,amount_total_in_currency_signed , move.id])
+            sql = f'''UPDATE account_move 
+                      SET 
+                          amount_untaxed = %s , amount_tax = = %s , 
+                          amount_total  = %s , amount_total_in_currency_signed = %s  ,
+                          amount_residual = %s ,amount_untaxed_signed = %s  ,
+                          amount_untaxed_in_currency_signed = %s , amount_tax_signed = %s  ,
+                          amount_total_signed = %s , amount_residual_signed = %s  
+                      WHERE id = %s'''
+            self.env.cr.execute(sql, [
+                amount_untaxed,amount_tax,
+                amount_total,amount_total_in_currency_signed ,
+                amount_residual , amount_untaxed_signed ,
+                amount_untaxed_in_currency_signed , amount_tax_signed ,
+                amount_total_signed , amount_residual_signed ,
+                move.id
+            ])
 
 
     def _get_all_reconciled_invoice_partialsx(self):
