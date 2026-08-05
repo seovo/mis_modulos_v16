@@ -467,7 +467,7 @@ class MigrateJz(models.Model):
                 amount_currency = line.balance
 
             sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
-            # raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
+            raise  ValidationError([amount_currency,line.id])
             self.env.cr.execute(sql, [amount_currency, line.id])
 
             #raise ValidationError([line.amount_currency,line.balance,line.currency_rate, line.move_id.is_invoice(True)])
