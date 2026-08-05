@@ -495,7 +495,7 @@ class MigrateJz(models.Model):
 
         moves_without_name = self.env['account.move.line'].search([
             ('move_id', '!=', False),
-            ('move_id.name', '!=', '/'),
+            #('move_id.name', '!=', '/'),
             ('move_name', '=', False)], limit=2000)
 
         if moves_without_name:
