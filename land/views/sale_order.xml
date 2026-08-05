@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- FORM -->
+
+    <record id="view_order_form_due" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="priority">1000</field>
+
+           <field name="arch" type="xml">
+               <form>
+                   <sheet>
+                       <group>
+                           <group string="Info">
+                               <field name="company_id"  invisible="1"/>
+                               <field name="nro_internal_land"  readonly="1"/>
+                               <field name="amount_total" readonly="1" />
+                               <field name="price_initial_land" string="Inicial"  readonly="1" />
+                           </group>
+                           <group string="Cuotas">
+                               <field name="price_credit_land" string="Credito" readonly="1" />
+                               <field name="total_payment_land" string="Abonado" readonly="1" />
+                               <field name="saldo_payment_land"  string="Saldo" readonly="1" />
+
+                           </group>
+                           <group string="Independencia">
+                               <field name="price_independence_land"   readonly="1" force_save="1"  />
+                               <field name="total_independence_land"   readonly="1" force_save="1"  />
+                               <field name="saldo_independence_land"   readonly="1" force_save="1"  />
+                           </group>
+
+
+                       </group>
+                       <notebook>
+                           <page string="Cronograma" name="cronograma">
+                               <field name="schedule_land_ids" readonly="1" />
+                           </page>
+
+                           <page string="Mora" >
+                       <group>
+                           <group>
+
+                               <field name="partner_id" readonly="1"  />
+                               <field name="mz_lot"  readonly="1" />
+                               <field name="value_due_land" readonly="1"  />
+                               <field name="last_payment_date_land"  readonly="1" />
+                               <field name="next_payment_date_land"  readonly="1" />
+                               <field name="days_tolerance_land" readonly="1" />
+                               <field name="dues_land" readonly="1" />
+                               <field name="qty_dues_payment" readonly="1" />
+                               <field name="total_dues_independence" readonly="1" />
+                               <field name="qty_dues_independence_payment" readonly="1" />
+
+                           </group>
+
+
+                           <group string="Total a Pagar" >
+                               <field name="days_expired_land"  readonly="1" />
+                               <field name="value_mora_land"  readonly="1" />
+                               <field name="mora_acumulada" readonly="1"  />
+                               <field name="mounth_expired_land"  readonly="1" />
+                               <field name="amount_payment_month_land"  readonly="1" />
+                               <field name="amount_total_payment_month_land" readonly="1"  />
+
+                           </group>
+
+
+
+
+                       </group>
+                   </page>
+
+                       </notebook>
+                   </sheet>
+               </form>
+
+           </field>
+    </record>
+
     <record id="view_edit_contrato" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order</field>
@@ -83,7 +160,7 @@
         </field>
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('sale.view_order_tree')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_order_form_due')})]"
         />
 
         <!--<field name="context">{'search_default_vencido_x_vencer': 1}</field> -->
@@ -121,80 +198,7 @@
            </field>
     </record>
 
-    <record id="view_order_form_due" model="ir.ui.view">
-           <field name="name">Pedidos.Form</field>
-           <field name="model">sale.order</field>
-           <field name="priority">1000</field>
 
-           <field name="arch" type="xml">
-               <form>
-                   <sheet>
-                       <group>
-                           <group string="Info">
-                               <field name="company_id"  invisible="1"/>
-                               <field name="nro_internal_land"  readonly="1"/>
-                               <field name="amount_total" readonly="1" />
-                               <field name="price_initial_land" string="Inicial"  readonly="1" />
-                           </group>
-                           <group string="Cuotas">
-                               <field name="price_credit_land" string="Credito" readonly="1" />
-                               <field name="total_payment_land" string="Abonado" readonly="1" />
-                               <field name="saldo_payment_land"  string="Saldo" readonly="1" />
-
-                           </group>
-                           <group string="Independencia">
-                               <field name="price_independence_land"   readonly="1" force_save="1"  />
-                               <field name="total_independence_land"   readonly="1" force_save="1"  />
-                               <field name="saldo_independence_land"   readonly="1" force_save="1"  />
-                           </group>
-
-
-                       </group>
-                       <notebook>
-                           <page string="Cronograma" name="cronograma">
-                               <field name="schedule_land_ids" readonly="1" />
-                           </page>
-
-                           <page string="Mora" >
-                       <group>
-                           <group>
-
-                               <field name="partner_id" readonly="1"  />
-                               <field name="mz_lot"  readonly="1" />
-                               <field name="value_due_land" readonly="1"  />
-                               <field name="last_payment_date_land"  readonly="1" />
-                               <field name="next_payment_date_land"  readonly="1" />
-                               <field name="days_tolerance_land" readonly="1" />
-                               <field name="dues_land" readonly="1" />
-                               <field name="qty_dues_payment" readonly="1" />
-                               <field name="total_dues_independence" readonly="1" />
-                               <field name="qty_dues_independence_payment" readonly="1" />
-
-                           </group>
-
-
-                           <group string="Total a Pagar" >
-                               <field name="days_expired_land"  readonly="1" />
-                               <field name="value_mora_land"  readonly="1" />
-                               <field name="mora_acumulada" readonly="1"  />
-                               <field name="mounth_expired_land"  readonly="1" />
-                               <field name="amount_payment_month_land"  readonly="1" />
-                               <field name="amount_total_payment_month_land" readonly="1"  />
-
-                           </group>
-
-
-
-
-                       </group>
-                   </page>
-
-                       </notebook>
-                   </sheet>
-               </form>
-
-           </field>
-    </record>
 
 
     <record id="view_order_form" model="ir.ui.view">
