@@ -555,7 +555,9 @@ class MigrateJz(models.Model):
             ('move_type', '!=', 'entry'),
             ('state', '=', 'posted'),
             # ('payment_state','!=','reversed'),
-            ('currency_id', '=', self.env.ref('base.PEN').id), ], limit=500)
+            ('currency_id', '=', False),
+            #('currency_id', '=', self.env.ref('base.PEN').id),
+        ], limit=500)
 
         if moves:
 
