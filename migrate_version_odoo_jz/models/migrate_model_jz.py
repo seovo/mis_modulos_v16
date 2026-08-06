@@ -223,8 +223,8 @@ END AS display_type      ''',
 
                 if 'invoice_date_due' not in  list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
-                        'name': 'date_due',
-                        'value_set': '"invoice_date_due"',
+                        'name': 'invoice_date_due',
+                        'value_set': 'date_due',
                         'migrate_model_id': id_origin,
                     })
 
