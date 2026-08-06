@@ -604,11 +604,6 @@ class MigrateJz(models.Model):
 
             return
 
-        return
-
-
-
-
         moveslines_without_amount = self.env['account.move.line'].search([
             ('price_subtotal', '=', 0),
             ('move_id.move_type', '!=', 'entry'),
@@ -616,31 +611,27 @@ class MigrateJz(models.Model):
             ('price_unit', '!=', 0),
             ('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
-            ('price_unit','>',0.0020)
+            ('price_unit', '>', 0.0020)
         ], limit=1000)
 
-        #, limit = 500
+        # , limit = 500
 
-        #raise ValidationError(moveslines_without_amount)
+        # raise ValidationError(moveslines_without_amount)
 
         # raise ValidationError(moveslines_without_amount.move_id)
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
-                #mvl._compute_totals()
-                #continue
 
-                # raise ValidationError(mvl.move_id)
+                mvl._compute_totals()
 
-
-
-                #raise ValueError(base_line)
+                continue
 
                 try:
                     mvl._compute_totals()
                 except:
 
-                    #version 18
+                    # version 18
 
                     line = mvl
 
@@ -655,21 +646,27 @@ class MigrateJz(models.Model):
 
                     sql = f''' UPDATE account_move_line SET price_subtotal = %s ,  price_total = %s  WHERE id = {line.id} '''
 
-                    self.env.cr.execute(sql, [price_subtotal,price_total])
+                    self.env.cr.execute(sql, [price_subtotal, price_total])
 
-                    #raise ValidationError(price_subtotal)
+                    # raise ValidationError(price_subtotal)
 
-                    #line.price_subtotal = price_subtotal
-                    #line.price_total = base_line['tax_details']['raw_total_included_currency']
+                    # line.price_subtotal = price_subtotal
+                    # line.price_total = base_line['tax_details']['raw_total_included_currency']
 
-                    if price_subtotal  == 0:
+                    if price_subtotal == 0:
                         raise ValidationError([mvl.move_id, mvl.id])
 
-
-                    #raise ValidationError([mvl.move_id,mvl.id])
-                    #continue
+                    # raise ValidationError([mvl.move_id,mvl.id])
+                    # continue
 
             return
+
+        return
+
+
+
+
+
 
 
 
