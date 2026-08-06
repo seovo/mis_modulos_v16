@@ -1527,6 +1527,9 @@ END AS display_type      ''',
             if self.table == 'account_tax_purchase_order_line_rel':
                 self.env.cr.execute("TRUNCATE TABLE account_tax_purchase_order_line_rel ;")
 
+            if self.table == 'account_move_line_account_tax_rel':
+                self.env.cr.execute("TRUNCATE TABLE account_move_line_account_tax_rel ;")
+
 
 
 
