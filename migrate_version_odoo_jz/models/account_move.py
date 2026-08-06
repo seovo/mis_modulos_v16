@@ -98,15 +98,15 @@ class AccountMove(models.Model):
 
             sign = move.direction_sign
 
-            if total_currency == 0:
-                raise ValidationError(str([move.id,total_currency_lines]))
+            #if total_currency == 0:
+            #    raise ValidationError(str([move.id,total_currency_lines]))
 
             amount_untaxed = sign * total_untaxed_currency
             amount_tax = sign * total_tax_currency
             amount_total = sign * total_currency
 
-            if amount_total == 0:
-                raise ValidationError(str([move.id,move.line_ids,sign,total_currency,total_currency_lines]))
+            #if amount_total == 0:
+            #    raise ValidationError(str([move.id,move.line_ids,sign,total_currency,total_currency_lines]))
 
             amount_residual = -sign * total_residual_currency
             amount_untaxed_signed = -total_untaxed
