@@ -73,14 +73,14 @@ class AccountMove(models.Model):
                         total_tax_currency += line.amount_currency
                         total += line.balance
                         total_currency += line.amount_currency
-                        total_currency_lines.append(total_currency)
+                        total_currency_lines.append(line.amount_currency)
                     elif line.display_type in ('product', 'rounding'):
                         # Untaxed amount.
                         total_untaxed += line.balance
                         total_untaxed_currency += line.amount_currency
                         total += line.balance
                         total_currency += line.amount_currency
-                        total_currency_lines.append(total_currency)
+                        total_currency_lines.append(line.amount_currency)
                     elif line.display_type == 'payment_term':
                         # Residual amount.
                         total_residual += line.amount_residual
@@ -92,7 +92,7 @@ class AccountMove(models.Model):
                     if line.debit:
                         total += line.balance
                         total_currency += line.amount_currency
-                        total_currency_lines.append(total_currency)
+                        total_currency_lines.append(line.amount_currency)
 
 
 
