@@ -1530,6 +1530,36 @@ END AS display_type      ''',
             if self.table == 'account_move_line_account_tax_rel':
                 self.env.cr.execute("TRUNCATE TABLE account_move_line_account_tax_rel ;")
 
+            if self.table == 'account_move_line':
+                sql = '''
+                WITH sub AS (
+    SELECT
+        aml.id,
+        CASE
+            -- Case 1: Not an invoice -> Product
+            WHEN am.move_type NOT IN
+            ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')
+            THEN 'product'
+            -- Case 2: It's a tax line -> Tax
+            WHEN aml.tax_line_id IS NOT NULL THEN 'tax'
+            -- Case 3: It's a Receivable or Payable account -> Payment Term
+            WHEN aa.account_type IN
+            ('asset_receivable', 'liability_payable') THEN 'payment_term'
+            -- Case 4: Everything else -> Product
+            ELSE 'product'
+        END AS display_type
+    FROM account_move_line AS aml
+    LEFT JOIN account_move AS am ON am.id = aml.move_id
+    LEFT JOIN account_account AS aa ON aa.id = aml.account_id
+    WHERE aml.display_type IS NULL AND am.id = aml.move_id
+)
+UPDATE account_move_line AS aml
+   SET display_type = sub.display_type
+FROM sub
+WHERE aml.id = sub.id;
+                '''
+                self.env.cr.execute(sql)
+
 
 
 
