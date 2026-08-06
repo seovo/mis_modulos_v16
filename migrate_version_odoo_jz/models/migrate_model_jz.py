@@ -1572,6 +1572,8 @@ WHERE aml.id = sub.id;
                 ) ;
                 
                 '''
+
+                raise ValidationError(sql)
                 self.env.cr.execute(sql)
 
 
