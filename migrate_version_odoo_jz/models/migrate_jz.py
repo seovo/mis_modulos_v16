@@ -235,7 +235,7 @@ class MigrateJz(models.Model):
             textx = f'''
             CASE
                {id_journal}
-            ELSE   location_id
+            ELSE  NULL
             END AS location_id
             '''
 
