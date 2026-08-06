@@ -1517,7 +1517,7 @@ END AS display_type      ''',
 
             return
 
-        raise ValidationError([self.table, self.last_value])
+
 
         if self.last_value <= 0 :
             if self.table == 'product_taxes_rel':
@@ -1576,6 +1576,7 @@ WHERE aml.id = sub.id;
                 '''
 
                 raise ValidationError(sql)
+                raise ValidationError([self.table, self.last_value])
                 self.env.cr.execute(sql)
 
 
