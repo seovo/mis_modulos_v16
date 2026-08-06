@@ -95,6 +95,9 @@ class AccountMove(models.Model):
 
             sign = move.direction_sign
 
+            if total_currency == 0:
+                raise ValidationError(str([move.id,total_currency_lines]))
+
             amount_untaxed = sign * total_untaxed_currency
             amount_tax = sign * total_tax_currency
             amount_total = sign * total_currency
