@@ -537,7 +537,7 @@ class MigrateJz(models.Model):
             #('move_id','=',59)
         ])
 
-        #raise ValidationError(str(moveslines_without_amount))
+        raise ValidationError(str(moveslines_without_amount))
 
         if moveslines_without_amount:
             #for mvl in moveslines_without_amount:
