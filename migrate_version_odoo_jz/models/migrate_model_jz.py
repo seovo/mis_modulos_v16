@@ -107,9 +107,6 @@ class MigrateModelJz(models.Model):
         if self.table == 'account_invoice':
             self.where_set = 'move_id IS NOT NULL ;'
 
-
-
-
     def validate_columns_no_existentes(self,table=None):
         if not table:
             table = self.table
@@ -223,8 +220,6 @@ END AS display_type      ''',
                         'value_set': "date_invoice",
                         'migrate_model_id': id_origin,
                     })
-
-
 
     @api.onchange('table')
     def change_table(self):
@@ -359,7 +354,6 @@ END AS display_type      ''',
 
         self.validate_columns_no_existentes(table)
 
-
     def remplace_fields(self):
 
         self.migrate_id.generate_text_set_clave()
@@ -430,8 +424,11 @@ END AS display_type      ''',
                     jfiels2.value_set = text_tax
 
         account_fields = self.env['migrate.model.columns.jz'].search([
-            ('name', 'in', ['account_id','profit_account_id','loss_account_id','bank_account_id',
-                            'default_credit_account_id','default_debit_account_id']),
+            ('name', 'in', [
+                'account_id','profit_account_id','loss_account_id','bank_account_id',
+                'default_credit_account_id','default_debit_account_id',
+                'debit_move_id','credit_move_id'
+            ]),
             ('migrate_model_id','=',self.id)])
 
         if account_fields:
@@ -479,7 +476,6 @@ END AS display_type      ''',
             '''
             for jfiels in state_fields:
                 jfiels.value_set = self.migrate_id.text_state
-
 
     def migrate_table(self):
 
