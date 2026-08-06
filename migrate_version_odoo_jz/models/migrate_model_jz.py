@@ -1413,15 +1413,17 @@ END AS display_type      ''',
         if self.table == 'stock_location':
 
             position_name = column_names.index('"name"')
+            position_complete_name = column_names.index('"complete_name"')
 
             if not self.migrate_id.location_migration_ids:
                 #raise ValidationError(str(resultados))
                 for location in resultados:
                     name_location = str(location[position_name])
+                    complete_name_location = str(location[position_complete_name])
                     #raise ValueError(journal)
                     self.env['location.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
-                        'name': name_location ,
+                        'name': complete_name_location ,
                         'id_sql': int(location[0]) ,
                     })
             #raise ValidationError('Contabilidad')
