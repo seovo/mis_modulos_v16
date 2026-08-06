@@ -1517,6 +1517,8 @@ END AS display_type      ''',
 
             return
 
+        raise ValidationError(self.table)
+
         if self.last_value <= 0 :
             if self.table == 'product_taxes_rel':
                 self.env.cr.execute("TRUNCATE TABLE product_taxes_rel ;")
