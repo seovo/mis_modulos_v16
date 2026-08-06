@@ -1422,7 +1422,7 @@ END AS display_type      ''',
                     self.env['location.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
                         'name': name_location ,
-                        'id_sql': int(journal[0]) ,
+                        'id_sql': int(location[0]) ,
                     })
             #raise ValidationError('Contabilidad')
 
