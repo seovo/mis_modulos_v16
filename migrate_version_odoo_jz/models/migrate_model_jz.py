@@ -1558,6 +1558,20 @@ UPDATE account_move_line AS aml
 FROM sub
 WHERE aml.id = sub.id;
                 '''
+
+
+
+                sql = '''
+                
+                UPDATE account_move_line AS aml 
+                   SET display_type = 'product'
+                WHERE move_id IN (
+                     SELECT id 
+                     FROM account_move 
+                     WHERE move_type = 'entry'
+                ) ;
+                
+                '''
                 self.env.cr.execute(sql)
 
 
