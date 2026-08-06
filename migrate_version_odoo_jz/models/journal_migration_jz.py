@@ -104,7 +104,7 @@ class LocationMigrationJz(models.Model):
     name = fields.Char(required=True)
     id_sql = fields.Integer(required=True)
     migrate_id = fields.Many2one('migrate.jz',required=True)
-    location_id = fields.Many2one('stock.location')
+    location_id = fields.Many2one('stock.location',domain=[('location_migration_jz_ids','=',False)])
 
 
 class CountryMigrationJz(models.Model):

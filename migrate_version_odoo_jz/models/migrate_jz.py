@@ -43,6 +43,7 @@ class MigrateJz(models.Model):
 
     location_migration_ids = fields.One2many('location.migration.jz','migrate_id')
     text_location = fields.Text()
+
     country_migration_ids = fields.One2many('country.migration.jz', 'migrate_id')
     text_country = fields.Text()
     state_migration_ids = fields.One2many('state.migration.jz', 'migrate_id')
