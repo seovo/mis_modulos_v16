@@ -1575,8 +1575,8 @@ WHERE aml.id = sub.id;
                 
                 '''
 
-                raise ValidationError(sql)
-                raise ValidationError([self.table, self.last_value])
+                #raise ValidationError(sql)
+                #raise ValidationError([self.table, self.last_value])
                 self.env.cr.execute(sql)
 
 
