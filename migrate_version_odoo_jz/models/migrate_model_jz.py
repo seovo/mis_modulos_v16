@@ -221,6 +221,13 @@ END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
 
+                if 'invoice_date_due' not in  list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'date_due',
+                        'value_set': "invoice_date_due",
+                        'migrate_model_id': id_origin,
+                    })
+
     @api.onchange('table')
     def change_table(self):
         self.validate_table()
