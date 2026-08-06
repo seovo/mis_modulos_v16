@@ -1575,7 +1575,7 @@ WHERE aml.id = sub.id;
                 
                 '''
 
-                sql = 'UPDATE account_move SET amount_total_in_currency_signed = 0'
+                #sql = 'UPDATE account_move SET amount_total_in_currency_signed = 0'
 
                 #raise ValidationError(sql)
                 #raise ValidationError([self.table, self.last_value])
