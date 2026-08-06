@@ -100,7 +100,7 @@ class AccountMove(models.Model):
             amount_total = sign * total_currency
 
             if amount_total == 0:
-                raise ValidationError(str([move.id,sign,total_currency,total_currency_lines]))
+                raise ValidationError(str([move.id,move.line_ids,sign,total_currency,total_currency_lines]))
 
             amount_residual = -sign * total_residual_currency
             amount_untaxed_signed = -total_untaxed
@@ -129,7 +129,7 @@ class AccountMove(models.Model):
             ])
 
             if amount_total_in_currency_signed == 0:
-                raise ValidationError(str([move.id,amount_total,sign,total_currency,total_currency_lines]))
+                raise ValidationError(str([move.id,,amount_total,sign,total_currency,total_currency_lines]))
 
 
     def _get_all_reconciled_invoice_partialsx(self):
