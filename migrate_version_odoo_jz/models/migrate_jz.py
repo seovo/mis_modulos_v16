@@ -662,25 +662,15 @@ class MigrateJz(models.Model):
 
             return
 
-        return
-
-
-
-
-
-
-
-
 
         #cantidades de inventario
 
-        moves_stock = self.env['stock.move'].search([('quantity','=',False),('move_line_ids','!=',False)],limit=5000)
-
+        moves_stock = self.env['stock.move'].search([('quantity','=',False),('move_line_ids','!=',False)],limit=2000)
         if moves_stock:
             for move in moves_stock:
                 move._compute_quantity()
-
             return
+        return
 
 
 
