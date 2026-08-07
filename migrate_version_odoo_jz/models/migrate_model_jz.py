@@ -444,11 +444,16 @@ END AS display_type      ''',
                 text_account = text_account.replace('account_id',jfiels.name)
                 jfiels.value_set = text_account
 
-        location_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'location_id'),('migrate_model_id','=',self.id)])
+        location_fields = self.env['migrate.model.columns.jz'].search([
+            ('name', 'in', ['location_id','backorder_id','location_dest_id']),
+            ('migrate_model_id','=',self.id)
+        ])
 
         if location_fields:
             for jfiels in location_fields:
-                jfiels.value_set = self.migrate_id.text_location
+                text_reemplaze = self.migrate_id.text_location
+                text_reemplaze = text_reemplaze.replace('location_id',jfiels.name)
+                jfiels.value_set = text_reemplaze
 
         country_fields = self.env['migrate.model.columns.jz'].search([('name', '=', 'country_id'),('migrate_model_id','=',self.id)])
 
