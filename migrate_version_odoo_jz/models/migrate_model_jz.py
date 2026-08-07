@@ -228,6 +228,15 @@ END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
 
+        if table == 'stock_move_line':
+            if self.migrate_id.current_version > 12:
+                if 'company_id' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'company_id',
+                        'value_set': self.env.company.id ,
+                        'migrate_model_id': id_origin,
+                    })
+
     @api.onchange('table')
     def change_table(self):
         self.validate_table()
