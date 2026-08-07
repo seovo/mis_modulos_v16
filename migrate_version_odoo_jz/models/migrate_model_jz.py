@@ -244,6 +244,13 @@ END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
 
+                if 'quantity_product_uom' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'quantity_product_uom',
+                        'value_set': 'product_uom_qty' ,
+                        'migrate_model_id': id_origin,
+                    })
+
     @api.onchange('table')
     def change_table(self):
         self.validate_table()
