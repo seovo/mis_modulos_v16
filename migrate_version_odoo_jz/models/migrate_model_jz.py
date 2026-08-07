@@ -240,7 +240,7 @@ END AS display_type      ''',
                 if 'quantity' not in list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'quantity',
-                        'value_set': 'product_qty' ,
+                        'value_set': 'qty_done' ,
                         'migrate_model_id': id_origin,
                     })
 
