@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Cuota Mensual</div>
                             <div class="col-8 p-2 border border-primary text-start">
-                                S/. <t t-esc="doc.value_due_land" />
+                                S/. <t t-esc="round(doc.value_due_land,2)" />
                             </div>
                         </div>
 
