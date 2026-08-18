@@ -73,6 +73,13 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-4 bg-light p-2 border border-primary text-end">Cuota Mensual</div>
+                            <div class="col-8 p-2 border border-primary text-start">
+                                S/. <t t-esc="doc.value_due_land" />
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Periodo Pago</div>
                             <div class="col-8 p-2 border border-primary text-start">
                                 <t t-set="periodo" t-value=" 'QUINCENAL' if doc.type_periodo_invoiced == 'half_month' else 'FIN DE MES' " />
@@ -88,7 +95,7 @@
                         <div class="row">
                                 <div class="col-4 bg-light p-2 border border-primary text-end">Meses Vencidos</div>
                             <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.days_expired_land" />
+                                <t t-esc="doc.mounth_expired_land" />
                             </div>
                         </div>
 
