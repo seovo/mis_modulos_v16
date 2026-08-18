@@ -781,7 +781,7 @@
             />
     </record>
 
-    <record id="action_sale_morosos1" model="ir.actions.act_window">
+    <record id="action_sale_morosos2" model="ir.actions.act_window">
         <field name="name">Moroso Medio (menor 5 Meses)</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
@@ -794,7 +794,7 @@
             />
     </record>
 
-    <record id="action_sale_morosos1" model="ir.actions.act_window">
+    <record id="action_sale_morosos3" model="ir.actions.act_window">
         <field name="name">Moroso Critico (mayor 5 Meses)</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
