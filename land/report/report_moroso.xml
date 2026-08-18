@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="paperformat_schedule_id" model="report.paperformat">
+    <record id="paperformat_morosos_id" model="report.paperformat">
             <field name="name">Report Format Lot</field>
             <field name="default" eval="True"/>
             <field name="format">custom</field>
@@ -17,15 +17,15 @@
     </record>
 
 
-    <template id="report_report_schedule">
+    <template id="report_report_moroso">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="land.report_schedule_document"/>
+                <t t-call="land.report_moroso_document"/>
             </t>
         </t>
     </template>
 
-    <template id="report_schedule_document">
+    <template id="report_moroso_document">
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc"/>
             <div class="page">
@@ -155,7 +155,7 @@
         <field name="print_report_name">('MOROSO').replace('/','_')</field>
         <field name="binding_model_id" ref="model_sale_order"/>
         <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="land.paperformat_schedule_id" />
+        <field name="paperformat_id" ref="land.paperformat_morosos_id" />
     </record>
 
 </odoo>
