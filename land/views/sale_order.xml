@@ -674,7 +674,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('stage_land','=','cancel')]</field>
+        <field name="domain">[('stage_land','in',['cancel','preaviso'])]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_preaviso_cancelx')}),
@@ -766,6 +766,45 @@
 			<field name="binding_model_id" ref="land.model_sale_order"/>
 			<field name="state">code</field>
 			<field name="code">action = records.update_schedule()</field>
+    </record>
+
+    <record id="action_sale_morosos1" model="ir.actions.act_window">
+        <field name="name">Moroso 1 - 2 Meses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('mounth_expired_land', '>', 0),('mounth_expired_land', '&lt;=', 2)]</field>
+
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
+    </record>
+
+    <record id="action_sale_morosos1" model="ir.actions.act_window">
+        <field name="name">Moroso Medio (menor 5 Meses)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('mounth_expired_land', '>', 2),('mounth_expired_land', '&lt;=', 5)]</field>
+
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
+    </record>
+
+    <record id="action_sale_morosos1" model="ir.actions.act_window">
+        <field name="name">Moroso Critico (mayor 5 Meses)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('mounth_expired_land', '>', 5)]</field>
+
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
     </record>
 
 

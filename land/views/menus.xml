@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
-
     <menuitem name="Terrenos"
               web_icon="land,static/description/icon.png"
               id="menu_terrenos" >
@@ -15,53 +13,72 @@
     </menuitem>
 
 
-
-
-
     <!--MENUS -->
 
 
     <menuitem name="Separaciones"
               id="menu_move_adelantos"
               parent="sale.sale_order_menu"
-    />
-
-    <menuitem action="action_move_adelantos2"
+    >
+        <menuitem action="action_move_adelantos2"
               id="menu_move_adelantos2"
-              parent="menu_move_adelantos"
               sequence="0" />
 
-    <menuitem action="action_move_adelantos1"
+        <menuitem action="action_move_adelantos1"
               id="menu_move_adelantos1"
-              parent="menu_move_adelantos"
-              sequence="1"
-    />
+              sequence="1" />
 
-    <menuitem action="action_sale_separation"
+        <menuitem action="action_sale_separation"
               id="menu_sale_separation"
-              parent="menu_move_adelantos"
-              sequence="2"
-    />
+              sequence="2" />
 
-
-    <menuitem action="action_sale_initial_incomplete"
+        <menuitem action="action_sale_initial_incomplete"
               id="menu_sale_initial_incomplete"
-              parent="menu_move_adelantos"
               sequence="3"
-    />
+        />
 
-    <menuitem action="action_sale_dues_incomplete"
-              id="menu_sale_dues_incomplete"
+    </menuitem>
+
+    <menuitem name="Expedientes"
+              id="menu_move_expedientes"
               parent="sale.sale_order_menu"
-    />
+    >
+        <menuitem action="action_sale_dues_incomplete"
+              id="menu_sale_dues_incomplete"
+        />
 
-    <menuitem action="action_sale_dues_complete"
-              id="menu_sale_dues_complete"
-              parent="sale.sale_order_menu" />
+        <menuitem action="action_sale_dues_complete"
+              id="menu_sale_dues_complete" />
 
-    <menuitem action="action_sale_resueltosx"
-              id="menu_sale_dues_resueltos"
-              parent="sale.sale_order_menu" />
+        <menuitem action="action_sale_resueltosx"
+              id="menu_sale_dues_resueltos" />
+
+    </menuitem>
+
+    <menuitem name="Morosos"
+              id="menu_morosos"
+              parent="sale.sale_order_menu"
+    >
+        <menuitem action="action_sale_morosos1" id="menu_sale_morosos1" />
+        <menuitem action="action_sale_morosos2" id="menu_sale_morosos2" />
+        <menuitem action="action_sale_morosos3" id="menu_sale_morosos3" />
+
+    </menuitem>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
