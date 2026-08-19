@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-<!-- This contains the tour assets. They are included during testing. -->
-<template id="index_form_adjunto" name="Form Index"><!DOCTYPE html>
-<html>
-    <head>
+    <template id="index_form_adjunto" name="Form Index"><!DOCTYPE html>
+        <html>
+            <head>
         <title>Sube tu Comprobante</title>
         <!--
         <link rel="icon" id="appIcon" type="image/x-icon" href="/odoo-mercadolibre/static/angular/favicon.ico" />
@@ -17,39 +15,35 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="mobile-web-app-capable" content="yes"/>
     </head>
-    <body>
-        <div class="container">
-            <h2>Sube tu Comprobante</h2>
-            <form method="POST" action="/ui/land" enctype="multipart/form-data">
-                <label for="vat">Número de Identificación</label>
-                <input type="text" id="vat" name="vat" required="required" placeholder="DNI, RUC, CE, etc."/>
+        <body>
+            <div class="container">
+                <h2>Sube tu Comprobante</h2>
+                <form method="POST" action="/ui/land" enctype="multipart/form-data">
+                    <label for="vat">Número de Identificación</label>
+                    <input type="text" id="vat" name="vat" required="required" placeholder="DNI, RUC, CE, etc."/>
 
-                <label for="tipo_identificacion">Tipo de Identificación</label>
-                <select id="tipo_identificacion" name="tipo_identificacion">
-                    <option value="dni">DNI</option>
-                    <option value="ruc">RUC</option>
-                    <option value="carnet_extranjeria">Carnet de Extranjería</option>
-                    <option value="pasaporte">Pasaporte</option>
-                    <option value="otro">Otro</option>
-                </select>
+                    <label for="tipo_identificacion">Tipo de Identificación</label>
+                    <select id="tipo_identificacion" name="tipo_identificacion">
+                        <option value="dni">DNI</option>
+                        <option value="ruc">RUC</option>
+                        <option value="carnet_extranjeria">Carnet de Extranjería</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        <option value="otro">Otro</option>
+                    </select>
 
-                <label for="celular">Celular</label>
-                <input type="tel" id="celular" name="celular" required="required" placeholder="999 999 999"/>
+                    <label for="celular">Celular</label>
+                    <input type="tel" id="celular" name="celular" required="required" placeholder="999 999 999"/>
 
-                <label for="correo">Correo</label>
-                <input type="email" id="correo" name="correo" required="required" placeholder="correo@ejemplo.com"/>
+                    <label for="correo">Correo</label>
+                    <input type="email" id="correo" name="correo" required="required" placeholder="correo@ejemplo.com"/>
 
-                <label for="adjunto">Adjunto (Imagen)</label>
-                <input type="file" id="adjunto" name="adjunto" accept="image/*" required="required"/>
+                    <label for="adjunto">Adjunto (Imagen)</label>
+                    <input type="file" id="adjunto" name="adjunto" accept="image/*" required="required"/>
 
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
-
-
-
-    </body>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </body>
 </html>
-</template>
-
+    </template>
 </odoo>
