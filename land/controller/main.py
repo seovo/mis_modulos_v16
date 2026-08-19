@@ -19,6 +19,20 @@ import datetime
 
 class Controller(http.Controller):
 
+    @http.route(
+        ['/ui/land'],
+        type="http",
+        auth="public",
+        methods=["POST", "GET"],
+        website=True,
+        csrf=True,
+    )
+    def form_adjunto(self,  **post):
+
+        data = {}
+
+        return http.request.render("land.index_form_adjunto", data)
+
     @http.route(['/api/land/client/<string:vat>'], type='json', auth="public", methods=['POST'],
                 website=True, csrf=False, cors='*')
     def get_client_land_vat(self, vat , **post):
