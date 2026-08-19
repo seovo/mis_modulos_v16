@@ -54,7 +54,8 @@ class Controller(http.Controller):
         if partner.sale_order_ids:
             for sale in partner.sale_order_ids:
                 lotes.append({
-                    'name': sale.nro_internal_land ,
+                    'id': sale.id ,
+                    'contrato': sale.nro_internal_land ,
                     'mz': sale.mz_land ,
                     'lote': sale.lot_land ,
 

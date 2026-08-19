@@ -239,6 +239,12 @@
                     </div>
                 </div>
 
+                <div class="form-group" id="lotes_group" style="display:none;">
+                    <label for="lotes">Lotes (selecciona uno o varios)</label>
+                    <select id="lotes" name="lotes" multiple="multiple" class="form-control form-control-lg" style="height:auto; min-height: 120px;"></select>
+                    <small class="form-text" style="color:#888;">Mantén Ctrl (Windows) o Cmd (Mac) para seleccionar varios.</small>
+                </div>
+
                 <div class="form-group">
                     <label for="celular">Celular</label>
                     <div class="icon-field">
@@ -306,6 +312,28 @@
                             document.getElementById('nombres_apellidos').value = result.name || '';
                             document.getElementById('celular').value = result.phone || '';
                             document.getElementById('correo').value = result.email || '';
+
+                            // Renderizar select multiple de lotes (si hay)
+                            var selectLotes = document.getElementById('lotes');
+                            var lotesGroup = document.getElementById('lotes_group');
+                            selectLotes.innerHTML = '';
+
+                            var lotes = result.lotes || [];
+                            if (lotes.length > 0) {
+                                lotes.forEach(function (lote) {
+                                    var option = document.createElement('option');
+                                    option.value = lote.id;
+                                    var texto = lote.contrato || '';
+                                    if (lote.mz || lote.lote) {
+                                        texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
+                                    }
+                                    option.textContent = texto;
+                                    selectLotes.appendChild(option);
+                                });
+                                lotesGroup.style.display = 'block';
+                            } else {
+                                lotesGroup.style.display = 'none';
+                            }
                         }
                     })
                     .catch(function (error) {
