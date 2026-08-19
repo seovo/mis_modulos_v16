@@ -10,10 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="mobile-web-app-capable" content="yes"/>
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 
 
 
@@ -206,7 +203,7 @@
             <h2>📄 Sube tu Comprobante</h2>
             <p class="subtitle">Completa tus datos y adjunta tu imagen</p>
 
-            <form method="POST" action="/ui/land" enctype="multipart/form-data">
+            <form method="POST" action="/api/up/land" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -273,6 +270,50 @@
                 <button type="submit" class="btn-submit">Enviar Comprobante</button>
             </form>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const vatInput = document.getElementById('vat');
+                let debounceTimer = null;
+
+                function consultarCliente() {
+                    const vat = vatInput.value.trim();
+                    if (!vat) {
+                        return;
+                    }
+
+                    fetch('/api/land/client/' + encodeURIComponent(vat), {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data && data.success) {
+                            document.getElementById('nombres_apellidos').value = data.name || '';
+                            document.getElementById('celular').value = data.phone || '';
+                            document.getElementById('correo').value = data.email || '';
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error('Error al consultar el cliente:', error);
+                    });
+                }
+
+                vatInput.addEventListener('input', function () {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(consultarCliente, 600);
+                });
+
+                vatInput.addEventListener('blur', function () {
+                    clearTimeout(debounceTimer);
+                    consultarCliente();
+                });
+            });
+        </script>
     </body>
 </html>
 </template>
