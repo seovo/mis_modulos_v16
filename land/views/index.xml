@@ -2,53 +2,237 @@
 <odoo>
 
 <!-- This contains the tour assets. They are included during testing. -->
-<template id="index_form_adjunto" name="Form Index">&lt;!DOCTYPE html&gt;
+<template id="index_form_adjunto" name="Form Index"><!DOCTYPE html>
 <html>
     <head>
         <title>Sube tu Comprobante</title>
-        <!--
-        <link rel="icon" id="appIcon" type="image/x-icon" href="/odoo-mercadolibre/static/angular/favicon.ico" />
-        -->
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="mobile-web-app-capable" content="yes"/>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .card-form {
+                background: #ffffff;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                padding: 40px 45px;
+                width: 100%;
+                max-width: 620px;
+            }
+
+            .card-form h2 {
+                color: #333;
+                font-weight: 700;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+
+            .card-form .subtitle {
+                color: #777;
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 15px;
+            }
+
+            .card-form label {
+                font-weight: 600;
+                color: #444;
+                margin-bottom: 6px;
+                display: block;
+            }
+
+            .card-form .form-control-lg,
+            .card-form .form-select-lg {
+                border-radius: 10px;
+                border: 2px solid #e0e0e0;
+                padding: 14px 18px;
+                font-size: 17px;
+                transition: border-color 0.3s, box-shadow 0.3s;
+            }
+
+            .card-form .form-control-lg:focus,
+            .card-form .form-select-lg:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+                outline: none;
+            }
+
+            .card-form .form-group {
+                margin-bottom: 22px;
+            }
+
+            .card-form .file-upload {
+                position: relative;
+                border: 2px dashed #c0c0c0;
+                border-radius: 10px;
+                padding: 30px 20px;
+                text-align: center;
+                cursor: pointer;
+                transition: border-color 0.3s, background 0.3s;
+                background: #fafafa;
+            }
+
+            .card-form .file-upload:hover {
+                border-color: #667eea;
+                background: #f5f7ff;
+            }
+
+            .card-form .file-upload input[type="file"] {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .card-form .file-upload .upload-icon {
+                font-size: 42px;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .card-form .file-upload .upload-text {
+                font-size: 16px;
+                color: #666;
+                font-weight: 500;
+            }
+
+            .card-form .file-upload .upload-text small {
+                display: block;
+                color: #999;
+                font-weight: 400;
+                margin-top: 4px;
+            }
+
+            .card-form .btn-submit {
+                width: 100%;
+                padding: 16px;
+                font-size: 18px;
+                font-weight: 700;
+                border-radius: 10px;
+                border: none;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: #fff;
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+                margin-top: 10px;
+            }
+
+            .card-form .btn-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            }
+
+            .card-form .btn-submit:active {
+                transform: translateY(0);
+            }
+
+            .card-form .icon-field {
+                position: relative;
+            }
+
+            .card-form .icon-field .form-control-lg,
+            .card-form .icon-field .form-select-lg {
+                padding-left: 48px;
+            }
+
+            .card-form .icon-field .field-icon {
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 20px;
+                color: #999;
+                pointer-events: none;
+            }
+
+            @media (max-width: 576px) {
+                .card-form {
+                    padding: 25px 20px;
+                }
+            }
+        </style>
     </head>
     <body>
+        <div class="card-form">
+            <h2>📄 Sube tu Comprobante</h2>
+            <p class="subtitle">Completa tus datos y adjunta tu imagen</p>
 
-        <div class="container">
-                <h2>Sube tu Comprobante</h2>
-                <form method="POST" action="/ui/land" enctype="multipart/form-data">
+            <form method="POST" action="/ui/land" enctype="multipart/form-data">
+                <div class="form-group">
                     <label for="vat">Número de Identificación</label>
-                    <input type="text" id="vat" name="vat" required="required" placeholder="DNI, RUC, CE, etc."/>
+                    <div class="icon-field">
+                        <span class="field-icon">🪪</span>
+                        <input type="text" id="vat" name="vat" class="form-control form-control-lg" required="required" placeholder="DNI, RUC, CE, etc."/>
+                    </div>
+                </div>
 
+                <div class="form-group">
                     <label for="tipo_identificacion">Tipo de Identificación</label>
-                    <select id="tipo_identificacion" name="tipo_identificacion">
-                        <option value="dni">DNI</option>
-                        <option value="ruc">RUC</option>
-                        <option value="carnet_extranjeria">Carnet de Extranjería</option>
-                        <option value="pasaporte">Pasaporte</option>
-                        <option value="otro">Otro</option>
-                    </select>
+                    <div class="icon-field">
+                        <span class="field-icon">🏷️</span>
+                        <select id="tipo_identificacion" name="tipo_identificacion" class="form-select form-select-lg">
+                            <option value="dni">DNI</option>
+                            <option value="ruc">RUC</option>
+                            <option value="carnet_extranjeria">Carnet de Extranjería</option>
+                            <option value="pasaporte">Pasaporte</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div class="form-group">
                     <label for="celular">Celular</label>
-                    <input type="tel" id="celular" name="celular" required="required" placeholder="999 999 999"/>
+                    <div class="icon-field">
+                        <span class="field-icon">📱</span>
+                        <input type="tel" id="celular" name="celular" class="form-control form-control-lg" required="required" placeholder="999 999 999"/>
+                    </div>
+                </div>
 
+                <div class="form-group">
                     <label for="correo">Correo</label>
-                    <input type="email" id="correo" name="correo" required="required" placeholder="correo@ejemplo.com"/>
+                    <div class="icon-field">
+                        <span class="field-icon">✉️</span>
+                        <input type="email" id="correo" name="correo" class="form-control form-control-lg" required="required" placeholder="correo@ejemplo.com"/>
+                    </div>
+                </div>
 
+                <div class="form-group">
                     <label for="adjunto">Adjunto (Imagen)</label>
-                    <input type="file" id="adjunto" name="adjunto" accept="image/*" required="required"/>
+                    <div class="file-upload">
+                        <span class="upload-icon">🖼️</span>
+                        <span class="upload-text">
+                            Haz clic para seleccionar una imagen
+                            <small>JPG, PNG, GIF — Máx. 10 MB</small>
+                        </span>
+                        <input type="file" id="adjunto" name="adjunto" accept="image/*" required="required"/>
+                    </div>
+                </div>
 
-                    <button type="submit">Enviar</button>
-                </form>
-            </div>
-
-
-
+                <button type="submit" class="btn-submit">Enviar Comprobante</button>
+            </form>
+        </div>
     </body>
 </html>
 </template>
