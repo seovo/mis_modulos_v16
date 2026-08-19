@@ -17,7 +17,45 @@ except:
 
 import datetime
 
-class Binary(http.Controller):
+class Controller(http.Controller):
+
+    @http.route(['/api/land/client/<string:vat>'], type='json', auth="public", methods=['POST'],
+                website=True, csrf=False, cors='*')
+    def get_client_land_vat(self, vat , **post):
+        if not vat or   vat == '':
+            return
+
+        partner = request.env['res.partner'].sudo().search([('vat','=',vat)])
+
+        if not partner:
+            return
+
+        if len(partner) > 1 :
+            return {
+                'error': 'Mas de un registro encontrado'
+            }
+
+        lotes = []
+
+        if partner.sale_order_ids:
+            for sale in partner.sale_order_ids:
+                lotes.append({
+                    'name': sale.nro_internal_land ,
+                    'mz': sale.mz_land ,
+                    'lote': sale.lot_land ,
+
+                })
+
+        return {
+            'success': True ,
+            'name': partner.name ,
+            'email': partner.email ,
+            'phone': partner.phone or partner.mobile ,
+            'lotes': lotes
+        }
+
+
+
     @http.route('/web/binary/download_excell_report_schedule_land/<model("res.company"):company>', type='http', auth="public")
     #@serialize_exception
     def download_excell_report_schedule_land(self, company , **kw):
