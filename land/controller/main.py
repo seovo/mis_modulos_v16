@@ -34,7 +34,7 @@ class Controller(http.Controller):
         return http.request.render("land.index_form_adjunto", data)
 
     @http.route(['/api/land/client/<string:vat>'], type='json', auth="public", methods=['POST'],
-                website=True, csrf=False, cors='*')
+                website=True, csrf=False)
     def get_client_land_vat(self, vat , **post):
         if not vat or   vat == '':
             return
