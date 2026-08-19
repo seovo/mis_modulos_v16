@@ -287,16 +287,25 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({}) // objeto vacio requerido por el endpoint type='json'
+                        body: JSON.stringify({
+                            jsonrpc: '2.0',
+                            method: 'call',
+                            params: {}
+                        })
                     })
                     .then(function (response) {
                         return response.json();
                     })
                     .then(function (data) {
-                        if (data &amp;&amp; data.success) {
-                            document.getElementById('nombres_apellidos').value = data.name || '';
-                            document.getElementById('celular').value = data.phone || '';
-                            document.getElementById('correo').value = data.email || '';
+                        // Soporta respuesta directa o envuelta en JSON-RPC
+                        var result = data;
+                        if (data &amp;&amp; data.hasOwnProperty('result')) {
+                            result = data.result;
+                        }
+                        if (result &amp;&amp; result.success) {
+                            document.getElementById('nombres_apellidos').value = result.name || '';
+                            document.getElementById('celular').value = result.phone || '';
+                            document.getElementById('correo').value = result.email || '';
                         }
                     })
                     .catch(function (error) {
