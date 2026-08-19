@@ -287,7 +287,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify([]) // array vacio requerido por el endpoint type='json'
+                        body: JSON.stringify({}) // objeto vacio requerido por el endpoint type='json'
                     })
                     .then(function (response) {
                         return response.json();
