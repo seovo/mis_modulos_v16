@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="index_form_adjunto" name="Form Index"><!DOCTYPE html>
-        <html>
-            <head>
+
+<!-- This contains the tour assets. They are included during testing. -->
+<template id="index_form_adjunto" name="Form Index">&lt;!DOCTYPE html&gt;
+<html>
+    <head>
         <title>Sube tu Comprobante</title>
         <!--
         <link rel="icon" id="appIcon" type="image/x-icon" href="/odoo-mercadolibre/static/angular/favicon.ico" />
@@ -15,9 +17,12 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="mobile-web-app-capable" content="yes"/>
     </head>
-        <body>
+    <body>
 
-        </body>
+
+
+    </body>
 </html>
-    </template>
+</template>
+
 </odoo>
