@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-<!-- This contains the tour assets. They are included during testing. -->
-<template id="index_form_adjunto" name="Form Index"><!DOCTYPE html>
+<template id="index_form_adjunto" name="Form Index">
 <html>
     <head>
         <title>Sube tu Comprobante</title>
