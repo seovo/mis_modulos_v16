@@ -38,6 +38,7 @@
         'views/schedule_dues_land.xml' ,
         'views/res_partner.xml',
         'views/menus.xml',
+        'views/index.xml'
 
     ],
     # 'uninstall_hook': 'uninstall_hook',
