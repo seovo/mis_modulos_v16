@@ -292,7 +292,7 @@
                         return response.json();
                     })
                     .then(function (data) {
-                        if (data && data.success) {
+                        if (data &amp;&amp; data.success) {
                             document.getElementById('nombres_apellidos').value = data.name || '';
                             document.getElementById('celular').value = data.phone || '';
                             document.getElementById('correo').value = data.email || '';
