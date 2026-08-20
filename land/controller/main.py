@@ -40,8 +40,23 @@ class Controller(http.Controller):
 
         # Capturar los lotes seleccionados (checkboxes con name="lotes")
         lotes_seleccionados = request.httprequest.form.getlist('lotes')
+        company = None
 
-        raise ValueError(lotes_seleccionados)
+        sale_ids = []
+
+        for lote_id in lotes_seleccionados:
+            sale = request.env['sale.order'].sudo().search([('id','=',int(lote_id))])
+            if not company:
+                company = sale.company_id
+            if company:
+                if company != sale.company_id:
+                    raise ValueError('NO PUEDE SELEECIONAR LOTES DE DIFERENTES PROYECTOS')
+
+            sale_ids.append(sale.id)
+
+        sales = request.env['sale.order'].sudo().search([('id','in',sale_ids)])
+
+        raise ValueError(sales)
 
         # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
         # Ej:
@@ -95,6 +110,7 @@ class Controller(http.Controller):
                     'contrato': f'''CN {sale.nro_internal_land} {name_company}''' ,
                     'mz': sale.mz_land ,
                     'lote': sale.lot_land ,
+                    'company': sale.company_id.id
 
                 })
 
