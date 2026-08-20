@@ -60,9 +60,14 @@ class Controller(http.Controller):
                 if sale.stage_land ==  'cancel':
                     continue
 
+                try:
+                    name_company = sale.company_id.partner_id.category_id.name
+                except:
+                    name_company = ''
+
                 lotes.append({
                     'id': sale.id ,
-                    'contrato': sale.nro_internal_land ,
+                    'contrato': f'''CN {sale.nro_internal_land} {name_company}''' ,
                     'mz': sale.mz_land ,
                     'lote': sale.lot_land ,
 
