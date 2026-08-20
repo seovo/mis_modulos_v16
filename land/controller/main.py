@@ -93,7 +93,7 @@ class Controller(http.Controller):
 
         if not partner:
             name = ''
-            response = request.env['res.partner'].sudo().get_apisnet_vt(code)
+            response = request.env['res.partner'].sudo().get_apisnet_vt(code,vat)
             if response and  response.status_code == 200:
                 data = response.json()
                 if code == '1':
