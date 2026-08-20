@@ -106,7 +106,7 @@ class Controller(http.Controller):
                     'phone': phone or '' ,
                     'street': street or '',
                     'email': email or '' ,
-                    'l10n_latam_identification_type_id': tdoc.id
+                    'l10n_latam_identification_type_id': t_doc.id
 
                 })
 
