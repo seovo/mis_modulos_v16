@@ -127,6 +127,7 @@ class Controller(http.Controller):
         return {
             'success': True ,
             'name': partner.name ,
+            'type_identification': partner.l10n_latam_identification_type_id.l10n_pe_vat_code ,
             'email': partner.email ,
             'phone': partner.phone or partner.mobile ,
             'lotes': lotes
