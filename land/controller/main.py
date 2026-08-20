@@ -143,12 +143,31 @@ class Controller(http.Controller):
 
                 })
 
+        phone = partner.phone or partner.mobile
+
+        if len(phone) <= 4:
+            pass
+        else:
+            phone = phone[:2] + "*" * (len(phone) - 4) + phone[-2:]
+
+        email = partner.email
+
+        if "@" in email:
+            usuario, dominio = texto.split("@", 1)
+
+            # Procesa la parte del usuario antes del @
+            if len(usuario) <= 2:
+                email = usuario + "@" + dominio
+            else:
+                email = usuario[:2] + "*" * (len(usuario) - 2) + "@" + dominio
+
+
         return {
             'success': True ,
             'name': partner.name ,
             'type_identification': partner.l10n_latam_identification_type_id.l10n_pe_vat_code ,
-            'email': partner.email ,
-            'phone': partner.phone or partner.mobile ,
+            'email': email ,
+            'phone': phone ,
             'lotes': lotes
         }
 
