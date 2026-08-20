@@ -187,14 +187,14 @@ class Controller(http.Controller):
 
                 })
 
-        phone = partner.phone or partner.mobile
+        phone = partner.phone or partner.mobile or ''
 
         if len(phone) <= 4:
             pass
         else:
             phone = phone[:2] + "*" * (len(phone) - 4) + phone[-2:]
 
-        email = partner.email
+        email = partner.email or ''
 
         if "@" in email:
             usuario, dominio = email.split("@", 1)

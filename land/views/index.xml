@@ -378,7 +378,7 @@
                     <div class="icon-field">
                         <span class="field-icon">📱</span>
                         <input type="tel" id="street" name="street" class="form-control form-control-lg"
-                               placeholder="Ingresar Dirección  (Opcional) ,  si ya registro direccion se usara la existente."/>
+                               placeholder="Si ya registro direccion se usara la existente."/>
                     </div>
                 </div>
 
