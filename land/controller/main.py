@@ -149,7 +149,7 @@ class Controller(http.Controller):
                    attachment_ids=[attachment.id],
             )
 
-        return request.redirect('/ui/land')
+        return http.request.render("land.index_thanks")
 
     @http.route(['/api/land/client/<string:vat>'], type='json', auth='public', methods=['POST'],
                 website=True, csrf=False)

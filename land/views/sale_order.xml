@@ -580,6 +580,14 @@
             />
     </record>
 
+    <record id="action_move_invoice_draft" model="ir.actions.act_window">
+        <field name="name">Facturas Borrador</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','draft),('move_type', '=', 'out_invoice')]</field>
+    </record>
+
 
     <record id="action_move_adelantos2" model="ir.actions.act_window">
         <field name="name">Todas las Separaciones</field>

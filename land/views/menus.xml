@@ -24,6 +24,10 @@
               id="menu_move_adelantos2"
               sequence="0" />
 
+        <menuitem action="action_move_invoice_draft"
+              id="menu_action_move_invoice_draft"
+              sequence="1" />
+
         <menuitem action="action_move_adelantos1"
               id="menu_move_adelantos1"
               sequence="1" />
