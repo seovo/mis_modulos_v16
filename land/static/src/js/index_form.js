@@ -180,4 +180,10 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(debounceTimer);
         consultarCliente();
     });
+
+    // Ejecutar consulta también cuando cambia el tipo de documento
+    tIdentiInput.addEventListener('change', function () {
+        clearTimeout(debounceTimer);
+        consultarCliente();
+    });
 });
