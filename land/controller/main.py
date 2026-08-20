@@ -85,16 +85,29 @@ class Controller(http.Controller):
 
     @http.route(['/api/land/client/<string:vat>'], type='json', auth='public', methods=['POST'],
                 website=True, csrf=False)
-    def get_client_land_vat(self, vat , **post):
+    def get_client_land_vat(self, vat, code=None, **post):
         if not vat or   vat == '':
             return
 
         partner = request.env['res.partner'].sudo().search([('vat','=',vat)])
 
         if not partner:
+            name = ''
+            response = request.env['res.partner'].sudo().get_apisnet_vt(code)
+            if response and  response.status_code == 200:
+                data = response.json()
+                if code == '1':
+                    name = data['nombres'] + ' ' + data['apellidoPaterno'] + ' ' + data['apellidoMaterno']
+                else:
+                    name = data['razonSocial']
+                    street = data['direccion'] if 'direccion' in data else ''
+                    #if 'ubigeo' in data and data['ubigeo']:
+                    #    district = self.env['l10n_pe.res.city.district'].search([('code', '=', data['ubigeo'])])
+                    #    record.l10n_pe_district = district.id
+                    #    record.zip = data['ubigeo']
             return {
                 'success': True,
-                'name': '',
+                'name': name,
                 'type_identification': None,
                 'email': '',
                 'phone': ''

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const vatInput = document.getElementById('vat');
+    const tIdentiInput = document.getElementById('tipo_identificacion');
     let debounceTimer = null;
 
     // ===== Input de adjunto: mostrar archivo cargado =====
@@ -55,7 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'call',
-                params: {}
+                params: {
+                   'code':  tIdentiInput.value.trim()
+                }
             })
         })
         .then(function (response) {

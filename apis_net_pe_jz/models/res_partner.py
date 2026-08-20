@@ -5,6 +5,20 @@ import requests
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    def get_apisnet_vt(self,code):
+        if code in ['1', '6']:
+            headers = {
+                "Authorization": f"Bearer {self.env.company.token_apis_net_pe}"
+            }
+            if code == '1':
+                url = f"https://api.apis.net.pe/v2/reniec/dni?numero={record.vat}"
+
+            if code == '6':
+                url = f"https://api.apis.net.pe/v2/sunat/ruc?numero={record.vat}"
+
+            response = requests.get(url, headers=headers)
+            return response
+
     @api.onchange('l10n_latam_identification_type_id','vat')
     def change_apis_net_pe(self):
         for record in self:
@@ -12,16 +26,7 @@ class ResPartner(models.Model):
                 code = record.l10n_latam_identification_type_id.l10n_pe_vat_code
                 #raise ValueError(code)
                 if code in ['1','6']:
-                    headers = {
-                        "Authorization": f"Bearer {self.env.company.token_apis_net_pe}"
-                    }
-                    if code == '1':
-                        url = f"https://api.apis.net.pe/v2/reniec/dni?numero={record.vat}"
-
-                    if code == '6':
-                        url = f"https://api.apis.net.pe/v2/sunat/ruc?numero={record.vat}"
-
-                    response = requests.get(url, headers=headers)
+                    response = self.get_apisnet_vt(code)
                     # Verificar el código de estado de la respuesta
                     if response.status_code == 200:
                         data = response.json()
