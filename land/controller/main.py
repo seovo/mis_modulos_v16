@@ -54,22 +54,32 @@ class Controller(http.Controller):
 
             sale_ids.append(sale.id)
 
-        sales = request.env['sale.order'].sudo().search([('id','in',sale_ids)])
 
-        raise ValueError(sales)
+        wizard = request.env['sale.advance.payment.inv'].sudo().create({
+            'advance_payment_method': 'delivered',
+            'sale_order_ids': [(6,0,sale_ids)]
+        })
+
+        #sales = request.env['sale.order'].sudo().search([('id','in',sale_ids)])
+        wizard._check_amount_is_positive()
+        invoice = wizard._create_invoices(wizard.sale_order_ids)
+
+
 
         # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
-        # Ej:
-        #   if adjunto:
-        #       attachment = request.env['ir.attachment'].sudo().create({
-        #           'name': adjunto.filename,
-        #           'datas': base64.b64encode(adjunto.read()),
-        #           'type': 'binary',
-        #       })
-        #       factura.message_post(
-        #           body='Comprobante adjunto',
-        #           attachment_ids=[attachment.id],
-        #       )
+
+        if adjunto and invoice:
+
+            attachment = request.env['ir.attachment'].sudo().create({
+                   'name': adjunto.filename,
+                   'datas': base64.b64encode(adjunto.read()),
+                   'type': 'binary',
+            })
+
+            invoice.message_post(
+                   body='Comprobante adjunto',
+                   attachment_ids=[attachment.id],
+            )
 
         return request.redirect('/ui/land')
 
