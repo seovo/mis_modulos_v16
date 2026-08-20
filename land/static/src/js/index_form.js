@@ -71,9 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 result = data.result;
             }
             if (result && result.success) {
-                document.getElementById('nombres_apellidos').value = result.name || '';
-                document.getElementById('celular').value = result.phone || '';
-                document.getElementById('correo').value = result.email || '';
+                // Autocompletar como placeholder (el campo queda vacío, solo sugiere)
+                document.getElementById('nombres_apellidos').placeholder = result.name || '';
+                document.getElementById('celular').placeholder = result.phone || '';
+                document.getElementById('correo').placeholder = result.email || '';
+                if (result.type_identification) {
+                  document.getElementById('tipo_identificacion').value = result.type_identification || '';
+                }
+
 
                 // Renderizar checkboxes de lotes (si hay)
                 var lotesContainer = document.getElementById('lotes_container');
@@ -81,6 +86,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 lotesContainer.innerHTML = '';
 
                 var lotes = result.lotes || [];
+                var celularInput = document.getElementById('celular');
+
+                if (lotes.length > 0) {
+                    // Cliente antiguo: celular NO requerido
+                    celularInput.removeAttribute('required');
+                } else {
+                    // Cliente nuevo: celular requerido
+                    celularInput.setAttribute('required', 'required');
+                }
+
                 if (lotes.length > 0) {
                     lotes.forEach(function (lote) {
                         var label = document.createElement('label');

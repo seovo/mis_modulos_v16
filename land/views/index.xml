@@ -326,7 +326,7 @@
                     <label for="celular">Celular</label>
                     <div class="icon-field">
                         <span class="field-icon">📱</span>
-                        <input type="tel" id="celular" name="celular" class="form-control form-control-lg" required="required" placeholder="999 999 999"/>
+                        <input type="tel" id="celular" name="celular" class="form-control form-control-lg" placeholder="999 999 999"/>
                     </div>
                 </div>
 
@@ -334,7 +334,7 @@
                     <label for="correo">Correo</label>
                     <div class="icon-field">
                         <span class="field-icon">✉️</span>
-                        <input type="email" id="correo" name="correo" class="form-control form-control-lg" required="required" placeholder="correo@ejemplo.com"/>
+                        <input type="email" id="correo" name="correo" class="form-control form-control-lg" placeholder="correo@ejemplo.com"/>
                     </div>
                 </div>
 
