@@ -322,6 +322,41 @@
                     <div id="lotes_container"></div>
                 </div>
 
+                <!-- Campos para cliente nuevo: proyecto, MZ y LT (visibles solo si no hay lotes) -->
+                <div class="form-group" id="proyecto_group" style="display:none;">
+                    <label for="proyecto">Proyecto</label>
+                    <div class="icon-field">
+                        <span class="field-icon">🏢</span>
+                        <select id="proyecto" name="proyecto" class="form-select form-select-lg">
+                            <option value="">Seleccione un proyecto</option>
+                            <t t-foreach="companys" t-as="comp">
+                                <option t-att-value="comp['id']" t-esc="comp['name']"/>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" id="mz_lt_group" style="display:none;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="mz">MZ</label>
+                            <div class="icon-field">
+                                <span class="field-icon">📍</span>
+                                <input type="text" id="mz" name="mz" class="form-control form-control-lg" placeholder="Manzana"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lt">LT</label>
+                            <div class="icon-field">
+                                <span class="field-icon">🔢</span>
+                                <input type="text" id="lt" name="lt" class="form-control form-control-lg" placeholder="Lote"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="celular">Celular</label>
                     <div class="icon-field">
@@ -335,6 +370,15 @@
                     <div class="icon-field">
                         <span class="field-icon">✉️</span>
                         <input type="email" id="correo" name="correo" class="form-control form-control-lg" placeholder="correo@ejemplo.com"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="celular">Dirección</label>
+                    <div class="icon-field">
+                        <span class="field-icon">📱</span>
+                        <input type="tel" id="street" name="street" class="form-control form-control-lg"
+                               placeholder="Ingresar Dirección  (Opcional) ,  si ya registro direccion se usara la existente."/>
                     </div>
                 </div>
 

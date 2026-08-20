@@ -29,7 +29,22 @@ class Controller(http.Controller):
     )
     def form_adjunto(self,  **post):
 
-        data = {}
+        companys = request.env['res.company'].sudo().search([])
+
+        comps = []
+        for cc in companys:
+            try:
+                name_company = cc.partner_id.category_id.name
+            except Exception:
+                name_company = cc.name
+            comps.append({
+                'id': cc.id,
+                'name': name_company
+            })
+
+        data = {
+            'companys': comps
+        }
 
         return http.request.render("land.index_form_adjunto", data)
 
@@ -40,29 +55,55 @@ class Controller(http.Controller):
 
         # Capturar los lotes seleccionados (checkboxes con name="lotes")
         lotes_seleccionados = request.httprequest.form.getlist('lotes')
+
         company = None
 
-        sale_ids = []
+        vat = request.httprequest.form.getlist('vat')
+        name = request.httprequest.form.getlist('nombres_apellidos')
+        phone = request.httprequest.form.getlist('celular')
+        email = request.httprequest.form.getlist('correo')
+        street = request.httprequest.form.getlist('street')
 
-        for lote_id in lotes_seleccionados:
-            sale = request.env['sale.order'].sudo().search([('id','=',int(lote_id))])
-            if not company:
-                company = sale.company_id
-            if company:
-                if company != sale.company_id:
-                    raise ValueError('NO PUEDE SELEECIONAR LOTES DE DIFERENTES PROYECTOS')
+        if lotes_seleccionados:
+            sale_ids = []
 
-            sale_ids.append(sale.id)
+            for lote_id in lotes_seleccionados:
+                sale = request.env['sale.order'].sudo().search([('id', '=', int(lote_id))])
+                if not company:
+                    company = sale.company_id
+                if company:
+                    if company != sale.company_id:
+                        raise ValueError('NO PUEDE SELEECIONAR LOTES DE DIFERENTES PROYECTOS')
+
+                sale_ids.append(sale.id)
+
+            wizard = request.env['sale.advance.payment.inv'].sudo().create({
+                'advance_payment_method': 'delivered',
+                'sale_order_ids': [(6, 0, sale_ids)]
+            })
+
+            # sales = request.env['sale.order'].sudo().search([('id','in',sale_ids)])
+            wizard._check_amount_is_positive()
+            invoice = wizard._create_invoices(wizard.sale_order_ids)
+            partner = invoice.partner_id
+
+        else:
+
+            partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
+
+            if not partner:
+                partner = request.env['res.partner'].sudo().create({
+                    'name':  name ,
+                    'vat': vat  ,
+                    'phone': phone or '' ,
+                    'street': street or '',
+                    'email': email or '' ,
+
+                })
 
 
-        wizard = request.env['sale.advance.payment.inv'].sudo().create({
-            'advance_payment_method': 'delivered',
-            'sale_order_ids': [(6,0,sale_ids)]
-        })
 
-        #sales = request.env['sale.order'].sudo().search([('id','in',sale_ids)])
-        wizard._check_amount_is_positive()
-        invoice = wizard._create_invoices(wizard.sale_order_ids)
+
 
 
 
@@ -95,6 +136,7 @@ class Controller(http.Controller):
 
         if not partner:
             name = ''
+
             response = request.env['res.partner'].sudo().get_apisnet_vt(code,vat)
             if response and  response.status_code == 200:
                 data = response.json()

@@ -88,12 +88,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 var lotes = result.lotes || [];
                 var celularInput = document.getElementById('celular');
 
+                // Campos proyecto, MZ y LT: solo visibles y requeridos si no hay lotes (cliente nuevo)
+                var proyectoGroup = document.getElementById('proyecto_group');
+                var mzLtGroup = document.getElementById('mz_lt_group');
+                var proyectoInput = document.getElementById('proyecto');
+                var mzInput = document.getElementById('mz');
+                var ltInput = document.getElementById('lt');
+
                 if (lotes.length > 0) {
                     // Cliente antiguo: celular NO requerido
                     celularInput.removeAttribute('required');
+
+                    // Ocultar y quitar required de proyecto/MZ/LT
+                    proyectoGroup.style.display = 'none';
+                    mzLtGroup.style.display = 'none';
+                    proyectoInput.removeAttribute('required');
+                    mzInput.removeAttribute('required');
+                    ltInput.removeAttribute('required');
                 } else {
                     // Cliente nuevo: celular requerido
                     celularInput.setAttribute('required', 'required');
+
+                    // Mostrar y marcar como requeridos proyecto/MZ/LT
+                    proyectoGroup.style.display = 'block';
+                    mzLtGroup.style.display = 'flex';
+                    proyectoInput.setAttribute('required', 'required');
+                    mzInput.setAttribute('required', 'required');
+                    ltInput.setAttribute('required', 'required');
                 }
 
                 if (lotes.length > 0) {
