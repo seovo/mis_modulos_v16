@@ -153,7 +153,7 @@ class Controller(http.Controller):
         email = partner.email
 
         if "@" in email:
-            usuario, dominio = texto.split("@", 1)
+            usuario, dominio = email.split("@", 1)
 
             # Procesa la parte del usuario antes del @
             if len(usuario) <= 2:
