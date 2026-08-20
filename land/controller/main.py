@@ -61,11 +61,11 @@ class Controller(http.Controller):
 
         company = None
 
-        vat = request.httprequest.form.getlist('vat')
-        name = request.httprequest.form.getlist('nombres_apellidos')
-        phone = request.httprequest.form.getlist('celular')
-        email = request.httprequest.form.getlist('correo')
-        street = request.httprequest.form.getlist('street')
+        vat = request.httprequest.form.get('vat')
+        name = request.httprequest.form.get('nombres_apellidos')
+        phone = request.httprequest.form.get('celular')
+        email = request.httprequest.form.get('correo')
+        street = request.httprequest.form.get('street')
         msg = ''
 
         if lotes_seleccionados:
@@ -106,9 +106,9 @@ class Controller(http.Controller):
                 })
 
             #CREAR FACTURA
-            mz = request.httprequest.form.getlist('mz')
-            lt = request.httprequest.form.getlist('lt')
-            company_id = request.httprequest.form.getlist('proyecto')
+            mz = request.httprequest.form.get('mz')
+            lt = request.httprequest.form.get('lt')
+            company_id = request.httprequest.form.get('proyecto')
             msg = f'MZ {mz} - LT {lt}'
 
             invoice = request.env['account.move'].sudo().create({
