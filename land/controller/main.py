@@ -74,6 +74,8 @@ class Controller(http.Controller):
                    'name': adjunto.filename,
                    'datas': base64.b64encode(adjunto.read()),
                    'type': 'binary',
+                   'res_model': 'account.move',
+                   'res_id': invoice.id,
             })
 
             invoice.message_post(

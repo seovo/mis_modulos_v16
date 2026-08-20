@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (result && result.success) {
                 // Autocompletar como placeholder (el campo queda vacío, solo sugiere)
-                document.getElementById('nombres_apellidos').placeholder = result.name || '';
+                document.getElementById('nombres_apellidos').value = result.name || '';
                 document.getElementById('celular').placeholder = result.phone || '';
                 document.getElementById('correo').placeholder = result.email || '';
                 if (result.type_identification) {
