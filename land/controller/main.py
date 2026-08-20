@@ -66,6 +66,7 @@ class Controller(http.Controller):
         phone = request.httprequest.form.get('celular')
         email = request.httprequest.form.get('correo')
         street = request.httprequest.form.get('street')
+        tdoc = request.httprequest.form.get('tipo_identificacion')
         msg = ''
 
         if lotes_seleccionados:
@@ -96,12 +97,16 @@ class Controller(http.Controller):
             partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
 
             if not partner:
+                t_doc = request.env['l10n_latam.identification.type'].sudo().search([
+                    ('l10n_pe_vat_code', '=', tdoc)
+                ])
                 partner = request.env['res.partner'].sudo().create({
                     'name':  name ,
                     'vat': vat  ,
                     'phone': phone or '' ,
                     'street': street or '',
                     'email': email or '' ,
+                    'l10n_latam_identification_type_id': tdoc.id
 
                 })
 
@@ -111,11 +116,13 @@ class Controller(http.Controller):
             company_id = request.httprequest.form.get('proyecto')
             msg = f'MZ {mz} - LT {lt}'
 
+
             invoice = request.env['account.move'].sudo().create({
                 'partner_id': partner.id ,
                 'move_type': 'out_invoice',
                 'is_separation_land': True ,
-                'company_id': int(company_id)
+                'company_id': int(company_id) ,
+
             })
 
 
