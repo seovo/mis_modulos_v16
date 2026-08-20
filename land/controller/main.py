@@ -6,7 +6,7 @@ from odoo.http import request
 from odoo.http import content_disposition
 import io
 
-from costarica.l10n_cr_vat_validation.models.res_partner import Partner
+
 
 try:
     import base64
