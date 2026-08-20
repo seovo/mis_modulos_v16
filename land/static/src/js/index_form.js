@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         checkbox.type = 'checkbox';
                         checkbox.name = 'lotes';
                         checkbox.value = lote.id;
+                        checkbox.setAttribute('data-company', lote.company);  // atributo interno
 
                         var texto = lote.contrato || '';
                         if (lote.mz || lote.lote) {
@@ -129,6 +130,25 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al consultar el cliente:', error);
         });
     }
+
+    // ===== Lotes: solo permitir seleccionar lotes del mismo company =====
+    const lotesContainer = document.getElementById('lotes_container');
+
+    lotesContainer.addEventListener('change', function (event) {
+        if (event.target.type === 'checkbox' && event.target.name === 'lotes') {
+            var companySeleccionado = event.target.getAttribute('data-company');
+
+            // Si el checkbox se marcó, desmarcar los de company diferente
+            if (event.target.checked) {
+                var checkboxes = lotesContainer.querySelectorAll('input[name="lotes"]');
+                checkboxes.forEach(function (cb) {
+                    if (cb !== event.target && cb.getAttribute('data-company') !== companySeleccionado) {
+                        cb.checked = false;
+                    }
+                });
+            }
+        }
+    });
 
     vatInput.addEventListener('input', function () {
         clearTimeout(debounceTimer);
