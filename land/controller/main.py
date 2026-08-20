@@ -92,7 +92,13 @@ class Controller(http.Controller):
         partner = request.env['res.partner'].sudo().search([('vat','=',vat)])
 
         if not partner:
-            return
+            return {
+                'success': True,
+                'name': '',
+                'type_identification': None,
+                'email': '',
+                'phone': ''
+            }
 
         if len(partner) > 1 :
             return {
