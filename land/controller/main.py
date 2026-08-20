@@ -33,7 +33,27 @@ class Controller(http.Controller):
 
         return http.request.render("land.index_form_adjunto", data)
 
-    @http.route(['/api/land/client/<string:vat>'], type='json', auth="public", methods=['POST'],
+    @http.route(['/api/up/land'], type='http', auth='public', methods=['POST'], website=True, csrf=False)
+    def upload_land(self, **post):
+        # Recepcionar el adjunto en una variable (solo por ahora)
+        adjunto = request.httprequest.files.get('adjunto')
+
+        # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
+        # Ej:
+        #   if adjunto:
+        #       attachment = request.env['ir.attachment'].sudo().create({
+        #           'name': adjunto.filename,
+        #           'datas': base64.b64encode(adjunto.read()),
+        #           'type': 'binary',
+        #       })
+        #       factura.message_post(
+        #           body='Comprobante adjunto',
+        #           attachment_ids=[attachment.id],
+        #       )
+
+        return request.redirect('/ui/land')
+
+    @http.route(['/api/land/client/<string:vat>'], type='json', auth='public', methods=['POST'],
                 website=True, csrf=False)
     def get_client_land_vat(self, vat , **post):
         if not vat or   vat == '':
