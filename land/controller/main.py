@@ -53,6 +53,13 @@ class Controller(http.Controller):
 
         if partner.sale_order_ids:
             for sale in partner.sale_order_ids:
+
+                if sale.state !=  'sale':
+                    continue
+
+                if sale.stage_land ==  'cancel':
+                    continue
+
                 lotes.append({
                     'id': sale.id ,
                     'contrato': sale.nro_internal_land ,
