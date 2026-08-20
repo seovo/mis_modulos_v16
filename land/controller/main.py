@@ -38,6 +38,9 @@ class Controller(http.Controller):
         # Recepcionar el adjunto en una variable (solo por ahora)
         adjunto = request.httprequest.files.get('adjunto')
 
+        # Capturar los lotes seleccionados (checkboxes con name="lotes")
+        lotes_seleccionados = request.httprequest.form.getlist('lotes')
+
         # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
         # Ej:
         #   if adjunto:
