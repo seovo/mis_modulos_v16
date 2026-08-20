@@ -5,6 +5,9 @@ from odoo.http import request
 #from odoo.http import content_disposition, Controller, request, route
 from odoo.http import content_disposition
 import io
+
+from costarica.l10n_cr_vat_validation.models.res_partner import Partner
+
 try:
     import base64
 except:
@@ -63,6 +66,7 @@ class Controller(http.Controller):
         phone = request.httprequest.form.getlist('celular')
         email = request.httprequest.form.getlist('correo')
         street = request.httprequest.form.getlist('street')
+        msg = ''
 
         if lotes_seleccionados:
             sale_ids = []
@@ -101,9 +105,30 @@ class Controller(http.Controller):
 
                 })
 
+            #CREAR FACTURA
+            mz = request.httprequest.form.getlist('mz')
+            lt = request.httprequest.form.getlist('lt')
+            company_id = request.httprequest.form.getlist('proyecto')
+            msg = f'MZ {mz} - LT {lt}'
+
+            invoice = request.env['account.move'].sudo().create({
+                'partner_id': partner.id ,
+                'move_type': 'out_invoice',
+                'is_separation_land': True ,
+                'company_id': int(company_id)
+            })
 
 
+        partner.name = name
 
+        if phone and phone != '':
+            partner.phone = phone
+
+        if street and street != '':
+            partner.street = street
+
+        if email and email != '':
+            partner.email = email
 
 
 
@@ -120,7 +145,7 @@ class Controller(http.Controller):
             })
 
             invoice.message_post(
-                   body='Comprobante adjunto',
+                   body='Comprobante adjunto '+msg,
                    attachment_ids=[attachment.id],
             )
 
