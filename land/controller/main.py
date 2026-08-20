@@ -41,6 +41,8 @@ class Controller(http.Controller):
         # Capturar los lotes seleccionados (checkboxes con name="lotes")
         lotes_seleccionados = request.httprequest.form.getlist('lotes')
 
+        raise ValueError(lotes_seleccionados)
+
         # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
         # Ej:
         #   if adjunto:
