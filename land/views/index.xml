@@ -168,6 +168,38 @@
                 pointer-events: none;
             }
 
+            /* Checkboxes de lotes */
+            .card-form .checkbox-lote {
+                display: flex;
+                align-items: center;
+                padding: 12px 16px;
+                margin-bottom: 8px;
+                border: 2px solid #e0e0e0;
+                border-radius: 10px;
+                background: #fafafa;
+                cursor: pointer;
+                transition: border-color 0.3s, background 0.3s;
+            }
+
+            .card-form .checkbox-lote:hover {
+                border-color: #667eea;
+                background: #f5f7ff;
+            }
+
+            .card-form .checkbox-lote input[type="checkbox"] {
+                width: 22px;
+                height: 22px;
+                margin-right: 12px;
+                cursor: pointer;
+                accent-color: #667eea;
+            }
+
+            .card-form .checkbox-lote .lote-text {
+                font-size: 16px;
+                font-weight: 500;
+                color: #444;
+            }
+
             /* Grid nativo (sin Bootstrap) para campos lado a lado */
             .card-form .row {
                 display: flex;
@@ -240,9 +272,8 @@
                 </div>
 
                 <div class="form-group" id="lotes_group" style="display:none;">
-                    <label for="lotes">Lotes (selecciona uno o varios)</label>
-                    <select id="lotes" name="lotes" multiple="multiple" class="form-control form-control-lg" style="height:auto; min-height: 120px;"></select>
-                    <small class="form-text" style="color:#888;">Mantén Ctrl (Windows) o Cmd (Mac) para seleccionar varios.</small>
+                    <label>Lotes (selecciona uno o varios)</label>
+                    <div id="lotes_container"></div>
                 </div>
 
                 <div class="form-group">
@@ -313,22 +344,34 @@
                             document.getElementById('celular').value = result.phone || '';
                             document.getElementById('correo').value = result.email || '';
 
-                            // Renderizar select multiple de lotes (si hay)
-                            var selectLotes = document.getElementById('lotes');
+                            // Renderizar checkboxes de lotes (si hay)
+                            var lotesContainer = document.getElementById('lotes_container');
                             var lotesGroup = document.getElementById('lotes_group');
-                            selectLotes.innerHTML = '';
+                            lotesContainer.innerHTML = '';
 
                             var lotes = result.lotes || [];
                             if (lotes.length > 0) {
                                 lotes.forEach(function (lote) {
-                                    var option = document.createElement('option');
-                                    option.value = lote.id;
+                                    var label = document.createElement('label');
+                                    label.className = 'checkbox-lote';
+
+                                    var checkbox = document.createElement('input');
+                                    checkbox.type = 'checkbox';
+                                    checkbox.name = 'lotes';
+                                    checkbox.value = lote.id;
+
                                     var texto = lote.contrato || '';
                                     if (lote.mz || lote.lote) {
                                         texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
                                     }
-                                    option.textContent = texto;
-                                    selectLotes.appendChild(option);
+
+                                    var span = document.createElement('span');
+                                    span.className = 'lote-text';
+                                    span.textContent = texto;
+
+                                    label.appendChild(checkbox);
+                                    label.appendChild(span);
+                                    lotesContainer.appendChild(label);
                                 });
                                 lotesGroup.style.display = 'block';
                             } else {
