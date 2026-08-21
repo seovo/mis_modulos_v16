@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('nombres_apellidos').value = result.name || '';
                 document.getElementById('celular').placeholder = result.phone || '';
                 document.getElementById('correo').placeholder = result.email || '';
-                //if (result.type_identification) {
-                //  document.getElementById('tipo_identificacion').value = result.type_identification || '';
-                //}
+                if (result.type_identification) {
+                  document.getElementById('tipo_identificacion').value = result.type_identification || '';
+                }
 
 
                 // Renderizar checkboxes de lotes (si hay)
