@@ -70,6 +70,42 @@
                     transform: translateY(-2px);
                     box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
                 }
+
+
+
+                /* Fix para móviles reales */
+@media (max-width: 768px) {
+    /* Hacer que el campo sea sticky */
+    #vat {
+        font-size: 16px !important; /* Evitar zoom en iOS */
+        background-color: #fff !important;
+        z-index: 1000 !important;
+        position: relative !important;
+    }
+    
+    /* Contenedor sticky */
+    .form-group:has(#vat) {
+        position: sticky !important;
+        top: 0 !important;
+        background: white !important;
+        z-index: 1000 !important;
+        padding: 10px 0 !important;
+        margin: 0 !important;
+        border-bottom: 2px solid #667eea !important;
+    }
+    
+    /* Evitar que otros elementos oculten el campo */
+    #lotes_group, #proyecto_group, #mz_lt_group {
+        transition: none !important;
+    }
+    
+    /* Asegurar visibilidad */
+    #vat:focus {
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3) !important;
+        border-color: #667eea !important;
+    }
+}
+
             </style>
         </head>
         <body>
