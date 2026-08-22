@@ -39,7 +39,7 @@ class SaleOrder(models.Model):
 
     crono_land           = fields.Char(string="Crono",copy=False)
     days_tolerance_land  = fields.Integer(string="Dias de Gracia",default=3,copy=False)
-    value_mora_land = fields.Float(string="Precio Mora",default=10,copy=False)
+    value_mora_land = fields.Float(string="Precio Mora",default=3,copy=False)
     percentage_refund_land = fields.Float(string="Porcentaje Devolucion",copy=False)
 
     date_sign_land = fields.Date(string="Fecha Firma del Contrato",copy=False)
