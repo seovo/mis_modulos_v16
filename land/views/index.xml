@@ -89,7 +89,7 @@
 <template id="index_form_adjunto" name="Form Index">
 <html>
     <head>
-        <title>Sube tu Comprobante</title>
+        <title>Consulte su lote o suba tu Comprobante</title>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
@@ -362,8 +362,8 @@
     </head>
     <body>
         <div class="card-form">
-            <h2>📄 Sube tu Comprobante</h2>
-            <p class="subtitle">Completa tus datos y adjunta tu imagen</p>
+            <h2>📄 Consulte su lote o suba tu Comprobante</h2>
+            <p class="subtitle">Completa tus datos y adjunte tu evidencia de pago , puede consultar su cronograma  de pagos.</p>
 
             <form method="POST" action="/api/up/land" enctype="multipart/form-data">
                 <div class="row">
@@ -405,7 +405,7 @@
                 </div>
 
                 <div class="form-group" id="lotes_group" style="display:none;">
-                    <label>Lotes (selecciona uno o varios)</label>
+                    <label>Lotes (selecciona uno o varios si va cancelar )</label>
                     <div id="lotes_container"></div>
                 </div>
 
@@ -460,14 +460,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="celular">Dirección</label>
-                    <div class="icon-field">
-                        <span class="field-icon">📱</span>
-                        <input type="tel" id="street" name="street" class="form-control form-control-lg"
-                               placeholder="Si ya registro direccion se usara la existente."/>
-                    </div>
-                </div>
+
 
                 <div class="form-group">
                     <label for="adjunto">Adjunto (Imagen)</label>

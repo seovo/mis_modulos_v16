@@ -65,7 +65,7 @@ class Controller(http.Controller):
         name = request.httprequest.form.get('nombres_apellidos')
         phone = request.httprequest.form.get('celular')
         email = request.httprequest.form.get('correo')
-        street = request.httprequest.form.get('street')
+
         tdoc = request.httprequest.form.get('tipo_identificacion')
         msg = ''
 
@@ -104,7 +104,7 @@ class Controller(http.Controller):
                     'name':  name ,
                     'vat': vat  ,
                     'phone': phone or '' ,
-                    'street': street or '',
+
                     'email': email or '' ,
                     'l10n_latam_identification_type_id': t_doc.id
 
@@ -131,8 +131,7 @@ class Controller(http.Controller):
         if phone and phone != '':
             partner.phone = phone
 
-        if street and street != '':
-            partner.street = street
+
 
         if email and email != '':
             partner.email = email
@@ -176,7 +175,7 @@ class Controller(http.Controller):
                     name = data['nombres'] + ' ' + data['apellidoPaterno'] + ' ' + data['apellidoMaterno']
                 else:
                     name = data['razonSocial']
-                    street = data['direccion'] if 'direccion' in data else ''
+
                     #if 'ubigeo' in data and data['ubigeo']:
                     #    district = self.env['l10n_pe.res.city.district'].search([('code', '=', data['ubigeo'])])
                     #    record.l10n_pe_district = district.id
