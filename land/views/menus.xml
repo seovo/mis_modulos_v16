@@ -13,7 +13,6 @@
 
         <menuitem name="Morosos"
               id="menu_morosos2"
-              parent="sale.sale_order_menu"
         >
           <menuitem action="action_sale_morosos1" id="menu_sale_morosos12" />
           <menuitem action="action_sale_morosos2" id="menu_sale_morosos22" />
