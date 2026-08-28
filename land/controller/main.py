@@ -294,6 +294,18 @@ class Controller(http.Controller):
 
 class PortalAccount(CustomerPortal):
 
+    @http.route(['/my/mora/download/<int:sale_id>'], type='http', auth="public", website=True)
+    def dowloand_mora(self, sale_id, **kw):
+        # Download the official attachment(s) or a Pro Forma invoice
+        sale = request.env['sale.order'].sudo().search([('id', '=', sale_id)])
+        invoice_sudo = sale
+        attachments = sale.sudo().get_mora_descargar()
+
+        report_type = 'pdf'
+        download = True
+        headers = self._get_http_headers(invoice_sudo, report_type, attachments.raw, download)
+        return request.make_response(attachments.raw, list(headers.items()))
+
     @http.route(['/my/cronogramajz/download/<int:sale_id>'], type='http', auth="public", website=True)
     def dowloand_cronograma(self, sale_id, **kw):
         # Download the official attachment(s) or a Pro Forma invoice

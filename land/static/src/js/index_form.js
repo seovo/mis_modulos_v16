@@ -134,34 +134,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
 
 
-                        //MORA
-                        console.log(lote.mora);
-                        if (lote.mora != 0 ){
-
-                           var $span_mora = $('<span>').addClass('lote-text').text(texto);
-                           var $eyeIconm = $('<a>')
-                            .attr({
-                                href: '/my/mora/download/'+lote.id,
-                                title: 'Ver Mora'
-                            })
-                            //.addClass('lote-eye-icon')
-                            .html('Mora S/.'+lote.mora)
-                            .css({
-                                'margin-left': 'auto',
-                                'text-decoration': 'none',
-                                'font-size': '18px' ,
-                                'font-color': 'red'
-                            });
-
-                            $label.append($checkbox, $span_mora, $eyeIconm);
-
-
-                        }
-
-
-
-
-
                         var $span = $('<span>').addClass('lote-text').text(texto);
 
                         // Ícono de ojo para ver detalles del lote
@@ -178,7 +150,34 @@ document.addEventListener('DOMContentLoaded', function () {
                                 'font-size': '18px'
                             });
 
+
+
+
                         $label.append($checkbox, $span, $eyeIcon);
+
+
+                        if (lote.mora != 0 ){
+
+
+                           var $eyeIconm = $('<a>')
+                            .attr({
+                                href: '/my/mora/download/'+lote.id,
+                                title: 'Ver Mora'
+                            })
+                            //.addClass('lote-eye-icon')
+                            .html('Mora S/.'+lote.mora)
+                            .css({
+                                'margin-left': 'auto',
+                                'text-decoration': 'none',
+                                'font-size': '18px' ,
+                                'font-color': 'red'
+                            });
+
+                            $label.append($checkbox, $span, $eyeIconm);
+
+
+                        }
+
                         $(lotesContainer).append($label);
                     });
                     lotesGroup.style.display = 'block';
