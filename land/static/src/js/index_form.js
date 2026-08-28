@@ -138,25 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Ícono de ojo para ver detalles del lote
                         var $eyeIcon = $('<a>')
                             .attr({
-                                href: '#',
+                                href: '/my/cronogramajz/download/'lote.id+,
                                 title: 'Ver detalles del lote'
                             })
                             .addClass('lote-eye-icon')
-                            .html('👁️')
+                            .html('Cronograma')
                             .css({
                                 'margin-left': 'auto',
                                 'text-decoration': 'none',
                                 'font-size': '18px'
-                            })
-                            .on('click', function (e) {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                alert(
-                                    'Contrato: ' + lote.contrato +
-                                    '\nMZ: ' + (lote.mz || '—') +
-                                    '\nLote: ' + (lote.lote || '—') +
-                                    '\nProyecto ID: ' + lote.company
-                                );
                             });
 
                         $label.append($checkbox, $span, $eyeIcon);
