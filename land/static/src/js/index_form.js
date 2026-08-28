@@ -117,45 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     ltInput.setAttribute('required', 'required');
                 }
 
+
                 if (lotes.length > 0) {
-    $.each(lotes, function (i, lote) {
-        var texto = lote.contrato || '';
-        if (lote.mz || lote.lote) {
-            texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
-        }
-
-        var $label = $('<label>').addClass('checkbox-lote');
-
-        var $checkbox = $('<input>').attr({
-            type: 'checkbox',
-            name: 'lotes',
-            value: lote.id,
-            'data-company': lote.company
-        });
-
-        var $span = $('<span>').addClass('lote-text').text(texto);
-
-        // Contenedor para los enlaces
-        var $linksContainer = $('<span>').addClass('lote-links');
-
-        // Cronograma
-        var $eyeIcon = $('<a>')
-            .attr({
-                href: '/my/cronogramajz/download/'+lote.id,
-                title: 'Ver detalles del lote'
-            })
-            .addClass('lote-eye-icon')
-            .html('📄 Cronograma')
-            .css({
-                'margin-left': 'auto',
-                'text-decoration': 'none',
-                'font-size': '18px',
-                'padding': '5px 10px'
-            });
-
-        $linksContainer.append($eyeIcon);
-
-        if (lotes.length > 0) {
     $.each(lotes, function (i, lote) {
         var texto = lote.contrato || '';
         if (lote.mz || lote.lote) {
@@ -235,6 +198,8 @@ document.addEventListener('DOMContentLoaded', function () {
 } else {
     lotesGroup.style.display = 'none';
 }
+
+
             }
         })
         .catch(function (error) {
