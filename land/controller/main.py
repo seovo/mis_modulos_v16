@@ -305,6 +305,6 @@ class PortalAccount(CustomerPortal):
         #    headers = _get_zip_headers(zip_content, filename)
         #    return request.make_response(zip_content, headers)
         report_type = 'pdf'
-        download = True
+        download = False
         headers = self._get_http_headers(invoice_sudo, report_type, attachments.raw, download)
         return request.make_response(attachments.raw, list(headers.items()))
