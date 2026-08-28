@@ -310,7 +310,7 @@ class PortalAccount(CustomerPortal):
         return request.make_response(attachments.raw, list(headers.items()))
 
     @http.route(['/my/cronogramajz/<int:sale_id>'], type='http', auth="public", website=True)
-    def dowloand_cronograma(self, sale_id,  **kw):
+    def open_cronograma(self, sale_id,  **kw):
         # Download the official attachment(s) or a Pro Forma invoice
         sale = request.env['sale.order'].sudo().search([('id','=',sale_id)])
         invoice_sudo = sale
