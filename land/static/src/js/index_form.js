@@ -133,6 +133,30 @@ document.addEventListener('DOMContentLoaded', function () {
                             'data-company': lote.company
                         });
 
+
+                        //MORA
+                        if (lote.mora != 0 ){
+
+                           var $span_mora = $('<span>').addClass('lote-text').text(texto);
+                           var $eyeIcon = $('<a>')
+                            .attr({
+                                href: '/my/mora/download/'+lote.id,
+                                title: 'Ver Mora'
+                            })
+                            //.addClass('lote-eye-icon')
+                            .html('Mora S/.'+lote.mora)
+                            .css({
+                                'margin-left': 'auto',
+                                'text-decoration': 'none',
+                                'font-size': '18px' ,
+                                'font-color': 'red'
+                            });
+                        }
+
+
+                        $(lotesContainer).append($label);
+
+
                         var $span = $('<span>').addClass('lote-text').text(texto);
 
                         // Ícono de ojo para ver detalles del lote

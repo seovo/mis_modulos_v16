@@ -224,7 +224,8 @@ class Controller(http.Controller):
                     'contrato': f'''CN {sale.nro_internal_land} {name_company}''' ,
                     'mz': sale.mz_land ,
                     'lote': sale.lot_land ,
-                    'company': sale.company_id.id
+                    'company': sale.company_id.id ,
+                    'mora': sale.mora_acumulada
 
                 })
 
