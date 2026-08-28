@@ -84,7 +84,7 @@
                 </p>
                 <a href="/ui/land" class="btn-volver">Volver al inicio</a>
             </div>
-            <script src="https://jquery.com" />
+
         </body>
     </html>
 </template>
@@ -504,7 +504,7 @@
                 <button type="submit" class="btn-submit">Enviar Comprobante</button>
             </form>
         </div>
-
+        <script src="https://jquery.com" />
         <script src="/land/static/src/js/index_form.js"></script>
     </body>
 </html>
