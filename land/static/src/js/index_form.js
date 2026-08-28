@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
                         //MORA
+                        console.log(lote.mora);
                         if (lote.mora != 0 ){
 
                            var $span_mora = $('<span>').addClass('lote-text').text(texto);
