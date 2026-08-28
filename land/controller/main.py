@@ -20,6 +20,16 @@ except:
 
 import datetime
 
+
+from collections import OrderedDict
+
+from odoo import http, _
+from odoo.osv import expression
+from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
+from odoo.addons.account.controllers.download_docs import _get_zip_headers
+from odoo.exceptions import AccessError, MissingError
+
+
 class Controller(http.Controller):
 
     @http.route(
@@ -280,6 +290,8 @@ class Controller(http.Controller):
             ('Content-Type', 'application/vnd.ms-excel'),
             ('Content-Disposition', content_disposition(filename))
         ])
+
+class PortalAccount(CustomerPortal):
 
     @http.route(['/my/cronogramajz/<int:sale_id>'], type='http', auth="public", website=True)
     def dowloand_cronograma(self, sale_id,  **kw):
