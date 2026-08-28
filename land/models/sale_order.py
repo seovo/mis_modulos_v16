@@ -190,6 +190,19 @@ class SaleOrder(models.Model):
     name_contrato_generado_land = fields.Char()
 
 
+    def get_cronograma_descargar(self):
+        content, _ = self.env['ir.actions.report']._render('land.action_report_schedule', self.ids,data={})
+        attachments = self.env['ir.attachment'].new({
+            'raw': content,
+            'name': f'CRONOGRAMA {self.nro_internal_land}',
+            'mimetype': 'application/pdf',
+            'res_model': self._name,
+            'res_id': self.id,
+        })
+
+        return attachments
+
+
 
     @api.onchange('report_lot_land_line_id')
     def change_report_lot_land(self):

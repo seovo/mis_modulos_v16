@@ -280,3 +280,17 @@ class Controller(http.Controller):
             ('Content-Type', 'application/vnd.ms-excel'),
             ('Content-Disposition', content_disposition(filename))
         ])
+
+    @http.route(['/my/cronogramajz/<int:sale_id>'], type='http', auth="public", website=True)
+    def dowloand_cronograma(self, sale_id,  **kw):
+        # Download the official attachment(s) or a Pro Forma invoice
+        sale = request.env['sale.order'].sudo().search([('id','=',sale_id)])
+
+        attachments = sale.sudo().get_cronograma_descargar()
+        if len(attachments) > 1:
+            filename = invoice_sudo._get_invoice_report_filename(extension='zip')
+            zip_content = attachments.sudo()._build_zip_from_attachments()
+            headers = _get_zip_headers(zip_content, filename)
+            return request.make_response(zip_content, headers)
+        headers = self._get_http_headers(invoice_sudo, report_type, attachments.raw, download)
+        return request.make_response(attachments.raw, list(headers.items()))
