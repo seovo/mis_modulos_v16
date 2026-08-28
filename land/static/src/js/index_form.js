@@ -118,72 +118,73 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 if (lotes.length > 0) {
-                    $.each(lotes, function (i, lote) {
-                        var texto = lote.contrato || '';
-                        if (lote.mz || lote.lote) {
-                            texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
-                        }
+    $.each(lotes, function (i, lote) {
+        var texto = lote.contrato || '';
+        if (lote.mz || lote.lote) {
+            texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
+        }
 
-                        var $label = $('<label>').addClass('checkbox-lote');
+        var $label = $('<label>').addClass('checkbox-lote');
 
-                        var $checkbox = $('<input>').attr({
-                            type: 'checkbox',
-                            name: 'lotes',
-                            value: lote.id,
-                            'data-company': lote.company
-                        });
+        var $checkbox = $('<input>').attr({
+            type: 'checkbox',
+            name: 'lotes',
+            value: lote.id,
+            'data-company': lote.company
+        });
 
+        var $span = $('<span>').addClass('lote-text').text(texto);
 
-                        var $span = $('<span>').addClass('lote-text').text(texto);
+        // Contenedor para los enlaces
+        var $linksContainer = $('<span>').addClass('lote-links');
 
-                        // Ícono de ojo para ver detalles del lote
-                        var $eyeIcon = $('<a>')
-                            .attr({
-                                href: '/my/cronogramajz/download/'+lote.id,
-                                title: 'Ver detalles del lote'
-                            })
-                            .addClass('lote-eye-icon')
-                            .html('Cronograma')
-                            .css({
-                                'margin-left': 'auto',
-                                'text-decoration': 'none',
-                                'font-size': '18px'
-                            });
+        // Cronograma
+        var $eyeIcon = $('<a>')
+            .attr({
+                href: '/my/cronogramajz/download/'+lote.id,
+                title: 'Ver detalles del lote'
+            })
+            .addClass('lote-eye-icon')
+            .html('📄 Cronograma')
+            .css({
+                'margin-left': 'auto',
+                'text-decoration': 'none',
+                'font-size': '18px',
+                'padding': '5px 10px'
+            });
 
+        $linksContainer.append($eyeIcon);
 
+        // Mora (después del cronograma)
+        if (lote.mora != 0) {
+            // Separador
+            var $separator = $('<span>').html('|').css({
+                'margin': '0 10px',
+                'color': '#ccc'
+            });
 
+            var $eyeIconm = $('<a>')
+                .attr({
+                    href: '/my/mora/download/'+lote.id,
+                    title: 'Ver Mora'
+                })
+                .html('⚠️ Mora S/.'+lote.mora)
+                .css({
+                    'text-decoration': 'none',
+                    'font-size': '18px',
+                    'color': '#dc3545'
+                });
 
-                        $label.append($checkbox, $span, $eyeIcon);
+            $linksContainer.append($separator, $eyeIconm);
+        }
 
-
-                        if (lote.mora != 0 ){
-
-
-                           var $eyeIconm = $('<a>')
-                            .attr({
-                                href: '/my/mora/download/'+lote.id,
-                                title: 'Ver Mora'
-                            })
-                            //.addClass('lote-eye-icon')
-                            .html('Mora S/.'+lote.mora)
-                            .css({
-                                'margin-left': 'auto',
-                                'text-decoration': 'none',
-                                'font-size': '18px' ,
-                                'font-color': 'red'
-                            });
-
-                            $label.append($checkbox, $span, $eyeIconm);
-
-
-                        }
-
-                        $(lotesContainer).append($label);
-                    });
-                    lotesGroup.style.display = 'block';
-                } else {
-                    lotesGroup.style.display = 'none';
-                }
+        $label.append($checkbox, $span, $linksContainer);
+        $(lotesContainer).append($label);
+    });
+    lotesGroup.style.display = 'block';
+} else {
+    lotesGroup.style.display = 'none';
+}
             }
         })
         .catch(function (error) {
