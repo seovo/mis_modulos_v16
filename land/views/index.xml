@@ -504,7 +504,7 @@
                 <button type="submit" class="btn-submit">Enviar Comprobante</button>
             </form>
         </div>
-        <script src="https://jquery.com" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="/land/static/src/js/jquery-4.0.0.min.js" ></script>
 
         <script src="/land/static/src/js/index_form.js"></script>
     </body>
