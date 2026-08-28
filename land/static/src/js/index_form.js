@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (lote.mora != 0 ){
 
                            var $span_mora = $('<span>').addClass('lote-text').text(texto);
-                           var $eyeIcon = $('<a>')
+                           var $eyeIconm = $('<a>')
                             .attr({
                                 href: '/my/mora/download/'+lote.id,
                                 title: 'Ver Mora'
@@ -152,10 +152,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                 'font-size': '18px' ,
                                 'font-color': 'red'
                             });
+
+                            $label.append($checkbox, $span_mora, $eyeIconm);
+
+
                         }
 
 
-                        $(lotesContainer).append($label);
+
 
 
                         var $span = $('<span>').addClass('lote-text').text(texto);
