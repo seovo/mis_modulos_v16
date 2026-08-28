@@ -203,6 +203,19 @@ class SaleOrder(models.Model):
         return attachments
 
 
+    def get_mora_descargar(self):
+        content, _ = self.env['ir.actions.report']._render('land.action_report_morosos', self.ids,data={})
+        attachments = self.env['ir.attachment'].new({
+            'raw': content,
+            'name': f'MORA {self.nro_internal_land}',
+            'mimetype': 'application/pdf',
+            'res_model': self._name,
+            'res_id': self.id,
+        })
+
+        return attachments
+
+
 
     @api.onchange('report_lot_land_line_id')
     def change_report_lot_land(self):
