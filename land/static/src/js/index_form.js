@@ -155,29 +155,79 @@ document.addEventListener('DOMContentLoaded', function () {
 
         $linksContainer.append($eyeIcon);
 
-        // Mora (después del cronograma)
-        if (lote.mora != 0) {
-            // Separador
-            var $separator = $('<span>').html('|').css({
-                'margin': '0 10px',
-                'color': '#ccc'
-            });
-
-            var $eyeIconm = $('<a>')
-                .attr({
-                    href: '/my/mora/download/'+lote.id,
-                    title: 'Ver Mora'
-                })
-                .html('⚠️ Mora S/.'+lote.mora)
-                .css({
-                    'text-decoration': 'none',
-                    'font-size': '18px',
-                    'color': '#dc3545'
-                });
-
-            $linksContainer.append($separator, $eyeIconm);
+        if (lotes.length > 0) {
+    $.each(lotes, function (i, lote) {
+        var texto = lote.contrato || '';
+        if (lote.mz || lote.lote) {
+            texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
         }
 
+        var $label = $('<label>').addClass('checkbox-lote');
+
+        var $checkbox = $('<input>').attr({
+            type: 'checkbox',
+            name: 'lotes',
+            value: lote.id,
+            'data-company': lote.company
+        });
+
+        var $span = $('<span>').addClass('lote-text').text(texto);
+
+        // Contenedor para los enlaces (vertical)
+        var $linksContainer = $('<div>').addClass('lote-links-vertical').css({
+            'display': 'flex',
+            'flex-direction': 'column',
+            'margin-left': 'auto',
+            'gap': '5px'
+        });
+
+        // 1. CRONOGRAMA (siempre visible)
+        var $cronogramaLink = $('<a>')
+            .attr({
+                href: '/my/cronogramajz/download/' + lote.id,
+                title: 'Ver cronograma'
+            })
+            .addClass('lote-link-item cronograma-link')
+            .html('📋 Cronograma')
+            .css({
+                'text-decoration': 'none',
+                'font-size': '14px',
+                'padding': '4px 12px',
+                'border-radius': '4px',
+                'background-color': '#e3f2fd',
+                'color': '#0d6efd',
+                'display': 'inline-block',
+                'text-align': 'center',
+                'transition': 'all 0.2s'
+            });
+
+        $linksContainer.append($cronogramaLink);
+
+        // 2. MORA (debajo del cronograma, solo si tiene mora)
+        if (lote.mora != 0) {
+            var $moraLink = $('<a>')
+                .attr({
+                    href: '/my/mora/download/' + lote.id,
+                    title: 'Ver mora'
+                })
+                .addClass('lote-link-item mora-link')
+                .html('💰 Mora S/.' + lote.mora)
+                .css({
+                    'text-decoration': 'none',
+                    'font-size': '14px',
+                    'padding': '4px 12px',
+                    'border-radius': '4px',
+                    'background-color': '#f8d7da',
+                    'color': '#dc3545',
+                    'display': 'inline-block',
+                    'text-align': 'center',
+                    'transition': 'all 0.2s'
+                });
+
+            $linksContainer.append($moraLink);
+        }
+
+        // Agregar todo al label
         $label.append($checkbox, $span, $linksContainer);
         $(lotesContainer).append($label);
     });
