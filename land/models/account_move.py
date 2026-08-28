@@ -35,7 +35,7 @@ def format_phone_number(number):
     Formatea números telefónicos peruanos:
     - Elimina el símbolo '+' si existe
     - Asegura que tenga prefijo 51
-    - Total de 10 dígitos (incluyendo 51)
+    - Total: 51 + 9 dígitos = 11 dígitos en total (para celulares)
     """
     if not number:
         return None
@@ -47,25 +47,37 @@ def format_phone_number(number):
     if number.startswith('+'):
         number = number[1:]
 
-    # Eliminar cualquier carácter no numérico
+    # Eliminar cualquier carácter no numérico (espacios, guiones, etc.)
     number = re.sub(r'[^\d]', '', number)
 
-    # Si el número tiene 9 dígitos (sin prefijo), agregar '51'
+    # Caso 1: Número con 9 dígitos (ej: 954047869) -> agregar 51
     if len(number) == 9:
-        number = '51' + number
-    # Si el número tiene 10 dígitos (con prefijo 51), mantenerlo
-    elif len(number) == 10 and number.startswith('51'):
-        pass  # Número ya tiene formato correcto
-    # Si tiene más de 10 dígitos, tomar los últimos 10
-    elif len(number) > 10:
-        number = number[-10:]
-    # Si tiene menos de 9 dígitos, retornar None o manejarlo
-    elif len(number) < 9:
-        return None
+        return '51' + number
 
-    # Verificar que el número tenga exactamente 10 dígitos y empiece con 51
-    if len(number) == 10 and number.startswith('51'):
-        return number
+    # Caso 2: Número con 10 dígitos (ej: 9954047869) -> ya tiene 51 al inicio?
+    elif len(number) == 10:
+        if number.startswith('51'):
+            return number
+        else:
+            # Si no empieza con 51, podría ser un número con 9 dígitos + algo extra
+            return None
+
+    # Caso 3: Número con 11 dígitos (ej: 51954047869) -> formato correcto
+    elif len(number) == 11:
+        if number.startswith('51'):
+            return number
+        else:
+            return None
+
+    # Caso 4: Si tiene más de 11 dígitos, tomar los últimos 11
+    elif len(number) > 11:
+        number = number[-11:]
+        if number.startswith('51'):
+            return number
+        else:
+            return None
+
+    # Caso 5: Si tiene menos de 9 dígitos, es inválido
     else:
         return None
 
