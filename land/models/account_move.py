@@ -132,7 +132,7 @@ class AccountMove(models.Model):
         formatted_number = format_phone_number(number)
         if not formatted_number:
             raise ValidationError('NUMERO TELEFONICO INVALIDO')
-        url_invoice = self.get_portal_url()
+        url_invoice = 'https://ctm.jzolutions.com/'+self.get_portal_url()
         text=f'''Hola!! , revise su factura aqui ,  {url_invoice}'''
 
         url = f'''https://wa.me/{formatted_number}?text={text}'''
