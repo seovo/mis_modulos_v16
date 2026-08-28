@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Ícono de ojo para ver detalles del lote
                         var $eyeIcon = $('<a>')
                             .attr({
-                                href: '/my/cronogramajz/download/'lote.id+,
+                                href: '/my/cronogramajz/download/'+lote.id,
                                 title: 'Ver detalles del lote'
                             })
                             .addClass('lote-eye-icon')
