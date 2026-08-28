@@ -118,28 +118,49 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 if (lotes.length > 0) {
-                    lotes.forEach(function (lote) {
-                        var label = document.createElement('label');
-                        label.className = 'checkbox-lote';
-
-                        var checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.name = 'lotes';
-                        checkbox.value = lote.id;
-                        checkbox.setAttribute('data-company', lote.company);  // atributo interno
-
+                    $.each(lotes, function (i, lote) {
                         var texto = lote.contrato || '';
                         if (lote.mz || lote.lote) {
                             texto = lote.contrato + ' (' + lote.mz + '-' + lote.lote + ')';
                         }
 
-                        var span = document.createElement('span');
-                        span.className = 'lote-text';
-                        span.textContent = texto;
+                        var $label = $('<label>').addClass('checkbox-lote');
 
-                        label.appendChild(checkbox);
-                        label.appendChild(span);
-                        lotesContainer.appendChild(label);
+                        var $checkbox = $('<input>').attr({
+                            type: 'checkbox',
+                            name: 'lotes',
+                            value: lote.id,
+                            'data-company': lote.company
+                        });
+
+                        var $span = $('<span>').addClass('lote-text').text(texto);
+
+                        // Ícono de ojo para ver detalles del lote
+                        var $eyeIcon = $('<a>')
+                            .attr({
+                                href: '#',
+                                title: 'Ver detalles del lote'
+                            })
+                            .addClass('lote-eye-icon')
+                            .html('👁️')
+                            .css({
+                                'margin-left': 'auto',
+                                'text-decoration': 'none',
+                                'font-size': '18px'
+                            })
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                alert(
+                                    'Contrato: ' + lote.contrato +
+                                    '\nMZ: ' + (lote.mz || '—') +
+                                    '\nLote: ' + (lote.lote || '—') +
+                                    '\nProyecto ID: ' + lote.company
+                                );
+                            });
+
+                        $label.append($checkbox, $span, $eyeIcon);
+                        $(lotesContainer).append($label);
                     });
                     lotesGroup.style.display = 'block';
                 } else {
