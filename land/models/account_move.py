@@ -1,6 +1,6 @@
 from odoo import api, fields, models , _
 from odoo.tools import float_is_zero, format_amount, format_date, html_keep_url, is_html_empty
-
+from odoo.exceptions import ValidationError
 
 from odoo.tools import (
     date_utils,
@@ -26,6 +26,48 @@ CURRENCY = {
     "GBP": 4,
 }
 from datetime import datetime, timedelta
+
+import re
+
+
+def format_phone_number(number):
+    """
+    Formatea números telefónicos peruanos:
+    - Elimina el símbolo '+' si existe
+    - Asegura que tenga prefijo 51
+    - Total de 10 dígitos (incluyendo 51)
+    """
+    if not number:
+        return None
+
+    # Convertir a string y eliminar espacios
+    number = str(number).strip()
+
+    # Eliminar el símbolo '+' si existe
+    if number.startswith('+'):
+        number = number[1:]
+
+    # Eliminar cualquier carácter no numérico
+    number = re.sub(r'[^\d]', '', number)
+
+    # Si el número tiene 9 dígitos (sin prefijo), agregar '51'
+    if len(number) == 9:
+        number = '51' + number
+    # Si el número tiene 10 dígitos (con prefijo 51), mantenerlo
+    elif len(number) == 10 and number.startswith('51'):
+        pass  # Número ya tiene formato correcto
+    # Si tiene más de 10 dígitos, tomar los últimos 10
+    elif len(number) > 10:
+        number = number[-10:]
+    # Si tiene menos de 9 dígitos, retornar None o manejarlo
+    elif len(number) < 9:
+        return None
+
+    # Verificar que el número tenga exactamente 10 dígitos y empiece con 51
+    if len(number) == 10 and number.startswith('51'):
+        return number
+    else:
+        return None
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -71,6 +113,22 @@ class AccountMove(models.Model):
     mz_lot             = fields.Char(string="MZ-LT", compute="get_proveedores_land",store=True,copy=False)
     description_land   = fields.Char(string="Descripcion", compute="get_proveedores_land")
     nro_internal_land  = fields.Char(string="Expediente", compute="get_proveedores_land")
+
+    def send_wahtsapp_me_jz(self):
+        self.ensure_one()
+        number = self.partner_id.mobile or self.partner_id.phone
+        formatted_number = format_phone_number(number)
+        if not formatted_number:
+            raise ValidationError('NUMERO TELEFONICO INVALIDO')
+        url_invoice = self.get_portal_url()
+        text=f'''Hola!! , revise su factura aqui ,  {url_invoice}'''
+
+        url = f'''https://wa.me/{formatted_number}?text={text}'''
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': url,
+        }
 
     @api.depends('invoice_line_ids','invoice_line_ids.sale_line_ids')
     def get_proveedores_land(self):

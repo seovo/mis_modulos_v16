@@ -233,6 +233,8 @@
                            invisible="state != 'draft' "
                    />
 
+                   <button name="send_wahtsapp_me_jz" string="Enviar a Whatsapp" type="object" />
+
 
                </xpath>
 
