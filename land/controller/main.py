@@ -63,8 +63,7 @@ class Controller(http.Controller):
 
     @http.route(['/api/up/land'], type='http', auth='public', methods=['POST'], website=True, csrf=False)
     def upload_land(self, **post):
-        # Recepcionar el adjunto en una variable (solo por ahora)
-        adjunto = request.httprequest.files.get('adjunto')
+
 
         # Capturar los lotes seleccionados (checkboxes con name="lotes")
         lotes_seleccionados = request.httprequest.form.getlist('lotes')
@@ -146,8 +145,32 @@ class Controller(http.Controller):
         if email and email != '':
             partner.email = email
 
+        # Obtener archivos múltiples
+        archivos = request.httprequest.files.getlist('adjunto[]')
 
+        if archivos and invoice:
+            # Procesar cada archivo
+            for archivo in archivos:
+                # archivo.filename -> nombre del archivo
+                # archivo.stream -> contenido del archivo
+                # archivo.content_type -> tipo MIME
+                # Aquí guardas cada archivo como attachment en Odoo
+                attachment = request.env['ir.attachment'].create({
+                    'type': 'binary',
+                    'name': archivo.filename,
+                    'datas': archivo.read(),
+                    'mimetype': archivo.content_type,
+                    'res_model': 'account.move',
+                    'res_id': tu_registro_id,  # Reemplaza con el ID del registro
+                })
 
+                invoice.message_post(
+                    body='Comprobante adjunto ' + msg,
+                    attachment_ids=[attachment.id],
+                )
+
+        # Recepcionar el adjunto en una variable (solo por ahora)
+        adjunto = request.httprequest.files.get('adjunto')
         # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
 
         if adjunto and invoice:
@@ -164,6 +187,8 @@ class Controller(http.Controller):
                    body='Comprobante adjunto '+msg,
                    attachment_ids=[attachment.id],
             )
+
+
 
         return http.request.render("land.index_thanks")
 
