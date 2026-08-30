@@ -14,12 +14,8 @@ class AccountMove(models.Model):
     def change_date_jz_jz(self):
         for record in self:
 
-            if record.journal_id.l10n_latam_use_documents != True:
-                continue
 
-            raise ValidationError(record.journal_id.l10n_latam_use_documents)
-
-            if record.invoice_date and record.state == 'draft' :
+            if record.invoice_date and record.state == 'draft' and record.journal_id.l10n_latam_use_documents != True:
 
                 #date_now = fields.Datetime.now().date()
                 date_now = fields.Datetime.now() - timedelta(hours=5)
