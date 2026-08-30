@@ -491,7 +491,7 @@
                             Haz clic para seleccionar una o más imágenes
                             <small>JPG, PNG, GIF — Máx. 10 MB por archivo</small>
                         </span>
-                        <input type="file" id="adjunto" name="adjunto[]" accept="image/*" multiple required="required"/>
+                        <input type="file" id="adjunto" name="adjunto[]" accept="image/*" multiple="1" required="required"/>
                         <!-- Vista previa de múltiples archivos -->
                         <div class="file-preview" id="file_preview" style="display:none;">
                           <div id="file_list"></div>
