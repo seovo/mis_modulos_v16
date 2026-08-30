@@ -401,8 +401,7 @@ class AccountMove(models.Model):
 
     def action_post(self):
 
-        if not self.l10n_latam_use_documents:
-            return super().action_post()
+
 
         for line in self.invoice_line_ids:
             if line.order_advance_land and not line.sale_line_ids :
