@@ -13,6 +13,8 @@ class AccountMove(models.Model):
     @api.onchange('invoice_date','l10n_latam_document_type_id.code')
     def change_date_jz_jz(self):
         for record in self:
+            if not record.journal_id.l10n_latam_use_documents:
+                continue
             if record.invoice_date and record.state == 'draft' :
 
                 #date_now = fields.Datetime.now().date()
@@ -53,7 +55,7 @@ class AccountMove(models.Model):
 
     def action_post(self):
         if len(self) == 1:
-            if not self.l10n_latam_use_documents:
+            if not self.journal_id.l10n_latam_use_documents:
                 return super().action_post()
 
 
