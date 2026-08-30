@@ -484,19 +484,17 @@
 
 
                 <div class="form-group">
-                    <label for="adjunto">Adjunto (Imagen)</label>
+                    <label for="adjunto">Adjuntos (Imágenes)</label>
                     <div class="file-upload" id="file_upload_zone">
                         <span class="upload-icon">🖼️</span>
                         <span class="upload-text" id="upload_text">
-                            Haz clic para seleccionar una imagen
-                            <small>JPG, PNG, GIF — Máx. 10 MB</small>
+                            Haz clic para seleccionar una o más imágenes
+                            <small>JPG, PNG, GIF — Máx. 10 MB por archivo</small>
                         </span>
-                        <input type="file" id="adjunto" name="adjunto" accept="image/*" required="required"/>
-
-                        <!-- Vista previa / estado de archivo cargado -->
+                        <input type="file" id="adjunto" name="adjunto[]" accept="image/*" multiple required="required"/>
+                        <!-- Vista previa de múltiples archivos -->
                         <div class="file-preview" id="file_preview" style="display:none;">
-                            <img id="file_preview_img" src="" alt="Vista previa"/>
-                            <span class="file-name" id="file_name"></span>
+                          <div id="file_list"></div>
                         </div>
                     </div>
                 </div>

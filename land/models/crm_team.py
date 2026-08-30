@@ -21,9 +21,7 @@ class CrmTeam(models.Model):
             "name": f"COMISIONES {self.name}",
             "type": "ir.actions.act_window",
             "view_mode": "tree,form",
-            #"view_id": self.env.ref('land.view_order_form_due').id,
             "res_model": "commission.land",
-            #"res_id": self.id,
             "target": "current",
             "domain": [('team_id','=',self.id)] ,
             "context": {
@@ -36,9 +34,6 @@ class CrmTeam(models.Model):
     def get_show_comisiones_land(self):
 
         date = fields.Datetime.now().date()
-
-        #raise ValueError(self.member_ids)
-
 
         for user in self.member_ids:
 
@@ -54,13 +49,7 @@ class CrmTeam(models.Model):
                 'user_id':  user.id ,
                 'team_id': self.id ,
                 'type_period_comission': self.type_period_comission ,
-                #'state': draft
             })
-
-
-
-
-            #raise ValueError(new_com)
 
             new_com.onchange_user_id()
             new_com.change_type_period_comission()
