@@ -52,6 +52,11 @@ class AccountMove(models.Model):
 
 
     def action_post(self):
+        if len(self) == 1:
+            if not self.l10n_latam_use_documents:
+                return super().action_post()
+
+
         self.change_date_jz_jz()
         res = super().action_post()
         for record in self:
