@@ -62,7 +62,7 @@ class AccountMove(models.Model):
         self.change_date_jz_jz()
         res = super().action_post()
         for record in self:
-            if record.company_id.automatic_factu_jz:
+            if record.company_id.automatic_factu_jz and record.journal_id.l10n_latam_use_documents:
 
                 if record.edi_document_ids:
                     record.button_process_edi_web_services()
