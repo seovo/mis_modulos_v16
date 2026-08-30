@@ -13,6 +13,7 @@ class AccountMove(models.Model):
     @api.onchange('invoice_date','l10n_latam_document_type_id.code')
     def change_date_jz_jz(self):
         for record in self:
+            raise ValidationError(record.journal_id.l10n_latam_use_documents)
             if not record.journal_id.l10n_latam_use_documents:
                 continue
             if record.invoice_date and record.state == 'draft' :
