@@ -15,7 +15,7 @@ class AccountMove(models.Model):
         for record in self:
 
 
-            if record.invoice_date and record.state == 'draft' and record.journal_id.l10n_latam_use_documents != True:
+            if record.invoice_date and record.state == 'draft' :
 
                 #date_now = fields.Datetime.now().date()
                 date_now = fields.Datetime.now() - timedelta(hours=5)
@@ -55,10 +55,15 @@ class AccountMove(models.Model):
 
     def action_post(self):
 
+        if len(self) == 1:
+            if not self.journal_id.edi_format_ids:
+                return super().action_post()
+
+
         self.change_date_jz_jz()
         res = super().action_post()
         for record in self:
-            if record.company_id.automatic_factu_jz and record.journal_id.l10n_latam_use_documents:
+            if record.company_id.automatic_factu_jz :
 
                 if record.edi_document_ids:
                     record.button_process_edi_web_services()
