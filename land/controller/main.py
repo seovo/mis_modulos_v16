@@ -158,7 +158,7 @@ class Controller(http.Controller):
                 attachment = request.env['ir.attachment'].sudo().create({
                     'type': 'binary',
                     'name': archivo.filename,
-                    'datas': archivo.read(),
+                    'datas': base64.b64encode(archivo.read()),
                     'mimetype': archivo.content_type,
                     'res_model': 'account.move',
                     'res_id': invoice.id,  # Reemplaza con el ID del registro
