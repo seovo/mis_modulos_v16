@@ -155,7 +155,7 @@ class Controller(http.Controller):
                 # archivo.stream -> contenido del archivo
                 # archivo.content_type -> tipo MIME
                 # Aquí guardas cada archivo como attachment en Odoo
-                attachment = request.env['ir.attachment'].create({
+                attachment = request.env['ir.attachment'].sudo().create({
                     'type': 'binary',
                     'name': archivo.filename,
                     'datas': archivo.read(),
@@ -164,7 +164,7 @@ class Controller(http.Controller):
                     'res_id': invoice.id,  # Reemplaza con el ID del registro
                 })
 
-                invoice.message_post(
+                invoice.sudo().message_post(
                     body='Comprobante adjunto ' + msg,
                     attachment_ids=[attachment.id],
                 )
