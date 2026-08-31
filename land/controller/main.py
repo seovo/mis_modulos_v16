@@ -169,6 +169,7 @@ class Controller(http.Controller):
                     attachment_ids=[attachment.id],
                 )
 
+
         # Recepcionar el adjunto en una variable (solo por ahora)
         adjunto = request.httprequest.files.get('adjunto')
         # TODO: cuando lo indiques, guardar el adjunto en el chatter de una factura
