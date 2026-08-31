@@ -200,7 +200,6 @@
                                     <span t-if="not cuota.is_paid">NO</span>
                                 </td>
                                 <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
-                                <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
                                 <td>
                                     <a      t-if="cuota.move_id"
                                             t-attf-href="#{cuota.move_id.sudo().get_portal_url()}}" target="_blank">
