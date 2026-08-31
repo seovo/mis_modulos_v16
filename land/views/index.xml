@@ -428,6 +428,7 @@
                 <div class="form-group" id="lotes_group" style="display:none;">
                     <label>Lotes (selecciona uno o varios si va cancelar )</label>
                     <div id="lotes_container"></div>
+                    <label>Si es un nuevo lote indiquelo</label>
                 </div>
 
                 <!-- Campos para cliente nuevo: proyecto, MZ y LT (visibles solo si no hay lotes) -->

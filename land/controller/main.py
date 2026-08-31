@@ -255,6 +255,7 @@ class Controller(http.Controller):
 
                 })
 
+
         phone = partner.phone or partner.mobile or ''
 
         if len(phone) <= 4:

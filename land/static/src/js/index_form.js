@@ -3,6 +3,51 @@ document.addEventListener('DOMContentLoaded', function () {
     const tIdentiInput = document.getElementById('tipo_identificacion');
     let debounceTimer = null;
 
+    // ===== Referencias a los campos =====
+    const lotesContainer = document.getElementById('lotes_container');
+    const lotesGroup = document.getElementById('lotes_group');
+    const proyectoGroup = document.getElementById('proyecto_group');
+    const mzLtGroup = document.getElementById('mz_lt_group');
+    const proyectoInput = document.getElementById('proyecto');
+    const mzInput = document.getElementById('mz');
+    const ltInput = document.getElementById('lt');
+    const celularInput = document.getElementById('celular');
+
+    // ===== Función para verificar si hay lotes seleccionados =====
+    function hasLotesSeleccionados() {
+        const checkboxes = lotesContainer.querySelectorAll('input[name="lotes"]:checked');
+        return checkboxes.length > 0;
+    }
+
+    // ===== Función para actualizar visibilidad de campos =====
+    function actualizarVisibilidadCampos() {
+        const hayLotesDisponibles = lotesContainer.children.length > 0;
+        const hayLotesSeleccionados = hasLotesSeleccionados();
+
+        // Si hay lotes disponibles Y hay al menos uno seleccionado
+        if (hayLotesDisponibles && hayLotesSeleccionados) {
+            // Ocultar y quitar required de proyecto/MZ/LT
+            proyectoGroup.style.display = 'none';
+            mzLtGroup.style.display = 'none';
+            proyectoInput.removeAttribute('required');
+            mzInput.removeAttribute('required');
+            ltInput.removeAttribute('required');
+
+            // Celular NO requerido (cliente existente)
+            celularInput.removeAttribute('required');
+        } else {
+            // Mostrar y requerir proyecto/MZ/LT (cliente nuevo o sin lotes seleccionados)
+            proyectoGroup.style.display = 'block';
+            mzLtGroup.style.display = 'flex';
+            proyectoInput.setAttribute('required', 'required');
+            mzInput.setAttribute('required', 'required');
+            ltInput.setAttribute('required', 'required');
+
+            // Celular requerido
+            celularInput.setAttribute('required', 'required');
+        }
+    }
+
     // ===== Input de adjunto: mostrar múltiples archivos cargados =====
     const adjuntoInput = document.getElementById('adjunto');
     const fileUploadZone = document.getElementById('file_upload_zone');
@@ -98,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     flex-shrink: 0;
                 `;
 
-                // Botón para eliminar archivo individual (opcional)
+                // Botón para eliminar archivo individual
                 const removeBtn = document.createElement('button');
                 removeBtn.textContent = '✕';
                 removeBtn.type = 'button';
@@ -191,9 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // ===== El resto de tu código (consultarCliente, lotes, etc.) se mantiene igual =====
-    // ... (mantén todo el código existente de consultarCliente, eventos, etc.)
-
+    // ===== FUNCIÓN CONSULTAR CLIENTE =====
     function consultarCliente() {
         const vat = vatInput.value.trim();
         if (!vat) {
@@ -222,43 +265,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 result = data.result;
             }
             if (result && result.success) {
+                // Autocompletar datos del cliente
                 document.getElementById('nombres_apellidos').value = result.name || '';
                 document.getElementById('celular').placeholder = result.phone || '';
                 document.getElementById('correo').placeholder = result.email || '';
                 if (result.type_identification) {
-                  document.getElementById('tipo_identificacion').value = result.type_identification || '';
+                    document.getElementById('tipo_identificacion').value = result.type_identification || '';
                 }
 
-                var lotesContainer = document.getElementById('lotes_container');
-                var lotesGroup = document.getElementById('lotes_group');
+                // Limpiar contenedor de lotes
                 lotesContainer.innerHTML = '';
-
                 var lotes = result.lotes || [];
-                var celularInput = document.getElementById('celular');
-
-                var proyectoGroup = document.getElementById('proyecto_group');
-                var mzLtGroup = document.getElementById('mz_lt_group');
-                var proyectoInput = document.getElementById('proyecto');
-                var mzInput = document.getElementById('mz');
-                var ltInput = document.getElementById('lt');
 
                 if (lotes.length > 0) {
-                    celularInput.removeAttribute('required');
-                    proyectoGroup.style.display = 'none';
-                    mzLtGroup.style.display = 'none';
-                    proyectoInput.removeAttribute('required');
-                    mzInput.removeAttribute('required');
-                    ltInput.removeAttribute('required');
-                } else {
-                    celularInput.setAttribute('required', 'required');
-                    proyectoGroup.style.display = 'block';
-                    mzLtGroup.style.display = 'flex';
-                    proyectoInput.setAttribute('required', 'required');
-                    mzInput.setAttribute('required', 'required');
-                    ltInput.setAttribute('required', 'required');
-                }
+                    // Mostrar grupo de lotes
+                    lotesGroup.style.display = 'block';
 
-                if (lotes.length > 0) {
+                    // Renderizar checkboxes de lotes
                     $.each(lotes, function (i, lote) {
                         var texto = lote.contrato || '';
                         if (lote.mz || lote.lote) {
@@ -330,10 +353,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         $label.append($checkbox, $span, $linksContainer);
                         $(lotesContainer).append($label);
                     });
-                    lotesGroup.style.display = 'block';
                 } else {
+                    // No hay lotes, ocultar el grupo
                     lotesGroup.style.display = 'none';
                 }
+
+                // Actualizar visibilidad de campos después de cargar lotes
+                actualizarVisibilidadCampos();
             }
         })
         .catch(function (error) {
@@ -341,13 +367,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===== Eventos para consultar cliente =====
-    const lotesContainer = document.getElementById('lotes_container');
-
+    // ===== EVENTO: Cuando se selecciona/deselecciona un lote =====
     lotesContainer.addEventListener('change', function (event) {
         if (event.target.type === 'checkbox' && event.target.name === 'lotes') {
             var companySeleccionado = event.target.getAttribute('data-company');
 
+            // Si el checkbox se marcó, desmarcar los de company diferente
             if (event.target.checked) {
                 var checkboxes = lotesContainer.querySelectorAll('input[name="lotes"]');
                 checkboxes.forEach(function (cb) {
@@ -356,9 +381,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
             }
+
+            // Actualizar visibilidad de campos según selección
+            actualizarVisibilidadCampos();
         }
     });
 
+    // ===== EVENTOS para consultar cliente =====
     vatInput.addEventListener('input', function () {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(consultarCliente, 600);
@@ -373,4 +402,32 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(debounceTimer);
         consultarCliente();
     });
+
+    // ===== VALIDACIÓN antes de enviar el formulario =====
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const hayLotesDisponibles = lotesContainer.children.length > 0;
+            const hayLotesSeleccionados = hasLotesSeleccionados();
+
+            // Si hay lotes disponibles pero no hay ninguno seleccionado
+            if (hayLotesDisponibles && !hayLotesSeleccionados) {
+                // Verificar que proyecto, MZ y LT estén completos
+                if (!proyectoInput.value.trim() || !mzInput.value.trim() || !ltInput.value.trim()) {
+                    e.preventDefault();
+                    alert('Por favor, completa los campos de Proyecto, MZ y LT para registrar un nuevo lote, o selecciona un lote existente.');
+                    return false;
+                }
+            }
+
+            // Verificar que celular esté completo si es necesario
+            if (celularInput.hasAttribute('required') && !celularInput.value.trim()) {
+                e.preventDefault();
+                alert('Por favor, ingresa tu número de celular.');
+                return false;
+            }
+
+            return true;
+        });
+    }
 });
