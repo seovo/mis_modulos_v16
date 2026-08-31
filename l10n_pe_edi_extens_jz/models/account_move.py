@@ -15,7 +15,7 @@ class AccountMove(models.Model):
         for record in self:
 
 
-            if record.invoice_date and record.state == 'draft' :
+            if record.invoice_date and record.state == 'draft' and self.journal_id.edi_format_ids:
 
                 #date_now = fields.Datetime.now().date()
                 date_now = fields.Datetime.now() - timedelta(hours=5)
