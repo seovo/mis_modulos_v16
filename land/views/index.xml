@@ -79,9 +79,11 @@
             <div class="card-thanks">
                 <span class="icon">✅</span>
                 <h1>¡Gracias por registrar tu comprobante!</h1>
+                <h1>su factura es el Nro <t t-esc="id" /></h1>
                 <p>
                     Nuestro equipo revisará la información y emitirá el comprobante correspondiente.
                 </p>
+                <p>Puede revisar su factura emitida en el cronograma de Pagos</p>
                 <a href="/ui/land" class="btn-volver">Volver al inicio</a>
             </div>
 
