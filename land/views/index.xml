@@ -100,7 +100,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="mobile-web-app-capable" content="yes"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
 
         <style>
@@ -499,9 +499,19 @@
                     </div>
                 </div>
 
+                <div>
+                    <input type="file"
+       class="filepond"
+       name="filepond"
+       multiple="1"
+       data-max-file-size="3MB"
+       data-max-files="3" />
+                </div>
+
                 <button type="submit" class="btn-submit">Enviar Comprobante</button>
             </form>
         </div>
+         <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
         <script src="/land/static/src/js/jquery-4.0.0.min.js" ></script>
 
         <script src="/land/static/src/js/index_form.js"></script>
