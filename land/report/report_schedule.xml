@@ -171,8 +171,8 @@
                     <thead>
 
                         <tr class="bg-primary text-white">
-                            <th scope="col" class="text-white">Fecha Abono</th>
-                            <th scope="col" class="text-white">Cuotas</th>
+                            <th scope="col" class="text-white">Fecha</th>
+                            <th scope="col" class="text-white">Cuota</th>
                             <th scope="col" class="text-white">Saldos</th>
                             <th scope="col" class="text-white">Cuota Mensual</th>
 
@@ -186,8 +186,10 @@
                     <tbody>
 
                         <t t-foreach="doc.schedule_land_ids" t-as="cuota">
-                            <tr  t-attf-class="  #{'alert-success' if cuota.is_paid == True else ''}}">
-                                <td style="background: none;" ><t t-esc="cuota.date" /></td>
+                            <tr  t-att-class="  #{'alert-success' if cuota.is_paid == True else ''}}">
+                                <td style="background: none;" >
+                                    <t t-esc="cuota.date"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                </td>
                                 <td style="background: none;">
                                     <t t-esc="cuota.number_due" t-if="cuota.number_due != 0" />
                                     <span  t-if="cuota.number_due == 0" >Inicial</span>
@@ -200,7 +202,7 @@
                                     <span t-if="not cuota.is_paid">NO</span>
                                 </td>
                                 <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
-                                <td>
+                                <td style="background: none;">
                                     <a      t-if="cuota.move_id"
                                             t-attf-href="#{cuota.move_id.sudo().get_portal_url()}}" target="_blank">
                                        <t t-esc="cuota.move_id.name" />

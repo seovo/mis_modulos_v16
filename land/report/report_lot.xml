@@ -70,7 +70,7 @@
 
                                    <tr
                                            t-if="lot.state in filter_state"
-                                           t-attf-class="
+                                           t-att-class="
                                          #{'alert-danger' if lot.state == 'sale' else ''}
                                          #{'alert-success' if lot.state == 'free' else ''}
                                          #{'alert-warning' if lot.state == 'reserved' else ''}
