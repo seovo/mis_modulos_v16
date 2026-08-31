@@ -13,6 +13,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const ltInput = document.getElementById('lt');
     const celularInput = document.getElementById('celular');
 
+    // ===== Función para verificar si el celular tiene un valor existente =====
+    function tieneCelularExistente() {
+        // Si el placeholder tiene un valor que no está vacío y no es el texto por defecto
+        const placeholder = celularInput.placeholder || '';
+        // Consideramos que tiene valor existente si el placeholder es diferente a:
+        // - vacío
+        // - el texto por defecto "999 999 999"
+        // - "Celular" o "Número de celular"
+        return placeholder.trim() !== '' &&
+               placeholder.trim() !== '999 999 999' &&
+               placeholder.trim() !== 'Celular' &&
+               placeholder.trim() !== 'Número de celular' &&
+               placeholder.trim() !== 'Teléfono' &&
+               placeholder.trim() !== 'Número de teléfono';
+    }
+
     // ===== Función para verificar si hay lotes seleccionados =====
     function hasLotesSeleccionados() {
         const checkboxes = lotesContainer.querySelectorAll('input[name="lotes"]:checked');
@@ -23,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function actualizarVisibilidadCampos() {
         const hayLotesDisponibles = lotesContainer.children.length > 0;
         const hayLotesSeleccionados = hasLotesSeleccionados();
+        const tieneCelular = tieneCelularExistente();
 
         // Si hay lotes disponibles Y hay al menos uno seleccionado
         if (hayLotesDisponibles && hayLotesSeleccionados) {
@@ -32,9 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
             proyectoInput.removeAttribute('required');
             mzInput.removeAttribute('required');
             ltInput.removeAttribute('required');
-
-            // Celular NO requerido (cliente existente)
-            celularInput.removeAttribute('required');
         } else {
             // Mostrar y requerir proyecto/MZ/LT (cliente nuevo o sin lotes seleccionados)
             proyectoGroup.style.display = 'block';
@@ -42,9 +56,20 @@ document.addEventListener('DOMContentLoaded', function () {
             proyectoInput.setAttribute('required', 'required');
             mzInput.setAttribute('required', 'required');
             ltInput.setAttribute('required', 'required');
+        }
 
-            // Celular requerido
+        // ===== LÓGICA DEL CELULAR =====
+        // Si tiene un valor existente (placeholder con datos del cliente), NO es requerido
+        // Si NO tiene valor existente (placeholder vacío o por defecto), ES requerido
+        if (tieneCelular) {
+            // Tiene celular registrado -> NO requerido
+            celularInput.removeAttribute('required');
+            // Opcional: mostrar un indicador de que ya tiene celular registrado
+            celularInput.style.borderColor = '#28a745'; // Verde para indicar que ya tiene
+        } else {
+            // No tiene celular registrado -> REQUERIDO
             celularInput.setAttribute('required', 'required');
+            celularInput.style.borderColor = ''; // Restaurar color por defecto
         }
     }
 
@@ -267,8 +292,26 @@ document.addEventListener('DOMContentLoaded', function () {
             if (result && result.success) {
                 // Autocompletar datos del cliente
                 document.getElementById('nombres_apellidos').value = result.name || '';
-                document.getElementById('celular').placeholder = result.phone || '';
-                document.getElementById('correo').placeholder = result.email || '';
+
+                // ===== CELULAR: Si tiene valor, se pone en placeholder y NO es requerido =====
+                if (result.phone) {
+                    celularInput.placeholder = result.phone; // Texto informativo
+                    celularInput.value = ''; // Limpiar el value para que el usuario vea el placeholder
+                    celularInput.style.color = '#6c757d'; // Color gris para indicar que es informativo
+                } else {
+                    celularInput.placeholder = '999 999 999'; // Placeholder por defecto
+                    celularInput.value = '';
+                    celularInput.style.color = ''; // Restaurar color
+                }
+
+                // ===== CORREO: Siempre se pone en value =====
+                const correoInput = document.getElementById('correo');
+                if (result.email) {
+                    correoInput.value = result.email;
+                } else {
+                    correoInput.value = '';
+                }
+
                 if (result.type_identification) {
                     document.getElementById('tipo_identificacion').value = result.type_identification || '';
                 }
@@ -409,6 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
         form.addEventListener('submit', function(e) {
             const hayLotesDisponibles = lotesContainer.children.length > 0;
             const hayLotesSeleccionados = hasLotesSeleccionados();
+            const tieneCelular = tieneCelularExistente();
 
             // Si hay lotes disponibles pero no hay ninguno seleccionado
             if (hayLotesDisponibles && !hayLotesSeleccionados) {
@@ -420,14 +464,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Verificar que celular esté completo si es necesario
-            if (celularInput.hasAttribute('required') && !celularInput.value.trim()) {
+            // ===== VALIDAR CELULAR =====
+            // Solo es requerido si NO tiene un valor existente
+            if (!tieneCelular && !celularInput.value.trim()) {
                 e.preventDefault();
                 alert('Por favor, ingresa tu número de celular.');
+                celularInput.focus();
                 return false;
             }
 
             return true;
         });
     }
+
+    // ===== Inicializar visibilidad al cargar la página =====
+    actualizarVisibilidadCampos();
 });
