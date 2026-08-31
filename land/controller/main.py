@@ -161,7 +161,7 @@ class Controller(http.Controller):
                     'datas': archivo.read(),
                     'mimetype': archivo.content_type,
                     'res_model': 'account.move',
-                    'res_id': tu_registro_id,  # Reemplaza con el ID del registro
+                    'res_id': invoice.id,  # Reemplaza con el ID del registro
                 })
 
                 invoice.message_post(
