@@ -202,9 +202,9 @@
                                 <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
                                 <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
                                 <td>
-                                    <a      t-if="doc.move_id"
-                                            t-attf-href="#{doc.move_id.sudo().get_portal_url()}}" target="_blank">
-                                       <t t-esc="doc.move_id.name" />
+                                    <a      t-if="cuota.move_id"
+                                            t-attf-href="#{cuota.move_id.sudo().get_portal_url()}}" target="_blank">
+                                       <t t-esc="cuota.move_id.name" />
                                     </a>
 
                                 </td>
