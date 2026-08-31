@@ -186,7 +186,7 @@
                     <tbody>
 
                         <t t-foreach="doc.schedule_land_ids" t-as="cuota">
-                            <tr  t-attf-class="  #{'alert-success' if doc.is_paid == True else ''}}">
+                            <tr  t-attf-class="  #{'alert-success' if cuota.is_paid == True else ''}}">
                                 <td style="background: none;" ><t t-esc="cuota.date" /></td>
                                 <td style="background: none;">
                                     <t t-esc="cuota.number_due" t-if="cuota.number_due != 0" />
