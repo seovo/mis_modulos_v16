@@ -176,8 +176,9 @@
                             <th scope="col" class="text-white">Saldos</th>
                             <th scope="col" class="text-white">Cuota Mensual</th>
 
-                            <th scope="col" class="text-white">Pagado?</th>
+                            <th scope="col" class="text-white">Pagado</th>
                             <th scope="col" class="text-white">Monto Pagado</th>
+                            <th scope="col" class="text-white">Factura</th>
 
                         </tr>
                     </thead>
@@ -185,9 +186,12 @@
                     <tbody>
 
                         <t t-foreach="doc.schedule_land_ids" t-as="cuota">
-                            <tr>
+                            <tr  t-attf-class="  #{'alert-success' if doc.is_paid == True else ''}}">
                                 <td style="background: none;" ><t t-esc="cuota.date" /></td>
-                                <td style="background: none;"><t t-esc="cuota.number_due" /></td>
+                                <td style="background: none;">
+                                    <t t-esc="cuota.number_due" t-if="cuota.number_due != 0" />
+                                    <span  t-if="cuota.number_due 0= 0" >Inicial</span>
+                                </td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.balan,2)" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
 
@@ -195,7 +199,16 @@
                                     <span t-if="cuota.is_paid">SI</span>
                                     <span t-if="not cuota.is_paid">NO</span>
                                 </td>
-                                <td style="background: none;"><t t-esc="cuota.amount_due_land" /></td>
+                                <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
+                                <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
+                                <td>
+                                    <a      t-if="doc.move_id"
+                                            t-attf-href="#{doc.move_id.sudo().get_portal_url()}}" target="_blank">
+                                       <t t-esc="doc.move_id.name" />
+                                    </a>
+
+                                </td>
+
 
 
 
