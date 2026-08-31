@@ -186,7 +186,7 @@
                     <tbody>
 
                         <t t-foreach="doc.schedule_land_ids" t-as="cuota">
-                            <tr  t-att-class="  #{'alert-success' if cuota.is_paid == True else ''}}">
+                            <tr  t-attr-class="  #{'alert-success' if cuota.is_paid == True else ''}">
                                 <td style="background: none;" >
                                     <t t-esc="cuota.date"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
                                 </td>
