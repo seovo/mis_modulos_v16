@@ -701,7 +701,9 @@
                                 >
                    <field name="nro_internal_land" optional="show" />
                    <field name="mz_lot" />
-                   <field name="partner_id"   optional="hidden" />
+                   <field name="partner_id"   />
+                   <field name="identification_type"   />
+                   <field name="vat"   />
                    <field name="last_payment_date_land"  optional="hidden" />
 
 

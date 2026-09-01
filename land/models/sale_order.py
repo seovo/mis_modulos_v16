@@ -15,6 +15,8 @@ class SaleOrder(models.Model):
         comodel_name='res.users',
         domain=lambda self: "[('company_ids', '=', company_id)]"
     )
+    vat = fields.Char(related='partner_id.vat', string="RUC/DNI")
+    identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name', string="Doc")
     #############
 
     nro_internal_land =  fields.Char(string="Expediente",copy=False)
