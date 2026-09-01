@@ -262,6 +262,10 @@ END AS display_type      ''',
         string_sql = f"SELECT * FROM {table} LIMIT 1"
         #raise ValueError(string_sql)
 
+        cursor.execute(string_sql)
+
+        '''
+
         if table == 'res_partner':
             cursor.execute(string_sql)
         else:
@@ -272,6 +276,8 @@ END AS display_type      ''',
                 # cursor.execute(string_sql)
                 self.columns = None
                 return
+                
+        '''
 
         self.columns = None
 
