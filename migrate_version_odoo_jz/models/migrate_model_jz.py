@@ -587,11 +587,11 @@ END AS display_type      ''',
                 namm = f'''
                      CASE
                         WHEN {colx.name} IS NOT NULL THEN  jsonb_build_object('1', {colx.name})::text 
-                        ELSE ****#####*****
-                     AS {namm}
+                        ELSE '[]'::jsonb  
+                     END AS {namm}
                  '''
 
-                namm = namm.replace('****#####*****',"'{}'")
+
 
             if colx.type_field in ['jsonb_text']:
                 namm += '::text'
