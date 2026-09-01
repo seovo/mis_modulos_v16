@@ -584,12 +584,13 @@ END AS display_type      ''',
             #todos los  que son company_dependent  tendran esta estructura debe ser automatico ahorita est manual
 
             if colx.ir_model_field_id and colx.ir_model_field_id.company_dependent == True:
+                ash = "'{}'"
                 namm = f'''
                     CASE
                         WHEN {colx.name} IS NOT NULL THEN 
                             jsonb_build_object('1', {colx.name})
                         ELSE 
-                             '{'{}'}'::jsonb
+                             {ash}
                     END AS {namm}
                 '''
 
