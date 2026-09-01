@@ -585,9 +585,10 @@ END AS display_type      ''',
 
             if colx.ir_model_field_id and colx.ir_model_field_id.company_dependent == True:
                 namm = f'''
-                     jsonb_build_object(
-                        '1x', {colx.name}
-                     )::text AS {namm}
+                     CASE
+                        WHEN {colx.name} IS NOT NULL THEN  jsonb_build_object('1', {colx.name})::text 
+                        ELSE '[]'::jsonb  
+                     AS {namm}
                  '''
 
 
