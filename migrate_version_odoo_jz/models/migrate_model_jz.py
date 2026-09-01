@@ -588,9 +588,9 @@ END AS display_type      ''',
                 namm = f'''
                     CASE
                         WHEN {colx.name} IS NOT NULL THEN 
-                            jsonb_build_object('1', {colx.name})
+                            jsonb_build_object('1', {colx.name})::text
                         ELSE 
-                             '{{}}'::text
+                             {ash}::text
                     END AS {namm}
                 '''
 
