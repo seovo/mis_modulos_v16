@@ -261,15 +261,16 @@ END AS display_type      ''',
 
         string_sql = f"SELECT * FROM {table} LIMIT 1"
         #raise ValueError(string_sql)
+        self.columns = None
         try:
             cursor.execute(string_sql)
 
         except:
-            #cursor.execute(string_sql)
-            self.columns = None
-            return
+            cursor.execute(string_sql)
+            #self.columns = None
+            #return
 
-        self.columns = None
+
 
         if  '_rel' in self.table:
             self.no_existe_id = True
