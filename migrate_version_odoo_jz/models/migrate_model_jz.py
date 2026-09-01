@@ -589,7 +589,7 @@ END AS display_type      ''',
                         WHEN {colx.name} IS NOT NULL THEN 
                             jsonb_build_object('1', {colx.name})
                         ELSE 
-                            '[]'::jsonb
+                             '{{}}'::jsonb
                     END AS {namm}
                 '''
 
