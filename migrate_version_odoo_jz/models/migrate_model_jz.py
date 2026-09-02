@@ -1425,8 +1425,7 @@ END AS display_type      ''',
                     })
                 else:
                     if self.create_record_master:
-                        if self.migrate_id.current_version >= 19:
-                            value_deprecated = account[position_deprecated]
+
 
 
                         value_note = account[position_note]
@@ -1438,12 +1437,18 @@ END AS display_type      ''',
                             'company_ids': [(6, 0, [self.env.company.id])] ,
                             'name': name_account ,
                             'code': code_account ,
-                            'deprecated': value_deprecated ,
+
                             'note': value_note ,
 
                             'reconcile': value_reconcile
 
                         }
+
+                        if self.migrate_id.current_version >= 19:
+                            value_deprecated = account[position_deprecated]
+                            data_create_account.update({
+                                'deprecated': value_deprecated ,
+                            })
 
                         if self.migrate_id.from_version >= 11:
                             value_group = account[position_group_id]
