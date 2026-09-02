@@ -1397,7 +1397,7 @@ END AS display_type      ''',
 
                 position_reconcile = column_names.index('"reconcile"')
 
-                if self.migrate_id.current_version >= 11 :
+                if self.migrate_id.from_version >= 11 :
                     position_group_id = column_names.index('"group_id"')
 
             for account in resultados:
@@ -1439,7 +1439,7 @@ END AS display_type      ''',
 
                         }
 
-                        if self.migrate_id.current_version >= 11:
+                        if self.migrate_id.from_version >= 11:
                             value_group = account[position_group_id]
                             data_create_account.update({
                                 'group_id': value_group,
