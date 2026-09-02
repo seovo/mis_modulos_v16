@@ -299,7 +299,8 @@ class MigrateJz(models.Model):
 
     def get_tables_maestros(self):
         tables_maestros = [
-            'account_group','account_account','account_tax_group','product_pricelist','account_journal','res_currency',
+            'account_group','res_currency',
+            'account_account','account_tax_group','product_pricelist','account_journal',
             'account_tax','stock_location'
         ]
 

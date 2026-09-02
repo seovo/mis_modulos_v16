@@ -275,15 +275,9 @@ END AS display_type      ''',
             cursor.execute(string_sql)
 
         except:
-
-            if table in ['account_group']:
-                cursor.execute(string_sql)
-            else:
-                # cursor.execute(string_sql)
-                self.columns = None
-                return
-
-
+            #cursor.execute(string_sql)
+            self.columns = None
+            return
 
         self.columns = None
 
@@ -1400,8 +1394,11 @@ END AS display_type      ''',
             if self.create_record_master:
                 position_deprecated = column_names.index('"deprecated"')
                 position_note  = column_names.index('"note"')
-                position_group_id = column_names.index('"group_id"')
+
                 position_reconcile = column_names.index('"reconcile"')
+
+                if self.migrate_id.current_version >= 11 :
+                    position_group_id = column_names.index('"group_id"')
 
             for account in resultados:
                 id_account = int(account[0])
@@ -1427,7 +1424,7 @@ END AS display_type      ''',
                     if self.create_record_master:
                         value_deprecated = account[position_deprecated]
                         value_note = account[position_note]
-                        value_group = account[position_group_id]
+
                         value_reconcile = account[position_reconcile]
                         if not code_account or code_account == 'False':
                             raise ValidationError(str([name_account,id_account]))
@@ -1437,10 +1434,16 @@ END AS display_type      ''',
                             'code': code_account ,
                             'deprecated': value_deprecated ,
                             'note': value_note ,
-                            'group_id': value_group ,
+
                             'reconcile': value_reconcile
 
                         }
+
+                        if self.migrate_id.current_version >= 11:
+                            value_group = account[position_group_id]
+                            data_create_account.update({
+                                'group_id': value_group,
+                            })
 
                         try:
                             exist_account = self.env['account.account'].create(data_create_account)
