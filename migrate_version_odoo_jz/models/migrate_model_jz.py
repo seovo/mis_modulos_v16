@@ -573,24 +573,30 @@ END AS display_type      ''',
                 # END AS {namm}
                 # '''
 
+
+
                 namm = f'''
-                jsonb_build_object(
-                    'en_US', {colx.name}
-                )::text AS {namm}
+                    CASE
+                        WHEN {colx.name} IS NOT NULL THEN 
+                            jsonb_build_object('en_US', {colx.name})::text
+                        ELSE 
+                            {"'{}'"}::text
+                    END AS {namm}
                 '''
+
                 #,'es_PE', {colx.name}
 
 
             #todos los  que son company_dependent  tendran esta estructura debe ser automatico ahorita est manual
 
             if colx.ir_model_field_id and colx.ir_model_field_id.company_dependent == True:
-                ash = "'{}'"
+
                 namm = f'''
                     CASE
                         WHEN {colx.name} IS NOT NULL THEN 
                             jsonb_build_object('1', {colx.name})::text
                         ELSE 
-                             {ash}::text
+                            {"'{}'"}::text
                     END AS {namm}
                 '''
 
