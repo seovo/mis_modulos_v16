@@ -1392,7 +1392,10 @@ END AS display_type      ''',
             position_code = column_names.index('"code"')
 
             if self.create_record_master:
-                position_deprecated = column_names.index('"deprecated"')
+                if self.migrate_id.current_version >= 19:
+                    position_deprecated = column_names.index('"deprecated"')
+
+
                 position_note  = column_names.index('"note"')
 
                 position_reconcile = column_names.index('"reconcile"')
@@ -1422,7 +1425,10 @@ END AS display_type      ''',
                     })
                 else:
                     if self.create_record_master:
-                        value_deprecated = account[position_deprecated]
+                        if self.migrate_id.current_version >= 19:
+                            value_deprecated = account[position_deprecated]
+
+
                         value_note = account[position_note]
 
                         value_reconcile = account[position_reconcile]
