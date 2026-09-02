@@ -275,9 +275,15 @@ END AS display_type      ''',
             cursor.execute(string_sql)
 
         except:
-            #cursor.execute(string_sql)
-            self.columns = None
-            return
+
+            if table in ['account_group']:
+                cursor.execute(string_sql)
+            else:
+                # cursor.execute(string_sql)
+                self.columns = None
+                return
+
+
 
         self.columns = None
 
