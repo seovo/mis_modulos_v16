@@ -1392,7 +1392,7 @@ END AS display_type      ''',
             position_code = column_names.index('"code"')
 
             if self.create_record_master:
-                if self.migrate_id.current_version >= 19:
+                if self.migrate_id.current_version < 19:
                     position_deprecated = column_names.index('"deprecated"')
 
 
@@ -1444,7 +1444,7 @@ END AS display_type      ''',
 
                         }
 
-                        if self.migrate_id.current_version >= 19:
+                        if self.migrate_id.current_version < 19:
                             value_deprecated = account[position_deprecated]
                             data_create_account.update({
                                 'deprecated': value_deprecated ,
