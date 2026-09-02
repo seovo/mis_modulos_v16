@@ -1445,10 +1445,12 @@ END AS display_type      ''',
                                 'group_id': value_group,
                             })
 
-                        try:
-                            exist_account = self.env['account.account'].create(data_create_account)
-                        except:
-                            raise ValidationError(str(data_create_account))
+                        exist_account = self.env['account.account'].create(data_create_account)
+
+                        #try:
+                        #    exist_account = self.env['account.account'].create(data_create_account)
+                        #except:
+                        #    raise ValidationError(str(data_create_account))
 
 
 
