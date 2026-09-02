@@ -251,6 +251,16 @@ END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
 
+        if table == 'res_users':
+            if self.migrate_id.current_version >= 19:
+                if 'notification_type' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'notification_type',
+                        'value_set': "'email'" ,
+                        'migrate_model_id': id_origin,
+                    })
+
+
     @api.onchange('table')
     def change_table(self):
         self.validate_table()
