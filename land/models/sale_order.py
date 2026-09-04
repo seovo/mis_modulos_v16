@@ -16,6 +16,8 @@ class SaleOrder(models.Model):
         domain=lambda self: "[('company_ids', '=', company_id)]"
     )
     vat = fields.Char(related='partner_id.vat', string="RUC/DNI")
+    phone = fields.Char(related='partner_id.phone')
+    mobile = fields.Char(related='partner_id.mobile')
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name', string="Doc")
     #############
 

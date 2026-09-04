@@ -704,6 +704,8 @@
                    <field name="partner_id"   />
                    <field name="identification_type"   />
                    <field name="vat"   />
+                   <field name="phone"   />
+                   <field name="mobile"   />
                    <field name="last_payment_date_land"  optional="hidden" />
 
 
