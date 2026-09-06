@@ -91,10 +91,15 @@ class Controller(http.Controller):
 
                 sale_ids.append(sale.id)
 
-            #verificar facturas existentes en borrador
-            moves_exist =  request.env['account.move'].sudo().search([('id','in',sale_ids)])
-            if moves_exist:
-                return http.request.render("land.index_exist", {'sales': moves_exist})
+            if sale_ids:
+                # verificar facturas existentes en borrador
+                moves_exist = request.env['account.move.line'].sudo().search([('sale_line_ids', 'in', sale_ids),
+                                                                              ('move_id.state','=','draft')])
+
+                if moves_exist:
+                    return http.request.render("land.index_exist", {'sales': moves_exist})
+
+
 
 
 
