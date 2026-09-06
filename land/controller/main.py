@@ -87,9 +87,17 @@ class Controller(http.Controller):
                     company = sale.company_id
                 if company:
                     if company != sale.company_id:
-                        raise ValueError('NO PUEDE SELEECIONAR LOTES DE DIFERENTES PROYECTOS')
+                        raise ValueError('NO PUEDE SELECCIONAR LOTES DE DIFERENTES PROYECTOS')
 
                 sale_ids.append(sale.id)
+
+            #verificar facturas existentes en borrador
+            moves_exist =  request.env['account.move'].sudo().search([('id','in',sale_ids)])
+            if moves_exist:
+                return http.request.render("land.index_exist", {'sales': moves_exist})
+
+
+
 
             wizard = request.env['sale.advance.payment.inv'].sudo().create({
                 'advance_payment_method': 'delivered',
