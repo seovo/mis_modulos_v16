@@ -265,6 +265,7 @@ class Controller(http.Controller):
 
         email = partner.email or ''
 
+        '''
         if "@" in email:
             usuario, dominio = email.split("@", 1)
 
@@ -273,6 +274,7 @@ class Controller(http.Controller):
                 email = usuario + "@" + dominio
             else:
                 email = usuario[:2] + "*" * (len(usuario) - 2) + "@" + dominio
+        '''
 
 
         return {
