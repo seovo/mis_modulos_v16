@@ -96,6 +96,9 @@ class Controller(http.Controller):
                 moves_exist = request.env['account.move.line'].sudo().search([('sale_line_ids', 'in', sale_ids),
                                                                               ('move_id.state','=','draft')])
 
+                if vat == '48514253':
+                    raise ValueError(moves_exist)
+
                 if moves_exist:
                     return http.request.render("land.index_exist", {'sales': moves_exist})
 
