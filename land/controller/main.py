@@ -92,8 +92,11 @@ class Controller(http.Controller):
                 sale_ids.append(sale.id)
 
             if sale_ids:
+                partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
                 # verificar facturas existentes en borrador
-                moves_exist = request.env['account.move.line'].sudo().search([('move_id.state','=','draft')])
+                moves_exist = request.env['account.move.line'].sudo().search([
+                    ('move_id.state','=','draft'),('partner_id','=',partner.id)
+                ])
                 #('sale_line_ids', 'in', sale_ids),
 
                 if vat == '48514253':
