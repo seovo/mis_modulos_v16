@@ -102,8 +102,6 @@ class Controller(http.Controller):
                 #('sale_line_ids', 'in', sale_ids),
                 exist_sale_in_draft = False
 
-                if vat == '48514253':
-                    raise ValueError(moves_exist)
 
                 if moves_exist:
                     for salee in sale_ids:
