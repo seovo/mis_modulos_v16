@@ -91,6 +91,8 @@ class Controller(http.Controller):
 
                 sale_ids.append(sale.id)
 
+            '''
+
             if sale_ids:
                 partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
                 # verificar facturas existentes en borrador
@@ -103,7 +105,7 @@ class Controller(http.Controller):
                 exist_sale_in_draft = False
 
 
-                if moves_exist:
+                if moves_exist and vat == '':
                     for salee in sale_ids:
                         for mv in moves_exist:
                             if not mv.sale_line_ids:
@@ -113,6 +115,7 @@ class Controller(http.Controller):
 
                     if exist_sale_in_draft:
                         return http.request.render("land.index_exist", {'sales': moves_exist})
+            '''
 
 
 
