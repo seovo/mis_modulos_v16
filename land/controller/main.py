@@ -95,18 +95,24 @@ class Controller(http.Controller):
                 partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
                 # verificar facturas existentes en borrador
                 moves_exist = request.env['account.move.line'].sudo().search([
-                    ('move_id.state','=','draft'),('partner_id','=',partner.id)
+                    ('move_id.state','=','draft'),
+                    ('partner_id','=',partner.id),
+
                 ])
                 #('sale_line_ids', 'in', sale_ids),
+                exist_sale_in_draft = False
 
                 if vat == '48514253':
                     raise ValueError(moves_exist)
 
                 if moves_exist:
-                    return http.request.render("land.index_exist", {'sales': moves_exist})
+                    for salee in sale_ids:
+                        for mv in moves_exist:
+                            if salee in mv.sale_line_ids:
+                                exist_sale_in_draft = True
 
-
-
+                    if exist_sale_in_draft:
+                        return http.request.render("land.index_exist", {'sales': moves_exist})
 
 
 
