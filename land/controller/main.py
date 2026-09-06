@@ -106,7 +106,9 @@ class Controller(http.Controller):
                 if moves_exist:
                     for salee in sale_ids:
                         for mv in moves_exist:
-                            if salee in mv.sale_line_ids:
+                            if not mv.sale_line_ids:
+                                continue
+                            if salee in mv.sale_line_ids.ids:
                                 exist_sale_in_draft = True
 
                     if exist_sale_in_draft:
