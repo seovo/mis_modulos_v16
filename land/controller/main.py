@@ -114,6 +114,11 @@ class Controller(http.Controller):
                                 exist_sale_in_draft = True
 
                     if exist_sale_in_draft:
+               
+               
+               
+               
+               
                         return http.request.render("land.index_exist", {'sales': moves_exist})
             '''
 
