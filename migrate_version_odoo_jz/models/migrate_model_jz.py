@@ -263,6 +263,25 @@ END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
 
+        if table == 'product_pricelist_item':
+            if self.migrate_id.current_version >= 18:
+
+                text_value = f'''
+            CASE
+                WHEN applied_on = '3_global' THEN '1_product' 
+                WHEN applied_on = '0_product_variant' THEN '1_product'
+
+            ELSE   applied_on
+            END AS display_applied_on
+                '''
+
+                if 'display_applied_on' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'display_applied_on',
+                        'value_set': text_value ,
+                        'migrate_model_id': id_origin,
+                    })
+
 
     @api.onchange('table')
     def change_table(self):
