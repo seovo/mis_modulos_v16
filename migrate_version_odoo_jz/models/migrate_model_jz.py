@@ -72,6 +72,9 @@ class MigrateModelJz(models.Model):
 
     def validate_table(self):
 
+        if not self.table:
+            return
+
         if self.table in self.migrate_id.get_modelos_old():
 
             self.new_table = self.migrate_id.convert_modelos_old(self.table)
