@@ -504,7 +504,7 @@ END AS display_type      ''',
             ('migrate_model_id','=',self.id)
         ])
 
-        if location_fields:
+        if location_fields and self.migrate_id.text_location:
             for jfiels in location_fields:
                 text_reemplaze = self.migrate_id.text_location
                 text_reemplaze = text_reemplaze.replace('location_id',jfiels.name)
