@@ -885,9 +885,20 @@ END AS display_type      ''',
 
 
         if self.table == 'product_pricelist':
+
+            position_name = column_names.index('"name"')
+
+            if self.create_record_master:
+
+                position_currency_id = column_names.index('"currency_id"')
+
             for pricelist in resultados:
                 id_pricelist = int(pricelist[0])
-                name_pricelist = str(pricelist[1])
+                name_pricelist = str(pricelist[position_name])
+
+
+
+
                 pricelist_migration = self.env['pricelist.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
                     ('id_sql', '=', id_pricelist )
@@ -900,7 +911,19 @@ END AS display_type      ''',
                 }
 
                 if not  pricelist_migration:
-                    self.env['pricelist.migration.jz'].create(data_insert)
+                    pricelist_migration =  self.env['pricelist.migration.jz'].create(data_insert)
+
+                if self.create_record_master:
+                    exist_pricelist = self.env['product.pricelist'].search([('name', 'ilike', name_pricelist)])
+                    value_currency_id = pricelist[position_currency_id]
+
+                    if not exist_pricelist:
+                        exist_pricelist = self.env['product.pricelist'].create({
+                            'name': name_pricelist  ,
+                            'currency_id': value_currency_id
+                        })
+                    pricelist_migration.pricelist_id = exist_pricelist.id
+
 
 
 
