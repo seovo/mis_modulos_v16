@@ -253,7 +253,7 @@
                                     <field name="id_sql" />
                                     <field name="code" />
                                     <field name="name" />
-                                    <field name="account_id" />
+                                    <field name="account_id" domain="[('account_migration_jz_ids', '=', False)]"/>
                                 </list>
                             </field>
                             <group>
