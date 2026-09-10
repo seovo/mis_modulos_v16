@@ -805,7 +805,7 @@ END AS display_type      ''',
                     ('id_sql', '=', uom[0])
                 ])
 
-                exist_uom = self.env['uom.uom'].search([('name', 'ilike', value_name)])
+                exist_uom = self.env['uom.uom'].search([('name', '=', value_name)])
 
                 data_insert = {
                     'id_sql': uom[0],
