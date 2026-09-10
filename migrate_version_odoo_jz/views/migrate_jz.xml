@@ -205,6 +205,20 @@
                             </group>
                         </page>
 
+                        <page string="Unidades" name="uoms">
+                            <field name="uom_migration_ids">
+                                <list editable="bottom">
+                                    <field name="id_sql" />
+                                    <field name="name" />
+                                    <field name="uom_id" />
+
+                                </list>
+                            </field>
+                            <group>
+                                <field name="text_uom" />
+                            </group>
+                        </page>
+
                         <page string="Precio de Lista" name="priceli">
                             <field name="pricelist_migration_ids">
                                 <list editable="bottom">

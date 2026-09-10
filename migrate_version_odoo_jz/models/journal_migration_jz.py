@@ -4,6 +4,12 @@ import psycopg2
 from psycopg2 import sql
 from odoo import api, fields, models , _
 
+class UomMigrationJz(models.Model):
+    _name  = 'uom.migration.jz'
+    name = fields.Char(required=True)
+    id_sql = fields.Integer(required=True)
+    migrate_id = fields.Many2one('migrate.jz',required=True)
+    uom_id = fields.Many2one('uom.uom')
 
 class PricelistMigratioJz(models.Model):
     _name  = 'pricelist.migration.jz'
