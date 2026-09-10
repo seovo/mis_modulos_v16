@@ -153,6 +153,18 @@ class MigrateModelJz(models.Model):
                     'migrate_model_id': id_origin,
                 })
 
+            if 'is_storable' not in  list_field_insert and self.migrate_id.from_version in [10] and self.migrate_id.current_version in [19]:
+                self.env['migrate.model.columns.jz'].create({
+                    'name': 'is_storable',
+                    'value_set': '''
+                     CASE
+                        WHEN type = 'product' THEN 't' 
+                        ELSE   'f'
+                     END AS is_storable   
+                     ''',
+                    'migrate_model_id': id_origin,
+                })
+
         if table == 'account_move_line':
             if self.migrate_id.current_version >= 13:
                 if 'display_type' not in list_field_insert:
