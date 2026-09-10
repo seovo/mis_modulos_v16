@@ -1056,6 +1056,7 @@ END AS display_type      ''',
             return
 
         if self.table == 'account_journal':
+            position_name = column_names.index('"name"')
             if self.create_record_master:
                 position_code = column_names.index('"code"')
                 position_type = column_names.index('"type"')
@@ -1083,7 +1084,7 @@ END AS display_type      ''',
 
 
 
-                name_journal = str(journal[1])
+
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
@@ -1096,6 +1097,8 @@ END AS display_type      ''',
 
                 if len(exist_diario) > 1 :
                     exist_diario = None
+
+                value_name = journal[position_name]
 
                 if not exist_diario and self.create_record_master:
 
@@ -1117,7 +1120,7 @@ END AS display_type      ''',
 
 
                     dict_create_journal = {
-                        'name': name_journal ,
+                        'name': value_name ,
                         'code': value_code ,
                         'type': value_type ,
                         'default_account_id': value_account_debit ,
