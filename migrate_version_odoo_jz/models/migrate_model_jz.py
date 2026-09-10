@@ -1092,7 +1092,7 @@ END AS display_type      ''',
                      # 'journal_id':
                 }
 
-                exist_diario = self.env['account.journal'].search([('name','ilike',name_journal)])
+                exist_diario = self.env['account.journal'].search([('name','ilike',value_name)])
 
                 if len(exist_diario) > 1 :
                     exist_diario = None
