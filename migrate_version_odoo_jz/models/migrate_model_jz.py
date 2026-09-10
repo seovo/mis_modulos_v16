@@ -805,6 +805,8 @@ END AS display_type      ''',
                     ('id_sql', '=', uom[0])
                 ])
 
+                exist_uom = self.env['uom.uom'].search([('name', 'ilike', value_name)])
+
                 data_insert = {
                     'id_sql': uom[0],
                     'name': value_name,
@@ -813,10 +815,15 @@ END AS display_type      ''',
                     #'code': value_code_prefix
                 }
 
+                if exist_uom:
+                    data_insert.update({
+                        'uom_id': exist_uom.id
+                    })
+
                 if not uom_migration:
                     uom_migration = self.env['uom.migration.jz'].create(data_insert)
-                #else:
-                #    uom_migration = self.env['uom.migration.jz'].write(data_insert)
+                else:
+                    uom_migration = self.env['uom.migration.jz'].write(data_insert)
 
             return
 
