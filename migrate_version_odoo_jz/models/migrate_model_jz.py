@@ -1214,7 +1214,10 @@ END AS display_type      ''',
                 position_amount_type  = column_names.index('"amount_type"')
                 position_price_include = column_names.index('"price_include"')
                 position_analytic = column_names.index('"analytic"')
-                position_tax_exigibility = column_names.index('"tax_exigibility"')
+                if self.migrate_id.from_version > 10 :
+                    position_tax_exigibility = column_names.index('"tax_exigibility"')
+
+
                 position_account_id = column_names.index('"account_id"')
                 position_tax_group_id = column_names.index('"tax_group_id"')
                 position_refund_account_id =  column_names.index('"refund_account_id"')
@@ -1242,7 +1245,9 @@ END AS display_type      ''',
                             value_price_include = result_tax[position_price_include]
                             value_include_base_amount = result_tax[position_include_base_amount]
                             value_analytic = result_tax[position_analytic]
-                            value_tax_exigibility = result_tax[position_tax_exigibility]
+                            if self.migrate_id.from_version > 10:
+                                value_tax_exigibility = result_tax[position_tax_exigibility]
+
                             value_account_id = result_tax[position_account_id]
                             value_tax_group_id = result_tax[position_tax_group_id]
                             value_refund_account_id = result_tax[position_refund_account_id]
@@ -1259,10 +1264,15 @@ END AS display_type      ''',
                                 'invoice_label': value_name ,
                                 'include_base_amount': value_include_base_amount,
                                 'analytic': value_analytic,
-                                'tax_exigibility': value_tax_exigibility,
+
                                 'tax_group_id': value_tax_group_id
 
                             }
+
+                            if self.migrate_id.from_version > 10:
+                                data_tax.update({
+                                    'tax_exigibility': value_tax_exigibility,
+                                })
 
                             if value_price_include and value_price_include == True:
                                 data_tax.update({
