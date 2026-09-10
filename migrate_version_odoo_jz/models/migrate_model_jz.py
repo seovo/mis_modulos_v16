@@ -551,6 +551,27 @@ END AS display_type      ''',
             for jfiels in state_fields:
                 jfiels.value_set = self.migrate_id.text_state
 
+
+        if self.migrate_id.from_version in [10] and self.migrate_id.current_version in [19]:
+            type_pts = self.env['migrate.model.columns.jz'].search(
+                [('name', '=', 'type'), ('migrate_model_id', '=', self.id),
+                 ('migrate_model_id.table', '=', 'product_template')])
+
+            if type_pts:
+                for type_pt in type_pts:
+                    type_pt.value_set = f'''
+                    CASE
+                             WHEN type = 'consu' THEN 'consu' 
+                             WHEN type = 'product' THEN 'consu'  
+                             WHEN type = 'service' THEN 'service'   
+
+                        ELSE  type
+                        END AS type
+
+                    '''
+
+
+
     def migrate_table(self):
 
         self.validate_columns_no_existentes()
