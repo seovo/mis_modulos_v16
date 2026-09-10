@@ -1662,26 +1662,30 @@ END AS display_type      ''',
             return
 
         if self.table == 'res_country':
+            position_name = column_names.index('"name"')
             if not self.migrate_id.country_migration_ids:
                 #raise ValidationError(str(resultados))
                 for journal in resultados:
+                    value_name = str(journal[position_name])
                     #raise ValueError(journal)
                     self.env['country.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
                         'id_sql': int(journal[0]),
-                        'name': str(journal[1])
+                        'name': value_name
                     })
             return
 
         if self.table == 'res_country_state':
             if not self.migrate_id.state_migration_ids:
+                position_name = column_names.index('"name"')
                 #raise ValidationError(str(resultados))
                 for journal in resultados:
                     #raise ValueError(journal)
+                    value_name = str(journal[position_name])
                     self.env['state.migration.jz'].create({
                         'migrate_id': self.migrate_id.id ,
                         'id_sql': int(journal[0]),
-                        'name': str(journal[1])
+                        'name': value_name
                     })
             return
 
