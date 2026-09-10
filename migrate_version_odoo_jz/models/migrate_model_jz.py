@@ -823,7 +823,7 @@ END AS display_type      ''',
                 if not uom_migration:
                     uom_migration = self.env['uom.migration.jz'].create(data_insert)
                 else:
-                    uom_migration = self.env['uom.migration.jz'].write(data_insert)
+                    uom_migration.write(data_insert)
 
             return
 
