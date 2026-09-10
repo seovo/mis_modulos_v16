@@ -816,7 +816,7 @@ END AS display_type      ''',
                 else:
                     uom_migration = self.env['uom.migration.jz'].write(data_insert)
 
-
+            return
 
 
         if self.table == 'account_group':
