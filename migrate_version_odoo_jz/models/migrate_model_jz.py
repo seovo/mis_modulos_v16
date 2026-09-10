@@ -800,7 +800,7 @@ END AS display_type      ''',
                 value_name = uom[position_name]
                 value_factor = uom[position_factor]
 
-                if uom[0] == 36 :
+                if uom[0] == 45 :
                     raise ValidationError(str([value_name,value_factor]))
 
 
