@@ -800,6 +800,11 @@ END AS display_type      ''',
                 value_name = uom[position_name]
                 value_factor = uom[position_factor]
 
+                if uom[0] == 36 :
+                    raise ValidationError(str([value_name,value_factor]))
+
+
+
                 uom_migration = self.env['uom.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
                     ('id_sql', '=', uom[0])
@@ -815,14 +820,28 @@ END AS display_type      ''',
                     #'code': value_code_prefix
                 }
 
-                if exist_uom and len(exist_uom) == 1:
-                    data_insert.update({
-                        'uom_id': exist_uom.id
-                    })
+
 
                 if not uom_migration:
+                    if exist_uom and len(exist_uom) == 1:
+                        data_insert.update({
+                            'uom_id': exist_uom.id
+                        })
                     uom_migration = self.env['uom.migration.jz'].create(data_insert)
                 else:
+
+                    if not exist_uom and self.create_record_master:
+                        exist_uom = self.env['uom.uom'].create({
+                            'name': value_name,
+                            'relative_factor': value_factor
+                        })
+
+
+                    if not uom_migration.uom_id and exist_uom:
+                        data_insert.update({
+                            'uom_id': exist_uom.id
+                        })
+
                     uom_migration.write(data_insert)
 
             return
