@@ -795,13 +795,15 @@ END AS display_type      ''',
         if self.table in ['product_uom','uom_uom']:
             position_name = column_names.index('"name"')
             position_factor = column_names.index('"factor"')
+            position_uom_type = column_names.index('"uom_type"')
 
             for uom in resultados:
                 value_name = uom[position_name]
                 value_factor = uom[position_factor]
+                value_uom_type = uom[position_uom_type]
 
-                if uom[0] == 45 :
-                    raise ValidationError(str([value_name,value_factor]))
+                #if uom[0] == 45 :
+                #    raise ValidationError(str([value_name,value_factor]))
 
 
 
@@ -831,15 +833,23 @@ END AS display_type      ''',
                 else:
 
                     if not exist_uom and self.create_record_master:
+                        relative_factor = value_factor
+                        ruom = None
+
+                        if value_uom_type == 'bigger':
+                            relative_factor = int(1/value_factor)
+                            ruom = self.env.ref('uom.product_uom_unit').id
+
                         exist_uom = self.env['uom.uom'].create({
                             'name': value_name,
-                            'relative_factor': value_factor
+                            'relative_factor': relative_factor ,
+                            'relative_uom_id': ruom
                         })
 
 
                     if not uom_migration.uom_id and exist_uom:
                         data_insert.update({
-                            'uom_id': exist_uom.id
+                            'uom_id': exist_uom.id ,
                         })
 
                     uom_migration.write(data_insert)
