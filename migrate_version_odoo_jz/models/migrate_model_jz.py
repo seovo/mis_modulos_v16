@@ -792,11 +792,13 @@ END AS display_type      ''',
 
         #if self.show_data:
         #    raise ValueError(resultados)
-        if self.table in ['res_currency','uom_uom']:
+        if self.table in ['product_uom','uom_uom']:
             position_name = column_names.index('"name"')
+            position_factor = column_names.index('"factor"')
 
             for uom in resultados:
                 value_name = uom[position_name]
+                value_factor = uom[position_factor]
 
                 uom_migration = self.env['uom.migration.jz'].search([
                     ('migrate_id', '=', self.migrate_id.id),
@@ -813,8 +815,8 @@ END AS display_type      ''',
 
                 if not uom_migration:
                     uom_migration = self.env['uom.migration.jz'].create(data_insert)
-                else:
-                    uom_migration = self.env['uom.migration.jz'].write(data_insert)
+                #else:
+                #    uom_migration = self.env['uom.migration.jz'].write(data_insert)
 
             return
 
