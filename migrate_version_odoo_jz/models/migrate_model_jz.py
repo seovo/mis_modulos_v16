@@ -1082,13 +1082,12 @@ END AS display_type      ''',
                 except:
                     raise ValidationError(str(dom))
 
-
-
+                value_name = journal[position_name]
 
 
                 data_insert = {
                     'migrate_id': self.migrate_id.id,
-                    'name': name_journal,
+                    'name': value_name,
                     'id_sql': int(journal[0])
                      # 'journal_id':
                 }
@@ -1098,7 +1097,7 @@ END AS display_type      ''',
                 if len(exist_diario) > 1 :
                     exist_diario = None
 
-                value_name = journal[position_name]
+
 
                 if not exist_diario and self.create_record_master:
 
