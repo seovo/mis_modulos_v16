@@ -420,6 +420,13 @@ END AS display_type      ''',
 
         self.migrate_id.generate_text_set_clave()
 
+        uom_fields = self.env['migrate.model.columns.jz'].search([
+            ('name', '=', 'uom_id'), ('migrate_model_id', '=', self.id)
+        ])
+        if uom_fields and self.migrate_id.text_uom:
+            for jfiels in uom_fields:
+                jfiels.value_set = self.migrate_id.text_uom
+
         #raise ValidationError('oke')
         # para los campos que son journal_id
         account_fields = self.env['migrate.model.columns.jz'].search([
