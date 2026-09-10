@@ -805,7 +805,7 @@ END AS display_type      ''',
                     ('id_sql', '=', uom[0])
                 ])
 
-                exist_uom = self.env['uom.uom'].search([('name', '=', value_name)])
+                exist_uom = self.env['uom.uom'].search([('name', 'ilike', value_name)])
 
                 data_insert = {
                     'id_sql': uom[0],
@@ -815,7 +815,7 @@ END AS display_type      ''',
                     #'code': value_code_prefix
                 }
 
-                if exist_uom:
+                if exist_uom and len(exist_uom) == 1:
                     data_insert.update({
                         'uom_id': exist_uom.id
                     })
