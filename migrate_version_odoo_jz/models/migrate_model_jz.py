@@ -864,7 +864,7 @@ END AS display_type      ''',
                 if not agroup_migration:
                     agroup_migration = self.env['account.group.migration.jz'].create(data_insert)
                 else:
-                    agroup_migration = self.env['account.group.migration.jz'].write(data_insert)
+                    agroup_migration.write(data_insert)
             return
 
 
