@@ -118,7 +118,7 @@ class MigrateJz(models.Model):
                         ELSE  uom_id
                         END AS uom_id
             '''
-            self.text_account_group = textx
+            self.text_uom = textx
 
 
         if self.account_group_migration_ids:
