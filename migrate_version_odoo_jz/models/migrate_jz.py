@@ -312,11 +312,13 @@ class MigrateJz(models.Model):
 
         if self.from_version in [11,12]:
             tables_maestros.append("account_account_type")
+
+
         return tables_maestros
 
     def get_modelos_old(self):
         if self.from_version <= 12:
-            return ["account_invoice","account_invoice_line","account_invoice_payment_rel"]
+            return ["account_invoice","account_invoice_line","account_invoice_payment_rel","product_uom"]
         return  []
 
     def convert_modelos_old(self,table):
@@ -327,6 +329,9 @@ class MigrateJz(models.Model):
 
                 if table == "account_invoice_line":
                     return "account_move_line"
+
+                if table == "product_uom":
+                    return "uom_uom"
 
 
         return  None

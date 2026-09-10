@@ -792,6 +792,32 @@ END AS display_type      ''',
 
         #if self.show_data:
         #    raise ValueError(resultados)
+        if self.table in ['res_currency','uom_uom']:
+            position_name = column_names.index('"name"')
+
+            for uom in resultados:
+                value_name = uom[position_name]
+
+                uom_migration = self.env['uom.migration.jz'].search([
+                    ('migrate_id', '=', self.migrate_id.id),
+                    ('id_sql', '=', uom[0])
+                ])
+
+                data_insert = {
+                    'id_sql': uom[0],
+                    'name': value_name,
+                    'migrate_id': self.migrate_id.id,
+                    #'parent_id': value_parent_id,
+                    #'code': value_code_prefix
+                }
+
+                if not uom_migration:
+                    uom_migration = self.env['uom.migration.jz'].create(data_insert)
+                else:
+                    uom_migration = self.env['uom.migration.jz'].write(data_insert)
+
+
+
 
         if self.table == 'account_group':
             position_name = column_names.index('"name"')
@@ -827,9 +853,9 @@ END AS display_type      ''',
                     })
 
                 if not agroup_migration:
-                    agroup_migration.create(data_insert)
+                    agroup_migration = self.env['account.group.migration.jz'].create(data_insert)
                 else:
-                    agroup_migration.write(data_insert)
+                    agroup_migration = self.env['account.group.migration.jz'].write(data_insert)
             return
 
 
