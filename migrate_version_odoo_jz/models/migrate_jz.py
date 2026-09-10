@@ -110,7 +110,7 @@ class MigrateJz(models.Model):
             for migrat in self.uom_migration_ids:
                 if not migrat.uom_id:
                     continue
-                id_uom += f''' WHEN uom_id = {migrat.id_sql} THEN '{migrat.uom_id.id}' \n'''
+                id_uom += f''' WHEN uom_id = {migrat.id_sql} THEN {migrat.uom_id.id} \n'''
 
             textx = f'''
                         CASE
