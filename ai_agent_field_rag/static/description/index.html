@@ -1,0 +1,743 @@
+<!-- Hero Section -->
+<section class="oe_container">
+    <div class="row">
+        <div class="col-12 text-center mt-5 mb-5">
+            <h2 class="text-primary display-4">AI Agent - Field RAG Sources</h2>
+            <h3 class="text-muted font-weight-light">Turn Any Odoo Model Field Into AI Agent Knowledge</h3>
+        </div>
+    </div>
+</section>
+
+<!-- Overview Section -->
+<section class="oe_container">
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card shadow-sm">
+                <div class="card-body p-5 text-center">
+                    <h2 class="text-primary mb-4">Overview</h2>
+                    <p class="lead">
+                        <strong>Seamlessly extends Odoo 19's built-in AI Agent with a new source type for Retrieval-Augmented Generation (RAG) powered by your own business data.</strong>
+                    </p>
+                    <p class="text-muted">
+                        This module integrates directly into Odoo 19's native AI Agent framework, adding a new "Model Field" source option alongside the existing URL and file upload sources.
+                        Select any model's text, char, or HTML fields and automatically index them as AI agent sources &mdash; no external tools or complex setup required.
+                    </p>
+                    <p class="text-muted">
+                        Whether it's project task descriptions, helpdesk ticket content, CRM notes, or any custom model data &mdash;
+                        transform your Odoo records into a searchable knowledge base that your AI agents can query naturally.
+                    </p>
+                    <p class="text-muted">
+                        Each record becomes its own source with a <strong>structured semantic header</strong> including record type, ID, name, and configurable context fields.
+                        This enables powerful queries like <em>"tasks assigned to John"</em>, <em>"high priority tickets"</em>, or <em>"project Alpha notes"</em>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-5">
+            <h2 class="text-primary">How It Works</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 text-center mb-4">
+            <div class="p-3">
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="h4 m-0">1</span>
+                </div>
+                <h5>Add Model Field Source</h5>
+                <p class="text-muted small">From your AI Agent, click "Add a Source" and select "Model Field"</p>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mb-4">
+            <div class="p-3">
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="h4 m-0">2</span>
+                </div>
+                <h5>Configure Source</h5>
+                <p class="text-muted small">Select model, content field, optional context fields, and filter domain</p>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mb-4">
+            <div class="p-3">
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="h4 m-0">3</span>
+                </div>
+                <h5>Automatic Indexing</h5>
+                <p class="text-muted small">One source per record is created and indexed for vector search</p>
+            </div>
+        </div>
+        <div class="col-md-3 text-center mb-4">
+            <div class="p-3">
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="h4 m-0">4</span>
+                </div>
+                <h5>Query with AI</h5>
+                <p class="text-muted small">Ask your AI agent questions &mdash; it retrieves relevant records automatically</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add Source Wizard Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Seamless Integration with AI Agent</h2>
+            <p class="text-muted">A new "Model Field" option appears in the Add Source wizard</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-4">
+            <img src="odoo_base_add_sources_wizard_with_model_field_icon.png" class="img-fluid shadow rounded" alt="Add Source wizard showing Model Field option">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> The "Add a Source" wizard with new Model Field option</p>
+        </div>
+    </div>
+</section>
+
+<!-- Configuration Dialog Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Intuitive Configuration Dialog</h2>
+            <p class="text-muted">Select your model, content field, filter domain, and context fields in one place</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="odoo_base_add_sources_model_field_wizard.png" class="img-fluid shadow rounded" alt="Model Field configuration dialog">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> Configuration dialog: Name, Model, Content Field, Filter Domain, and Context Fields</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="text-primary"><i class="fa fa-database me-2"></i>Source Configuration</h6>
+                    <ul class="text-muted small">
+                        <li><strong>Name:</strong> Descriptive name for this configuration</li>
+                        <li><strong>Model:</strong> Any Odoo model (Task, Lead, Ticket, etc.)</li>
+                        <li><strong>Content Field:</strong> Text, Char, or HTML field to index</li>
+                        <li><strong>Filter Domain:</strong> Optional filter to select specific records</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-primary"><i class="fa fa-tags me-2"></i>Context Fields</h6>
+                    <ul class="text-muted small">
+                        <li>Add fields like stage, assignee, priority, dates</li>
+                        <li>Context is prepended to main content in each source</li>
+                        <li>Enables queries like <em>"tasks assigned to John"</em></li>
+                        <li>Record ID and name are automatically included</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Record Count Guidance Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Smart Record Count Guidance</h2>
+            <p class="text-muted">Real-time feedback helps you create focused, effective RAG datasets</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="row text-center">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-success">
+                        <div class="card-body">
+                            <i class="fa fa-check-circle fa-2x text-success mb-2"></i>
+                            <h6 class="text-success">Under 100 Records</h6>
+                            <p class="text-muted small mb-0">Ideal for focused, high-quality retrieval</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-warning">
+                        <div class="card-body">
+                            <i class="fa fa-exclamation-triangle fa-2x text-warning mb-2"></i>
+                            <h6 class="text-warning">100-500 Records</h6>
+                            <p class="text-muted small mb-0">Consider adding filters for better relevance</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-danger">
+                        <div class="card-body">
+                            <i class="fa fa-times-circle fa-2x text-danger mb-2"></i>
+                            <h6 class="text-danger">Over 500 Records</h6>
+                            <p class="text-muted small mb-0">Large datasets may reduce retrieval accuracy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sources Created Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">One Source Per Record</h2>
+            <p class="text-muted">Each matching record becomes its own indexed source for semantic isolation</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="sources_list_view_after_creating_configuration.png" class="img-fluid shadow rounded" alt="Sources list showing created sources from configuration">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> Sources list: 22 records from the configuration, showing indexed and failed statuses</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card bg-light border-0">
+                <div class="card-body">
+                    <h6 class="text-primary mb-3"><i class="fa fa-info-circle me-2"></i>Why One Source Per Record?</h6>
+                    <ul class="text-muted mb-0">
+                        <li><strong>Semantic Isolation:</strong> Each record is embedded separately for precise matching</li>
+                        <li><strong>Granular Updates:</strong> When a record changes, only that source is re-indexed</li>
+                        <li><strong>Source Attribution:</strong> AI responses cite specific records, not bulk content</li>
+                        <li><strong>Failed Status:</strong> Records without content in the selected field are marked as failed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Source Content Structure Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Structured Content for Optimal Search</h2>
+            <p class="text-muted">Each source includes a semantic header with record metadata and context fields</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="source_opened_attachment.png" class="img-fluid shadow rounded" alt="Source attachment showing structured content with context fields">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> Source attachment: Record Type, ID, Name, Context Fields, then Main Content</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="text-primary"><i class="fa fa-header me-2"></i>Automatic Header</h6>
+                    <ul class="text-muted small">
+                        <li><strong>Record Type:</strong> Model display name (e.g., "Task")</li>
+                        <li><strong>Record ID:</strong> Database ID for precise lookups</li>
+                        <li><strong>Name:</strong> Record's display_name</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-primary"><i class="fa fa-list me-2"></i>Context Fields</h6>
+                    <ul class="text-muted small">
+                        <li>Your selected fields (stage, assignee, priority, etc.)</li>
+                        <li>Many2one fields show display_name</li>
+                        <li>Dates, numbers, and booleans are formatted as text</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Chat Integration Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Natural Language Queries with RAG</h2>
+            <p class="text-muted">Ask questions and get answers grounded in your Odoo data</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="agent_chat_example_with_rag_sources.png" class="img-fluid shadow rounded d-block mx-auto" alt="AI Agent chat with RAG sources in response">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> AI Agent responding to a question with information from indexed sources</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="agent_chat_opened_rag_source.png" class="img-fluid shadow rounded" alt="Opened RAG source showing indexed content">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> Clicking a source citation opens the indexed attachment content</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="row text-muted">
+                <div class="col-md-6">
+                    <p class="mb-2"><i class="fa fa-quote-left text-primary me-2"></i>"What are the layout plans for the office design project?"</p>
+                    <p class="mb-2"><i class="fa fa-quote-left text-primary me-2"></i>"Show me tasks assigned to John in the new website project"</p>
+                    <p class="mb-2"><i class="fa fa-quote-left text-primary me-2"></i>"What are the high priority tickets about billing?"</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-2"><i class="fa fa-quote-left text-primary me-2"></i>"Summarize the CRM notes for customer ACME Corp"</p>
+                    <p class="mb-2"><i class="fa fa-quote-left text-primary me-2"></i>"What was discussed in ticket #1234?"</p>
+                    <p class="mb-2"><i class="fa fa-quote-left text-primary me-2"></i>"Find tasks related to database migration"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Configuration Form View Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Full Configuration Management</h2>
+            <p class="text-muted">View and manage your Field RAG configurations from a dedicated form view</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="field_rag_configuration_form_view.PNG" class="img-fluid shadow rounded" alt="Field RAG Configuration form view">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> Configuration form: Sync button, statistics, context fields, domain filter, and sources list</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="text-primary"><i class="fa fa-refresh me-2"></i>Manual Sync</h6>
+                    <ul class="text-muted small">
+                        <li><strong>Sync Now:</strong> Immediately detect and sync changes</li>
+                        <li>Creates sources for new matching records</li>
+                        <li>Removes sources for records no longer in domain</li>
+                        <li>Re-indexes sources with changed content</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-primary"><i class="fa fa-bar-chart me-2"></i>Statistics</h6>
+                    <ul class="text-muted small">
+                        <li><strong>Matching Records:</strong> Current domain match count</li>
+                        <li><strong>Created Sources:</strong> Total sources from this config</li>
+                        <li><strong>Indexed Sources:</strong> Successfully embedded sources</li>
+                        <li><strong>Last Sync:</strong> When sync last ran</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Auto Sync Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Automatic Synchronization</h2>
+            <p class="text-muted">Keep your AI knowledge base up-to-date with scheduled sync</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+            <img src="auto_sync_sources_cron.PNG" class="img-fluid shadow rounded" alt="AI Field RAG Auto Sync scheduled action">
+            <p class="text-muted small text-center mt-2"><i class="fa fa-image me-1"></i> Scheduled Action: "AI Field RAG: Auto Sync Sources" runs hourly by default</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h6 class="text-primary mb-3"><i class="fa fa-clock-o me-2"></i>Auto Sync Features</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="text-muted small mb-0">
+                                <li>Runs hourly by default (configurable)</li>
+                                <li>Detects new records matching domain</li>
+                                <li>Removes sources for deleted/excluded records</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="text-muted small mb-0">
+                                <li>Re-indexes sources when content changes</li>
+                                <li>Toggle per-configuration via "Auto Sync" setting</li>
+                                <li>Triggered by <strong>AI Field RAG: Auto Sync Sources</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-5">
+            <h2 class="text-primary">Key Features</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-database fa-3x"></i>
+                    </div>
+                    <h4 class="card-title">Any Model, Any Field</h4>
+                    <p class="card-text text-muted">
+                        Select from any Odoo model with text, char, or HTML fields.
+                        Project tasks, helpdesk tickets, CRM leads, custom models &mdash; all supported.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-filter fa-3x"></i>
+                    </div>
+                    <h4 class="card-title">Domain Filtering</h4>
+                    <p class="card-text text-muted">
+                        Use Odoo domain syntax to select exactly which records to index.
+                        Filter by project, stage, date, assignee, or any field.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-tags fa-3x"></i>
+                    </div>
+                    <h4 class="card-title">Context Fields</h4>
+                    <p class="card-text text-muted">
+                        Enrich sources with metadata like stage, assignee, priority, or dates.
+                        Enables queries like "tasks assigned to John" or "urgent tickets".
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-refresh fa-3x"></i>
+                    </div>
+                    <h4 class="card-title">Automatic Sync</h4>
+                    <p class="card-text text-muted">
+                        Hourly scheduled action detects new, changed, and removed records.
+                        Keep your AI knowledge base current without manual intervention.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-file-text-o fa-3x"></i>
+                    </div>
+                    <h4 class="card-title">Per-Record Sources</h4>
+                    <p class="card-text text-muted">
+                        Each record becomes its own indexed source for semantic isolation.
+                        AI responses cite specific records, not bulk content.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-code fa-3x"></i>
+                    </div>
+                    <h4 class="card-title">HTML Extraction</h4>
+                    <p class="card-text text-muted">
+                        HTML fields are automatically processed to extract clean text content.
+                        Works with rich text editors, email content, and formatted descriptions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Use Cases Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-5">
+            <h2 class="text-primary">Use Cases</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-tasks fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Project Task Descriptions</h5>
+                    <p class="card-text text-muted">
+                        Index task descriptions from specific projects. Ask your AI agent
+                        about task details, progress, or blockers mentioned in descriptions.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-ticket fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Helpdesk Knowledge Base</h5>
+                    <p class="card-text text-muted">
+                        Turn resolved ticket content into searchable knowledge.
+                        AI agents can find solutions from past tickets matching new issues.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-bullhorn fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">CRM Lead Notes</h5>
+                    <p class="card-text text-muted">
+                        Index internal notes and communications on CRM leads.
+                        Query customer history, preferences, and past interactions.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-file-text fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Sale Order Notes</h5>
+                    <p class="card-text text-muted">
+                        Make sale order notes and terms searchable.
+                        Find specific customer requirements or special instructions.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-book fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Documentation &amp; Wiki</h5>
+                    <p class="card-text text-muted">
+                        Index knowledge base articles, wiki pages, or documentation records.
+                        Create an AI-powered documentation assistant.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="fa fa-cogs fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Custom Models</h5>
+                    <p class="card-text text-muted">
+                        Works with any custom model that has text fields.
+                        Turn proprietary business data into AI-searchable knowledge.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Semantic Search Optimization Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-primary">Optimized for Semantic Search</h2>
+            <p class="text-muted">Structured headers enable powerful, natural language queries</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa fa-hashtag fa-2x text-primary mb-3"></i>
+                            <h6>Query by Record Type</h6>
+                            <p class="text-muted small mb-0">"Find project tasks about..." matches Record Type: Task</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa fa-key fa-2x text-primary mb-3"></i>
+                            <h6>Query by Record ID</h6>
+                            <p class="text-muted small mb-0">"What is task 123?" matches Record ID: 123</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa fa-font fa-2x text-primary mb-3"></i>
+                            <h6>Query by Name</h6>
+                            <p class="text-muted small mb-0">"Details on 'Website Redesign'" matches the record name</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa fa-user fa-2x text-primary mb-3"></i>
+                            <h6>Query by Assignee</h6>
+                            <p class="text-muted small mb-0">"Tasks assigned to John" (if user_id is context field)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa fa-flag fa-2x text-primary mb-3"></i>
+                            <h6>Query by Priority</h6>
+                            <p class="text-muted small mb-0">"High priority tickets" (if priority is context field)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa fa-columns fa-2x text-primary mb-3"></i>
+                            <h6>Query by Stage</h6>
+                            <p class="text-muted small mb-0">"Tasks in Done stage" (if stage_id is context field)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Details Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-5">
+            <h2 class="text-primary">Technical Details</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="p-3">
+                <i class="fa fa-puzzle-piece fa-4x text-primary mb-3"></i>
+                <h4 class="h5">Extends ai.agent.source</h4>
+                <p class="text-muted small">New source type 'field_rag' with dedicated processing logic</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="p-3">
+                <i class="fa fa-clock-o fa-4x text-primary mb-3"></i>
+                <h4 class="h5">Hourly Scheduled Action</h4>
+                <p class="text-muted small">Cron job syncs all configurations with auto_sync enabled</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="p-3">
+                <i class="fa fa-code fa-4x text-primary mb-3"></i>
+                <h4 class="h5">HTMLExtractor</h4>
+                <p class="text-muted small">Uses Odoo's built-in HTMLExtractor for clean text extraction</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="p-3">
+                <i class="fa fa-bolt fa-4x text-primary mb-3"></i>
+                <h4 class="h5">Efficient Updates</h4>
+                <p class="text-muted small">Write date tracking skips unchanged records during sync</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Requirements Section -->
+<section class="oe_container bg-light py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h4 class="text-primary text-center mb-4"><i class="fa fa-check-square-o me-2"></i>Requirements</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-dark">Dependencies</h6>
+                            <ul class="text-muted">
+                                <li><strong>base</strong> &mdash; Odoo core</li>
+                                <li><strong>ai</strong> &mdash; Odoo AI module</li>
+                                <li><strong>ai_app</strong> &mdash; Odoo AI App module</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-dark">Compatibility</h6>
+                            <ul class="text-muted">
+                                <li>Odoo 19 Community &amp; Enterprise</li>
+                                <li>Requires Odoo AI modules (ai, ai_app)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Support Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body p-5 text-center">
+                    <h2 class="text-primary mb-4"><i class="fa fa-life-ring me-2"></i>Support</h2>
+                    <p class="lead mb-4">
+                        We're here to help you get the most from your AI-powered Odoo.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <i class="fa fa-envelope fa-2x text-primary mb-2"></i>
+                            <h5>Email Support</h5>
+                            <p class="text-muted small">support@codemarchant.com</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <i class="fa fa-globe fa-2x text-primary mb-2"></i>
+                            <h5>Website</h5>
+                            <p class="text-muted small">codemarchant.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="oe_container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h2 class="text-primary mb-3">Transform Your Odoo Data Into AI Knowledge</h2>
+            <p class="lead text-muted mb-5">
+                Install the AI Agent Field RAG module and give your AI agents access to your business data.
+            </p>
+            <div class="text-center">
+                <i class="fa fa-database fa-5x text-primary"></i>
+            </div>
+        </div>
+    </div>
+</section>

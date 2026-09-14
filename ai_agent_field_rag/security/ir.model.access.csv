@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_field_rag_config_user,ai.field.rag.config.user,model_ai_field_rag_config,base.group_user,1,0,0,0
+access_ai_field_rag_config_system,ai.field.rag.config.system,model_ai_field_rag_config,base.group_system,1,1,1,1

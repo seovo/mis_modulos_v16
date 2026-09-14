@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend the agent form view to add field_rag columns to source_ids list -->
+    <record id="ai_agent_view_form_field_rag" model="ir.ui.view">
+        <field name="name">ai.agent.form.field_rag</field>
+        <field name="model">ai.agent</field>
+        <field name="inherit_id" ref="ai_app.ai_agent_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add optional columns for field_rag source info -->
+            <xpath expr="//field[@name='sources_ids']/list/field[@name='is_active']" position="after">
+                <!-- Many2one field is clickable by default in readonly mode -->
+                <field name="field_rag_config_id" string="Configuration" optional="show" readonly="1"/>
+                <field name="source_model_name" string="Source Model" optional="show"/>
+                <field name="source_field_name" string="Source Field" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

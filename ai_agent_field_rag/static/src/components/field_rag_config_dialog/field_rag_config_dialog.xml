@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ai_agent_field_rag.FieldRagConfigDialog">
+        <Dialog title.translate="Add Model Field Source" size="'lg'">
+            <div class="p-3" t-att-class="state.loading ? 'opacity-50 pe-none' : ''">
+                <!-- Loading indicator -->
+                <div t-if="state.loading" class="d-flex justify-content-center mb-3">
+                    <div class="text-muted">
+                        <i class="fa fa-spinner fa-spin me-2"></i>
+                        Creating configuration and syncing sources...
+                    </div>
+                </div>
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control"
+                        t-model="state.name"
+                        placeholder="e.g., Project Alpha - Task Descriptions"/>
+                    <small class="text-muted">A descriptive name for this configuration</small>
+                </div>
+
+                <!-- Model Selection using RecordAutocomplete -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Model <span class="text-danger">*</span></label>
+                    <RecordAutocomplete
+                        resModel="'ir.model'"
+                        domain="[]"
+                        update.bind="onModelSelected"
+                        value="state.modelDisplayName"
+                        getIds.bind="getModelIds"
+                        multiSelect="false"
+                        placeholder="'Search for a model...'"
+                        fieldString="'Model'"
+                    />
+                    <small class="text-muted">The model to source content from (e.g., Project Task, Mail Message)</small>
+                </div>
+
+                <!-- Content Field Selection using RecordAutocomplete -->
+                <div class="mb-3" t-if="state.modelId">
+                    <label class="form-label fw-bold">Content Field <span class="text-danger">*</span></label>
+                    <RecordAutocomplete
+                        resModel="'ir.model.fields'"
+                        domain="fieldDomain"
+                        update.bind="onFieldSelected"
+                        value="state.fieldDisplayName"
+                        getIds.bind="getFieldIds"
+                        multiSelect="false"
+                        placeholder="'Search for a field...'"
+                        fieldString="'Content Field'"
+                    />
+                    <small class="text-muted">The text, char, or HTML field containing the main content to index</small>
+                </div>
+
+                <!-- Filter Domain -->
+                <div class="mb-3" t-if="state.modelId">
+                    <label class="form-label fw-bold">Filter Domain</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <code class="flex-grow-1 p-2 bg-light rounded border" t-esc="state.filterDomain"/>
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                            t-on-click="onOpenDomainSelector">
+                            <i class="fa fa-pencil me-1"></i>Edit
+                        </button>
+                    </div>
+                    <small class="text-muted">
+                        Click Edit to build a filter domain visually
+                    </small>
+                </div>
+
+                <!-- Record Count Indicator -->
+                <div class="mb-3" t-if="state.modelId">
+                    <div class="d-flex align-items-center">
+                        <i t-if="state.countLoading" class="fa fa-spinner fa-spin me-2"></i>
+                        <span t-att-class="recordCountClass">
+                            <strong><t t-esc="state.recordCount"/></strong> records match
+                        </span>
+                        <span class="text-muted ms-2">
+                            - <t t-esc="recordCountMessage"/>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Context Fields -->
+                <div class="mb-3" t-if="state.modelId">
+                    <label class="form-label fw-bold">Context Fields (optional)</label>
+                    <MultiRecordSelector
+                        resModel="'ir.model.fields'"
+                        resIds="state.contextFieldIds"
+                        domain="contextFieldDomain"
+                        update.bind="onContextFieldsUpdate"
+                        fieldString="'Context Fields'"
+                        placeholder="'Select context fields...'"
+                    />
+                    <small class="text-muted">Additional fields to include as context for each record (e.g., stage, assignee, date). These are prepended to the main content in each source attachment. Record identifier (type, ID, name) is automatically included for semantic search.</small>
+                </div>
+
+                <!-- Info box -->
+                <div class="alert alert-info mb-0" t-if="state.fieldId">
+                    <i class="fa fa-info-circle me-2"></i>
+                    <strong>What happens next:</strong>
+                    <ul class="mb-0 mt-1">
+                        <li>One source will be created for each matching record</li>
+                        <li>Each source includes: record identifier (type, ID, name) + context fields + main content</li>
+                        <li>This structure enables semantic search by record type, ID, name, or context field values</li>
+                        <li>Sources are indexed automatically by the AI embedding cron</li>
+                        <li>An hourly scheduled action detects new, changed, or removed records (when Auto Sync is enabled)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="onConfirm" t-att-disabled="state.loading">
+                    <i t-if="state.loading" class="fa fa-spinner fa-spin me-1"></i>
+                    Create Configuration
+                </button>
+                <button class="btn btn-secondary" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

@@ -323,8 +323,10 @@ class MigrateJz(models.Model):
     def get_tables_maestros(self):
         tables_maestros = [
             'account_group','res_currency',
+
             'account_account','account_tax_group','product_pricelist','product_pricelist_item',
             'account_journal',
+            'account_bank_statement',
             'account_tax','stock_location'
         ]
 
@@ -367,8 +369,10 @@ class MigrateJz(models.Model):
             'product_template','product_product',
             'product_taxes_rel','product_supplier_taxes_rel',
             'sale_order', 'sale_order_line', 'account_tax_sale_order_line_rel',
+            'sale_order_line_invoice_rel',
             'account_payment',
             'account_move', 'account_move_line', 'account_move_line_account_tax_rel',
+
         ]
 
 
