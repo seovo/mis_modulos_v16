@@ -125,7 +125,7 @@ class MigrateModelJz(models.Model):
         if table == 'account_payment':
 
             if self.migrate_id.current_version >= 19:
-                raise ValidationError(list_field_insert)
+                #raise ValidationError(list_field_insert)
                 if 'partner_type' not in list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'partner_type',
