@@ -123,6 +123,20 @@ class MigrateModelJz(models.Model):
         id_origin = self.id if type(self.id) == int else self._origin.id
 
         if table == 'account_payment':
+
+            if self.migrate_id.current_version > 19:
+                if 'partner_type' not in list_field_insert:
+                    self.env['migrate.model.columns.jz'].create({
+                        'name': 'partner_type',
+                        'value_set': '''
+                     CASE
+                        WHEN payment_type = 'inbound' THEN 'customer' 
+                        ELSE   'supplier'
+                     END AS partner_type 
+                     ''',
+                        'migrate_model_id': id_origin,
+                    })
+
             if 'company_id' not in  list_field_insert:
                 self.env['migrate.model.columns.jz'].create({
                     'name': 'company_id' ,
