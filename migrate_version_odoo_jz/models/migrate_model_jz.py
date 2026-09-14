@@ -187,12 +187,14 @@ END AS display_type      ''',
         if table == 'account_move':
             if self.migrate_id.current_version > 15:
                 #esto es odoo18 	reverse_entry_id
-                if 'reversed_entry_id' not in  list_field_insert:
-                    self.env['migrate.model.columns.jz'].create({
-                        'name': 'reversed_entry_id',
-                        'value_set': ' "reverse_entry_id" as reversed_entry_id    ',
-                        'migrate_model_id': id_origin,
-                    })
+                if self.migrate_id.from_version >= 11 :
+                    if 'reversed_entry_id' not in list_field_insert:
+                        self.env['migrate.model.columns.jz'].create({
+                            'name': 'reversed_entry_id',
+                            'value_set': ' "reverse_entry_id" as reversed_entry_id    ',
+                            'migrate_model_id': id_origin,
+                        })
+
                 if 'move_type' not in  list_field_insert:
                     self.env['migrate.model.columns.jz'].create({
                         'name': 'move_type',
