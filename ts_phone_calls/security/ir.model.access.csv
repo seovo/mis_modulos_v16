@@ -1,5 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-
-access_phone_calls,phone_calls,model_phone_calls,base.group_user,1,1,1,1
-access_call_summary,call_summary,model_calls_summary,base.group_user,1,1,1,1
-access_call_tags,call_tags,model_calls_tags,base.group_user,1,1,1,1
