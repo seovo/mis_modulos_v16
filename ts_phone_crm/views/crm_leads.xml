@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="lead_calls_smart_button" model="ir.ui.view">
+            <field name="name">lead.calls.buttons</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button class="oe_stat_button" type="object" name="get_lead_calls" 
+                        icon="fa-phone">
+                        <field string="Calls" name="lead_calls_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_phone_calls_form_views" model="ir.ui.view">
+            <field name="name">phone.calls.views</field>
+            <field name="model">phone.calls</field>
+            <field name="inherit_id" ref="ts_phone_calls.calls_form_view" />
+            <field name="arch" type="xml">
+                 <xpath expr="//header/field[@name='call_status']" position="before">
+                     <button name="call_to_lead" class="btn-primary" string="Create Lead" type="object"
+                             invisible="lead_id != False"/>
+                </xpath>
+                <xpath expr="//field[@name='call_type']" position="before">
+                    <field name="lead_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_phone_calls_tree_views" model="ir.ui.view">
+            <field name="name">phone.calls.views</field>
+            <field name="model">phone.calls</field>
+            <field name="inherit_id" ref="ts_phone_calls.calls_list_view"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='call_type']" position="before">
+                    <field name="lead_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_phone_calls_filters_views_inherit" model="ir.ui.view">
+            <field name="name">phone.calls.filters.views</field>
+            <field name="model">phone.calls</field>
+            <field name="inherit_id" ref="ts_phone_calls.view_tech_calls_by_lead"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//search/filter[@name='recieved_calls']" position="after">
+                    <filter name="calls_by_lead" string="Calls by Leads" domain="[('lead_id','!=',False)]"
+                            help="Calls by Lead"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_phone_calls_kanban_views_inherit" model="ir.ui.view">
+            <field name="name">phone.calls.kanban.views</field>
+            <field name="model">phone.calls</field>
+            <field name="inherit_id" ref="ts_phone_calls.calls_kanban_view"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//kanban/templates/t/div/div/div[4]" position="after">
+                    <div invisible="lead_id == False">
+                        <strong>Lead</strong>
+                        <field name="lead_id"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Action for calling phone calls view from leads  -->
+        <record id="action_lead_call_lead" model="ir.actions.act_window">
+            <field name="name">Phone Call CRM Lead Filter</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">phone.calls</field>
+            <field name="view_id" ref="crm_phone_calls_tree_views"/>
+            <field name="view_mode">list,kanban,calendar,form</field>
+            <field name="search_view_id" ref="crm_phone_calls_filters_views_inherit"/>
+            <field name="context">{'search_default_calls_by_lead': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Show the all lead calls here !
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="crm_lead_calls_menu" name="Phone Calls" parent="crm.crm_menu_root"
+                  action="action_lead_call_lead" sequence="2"/>
+
+        <record id="res_config_settings_view_form_crm_id" model="ir.ui.view">
+            <field name="name">CRM Phone Call Settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="46"/>
+            <field name="inherit_id" ref="ts_phone_calls.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('demo_res_setting')]" position="inside">
+                    <div class="col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="lead_call_id" string="CRM Lead"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="lead_call_id"/>
+                            <div class="text-muted">
+                                Enable automatic link with leads
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

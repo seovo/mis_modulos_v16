@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Portal Shared Dashboard Template -->
+    <template id="portal_share_dashboard" name="Shared Sales Dashboard">
+        <html lang="en">
+            <head>
+                <title>Sales Dashboard Summary</title>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                <link rel="stylesheet" href="/web/static/lib/bootstrap/css/bootstrap.css"/>
+                <link rel="stylesheet" href="/sales_dashboard_pro/static/src/css/portal_dashboard.css"/>
+                <!-- Chart.js and dynamic logic loader -->
+                <script src="/sales_dashboard_pro/static/src/lib/chart.umd.min.js"></script>
+                <script src="/sales_dashboard_pro/static/src/js/portal_dashboard.js"></script>
+            </head>
+            <body>
+                <div class="container-fluid">
+                    <!-- Title Header Card -->
+                    <div class="crm-header-card">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div>
+                                <h2 class="fw-bold text-dark m-0"><i class="fa fa-dashboard me-2" style="color:#10b981;"/> Sales 360 Dashboard Summary</h2>
+                                <p class="text-muted m-0 mt-1">Real-time Sales Intelligence &amp; Order Analytics (Read-Only Portal View)</p>
+                            </div>
+                            <div class="mt-2 mt-md-0">
+                                <button class="btn btn-light d-print-none fw-semibold shadow-sm border" onclick="window.print();" style="border-radius: 10px; padding: 8px 16px; font-size:12px;">
+                                    <i class="fa fa-print me-1"/> Print Summary
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Cards -->
+                    <p class="crm-section-label">Key Performance Indicators</p>
+                    <div class="crm-kpi-grid">
+                        <div class="crm-kpi-card">
+                            <div class="crm-kpi-header">
+                                <span class="crm-kpi-title">Total Sales</span>
+                                <div class="crm-kpi-icon"><i class="fa fa-line-chart"/></div>
+                            </div>
+                            <div class="crm-kpi-val"><t t-esc="format_currency(total_sales)"/></div>
+                        </div>
+                        <div class="crm-kpi-card">
+                            <div class="crm-kpi-header">
+                                <span class="crm-kpi-title">Invoiced</span>
+                                <div class="crm-kpi-icon"><i class="fa fa-file-text"/></div>
+                            </div>
+                            <div class="crm-kpi-val"><t t-esc="format_currency(invoiced)"/></div>
+                        </div>
+                        <div class="crm-kpi-card">
+                            <div class="crm-kpi-header">
+                                <span class="crm-kpi-title">Quotations</span>
+                                <div class="crm-kpi-icon"><i class="fa fa-pencil-square-o"/></div>
+                            </div>
+                            <div class="crm-kpi-val"><t t-esc="format_currency(quotation_value)"/></div>
+                        </div>
+                        <div class="crm-kpi-card">
+                            <div class="crm-kpi-header">
+                                <span class="crm-kpi-title">Avg Order Value</span>
+                                <div class="crm-kpi-icon"><i class="fa fa-calculator"/></div>
+                            </div>
+                            <div class="crm-kpi-val"><t t-esc="format_currency(aov)"/></div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <p class="crm-section-label">Visual Analytics</p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-6">
+                            <div class="crm-chart-card">
+                                <div class="crm-chart-header">
+                                    <span class="crm-chart-title"><i class="fa fa-line-chart"/> Sales Trend (12 Months)</span>
+                                    <span class="crm-chart-badge">Trend</span>
+                                </div>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="salesTrendChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="crm-chart-card">
+                                <div class="crm-chart-header">
+                                    <span class="crm-chart-title"><i class="fa fa-pie-chart"/> Order Status Distribution</span>
+                                    <span class="crm-chart-badge">Donut</span>
+                                </div>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="statusDonutChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Salesperson & Funnel -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-6">
+                            <div class="crm-chart-card">
+                                <div class="crm-chart-header">
+                                    <span class="crm-chart-title"><i class="fa fa-bar-chart"/> Salesperson Performance</span>
+                                    <span class="crm-chart-badge">Bar</span>
+                                </div>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="salespersonChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="crm-chart-card">
+                                <div class="crm-chart-header">
+                                    <span class="crm-chart-title"><i class="fa fa-filter"/> Sales Pipeline Funnel</span>
+                                    <span class="crm-chart-badge">Funnel</span>
+                                </div>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="salesFunnelChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pivot & Recent Orders -->
+                    <p class="crm-section-label">Tables &amp; Breakdown</p>
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="crm-chart-card">
+                                <div class="crm-chart-header">
+                                    <span class="crm-chart-title"><i class="fa fa-table me-1"/> Pivot Analysis: Status × Salesperson</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="crm-pivot-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Salesperson</th>
+                                                <th>Quotation</th>
+                                                <th>Sent</th>
+                                                <th>Sale</th>
+                                                <th>Done</th>
+                                                <th>Cancel</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="pivot_data" t-as="row">
+                                                <tr>
+                                                    <td class="crm-pivot-stage-name"><t t-esc="row['salesperson']"/></td>
+                                                    <td class="text-center" t-esc="row['draft'] if row['draft'] > 0 else ''" t-attf-style="background-color: #{'rgba(16,185,129,' + str((0.08 + (row['draft'] / max(pivot_max, 1)) * 0.55)) + ')' if row['draft'] > 0 else ''}; font-weight: #{'700' if row['draft'] > 0 else '400'};"/>
+                                                    <td class="text-center" t-esc="row['sent'] if row['sent'] > 0 else ''" t-attf-style="background-color: #{'rgba(16,185,129,' + str((0.08 + (row['sent'] / max(pivot_max, 1)) * 0.55)) + ')' if row['sent'] > 0 else ''}; font-weight: #{'700' if row['sent'] > 0 else '400'};"/>
+                                                    <td class="text-center" t-esc="row['sale'] if row['sale'] > 0 else ''" t-attf-style="background-color: #{'rgba(16,185,129,' + str((0.08 + (row['sale'] / max(pivot_max, 1)) * 0.55)) + ')' if row['sale'] > 0 else ''}; font-weight: #{'700' if row['sale'] > 0 else '400'};"/>
+                                                    <td class="text-center" t-esc="row['done'] if row['done'] > 0 else ''" t-attf-style="background-color: #{'rgba(16,185,129,' + str((0.08 + (row['done'] / max(pivot_max, 1)) * 0.55)) + ')' if row['done'] > 0 else ''}; font-weight: #{'700' if row['done'] > 0 else '400'};"/>
+                                                    <td class="text-center" t-esc="row['cancel'] if row['cancel'] > 0 else ''"/>
+                                                    <td class="crm-pivot-row-total" t-esc="row['total']"/>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Orders -->
+                        <div class="col-lg-6">
+                            <div class="crm-chart-card">
+                                <div class="crm-chart-header">
+                                    <span class="crm-chart-title"><i class="fa fa-list me-1"/> Recent Orders</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="crm-list-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Order</th>
+                                                <th>Customer</th>
+                                                <th>Status</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="recent" t-as="order">
+                                                <tr>
+                                                    <td t-esc="recent.index(order) + 1"/>
+                                                    <td class="fw-bold text-dark" t-esc="order.get('name')"/>
+                                                    <td t-esc="order.get('partner') or '-'"/>
+                                                    <td>
+                                                        <span class="crm-stage-pill" t-esc="order.get('state')"/>
+                                                    </td>
+                                                    <td class="fw-bold text-success" t-esc="format_currency(order.get('amount', 0))"/>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Data Carrier -->
+                <div id="crm_dashboard_data"
+                     t-att-data-dashboard="dashboard_data_json"
+                     t-att-data-currency-symbol="company.currency_id.symbol"
+                     t-att-data-currency-position="company.currency_id.position"
+                     style="display: none;"/>
+            </body>
+        </html>
+    </template>
+</odoo>

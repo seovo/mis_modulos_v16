@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_sales_dashboard" model="ir.actions.report">
+        <field name="name">Sales Order Dashboard</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sales_dashboard_pro.report_sales_dashboard_template</field>
+        <field name="report_file">sales_dashboard_pro.report_sales_dashboard_template</field>
+        <field name="print_report_name">'Sales Dashboard Report'</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_sales_dashboard_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333;">
+                    <!-- Title -->
+                    <div style="border-bottom: 2px solid #10b981; padding-bottom: 10px; margin-bottom: 20px;">
+                        <h2 style="margin: 0; color: #10b981; font-weight: bold;">Sales Dashboard Summary</h2>
+                        <span style="font-size: 11px; color: #64748b;">Report Generated on <t t-esc="datetime.date.today().strftime('%B %d, %Y')"/></span>
+                    </div>
+
+                    <!-- Active Filters -->
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px;">
+                        <strong style="color: #475569; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Active Filters</strong>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="width: 25%; padding: 2px 0;"><strong>Date From:</strong> <t t-esc="date_from or 'All Time'"/></td>
+                                <td style="width: 25%; padding: 2px 0;"><strong>Date To:</strong> <t t-esc="date_to or 'All Time'"/></td>
+                                <td style="width: 25%; padding: 2px 0;"><strong>Salesperson:</strong> <t t-esc="user_name or 'All'"/></td>
+                                <td style="width: 25%; padding: 2px 0;"><strong>Sales Team:</strong> <t t-esc="team_name or 'All'"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- KPIs Cards -->
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <tr>
+                            <td style="width: 25%; padding: 0 6px;">
+                                <div style="border: 1px solid #e2e8f0; border-left: 4px solid #10b981; border-radius: 6px; padding: 12px; background: #fff;">
+                                    <div style="font-size: 9px; color: #64748b; text-transform: uppercase; font-weight: bold;">Total Confirmed Sales</div>
+                                    <div style="font-size: 18px; font-weight: bold; margin-top: 6px; color: #0f172a;" t-esc="format_currency(total_sales)"/>
+                                </div>
+                            </td>
+                            <td style="width: 25%; padding: 0 6px;">
+                                <div style="border: 1px solid #e2e8f0; border-left: 4px solid #34d399; border-radius: 6px; padding: 12px; background: #fff;">
+                                    <div style="font-size: 9px; color: #64748b; text-transform: uppercase; font-weight: bold;">Total Invoiced</div>
+                                    <div style="font-size: 18px; font-weight: bold; margin-top: 6px; color: #0f172a;" t-esc="format_currency(invoiced)"/>
+                                </div>
+                            </td>
+                            <td style="width: 25%; padding: 0 6px;">
+                                <div style="border: 1px solid #e2e8f0; border-left: 4px solid #059669; border-radius: 6px; padding: 12px; background: #fff;">
+                                    <div style="font-size: 9px; color: #64748b; text-transform: uppercase; font-weight: bold;">Total Quotations</div>
+                                    <div style="font-size: 18px; font-weight: bold; margin-top: 6px; color: #0f172a;" t-esc="format_currency(quotation_value)"/>
+                                </div>
+                            </td>
+                            <td style="width: 25%; padding: 0 6px;">
+                                <div style="border: 1px solid #e2e8f0; border-left: 4px solid #047857; border-radius: 6px; padding: 12px; background: #fff;">
+                                    <div style="font-size: 9px; color: #64748b; text-transform: uppercase; font-weight: bold;">Average Order Value</div>
+                                    <div style="font-size: 18px; font-weight: bold; margin-top: 6px; color: #0f172a;" t-esc="format_currency(aov)"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Pivot Table -->
+                    <div style="margin-bottom: 25px; page-break-inside: avoid;">
+                        <h4 style="margin: 0 0 10px 0; color: #1e293b; font-size: 13px; font-weight: bold;">Pivot Analysis: Status × Salesperson</h4>
+                        <table style="font-size: 10px; width: 100%; border: 1px solid #cbd5e1; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f1f5f9;">
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: left;">Salesperson</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;">Quotation</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;">Sent</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;">Sales Order</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;">Locked</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;">Cancelled</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="pivot_data" t-as="row">
+                                    <tr>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; font-weight: bold; background-color: #f8fafc;" t-esc="row['salesperson']"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;" t-esc="row['draft'] if row['draft'] > 0 else ''"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;" t-esc="row['sent'] if row['sent'] > 0 else ''"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;" t-esc="row['sale'] if row['sale'] > 0 else ''"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;" t-esc="row['done'] if row['done'] > 0 else ''"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: center;" t-esc="row['cancel'] if row['cancel'] > 0 else ''"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: center; font-weight: bold; background-color: #f8fafc;" t-esc="row['total']"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Recent Orders -->
+                    <div style="page-break-inside: avoid;">
+                        <h4 style="margin: 0 0 10px 0; color: #1e293b; font-size: 13px; font-weight: bold;">Recent Orders</h4>
+                        <table style="font-size: 10px; width: 100%; border: 1px solid #cbd5e1; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f1f5f9;">
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; width: 5%;">#</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: left;">Order Reference</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: left;">Customer</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: left;">Status</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: right;">Total Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="recent" t-as="order">
+                                    <tr>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px;" t-esc="recent.index(order) + 1"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; font-weight: bold;" t-esc="order.get('name')"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px;" t-esc="order.get('partner')"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px;" t-esc="order.get('state')"/>
+                                        <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #047857;" t-esc="format_currency(order.get('amount', 0))"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

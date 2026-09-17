@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="sales_dashboard_pro.SalesDashboard">
+<div class="sales_dash_root">
+
+    <!-- ── Header ── -->
+    <div class="sales-dash-header">
+        <div class="sales-dash-title-block">
+            <div class="sales-dash-icon"><i class="fa fa-line-chart"/></div>
+            <div>
+                <h1 class="sales-dash-title">Sales 360 Dashboard Pro</h1>
+                <p class="sales-dash-subtitle">Revenue · Shipments · Customers · Products · Inventory Intelligence</p>
+            </div>
+        </div>
+        <div class="sales-dash-header-right">
+            <div class="sales-dash-live-badge"><span class="sales-live-dot"/> Live</div>
+        </div>
+    </div>
+
+    <!-- ── Filters ── -->
+    <div class="sales-filter-bar">
+        <div class="sales-filter-group">
+            <label>From</label>
+            <input type="date" t-ref="dateFrom" t-att-value="state.dateFrom"/>
+        </div>
+        <div class="sales-filter-group">
+            <label>To</label>
+            <input type="date" t-ref="dateTo" t-att-value="state.dateTo"/>
+        </div>
+        
+        <!-- Filter 1: Salesperson -->
+        <div class="sales-filter-group">
+            <label>Salesperson</label>
+            <select t-ref="userId" t-on-change="applyFilters">
+                <option value="">All Users</option>
+                <t t-foreach="state.users" t-as="u" t-key="u.id">
+                    <option t-att-value="u.id" t-esc="u.name"/>
+                </t>
+            </select>
+        </div>
+
+        <!-- Filter 2: State -->
+        <div class="sales-filter-group">
+            <label>State</label>
+            <select t-ref="stateSelect" t-on-change="applyFilters">
+                <option value="">All States</option>
+                <t t-foreach="state.states" t-as="st" t-key="st.id">
+                    <option t-att-value="st.id" t-esc="st.name"/>
+                </t>
+            </select>
+        </div>
+
+        <!-- Filter 3: Partner -->
+        <div class="sales-filter-group">
+            <label>Partner</label>
+            <select t-ref="partnerId" t-on-change="applyFilters">
+                <option value="">All Partners</option>
+                <t t-foreach="state.partners" t-as="pt" t-key="pt.id">
+                    <option t-att-value="pt.id" t-esc="pt.name"/>
+                </t>
+            </select>
+        </div>
+
+        <div class="sales-filter-actions">
+            <button class="sales-btn-apply" t-on-click="applyFilters">
+                <i class="fa fa-search"/> Apply
+            </button>
+            <button class="sales-btn-reset" t-on-click="resetFilters">
+                <i class="fa fa-refresh"/> Reset
+            </button>
+            <button class="sales-btn-export" t-on-click="exportExcel">
+                <i class="fa fa-file-excel-o"/> Excel
+            </button>
+            <button class="sales-btn-pdf" t-on-click="exportPDF">
+                <i class="fa fa-print"/> Print
+            </button>
+            <button class="sales-btn-share" t-on-click="shareDashboard">
+                <i class="fa fa-share-alt"/> Share
+            </button>
+        </div>
+    </div>
+
+    <!-- ── Loading ── -->
+    <t t-if="state.loading">
+        <div class="sales-loading-overlay">
+            <div class="sales-spinner"/>
+            <p class="sales-loading-text">Loading Sales Analytics...</p>
+        </div>
+    </t>
+
+    <!-- ── Dashboard Content ── -->
+    <t t-if="!state.loading and state.data">
+    <div class="sales-dash-content">
+
+        <t t-if="hasAnalyticalData()">
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- ROW 1: 7 KPI CARDS -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <p class="sales-section-label">Key Performance Indicators</p>
+            <div class="sales-kpi-row">
+                <!-- 1. Total Revenue -->
+                <div class="sales-kpi-card kpi-revenue" t-on-click="() => this.openOrdersFiltered('sale')">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-line-chart"/></div>
+                        <span class="sales-kpi-trend up"><i class="fa fa-arrow-up"/> Sales</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatCur(state.data.total_revenue)"/>
+                    <div class="sales-kpi-label">Total Revenue</div>
+                    <div class="sales-kpi-sub">Confirmed Orders</div>
+                </div>
+
+                <!-- 2. Total Invoiced -->
+                <div class="sales-kpi-card kpi-invoiced" t-on-click="() => this.openOrdersFiltered('sale')">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-file-text-o"/></div>
+                        <span class="sales-kpi-trend up"><i class="fa fa-check"/> Invoiced</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatCur(state.data.invoiced)"/>
+                    <div class="sales-kpi-label">Invoiced Amount</div>
+                    <div class="sales-kpi-sub">Posted Invoices</div>
+                </div>
+
+                <!-- 3. Total Customers -->
+                <div class="sales-kpi-card kpi-customers" t-on-click="() => this.openOrdersFiltered('all')">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-users"/></div>
+                        <span class="sales-kpi-badge blue">Unique</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="state.data.total_customers"/>
+                    <div class="sales-kpi-label">Total Customers</div>
+                    <div class="sales-kpi-sub">Active Buyers</div>
+                </div>
+
+                <!-- 4. Products Sold -->
+                <div class="sales-kpi-card kpi-products">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-cube"/></div>
+                        <span class="sales-kpi-badge green">Qty</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatNum(state.data.products_sold_qty)"/>
+                    <div class="sales-kpi-label">Products Sold</div>
+                    <div class="sales-kpi-sub"><t t-esc="state.data.unique_products"/> unique SKUs</div>
+                </div>
+
+                <!-- 5. Shipments -->
+                <div class="sales-kpi-card kpi-shipments">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-truck"/></div>
+                        <span class="sales-kpi-badge pending"><t t-esc="state.data.shipments_pending"/> Pending</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="state.data.shipments_done"/>
+                    <div class="sales-kpi-label">Shipments Done</div>
+                    <div class="sales-kpi-sub">Delivered Stock</div>
+                </div>
+
+                <!-- 6. Open Quotations -->
+                <div class="sales-kpi-card kpi-quotations" t-on-click="() => this.openOrdersFiltered('draft')">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-pencil-square-o"/></div>
+                        <span class="sales-kpi-trend neutral"><i class="fa fa-clock-o"/> Open</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="state.data.open_quotations"/>
+                    <div class="sales-kpi-label">Open Quotations</div>
+                    <div class="sales-kpi-sub"><t t-esc="formatCur(state.data.quotation_value)"/> potential</div>
+                </div>
+
+                <!-- 7. Warehouse -->
+                <div class="sales-kpi-card kpi-warehouse">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-home"/></div>
+                        <span class="sales-kpi-badge teal"><t t-esc="state.data.warehouse_count"/> WH</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatCur(state.data.inventory_value)"/>
+                    <div class="sales-kpi-label">Inventory Value</div>
+                    <div class="sales-kpi-sub">On-Hand Stock</div>
+                </div>
+
+                <!-- 8. Average Order Value -->
+                <div class="sales-kpi-card kpi-aov">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-calculator"/></div>
+                        <span class="sales-kpi-badge blue">AOV</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatCur(state.data.aov)"/>
+                    <div class="sales-kpi-label">Avg Order Value</div>
+                    <div class="sales-kpi-sub">Per Confirmed Order</div>
+                </div>
+
+                <!-- 9. Net Revenue -->
+                <div class="sales-kpi-card kpi-net-revenue">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-money"/></div>
+                        <span class="sales-kpi-badge teal">Net</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatCur(state.data.net_revenue)"/>
+                    <div class="sales-kpi-label">Net Revenue</div>
+                    <div class="sales-kpi-sub">Excluding Taxes</div>
+                </div>
+
+                <!-- 10. Tax Collected -->
+                <div class="sales-kpi-card kpi-tax">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-percent"/></div>
+                        <span class="sales-kpi-badge purple">Tax</span>
+                    </div>
+                    <div class="sales-kpi-value" t-esc="formatCur(state.data.tax_amount)"/>
+                    <div class="sales-kpi-label">Tax Amount</div>
+                    <div class="sales-kpi-sub">Total Sales Taxes</div>
+                </div>
+
+                <!-- 11. Conversion Rate -->
+                <div class="sales-kpi-card kpi-conversion">
+                    <div class="sales-kpi-glass-shine"/>
+                    <div class="sales-kpi-top">
+                        <div class="sales-kpi-icon-wrap"><i class="fa fa-refresh"/></div>
+                        <span class="sales-kpi-badge orange"><t t-esc="state.data.conversion_rate"/>%</span>
+                    </div>
+                    <div class="sales-kpi-value"><t t-esc="state.data.conversion_rate"/>%</div>
+                    <div class="sales-kpi-label">Conversion Rate</div>
+                    <div class="sales-kpi-sub">Quotes to Orders</div>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- ROW 2: Revenue Trend (wide) + Salesperson Bar -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <p class="sales-section-label">Revenue &amp; Performance</p>
+            <div class="sales-charts-grid">
+                <div class="sales-chart-card col-8">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-line-chart"/> Revenue Trend</span>
+                        <span class="sales-chart-badge">12 Months</span>
+                    </div>
+                    <div class="sales-chart-canvas-wrap" style="height:230px;">
+                        <canvas t-ref="revenueTrendChart"/>
+                    </div>
+                </div>
+                <div class="sales-chart-card col-4">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-trophy"/> Salesperson Ranking</span>
+                        <span class="sales-chart-badge">By Revenue</span>
+                    </div>
+                    <div class="sales-chart-canvas-wrap" style="height:230px;">
+                        <canvas t-ref="salespersonChart"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- ROW 3: Customer Geography &amp; Order Status -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <p class="sales-section-label">Customer Geography &amp; Status Distribution</p>
+            <div class="sales-charts-grid">
+                <!-- Left: Customer Map -->
+                <div class="sales-chart-card col-8">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-globe"/> Customer World Map</span>
+                        <span class="sales-chart-badge">By Country</span>
+                    </div>
+                    <div t-ref="customerMapWrap" style="height:250px; position:relative; border-radius:12px; overflow:hidden;"/>
+                </div>
+
+                <!-- Right: Order Status Donut -->
+                <div class="sales-chart-card col-4">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-pie-chart"/> Order Status</span>
+                        <span class="sales-chart-badge">Distribution</span>
+                    </div>
+                    <div class="sales-chart-canvas-wrap" style="height:230px;">
+                        <canvas t-ref="stageDonutChart"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- ROW 4: Top Products by Revenue + Product Category Share + Sales Pipeline Funnel -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <p class="sales-section-label">Product Performance, Categories &amp; Pipeline Funnel</p>
+            <div class="sales-charts-grid">
+                <!-- Left: Top Products -->
+                <div class="sales-chart-card col-4">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-bar-chart"/> Top Products by Revenue</span>
+                        <span class="sales-chart-badge">Top 8</span>
+                    </div>
+                    <div class="sales-chart-canvas-wrap" style="height:230px;">
+                        <canvas t-ref="topProductsChart"/>
+                    </div>
+                </div>
+
+                <!-- Middle: Category Pie Chart -->
+                <div class="sales-chart-card col-4">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-pie-chart"/> Product Category Share</span>
+                        <span class="sales-chart-badge">Pie Chart</span>
+                    </div>
+                    <div class="sales-chart-canvas-wrap" style="height:230px;">
+                        <canvas t-ref="categoryPieChart"/>
+                    </div>
+                </div>
+
+                <!-- Right: Pipeline Funnel -->
+                <div class="sales-chart-card col-4">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-filter"/> Sales Pipeline Funnel</span>
+                        <span class="sales-chart-badge">By Stage</span>
+                    </div>
+                    <div class="sales-funnel-wrap" t-ref="funnelWrap"/>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- ROW 5: Highest Sold Products (Top 3) + Recent Orders -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <p class="sales-section-label">Top Customers &amp; Recent Orders</p>
+            <div class="sales-last-row">
+                <!-- Left: Top 3 Customers -->
+                <div class="sales-chart-card sales-top3-card">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-users"/> Top Customers (Top 3)</span>
+                        <span class="sales-chart-badge">Leaderboard</span>
+                    </div>
+                    <div class="sales-top-products-cards-wrap">
+                        <t t-if="state.data.top_3_products_data and state.data.top_3_products_data.length">
+                            <t t-foreach="state.data.top_3_products_data" t-as="p" t-key="p.id">
+                                <div t-attf-class="sales-top-product-item rank-item-#{p.rank}">
+                                    <!-- Rank Badge -->
+                                    <div t-attf-class="sales-rank-badge rank-#{p.rank}">
+                                        <t t-if="p.rank == 1">👑 #1</t>
+                                        <t t-else="">#<t t-esc="p.rank"/></t>
+                                    </div>
+                                    
+                                    <!-- Customer Avatar -->
+                                    <div class="sales-product-image-container">
+                                        <img t-att-src="p.image_url" alt="Customer" class="sales-product-image" onerror="this.src='/web/static/img/placeholder.png'"/>
+                                    </div>
+
+                                    <!-- Customer Info -->
+                                    <div class="sales-product-details">
+                                        <h4 class="sales-product-name" t-esc="p.name" t-att-title="p.name"/>
+                                        <div class="sales-product-meta-row">
+                                            <div class="sales-meta-item">
+                                                <span class="sales-meta-label">Orders Count</span>
+                                                <span class="sales-meta-val qty-val" t-esc="p.qty"/>
+                                            </div>
+                                            <div class="sales-meta-divider"/>
+                                            <div class="sales-meta-item">
+                                                <span class="sales-meta-label">Revenue</span>
+                                                <span class="sales-meta-val rev-val" t-esc="formatCur(p.revenue)"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <div class="sales-empty-products">
+                                <i class="fa fa-users"/>
+                                <p>No customer transactions found under selected filters</p>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <!-- Right: Recent Orders -->
+                <div class="sales-chart-card">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-list"/> Recent Orders</span>
+                        <span class="sales-chart-badge">Click to Open</span>
+                    </div>
+                    <div t-ref="recentLeadsContainer"/>
+                </div>
+            </div>
+        </t>
+        <t t-else="">
+            <!-- Only Recent Orders list when analytical data is empty -->
+            <p class="sales-section-label">Recent Orders (No Analytical Data Found)</p>
+            <div class="sales-charts-grid">
+                <div class="sales-chart-card col-12">
+                    <div class="sales-chart-header">
+                        <span class="sales-chart-title"><i class="fa fa-list"/> Recent Orders</span>
+                    </div>
+                    <div t-ref="recentLeadsContainer"/>
+                </div>
+            </div>
+        </t>
+
+        <!-- ── Share Modal ── -->
+        <t t-if="state.showShareModal">
+            <div class="sales-modal-backdrop" t-on-click="closeShareModal">
+                <div class="sales-modal-content" t-on-click.stop="">
+                    <div class="sales-modal-header">
+                        <h3><i class="fa fa-share-alt"/> Share Sales Dashboard</h3>
+                        <button class="sales-modal-close" t-on-click="closeShareModal">&#215;</button>
+                    </div>
+                    <div class="sales-modal-body">
+                        <p>Share this real-time sales intelligence summary as a portal link.</p>
+                        <div style="text-align:center;margin-bottom:18px;">
+                            <img t-att-src="getQrCodeUrl()" alt="QR Code" style="width:120px;height:120px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);padding:5px;background:white;"/>
+                            <div style="font-size:10px;color:#64748b;font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">Scan to open on phone</div>
+                        </div>
+                        <div class="sales-share-section">
+                            <label>Dashboard Link</label>
+                            <div class="sales-share-input-group">
+                                <input type="text" class="form-control" t-att-value="getDashboardUrl()" readonly="readonly" id="sales-share-url-input"/>
+                                <button class="btn btn-success" t-on-click="copyDashboardUrl"><i class="fa fa-copy"/> Copy</button>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:center;gap:14px;margin-top:18px;">
+                            <a t-att-href="getWhatsAppUrl()" target="_blank" style="background:#25d366;color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;"><i class="fa fa-whatsapp"/></a>
+                            <a t-att-href="getLinkedInUrl()" target="_blank" style="background:#0077b5;color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;"><i class="fa fa-linkedin"/></a>
+                            <a t-att-href="getTwitterUrl()" target="_blank" style="background:#000;color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;"><i class="fa fa-twitter"/></a>
+                            <a t-att-href="getEmailShareHref()" target="_blank" style="background:#ea4335;color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;"><i class="fa fa-envelope"/></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+
+    </div>
+    </t>
+
+</div>
+</t>
+
+</templates>

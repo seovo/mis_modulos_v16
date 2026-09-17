@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="call_lead_form_view">
+            <field name="name">Phone Calls</field>
+            <field name="model">lead.calls.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Tips Info">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="Name"/>
+                                <field name="email_from" string="Email" widget="email"/>
+                                <field name="call_from" string="Mobile" widget="phone"/>
+                                <field name="notes" string="Notes"/>
+                            </group>
+                            <group>
+                                <field name="source_id" string="UTM Source"/>
+                                <field name="medium_id" string="UTM Medium"/>
+                                <field name="lead_source" string="Lead Source" readonly="1"/>
+                                <field name="interaction_source" string="Interaction Source" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="create_lead" type="object" string="Create" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

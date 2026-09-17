@@ -1,0 +1,38 @@
+<odoo>
+    <record id="crm_lead_view_form_followup" model="ir.ui.view">
+        <field name="name">crm.lead.form.followup</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_lead_opportunity_form_inline_fields')]" position="after">
+                <field name="next_followup_date"/>
+                <field name="followup_note" placeholder="Purpose of the next follow-up"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_lead_list_followup" model="ir.ui.view">
+        <field name="name">crm.lead.list.followup</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_deadline' and @optional='hide']" position="after">
+                <field name="next_followup_date" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_lead_search_followup" model="ir.ui.view">
+        <field name="name">crm.lead.search.followup</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="next_followup_date"/>
+            </field>
+            <search position="inside">
+                <filter string="Follow-up Overdue"
+                        name="followup_overdue"
+                        domain="[('next_followup_date', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

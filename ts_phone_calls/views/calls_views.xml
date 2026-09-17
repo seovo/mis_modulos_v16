@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--  Phone Call Form View  -->
+        <record id="calls_form_view" model="ir.ui.view">
+            <field name="name">calls.form.view</field>
+            <field name="model">phone.calls</field>
+            <field name="arch" type="xml">
+                <form js_class="crm_form">
+                    <header>
+                        <field name="call_status" widget="statusbar" options="{'clickable':1}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="get_similar_calls" icon="fa-phone">
+                                <field string="Past Calls" name="similar_calls" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="call_from" widget="phone" required="1"/>
+                                <field name="call_start_time"/>
+                                <field name="call_end_time"/>
+                                <field name="call_duration"/>
+                                <field name="call_tag_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="call_type"/>
+                                <field name="call_responsible_id"/>
+                                <field name="call_summary_id" widget="selection"
+                                       options="{'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                            <notebook>
+                                <page string="Notes">
+                                    <field name="call_notes" placeholder="e.g. Minutes of Meeting"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!--  Phone Call Tree View  -->
+        <record id="calls_list_view" model="ir.ui.view">
+            <field name="name">calls.list.view</field>
+            <field name="model">phone.calls</field>
+            <field name="arch" type="xml">
+                <list default_order="id desc">
+                    <field name="name" optional="hide"/>
+                    <field name="call_from" widget="phone"/>
+                    <field name="call_start_time"/>
+                    <field name="call_end_time" optional="hide"/>
+                    <field name="call_duration"/>
+                    <field name="call_type"/>
+                    <field name="call_status"/>
+                    <field name="call_tag_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="call_responsible_id"/>
+                    <field name="call_summary_id" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Phone calls Kanban view  -->
+        <record id="calls_kanban_view" model="ir.ui.view">
+            <field name="name">calls.tech.kanban</field>
+            <field name="model">phone.calls</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban" default_group_by="call_status" default_order="call_start_time desc"
+                        records_draggable="true">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="call_from"/>
+                    <field name="call_to"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <div invisible="call_from == False">
+                                        <strong>Caller</strong>
+                                        <field name="call_from"/>
+                                    </div>
+                                    <div invisible="call_responsible_id == False">
+                                        <strong>Receiver</strong>
+                                        <field name="call_responsible_id"/>
+                                    </div>
+                                    <div invisible="call_start_time == False">
+                                        <strong>Call Started</strong>
+                                        <field name="call_start_time"/>
+                                    </div>
+                                    <div invisible="call_duration == False">
+                                        <strong>Call Duration</strong>
+                                        <field name="call_duration"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Phone Calls Calendar View -->
+        <record id="tech_calls_view_calendar" model="ir.ui.view">
+            <field name="name">calls.tech.calendar</field>
+            <field name="model">phone.calls</field>
+            <field name="arch" type="xml">
+                <calendar string="Service Request" date_start="call_start_time" date_stop="call_end_time" mode="month"
+                          event_open_popup="true" color="name">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Phone Calls Search View -->
+        <record id="tech_calls_search" model="ir.ui.view">
+            <field name="name">calls.tech.search</field>
+            <field name="model">phone.calls</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="call_from"/>
+                    <field name="call_to"/>
+<!--                    <group expand="0" string="Group By">-->
+                        <filter string="Call Type" name="call_type" context="{'group_by': 'call_type'}"/>
+                        <filter string="Call Status" name="call_status" context="{'group_by': 'call_status'}"/>
+<!--                    </group>-->
+                </search>
+            </field>
+        </record>
+
+        <!-- Phone Calls by Filter -->
+        <record id="view_tech_calls_by_lead" model="ir.ui.view">
+            <field name="name">filter.phone.calls</field>
+            <field name="model">phone.calls</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="ts_phone_calls.tech_calls_search"/>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Outbound" name="inbound_calls" domain="[('call_type','=','in')]"/>
+                    <filter string="Inbound" name="outbound_calls" domain="[('call_type','=','out')]"/>
+                    <filter string="Missed" name="missed_calls" domain="[('call_status','=','missed')]"/>
+                    <filter string="Disconnected" name="disconnected_calls"
+                            domain="[('call_status','=','disconnected')]"/>
+                    <filter string="Answered" name="recieved_calls" domain="[('call_status','=','received')]"/>
+                    <filter string="Created Today" name="created_today"
+                            domain="[('create_date', '>=',context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Created Yesterday" name="created_yesterday"
+                            domain="[('create_date','=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00'))),
+                            ('create_date','=', ((context_today()+datetime.timedelta(days=0)).strftime('%Y-%m-%d 00:00:00')))]"/>
+                    <filter string="This Week" name="current_week"
+                            domain="[('create_date', '=', ((context_today()+relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))),
+                                 ('create_date', '=', ((context_today()-relativedelta(weeks=1, weekday=0)).strftime('%Y-%m-%d')))]"/>
+                    <filter string="Last Week" name="last_week"
+                            domain="[('create_date', '=', ((context_today()-relativedelta(weeks=1, weekday=-1)).strftime('%Y-%m-%d'))),
+                                 ('create_date', '=', ((context_today()-relativedelta(weeks=2, weekday=0)).strftime('%Y-%m-%d')))]"/>
+                </search>
+            </field>
+        </record>
+
+        <!--  Phone Call Summary  -->
+        <record id="calls_summary_view" model="ir.actions.act_window">
+            <field name="name">Call Summaries</field>
+            <field name="res_model">calls.summary</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!--  Phone Call Tags  -->
+        <record id="calls_tags_view" model="ir.actions.act_window">
+            <field name="name">Call Tags</field>
+            <field name="res_model">calls.tags</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!--  Root Menu Action  -->
+        <record id="phone_calls_menu_action" model="ir.actions.act_window">
+            <field name="name">Phone Calls</field>
+            <field name="res_model">phone.calls</field>
+            <field name="view_mode">list,kanban,calendar,form</field>
+        </record>
+
+        <!--  Menu Items  -->
+        <menuitem id="calls_menu" name="Phone Calls" action="phone_calls_menu_action" sequence="20"
+                  groups="ts_phone_calls.phone_call_user_access"/>
+        <menuitem id="calls_config_menu" name="Configuration" parent="calls_menu"
+                  groups="ts_phone_calls.phone_call_manager_access"/>
+
+        <menuitem id="calls_sum_menu" name="Call Summaries" action="calls_summary_view" sequence="2"
+                  parent="calls_config_menu" groups="ts_phone_calls.phone_call_manager_access"/>
+        <menuitem id="calls_tags_menu" name="Call Tags" action="calls_tags_view" parent="calls_config_menu"
+                  groups="ts_phone_calls.phone_call_manager_access" sequence="2"/>
+
+        <!--  Server Action For Format Phone Calls  -->
+        <record model="ir.actions.server" id="calls_format_phone">
+            <field name="name">Format Phone</field>
+            <field name="model_id" ref="ts_phone_calls.model_phone_calls"/>
+            <field name="binding_model_id" ref="ts_phone_calls.model_phone_calls"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.calls_format_phone()
+            </field>
+        </record>
+    </data>
+</odoo>
