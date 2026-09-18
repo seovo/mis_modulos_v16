@@ -640,7 +640,7 @@ class AccountMove(models.Model):
             return "never"
         return super(AccountMove, self)._deduce_sequence_number_reset(name)
         
-    '''
+    
 
     def action_document_send(self):
         """
@@ -661,6 +661,8 @@ class AccountMove(models.Model):
                 )
                 if json_response.get("codigo", 0) == 23:
                     rec.l10n_pe_edi_request_id.action_api_connect("consultar")
+                    
+    
 
     def action_document_check(self):
         """
@@ -680,6 +682,8 @@ class AccountMove(models.Model):
                 rec.l10n_pe_edi_sunat_canceled_progress = False
                 rec.button_draft()
                 rec.button_cancel()
+                
+    
 
     def action_document_cancel(self):
         """
@@ -693,6 +697,8 @@ class AccountMove(models.Model):
         ):
             rec.l10n_pe_edi_request_id.action_api_connect("anular")
             rec.l10n_pe_edi_sunat_canceled_progress = True
+            
+    '''
 
     def _get_include_downpayment(self):
         return any(
