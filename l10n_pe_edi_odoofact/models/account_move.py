@@ -540,6 +540,7 @@ class AccountMove(models.Model):
                 move.l10n_pe_edi_request_id = request_id.id
         return res
 
+    '''
     @api.depends("company_id", "invoice_filter_type_domain")
     def _compute_suitable_journal_ids(self):
         for m in self:
@@ -553,6 +554,7 @@ class AccountMove(models.Model):
             if m.move_type == "out_refund":
                 domain.append(("l10n_latam_document_type_id.code", "in", ["07"]))
             m.suitable_journal_ids = self.env["account.journal"].search(domain)
+    
 
     def _search_default_journal(self):
         if self.move_type == "out_refund":
@@ -569,6 +571,8 @@ class AccountMove(models.Model):
     @api.onchange("l10n_latam_document_type_id", "l10n_latam_document_number")
     def _inverse_l10n_latam_document_number(self):
         pass
+        
+    
 
     @api.depends("move_type", "journal_id")
     def _compute_l10n_latam_document_type(self):
@@ -579,15 +583,21 @@ class AccountMove(models.Model):
                 )
             else:
                 move.l10n_latam_document_type_id = False
+                
+    
 
     def _l10n_pe_edi_get_formatted_sequence(self, number=0):
         return "%s-%06d" % (self.journal_id.code, number)
+        
+    
 
     def _get_starting_sequence(self):
         if self.l10n_pe_edi_is_einvoice:
             if self.l10n_latam_document_type_id and self.journal_id.code:
                 return self._l10n_pe_edi_get_formatted_sequence()
         return super()._get_starting_sequence()
+        
+    
 
     def _get_last_sequence_domain(self, relaxed=False):
         where_string, param = super(AccountMove, self)._get_last_sequence_domain(
@@ -600,6 +610,8 @@ class AccountMove(models.Model):
                 }
             )
         return where_string, param
+        
+    
 
     def action_invoice_sent(self):
         """Open a window to compose an email, with the edi invoice template
@@ -614,6 +626,8 @@ class AccountMove(models.Model):
                 {"default_template_id": template and template.id or False}
             )
         return res
+        
+    
 
     @api.model
     def _deduce_sequence_number_reset(self, name):
@@ -625,6 +639,8 @@ class AccountMove(models.Model):
         ):
             return "never"
         return super(AccountMove, self)._deduce_sequence_number_reset(name)
+        
+    '''
 
     def action_document_send(self):
         """
