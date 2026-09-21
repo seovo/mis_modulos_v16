@@ -524,11 +524,16 @@
                     <label>Lotes (selecciona uno o varios si va cancelar )</label>
                     <div id="lotes_container"></div>
                     <label>Si es un nuevo lote indiquelo</label>
+                    <div class="alert alert-warning" role="alert">
+                         <p>El pago debe contener el monto de la mora , si corresponde</p>
+                         <p>Cualquier duda o error en montos mostrados , escribir por whatsap para regularizar.</p>
+                    </div>
                 </div>
 
                 <!-- Campos para cliente nuevo: proyecto, MZ y LT (visibles solo si no hay lotes) -->
                 <div class="form-group" id="proyecto_group" style="display:none;">
                     <label for="proyecto">Proyecto</label>
+
                     <div class="icon-field">
                         <span class="field-icon">🏢</span>
                         <select id="proyecto" name="proyecto" class="form-select form-select-lg">
@@ -538,6 +543,11 @@
                             </t>
                         </select>
                     </div>
+
+                    <div class="alert alert-warning" role="alert">
+                    Asegurese seleccionar su lote si va realizar un pago de cuota de lo contrario es considerado como un adelanto para un nuevo lote.
+                    </div>
+
                 </div>
 
                 <div class="row" id="mz_lt_group" style="display:none;">
@@ -600,10 +610,6 @@
                 <div class="alert alert-danger" role="alert">
                       <h4 class="alert-heading">Enviar Solamente Comprobantes!!</h4>
                       <p>porfavor enviar otro tipo de imagenes no relacionados a el pago nos retrasa en la emisión de comprobantes.</p>
-                      <hr />
-                      <p class="mb-0">Asegurese seleccionar su lote si va realizar un pago de cuota de lo contrario es considerado como un adelanto para un nuevo lote.</p>
-                      <p>El pago debe contener el monto de la mora , si corresponde</p>
-                      <p>Cualquier duda o error en montos mostrados , escribir por whatsap para regularizar.</p>
 
                 </div>
 

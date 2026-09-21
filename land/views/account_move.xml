@@ -275,6 +275,7 @@
     </record>
 
 
+    <!--
     <record id="view_move_form_odoofact" model="ir.ui.view">
            <field name="name">account.move.Form</field>
            <field name="model">account.move</field>
@@ -290,6 +291,8 @@
                </xpath>
            </field>
     </record>
+
+    -->
 
 
     <record id="view_invoice_tree_jz" model="ir.ui.view">
