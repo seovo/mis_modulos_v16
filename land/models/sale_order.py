@@ -5,9 +5,6 @@ from datetime import datetime, timedelta , date
 from odoo.exceptions import ValidationError
 
 
-
-
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 

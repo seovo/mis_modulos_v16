@@ -401,6 +401,8 @@ class AccountMove(models.Model):
 
     def action_post(self):
 
+        if self.company_id != self.journal_id.company_id:
+            raise ValidationError('SELECCIONE EL DIARIO CORRECTO')
 
 
         for line in self.invoice_line_ids:
