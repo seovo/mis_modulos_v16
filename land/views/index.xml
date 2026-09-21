@@ -524,10 +524,7 @@
                     <label>Lotes (selecciona uno o varios si va cancelar )</label>
                     <div id="lotes_container"></div>
                     <label>Si es un nuevo lote indiquelo</label>
-                    <div class="alert alert-warning" role="alert">
-                         <p>El pago debe contener el monto de la mora , si corresponde</p>
-                         <p>Cualquier duda o error en montos mostrados , escribir por whatsap para regularizar.</p>
-                    </div>
+
                 </div>
 
                 <!-- Campos para cliente nuevo: proyecto, MZ y LT (visibles solo si no hay lotes) -->
@@ -544,9 +541,9 @@
                         </select>
                     </div>
 
-                    <div class="alert alert-warning" role="alert">
-                    Asegurese seleccionar su lote si va realizar un pago de cuota de lo contrario es considerado como un adelanto para un nuevo lote.
-                    </div>
+
+
+
 
                 </div>
 
@@ -569,6 +566,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="alert alert-warning" role="alert">
+                     <p>Asegurese seleccionar su lote si va realizar un pago de cuota de lo contrario es considerado como un adelanto para un nuevo lote.</p>
+                    <p>El pago debe contener el monto de la mora , si corresponde</p>
+                    <p>Cualquier duda o error en montos mostrados , escribir por whatsap para regularizar.</p>
+
                 </div>
 
                 <div class="form-group">
