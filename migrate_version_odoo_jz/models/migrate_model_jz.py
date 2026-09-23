@@ -1765,6 +1765,9 @@ END AS display_type      ''',
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_product_id])
                     result = self.env.cr.fetchall()
 
+                    if value_id == 5137:
+                        raise ValueError([result, SQL_CONSULTA, [value_invoice_id, value_product_id]])
+
                 if len(result) > 1:
                     #BUSCAR POR CREDITO
                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s  AND name = %s  AND ( credit = %s OR debit = %s)"
