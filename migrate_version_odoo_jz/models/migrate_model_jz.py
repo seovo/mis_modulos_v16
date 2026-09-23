@@ -1748,8 +1748,14 @@ END AS display_type      ''',
                 self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
 
-                if value_id == 9184:
-                    raise ValueError([result,SQL_CONSULTA,[value_invoice_id, value_name]])
+                #if value_id == 9184:
+                #    raise ValueError([result,SQL_CONSULTA,[value_invoice_id, value_name]])
+
+                if len(result) == 0:
+                    #BUSCAR SOLO NOMBRE
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
+                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
+                    result = self.env.cr.fetchall()
 
                 if len(result) == 0:
                     #BUSCAR SOLO NOMBRE
