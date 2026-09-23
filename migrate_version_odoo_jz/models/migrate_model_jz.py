@@ -1737,6 +1737,9 @@ END AS display_type      ''',
 
                 values_select = []
 
+                if value_name:
+                    value_name = value_name.strip()
+
                 #BUSCAR DESCRIPCION Y PRODUCTO
                 SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL "
 
