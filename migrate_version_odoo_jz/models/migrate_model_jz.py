@@ -1744,7 +1744,7 @@ END AS display_type      ''',
                 result = self.env.cr.fetchall()
 
                 if value_id == 570:
-                    raise ValueError(result)
+                    raise ValueError([result,SQL_CONSULTA,[value_invoice_id, value_name]])
 
                 if len(result) == 0:
                     #BUSCAR SOLO NOMBRE
