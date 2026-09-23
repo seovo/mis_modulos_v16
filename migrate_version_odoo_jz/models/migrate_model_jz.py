@@ -1720,7 +1720,7 @@ END AS display_type      ''',
 
         if self.new_table == 'account_move_line' and self.table == 'account_invoice_line':
 
-            if self.migrate_id.show_data:
+            if self.show_data:
                 raise ValidationError(str(resultados))
 
             position_id = column_names.index('"id"')
