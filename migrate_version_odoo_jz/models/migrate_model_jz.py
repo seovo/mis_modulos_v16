@@ -1765,7 +1765,7 @@ END AS display_type      ''',
                     result = self.env.cr.fetchall()
 
                 if value_id == 9184:
-                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  move_id = 29528 "
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  id = 144329 "
                     self.env.cr.execute(SQL_CONSULTA)
                     raise ValueError([result,SQL_CONSULTA, [value_invoice_id]])
 
