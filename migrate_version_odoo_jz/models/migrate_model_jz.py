@@ -1728,12 +1728,14 @@ END AS display_type      ''',
             position_name = column_names.index('"name"')
             position_price_unit  = column_names.index('"price_unit"')
             position_quantity  = column_names.index('"quantity"')
+            position_product_id = column_names.index('"product_id"')
             for fila in resultados:
                 value_id = fila[position_id]
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
                 value_price_unit = fila[position_price_unit]
                 value_quantity = fila[position_quantity]
+                value_product_id = fila[position_product_id]
 
                 values_select = []
 
@@ -1754,6 +1756,13 @@ END AS display_type      ''',
                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s "
 
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
+                    result = self.env.cr.fetchall()
+
+                if len(result) == 0:
+                    #BUSCAR SOLO PRODUCTO
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND product_id = %s "
+
+                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_product_id])
                     result = self.env.cr.fetchall()
 
                 if len(result) > 1:
