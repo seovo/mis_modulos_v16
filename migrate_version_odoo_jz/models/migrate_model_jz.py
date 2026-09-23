@@ -1764,10 +1764,10 @@ END AS display_type      ''',
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                     result = self.env.cr.fetchall()
 
-                #if value_id == 9184:
-                #    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s "
-                #    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
-                #    raise ValueError(result)
+                if value_id == 9184:
+                    SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s "
+                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
+                    raise ValueError(result)
 
                 if len(result) == 0:
                     #BUSCAR SOLO PRODUCTO
