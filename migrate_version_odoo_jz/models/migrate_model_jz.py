@@ -1768,7 +1768,7 @@ END AS display_type      ''',
                     SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s "
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
                     result = self.env.cr.fetchall()
-                    raise ValueError([result,SQL_CONSULTA, [value_invoice_id]])
+                    raise ValueError([result,SQL_CONSULTA, [value_invoice_id],value_name])
 
                 if len(result) == 0:
                     #BUSCAR SOLO PRODUCTO
