@@ -1719,11 +1719,13 @@ END AS display_type      ''',
             return
 
         if self.new_table == 'account_move_line' and self.table == 'account_invoice_line':
+            position_id = column_names.index('"id"')
             position_invoice_id = column_names.index('"invoice_id"')
             position_name = column_names.index('"name"')
             position_price_unit  = column_names.index('"price_unit"')
             position_quantity  = column_names.index('"quantity"')
             for fila in resultados:
+                value_id = fila[position_id]
                 value_invoice_id = fila[position_invoice_id]
                 value_name = fila[position_name]
                 value_price_unit = fila[position_price_unit]
@@ -1765,9 +1767,9 @@ END AS display_type      ''',
 
                 if len(result) == 1:
                     SQL_INSERT = f'''
-                    UPDATE {table} SET  price_unit = %s , display_type = 'product' WHERE  id = %s '''
+                    UPDATE {table} SET  price_unit = %s , x_invoice_line_id  = %s ,  display_type = 'product' WHERE  id = %s '''
 
-                    self.env.cr.execute(SQL_INSERT, [value_price_unit, result[0] ])
+                    self.env.cr.execute(SQL_INSERT, [value_price_unit, value_id ,result[0] ])
                 else:
                     raise ValidationError(str([result,fila,SQL_CONSULTA,values_select]))
 
