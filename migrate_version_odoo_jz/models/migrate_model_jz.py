@@ -1761,10 +1761,10 @@ END AS display_type      ''',
                     #BUSCAR SOLO NOMBRE
                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name ILIKE %s "
 
-                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
+                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
                     result = self.env.cr.fetchall()
 
-                if value_id == 9184:
+                if value_id == 9184 and len(result) == 0 :
                     SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s "
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
                     result = self.env.cr.fetchall()
