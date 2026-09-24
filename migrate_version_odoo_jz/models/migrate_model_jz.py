@@ -1743,7 +1743,7 @@ END AS display_type      ''',
                     value_name = value_name.strip()
 
                 #BUSCAR DESCRIPCION Y PRODUCTO
-                SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL "
+                SQL_CONSULTA = f'''SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND product_id IS NOT NULL '''
 
                 self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
@@ -1764,20 +1764,33 @@ END AS display_type      ''',
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
                     result = self.env.cr.fetchall()
 
-                    if value_id == 13971:
-                        SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s AND name LIKE %s "
+                    #if value_id == 13971:
+                    #    SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s AND name LIKE %s "
 
-                        self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
-                        result = self.env.cr.fetchall()
-                        raise ValueError([result, SQL_CONSULTA, [value_invoice_id], value_name])
+                    #    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
+                    #    result = self.env.cr.fetchall()
+                    #    raise ValueError([result, SQL_CONSULTA, [value_invoice_id], value_name])
 
+                if len(result) == 2:
+                    SQL_CONSULTA = f'''
+                    SELECT  movel.id  FROM  {table} movel
+                    JOIN account_move move ON move.id = movel.move_id  
+                    WHERE  movel.x_invoice_id = %s 
+                    AND movel.name LIKE %s
+                    AND move.x_invoice_id = {value_invoice_id} 
+                    '''
 
-                if value_id == 13971  :
-                    # and len(result) == 0
-                    SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s "
-                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
+                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
                     result = self.env.cr.fetchall()
-                    raise ValueError([result,SQL_CONSULTA, [value_invoice_id],value_name])
+
+
+
+                #if value_id == 13971  :
+                #    # and len(result) == 0
+                #    SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s "
+                #    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
+                #    result = self.env.cr.fetchall()
+                #    raise ValueError([result,SQL_CONSULTA, [value_invoice_id],value_name])
 
                 if len(result) == 0:
                     #BUSCAR SOLO PRODUCTO
