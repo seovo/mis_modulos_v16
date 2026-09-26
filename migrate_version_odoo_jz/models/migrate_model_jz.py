@@ -1785,7 +1785,7 @@ END AS display_type      ''',
 
 
 
-                if value_id == 13971  :
+                if value_id == 176672  :
                     #    # and len(result) == 0
                     SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s "
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
