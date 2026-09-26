@@ -1748,6 +1748,9 @@ END AS display_type      ''',
                 self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name])
                 result = self.env.cr.fetchall()
 
+                if value_id == 176672:
+                    value_name = 'SEGURO LOCAL'
+
 
 
                 if len(result) == 0:
@@ -1784,13 +1787,14 @@ END AS display_type      ''',
                     result = self.env.cr.fetchall()
 
 
-
-                if value_id == 176672  :
+                '''
+                if value_id == 176672  and len(result) == 0:
                     #    # and len(result) == 0
                     SQL_CONSULTA = f"SELECT  id , name FROM  {table} WHERE  x_invoice_id = %s "
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id])
                     result = self.env.cr.fetchall()
                     raise ValueError([result,SQL_CONSULTA, [value_invoice_id],value_name])
+                '''
 
                 if len(result) == 0:
                     #BUSCAR SOLO PRODUCTO
