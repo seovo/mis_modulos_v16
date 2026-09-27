@@ -1839,7 +1839,7 @@ END AS display_type      ''',
                     self.env.cr.execute(SQL_INSERT, [value_price_unit, value_id ,result[0] ])
                 else:
 
-                    if not resultor or len(result) != 1:
+                    if not result or len(result) != 1:
                         #validar con cuenta
                         SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND account_id = %"
 
