@@ -1754,7 +1754,7 @@ END AS display_type      ''',
                     value_name = 'SEGURO LOCAL'
 
                 #if value_id == 212569:
-                if value_name in  'INCLUSION VEHICULO' and value_name in  'AUXS-17261':
+                if value_name in  'INCLUSION VEHICULO' and value_name in  'POLIZA NO.':
                     value_name = 'INCLUSION VEHICULO'
 
 
