@@ -1847,7 +1847,7 @@ END AS display_type      ''',
                         result = self.env.cr.fetchall()
 
                     if not result or len(result) != 1:
-                        raise ValidationError(str([result, fila, SQL_CONSULTA, values_select]))
+                        raise ValidationError(str([result, fila, SQL_CONSULTA, values_select,'----']))
 
 
 
