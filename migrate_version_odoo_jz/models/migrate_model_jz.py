@@ -1788,12 +1788,7 @@ END AS display_type      ''',
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
                     result = self.env.cr.fetchall()
 
-                    if not result:
-                        #validar con cuenta
-                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND account_id = %"
 
-                        self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name,value_account_id])
-                        result = self.env.cr.fetchall()
 
 
 
@@ -1843,7 +1838,18 @@ END AS display_type      ''',
 
                     self.env.cr.execute(SQL_INSERT, [value_price_unit, value_id ,result[0] ])
                 else:
-                    raise ValidationError(str([result,fila,SQL_CONSULTA,values_select]))
+
+                    if not result:
+                        #validar con cuenta
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND account_id = %"
+
+                        self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name,value_account_id])
+                        result = self.env.cr.fetchall()
+
+                    if not result or len(result) != 1:
+                        raise ValidationError(str([result, fila, SQL_CONSULTA, values_select]))
+
+
 
                 #raise ValidationError(str(result))
 
