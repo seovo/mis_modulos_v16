@@ -1841,9 +1841,9 @@ END AS display_type      ''',
 
                     if not result or len(result) != 1:
                         #validar con cuenta
-                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND account_id = %s"
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name LIKE %s AND account_id = %s"
 
-                        values_select = [value_invoice_id, value_name,value_account_id]
+                        values_select = [value_invoice_id, f"%{value_name}%",value_account_id]
 
                         self.env.cr.execute(SQL_CONSULTA, values_select)
                         result = self.env.cr.fetchall()
