@@ -1804,8 +1804,16 @@ END AS display_type      ''',
                 if len(result) == 0 or len(result) > 1:
                     #BUSCAR SOLO PRODUCTO
                     SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND product_id = %s "
+                    values_select = [value_invoice_id, value_product_id]
 
-                    self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_product_id])
+                    if not value_product_id:
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND product_id IS NULL "
+                        values_select = [value_invoice_id]
+
+
+
+
+                    self.env.cr.execute(SQL_CONSULTA, values_select)
                     result = self.env.cr.fetchall()
 
                     if value_quantity == 0:
