@@ -1753,7 +1753,7 @@ END AS display_type      ''',
                 if value_id == 176672:
                     value_name = 'SEGURO LOCAL'
 
-                if value_id == 212569:
+                if value_id == 212570:
                     value_name = 'INCLUSION VEHICULO'
 
 
