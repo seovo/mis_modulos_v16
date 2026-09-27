@@ -1729,6 +1729,7 @@ END AS display_type      ''',
             position_price_unit  = column_names.index('"price_unit"')
             position_quantity  = column_names.index('"quantity"')
             position_product_id = column_names.index('"product_id"')
+            position_account_id = column_names.index('"account_id"')
             for fila in resultados:
                 value_id = fila[position_id]
                 value_invoice_id = fila[position_invoice_id]
@@ -1736,6 +1737,7 @@ END AS display_type      ''',
                 value_price_unit = fila[position_price_unit]
                 value_quantity = fila[position_quantity]
                 value_product_id = fila[position_product_id]
+                value_account_id = fila[position_account_id]
 
                 values_select = []
 
@@ -1785,6 +1787,14 @@ END AS display_type      ''',
 
                     self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, f"%{value_name}%"])
                     result = self.env.cr.fetchall()
+
+                    if not result:
+                        #validar con cuenta
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND account_id = %"
+
+                        self.env.cr.execute(SQL_CONSULTA, [value_invoice_id, value_name,value_account_id])
+                        result = self.env.cr.fetchall()
+
 
 
                 '''
