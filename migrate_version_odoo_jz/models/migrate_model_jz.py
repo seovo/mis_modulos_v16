@@ -1860,6 +1860,13 @@ END AS display_type      ''',
                         self.env.cr.execute(SQL_CONSULTA, values_select)
                         result = self.env.cr.fetchall()
 
+                    if not value_name and not value_product_id:
+                        SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name IS NULL"
+                        values_select = [value_invoice_id,fila]
+                        self.env.cr.execute(SQL_CONSULTA, values_select)
+                        result = self.env.cr.fetchall()
+
+
                     if not result or len(result) != 1:
                         raise ValidationError(str([result, fila, SQL_CONSULTA, values_select,'----']))
 
