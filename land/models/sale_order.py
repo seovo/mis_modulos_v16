@@ -566,6 +566,7 @@ class SaleOrder(models.Model):
                 ])
 
                 c = 0
+
                 datex_indepen = record.date_first_due_land
 
                 for inv_line in invoice_lines_indepen:
