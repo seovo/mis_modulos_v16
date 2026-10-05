@@ -609,7 +609,7 @@ class MigrateJz(models.Model):
             ('move_type', '!=', 'entry'), #quitar esto despues
             ('state', 'not in', [ 'cancel']),#'draft',
             # ('currency_id', '=', self.env.ref('base.PEN').id),
-        ], limit=10000)
+        ], limit=500)
 
         if moves:
 
