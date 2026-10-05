@@ -546,7 +546,7 @@ class MigrateJz(models.Model):
         without_partner = self.env['res.partner'].search([
             ('commercial_partner_id', '=', False)], limit=500)
 
-        raise ValidationError(without_partner)
+
 
         if without_partner:
             without_partner._compute_commercial_partner()
@@ -558,6 +558,9 @@ class MigrateJz(models.Model):
             ('sequence_number', '=', False),
             ('state','not in',['draft','cancel'])
         ], limit=5500)
+
+        raise ValidationError(without_move)
+
         if without_move:
             self.env['account.move'].invalidate_model(['name','sequence_prefix', 'sequence_number'])
             without_move.modified(['name'])
