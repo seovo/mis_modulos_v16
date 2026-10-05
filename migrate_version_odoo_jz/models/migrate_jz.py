@@ -556,7 +556,8 @@ class MigrateJz(models.Model):
         without_move = self.env['account.move'].search([
             '|',('sequence_prefix', '=', False),
             ('sequence_number', '=', False),
-            ('state','not in',['draft','cancel'])
+            ('state','not in',['draft','cancel']),
+            ('line_ids','!=',False)
         ], limit=5500)
 
         raise ValidationError(without_move)
