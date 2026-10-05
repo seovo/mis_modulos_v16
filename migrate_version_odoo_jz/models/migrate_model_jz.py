@@ -1971,8 +1971,11 @@ WHERE aml.id = sub.id;
                     continue
 
                 #raise ValueError([fila,position_invoice_line_id,result_line[0]])
+                mi_lista = list(fila)
 
-                fila[position_invoice_line_id] = result_line[0][0]
+                mi_lista[position_invoice_line_id] = result_line[0][0]
+
+                fila = tuple(mi_lista)
 
                 #try:
                 #    fila[position_invoice_line_id] = result_line[0][0]
