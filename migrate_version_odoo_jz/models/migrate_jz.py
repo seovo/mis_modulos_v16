@@ -553,7 +553,7 @@ class MigrateJz(models.Model):
         without_move = self.env['account.move'].search([
             '|',('sequence_prefix', '=', False),
             ('sequence_number', '=', False),
-            ('state','!=','draft')
+            ('state','not in',['draft','cancel'])
         ], limit=5500)
         if without_move:
             self.env['account.move'].invalidate_model(['name','sequence_prefix', 'sequence_number'])
