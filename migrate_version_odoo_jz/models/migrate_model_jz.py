@@ -1718,6 +1718,9 @@ END AS display_type      ''',
                     })
             return
 
+        if  self.table == 'sale_order_line_invoice_rel' and self.migrate_id.from_version <= 11 :
+            position_invoice_line_id = column_names.index('"invoice_line_id"')
+
         if self.new_table == 'account_move_line' and self.table == 'account_invoice_line':
 
             if self.show_data:
@@ -1938,7 +1941,8 @@ WHERE aml.id = sub.id;
 
                 #raise ValidationError(sql)
                 #raise ValidationError([self.table, self.last_value])
-                self.env.cr.execute(sql)
+                #evaluar esto ah
+                #self.env.cr.execute(sql)
 
 
 
@@ -1946,6 +1950,7 @@ WHERE aml.id = sub.id;
         #raise ValueError(column_names)
 
         n = len(column_names)  # Cambia este valor a la cantidad de {} que deseas
+        #genera %s,%s,%s,%s,%s
         corchetes_n = ','.join('%s' for _ in range(n))
 
         identificador = self.identificador
@@ -1955,12 +1960,19 @@ WHERE aml.id = sub.id;
         contador = 0
 
         for fila in resultados:
+
+            if self.table == 'sale_order_line_invoice_rel' and self.migrate_id.from_version <= 11:
+                position_invoice_line_id = column_names.index('"invoice_line_id"')
+                value_invoice_line_id = fila[position_invoice_line_id]
+                SQL = f'''SELECT id account_move_line FROM WHERE x_invoice_line_id = {value_invoice_line_id}'''
+                self.env.cr.execute(SQL)
+                result_line = self.env.cr.fetchall()
+                raise ValueError(result_line)
+
+
+
             val1 = ','.join(column_names)
             val2 = corchetes_n
-
-
-
-
 
             if self.no_existe_id:
                 if self.ignorar_if_error:
@@ -1997,11 +2009,7 @@ END $$;
 
                         if table == 'account_move_line' and self.table ==  'account_invoice_line':
                             #SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s AND price_unit != 0"
-
                             SQL_CONSULTA = f"SELECT  id FROM  {table} WHERE  x_invoice_id = %s AND name = %s"
-
-
-
                             self.env.cr.execute(SQL_CONSULTA,[fila[0],fila[1]])
                             result = self.env.cr.fetchall()
 
