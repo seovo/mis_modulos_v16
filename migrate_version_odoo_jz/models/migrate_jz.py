@@ -618,7 +618,7 @@ class MigrateJz(models.Model):
             for mv in moves:
                 #mv._compute_amount()
                 #mv._compute_amount_sql()
-                continue
+                #continue
                 try:
                     mv._compute_amount()
                 except:
