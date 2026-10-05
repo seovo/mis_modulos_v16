@@ -1962,7 +1962,7 @@ WHERE aml.id = sub.id;
         for fila in resultados:
 
             if self.table == 'sale_order_line_invoice_rel' and self.migrate_id.from_version <= 11:
-                position_invoice_line_id = column_names.index('"invoice_line_id"')
+                #position_invoice_line_id = column_names.index('"invoice_line_id"')
                 value_invoice_line_id = fila[position_invoice_line_id]
                 SQL = f'''SELECT id FROM  account_move_line WHERE x_invoice_line_id = {value_invoice_line_id}'''
                 self.env.cr.execute(SQL)
