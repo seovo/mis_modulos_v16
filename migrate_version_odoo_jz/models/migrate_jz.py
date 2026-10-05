@@ -545,6 +545,9 @@ class MigrateJz(models.Model):
     def update_computes_funciones_migraciones_v19(self):
         without_partner = self.env['res.partner'].search([
             ('commercial_partner_id', '=', False)], limit=500)
+
+        raise ValidationError(without_partner)
+
         if without_partner:
             without_partner._compute_commercial_partner()
             return
