@@ -614,7 +614,8 @@ class MigrateJz(models.Model):
             # raise ValidationError(moves)
 
             for mv in moves:
-                mv._compute_amount_sql()
+                mv._compute_amount()
+                #mv._compute_amount_sql()
                 continue
                 try:
                     mv._compute_amount()
