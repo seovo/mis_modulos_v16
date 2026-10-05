@@ -576,7 +576,7 @@ class MigrateJz(models.Model):
             ('move_id.move_type', '!=', 'entry'),
             ('display_type', '=', 'product'),
             ('price_unit', '!=', 0),
-            ('account_id.account_type', '!=', 'off_balance'),
+            #('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('price_unit', '>', 0.0020)
         ], limit=100)
