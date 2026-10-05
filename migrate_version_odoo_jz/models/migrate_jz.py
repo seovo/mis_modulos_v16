@@ -555,7 +555,7 @@ class MigrateJz(models.Model):
         if without_move:
             self.env['account.move'].invalidate_model(['sequence_prefix', 'sequence_number'])
             without_move.modified(['sequence_prefix', 'sequence_number'])
-            self.env['account.move'].flush_model([['sequence_prefix', 'sequence_number']])
+            self.env['account.move'].flush_model(['sequence_prefix', 'sequence_number'])
 
             return
 
