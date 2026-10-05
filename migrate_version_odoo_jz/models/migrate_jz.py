@@ -547,10 +547,24 @@ class MigrateJz(models.Model):
             ('commercial_partner_id', '=', False)], limit=500)
         if without_partner:
             without_partner._compute_commercial_partner()
+            return
+
+        without_move = self.env['account.move'].search([
+            '|',('sequence_prefix', '=', False),('sequence_number', '=', False)], limit=500)
+        if without_move:
+            self.env['account.move'].invalidate_model(['sequence_prefix', 'sequence_number'])
+            without_move.modified(['sequence_prefix', 'sequence_number'])
+            self.env['account.move'].flush_model([['sequence_prefix', 'sequence_number']])
+
+            return
 
 
 
-    def update_computes_funciones_migraciones_v18(self):
+
+
+
+
+def update_computes_funciones_migraciones_v18(self):
 
 
 
