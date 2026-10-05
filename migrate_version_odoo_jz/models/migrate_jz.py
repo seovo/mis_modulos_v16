@@ -549,6 +549,7 @@ class MigrateJz(models.Model):
             without_partner._compute_commercial_partner()
             return
 
+
         without_move = self.env['account.move'].search([
             '|',('sequence_prefix', '=', False),('sequence_number', '=', False)], limit=500)
         if without_move:
