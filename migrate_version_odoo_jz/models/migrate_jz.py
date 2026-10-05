@@ -575,7 +575,7 @@ class MigrateJz(models.Model):
             ('price_subtotal', '=', 0.0),
             ('move_id.move_type', '!=', 'entry'),
             ('display_type', '=', 'product'),
-            ('price_unit', '!=', 0),
+            ('price_unit', '!=', 0.0),
             #('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('price_unit', '>', 0.0020)
