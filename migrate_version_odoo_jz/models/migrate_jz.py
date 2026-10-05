@@ -615,13 +615,14 @@ class MigrateJz(models.Model):
             #raise ValidationError(moves)
 
             for mv in moves:
-                mv._compute_amount()
+                #mv._compute_amount()
                 #mv._compute_amount_sql()
                 continue
                 try:
                     mv._compute_amount()
                 except:
-                    mv._compute_amount_sql()
+                    continue
+                    #mv._compute_amount_sql()
                     # continue
                     # self.update_currency_migrate_jz(mv.invoice_line_ids)
 
