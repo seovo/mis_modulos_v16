@@ -607,11 +607,11 @@ class MigrateJz(models.Model):
             ('line_ids', '!=', False),
             ('line_ids.balance', '!=', 0)
             # ('currency_id', '=', self.env.ref('base.PEN').id),
-        ], limit=5000)
+        ], limit=1)
 
         if moves:
 
-            # raise ValidationError(moves)
+            raise ValidationError(moves)
 
             for mv in moves:
                 mv._compute_amount()
