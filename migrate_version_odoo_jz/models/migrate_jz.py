@@ -585,7 +585,7 @@ class MigrateJz(models.Model):
 
         # , limit = 500
 
-        #raise ValidationError(moveslines_without_amount)
+        raise ValidationError(moveslines_without_amount)
 
         # raise ValidationError(moveslines_without_amount.move_id)
 
