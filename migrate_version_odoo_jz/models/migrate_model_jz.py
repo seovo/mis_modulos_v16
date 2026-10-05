@@ -1970,7 +1970,7 @@ WHERE aml.id = sub.id;
                 if not result_line:
                     continue
 
-                raise ValueError([fila,position_invoice_line_id,result_line[0]])
+                #raise ValueError([fila,position_invoice_line_id,result_line[0]])
 
                 fila[position_invoice_line_id] = result_line[0][0]
                 #raise ValueError(result_line)
