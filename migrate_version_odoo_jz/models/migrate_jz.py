@@ -594,37 +594,6 @@ class MigrateJz(models.Model):
 
                 continue
 
-                try:
-                    mvl._compute_totals()
-                except:
-
-                    # version 18
-
-                    line = mvl
-
-                    base_line = line.move_id._prepare_product_base_line_for_taxes_computation(line)
-
-                    AccountTax = self.env['account.tax']
-
-                    AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
-
-                    price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
-                    price_total = base_line['tax_details']['raw_total_included_currency']
-
-                    sql = f''' UPDATE account_move_line SET price_subtotal = %s ,  price_total = %s  WHERE id = {line.id} '''
-
-                    self.env.cr.execute(sql, [price_subtotal, price_total])
-
-                    # raise ValidationError(price_subtotal)
-
-                    # line.price_subtotal = price_subtotal
-                    # line.price_total = base_line['tax_details']['raw_total_included_currency']
-
-                    if price_subtotal == 0:
-                        raise ValidationError([mvl.move_id, mvl.id])
-
-                    # raise ValidationError([mvl.move_id,mvl.id])
-                    # continue
 
             return
 
