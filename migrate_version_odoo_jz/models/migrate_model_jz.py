@@ -1972,7 +1972,12 @@ WHERE aml.id = sub.id;
 
                 #raise ValueError([fila,position_invoice_line_id,result_line[0]])
 
-                fila[position_invoice_line_id] = result_line[0][0]
+                try:
+                    fila[position_invoice_line_id] = result_line[0][0]
+                except:
+                    ValueError([fila, position_invoice_line_id, result_line[0][0]])
+
+
                 #raise ValueError(result_line)
 
 
