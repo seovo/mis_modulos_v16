@@ -528,13 +528,30 @@ class MigrateJz(models.Model):
                 # line.amount_currency = tt
 
 
-    def update_computes_funciones_migraciones(self):
+    def update_computes_funciones_migraciones(self,version=19):
 
         cron_models = self.env['migrate.model.jz'].search([('is_part_cron','=',True)],limit=1)
 
         if cron_models:
             cron_models.migrate_table()
             return
+
+        if version == 18 :
+            self.update_computes_funciones_migraciones_v18()
+
+        if version == 19 :
+            self.update_computes_funciones_migraciones_v19()
+
+    def update_computes_funciones_migraciones_v19(self):
+        without_partner = self.env['res.partner'].search([
+            ('commercial_partner_id', '=', False)], limit=500)
+        if without_partner:
+            without_partner._compute_commercial_partner()
+
+
+
+    def update_computes_funciones_migraciones_v18(self):
+
 
 
 
