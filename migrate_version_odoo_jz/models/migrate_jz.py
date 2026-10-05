@@ -551,11 +551,71 @@ class MigrateJz(models.Model):
 
 
         without_move = self.env['account.move'].search([
-            '|',('sequence_prefix', '=', False),('sequence_number', '=', False)], limit=5500)
+            '|',('sequence_prefix', '=', False),
+            ('sequence_number', '=', False),
+            ('state','!=','draft')
+        ], limit=5500)
         if without_move:
             self.env['account.move'].invalidate_model(['name','sequence_prefix', 'sequence_number'])
             without_move.modified(['name'])
             self.env['account.move'].flush_model(['sequence_prefix', 'sequence_number'])
+
+            return
+
+        moveslines_without_amount = self.env['account.move.line'].search([
+            ('price_subtotal', '=', 0),
+            ('move_id.move_type', '!=', 'entry'),
+            ('display_type', '=', 'product'),
+            ('price_unit', '!=', 0),
+            ('account_id.account_type', '!=', 'off_balance'),
+            ('move_id', '!=', False),
+            ('price_unit', '>', 0.0020)
+        ], limit=1000)
+
+        # , limit = 500
+
+        # raise ValidationError(moveslines_without_amount)
+
+        # raise ValidationError(moveslines_without_amount.move_id)
+
+        if moveslines_without_amount:
+            for mvl in moveslines_without_amount:
+
+                mvl._compute_totals()
+
+                continue
+
+                try:
+                    mvl._compute_totals()
+                except:
+
+                    # version 18
+
+                    line = mvl
+
+                    base_line = line.move_id._prepare_product_base_line_for_taxes_computation(line)
+
+                    AccountTax = self.env['account.tax']
+
+                    AccountTax._add_tax_details_in_base_line(base_line, line.company_id)
+
+                    price_subtotal = base_line['tax_details']['raw_total_excluded_currency']
+                    price_total = base_line['tax_details']['raw_total_included_currency']
+
+                    sql = f''' UPDATE account_move_line SET price_subtotal = %s ,  price_total = %s  WHERE id = {line.id} '''
+
+                    self.env.cr.execute(sql, [price_subtotal, price_total])
+
+                    # raise ValidationError(price_subtotal)
+
+                    # line.price_subtotal = price_subtotal
+                    # line.price_total = base_line['tax_details']['raw_total_included_currency']
+
+                    if price_subtotal == 0:
+                        raise ValidationError([mvl.move_id, mvl.id])
+
+                    # raise ValidationError([mvl.move_id,mvl.id])
+                    # continue
 
             return
 
