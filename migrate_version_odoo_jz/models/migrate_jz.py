@@ -579,7 +579,7 @@ class MigrateJz(models.Model):
             #('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('price_unit', '>', 0.0020)
-        ], limit=1000)
+        ], limit=1500)
 
         # , limit = 500
 
