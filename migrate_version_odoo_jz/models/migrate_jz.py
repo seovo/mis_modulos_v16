@@ -572,7 +572,7 @@ class MigrateJz(models.Model):
             return
 
         moveslines_without_amount = self.env['account.move.line'].search([
-            ('price_subtotal', '=', 0),
+            ('price_subtotal', '=', 0.0),
             ('move_id.move_type', '!=', 'entry'),
             ('display_type', '=', 'product'),
             ('price_unit', '!=', 0),
