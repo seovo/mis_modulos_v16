@@ -585,17 +585,49 @@ class MigrateJz(models.Model):
 
         # , limit = 500
 
-        raise ValidationError(moveslines_without_amount)
+        #raise ValidationError(moveslines_without_amount)
 
         # raise ValidationError(moveslines_without_amount.move_id)
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
-
                 mvl._compute_totals()
-
                 continue
 
+            return
+
+        #####
+        moves = self.env['account.move'].search([
+            ('amount_total_in_currency_signed', '=', 0),
+            # ('amount_total' ,'!=', 0),
+            # ('move_type', '!=', 'entry'),
+            # ('state', '=', 'posted'),
+            # ('payment_state','!=','reversed'),
+            ('currency_id', '!=', False),
+            ('line_ids', '!=', False),
+            ('line_ids.balance', '!=', 0)
+            # ('currency_id', '=', self.env.ref('base.PEN').id),
+        ], limit=2000)
+
+        if moves:
+
+            # raise ValidationError(moves)
+
+            for mv in moves:
+                mv._compute_amount_sql()
+                continue
+                try:
+                    mv._compute_amount()
+                except:
+                    mv._compute_amount_sql()
+                    # continue
+                    # self.update_currency_migrate_jz(mv.invoice_line_ids)
+
+                    # raise ValidationError(mv)
+                    # continue
+
+                # if not mv.amount_total_in_currency_signed:
+                #    raise ValidationError(mv)
 
             return
 
