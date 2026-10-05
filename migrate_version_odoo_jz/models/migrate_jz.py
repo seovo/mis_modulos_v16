@@ -608,7 +608,7 @@ class MigrateJz(models.Model):
             #('line_ids.balance', '!=', 0),
             ('state', 'not in', [ 'cancel']),#'draft',
             # ('currency_id', '=', self.env.ref('base.PEN').id),
-        ], limit=1)
+        ], limit=1000)
 
         if moves:
 
