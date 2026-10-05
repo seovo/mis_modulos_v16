@@ -557,7 +557,8 @@ class MigrateJz(models.Model):
             '|',('sequence_prefix', '=', False),
             ('sequence_number', '=', False),
             ('state','not in',['draft','cancel']),
-            ('line_ids','!=',False)
+            ('line_ids','!=',False),
+            ('move_type', '!=', 'entry'),
         ], limit=5500)
 
         raise ValidationError(without_move)
