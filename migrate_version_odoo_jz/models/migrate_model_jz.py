@@ -1967,7 +1967,11 @@ WHERE aml.id = sub.id;
                 SQL = f'''SELECT id FROM  account_move_line WHERE x_invoice_line_id = {value_invoice_line_id}'''
                 self.env.cr.execute(SQL)
                 result_line = self.env.cr.fetchall()
-                raise ValueError(result_line)
+                if not result_line:
+                    continue
+
+                fila[position_invoice_line_id] = result_line[0]
+                #raise ValueError(result_line)
 
 
 
