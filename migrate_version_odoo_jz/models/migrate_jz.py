@@ -613,7 +613,7 @@ class MigrateJz(models.Model):
             # ('currency_id','=',self.env.ref('base.PEN').id) ,
             ('balance', '!=', 0),
            # ('move_id','=',289963)
-        ],limit=12500)
+        ],limit=20000)
 
         def _compute_amount_currency_jz(self):
             for line in self:
