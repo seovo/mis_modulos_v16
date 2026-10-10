@@ -615,6 +615,8 @@ class MigrateJz(models.Model):
             # ('move_id','=',59)
         ],limit=500)
 
+        raise ValidationError(moveslines_without_amount)
+
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
                 mvl._compute_amount_currency()
