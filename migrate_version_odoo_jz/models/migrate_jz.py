@@ -615,11 +615,18 @@ class MigrateJz(models.Model):
             ('move_id','=',289963)
         ],limit=2500)
 
+        def _compute_amount_currency_jz(self):
+            for line in self:
+                if line.amount_currency is False or line.amount_currency == 0.0:
+                    line.amount_currency = line.currency_id.round(line.balance * line.currency_rate)
+                if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
+                    line.amount_currency = line.balance
+
         #raise ValidationError(moveslines_without_amount)
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
-                mvl._compute_amount_currency()
+                mvl._compute_amount_currency_jz(mvl)
             #self.update_currency_migrate_jz(moveslines_without_amount)
 
             # raise ValidationError([mvl.move_id,line.amount_currency])
