@@ -563,7 +563,7 @@ class MigrateJz(models.Model):
         ], limit=5500)
 
 
-        raise ValidationError(without_move)
+        #raise ValidationError(without_move)
 
         if without_move:
             self.env['account.move'].invalidate_model(['name','sequence_prefix', 'sequence_number'])
@@ -586,7 +586,7 @@ class MigrateJz(models.Model):
 
         # , limit = 500
 
-        #raise ValidationError(moveslines_without_amount)
+        raise ValidationError(moveslines_without_amount)
 
         # raise ValidationError(moveslines_without_amount.move_id)
 
