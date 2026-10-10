@@ -607,7 +607,7 @@ class MigrateJz(models.Model):
             # ('move_id.move_type', '!=', 'entry'),
             # ('move_id.state', '!=', 'draft'),
             # ('display_type', '=', 'product'),
-            ('account_id.account_type', '!=', 'off_balance'),
+            #('account_id.account_type', '!=', 'off_balance'),
             ('move_id', '!=', False),
             ('currency_id', '!=', False),
             # ('currency_id','=',self.env.ref('base.PEN').id) ,
