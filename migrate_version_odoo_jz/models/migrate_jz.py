@@ -626,7 +626,7 @@ class MigrateJz(models.Model):
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
-                mvl._compute_amount_currency_jz(mvl)
+                _compute_amount_currency_jz(mvl)
             #self.update_currency_migrate_jz(moveslines_without_amount)
 
             # raise ValidationError([mvl.move_id,line.amount_currency])
