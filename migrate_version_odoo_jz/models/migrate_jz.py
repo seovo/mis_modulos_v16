@@ -559,11 +559,11 @@ class MigrateJz(models.Model):
             ('state','not in',['draft','cancel']),
             ('line_ids','!=',False),
             ('move_type', '!=', 'entry'),
-            ('move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt'])
+            #('move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt'])
         ], limit=5500)
 
 
-        #raise ValidationError(without_move)
+        raise ValidationError(without_move)
 
         if without_move:
             self.env['account.move'].invalidate_model(['name','sequence_prefix', 'sequence_number'])
