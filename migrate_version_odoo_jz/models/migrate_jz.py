@@ -613,7 +613,7 @@ class MigrateJz(models.Model):
             # ('currency_id','=',self.env.ref('base.PEN').id) ,
             ('balance', '!=', 0),
            # ('move_id','=',289963)
-        ],limit=1)
+        ],limit=5000)
 
         def _compute_amount_currency_jz(self):
             for line in self:
@@ -628,7 +628,7 @@ class MigrateJz(models.Model):
                     # raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
                     self.env.cr.execute(sql, [amount_currency, line.id])
 
-        raise ValidationError(moveslines_without_amount)
+        #raise ValidationError(moveslines_without_amount)
 
         if moveslines_without_amount:
             for mvl in moveslines_without_amount:
