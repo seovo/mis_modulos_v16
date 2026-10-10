@@ -28,6 +28,7 @@ class AccountMove(models.Model):
 
             for line in move.line_ids:
                 if move.is_invoice(True):
+                    raise ValueError('ALO')
                     # === Invoices ===
                     if line.display_type in ('tax', 'non_deductible_tax') or (
                             line.display_type == 'rounding' and line.tax_repartition_line_id):
