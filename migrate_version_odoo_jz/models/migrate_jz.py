@@ -612,7 +612,7 @@ class MigrateJz(models.Model):
             ('currency_id', '!=', False),
             # ('currency_id','=',self.env.ref('base.PEN').id) ,
             ('balance', '!=', 0)
-            # ('move_id','=',59)
+            ('move_id','=',289963)
         ],limit=2500)
 
         #raise ValidationError(moveslines_without_amount)
