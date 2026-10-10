@@ -618,9 +618,15 @@ class MigrateJz(models.Model):
         def _compute_amount_currency_jz(self):
             for line in self:
                 if line.amount_currency is False or line.amount_currency == 0.0:
-                    line.amount_currency = line.currency_id.round(line.balance * line.currency_rate)
+                    amount_currency = line.currency_id.round(line.balance * line.currency_rate)
+                    sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
+                    # raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
+                    self.env.cr.execute(sql, [amount_currency, line.id])
                 if line.currency_id == line.company_id.currency_id and not line.move_id.is_invoice(True):
-                    line.amount_currency = line.balance
+                    amount_currency = line.balance
+                    sql = f'''UPDATE account_move_line SET amount_currency = %s  WHERE id = %s'''
+                    # raise  ValidationError([line.balance,line.currency_rate,tt,'-----',line.id])
+                    self.env.cr.execute(sql, [amount_currency, line.id])
 
         #raise ValidationError(moveslines_without_amount)
 
