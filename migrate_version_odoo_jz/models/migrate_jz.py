@@ -586,7 +586,7 @@ class MigrateJz(models.Model):
 
         # , limit = 500
 
-        raise ValidationError(moveslines_without_amount)
+        #raise ValidationError(moveslines_without_amount)
 
         # raise ValidationError(moveslines_without_amount.move_id)
 
@@ -611,6 +611,8 @@ class MigrateJz(models.Model):
             ('state', 'not in', [ 'cancel']),#'draft',
             # ('currency_id', '=', self.env.ref('base.PEN').id),
         ], limit=500)
+
+        raise ValidationError(moves)
 
         if moves:
 
