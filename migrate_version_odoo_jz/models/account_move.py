@@ -26,6 +26,8 @@ class AccountMove(models.Model):
             total_reconciled, total_reconciled_currency = 0.0, 0.0
             total, total_currency = 0.0, 0.0
 
+            values_currency = []
+
             for line in move.line_ids:
                 if move.is_invoice(True):
 
@@ -38,7 +40,7 @@ class AccountMove(models.Model):
                         total += line.balance
                         total_currency += line.amount_currency
 
-                        raise ValueError(total_currency)
+                        values_currency.append(['+',line.amount_currency])
 
 
                     elif line.display_type in (
@@ -48,6 +50,7 @@ class AccountMove(models.Model):
                         total_untaxed_currency += line.amount_currency
                         total += line.balance
                         total_currency += line.amount_currency
+                        values_currency.append(['+', line.amount_currency])
                     elif line.display_type == 'payment_term':
                         # Reconciled amount.
                         total_reconciled += line.balance - line.amount_residual
@@ -57,6 +60,7 @@ class AccountMove(models.Model):
                     if line.debit:
                         total += line.balance
                         total_currency += line.amount_currency
+                        values_currency.append(['+', line.amount_currency])
 
             raise ValueError(total_currency)
 
