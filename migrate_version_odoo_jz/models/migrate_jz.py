@@ -559,7 +559,7 @@ class MigrateJz(models.Model):
             ('state','not in',['draft','cancel']),
             ('line_ids','!=',False),
             ('move_type', '!=', 'entry'),
-            [('move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt'])]
+            ('move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt'])
         ], limit=5500)
 
 
