@@ -612,7 +612,7 @@ class MigrateJz(models.Model):
             # ('currency_id', '=', self.env.ref('base.PEN').id),
         ], limit=500)
 
-        raise ValidationError(moves)
+        #raise ValidationError(moves)
 
         if moves:
 
