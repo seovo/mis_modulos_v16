@@ -611,7 +611,7 @@ class MigrateJz(models.Model):
             ('move_id', '!=', False),
             ('currency_id', '!=', False),
             # ('currency_id','=',self.env.ref('base.PEN').id) ,
-            ('balance', '!=', 0)
+            ('balance', '!=', 0),
             ('move_id','=',289963)
         ],limit=2500)
 
