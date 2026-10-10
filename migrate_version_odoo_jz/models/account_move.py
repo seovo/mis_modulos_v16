@@ -62,7 +62,7 @@ class AccountMove(models.Model):
                         total_currency += line.amount_currency
                         values_currency.append(['+', line.amount_currency])
 
-            raise ValueError(total_currency)
+            raise ValueError([values_currency,total_currency])
 
             sign = move.direction_sign
             tax_totals = move.tax_totals or {}
