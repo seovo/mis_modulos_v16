@@ -67,6 +67,7 @@ class AccountMove(models.Model):
             sign = move.direction_sign
             tax_totals = move.tax_totals or {}
             move.amount_untaxed = sign * total_untaxed_currency
+            continue
             move.amount_tax = sign * total_tax_currency
             move.amount_total = sign * total_currency
             move.amount_residual = tax_totals.get('total_amount_currency', 0.0) + sign * total_reconciled_currency
