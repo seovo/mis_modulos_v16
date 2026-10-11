@@ -69,8 +69,12 @@ class AccountMove(models.Model):
             amount_untaxed = sign * total_untaxed_currency
             sql = f'''UPDATE account_move SET amount_untaxed = %s  WHERE id = %s'''
             self.env.cr.execute(sql, [amount_untaxed, move.id])
+
+            amount_tax = sign * total_tax_currency
+            sql = f'''UPDATE account_move SET amount_tax = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_tax, move.id])
             continue
-            move.amount_tax = sign * total_tax_currency
+
             move.amount_total = sign * total_currency
             move.amount_residual = tax_totals.get('total_amount_currency', 0.0) + sign * total_reconciled_currency
             move.amount_untaxed_signed = -total_untaxed
