@@ -66,7 +66,9 @@ class AccountMove(models.Model):
 
             sign = move.direction_sign
             tax_totals = move.tax_totals or {}
-            move.amount_untaxed = sign * total_untaxed_currency
+            amount_untaxed = sign * total_untaxed_currency
+            sql = f'''UPDATE account_move SET amount_untaxed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_untaxed, move.id])
             continue
             move.amount_tax = sign * total_tax_currency
             move.amount_total = sign * total_currency
