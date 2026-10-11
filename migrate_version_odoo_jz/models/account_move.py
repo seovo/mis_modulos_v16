@@ -7,7 +7,7 @@ class AccountMove(models.Model):
 
 
     def set_compute_amount(self):
-        self._compute_amount_jz()
+        #self._compute_amount_jz()
         self._compute_amount()
 
     def _compute_amount_jz(self):
