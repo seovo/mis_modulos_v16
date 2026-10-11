@@ -77,14 +77,32 @@ class AccountMove(models.Model):
             amount_total = sign * total_currency
             sql = f'''UPDATE account_move SET amount_total = %s  WHERE id = %s'''
             self.env.cr.execute(sql, [amount_total, move.id])
-            continue
 
+            amount_residual = tax_totals.get('total_amount_currency', 0.0) + sign * total_reconciled_currency
+            sql = f'''UPDATE account_move SET amount_residual = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_residual, move.id])
 
-            move.amount_residual = tax_totals.get('total_amount_currency', 0.0) + sign * total_reconciled_currency
-            move.amount_untaxed_signed = -total_untaxed
-            move.amount_untaxed_in_currency_signed = -total_untaxed_currency
-            move.amount_tax_signed = -total_tax
-            move.amount_total_signed = abs(total) if move.move_type == 'entry' else -total
-            move.amount_residual_signed = -sign * tax_totals.get('total_amount', 0.0) - total_reconciled
-            move.amount_total_in_currency_signed = abs(move.amount_total) if move.move_type == 'entry' else -(
+            amount_untaxed_signed = -total_untaxed
+            sql = f'''UPDATE account_move SET amount_untaxed_signed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_untaxed_signed, move.id])
+
+            amount_untaxed_in_currency_signed = -total_untaxed_currency
+            sql = f'''UPDATE account_move SET amount_untaxed_in_currency_signed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_untaxed_in_currency_signed, move.id])
+
+            amount_tax_signed = -total_tax
+            sql = f'''UPDATE account_move SET amount_tax_signed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_tax_signed, move.id])
+
+            amount_total_signed = abs(total) if move.move_type == 'entry' else -total
+            sql = f'''UPDATE account_move SET amount_total_signed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_total_signed, move.id])
+
+            amount_residual_signed = -sign * tax_totals.get('total_amount', 0.0) - total_reconciled
+            sql = f'''UPDATE account_move SET amount_residual_signed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_residual_signed, move.id])
+
+            amount_total_in_currency_signed = abs(move.amount_total) if move.move_type == 'entry' else -(
                         sign * move.amount_total)
+            sql = f'''UPDATE account_move SET amount_total_in_currency_signed = %s  WHERE id = %s'''
+            self.env.cr.execute(sql, [amount_total_in_currency_signed, move.id])
