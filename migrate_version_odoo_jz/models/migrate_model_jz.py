@@ -187,7 +187,8 @@ class MigrateModelJz(models.Model):
                         'name': 'display_type',
                         'value_set': '''CASE
          WHEN product_id IS NOT NULL THEN 'product' 
-ELSE   'tax'
+         WHEN tax_line_id IS NOT NULL THEN 'tax'
+ELSE    'payment_term'
 END AS display_type      ''',
                         'migrate_model_id': id_origin,
                     })
@@ -2157,7 +2158,7 @@ END $$;
 
             EXCEPTION
                 WHEN foreign_key_violation THEN
-                    RAISE NOTICE 'Error: El registro de invoice_line_id no existe. Ignorando...';
+                    RAISE NOTICE 'Error: El registro de invoice_id no existe. Ignorando...';
                 WHEN others THEN
                     RAISE NOTICE 'Se produjo un error inesperado. Ignorando...';
 
