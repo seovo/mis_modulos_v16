@@ -75,7 +75,7 @@ class AccountMove(models.Model):
             self.env.cr.execute(sql, [amount_tax, move.id])
 
             amount_total = sign * total_currency
-            sql = f'''UPDATE amount_total SET amount_tax = %s  WHERE id = %s'''
+            sql = f'''UPDATE amount_total SET amount_total = %s  WHERE id = %s'''
             self.env.cr.execute(sql, [amount_total, move.id])
             continue
 
