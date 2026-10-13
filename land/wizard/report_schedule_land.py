@@ -566,14 +566,14 @@ class ReportScheduleLand(models.TransientModel):
 
             # Aplicar formato al estado
             if schedule_due.is_paid:
-                sheet.write(xc, 16, 'PAGADO', green_format)
+                sheet.write(xc, 17, 'PAGADO', green_format)
             else:
 
                 #si ya la venta esta cancelada / resolucion
                 if order.stage_land == 'cancel' :
-                    sheet.write(xc, 16, 'RESOLUCION', gray_format)
+                    sheet.write(xc, 17, 'RESOLUCION', gray_format)
                 else:
-                    sheet.write(xc, 16, 'PENDIENTE', format_red)
+                    sheet.write(xc, 17, 'PENDIENTE', format_red)
 
             xc += 1
 
