@@ -511,6 +511,10 @@ class ReportScheduleLand(models.TransientModel):
         data_to_write = []
 
         for schedule_due in schedule_dues:
+            if schedule_due.order_id.stage_land == 'cancel':
+                if not schedule_due.line_move_id:
+                    continue
+
             order = schedule_due.order_id
             invoice_pagada = schedule_due.invoice_date if schedule_due.invoice_date else fields.Datetime.now().date()
             dias_vencidos = (invoice_pagada - schedule_due.date).days if schedule_due.date else 0
