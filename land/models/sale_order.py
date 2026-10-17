@@ -726,6 +726,16 @@ class SaleOrder(models.Model):
                 invoice_lines_adelanto = []
 
                 for factura in record.invoice_ids:
+                    if factura.move_type in ['out_refund']:
+                        continue
+
+                    if factura.payment_state == 'reversed' or factura.l10n_pe_edi_reversal_type_id:
+                        continue
+
+                    if factura.debit_origin_id or factura.state == 'cancel':
+                        continue
+
+
                     for factura_line in factura.invoice_line_ids:
                         if  factura_line.number_advance_land > 0:
                             invoice_lines_adelanto.append(factura_line)
@@ -745,8 +755,6 @@ class SaleOrder(models.Model):
                                 if exist_line:
                                     exist_line.unlink()
                                 continue
-
-
 
                         dx = {
                             'number_due': inv_line_ade.number_advance_land,
