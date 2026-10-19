@@ -74,9 +74,14 @@ class Controller(http.Controller):
         name = request.httprequest.form.get('nombres_apellidos')
         phone = request.httprequest.form.get('celular')
         email = request.httprequest.form.get('correo')
-
         tdoc = request.httprequest.form.get('tipo_identificacion')
         msg = ''
+
+        #verificar si existe una factura borrador
+        sale_prev = request.env['sale.order'].sudo().search([('partner_id.vat', '=', vat),('state','=','draft')])
+        if sale_prev:
+            return http.request.render("land.index_exist", {})
+
 
         if lotes_seleccionados:
             sale_ids = []
