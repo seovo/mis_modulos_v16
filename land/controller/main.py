@@ -78,7 +78,7 @@ class Controller(http.Controller):
         msg = ''
 
         #verificar si existe una factura borrador
-        sale_prev = request.env['sale.order'].sudo().search([('partner_id.vat', '=', vat),('state','=','draft')])
+        sale_prev = request.env['account.move'].sudo().search([('partner_id.vat', '=', vat),('state','=','draft')])
         if sale_prev:
             return http.request.render("land.index_exist", {})
 
