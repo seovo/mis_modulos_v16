@@ -77,11 +77,6 @@ class Controller(http.Controller):
         tdoc = request.httprequest.form.get('tipo_identificacion')
         msg = ''
 
-        #verificar si existe una factura borrador
-        sale_prev = request.env['account.move'].sudo().search([('partner_id.vat', '=', vat),('state','=','draft')])
-        if sale_prev:
-            return http.request.render("land.index_exist", {})
-
 
         if lotes_seleccionados:
             sale_ids = []
@@ -96,37 +91,22 @@ class Controller(http.Controller):
 
                 sale_ids.append(sale.id)
 
-            '''
+
 
             if sale_ids:
-                partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
-                # verificar facturas existentes en borrador
-                moves_exist = request.env['account.move.line'].sudo().search([
-                    ('move_id.state','=','draft'),
-                    ('partner_id','=',partner.id),
 
-                ])
-                #('sale_line_ids', 'in', sale_ids),
-                exist_sale_in_draft = False
+                sales_prev = request.env['sale.order'].sudo().search([('id', 'in', sale_ids)])
+
+                exist_moves_draft = False
+
+                for salex in sales_prev:
+                    for invoice in salex.invoice_ids:
+                        if invoice.state == 'draft':
+                            exist_moves_draft = True
 
 
-                if moves_exist and vat == '':
-                    for salee in sale_ids:
-                        for mv in moves_exist:
-                            if not mv.sale_line_ids:
-                                continue
-                            if salee in mv.sale_line_ids.ids:
-                                exist_sale_in_draft = True
-
-                    if exist_sale_in_draft:
-               
-               
-               
-               
-               
-                        return http.request.render("land.index_exist", {'sales': moves_exist})
-            '''
-
+                if exist_moves_draft:
+                    return http.request.render("land.index_exist", {})
 
 
             wizard = request.env['sale.advance.payment.inv'].sudo().create({
@@ -140,6 +120,11 @@ class Controller(http.Controller):
             partner = invoice.partner_id
 
         else:
+
+            move_prev = request.env['account.move'].sudo().search(
+                [('partner_id.vat', '=', vat), ('state', '=', 'draft')])
+            if move_prev:
+                return http.request.render("land.index_exist", {})
 
             partner = request.env['res.partner'].sudo().search([('vat', '=', vat)])
 
