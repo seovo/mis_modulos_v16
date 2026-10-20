@@ -7,7 +7,6 @@ from odoo.http import content_disposition
 import io
 
 
-
 try:
     import base64
 except:
