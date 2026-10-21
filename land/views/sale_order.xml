@@ -786,7 +786,14 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('mounth_expired_land', '>', 0),('mounth_expired_land', '&lt;=', 5)]</field>
+        <field name="domain">[
+            ('mounth_expired_land', '>', 0),
+            ('mounth_expired_land', '&lt;=', 5),
+            ('state','=','sale'),
+            ('stage_land','!=','cancel'),
+            ('stage_land','!=','preaviso')
+            ]
+        </field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
@@ -799,7 +806,13 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('mounth_expired_land', '>', 0),('mounth_expired_land', '&lt;=', 2)]</field>
+        <field name="domain">[
+            ('mounth_expired_land', '>', 0),
+            ('mounth_expired_land', '&lt;=', 2),
+            ('state','=','sale'),
+            ('stage_land','!=','cancel'),
+            ('stage_land','!=','preaviso')
+            ]</field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
@@ -812,7 +825,14 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('mounth_expired_land', '>', 2),('mounth_expired_land', '&lt;=', 5)]</field>
+        <field name="domain">[
+            ('mounth_expired_land', '>', 2),
+            ('mounth_expired_land', '&lt;=', 5),
+            ('state','=','sale'),
+            ('stage_land','!=','cancel'),
+            ('stage_land','!=','preaviso')
+            ]
+        </field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
@@ -825,7 +845,13 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('mounth_expired_land', '>', 5)]</field>
+        <field name="domain">[
+            ('mounth_expired_land', '>', 5),
+            ('state','=','sale'),
+            ('stage_land','!=','cancel'),
+            ('stage_land','!=','preaviso')
+            ]
+        </field>
 
         <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
