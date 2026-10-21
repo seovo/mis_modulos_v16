@@ -14,6 +14,7 @@
         <menuitem name="Morosos"
               id="menu_morosos2"
         >
+          <menuitem action="action_sale_morosos5" id="menu_sale_morosos52" />
           <menuitem action="action_sale_morosos1" id="menu_sale_morosos12" />
           <menuitem action="action_sale_morosos2" id="menu_sale_morosos22" />
           <menuitem action="action_sale_morosos3" id="menu_sale_morosos32" />
@@ -73,6 +74,7 @@
               id="menu_morosos"
               parent="sale.sale_order_menu"
     >
+        <menuitem action="action_sale_morosos5" id="menu_sale_morosos5" />
         <menuitem action="action_sale_morosos1" id="menu_sale_morosos1" />
         <menuitem action="action_sale_morosos2" id="menu_sale_morosos2" />
         <menuitem action="action_sale_morosos3" id="menu_sale_morosos3" />
