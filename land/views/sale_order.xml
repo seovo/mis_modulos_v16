@@ -781,6 +781,19 @@
 			<field name="code">action = records.update_schedule()</field>
     </record>
 
+    <record id="action_sale_morosos5" model="ir.actions.act_window">
+        <field name="name">Moroso 1 - 5 Meses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('mounth_expired_land', '>', 0),('mounth_expired_land', '&lt;=', 5)]</field>
+
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('land.view_order_tree_report')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"
+            />
+    </record>
+
     <record id="action_sale_morosos1" model="ir.actions.act_window">
         <field name="name">Moroso 1 - 2 Meses</field>
         <field name="type">ir.actions.act_window</field>
