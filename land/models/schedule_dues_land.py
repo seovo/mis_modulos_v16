@@ -18,6 +18,14 @@ class ScheduleDuesLand(models.Model):
     amount         = fields.Float(string="Mensualidad")
     #note           = fields.Text(string="Nota")
     is_paid        = fields.Boolean(string="Pagado?")
+    is_defeated        = fields.Boolean(string="Vencido?",compute='get_is_defeated')
+    def get_is_defeated(self):
+        date_now = fields.Datetime.now().date()
+        for record in self:
+            feated = False
+            if not record.move_id and record.date < date_now :
+                feated = True
+            record.is_defeated = feated
     order_id       = fields.Many2one('sale.order',string='Venta')
     line_move_id = fields.Many2one('account.move.line', string="Factura")
     id_line_move_id = fields.Integer()

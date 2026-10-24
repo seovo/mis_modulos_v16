@@ -50,18 +50,10 @@
                         </div>
 
 
-
-                        <div class="row">
-                            <div class="col-4 bg-light p-2 border border-primary text-end">Etapa</div>
-                            <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.sector_land" />
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">MZ-LT</div>
                             <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.mz_land" />-<t t-esc="doc.lot_land" />
+                                <t t-esc="doc.mz_land" />-<t t-esc="doc.lot_land" /> <span t-if="doc.sector_land">(<t t-esc="doc.sector_land" />)</span>
                             </div>
                         </div>
 
@@ -85,7 +77,7 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Fecha Vencida</div>
                             <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.next_payment_date_land" />
+                                <t t-esc="doc.next_payment_date_land"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}' />
                             </div>
                         </div>
 
@@ -146,6 +138,40 @@
                     </div>
 
                 </div>
+
+                <center><h2>Cronograma Mora</h2></center>
+
+                <table class="table ">
+                    <thead>
+
+                        <tr class="bg-primary text-white">
+                            <th scope="col" class="text-white">Fecha</th>
+                            <th scope="col" class="text-white">Cuota</th>
+                            <th scope="col" class="text-white">Cuota Mensual</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <t t-foreach="doc.schedule_land_ids" t-as="cuota">
+                            <tr  t-attr-class="  #{'alert-success' if cuota.is_paid == True else ''}" t-if="cuota.feated == True">
+                                <td style="background: none;" >
+                                    <t t-esc="cuota.date"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                </td>
+                                <td style="background: none;">
+                                    <t t-esc="cuota.number_due" t-if="cuota.number_due != 0" />
+                                    <span  t-if="cuota.number_due == 0" >Inicial</span>
+                                </td>
+
+                                <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
+
+                            </tr>
+                        </t>
+
+
+                    </tbody>
+
+                </table>
 
             </div>
         </t>
