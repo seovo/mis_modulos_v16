@@ -88,9 +88,14 @@
                             <div class="col-12 bg-light p-2 border border-primary text-center">Resumen</div>
                         </div>
                         <div class="row">
-                                <div class="col-4 bg-light p-2 border border-primary text-end">Meses Vencidos</div>
-                            <div class="col-8 p-2 border border-primary text-start">
+                            <div class="col-2 bg-light p-2 border border-primary text-end">Meses Vencidos</div>
+                            <div class="col-4 p-2 border border-primary text-start">
                                 <t t-esc="doc.mounth_expired_land" />
+                            </div>
+                            <div class="col-2 bg-light p-2 border border-primary text-end">Pago Adeudado</div>
+                            <div class="col-4 p-2 border border-primary text-end">
+                                <!--<t t-esc="doc.partner_id.phone"  class="pr-2"/> -->
+                                S/ <span t-esc="round(doc.amount_payment_month_land,2)" />
                             </div>
                         </div>
 
@@ -114,14 +119,6 @@
                             <div class="col-4 bg-light p-2 border border-primary text-end">Mora Total</div>
                             <div class="col-8 p-2 border border-primary text-end">
                                 S/ <t t-esc="round(doc.mora_acumulada,2)" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 bg-light p-2 border border-primary text-end">Pago Adeudado</div>
-                            <div class="col-8 p-2 border border-primary text-end">
-                                <!--<t t-esc="doc.partner_id.phone"  class="pr-2"/> -->
-                                S/ <span t-esc="round(doc.amount_payment_month_land,2)" />
                             </div>
                         </div>
 
