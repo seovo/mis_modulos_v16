@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Fecha Vencida</div>
                             <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.last_date_to_pay_land" />
+                                <t t-esc="doc.next_payment_date_land" />
                             </div>
                         </div>
 
