@@ -139,6 +139,8 @@
 
                 </div>
 
+                <h6>*Los dias vencidos vencidos se cuenta  a partir de la ultima fecha vencidas , sin contar <t t-esc="doc.days_tolerance_day"/> los dias de gracia</h6>
+
                 <center><h2>Cronograma Mora</h2></center>
 
                 <table class="table ">
