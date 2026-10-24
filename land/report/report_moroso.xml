@@ -139,7 +139,7 @@
 
                 </div>
 
-                <h6>*Los dias vencidos vencidos se cuenta  a partir de la ultima fecha vencidas , sin contar <t t-esc="doc.days_tolerance_land"/> los dias de gracia</h6>
+                <h6>*Los dias vencidos vencidos se cuenta  a partir de la ultima fecha vencidas , sin contar <t t-esc="doc.days_tolerance_land"/> los dias de tolerancia</h6>
 
                 <center><h2>Cronograma Mora</h2></center>
 
@@ -165,7 +165,7 @@
                                     <span  t-if="cuota.number_due == 0" >Inicial</span>
                                 </td>
 
-                                <td style="background: none;"><t t-esc="round(cuota.amount_due_land,2)" /></td>
+                                <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
 
                             </tr>
                         </t>
