@@ -59,18 +59,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-4 bg-light p-2 border border-primary text-end">MZ</div>
+                            <div class="col-4 bg-light p-2 border border-primary text-end">MZ-LT</div>
                             <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.mz_land" />
+                                <t t-esc="doc.mz_land" />-<t t-esc="doc.lot_land" />
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-4 bg-light p-2 border border-primary text-end">LT</div>
-                            <div class="col-8 p-2 border border-primary text-start">
-                                <t t-esc="doc.lot_land" />
-                            </div>
-                        </div>
+
 
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Cuota Mensual</div>
@@ -125,7 +120,7 @@
                         <div class="row">
                             <div class="col-4 bg-light p-2 border border-primary text-end">Pago Adeudado</div>
                             <div class="col-8 p-2 border border-primary text-end">
-                                <t t-esc="doc.partner_id.phone"  class="pr-2"/>
+                                <!--<t t-esc="doc.partner_id.phone"  class="pr-2"/> -->
                                 S/ <span t-esc="round(doc.amount_payment_month_land,2)" />
                             </div>
                         </div>
