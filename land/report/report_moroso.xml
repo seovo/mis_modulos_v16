@@ -114,19 +114,20 @@
                         </div>
 
                         <div class="row">
-                                <div class="col-4 bg-light p-2 border border-primary text-end">Dias Vencidos</div>
-                            <div class="col-8 p-2 border border-primary text-start">
+                            <div class="col-3 bg-light p-2 border border-primary text-end">Dias Vencidos</div>
+                            <div class="col-2 p-2 border border-primary text-start">
                                 <t t-esc="doc.days_expired_land" />
+                            </div>
+                            <div class="col-3 bg-light p-2 border border-primary text-end">Mora Total</div>
+                            <div class="col-4 p-2 border border-primary text-end">
+                                S/ <t t-esc="round(doc.mora_acumulada,2)" />
                             </div>
                         </div>
 
 
 
                         <div class="row">
-                            <div class="col-4 bg-light p-2 border border-primary text-end">Mora Total</div>
-                            <div class="col-8 p-2 border border-primary text-end">
-                                S/ <t t-esc="round(doc.mora_acumulada,2)" />
-                            </div>
+
                         </div>
 
 
