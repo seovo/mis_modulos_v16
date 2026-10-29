@@ -119,6 +119,7 @@ class Controller(http.Controller):
             partner = invoice.partner_id
 
         else:
+            return http.request.render("land.index_lote_required", {})
 
             move_prev = request.env['account.move'].sudo().search(
                 [('partner_id.vat', '=', vat), ('state', '=', 'draft')])
