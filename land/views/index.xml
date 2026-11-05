@@ -65,7 +65,7 @@
                 <span class="icon">✅</span>
                 <h1>¡debe seleccionar un lote!</h1>
                 <!--<h1>su factura es el Nro <t t-esc="id" /></h1> -->
-                <h3>Es obligatorio seleccionar un lote</h3>
+                <h3>Es obligatorio seleccionar un lote o comunicarse por Whatsapp</h3>
                 <a href="/ui/land" class="btn-volver">Volver a Registrar</a>
             </div>
 
