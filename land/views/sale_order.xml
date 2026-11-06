@@ -486,6 +486,7 @@
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
                    <field name="phone"  />
+                   <field name="mobile"  />
                    <field name="date_sign_land"  />
                    <field name="stage_payment_lan" widget="badge"
                                            decoration-success="stage_payment_lan == 'payment'"
