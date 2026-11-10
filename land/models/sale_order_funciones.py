@@ -592,6 +592,12 @@ class SaleOrder(models.Model):
         res = super()._prepare_invoice()
         if self.journal_id:
             res['journal_id'] = self.journal_id.id
+        else:
+            #diario por defecto
+            journal = self.env['account.journal'].sudo().search([('company_id','=',self.company_id.id)],limit=1)
+            if journal:
+                res['journal_id'] = journal.id
+
 
         if self.days_expired_land:
             res['days_expired_land'] = self.days_expired_land
