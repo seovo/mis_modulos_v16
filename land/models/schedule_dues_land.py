@@ -83,7 +83,7 @@ class ScheduleDuesLand(models.Model):
                 description = f'ADELANTO CUOTA #{record.number_due}'
 
             if record.type_schedule  == 'independence':
-                description = f'INDEPENCIACION #{record.number_due}'
+                description = f'INDEPEN #{record.number_due}'
 
             record.description = description
 
