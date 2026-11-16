@@ -191,8 +191,9 @@
                                     <t t-esc="cuota.date"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
                                 </td>
                                 <td style="background: none;">
-                                    <t t-esc="cuota.number_due" t-if="cuota.number_due != 0" />
-                                    <span  t-if="cuota.number_due == 0" >Inicial</span>
+
+                                    <t t-esc="cuota.description"  />
+
                                 </td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.balan,2)" /></td>
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
