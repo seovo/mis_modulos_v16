@@ -234,6 +234,7 @@
                 </p>
                 <p>Puede revisar su factura emitida en el cronograma de Pagos</p>
                 <a href="/ui/land" class="btn-volver">Volver al inicio</a>
+                <h1><t t-esc="post" /></h1>
             </div>
 
         </body>
@@ -536,7 +537,7 @@
         <div class="card-form">
             <h2> <img src="https://static.vecteezy.com/system/resources/previews/011/664/484/non_2x/the-christmas-icon-bundle-set-png.png"
                       alt="Descripción de la imagen" width="60" height="80" loading="lazy" />
-                Consulte su lote o suba tu Comprobante</h2>
+                Consulte su lote o suba su Comprobante</h2>
             <p class="subtitle">Completa tus datos y adjunte tu evidencia de pago , puede consultar su cronograma  de pagos.</p>
 
             <form method="POST" action="/api/up/land" enctype="multipart/form-data">

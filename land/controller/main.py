@@ -214,7 +214,7 @@ class Controller(http.Controller):
 
 
 
-        return http.request.render("land.index_thanks",{'id': invoice.id })
+        return http.request.render("land.index_thanks",{'id': invoice.id  , 'post': post })
 
     @http.route(['/api/land/client/<string:vat>'], type='json', auth='public', methods=['POST'],
                 website=True, csrf=False)
