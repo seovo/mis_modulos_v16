@@ -194,9 +194,8 @@ class Controller(http.Controller):
                 )
 
                 ####
-                contenido = archivo.read()
-                # Codificar y decodificar a str (base64.b64encode devuelve bytes)
-                b64 = base64.b64encode(contenido).decode('utf-8')
+
+                b64 = base64.b64encode(archivo.read())
                 mimetype = archivo.mimetype or 'image/png'
                 data_url = f"data:{mimetype};base64,{b64}"
                 imagenes.append({
