@@ -180,8 +180,8 @@
                                 <td style="background: none;" >
                                     <t t-esc="context_timestamp(datetime.datetime.now())"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
                                 </td>
-                                <td style="background: none;"></td>
-                                <td style="background: none;"></td>
+                                <td style="background: none;">FECHA</td>
+                                <td style="background: none;">ACTUAL</td>
 
                                 <td style="background: none;" class="text-end"><t t-esc="(context_timestamp(datetime.datetime.now()).date() - last_date).days"/></td>
 
