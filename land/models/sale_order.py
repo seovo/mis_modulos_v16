@@ -15,6 +15,15 @@ class SaleOrder(models.Model):
     vat = fields.Char(related='partner_id.vat', string="RUC/DNI")
     phone = fields.Char(related='partner_id.phone')
     mobile = fields.Char(related='partner_id.mobile')
+    mobile_phone = fields.Char(compute='get_mobile_phone',string='Telefono')
+
+    def get_mobile_phone(self):
+        for record in self:
+            record.mobile_phone =  record.mobile if record.mobile == record.phone else f''' {record.mobile} ,  {record.phone}'''
+
+
+    email = fields.Char(related='partner_id.email')
+
     identification_type = fields.Char(related='partner_id.l10n_latam_identification_type_id.name', string="Doc")
     #############
 

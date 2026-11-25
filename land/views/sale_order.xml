@@ -199,8 +199,6 @@
     </record>
 
 
-
-
     <record id="view_order_form" model="ir.ui.view">
            <field name="name">Pedidos.Form</field>
            <field name="model">sale.order</field>
@@ -485,8 +483,8 @@
                <xpath expr="//field[@name='name']" position="after" >
                    <field name="nro_internal_land"  />
                    <field name="mz_lot" string="Manzana-Lote" />
-                   <field name="phone"  />
-                   <field name="mobile"  />
+                   <field name="mobile_phone"  />
+                   <field name="email"  />
                    <field name="date_sign_land"  />
                    <field name="stage_payment_lan" widget="badge"
                                            decoration-success="stage_payment_lan == 'payment'"
