@@ -170,6 +170,7 @@
 
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
 
+                                <td style="background: none;" class="text-end" t-if="last_date != False">S/ <t t-esc="(cuota.date - last_date).days" /></td>
                                 <t t-set="last_date" t-value="cuota.date" />
 
                             </tr>
@@ -179,11 +180,10 @@
                                 <td style="background: none;" >
                                     <t t-esc="context_timestamp(datetime.datetime.now())"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
                                 </td>
-                                <td style="background: none;">
+                                <td style="background: none;"></td>
+                                <td style="background: none;"></td>
 
-                                </td>
-
-                                <td style="background: none;" class="text-end">S/ <t t-esc="last_date" /></td>
+                                <td style="background: none;" class="text-end"><t t-esc="(context_timestamp(datetime.datetime.now()).date() - last_date).days"/></td>
 
                         </tr>
 
