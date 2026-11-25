@@ -141,7 +141,7 @@
 
                 <h6>*Los dias vencidos vencidos se cuenta  a partir de la ultima fecha vencidas , sin contar <t t-esc="doc.days_tolerance_land"/> los dias de tolerancia</h6>
 
-                <center><h2>Cronograma Mora</h2></center>
+                <center><h2>Mora</h2></center>
 
                 <table class="table ">
                     <thead>
@@ -150,10 +150,13 @@
                             <th scope="col" class="text-white">Fecha</th>
                             <th scope="col" class="text-white">Cuota</th>
                             <th scope="col" class="text-white">Cuota Mensual</th>
+                            <th scope="col" class="text-white">Dias Mora</th>
                         </tr>
                     </thead>
 
                     <tbody>
+
+                        <t t-set="last_date" t-value="False" />
 
                         <t t-foreach="doc.schedule_land_ids" t-as="cuota">
                             <tr  t-attr-class="  #{'alert-success' if cuota.is_paid == True else ''}" t-if="cuota.is_defeated == True">
@@ -167,8 +170,22 @@
 
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
 
+                                <t t-set="last_date" t-value="cuota.date" />
+
                             </tr>
                         </t>
+
+                        <tr  t-attr-class="  #{'alert-success' if cuota.is_paid == True else ''}" t-if="cuota.is_defeated == True">
+                                <td style="background: none;" >
+                                    <t t-esc="context_timestamp(datetime.datetime.now())"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                </td>
+                                <td style="background: none;">
+
+                                </td>
+
+                                <td style="background: none;" class="text-end">S/ <t t-esc="last_date" /></td>
+
+                        </tr>
 
 
                     </tbody>
