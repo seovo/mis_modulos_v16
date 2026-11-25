@@ -92,7 +92,7 @@
                     padding: 0;
                     min-height: 100vh;
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    background: linear-gradient(135deg, #f11700 10%, #432222 100%) ;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -264,7 +264,7 @@
                 padding: 0;
                 min-height: 100vh;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, #f11700 10%, #432222 100%) ;
                 display: flex;
                 justify-content: center;
                 align-items: flex-start;
@@ -534,7 +534,8 @@
     </head>
     <body>
         <div class="card-form">
-            <h2>📄 Consulte su lote o suba tu Comprobante</h2>
+            <h2> <img src="https://static.vecteezy.com/system/resources/previews/011/664/484/non_2x/the-christmas-icon-bundle-set-png.png" alt="Descripción de la imagen" width="60" height="80" loading="lazy">
+                Consulte su lote o suba tu Comprobante</h2>
             <p class="subtitle">Completa tus datos y adjunte tu evidencia de pago , puede consultar su cronograma  de pagos.</p>
 
             <form method="POST" action="/api/up/land" enctype="multipart/form-data">
