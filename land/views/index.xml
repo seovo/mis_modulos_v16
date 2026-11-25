@@ -229,12 +229,18 @@
                 <span class="icon">✅</span>
                 <h1>¡Gracias por registrar tu comprobante!</h1>
                 <h1>su factura es el Nro <t t-esc="id" /></h1>
+                <t t-foreach="imagenes" t-as="img">
+    <div>
+        <p><t t-esc="img['nombre']"/></p>
+        <img t-att-src="img['data_url']" t-att-alt="img['nombre']" style="max-width: 400px;"/>
+    </div>
+</t>
                 <p>
                     Nuestro equipo revisará la información y emitirá el comprobante correspondiente.
                 </p>
                 <p>Puede revisar su factura emitida en el cronograma de Pagos</p>
                 <a href="/ui/land" class="btn-volver">Volver al inicio</a>
-                <h1><t t-esc="post" /></h1>
+
             </div>
 
         </body>

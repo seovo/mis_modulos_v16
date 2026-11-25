@@ -170,6 +170,7 @@ class Controller(http.Controller):
 
         # Obtener archivos múltiples
         archivos = request.httprequest.files.getlist('adjunto[]')
+        imagenes = []
 
         if archivos and invoice:
             # Procesar cada archivo
@@ -191,6 +192,17 @@ class Controller(http.Controller):
                     body='Comprobante adjunto ' + msg,
                     attachment_ids=[attachment.id],
                 )
+
+                ####
+                contenido = archivo.read()
+                # Codificar y decodificar a str (base64.b64encode devuelve bytes)
+                b64 = base64.b64encode(contenido).decode('utf-8')
+                mimetype = archivo.mimetype or 'image/png'
+                data_url = f"data:{mimetype};base64,{b64}"
+                imagenes.append({
+                    'nombre': archivo.filename,
+                    'data_url': data_url,
+                })
 
 
         # Recepcionar el adjunto en una variable (solo por ahora)
