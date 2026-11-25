@@ -41,6 +41,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const hayLotesSeleccionados = hasLotesSeleccionados();
         const tieneCelular = tieneCelularExistente();
 
+
+
+        proyectoGroup.style.display = 'none';
+        mzLtGroup.style.display = 'none';
+        proyectoInput.removeAttribute('required');
+        mzInput.removeAttribute('required');
+        ltInput.removeAttribute('required');
+        proyectoInput.setAttribute('required', 'required');
+        proyectoInput.setAttribute('required', 'required');
+
+        /*
         // Si hay lotes disponibles Y hay al menos uno seleccionado
         if (hayLotesDisponibles && hayLotesSeleccionados) {
             // Ocultar y quitar required de proyecto/MZ/LT
@@ -57,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
             mzInput.setAttribute('required', 'required');
             ltInput.setAttribute('required', 'required');
         }
+
+        */
 
         // ===== LÓGICA DEL CELULAR =====
         // Si tiene un valor existente (placeholder con datos del cliente), NO es requerido

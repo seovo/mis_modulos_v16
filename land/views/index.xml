@@ -601,9 +601,6 @@
                     </div>
 
 
-
-
-
                 </div>
 
                 <div class="row" id="mz_lt_group" style="display:none;">
@@ -680,7 +677,7 @@
         </div>
         <script src="/land/static/src/js/jquery-4.0.0.min.js" ></script>
 
-        <script src="/land/static/src/js/index_form.js"></script>
+        <script src="/land/static/src/js/index_form1.js"></script>
     </body>
 </html>
 </template>
