@@ -179,10 +179,11 @@ class Controller(http.Controller):
                 # archivo.stream -> contenido del archivo
                 # archivo.content_type -> tipo MIME
                 # Aquí guardas cada archivo como attachment en Odoo
+                datas = base64.b64encode(archivo.read())
                 attachment = request.env['ir.attachment'].sudo().create({
                     'type': 'binary',
                     'name': archivo.filename,
-                    'datas': base64.b64encode(archivo.read()),
+                    'datas': datas,
                     'mimetype': archivo.content_type,
                     'res_model': 'account.move',
                     'res_id': invoice.id,  # Reemplaza con el ID del registro
@@ -195,7 +196,7 @@ class Controller(http.Controller):
 
                 ####
 
-                b64 = base64.b64encode(archivo.read())
+                b64 = datas.decode('utf-8')
                 mimetype = archivo.mimetype or 'image/png'
                 data_url = f"data:{mimetype};base64,{b64}"
                 imagenes.append({
