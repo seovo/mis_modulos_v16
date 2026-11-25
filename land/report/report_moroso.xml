@@ -170,7 +170,7 @@
 
                                 <td style="background: none;" class="text-end">S/ <t t-esc="round(cuota.amount,2)" /></td>
 
-                                <td style="background: none;" class="text-end" t-if="last_date != False">S/ <t t-esc="(cuota.date - last_date).days" /></td>
+                                <td style="background: none;" class="text-end" t-if="last_date != False"><t t-esc="(cuota.date - last_date).days" /></td>
                                 <t t-set="last_date" t-value="cuota.date" />
 
                             </tr>
