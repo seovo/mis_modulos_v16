@@ -176,7 +176,7 @@
                             </tr>
                         </t>
 
-                        <tr  t-attr-class="  #{'alert-success' if cuota.is_paid == True else ''}" t-if="cuota.is_defeated == True">
+                        <tr  t-attr-class="  #{'alert-success' if cuota.is_paid == True else ''}" >
                                 <td style="background: none;" >
                                     <t t-esc="context_timestamp(datetime.datetime.now())"  t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
                                 </td>
