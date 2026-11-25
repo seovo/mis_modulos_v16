@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const proyectoGroup = document.getElementById('proyecto_group');
     const mzLtGroup = document.getElementById('mz_lt_group');
     const proyectoInput = document.getElementById('proyecto');
+    const lotesInput = document.getElementById('lotes');
     const mzInput = document.getElementById('mz');
     const ltInput = document.getElementById('lt');
     const celularInput = document.getElementById('celular');
@@ -48,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
         proyectoInput.removeAttribute('required');
         mzInput.removeAttribute('required');
         ltInput.removeAttribute('required');
-        proyectoInput.setAttribute('required', 'required');
-        proyectoInput.setAttribute('required', 'required');
+        lotesInput.setAttribute('required', 'required');
+
 
         /*
         // Si hay lotes disponibles Y hay al menos uno seleccionado
